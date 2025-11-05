@@ -3,9 +3,9 @@ import bg from "../../assets/images/background-Img.png";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import React from "react";
 import CustomButton from "../../components/customButton";
-import Header from "../header";
 import { homeData } from "../../data/home";
 import theme from "../../theme";
+import Header from "../../components/header";
 
 const Home = () => {
   return (
