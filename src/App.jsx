@@ -2,29 +2,20 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
+  BrowserRouter,
 } from "react-router-dom";
 import "./App.css";
-
-import Home from "./app/home";
-import SignUp from "./app/auth/signUp";
-import Login from "./app/auth/login";
-import Profile from "./app/auth/profile";
+import { AUTH_ROUTES } from "./routes";
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/signup" replace />} />
-
-        {/* Auth Routes */}
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
-
-        <Route path="/home" element={<Home />} />
+        {AUTH_ROUTES?.map((route) => (
+          <Route key={route.id} path={route.path} element={route.component} />
+        ))}
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 
