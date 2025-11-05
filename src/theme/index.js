@@ -13,10 +13,22 @@ const theme = createTheme({
     background: {
       default: "#101010",
       paper: "#161616",
+      black: "#000000",
+      darkGray: "#0F0F0F",
+      gray: "#1F1F1F",
+      lightGray: "#1A1A1A",
+      veryLightGray: "#141414",
+      extraLightGray: "#0D0D0D",
+      mediumGray: "#333333",
     },
     text: {
       primary: "#ffffffff",
       secondary: "#5E6267",
+    },
+    gradients: {
+      drawer: "linear-gradient(180deg, rgba(16, 16, 16, 0.95) 0%, rgba(22, 22, 22, 0.98) 100%)",
+      drawerHeader: "linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)",
+      drawerFooter: "linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%)",
     },
     body1: {
       fontFamily: '"Noto Sans", sans-serif',
