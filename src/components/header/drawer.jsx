@@ -14,7 +14,7 @@ const NavigationDrawer = ({ open, onClose, navItems, activeNav, onNavClick }) =>
       return (
         <Box
           key={item.label}
-          onClick={() => onNavClick(item.label)}
+          onClick={() => onNavClick(item)}
           sx={drawerStyles.drawerNavItem(isActive)}
         >
           <Typography sx={drawerStyles.drawerNavItemText(isActive)}>

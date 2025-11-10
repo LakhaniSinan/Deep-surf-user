@@ -5,12 +5,15 @@ import CustomInput from "../../../components/customInput";
 import theme from "../../../theme";
 import CustomButton from "../../../components/customButton";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
   const [profileData, setProfileData] = useState({
     username: "",
     profileImage: null,
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (field, value) => {
     setProfileData((prev) => ({
@@ -27,8 +30,8 @@ function Profile() {
   };
 
   const handleContinue = () => {
+    navigate("/login");
     console.log("Profile Data:", profileData);
-    // navigate next step if needed
   };
 
   return (

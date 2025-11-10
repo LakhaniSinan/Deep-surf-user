@@ -30,18 +30,6 @@ const theme = createTheme({
       drawerHeader: "linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)",
       drawerFooter: "linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%)",
     },
-    body1: {
-      fontFamily: '"Noto Sans", sans-serif',
-      fontSize: "1rem", // 16px
-      fontWeight: 400,
-      lineHeight: 1.6,
-    },
-    body2: {
-      fontFamily: '"Noto Sans", sans-serif',
-      fontSize: "0.875rem", // 14px
-      fontWeight: 400,
-      lineHeight: 1.5,
-    },
   },
 
   typography: {
@@ -81,6 +69,24 @@ const theme = createTheme({
       fontFamily: '"Poppins", sans-serif',
       fontSize: "1rem",
       fontWeight: 600,
+      lineHeight: 1.5,
+    },
+    body1: {
+      fontFamily: '"Noto Sans", sans-serif',
+      fontSize: "1rem", // 16px
+      fontWeight: 400,
+      lineHeight: 1.6,
+    },
+    body2: {
+      fontFamily: '"Noto Sans", sans-serif',
+      fontSize: "0.875rem", // 14px
+      fontWeight: 400,
+      lineHeight: 1.5,
+    },
+    body3: {
+      fontFamily: '"Noto Sans", sans-serif',
+      fontSize: "0.75rem", // 12px
+      fontWeight: 400,
       lineHeight: 1.5,
     },
   },

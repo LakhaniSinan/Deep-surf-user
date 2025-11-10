@@ -99,7 +99,11 @@ function SignUp() {
               padding: 0,
             }}
           />
-          <Typography variant="body2" fontSize={13} color={theme.palette.text.secondary}>
+          <Typography
+            variant="body2"
+            fontSize={13}
+            color={theme.palette.text.secondary}
+          >
             I agree to Terms of Services Privacy Policy
           </Typography>
         </Box>
@@ -128,13 +132,17 @@ function SignUp() {
           mt={2}
           gap={2}
           width="100%"
+          flexWrap="wrap" // ✅ wrap on small screens
         >
           <Box
             border={1}
-            py={0.8}
-            px={9}
+            py={0.8} // small screens ke liye padding thodi kam
+            px={{ xs: 6, sm: 9 }} // xs = extra small, sm = small screen
             borderColor={theme.palette.text.secondary}
             borderRadius={2}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
           >
             <img
               src={googleLogo}
@@ -147,9 +155,12 @@ function SignUp() {
           <Box
             border={1}
             py={0.8}
-            px={9}
+            px={{ xs: 6, sm: 9 }}
             borderColor={theme.palette.text.secondary}
             borderRadius={2}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
           >
             <img
               src={appleLogo}

@@ -23,8 +23,8 @@ const AuthLayout = ({ children, title }) => {
         justifyContent="center"
         textAlign="center"
         gap={2}
-        width={"400px"}
-        height={"550px"}
+        height={{xs:"800%" ,sm:"550px"}}
+        width={{xs:"80%" ,sm:"400px"}}
       >
         <Box
           component="img"

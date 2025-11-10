@@ -3,8 +3,8 @@ import OtpInput from "react-otp-input";
 
 export default function CustomOtp({ value, onChange }) {
   const inputStyle = {
-    width: "35px",
-    height: "35px",
+    width: "30px",
+    height: "30px",
     margin: "0 7px",
     fontSize: "18px",
     borderRadius: "8px",
@@ -18,18 +18,23 @@ export default function CustomOtp({ value, onChange }) {
   const containerStyle = {
     display: "flex",
     justifyContent: "center",
-    gap: "6px",
+    flexWrap: "wrap",
+    gap: "3px",
+    maxWidth: "100%",
+    margin: "0 auto",
   };
 
   return (
-    <OtpInput
-      value={value} // 👈 parent se aayi value use ho rahi hai
-      onChange={onChange} // 👈 parent ke handler ko call karega
-      numInputs={6}
-      renderSeparator={null}
-      renderInput={(props) => <input {...props} />}
-      inputStyle={inputStyle}
-      containerStyle={containerStyle}
-    />
+    <div style={{ width: "100%", overflow: "hidden" }}>
+      <OtpInput
+        value={value} 
+        onChange={onChange} 
+        numInputs={6}
+        renderSeparator={null}
+        renderInput={(props) => <input {...props} />}
+        inputStyle={inputStyle}
+        containerStyle={containerStyle}
+      />
+    </div>
   );
 }

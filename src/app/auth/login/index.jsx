@@ -28,7 +28,7 @@ const Login = () => {
   // ✅ Handle login button click
   const handleLogin = () => {
     console.log("Login Data:", formData);
-    navigate("/profile");
+    navigate("/home");
   };
 
   const handleNavigate = () => {
@@ -78,31 +78,50 @@ const Login = () => {
         </Box>
 
         {/* Social Buttons */}
-        <Box display="flex" justifyContent="center" mt={2} gap={2} width="100%">
-          <CustomButton
-            variant="glossyDark"
-            icon={
-              <img
-                src={googleLogo}
-                alt="Google"
-                width={20}
-                height={20}
-                style={{ objectFit: "contain" }}
-              />
-            }
-          />
-          <CustomButton
-            variant="glossyDark"
-            icon={
-              <img
-                src={appleLogo}
-                alt="Apple"
-                width={20}
-                height={20}
-                style={{ objectFit: "contain" }}
-              />
-            }
-          />
+        <Box
+          display="flex"
+          justifyContent="center"
+          mt={2}
+          gap={2}
+          width="100%"
+          flexWrap="wrap" // ✅ wrap on small screens
+        >
+          <Box
+            border={1}
+            py={0.8} // small screens ke liye padding thodi kam
+            px={{ xs: 6, sm: 9 }} // xs = extra small, sm = small screen
+            borderColor={theme.palette.text.secondary}
+            borderRadius={2}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <img
+              src={googleLogo}
+              alt="Google"
+              width={20}
+              height={20}
+              style={{ objectFit: "contain" }}
+            />
+          </Box>
+          <Box
+            border={1}
+            py={0.8}
+            px={{ xs: 6, sm: 9 }}
+            borderColor={theme.palette.text.secondary}
+            borderRadius={2}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <img
+              src={appleLogo}
+              alt="Apple"
+              width={20}
+              height={20}
+              style={{ objectFit: "contain" }}
+            />
+          </Box>
         </Box>
 
         {/* Sign Up Link */}

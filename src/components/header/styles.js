@@ -1,6 +1,6 @@
 export const headerStyles = {
   headerContainer: {
-    width: "100%",
+    // width: "100%",
     height: "84px",
     display: "flex",
     justifyContent: "space-between",
