@@ -7,8 +7,20 @@ const theme = createTheme({
       light: "#6b3a6b",
       dark: "#2d072d",
     },
+    accent: {
+      main: "#FF6421",
+      contrastText: "#FFFFFF",
+    },
     secondary: {
       main: "#f50057",
+    },
+    neutral: {
+      surface: "#161616",
+      card: "#1E1E1E",
+      line: "rgba(255,255,255,0.08)",
+      lineStrong: "rgba(255,255,255,0.15)",
+      hover: "rgba(255,255,255,0.12)",
+      mutedText: "rgba(255,255,255,0.45)",
     },
     background: {
       default: "#101010",
@@ -26,15 +38,17 @@ const theme = createTheme({
       secondary: "#5E6267",
     },
     gradients: {
-      drawer: "linear-gradient(180deg, rgba(16, 16, 16, 0.95) 0%, rgba(22, 22, 22, 0.98) 100%)",
-      drawerHeader: "linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)",
-      drawerFooter: "linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%)",
+      drawer:
+        "linear-gradient(180deg, rgba(16, 16, 16, 0.95) 0%, rgba(22, 22, 22, 0.98) 100%)",
+      drawerHeader:
+        "linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)",
+      drawerFooter:
+        "linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%)",
     },
   },
 
   typography: {
-    fontFamily:
-      '"Poppins", "Noto Sans", "Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: '"Poppins", sans-serif',
     h1: {
       fontFamily: '"Poppins", sans-serif',
       fontSize: "2.5rem",
@@ -72,22 +86,35 @@ const theme = createTheme({
       lineHeight: 1.5,
     },
     body1: {
-      fontFamily: '"Noto Sans", sans-serif',
+      fontFamily: '"Poppins", sans-serif',
       fontSize: "1rem", // 16px
       fontWeight: 400,
       lineHeight: 1.6,
     },
     body2: {
-      fontFamily: '"Noto Sans", sans-serif',
+      fontFamily: '"Poppins", sans-serif',
       fontSize: "0.875rem", // 14px
       fontWeight: 400,
       lineHeight: 1.5,
     },
-    body3: {
-      fontFamily: '"Noto Sans", sans-serif',
-      fontSize: "0.75rem", // 12px
+    titleLg: {
+      fontFamily: '"Poppins", sans-serif',
+      fontSize: "1.75rem",
+      fontWeight: 600,
+      lineHeight: 1.35,
+      letterSpacing: "0.01em",
+    },
+    labelMd: {
+      fontFamily: '"Poppins", sans-serif',
+      fontSize: "0.875rem",
+      fontWeight: 500,
+      letterSpacing: "0.08em",
+    },
+    helperSm: {
+      fontFamily: '"Poppins", sans-serif',
+      fontSize: "0.75rem",
       fontWeight: 400,
-      lineHeight: 1.5,
+      lineHeight: 1.4,
     },
   },
 
@@ -124,7 +151,7 @@ const theme = createTheme({
           style: {
             background:
               "linear-gradient(145deg, rgba(30,30,30,0.9), rgba(10,10,10,0.7))",
-            color: "#fff",
+            color: "#FFFFF",
             border: "1px solid rgba(255,255,255,0.15)",
             boxShadow:
               "inset 0 1px 3px rgba(255,255,255,0.1), 0 4px 20px rgba(0,0,0,0.3)",
@@ -137,6 +164,88 @@ const theme = createTheme({
               boxShadow:
                 "inset 0 1px 4px rgba(255,255,255,0.2), 0 6px 20px rgba(0,0,0,0.4)",
             },
+          },
+        },
+        {
+          // ⚪ Subtle outlined dark button
+          props: { variant: "softOutlined" },
+          style: {
+            backgroundColor: "rgba(255,255,255,0.03)",
+            border: "0.5px solid #8F8F8F",
+            color: "#FFFFFF",
+            padding: "10px 20px",
+            "&:hover": {
+              backgroundColor: "rgba(255,255,255,0.08)",
+              border: "1px solid #8F8F8F",
+              transform: "translateY(-1px)",
+            },
+          },
+        },
+        {
+          // 🟠 Calculator toggle button (small, orange when selected)
+          props: { variant: "calculatorToggle" },
+          style: {
+            backgroundColor: "#FF6421",
+            border: "none",
+            color: "#FFFFFF",
+            padding: "6px 16px",
+            fontSize: "14px",
+            minHeight: "36px",
+            fontWeight: 600,
+            "&:hover": {
+              backgroundColor: "#FF7C31",
+            },
+          },
+        },
+        {
+          // 📦 Calculator small button (for presets and unselected toggles)
+          props: { variant: "calculatorSmall" },
+          style: {
+            backgroundColor: "rgba(255,255,255,0.03)",
+            border: "none",
+            color: "#FFFFFF",
+            padding: "6px 16px",
+            fontSize: "14px",
+            minHeight: "36px",
+            fontWeight: 500,
+            "&:hover": {
+              backgroundColor: "rgba(255,255,255,0.08)",
+              border: "none",
+            },
+          },
+        },
+      ],
+    },
+
+    
+    MuiTypography: {
+      variants: [
+        {
+          props: { variant: "titleLg" },
+          style: {
+            fontSize: "1.75rem",
+            fontWeight: 600,
+            lineHeight: 1.35,
+            letterSpacing: "0.01em",
+            color: "#F5F5F5",
+          },
+        },
+        {
+          props: { variant: "labelMd" },
+          style: {
+            fontSize: "0.875rem",
+            fontWeight: 500,
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,0.72)",
+          },
+        },
+        {
+          props: { variant: "helperSm" },
+          style: {
+            fontSize: "0.75rem",
+            fontWeight: 400,
+            color: "rgba(255,255,255,0.38)",
           },
         },
       ],

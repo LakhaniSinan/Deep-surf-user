@@ -1,16 +1,16 @@
-import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import theme from "../../theme";
 import Header from "../../components/header";
 import { styles } from "./style";
 import SettingTabs from "../../components/settingTabs";
-import ReferralCard from "../../components/referrals/index";
-import PersonalInformation from "../../components/profileInformation";
-import { useLocation } from "react-router-dom";
-import Notifications from "../../components/notification";
-import Referrals from "../../components/referrals/index";
+import PersonalInformation from "./profileInformation";
+import Notifications from "./notification";
+import Subscription from "./subscription";
+import Referrals from "./refferals";
+import WebSettings from "./webSetting";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 const Setting = () => {
-    const location = useLocation()
   return (
     <Box sx={styles.pageRoot}>
       <Header />
@@ -21,19 +21,17 @@ const Setting = () => {
           </Typography>
         </Box>
 
-      
-            
-            <SettingTabs>
-
-                <PersonalInformation/>
-                {/* <Notifications/> */}
-                {/* <Referrals /> */}
-
-
-                {/* {location.pathname === "personal-information" && <PersonalInformation/>} */}
-
-            </SettingTabs>
-       
+        <SettingTabs>
+          <Routes>
+            <Route index element={<Navigate to="profile-information" replace />} />
+            <Route path="profile-information" element={<PersonalInformation />} />
+            <Route path="notifications" element={<Notifications />} />
+            <Route path="subscription" element={<Subscription />} />
+            <Route path="referrals" element={<Referrals />} />
+            <Route path="website-settings" element={<WebSettings />} />
+            <Route path="*" element={<Navigate to="profile-information" replace />} />
+          </Routes>
+        </SettingTabs>
       </Container>
     </Box>
   );

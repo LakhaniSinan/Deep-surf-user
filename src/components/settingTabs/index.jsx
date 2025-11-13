@@ -4,6 +4,7 @@ import {
   Drawer,
   List,
   ListItemButton,
+  ListItemIcon,
   ListItemText,
   useTheme,
   useMediaQuery,
@@ -12,46 +13,80 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate, useLocation } from "react-router-dom";
 
+import ProfileActiveIcon from "../../assets/icons/person-active.svg";
+import SettingsActiveIcon from "../../assets/icons/settings-active.svg";
+import NotificationActiveIcon from "../../assets/icons/notification-active.svg";
+import SubscriptionActiveIcon from "../../assets/icons/subscription-active.svg";
+import ReferralActiveIcon from "../../assets/icons/referral-active.svg";
+
+import ProfileInactiveIcon from "../../assets/icons/person-active.svg";
+import SettingsInactiveIcon from "../../assets/icons/setting-inactive.svg";
+import NotificationInactiveIcon from "../../assets/icons/notification-inactive.svg";
+import SubscriptionInactiveIcon from "../../assets/icons/subcription-inactive.svg";
+import ReferralInactiveIcon from "../../assets/icons/referral-inactive.svg";
+
 const menuItems = [
-  { name: "Profile Information", path: "/profile-information" },
-  { name: "Settings", path: "/settings" },
-  { name: "Notifications", path: "/notifications" },
-  { name: "Subscription", path: "/subscription" },
-  { name: "Referrals", path: "/referrals" },
+  {
+    name: "Profile information",
+    path: "/settings/profile-information",
+    activeIcon: ProfileActiveIcon,
+    inactiveIcon: ProfileInactiveIcon,
+  },
+  {
+    name: "Settings",
+    path: "/settings/website-settings",
+    activeIcon: SettingsActiveIcon,
+    inactiveIcon: SettingsInactiveIcon,
+  },
+  {
+    name: "Notifications",
+    path: "/settings/notifications",
+    activeIcon: NotificationActiveIcon,
+    inactiveIcon: NotificationInactiveIcon,
+  },
+  {
+    name: "Subscription",
+    path: "/settings/subscription",
+    activeIcon: SubscriptionActiveIcon,
+    inactiveIcon: SubscriptionInactiveIcon,
+  },
+  {
+    name: "Referrals",
+    path: "/settings/referrals",
+    activeIcon: ReferralActiveIcon,
+    inactiveIcon: ReferralInactiveIcon,
+  },
 ];
 
 const SettingTabs = ({ children }) => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md")); // mobile check
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const drawerWidth = 180;
-  const drawerHeight = "auto";
+  const drawerWidth = 220;
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const drawerContent = (
+  const renderList = () => (
     <Box
       sx={{
         width: drawerWidth,
-        height: drawerHeight,
         bgcolor: "#161616",
-        color: "white",
+        borderRadius: 4,
         display: "flex",
         flexDirection: "column",
-        borderRadius: 4,
-        ...(isMobile
-          ? { position: "relative", top: 60, transform: "none", left: 0 } // mobile: normal drawer
-          : { position: "fixed", top: "45%", transform: "translateY(-50%)", left: 150 }) // desktop: mini sidebar
+        gap: 1.5,
+        boxShadow: "0px 12px 32px rgba(0,0,0,0.35)",
       }}
     >
-      
-
-      <List sx={{ flex: 1, p: 1 }}>
+      <List
+        disablePadding
+        sx={{ display: "flex", flexDirection: "column", gap: 1 }}
+      >
         {menuItems.map((item) => {
           const isActive = location.pathname === item.path;
           return (
@@ -59,17 +94,29 @@ const SettingTabs = ({ children }) => {
               key={item.name}
               onClick={() => navigate(item.path)}
               sx={{
-                mb: 0.5,
-                py: 0.5,
-                backgroundColor: isActive ? "#2a2a2a" : "transparent",
-                "&:hover": { backgroundColor: "#2a2a2a" },
+                bgcolor: isActive ? "#2F2F2F" : "transparent",
+                borderRadius: 3,
+                alignItems: "center",
+                transition: "background-color 0.2s ease",
+                "&:hover": {
+                  bgcolor: "#2F2F2F",
+                },
               }}
             >
+              <ListItemIcon sx={{ minWidth: 32 }}>
+                <Box
+                  component="img"
+                  src={isActive ? item.activeIcon : item.inactiveIcon}
+                  alt={item.name}
+                  sx={{ width: 20, height: 20, objectFit: "contain" }}
+                />
+              </ListItemIcon>
               <ListItemText
                 primary={item.name}
                 primaryTypographyProps={{
-                  fontSize: 12,
-                  color: isActive ? "#fff" : "#aaa",
+                  fontSize: 14,
+                  fontWeight: isActive ? 600 : 500,
+                  color: isActive ? "#FFFFFF" : "#7A7A7A",
                 }}
               />
             </ListItemButton>
@@ -80,8 +127,7 @@ const SettingTabs = ({ children }) => {
   );
 
   return (
-    <Box sx={{ display: "flex" }}>
-      {/* Mobile toggle button */}
+    <Box sx={{ display: "flex", gap: 2 , height: "100%" , mb: 5 }}>
       {isMobile && (
         <IconButton
           color="inherit"
@@ -100,7 +146,6 @@ const SettingTabs = ({ children }) => {
         </IconButton>
       )}
 
-      {/* Sidebar */}
       {isMobile ? (
         <Drawer
           variant="temporary"
@@ -115,34 +160,24 @@ const SettingTabs = ({ children }) => {
             },
           }}
         >
-          {drawerContent}
+          {renderList()}
         </Drawer>
       ) : (
-        drawerContent // desktop mini sidebar
+        <Box>{renderList()}</Box>
       )}
 
-      {/* Main content */}
       <Box
         component="main"
         sx={{
           flexGrow: 1,
           p: { xs: 2, md: 4 },
-          bgcolor: "#0f0f0f",
+          bgcolor: "#161616",
           color: "white",
-          ml: isMobile ? 0 : `${drawerWidth + 16}px`, // leave space for mini sidebar
+          borderRadius: "16px",
+          boxShadow: "0px 20px 40px rgba(0,0,0,0.25)",
         }}
       >
-        <Box
-          sx={{
-            bgcolor: "#1a1a1a",
-            borderRadius: 4,
-            p: { xs: 2, md: 4 },
-            border: "1px solid #222",
-            boxShadow: 3,
-          }}
-        >
-          {children}
-        </Box>
+        <Box>{children}</Box>
       </Box>
     </Box>
   );

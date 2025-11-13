@@ -1,12 +1,12 @@
 import Login from "../app/auth/login";
 import Profile from "../app/auth/profile";
 import SignUp from "../app/auth/signUp";
+import Charts from "../app/charts";
 import Fqa from "../app/faq";
 import Home from "../app/home";
 import Journal from "../app/journal";
 import Setting from "../app/settings";
-import PersonalInformation from "../components/profileInformation";
-
+import Calculator from "../app/calculator";
 const AUTH_ROUTES = [
   {
     id: 1,
@@ -42,13 +42,20 @@ const APP_Route = [
   },
   {
     id: 2,
+    name: "Charts",
+    component: <Charts />,
+    exact: "exact",
+    path: "/chart",
+  },
+  {
+    id: 2,
     name: "Journal",
     component: <Journal />,
     exact: "exact",
     path: "/journal",
   },
   {
-    id: 3 ,
+    id: 3,
     name: "FAQ",
     component: <Fqa />,
     exact: "exact",
@@ -56,47 +63,23 @@ const APP_Route = [
   },
   {
     id: 4,
-    name: "Profile-information",
-    component: <PersonalInformation />,
+    name: "Settings",
+    component: <Setting />,
     exact: "exact",
-    path: "/profile-information",
+    path: "/settings/*",
   },
   {
     id: 5,
-    name: "settings",
-    component: <Setting />,
+    name: "Calculator",
+    component: <Calculator />,
     exact: "exact",
-    path: "/settings",
+    path: "/calculator",
   },
-  {
-    id: 6,
-    name: "Notifications",
-    component: <Setting />,
-    exact: "exact",
-    path: "/notifications",
-  },
-  {
-    id: 7,
-    name: "Subscription",
-    component: <Setting />,
-    exact: "exact",
-    path: "/subscription",
-  },
-  {
-    id: 8,
-    name: "referrals",
-    component: <Setting />,
-    exact: "exact",
-    path: "/referrals",
-  },
-
-
-
-]
+];
 
 
 
 
 
 
-export {  AUTH_ROUTES ,APP_Route };
+export { AUTH_ROUTES, APP_Route };

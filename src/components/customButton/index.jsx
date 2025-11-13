@@ -8,9 +8,14 @@ const CustomButton = ({
   sx = {},
   icon,
   radius = 8,
+  width = "fit-content",
   ...props
 }) => {
   const borderRadiusValue = typeof radius === "number" ? `${radius}px` : radius;
+  
+  // Calculator variants should use theme styles, not default styles
+  const isCalculatorVariant = 
+    variant === "calculatorToggle" || variant === "calculatorSmall";
 
   return (
     <Button
@@ -18,23 +23,30 @@ const CustomButton = ({
       onClick={handleClickBtn}
       disabled={loading}
       {...props}
-      sx={{
+      sx={(theme) => ({
         textTransform: "none",
-        fontWeight: 600,
-        fontSize: "16px",
-        borderRadius: borderRadiusValue, 
-        py: 0.8,
-        px : 10,
+        borderRadius: borderRadiusValue,
+        width: width,
         transition: "all 0.3s ease",
         display: "flex",
         alignItems: "center",
-        gap: icon ? 1 : 0, 
+        gap: icon ? theme.spacing(1) : 0,
+        ...(isCalculatorVariant
+          ? {} // Let theme variant handle styling (fontSize, padding, minHeight, colors)
+          : {
+              fontWeight: 600,
+              color: "#fff",
+              fontSize: "16px",
+              py: 1.25,
+              px: 3,
+              minHeight: 48,
+            }),
         ...(loading && {
           cursor: "not-allowed",
-          opacity: 0.8,
+          opacity: 0.7,
         }),
-        ...sx, 
-      }}
+        ...(typeof sx === "function" ? sx(theme) : sx),
+      })}
     >
       {loading ? (
         <CircularProgress size={22} color="inherit" />

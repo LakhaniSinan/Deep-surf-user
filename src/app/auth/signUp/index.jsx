@@ -152,24 +152,6 @@ function SignUp() {
               style={{ objectFit: "contain" }}
             />
           </Box>
-          <Box
-            border={1}
-            py={0.8}
-            px={{ xs: 6, sm: 9 }}
-            borderColor={theme.palette.text.secondary}
-            borderRadius={2}
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <img
-              src={appleLogo}
-              alt="Apple"
-              width={20}
-              height={20}
-              style={{ objectFit: "contain" }}
-            />
-          </Box>
         </Box>
 
         {/* Login Link */}

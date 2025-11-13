@@ -23,7 +23,7 @@ const AuthLayout = ({ children, title }) => {
         justifyContent="center"
         textAlign="center"
         gap={2}
-        height={{xs:"800%" ,sm:"550px"}}
+        height={{xs:"100%" ,sm:"650px"}}
         width={{xs:"80%" ,sm:"400px"}}
       >
         <Box

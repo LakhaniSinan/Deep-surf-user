@@ -31,8 +31,8 @@ export const SubtitleText = styled(Typography)({
 });
 
 export const SentimentTitle = styled(Typography)({
-  color: "#facc15",
-  fontWeight: 700,
+  color: "#FFE600",
+  fontWeight: 500,
   fontSize: "2rem",
 });
 

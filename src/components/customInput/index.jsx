@@ -3,43 +3,22 @@ import PropTypes from "prop-types";
 import { InputAdornment, TextField, useTheme, IconButton } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import theme from "../../theme";
 
 function CustomInput({
   InputStartIcon,
   InputEndIcon,
+  onEndIconClick,
   fullWidth = true,
   readonly,
   defaultStyle,
   style,
   inputBgColor,
   inputWidth,
-  type = "text", // 👈 new prop
+  type = "text",
   sx,
   ...props
 }) {
   const [showPassword, setShowPassword] = useState(false);
-
-  // const useStyle = {
-  //   width: inputWidth || "100%",
-  //   "& .MuiOutlinedInput-root": {
-  //     borderRadius: "8px !important",
-  //     backgroundColor: inputBgColor || "#fff",
-  //     "& .MuiOutlinedInput-input": {
-  //       padding: "10px 14px !important", // 👈 nice padding
-  //     },
-  //     "& .MuiOutlinedInput-notchedOutline": {
-  //       border: `1px solid ${theme.palette.text.secondary}`,
-  //       backgroundColor: inputBgColor || "transparent",
-  //     },
-  //     "&:hover .MuiOutlinedInput-notchedOutline": {
-  //       border: `1px solid ${theme.palette.text.secondary} !important`,
-  //     },
-  //     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-  //       border: `1px solid ${theme.palette.text.secondary} !important`,
-  //     },
-  //   },
-  // };
 
   return (
     <TextField
@@ -51,49 +30,52 @@ function CustomInput({
         startAdornment: InputStartIcon && (
           <InputAdornment position="start">{InputStartIcon}</InputAdornment>
         ),
-        endAdornment: (
+        endAdornment: InputEndIcon && (
           <InputAdornment position="end">
             {type === "password" ? (
               <IconButton
                 onClick={() => setShowPassword((prev) => !prev)}
                 edge="end"
-                
-                
               >
-                {showPassword ? <VisibilityOff sx={{ color: "#C7C7C7  " }} /> : <Visibility sx={{ color: "#C7C7C7" }} />}
+                {showPassword ? (
+                  <VisibilityOff sx={{ color: "#C7C7C7  " }} />
+                ) : (
+                  <Visibility sx={{ color: "#C7C7C7" }} />
+                )}
               </IconButton>
             ) : (
-              InputEndIcon && (
-                <IconButton edge="end">{InputEndIcon}</IconButton>
-              )
+              <IconButton edge="end" onClick={onEndIconClick}>
+                {InputEndIcon}
+              </IconButton>
             )}
           </InputAdornment>
         ),
       }}
-      sx={{
+      sx={(theme) => ({
         "& .MuiOutlinedInput-root": {
-          borderRadius: "10px",
-          background: inputBgColor ? inputBgColor : "#333333",
-          border: "none",
+          borderRadius: "16px",
+          background: inputBgColor || theme.palette.neutral?.card || "#242424",
+          border: "1px solid transparent",
           "& fieldset": {
             border: "none",
           },
-          
-          "&:hover fieldset": {
-            border: "none",
+          "&:hover": {
+            background:
+              inputBgColor || theme.palette.neutral?.hover || "#2F2F2F",
           },
-          
-          "&.Mui-focused fieldset": {
-            border: "none",
+          "&.Mui-focused": {
+            background:
+              inputBgColor || theme.palette.neutral?.surface || "#1f1f1f",
+            borderColor: "#8F8F8F",
           },
         },
 
         "& .MuiInputBase-input": {
-          padding: "12px 20px",
-          fontSize: "14px",
-          color: "#fff",
+          padding: "10px 20px",
+          fontSize: "15px",
+          color: theme.palette.text.primary,
           "&::placeholder": {
-            color: "#808080",
+            color: theme.palette.neutral?.mutedText || "#808080",
             opacity: 1,
           },
         },
@@ -106,8 +88,8 @@ function CustomInput({
           display: "none",
         },
 
-        ...sx,
-      }}
+        ...(typeof sx === "function" ? sx(theme) : sx),
+      })}
     />
   );
 }
@@ -115,6 +97,7 @@ function CustomInput({
 CustomInput.propTypes = {
   InputStartIcon: PropTypes.element,
   InputEndIcon: PropTypes.element,
+  onEndIconClick: PropTypes.func,
   fullWidth: PropTypes.bool,
   readonly: PropTypes.bool,
   type: PropTypes.string,

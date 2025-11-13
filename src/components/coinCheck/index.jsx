@@ -27,10 +27,10 @@ const CoinCheck = () => {
     <Box sx={coinCheckStyles.container}>
       <Box sx={coinCheckStyles.card}>
         <Box sx={coinCheckStyles.header}>
-          <Typography variant="h4" color={theme.palette.text.primary}>
+          <Typography variant="h4" fontSize="16px" fontWeight={600} color="text.primary">
             AI Proof — Quick coin check
           </Typography>
-          <Typography variant="body3" color={theme.palette.text.primary}>
+          <Typography variant="body3" fontSize="12px" fontWeight={400} color="text.primary">
             Deep AI analysis of any coin in seconds. Enter the ticker, get a full breakdown and
             recommendation.
           </Typography>
