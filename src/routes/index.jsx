@@ -7,6 +7,8 @@ import Home from "../app/home";
 import Journal from "../app/journal";
 import Setting from "../app/settings";
 import Calculator from "../app/calculator";
+import ProAnalysis from "../app/proAnalysis";
+import AiTools from "../app/aiTools";
 const AUTH_ROUTES = [
   {
     id: 1,
@@ -75,8 +77,21 @@ const APP_Route = [
     exact: "exact",
     path: "/calculator",
   },
+   {
+    id: 5,
+    name: "Pro Analysis",
+    component: <ProAnalysis/>,
+    exact: "exact",
+    path: "/pro-analytics",
+  },
+  {
+    id: 5,
+    name: "Ai Tools",
+    component: <AiTools/>,
+    exact: "exact",
+    path: "/ai-tools",
+  },
 ];
-
 
 
 
