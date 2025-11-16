@@ -4,6 +4,8 @@ import CustomButton from "../../components/customButton";
 import IconImage from "../../assets/icons/Vector.svg";
 import ButtonIcon from "../../assets/icons/Vector (3).svg";
 import { useState } from "react";
+import DashboardStats from "./confluenceButton";
+import TechnicalIndicator from "./technicalIndicator";
 
 const AiProof = () => {
   const [search, setSearch] = useState({ search: "" });
@@ -65,7 +67,15 @@ const AiProof = () => {
         </Typography>
 
         {/* Button + Extra Text */}
-        <Box display="flex" alignItems="center" gap="15px" marginTop="20px">
+        <Box
+          display="flex"
+          alignItems="center"
+          gap="15px"
+          marginTop="20px"
+          backgroundColor="#1C1C1C"
+          padding="10px"
+          borderRadius="25px"
+        >
           <CustomButton
             variant="calculatorToggle"
             icon={<img src={ButtonIcon} alt="icon" />}
@@ -78,31 +88,10 @@ const AiProof = () => {
             </span>
           </Typography>
         </Box>
-      </Box>
-
-      <Box mt={"10px"}>
-        <Typography variant="h4" color="#FFFFFF">
-          Confluence Score
-        </Typography>
-      </Box>
-      <Box>
-      <Grid container spacing={5}>
-        
-        <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
-          <Typography>hello</Typography>
-        </Grid>
-
-        <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
-          <Typography>hello</Typography>
-        </Grid>
-         <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
-          <Typography>hello</Typography>
-        </Grid>
-
-        <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
-          <Typography>hello</Typography>
-        </Grid>
-      </Grid>
+        {/* confluence button page */}
+        {/* <DashboardStats /> */}
+        {/* technicalIndicator  */}
+        {/* <TechnicalIndicator /> */}
       </Box>
     </>
   );

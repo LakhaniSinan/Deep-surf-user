@@ -36,6 +36,10 @@ const theme = createTheme({
     text: {
       primary: "#ffffffff",
       secondary: "#5E6267",
+      greenColor : "#3EDD87",
+      yellowColor : "#FFD700",
+      lightRedColor : "#FF4450",
+      grey : "#5C616F"
     },
     gradients: {
       drawer:
