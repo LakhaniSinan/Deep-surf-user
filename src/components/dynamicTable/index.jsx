@@ -154,6 +154,20 @@ export default function PaginatedTable({
           </TableCell>
         );
 
+      case "trend_pro":
+        return (
+          <TableCell align={headerAlignMap[val] || "center"}>
+            <Typography color={"background.yellow"}>{row.trend}</Typography>
+          </TableCell>
+        );
+
+      case "status_pro":
+        return (
+          <TableCell align={headerAlignMap[val] || "center"}>
+            <Typography color={"background.green"}>{row.Status}</Typography>
+          </TableCell>
+        );
+
       case "apiKey":
         return (
           <TableCell align={headerAlignMap[val] || "left"}>

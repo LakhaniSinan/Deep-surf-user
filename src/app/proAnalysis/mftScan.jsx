@@ -109,10 +109,10 @@ const MTFSection = () => {
 
         {/* Button + Extra Text */}
         <Box
-            display= {"flex"}
-            alignItems= {"center"}
-            gap= {"15px"}
-            marginTop= {"20px"}
+          display={"flex"}
+          alignItems={"center"}
+          gap={"15px"}
+          marginTop={"20px"}
         >
           <CustomButton
             variant={"calculatorToggle"}
@@ -131,21 +131,21 @@ const MTFSection = () => {
           <PaginatedTable
             tableHeader={billingHistoryHeaders}
             tableData={billingHistoryRows}
-            displayRows={["TF", "trend_pro", "RSI", "MACD", "status_pro"]}
+            displayRows={["TF", "trend_pro",  "RSI", "MACD", "status_pro"]}
             isLoading={false}
             showPagination={false}
           />
         </Box>
         <Box
-            display={"flex"}
-            alignItems= {"center"}
-            gap= {"15px"}
-            marginTop= {"20px"}
-            width= {"100%"}
-            height= {"87px"}
-            borderRadius= {"24px"}
-            background= {"#1C1C1C"}
-            padding= {"15px"}
+          display={"flex"}
+          alignItems={"center"}
+          gap={"15px"}
+          marginTop={"20px"}
+          width={"100%"}
+          height={"87px"}
+          borderRadius={"24px"}
+          background={"#1C1C1C"}
+          padding={"15px"}
         >
           <CustomButton variant={"calculatorToggle"} title="Interpretation" />
           <Typography variant="h6">

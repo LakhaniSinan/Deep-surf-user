@@ -30,16 +30,18 @@ const Pattern = () => {
       </Box>
       <Box
         display="flex"
+        flexDirection={{ xs: "column", md: "row" }} // ← responsive fix
         justifyContent="space-between"
-        alignItems="center"
+        alignItems={{ xs: "flex-start", md: "center" }}
         backgroundColor="#1C1C1C"
         padding="15px"
         borderRadius="8px"
         marginTop="20px"
+        gap={{ xs: 2, md: 0 }} // Mobile me thora gap aayega
       >
         {/* LEFT SIDE — 5 TEXTS */}
         <Box gap="12px">
-          <Typography variant="h3" color="text.lightRedColor">
+          <Typography variant="h4" color="text.lightRedColor">
             Double Top
           </Typography>
           <Typography variant="body1" color="text.grey">
@@ -54,6 +56,7 @@ const Pattern = () => {
           >
             Double Top at 3762.80, Support 3692.96, Target 3623.12
           </Typography>
+
           <Box mt="10px">
             <CustomButton
               variant="h6"
@@ -61,23 +64,21 @@ const Pattern = () => {
               title={
                 <span style={{ color: "#FFFFFF", fontSize: "20px" }}>
                   Target :{" "}
-                  <span
-                    variant="h6"
-                    style={{ color: "red", transition: "all 0.3s ease" }}
-                  >
+                  <span style={{ color: "red", transition: "all 0.3s ease" }}>
                     $3623.12
                   </span>
                 </span>
               }
               sx={{
                 border: "1px solid #FFFFFF",
+                width: { xs: "100%", md: "auto" },
               }}
             />
           </Box>
         </Box>
 
         {/* RIGHT SIDE — BUTTON */}
-        <Box>
+        <Box width={{ xs: "100%", md: "auto" }} mt={{ xs: 2, md: 0 }}>
           <Typography color="#FFFFFF" variant="h6">
             Confidence: 80%
           </Typography>
@@ -86,26 +87,31 @@ const Pattern = () => {
             borderRadius="8px"
             mt="5px"
             p="5px 10px"
-            width={"70%"}
+            width={{ xs: "100%", md: "70%" }}
           ></Box>
         </Box>
       </Box>
+
+      {/* SECOND CARD */}
       <Box
         display="flex"
+        flexDirection={{ xs: "column", md: "row" }} // responsive fix
         justifyContent="space-between"
-        alignItems="center"
+        alignItems={{ xs: "flex-start", md: "center" }}
         backgroundColor="#1C1C1C"
         padding="15px"
         borderRadius="8px"
         marginTop="20px"
+        gap={{ xs: 2, md: 0 }}
       >
         <Box gap="12px">
-          <Typography variant="h3" color="text.lightRedColor">
+          <Typography variant="h4" color="text.lightRedColor">
             Rising Wedge
           </Typography>
           <Typography variant="body1" color="text.grey">
             Bearish pattern
           </Typography>
+
           <Typography
             variant="h5"
             color="#fff"
@@ -116,46 +122,44 @@ const Pattern = () => {
             Rising Wedge: Bearish pattern, waiting for breakdown → Target
             3817.67
           </Typography>
-          <Box mt="10px" display={"flex"} gap={2}>
+
+          <Box
+            mt="10px"
+            display={"flex"}
+            gap={2}
+            flexWrap={{ xs: "wrap", md: "nowrap" }}
+          >
             <CustomButton
               variant="h6"
               backgroundColor="#1A1A1A"
               title={
                 <span style={{ color: "#FFFFFF", fontSize: "20px" }}>
-                  Target :{" "}
-                  <span
-                    variant="h6"
-                    style={{ color: "red", transition: "all 0.3s ease" }}
-                  >
-                    $3623.12
-                  </span>
+                  Target : <span style={{ color: "red" }}>$3623.12</span>
                 </span>
               }
               sx={{
                 border: "1px solid #FFFFFF",
+                width: { xs: "100%", md: "auto" },
               }}
             />
+
             <CustomButton
               variant="h1"
               backgroundColor="#1A1A1A"
               title={
                 <span style={{ color: "#FFFFFF", fontSize: "20px" }}>
-                  Breakout :{" "}
-                  <span
-                    variant="h6"
-                    style={{ color: "red", transition: "all 0.3s ease" }}
-                  >
-                    $3951.72
-                  </span>
+                  Breakout : <span style={{ color: "red" }}>$3951.72</span>
                 </span>
               }
               sx={{
                 border: "1px solid #FFFFFF",
+                width: { xs: "100%", md: "auto" },
               }}
             />
-          </Box>{" "}
+          </Box>
         </Box>
-        <Box>
+
+        <Box width={{ xs: "100%", md: "auto" }} mt={{ xs: 2, md: 0 }}>
           <Typography color="#FFFFFF" variant="h6">
             Confidence: 75%
           </Typography>
@@ -164,10 +168,31 @@ const Pattern = () => {
             borderRadius="8px"
             mt="5px"
             p="5px 10px"
-            width={"70%"}
+            width={{ xs: "100%", md: "70%" }}
           ></Box>
         </Box>
       </Box>
+
+      <Grid container spacing={2} marginTop={5}>
+        <Grid item size={{ xs: 12, sm: 2 }}>
+          <Box display={"flex"} alignItems={"center"} gap={2}>
+            <CustomButton
+              sx={{
+                borderRadius: "10px",
+              }}
+              variant={"gradient"}
+              title="How to use"
+            />
+          </Box>
+        </Grid>
+        <Grid item size={{ xs: 12, sm: 10 }}>
+          <Typography variant="body1" fontSize={15}>
+            Patterns are historically proven formations that often lead to
+            predictable price movements. High Confidence (75%) = strong pattern.
+            Always wait for a breakout for confirmation!
+          </Typography>
+        </Grid>
+      </Grid>
     </>
   );
 };

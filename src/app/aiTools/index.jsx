@@ -6,6 +6,7 @@ import DashboardStats from "./confluenceButton";
 import IctLiquid from "./ictLiquid";
 import MarketIntelligence from "./marketIntelligence";
 import Pattern from "./pattern";
+import IndicatorAnalysis from "./indicatorAnalysis";
 
 const AiTools = () => {
   return (
@@ -41,6 +42,8 @@ const AiTools = () => {
           <MarketIntelligence/>
           {/* Pattern  */}
           <Pattern/>
+          {/* IndicatorAnalysis */}
+          <IndicatorAnalysis/>
         </Box>
       </Container>
     </>
