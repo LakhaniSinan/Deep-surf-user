@@ -1,6 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 import CustomButton from "../../components/customButton";
-import ButtonIcon from "../../assets/icons/Vector (3).svg";
+import StarIcon from "../../assets/icons/Vector (3).svg";
 import AttentionIcon from "../../assets/icons/attention.svg";
 import CircleIcon from "../../assets/icons/ellipse.svg";
 
@@ -9,14 +9,14 @@ const Macroeconomics = () => {
     {
       title: "US CPI Report (Wednesday, 13:30 EST)",
       forecast: "Forecast: 2.9% (previous: 3.0%)",
-      impact: "Impact",
-      status: ":   Extremely high (volatility 8-15%)",
+      impact: "Impact:",
+      status: " Extremely high (volatility 8-15%)",
     },
     {
       title: "US Unemployment Rate (Thursday, 8:30 EST)",
       forecast: "Forecast: 4.1% (previous: 4.2%)",
-      impact: "Impact",
-      status: ":Positive for risk assets",
+      impact: "Impact:",
+      status: "Positive for risk assets",
     },
   ];
 
@@ -36,12 +36,12 @@ const Macroeconomics = () => {
     },
     {
       title: "Neutral",
-      titleColor: "text.greenColor",
+      titleColor: "text.yellowColor",
       description: "Forecast data or better: BTC tests $108k, altcoins 3-5%",
     },
     {
       title: "Bearish",
-      titleColor: "text.greenColor",
+      titleColor: "text.lightRedColor",
       description: "Forecast data or better: BTC tests $108k, altcoins 3-5%",
     },
   ];
@@ -51,31 +51,48 @@ const Macroeconomics = () => {
       <Box
         backgroundColor="#161616"
         borderRadius="20px"
-        padding="25px"
+        padding="20px"
         mt="20px"
       >
-        <Typography variant="h3">Macroeconomics</Typography>
-        <Grid container spacing={2} mt="20px">
-          <Grid item size={{ xs: 12, sm: 12, md: 2 }}>
-            <CustomButton
-              variant={"gradient"}
-              title="AI Analysis"
-              icon={<img src={ButtonIcon} />}
-              sx={{
-                borderRadius: "20px",
-                width: { xs: "100%", md: "auto" },
-              }}
-            />
-          </Grid>
-          <Grid item size={{ xs: 12, sm: 12, md: 10 }}>
-            <Typography variant="body1" color="#FFFFFF" fontSize="14px">
-              The unemployment rate improved from 4.2% to 4.1%. This is a
-              positive ('bullish') signal. A strong but not overheated labor
-              market supports the Fed's view of a potential 'soft landing' for
-              the economy.
-            </Typography>
+        <Typography variant="h1" fontSize="20px">
+          Macroeconomics
+        </Typography>
+        <Grid container spacing={1} padding="15px">
+          <Grid item xs={12}>
+            <Box
+              display="flex"
+              alignItems="center"
+              gap="20px"
+              flexWrap={{ xs: "wrap", md: "nowrap" }}
+            >
+              <CustomButton
+                variant="gradient"
+                title="Attention"
+                icon={<img src={StarIcon} style={{ width: 20, height: 20 }} />}
+                sx={{
+                  borderRadius: "20px",
+                  padding: "4px 10px",
+                  minWidth: "auto",
+                  width: { xs: "100%", md: "auto" },
+                  backgroundColor: "#FFE600",
+                  color: "#000000",
+                }}
+              />
+
+              <Typography
+                variant="body2"
+                fontSize="14px"
+                flex={{ xs: "100%", md: "1" }} // 👈 laptop per text properly stretch kare
+              >
+                The unemployment rate improved from 4.2% to 4.1%. This is a
+                positive ('bullish') signal. A strong but not overheated labor
+                market supports the Fed's view of a potential 'soft landing' for
+                the economy.
+              </Typography>
+            </Box>
           </Grid>
         </Grid>
+
         <Grid container spacing={2} marginTop="10px">
           {economicReports.map((report, index) => (
             <Grid item key={index} size={{ xs: 12, sm: 12, md: 6 }}>
@@ -88,13 +105,23 @@ const Macroeconomics = () => {
                   width: "100%",
                 }}
               >
-                <Typography variant="h6">{report.title}</Typography>
-                <Typography mt="10px" variant="body1">
+                <Typography variant="h6" fontSize="14px">
+                  {report.title}
+                </Typography>
+                <Typography mt="10px" variant="body1" fontSize="14px">
                   {report.forecast}
                 </Typography>
                 <Box display="flex" gap="10px">
-                  <Typography variant="body1">{report.impact}</Typography>
-                  <Typography variant="body1">{report.status}</Typography>
+                  <Typography variant="body1" fontSize="13px">
+                    {report.impact}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    fontSize="14px"
+                    marginRight="10px"
+                  >
+                    {report.status}
+                  </Typography>
                 </Box>
               </Box>
             </Grid>
@@ -114,13 +141,10 @@ const Macroeconomics = () => {
                     backgroundColor: "#1C1C1C",
                   }}
                 >
-                  <Typography
-                    // style={{ color: item.titleColor }}
-                    variant="body1"
-                  >
+                  <Typography variant="body1" color={item.titleColor}>
                     {item.title}
                   </Typography>
-                  <Typography mt="10px" variant="body1">
+                  <Typography mt="10px" variant="body1" fontSize="15px">
                     {item.description}
                   </Typography>
                 </Box>
@@ -130,44 +154,45 @@ const Macroeconomics = () => {
           </Grid>
         </Box>
         <Box backgroundColor="#1C1C1C" padding="20px" borderRadius="25px">
-          <Grid container spacing={2}>
-            <Grid item size={{ xs: 12, sm: 2 }}>
-              <CustomButton
-                variant={"h6"}
-                title="Attention"
-                icon={<img src={AttentionIcon} />}
-                sx={{
-                  borderRadius: "20px",
-                  width: { xs: "100%", md: "auto" },
-                  backgroundColor: "#FFE600",
-                  color: "#000000",
-                  marginTop: "10px",
-                }}
-              />
-            </Grid>
-            <Grid item size={{ xs: 12, sm: 10 }} marginTop={2}>
-              <Typography fontSize={14}>
-                Consumer Price Index (CPI) data — a key event for all markets!
-                Expect high volatility — in the first 2 hours, movement could
-                reach 8.7%.
-              </Typography>
-            </Grid>
-          </Grid>
+          <Box
+            display="flex"
+            alignItems="center"
+            gap="20px"
+            flexWrap="wrap"
+            borderRadius="20px"
+          >
+            <CustomButton
+              variant="h6"
+              title="Attention"
+              icon={<img src={AttentionIcon} />}
+              sx={{
+                borderRadius: "20px",
+                width: { xs: "100%", md: "auto" },
+                backgroundColor: "#FFE600",
+                color: "#000000",
+                padding: "4px 13px",
+              }}
+            />
+            <Typography variant="h4" fontSize="13px">
+              Consumer Price Index (CPI) data — a key event for all markets!
+              Expect high volatility — in the first 2 hours, movement could
+              reach 8.7%.
+            </Typography>
+          </Box>
         </Box>
         <Box
           sx={{
-            // backgroundColor: "#111",
             padding: { xs: "16px", sm: "20px" }, // ⭐ Mobile: kam padding
             borderRadius: "12px",
           }}
         >
           <Typography
-            variant="h6"
+            variant="h3"
             sx={{
               color: "#fff",
               mb: 2,
               fontWeight: 600,
-              fontSize: { xs: "1.1rem", sm: "1.25rem" }, // ⭐ Mobile: chota heading
+              fontSize: "20px",
             }}
           >
             Detailed action plan:
@@ -178,38 +203,27 @@ const Macroeconomics = () => {
               container
               key={index}
               sx={{
-                marginBottom: "14px",
+                marginBottom: "13px",
+                display: "flex", // 👈 force flex layout
+                flexDirection: "row", // 👈 ensure icon and text are side by side
                 alignItems: "flex-start",
+                flexWrap: "nowrap", // 👈 icon break na ho
               }}
             >
-              {/* LEFT SIDE → ICON + VERTICAL LINE */}
-              <Grid
-                item
+              <Box
                 sx={{
-                  position: "relative",
                   display: "flex",
-                  justifyContent: "flex-start",
-                  width: { xs: "24px", sm: "auto" }, // ⭐ Mobile: fixed width behtar alignment ke liye
+                  position: "relative",
+                  alignItems: "flex-start",
+                  marginRight: "10px",
+                  flexShrink: 0, // 👈 icon compress na ho
                 }}
               >
-                <Box
-                  component="img"
-                  src={CircleIcon}
-                  sx={{
-                    width: { xs: "14px", sm: "16px" }, // ⭐ Mobile: chota icon
-                    height: { xs: "14px", sm: "16px" },
-                    marginRight: { xs: "10px", sm: "15px" },
-                    marginTop: "3px",
-                    flexShrink: 0, // ⭐ Mobile par shrink hone se bachata hai
-                  }}
-                />
-
-                {/* Vertical Line */}
                 {index !== steps.length - 1 && (
                   <Box
                     sx={{
                       position: "absolute",
-                      left: { xs: "6px", sm: "7px" }, // ⭐ Mobile: adjusted position
+                      left: "6px",
                       top: "18px",
                       width: "2px",
                       height: "calc(100% + 4px)",
@@ -217,23 +231,28 @@ const Macroeconomics = () => {
                     }}
                   />
                 )}
-              </Grid>
 
-              {/* RIGHT SIDE TEXT */}
-              <Grid item xs sx={{ minWidth: 0 }}>
-                {" "}
-                {/* ⭐ Mobile: overflow se bachata hai */}
-                <Typography
+                <Box
+                  component="img"
+                  src={CircleIcon}
                   sx={{
-                    color: "#ccc",
-                    fontSize: { xs: "12px", sm: "14px" }, // ⭐ Mobile: chota text
-                    lineHeight: { xs: "18px", sm: "20px" }, // ⭐ Mobile: tight line height
-                    wordWrap: "break-word", // ⭐ Mobile: lambay words ko handle karta hai
+                    width: "14px",
+                    height: "14px",
+                    marginTop: "3px",
                   }}
-                >
-                  {text}
-                </Typography>
-              </Grid>
+                />
+              </Box>
+
+              <Typography
+                sx={{
+                  color: "#ccc",
+                  fontSize: "13px",
+                  wordBreak: "break-word",
+                  flex: 1, // 👈 text ko expand hone do
+                }}
+              >
+                {text}
+              </Typography>
             </Grid>
           ))}
 
@@ -241,7 +260,7 @@ const Macroeconomics = () => {
             sx={{
               mt: 2,
               color: "#aaa",
-              fontSize: { xs: "12px", sm: "13px" }, // ⭐ Mobile: chota footnote
+              fontSize: { xs: "12px", sm: "14px" }, // ⭐ Mobile: chota footnote
             }}
           >
             Historical data: If CPI comes in below forecast, the stock market
@@ -249,11 +268,11 @@ const Macroeconomics = () => {
           </Typography>
         </Box>
         <Box padding="10px">
-          <Typography variant="h6">Fed Speeches</Typography>
-          <Typography mt='10px' fontSize="15px" variant="body1">
+          <Typography variant="h3" fontSize="17px">Fed Speeches</Typography>
+          <Typography mt="10px" fontSize="14px" variant="body1">
             Powell: No scheduled events
           </Typography>
-          <Typography fontSize="14px" variant="body1">
+          <Typography fontSize="14px" variant="body1" fontStyle="14px">
             Other members: Williams (Tuesday), Bostic (Wednesday) watch for
             hawkish rhetoric
           </Typography>

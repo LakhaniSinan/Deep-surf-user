@@ -17,9 +17,9 @@ const MarketOutLook = () => {
           color: "white",
         }}
       >
-        <Typography variant="h1">Market Outlook</Typography>
+        <Typography variant="h1" fontSize="24px">Market Outlook</Typography>
         <Box mt="30px">
-          <Typography variant="h4">AI Market Analysis</Typography>
+          <Typography variant="h4" fontSize="20px">AI Market Analysis</Typography>
           <Typography color="neutral.mutedText" variant="body1" fontSize="14px">
             Daily AI analysis of macroeconomics, the crypto market, key events,
             and trading recommendations

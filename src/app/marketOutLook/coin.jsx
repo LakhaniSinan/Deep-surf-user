@@ -31,11 +31,11 @@ function Coin() {
             }}
           >
             <Box>
-              <Typography variant="h5">12 October 2025</Typography>
+              <Typography variant="h3" fontSize="17px">12 October 2025</Typography>
               <Typography sx={{ color: "#bbb" }}>Sunday</Typography>
             </Box>
 
-            <Typography sx={{ color: "#ccc", marginTop: "30px" }}>
+            <Typography variant="h6" fontSize="14px" marginTop="30px">
               The market shows strength with increasing volumes. Key levels are
               being tested, and volatility remains high.
             </Typography>
@@ -120,7 +120,6 @@ function Coin() {
           </Paper>
         </Grid>
 
-        {/* SENTIMENT METER CARD */}
         <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
           <Paper
             elevation={4}

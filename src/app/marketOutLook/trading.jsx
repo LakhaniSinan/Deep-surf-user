@@ -70,7 +70,7 @@ const Trading = () => {
                 <Typography style={{ color: item.color }} variant="h5">
                   {item.tittle}
                 </Typography>
-                <Typography mt="8px" fontSize="15px">
+                <Typography mt="8px" fontSize="13px">
                   {item.description}
                 </Typography>
               </Box>
@@ -78,42 +78,42 @@ const Trading = () => {
           ))}
         </Grid>
         <Box>
-          <Grid container spacing={2} mt="15px">
-            <Grid item size={{ xs: 12, sm: 3 }}>
-              <CustomButton
-                variant={"h6"}
-                title="Risk management"
-                icon={<img src={AttentionIcon} />}
-                sx={{
-                  borderRadius: "20px",
-                  width: { xs: "100%", md: "auto" },
-                  backgroundColor: "#FFE600",
-                  color: "#000000",
-                  marginTop: "10px",
-                }}
-              />
-            </Grid>
-            <Grid size={{ xs: 12, sm: 9 }}>
-              <Typography fontSize="15px">
-                Reduce position sizes by 30-50% before CPI (Wednesday) Use a
-                take-profit ladder: 30% at TP1, 40% at TP2, 30% trailing.
-                Leverage no more than 5-10x under current condition Watch the
-                funding rate — if >0.03%, risk of correction.
-              </Typography>
-            </Grid>
+          <Grid container spacing={1} mt="15px">
+              <Grid item size={{ xs: 12, sm: 12 , md : 3 }}>
+                <CustomButton
+                  variant={"body1"}
+                  title="Risk management"
+                  icon={<img src={AttentionIcon} />}
+                  sx={{
+                    borderRadius: "20px",
+                    width: { xs: "100%", md: "auto" },
+                    backgroundColor: "#FFE600",
+                    color: "#000000",
+                    marginTop: "10px",
+                  }}
+                />
+              </Grid>
+              <Grid size={{ xs: 12, sm: 12 , md : 5 }}>
+                <Typography fontSize="12px" mt="10px">
+                  Reduce position sizes by 30-50% before CPI (Wednesday) Use a
+                  take-profit ladder: 30% at TP1, 40% at TP2, 30% trailing.
+                  Leverage no more than 5-10x under current condition Watch the
+                  funding rate — if 0.03%, risk of correction.
+                </Typography>
+              </Grid>
           </Grid>
         </Box>
-        <Typography mt="20px" variant="h3">
+        <Typography mt="20px" variant="h5" fontSize="20px">
           Key levels
         </Typography>
         <Box sx={{ color: "#fff", marginTop: "20px" }}>
-          <Grid container spacing={2} backgroundColor="#1C1C1C">
+          <Grid container spacing={2}>
             {data.map((item, index) => (
               <Grid item size={{ xs: 12, sm: 6, md: 4 }} key={index}>
                 <Paper
                   sx={{
-                    background: "#121212",
-                    p: 3,
+                    background: "#1C1C1C",
+                    p: 2,
                     borderRadius: "14px",
                     height: "100%",
                   }}
@@ -135,7 +135,7 @@ const Trading = () => {
                         Resistance areas
                       </Typography>
                       {item.resistance.map((lvl, i) => (
-                        <Typography key={i} fontSize="20px">
+                        <Typography key={i} fontSize="15px">
                           {lvl}
                         </Typography>
                       ))}
@@ -149,7 +149,7 @@ const Trading = () => {
                         Support areas
                       </Typography>
                       {item.support.map((lvl, i) => (
-                        <Typography key={i} fontSize="20px">
+                        <Typography key={i} fontSize="15px">
                           {lvl}
                         </Typography>
                       ))}
@@ -176,8 +176,8 @@ const Trading = () => {
                 }}
               />
             </Grid>
-            <Grid mt="25px" size={{ xs: 12, sm: 10 }}>
-              <Typography fontSize="14px">
+            <Grid mt="5px" size={{ xs: 12, sm: 10 }}>
+              <Typography fontSize="12px">
                 The macroeconomic backdrop is favourable for risk assets. ETF
                 inflows and on-chain metrics confirm accumulation. A moderate
                 LONG position in BTC/ETH is recommended with readiness to close
