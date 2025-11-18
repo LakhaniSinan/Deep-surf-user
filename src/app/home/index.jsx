@@ -14,7 +14,7 @@ import theme from "../../theme";
 import Header from "../../components/header";
 import CoinCheck from "../../components/coinCheck";
 import StatCard from "../../components/statCard";
-import BitcoinIcon from "../../assets/icons/btc-icon.png";
+import BitcoinIcon from "../../assets/icons/bitcoin-logo.svg";
 import EthereumIcon from "../../assets/icons/eth-icon.svg";
 import graphIcon from "../../assets/icons/graph-icon.svg";
 import graphIcon2 from "../../assets/icons/graph-icon2.svg";

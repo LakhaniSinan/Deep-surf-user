@@ -9,6 +9,7 @@ import Setting from "../app/settings";
 import Calculator from "../app/calculator";
 import ProAnalysis from "../app/proAnalysis";
 import AiTools from "../app/aiTools";
+import MarketOutLook from "../app/marketOutLook";
 const AUTH_ROUTES = [
   {
     id: 1,
@@ -78,18 +79,25 @@ const APP_Route = [
     path: "/calculator",
   },
    {
-    id: 5,
+    id: 6,
     name: "Pro Analysis",
     component: <ProAnalysis/>,
     exact: "exact",
     path: "/pro-analytics",
   },
   {
-    id: 5,
+    id: 7,
     name: "Ai Tools",
     component: <AiTools/>,
     exact: "exact",
     path: "/ai-tools",
+  },
+    {
+    id: 8,
+    name: "MarketOutLook",
+    component: <MarketOutLook/>,
+    exact: "exact",
+    path: "/market-outlook",
   },
 ];
 
