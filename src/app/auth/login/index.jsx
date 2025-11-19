@@ -1,38 +1,78 @@
-import React, { useState } from "react";
-import AuthLayout from "../../../components/authLayout";
 import { Box, Container, Typography } from "@mui/material";
-import CustomInput from "../../../components/customInput";
-import theme from "../../../theme";
-import CustomButton from "../../../components/customButton";
-import googleLogo from "../../../assets/icons/google.svg";
-import appleLogo from "../../../assets/icons/apple.svg";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import appleLogo from "../../../assets/icons/apple.svg";
+import googleLogo from "../../../assets/icons/google.svg";
+import AuthLayout from "../../../components/authLayout";
+import CustomButton from "../../../components/customButton";
+import CustomInput from "../../../components/customInput";
+import { login } from "../../../services/modules/auth";
+import theme from "../../../theme";
+import { loginValidation } from "../../../utils/validations";
+import { useAuthStore } from "../../../store";
 
 const Login = () => {
   const navigate = useNavigate();
-
-  // ✅ Manage form state
+  const { loginUser } = useAuthStore();
+  const [isLoading, setIsLoading] = useState(false);
+  const [formError, setFormError] = useState({});
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  // ✅ Handle input changes
+  // zustand state
+  // const setToken = useAuthStore((state) => state.setToken);
+  // const setUser = useAuthStore((state) => state.setUser);
+
   const handleChange = (field, value) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
     }));
+    setFormError((prev) => ({
+      ...prev,
+      [field]: "",
+    }));
   };
 
-  // ✅ Handle login button click
-  const handleLogin = () => {
-    console.log("Login Data:", formData);
-    navigate("/home");
+  const handleLogin = async () => {
+    const validate = loginValidation(formData, setFormError);
+
+    if (!validate) {
+      toast.error("Please fix errors before submitting!");
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+      const payload = {
+        email: formData.email,
+        password: formData.password,
+      };
+      const response = await login(payload);
+
+      if (response?.data?.status === "success") {
+        const data = response.data.data;
+        const token = data.token;
+        const user = data.user;
+        loginUser(user, token);
+        navigate("/home");
+        toast.success(response?.data?.message);
+      } else {
+        toast.error(response?.data?.message || "Login failed");
+      }
+    } catch (error) {
+      toast.error(error?.message || "Login Failed");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleNavigate = () => {
-    navigate("/signup");
+    console.log("sign", formData);
+    navigate("/signUp");
   };
 
   return (
@@ -45,9 +85,10 @@ const Login = () => {
             defaultStyle={theme.palette.text.secondary}
             value={formData.email}
             onChange={(e) => handleChange("email", e.target.value)}
+            error={Boolean(formError.email)} // 👈 FIXED
+            helperText={formError.email}
           />
         </Box>
-
         {/* Password Field */}
         <Box mt={2}>
           <CustomInput
@@ -57,9 +98,10 @@ const Login = () => {
             type="password"
             value={formData.password}
             onChange={(e) => handleChange("password", e.target.value)}
+            error={Boolean(formError.password)}
+            helperText={formError.password}
           />
         </Box>
-
         {/* Login Button */}
         <Box display="flex" justifyContent="center" mt={8} width="100%">
           <CustomButton
@@ -67,16 +109,15 @@ const Login = () => {
             title="Login"
             fullWidth
             handleClickBtn={handleLogin}
+            loading={isLoading}
           />
         </Box>
-
         {/* OR Text */}
         <Box mt={2}>
           <Typography variant="body2" color={theme.palette.text.secondary}>
             OR
           </Typography>
         </Box>
-
         {/* Social Buttons */}
         <Box
           display="flex"
@@ -123,7 +164,6 @@ const Login = () => {
             />
           </Box>
         </Box>
-
         {/* Sign Up Link */}
         <Box mt={4}>
           <Typography variant="body2" color={theme.palette.text.secondary}>

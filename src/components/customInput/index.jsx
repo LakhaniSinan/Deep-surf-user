@@ -14,6 +14,8 @@ function CustomInput({
   style,
   inputBgColor,
   inputWidth,
+  error,
+  helperText,
   type = "text",
   sx,
   ...props
@@ -24,6 +26,8 @@ function CustomInput({
     <TextField
       fullWidth={fullWidth}
       type={showPassword && type === "password" ? "text" : type}
+      error={error}
+      helperText={helperText}
       {...props}
       InputProps={{
         readOnly: readonly,
@@ -81,11 +85,11 @@ function CustomInput({
         },
 
         "& .MuiFormLabel-root": {
-          display: "none",
+          // display: "none",
         },
 
         "& .MuiFormHelperText-root": {
-          display: "none",
+          // display: "none",
         },
 
         ...(typeof sx === "function" ? sx(theme) : sx),

@@ -27,8 +27,9 @@ export default function CustomOtp({ value, onChange }) {
   return (
     <div style={{ width: "100%", overflow: "hidden" }}>
       <OtpInput
-        value={value} 
-        onChange={onChange} 
+        // inputType="number"
+        value={value}
+        onChange={onChange}
         numInputs={6}
         renderSeparator={null}
         renderInput={(props) => <input {...props} />}

@@ -149,7 +149,6 @@ const HeatMap = () => {
   const buttonData = [
     {
       id: 1,
-      //   variant: "gradient",
       color: "#fff",
       title: "24h Volume",
       fullWidth: true,
@@ -168,7 +167,7 @@ const HeatMap = () => {
         color: "#9C9EA3",
         borderRadius: "12px",
         borderColor: "#757575",
-        border: "1px solid #9C9EA3", // ✅ black border
+        border: "1px solid #9C9EA3", 
       },
     },
     {
@@ -180,7 +179,7 @@ const HeatMap = () => {
         color: "#9C9EA3",
         borderRadius: "12px",
         borderColor: "#757575",
-        border: "1px solid #9C9EA3", // ✅ black border
+        border: "1px solid #9C9EA3", 
       },
     },
   ];
@@ -191,7 +190,7 @@ const HeatMap = () => {
       p={"25px"}
       borderRadius={"25px"}
     >
-      <Typography variant="h4">Heatmap—Volume & Volatility </Typography>
+      <Typography variant="h1" fontSize="20px">Heatmap—Volume & Volatility </Typography>
       <Typography
         variant="body1"
         sx={{
@@ -210,7 +209,6 @@ const HeatMap = () => {
         margin={"auto"}
         marginTop={"40px"}
       >
-        {/* 🔁 Render all buttons */}
         {buttonData.map((btn) => (
           <CustomButton
             key={btn.id}
@@ -223,9 +221,7 @@ const HeatMap = () => {
         ))}
       </Box>
       <Box mt={"20px"}>
-        <Typography variant="h6" color = "#FFFFFF">
-            Top 20 by 24h volume:
-        </Typography>
+        <Typography variant="h6" color = "#FFFFFF">Top 20 by 24h volume:</Typography>
       </Box>
       <Grid container spacing={2} marginTop={"20px"}>
         {volumeData.map((item) => (

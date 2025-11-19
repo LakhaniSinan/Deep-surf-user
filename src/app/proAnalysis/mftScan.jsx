@@ -3,8 +3,9 @@ import CustomInput from "../../components/customInput/index";
 import { useState } from "react";
 import IconImage from "../../assets/icons/vector.svg";
 import CustomButton from "../../components/customButton";
-import ButtonIcon from "../../assets/icons/Vector (3).svg";
+// import ButtonIcon from "../../assets/icons/Vector (3).svg";
 import PaginatedTable from "../../components/dynamicTable";
+import StarIcon from "../../assets/icons/Vector (3).svg";
 
 const MTFSection = () => {
   const [search, setSearch] = useState("");
@@ -49,35 +50,31 @@ const MTFSection = () => {
 
   return (
     <>
-      {/* MTF Scan Box */}
       <Box
         sx={{
           backgroundColor: "#161616",
           borderRadius: "20px",
           padding: "25px",
-          width: "100%",
-          maxWidth: "1449px",
           marginTop: "40px",
         }}
       >
         <Typography
-          variant="h5"
+          variant="h6"
           sx={{
             color: "#fff",
             marginBottom: "15px",
+            fontSize: "15px",
           }}
         >
           MTF Scan — Multi-Timeframe Analysis
         </Typography>
         <CustomInput
+          InputEndIcon={<img src={IconImage} />}
           placeholder="ETH"
           value={search.search || ""}
           onChange={handleInputChange("search")}
-          InputEndIcon={<img src={IconImage} />}
         />
       </Box>
-
-      {/* ETH/USDT Box */}
       <Box
         sx={{
           backgroundColor: "#161616",
@@ -101,37 +98,46 @@ const MTFSection = () => {
           variant="h1"
           sx={{
             marginBottom: "10px",
+            fontSize: "22px",
           }}
         >
           $3300,51
-          <span style={{ color: "#3EDD87", fontSize: "24px" }}> + 2.87%</span>
+          <span style={{ color: "#3EDD87", fontSize: "15px" }}> + 2.87%</span>
         </Typography>
-
-        {/* Button + Extra Text */}
         <Box
-          display={"flex"}
-          alignItems={"center"}
-          gap={"15px"}
-          marginTop={"20px"}
+          display="flex"
+          alignItems="center"
+          gap="20px"
+          flexWrap={{ xs: "wrap", md: "nowrap" }}
         >
           <CustomButton
-            variant={"calculatorToggle"}
-            icon={<img src={ButtonIcon} />}
+            variant="gradient"
             title="Al Recommendation"
+            icon={<img src={StarIcon} style={{ width: 20, height: 20 }} />}
+            sx={{
+              borderRadius: "20px",
+              padding: "4px 10px",
+              minWidth: "auto",
+              width: { xs: "100%", md: "auto" },
+              backgroundColor: "#FFE600",
+              color: "#fff",
+            }}
           />
-          <Typography sx={{ color: "#FFD700", fontSize: "18px" }}>
-            Hold back <br />
-            <span style={{ color: "#fff", fontSize: "12px" }}>
-              confidence: 84%
-            </span>
+          <Typography
+            variant="body2"
+            fontSize="14px"
+            flex={{ xs: "100%", md: "1" }}
+          >
+            <span>Hold back</span>
+            <br />
+            confidence: 84%
           </Typography>
         </Box>
-
         <Box sx={{ marginTop: "50px" }}>
           <PaginatedTable
             tableHeader={billingHistoryHeaders}
             tableData={billingHistoryRows}
-            displayRows={["TF", "trend_pro",  "RSI", "MACD", "status_pro"]}
+            displayRows={["TF", "trend_pro", "RSI", "MACD", "status_pro"]}
             isLoading={false}
             showPagination={false}
           />
@@ -140,15 +146,17 @@ const MTFSection = () => {
           display={"flex"}
           alignItems={"center"}
           gap={"15px"}
-          marginTop={"20px"}
-          width={"100%"}
+          marginTop={"10px"}
+          // width={"100%"}
           height={"87px"}
           borderRadius={"24px"}
           background={"#1C1C1C"}
-          padding={"15px"}
+          flexWrap={"wrap"}
         >
-          <CustomButton variant={"calculatorToggle"} title="Interpretation" />
-          <Typography variant="h6">
+          <CustomButton  variant={"calculatorToggle"} title="Interpretation" sx={{
+            fontSize:"14px" ,
+          }} />
+          <Typography variant="h6" fontSize="14px">
             All timeframes agree on growth - a strong bullish signal!
           </Typography>
         </Box>

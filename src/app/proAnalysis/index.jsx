@@ -17,7 +17,7 @@ const ProAnalysis = () => {
           color: "white",
         }}
       >
-        <Typography variant="h1">Pro Analytics</Typography>
+        <Typography variant="h1" fontSize="24px">Pro Analytics</Typography>
         <MftScan />
         <HeatMap />
         <LiquidationMap />

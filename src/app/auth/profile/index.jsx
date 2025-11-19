@@ -6,20 +6,33 @@ import theme from "../../../theme";
 import CustomButton from "../../../components/customButton";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useNavigate } from "react-router-dom";
+import { setProfileValidation } from "../../../utils/validations";
+import { setProfile } from "../../../services/modules/user";
+import { useAuthStore } from "../../../store";
+import { toast } from "react-toastify";
 
 function Profile() {
+  const navigate = useNavigate();
+  const { setUser } = useAuthStore();
+  const [isLoading, setIsLoading] = useState(false);
+  const [formErrors, setFormErrors] = useState({});
   const [profileData, setProfileData] = useState({
     username: "",
     profileImage: null,
   });
 
-  const navigate = useNavigate();
-
   const handleChange = (field, value) => {
+    if (field === "username" && value.length > 30)
+      return setFormErrors((prev) => ({
+        ...prev,
+        username: "Maximum character should be less than 30",
+      }));
+
     setProfileData((prev) => ({
       ...prev,
       [field]: value,
     }));
+    setFormErrors((pre) => ({ ...pre, [field]: "" }));
   };
 
   const handleImageUpload = (e) => {
@@ -29,9 +42,34 @@ function Profile() {
     }
   };
 
-  const handleContinue = () => {
-    navigate("/login");
-    console.log("Profile Data:", profileData);
+  const handleContinue = async () => {
+    const validate = setProfileValidation(profileData, setFormErrors);
+
+    if (!validate) {
+      toast.error("Please fix errors before submitting!");
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+      const payload = {
+        username: profileData.username,
+      };
+      const response = await setProfile(payload);
+
+      if (response?.data?.status === "success") {
+        const data = response?.data?.data;
+        setUser(data?.user);
+        navigate("/home");
+        toast.success(response?.data?.message);
+      } else {
+        toast.error(response?.data?.message || "Login failed");
+      }
+    } catch (error) {
+      toast.error(error?.message || "Login Failed");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -98,6 +136,8 @@ function Profile() {
             defaultStyle={theme.palette.text.secondary}
             value={profileData.username}
             onChange={(e) => handleChange("username", e.target.value)}
+            error={Boolean(formErrors.username)}
+            helperText={formErrors.username}
           />
         </Box>
 
@@ -113,6 +153,7 @@ function Profile() {
             title="Continue"
             fullWidth
             handleClickBtn={handleContinue}
+            loading={isLoading}
           />
         </Box>
       </Container>

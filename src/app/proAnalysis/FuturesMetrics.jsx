@@ -89,6 +89,7 @@ const FuturesMetrics = () => {
           {fundingData.map((item, index) => (
             <Grid item size={{ xs: 12, sm: 6, md: 2.4 }} key={index}>
               <Box
+              
                 sx={{
                   backgroundColor: "#161616",
                   borderRadius: "14px",

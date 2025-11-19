@@ -10,21 +10,23 @@ import Calculator from "../app/calculator";
 import ProAnalysis from "../app/proAnalysis";
 import AiTools from "../app/aiTools";
 import MarketOutLook from "../app/marketOutLook";
+import VerficationProcess from "../app/auth/otpVerfication";
+
 const AUTH_ROUTES = [
   {
     id: 1,
     name: "Signup",
-    path: "/",
+    path: "/signup",
     component: <SignUp />,
   },
+
   {
     id: 2,
     name: "Login",
-    path: "/login",
+    path: "/",
     component: <Login />,
   },
 
-  
   {
     id: 3,
     name: "Profile",
@@ -32,8 +34,14 @@ const AUTH_ROUTES = [
     exact: "exact",
     path: "/profile",
   },
-
-]
+  {
+    id: 3,
+    name: "VerficationProcess",
+    component: <VerficationProcess />,
+    exact: "exact",
+    path: "/verification",
+  },
+];
 
 const APP_Route = [
   {
@@ -78,31 +86,27 @@ const APP_Route = [
     exact: "exact",
     path: "/calculator",
   },
-   {
+  {
     id: 6,
     name: "Pro Analysis",
-    component: <ProAnalysis/>,
+    component: <ProAnalysis />,
     exact: "exact",
     path: "/pro-analytics",
   },
   {
     id: 7,
     name: "Ai Tools",
-    component: <AiTools/>,
+    component: <AiTools />,
     exact: "exact",
     path: "/ai-tools",
   },
-    {
+  {
     id: 8,
     name: "MarketOutLook",
-    component: <MarketOutLook/>,
+    component: <MarketOutLook />,
     exact: "exact",
     path: "/market-outlook",
   },
 ];
-
-
-
-
 
 export { AUTH_ROUTES, APP_Route };
