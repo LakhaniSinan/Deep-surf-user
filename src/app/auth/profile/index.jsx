@@ -10,15 +10,17 @@ import { setProfileValidation } from "../../../utils/validations";
 import { setProfile } from "../../../services/modules/user";
 import { useAuthStore } from "../../../store";
 import { toast } from "react-toastify";
+import { uploadMediaService } from "../../../utils/help";
 
 function Profile() {
   const navigate = useNavigate();
-  const { setUser } = useAuthStore();
+  const { user, setUser } = useAuthStore();
+  console.log("fghefgehfef", user);
   const [isLoading, setIsLoading] = useState(false);
   const [formErrors, setFormErrors] = useState({});
   const [profileData, setProfileData] = useState({
-    username: "",
-    profileImage: null,
+    username: user?.username || "",
+    profileImage: user?.profilePicture || "",
   });
 
   const handleChange = (field, value) => {
@@ -35,10 +37,34 @@ function Profile() {
     setFormErrors((pre) => ({ ...pre, [field]: "" }));
   };
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      handleChange("profileImage", URL.createObjectURL(file));
+  // const handleImageUpload = (e) => {
+  //   const file = e.target.files[0];
+  //   if (file) {
+  //     handleChange("profileImage", URL.createObjectURL(file));
+  //   }
+  // };
+
+  const handleImageUpload = async (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return; // Prevent crash
+
+    try {
+      setIsLoading(true);
+
+      const uploadRes = await uploadMediaService(file); // Should return image URL
+      console.log("Uploaded Image:", uploadRes);
+
+      setProfileData((prev) => ({
+        ...prev,
+        profileImage: uploadRes, // Correct image update
+      }));
+
+      toast.success("Profile picture uploaded!");
+      event.target.value = ""; // Clear input for safety
+    } catch (error) {
+      toast.error(error?.message || "Image upload failed");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -54,6 +80,7 @@ function Profile() {
       setIsLoading(true);
       const payload = {
         username: profileData.username,
+        profilePicture: profileData.profileImage,
       };
       const response = await setProfile(payload);
 

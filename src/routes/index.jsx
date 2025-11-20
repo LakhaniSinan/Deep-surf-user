@@ -19,11 +19,11 @@ const AUTH_ROUTES = [
     path: "/signup",
     component: <SignUp />,
   },
-
+  
   {
     id: 2,
     name: "Login",
-    path: "/",
+    path: "/login",
     component: <Login />,
   },
 
@@ -49,7 +49,7 @@ const APP_Route = [
     name: "Home",
     component: <Home />,
     exact: "exact",
-    path: "/home",
+    path: "/",
   },
   {
     id: 2,

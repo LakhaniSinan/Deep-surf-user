@@ -9,5 +9,6 @@ export const ENDPOINTS = {
   },
   USER: {
     SET_PROFILE: "users/set-profile",
+    GET_PROFILE: "users/update",
   },
 };

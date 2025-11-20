@@ -17,7 +17,6 @@ const VerficationProcess = () => {
   const [formError, setFormError] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const { loginUser } = useAuthStore();
-
   console.log(formError, "ffeufefef");
   const email = location?.state?.email;
   console.log(email, "asdjhasdhjsadjhsahdjashdsahjd");

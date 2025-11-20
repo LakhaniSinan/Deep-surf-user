@@ -1,20 +1,25 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Box, Typography, IconButton } from "@mui/material";
+import { Box, Typography, IconButton, Menu, MenuItem } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../../assets/images/Deepsurf-logo.png";
 import NavigationDrawer from "./drawer";
 import { headerStyles } from "./styles";
+import useAuthStore from "../../store/authStore";
 
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { logout } = useAuthStore();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
+  const [anchorEl, setAnchorEl] = useState(null); // For person menu
+  const openMenu = Boolean(anchorEl);
+
   const navItems = [
-    { link: "/home", label: "Dashboard" },
+    { link: "/", label: "Dashboard" },
     { link: "/journal", label: "Journal" },
     { link: "/faq", label: "FAQ" },
     { link: "/chart", label: "Chart" },
@@ -25,14 +30,12 @@ const Header = () => {
     { link: "/settings", label: "Settings" },
   ];
 
-  // Get active nav based on current location
   const [activeNav, setActiveNav] = useState(() => {
     const currentPath = location.pathname;
     const activeItem = navItems.find((item) => item.link === currentPath);
     return activeItem ? activeItem.label : "";
   });
 
-  // Update active nav when location changes
   useEffect(() => {
     const currentPath = location.pathname;
     const activeItem = navItems.find((item) => item.link === currentPath);
@@ -46,11 +49,26 @@ const Header = () => {
   const handleNavClick = (item) => {
     setActiveNav(item.label);
     navigate(item.link);
-    setDrawerOpen(false); // Close drawer on mobile after selection
+    setDrawerOpen(false);
   };
 
   const handleDrawerNavClick = (item) => {
     handleNavClick(item);
+  };
+
+  const handlePersonClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    handleCloseMenu();
+    logout();
+    // Add your logout logic here, e.g., clearing token
+    navigate("/login"); // Redirect to login page after logout
   };
 
   const renderNavItems = () => {
@@ -73,37 +91,57 @@ const Header = () => {
   return (
     <>
       <Box sx={headerStyles.headerContainer}>
-        <Box 
-          display="flex" 
-          alignItems="center" 
-          gap={1.5} 
-          flexShrink={0} 
+        <Box
+          display="flex"
+          alignItems="center"
+          gap={1.5}
+          flexShrink={0}
           sx={{ minWidth: 0, cursor: "pointer" }}
           onClick={() => navigate("/home")}
         >
-          <Box component="img" src={logo} alt="Deepsurf Logo" sx={headerStyles.logo} />
+          <Box
+            component="img"
+            src={logo}
+            alt="Deepsurf Logo"
+            sx={headerStyles.logo}
+          />
         </Box>
 
         <Box sx={headerStyles.navContainer}>
-          <Box sx={headerStyles.navBar}>
-            {renderNavItems()}
-          </Box>
+          <Box sx={headerStyles.navBar}>{renderNavItems()}</Box>
         </Box>
 
-        <Box display="flex" alignItems="center" gap={{ xs: 1, sm: 1.5 }} flexShrink={0}>
+        <Box
+          display="flex"
+          alignItems="center"
+          gap={{ xs: 1, sm: 1.5 }}
+          flexShrink={0}
+        >
           <IconButton onClick={handleDrawerToggle} sx={headerStyles.menuButton}>
             <MenuIcon sx={{ fontSize: "24px" }} />
           </IconButton>
 
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            flexShrink={0}
-            sx={{ ...headerStyles.profileIcon, cursor: "pointer" }}
-            onClick={() => navigate("/profile")}
-          >
-            <PersonIcon sx={{ color: "text.primary", fontSize: "24px" }} />
+          {/* Person Icon */}
+          <Box>
+            <IconButton
+              onClick={handlePersonClick}
+              sx={headerStyles.profileIcon}
+            >
+              <PersonIcon sx={{ color: "text.primary", fontSize: "24px" }} />
+            </IconButton>
+
+            <Menu
+              anchorEl={anchorEl}
+              open={openMenu}
+              onClose={handleCloseMenu}
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+              transformOrigin={{ vertical: "top", horizontal: "right" }}
+              sx={{
+                width: "200px",
+              }}
+            >
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
+            </Menu>
           </Box>
         </Box>
       </Box>

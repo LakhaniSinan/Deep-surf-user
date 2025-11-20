@@ -2,7 +2,12 @@ import { ENDPOINTS } from "../endpoints";
 import Api from "../index";
 
 const setProfile = (payload) => {
-  return Api(ENDPOINTS.USER.SET_PROFILE, payload, "PUT");
+  return Api(ENDPOINTS.USER.SET_PROFILE, payload, "put");
 };
 
-export { setProfile };
+
+const getProfile = (payload) => {
+  return Api(ENDPOINTS.USER.GET_PROFILE, payload, "put");
+};
+
+export { setProfile, getProfile };

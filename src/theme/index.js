@@ -59,12 +59,14 @@ const theme = createTheme({
       fontWeight: 700,
       lineHeight: 1.2,
     },
+
     h2: {
       fontFamily: '"Poppins", sans-serif',
       fontSize: "2rem",
       fontWeight: 700,
       lineHeight: 1.3,
     },
+    
     h3: {
       fontFamily: '"Poppins", sans-serif',
       fontSize: "1.75rem",

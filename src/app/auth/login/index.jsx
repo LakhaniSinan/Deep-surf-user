@@ -11,6 +11,8 @@ import { login } from "../../../services/modules/auth";
 import theme from "../../../theme";
 import { loginValidation } from "../../../utils/validations";
 import { useAuthStore } from "../../../store";
+import { auth, googleProvider } from "../../../config/firebase"; // ✅ apna provider aur auth
+import { signInWithPopup } from "firebase/auth"; // ✅ Firebase Auth se import
 
 const Login = () => {
   const navigate = useNavigate();
@@ -22,29 +24,24 @@ const Login = () => {
     password: "",
   });
 
-  // zustand state
-  // const setToken = useAuthStore((state) => state.setToken);
-  // const setUser = useAuthStore((state) => state.setUser);
-
-  const handleChange = (field, value) => {
+  const handleChange = (event) => {
+    const { value, name } = event.target;
     setFormData((prev) => ({
       ...prev,
-      [field]: value,
+      [name]: value,
     }));
     setFormError((prev) => ({
       ...prev,
-      [field]: "",
+      [name]: "",
     }));
   };
 
   const handleLogin = async () => {
     const validate = loginValidation(formData, setFormError);
-
     if (!validate) {
       toast.error("Please fix errors before submitting!");
       return;
     }
-
     try {
       setIsLoading(true);
       const payload = {
@@ -58,7 +55,7 @@ const Login = () => {
         const token = data.token;
         const user = data.user;
         loginUser(user, token);
-        navigate("/home");
+        navigate("/");
         toast.success(response?.data?.message);
       } else {
         toast.error(response?.data?.message || "Login failed");
@@ -75,6 +72,31 @@ const Login = () => {
     navigate("/signUp");
   };
 
+
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider); // ✅ correct provider
+      const user = result.user;
+      const token = await user.getIdToken();
+
+      loginUser(
+        {
+          uid: user.uid,
+          name: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+        },
+        token
+      );
+
+      toast.success("Logged in with Google!");
+      navigate("/home");
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message || "Google login failed");
+    }
+  };
+
   return (
     <AuthLayout title="Welcome back!">
       <Container>
@@ -84,7 +106,8 @@ const Login = () => {
             placeholder="Email"
             defaultStyle={theme.palette.text.secondary}
             value={formData.email}
-            onChange={(e) => handleChange("email", e.target.value)}
+            name="email"
+            onChange={handleChange}
             error={Boolean(formError.email)} // 👈 FIXED
             helperText={formError.email}
           />
@@ -97,7 +120,8 @@ const Login = () => {
             inputPadding="14px 16px"
             type="password"
             value={formData.password}
-            onChange={(e) => handleChange("password", e.target.value)}
+            name="password"
+            onChange={handleChange}
             error={Boolean(formError.password)}
             helperText={formError.password}
           />
@@ -136,28 +160,11 @@ const Login = () => {
             display="flex"
             justifyContent="center"
             alignItems="center"
+            onClick={handleGoogleLogin} // 👈 add this
           >
             <img
               src={googleLogo}
               alt="Google"
-              width={20}
-              height={20}
-              style={{ objectFit: "contain" }}
-            />
-          </Box>
-          <Box
-            border={1}
-            py={0.8}
-            px={{ xs: 6, sm: 9 }}
-            borderColor={theme.palette.text.secondary}
-            borderRadius={2}
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <img
-              src={appleLogo}
-              alt="Apple"
               width={20}
               height={20}
               style={{ objectFit: "contain" }}

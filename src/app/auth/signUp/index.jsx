@@ -48,6 +48,7 @@ function SignUp() {
       if (response?.data?.status === "success") {
         toast.success(response?.data?.message);
         navigate("/verification", { state: { email: formData.email } });
+        console.log("Signupsuccessful", response);
       } else {
         toast.error(response?.data?.message || "Signup failed");
       }
@@ -65,19 +66,17 @@ function SignUp() {
   return (
     <AuthLayout title={"Get Started"}>
       <Container>
-        {/* 👈 ToastContainer */}
-        {/* Email */}
         <Box mt={2}>
           <CustomInput
             placeholder="Email"
             defaultStyle={theme.palette.text.secondary}
             value={formData.email}
             onChange={(e) => handleChange("email", e.target.value)}
-            error={Boolean(formError.email)} // 👈 FIXED
+            error={Boolean(formError.email)}
             helperText={formError.email}
           />
         </Box>
-        {/* Password */}
+
         <Box mt={2}>
           <CustomInput
             placeholder="Password"
@@ -88,6 +87,7 @@ function SignUp() {
             helperText={formError.password}
           />
         </Box>
+
         {/* OTP */}
         {/* <Box mt={2}>
           <Typography variant="body2" color={theme.palette.text.secondary}>
@@ -109,7 +109,7 @@ function SignUp() {
           </Typography>
         </Box> */}
         {/* Button */}
-        <Box mt={2}>
+        <Box mt={5} display="flex" justifyContent="center" width="100%">
           <CustomButton
             handleClickBtn={handleSignUp}
             variant="gradient"
@@ -118,7 +118,26 @@ function SignUp() {
             loading={isLoading}
           />
         </Box>
-        {/* Login */}
+
+        <Box
+          border={1}
+          py={0.8} // small screens ke liye padding thodi kam
+          px={{ xs: 6, sm: 9 }} // xs = extra small, sm = small screen
+          borderColor={theme.palette.text.secondary}
+          borderRadius={2}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          marginTop={5}
+        >
+          <img
+            src={googleLogo}
+            alt="Google"
+            width={20}
+            height={20}
+            style={{ objectFit: "contain" }}
+          />
+        </Box>
         <Box mt={2} textAlign="center">
           <Typography variant="body2" color={theme.palette.text.secondary}>
             Already have an account?{" "}

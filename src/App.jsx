@@ -3,6 +3,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import { APP_Route, AUTH_ROUTES } from "./routes";
+import { AuthProtectedLayout, ProtectedLayout } from "./routes/routeLayout";
 
 function App() {
   return (
@@ -13,14 +14,27 @@ function App() {
       <Router>
         <Routes>
           {/* Auth routes */}
-          {AUTH_ROUTES?.map((route) => (
-            <Route key={route.id} path={route.path} element={route.component} />
-          ))}
+          <Route element={<AuthProtectedLayout />}>
+            {AUTH_ROUTES?.map((route) => (
+              <Route
+                key={route.id}
+                path={route.path}
+                element={route.component}
+              />
+            ))}
+          </Route>
 
           {/* App routes */}
-          {APP_Route?.map((route) => (
-            <Route key={route.id} path={route.path} element={route.component} />
-          ))}
+
+          <Route path="/" element={<ProtectedLayout />}>
+            {APP_Route?.map((route) => (
+              <Route
+                key={route.id}
+                path={route.path}
+                element={route.component}
+              />
+            ))}
+          </Route>
         </Routes>
       </Router>
     </>
