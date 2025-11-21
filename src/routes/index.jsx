@@ -11,6 +11,7 @@ import ProAnalysis from "../app/proAnalysis";
 import AiTools from "../app/aiTools";
 import MarketOutLook from "../app/marketOutLook";
 import VerficationProcess from "../app/auth/otpVerfication";
+import ForGetPassword from "../app/auth/forgotPassword";
 
 const AUTH_ROUTES = [
   {
@@ -19,7 +20,7 @@ const AUTH_ROUTES = [
     path: "/signup",
     component: <SignUp />,
   },
-  
+
   {
     id: 2,
     name: "Login",
@@ -40,6 +41,13 @@ const AUTH_ROUTES = [
     component: <VerficationProcess />,
     exact: "exact",
     path: "/verification",
+  },
+  {
+    id: 3,
+    name: "ForGetPassword",
+    component: <ForGetPassword />,
+    exact: "exact",
+    path: "/forgot-password",
   },
 ];
 

@@ -10,5 +10,9 @@ export const ENDPOINTS = {
   USER: {
     SET_PROFILE: "users/set-profile",
     GET_PROFILE: "users/update",
+    FORGET_PASSWORD: "users/forgot-password",
+    RESET_PASSWORD: "users/reset-password",
+    CHANGE_PASSWORD: "users/change-password",
+    
   },
 };

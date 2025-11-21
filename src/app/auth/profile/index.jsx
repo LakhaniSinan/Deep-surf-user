@@ -51,7 +51,7 @@ function Profile() {
     try {
       setIsLoading(true);
 
-      const uploadRes = await uploadMediaService(file); // Should return image URL
+      const uploadRes = await uploadMediaService(file);
       console.log("Uploaded Image:", uploadRes);
 
       setProfileData((prev) => ({

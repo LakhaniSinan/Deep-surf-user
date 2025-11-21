@@ -1,4 +1,10 @@
-import { Box, Checkbox, Container, Typography } from "@mui/material";
+import {
+  Box,
+  Checkbox,
+  Container,
+  InputAdornment,
+  Typography,
+} from "@mui/material";
 import React, { useState } from "react";
 import AuthLayout from "../../../components/authLayout";
 import CustomInput from "../../../components/customInput";
@@ -10,6 +16,9 @@ import { useNavigate } from "react-router-dom";
 import { signUp } from "../../../services/modules/auth";
 import { toast, ToastContainer } from "react-toastify";
 import { signUpValidation } from "../../../utils/validations";
+import IconButton from "@mui/material/IconButton";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -21,7 +30,7 @@ function SignUp() {
     otp: "",
     agree: false,
   });
-
+  const [showPassword, setShowPassword] = React.useState(false);
   const handleChange = (field, value) => {
     setFormData((prev) => ({
       ...prev,
@@ -85,21 +94,25 @@ function SignUp() {
             onChange={(e) => handleChange("password", e.target.value)}
             error={Boolean(formError.password)}
             helperText={formError.password}
+            InputEndIcon={true}
+            showPassword={true}
           />
         </Box>
 
         {/* OTP */}
-        {/* <Box mt={2}>
-          <Typography variant="body2" color={theme.palette.text.secondary}>
+        <Box mt={3}>
+          <Typography sx={{
+            marginBottom: "12px",
+          }} variant="body2" color={theme.palette.text.secondary}>
             Enter Join Code
           </Typography>
           <CustomOtp
             value={formData.otp}
             onChange={(val) => handleChange("otp", val)}
           />
-        </Box> */}
+        </Box>
         {/* Terms */}
-        {/* <Box display="flex" alignItems="center" gap={1} mt={2}>
+        <Box display="flex" alignItems="center" gap={1} mt={2}>
           <Checkbox
             checked={formData.agree}
             onChange={(e) => handleChange("agree", e.target.checked)}
@@ -107,15 +120,18 @@ function SignUp() {
           <Typography variant="body2" color={theme.palette.text.secondary}>
             I agree to Terms & Privacy Policy
           </Typography>
-        </Box> */}
+        </Box>
         {/* Button */}
-        <Box mt={5} display="flex" justifyContent="center" width="100%">
+        <Box mt={5} display="flex" width="100%">
           <CustomButton
             handleClickBtn={handleSignUp}
-            variant="gradient"
+            variant="h5"
             title="Sign Up"
-            fullWidth
+            width="100%"
             loading={isLoading}
+            sx={{
+              backgroundColor: "#FF6421",
+            }}
           />
         </Box>
 

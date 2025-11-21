@@ -42,9 +42,9 @@ function CustomInput({
                 edge="end"
               >
                 {showPassword ? (
-                  <VisibilityOff sx={{ color: "#C7C7C7  " }} />
+                  <VisibilityOff sx={{ color: "#ffffffff  " }} />
                 ) : (
-                  <Visibility sx={{ color: "#C7C7C7" }} />
+                  <Visibility sx={{ color: "#ffffffff" }} />
                 )}
               </IconButton>
             ) : (

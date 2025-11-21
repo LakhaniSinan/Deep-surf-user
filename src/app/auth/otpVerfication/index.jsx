@@ -42,8 +42,10 @@ const VerficationProcess = () => {
         const token = data.token;
         const user = data.user;
         loginUser(user, token);
-        navigate("/profile");
         toast.success(response?.data?.message);
+        setTimeout(() => {
+          // navigate("/profile");
+        }, 200);
       } else {
         toast.error(response?.data?.message || "Verification failed");
       }

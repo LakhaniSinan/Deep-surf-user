@@ -1,115 +1,126 @@
 import React, { useState } from "react";
-import { Box, Typography, Avatar, Stack, IconButton } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Avatar,
+  Stack,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+} from "@mui/material";
 import CustomInput from "../../../components/customInput";
 import CustomButton from "../../../components/customButton";
-import { getProfile } from "../../../services/modules/user";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useAuthStore } from "../../../store";
-import { uploadMediaService } from "../../../utils/help";
+import { changePassword } from "../../../services/modules/auth";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function PersonalInformation() {
-  const { user, setUser } = useAuthStore();
-  const [username, setUsername] = useState(user?.username);
-  console.log("fhugfhfkguyekuyefgif" , user)
-  const [email, setEmail] = useState(user?.email);
-  const [profilePicture, setProfilePicture] = useState(user?.profilePicture);
-  const [password, setPassword] = useState("jamesrodriss1329");
-  const [isLoading, setIsLoading] = useState(false);
+  const { user, loginUser } = useAuthStore();
+  const navigate = useNavigate();
 
-  // Image Upload Handler
-  const handleImageUpload = async (event) => {
+  const [username, setUsername] = useState(user?.name || "");
+  const [email, setEmail] = useState(user?.email || "");
+  const [profilePicture, setProfilePicture] = useState(
+    user?.profilePicture || ""
+  );
+  const [isLoading, setIsLoading] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState("");
+  console.log("CurrentPassword:", currentPassword);
+  const [newPassword, setNewPassword] = useState("");
+  console.log("NewPassword:", newPassword);
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleChange = (field, value) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+    setFormError((prev) => ({
+      ...prev,
+      [field]: "",
+    }));
+  };
+
+  const handleImageUpload = (event) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    try {
-      setIsLoading(true);
-      const uploadRes = await uploadMediaService(file); // Should return image URL here
-      console.log("Uploaded Image:", uploadRes);
-
-      setProfilePicture(uploadRes); // 📌 Just store image URL directly
-
-      toast.success("Profile picture uploaded!");
-      // event.target.value = ""; // Reset file input
-    } catch (error) {
-      toast.error(error?.message || "Image upload failed");
-    } finally {
-      setIsLoading(false);
-    }
+    const reader = new FileReader();
+    reader.onloadend = () => setProfilePicture(reader.result);
+    reader.readAsDataURL(file);
   };
 
-  const handleContinue = async () => {
+  // 🟢 API Call for Change Password
+  const handlePasswordChange = async () => {
+    if (
+      !currentPassword.trim() ||
+      !newPassword.trim() ||
+      !confirmPassword.trim()
+    ) {
+      toast.error("Enter all fields!");
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      toast.error("Passwords do not match!");
+      return;
+    }
+
     try {
       setIsLoading(true);
       const payload = {
-       username : username,
-        profilePicture : profilePicture,
+        currentPassword,
+        newPassword,
       };
-      console.log("Payload:", payload);
 
-      const response = await getProfile(payload);
+      const response = await changePassword(payload);
+      console.log("ChangePasswordResponse:", response);
 
       if (response?.data?.status === "success") {
-        setUser(response?.data?.data?.user);
         toast.success(response?.data?.message);
+        // setOpenDialog(false);
+        setCurrentPassword("");
+        setNewPassword("");
+        setConfirmPassword("");
+
+        setOpenDialog(false);
       } else {
-        toast.error(response?.data?.message || "Failed to update");
+        toast.error(response?.data?.message || "Failed to change password");
       }
     } catch (error) {
-      toast.error(error?.message || "Something went wrong");
+      toast.error(error?.message || "API Failed");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <Box display={"flex"} flexDirection={"column"} gap={4}>
+    <Box display="flex" flexDirection="column" gap={4}>
       <Typography variant="titleLg">Personal Information</Typography>
 
-      {/* Avatar Section */}
+      {/* Avatar */}
       <Stack
         direction={{ xs: "column", sm: "row" }}
-        spacing={{ xs: 3, sm: 4 }}
-        alignItems={{ xs: "flex-start", sm: "center" }}
+        spacing={3}
+        alignItems="center"
       >
         <Avatar
-          alt={username}
           src={profilePicture || "https://via.placeholder.com/76"}
-          sx={{
-            width: 76,
-            height: 76,
-            border: "2px solid #8F8F8F",
-          }}
+          sx={{ width: 76, height: 76 }}
         />
-        <Stack spacing={1}>
-          <Typography variant="body1" sx={{ fontWeight: 600 }}>
-            {username}
-          </Typography>
+        <Stack direction="column" spacing={1}>
+          <Typography fontWeight={600}>{username}</Typography>
           <Stack
             component="label"
             direction="row"
             alignItems="center"
-            spacing={1}
-            sx={(theme) => ({
-              cursor: "pointer",
-              minWidth: 150,
-              minHeight: 50,
-              display: "flex",
-              gap: "10px",
-              px: 3,
-              borderRadius: "8px",
-              border: "1px solid #8F8F8F",
-              fontWeight: 600,
-              fontSize: "16px",
-              color: "#ffffff",
-              // backgroundColor: "theme.palette.text.secondary",
-              transition: "all 0.3s ease",
-              "&:hover": {
-                opacity: 0.8,
-              },
-            })}
+            sx={{ cursor: "pointer" }}
           >
-            <AddCircleOutlineIcon fontSize="medium" />
+            <AddCircleOutlineIcon />
             Upload Image
             <input
               type="file"
@@ -122,60 +133,70 @@ function PersonalInformation() {
       </Stack>
 
       {/* Username */}
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
-        <Typography variant="labelMd">Username</Typography>
-        <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-          <CustomInput
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            inputProps={{ maxLength: 30 }}
-            placeholder="Enter username"
-          />
-          <CustomButton
-            variant="softOutlined"
-            title="Change"
-            handleClickBtn={handleContinue}
-            loading={isLoading}
-            sx={() => ({ minWidth: 130, minHeight: 44 })}
-          />
-        </Stack>
-        <Typography variant="helperSm">Max. 30 Characters</Typography>
-      </Box>
+      <CustomInput
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        placeholder="Enter username"
+      />
 
       {/* Email */}
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
-        <Typography variant="labelMd">Email</Typography>
-        <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-          <CustomInput
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter email"
-          />
-        </Stack>
-      </Box>
-
-      {/* Password */}
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
-        <Typography variant="labelMd">Password</Typography>
-        <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-          <CustomInput
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="********"
-          />
-        </Stack>
-      </Box>
-
-      {/* Save Button */}
-      <CustomButton
-        variant="glossyDark"
-        title="Save Profile"
-        handleClickBtn={handleContinue}
-        width="fit-content"
-        loading={isLoading}
+      <CustomInput
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Enter email"
       />
+
+      {/* Password Dialog Button */}
+      <CustomButton
+        title="Change Password"
+        handleClickBtn={() => setOpenDialog(true)}
+      />
+
+      {/* Change Password Dialog */}
+      <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+        <DialogTitle>Change Password</DialogTitle>
+        <DialogContent
+          sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+        >
+          <CustomInput
+            placeholder="Current Password"
+            type="password"
+            value={currentPassword}
+            onChange={(e) => setCurrentPassword(e.target.value)}
+            InputEndIcon={true}
+            showPassword={true}
+          />
+          <CustomInput
+            placeholder="New Password"
+            type="password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            InputEndIcon={true}
+            showPassword={true}
+          />
+          <CustomInput
+            placeholder="Confirm Password"
+            type="password"
+            InputEndIcon={true}
+            showPassword={true}
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <CustomButton
+            title="Cancel"
+            handleClickBtn={() => setOpenDialog(false)}
+          />
+          <CustomButton
+            title="Save"
+            handleClickBtn={handlePasswordChange}
+            loading={isLoading}
+            setOpenDialog={setOpenDialog}
+          />
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }

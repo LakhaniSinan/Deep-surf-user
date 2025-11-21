@@ -55,7 +55,7 @@ const Login = () => {
         const token = data.token;
         const user = data.user;
         loginUser(user, token);
-        navigate("/");
+        navigate("/profile");
         toast.success(response?.data?.message);
       } else {
         toast.error(response?.data?.message || "Login failed");
@@ -71,7 +71,9 @@ const Login = () => {
     console.log("sign", formData);
     navigate("/signUp");
   };
-
+  // const handleforgotPassword = () => {
+  //   navigate("/forgot-password");
+  // };
 
   const handleGoogleLogin = async () => {
     try {
@@ -90,7 +92,7 @@ const Login = () => {
       );
 
       toast.success("Logged in with Google!");
-      navigate("/home");
+      navigate("/profile");
     } catch (error) {
       console.log(error);
       toast.error(error.message || "Google login failed");
@@ -124,14 +126,40 @@ const Login = () => {
             onChange={handleChange}
             error={Boolean(formError.password)}
             helperText={formError.password}
+            InputEndIcon={true}
+            showPassword={true}
           />
         </Box>
+        <Box mt={2}>
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#ffffff",
+                cursor: "pointer",
+                fontSize: "14px",
+                "&:hover": { textDecoration: "underline" },
+              }}
+              onClick={() => navigate("/forgot-password")}
+            >
+              Forgot Password?
+            </Typography>
+          </Box>
+        </Box>
+
         {/* Login Button */}
         <Box display="flex" justifyContent="center" mt={8} width="100%">
           <CustomButton
-            variant="gradient"
+            variant="h4"
             title="Login"
-            fullWidth
+            width="100%"
+            sx={{
+              backgroundColor: "#FF6421",
+            }}
             handleClickBtn={handleLogin}
             loading={isLoading}
           />
