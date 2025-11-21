@@ -82,7 +82,7 @@ function PersonalInformation() {
 
       if (response?.data?.status === "success") {
         toast.success(response?.data?.message);
-        // setOpenDialog(false);
+        setOpenDialog(false);
         setCurrentPassword("");
         setNewPassword("");
         setConfirmPassword("");
