@@ -125,7 +125,7 @@ function SignUp() {
         <Box mt={5} display="flex" width="100%">
           <CustomButton
             handleClickBtn={handleSignUp}
-            variant="h5"
+            // variant="h5"
             title="Sign Up"
             width="100%"
             loading={isLoading}
