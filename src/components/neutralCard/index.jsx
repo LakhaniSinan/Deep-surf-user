@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Container,
   StyledCard,
@@ -8,29 +8,30 @@ import {
   GaugeContainer,
   ScoreBox,
   ScoreBadge,
-  ScoreText
-} from './style';
+  ScoreText,
+} from "./style";
 
-const NeutralCard = () => {
-  const sentiment = 50;
-  const sentimentLabel = "Neutral";
-  const needleRotation = (sentiment / 100) * 180;
+const NeutralCard = ({ data }) => {
   const gradientId = "sentimentGradient";
-  
+  const needleRotation = (data?.score / 100) * 100;
+
+  console.log(needleRotation,"ASdsajkdasjdhjasdjhasdjh")
+
   return (
     <Container>
       <StyledCard>
         <HeaderBox>
-          <SubtitleText>
-            Overall Sentiment
-          </SubtitleText>
-          <SentimentTitle>
-            {sentimentLabel}
-          </SentimentTitle>
+          <SubtitleText>Overall Sentiment</SubtitleText>
+          <SentimentTitle>{data?.label}</SentimentTitle>
         </HeaderBox>
-        
+
         <GaugeContainer>
-          <svg width="100%" height="125" viewBox="0 0 240 140" style={{ overflow: 'visible' }}>
+          <svg
+            width="100%"
+            height="128"
+            viewBox="0 0 240 140"
+            style={{ overflow: "visible" }}
+          >
             <defs>
               <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#ef4444" />
@@ -38,7 +39,7 @@ const NeutralCard = () => {
                 <stop offset="100%" stopColor="#22c55e" />
               </linearGradient>
             </defs>
-            
+
             <path
               d="M 30 120 A 90 90 0 0 1 210 120"
               fill="none"
@@ -46,7 +47,7 @@ const NeutralCard = () => {
               strokeWidth="20"
               strokeLinecap="round"
             />
-            
+
             <path
               d="M 30 120 A 90 90 0 0 1 210 120"
               fill="none"
@@ -54,15 +55,11 @@ const NeutralCard = () => {
               strokeWidth="20"
               strokeLinecap="round"
             />
-            
-       
           </svg>
-          
+
           <ScoreBox>
             <ScoreBadge>
-              <ScoreText>
-                {sentiment}
-              </ScoreText>
+              <ScoreText>{data?.score}</ScoreText>
             </ScoreBadge>
           </ScoreBox>
         </GaugeContainer>

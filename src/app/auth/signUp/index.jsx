@@ -30,7 +30,7 @@ function SignUp() {
     otp: "",
     agree: false,
   });
-  const [showPassword, setShowPassword] = React.useState(false);
+  // const [showPassword, setShowPassword] = React.useState(false);
   const handleChange = (field, value) => {
     setFormData((prev) => ({
       ...prev,
@@ -68,6 +68,38 @@ function SignUp() {
     }
   };
 
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+
+      // 🚀 Supposed response from backend (jo aap ne diya)
+      const response = {
+        data: {
+          user: {
+            id: 84,
+            username: result.user.displayName,
+            email: result.user.email,
+            profilePicture: result.user.photoURL,
+            referralCode: "A6040F",
+            provider: "google",
+          },
+          token: await result.user.getIdToken(),
+        },
+        status: "success",
+        message: `Login successful. Welcome back ${result.user.displayName}`,
+      };
+
+      // 🟢 Store in Zustand
+      loginUser(response.data.user, response.data.token);
+
+      toast.success(response.message);
+      navigate("/profile");
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message || "Google login failed");
+    }
+  };
+
   const handleNavigate = () => {
     navigate("/login");
   };
@@ -101,9 +133,13 @@ function SignUp() {
 
         {/* OTP */}
         <Box mt={3}>
-          <Typography sx={{
-            marginBottom: "12px",
-          }} variant="body2" color={theme.palette.text.secondary}>
+          <Typography
+            sx={{
+              marginBottom: "12px",
+            }}
+            variant="body2"
+            color={theme.palette.text.secondary}
+          >
             Enter Join Code
           </Typography>
           <CustomOtp
@@ -145,6 +181,7 @@ function SignUp() {
           justifyContent="center"
           alignItems="center"
           marginTop={5}
+          onClick={handleGoogleLogin} // 👈 add this
         >
           <img
             src={googleLogo}

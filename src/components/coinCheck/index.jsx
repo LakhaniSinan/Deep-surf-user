@@ -1,25 +1,49 @@
 import React, { useState } from "react";
-import { Box, TextField, IconButton, Typography } from "@mui/material";
+import {
+  Box,
+  TextField,
+  IconButton,
+  Typography,
+  CircularProgress,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { coinCheckStyles } from "./style";
 import CustomInput from "../customInput";
 import theme from "../../theme";
+import { getCoinQuickCheck } from "../../services/modules/home";
+import { toast } from "react-toastify";
 
 // Separate styles object
 
 const CoinCheck = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [ticker, setTicker] = useState("");
-
-  const handleSearch = () => {
-    if (ticker.trim()) {
-      console.log("Searching for:", ticker);
-      // Search logic yahan implement karein
-    }
-  };
+  const [coinData, setCoinData] = useState(null);
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      handleSearch();
+      handleCoinQuickCheck();
+    }
+  };
+
+  const handleCoinQuickCheck = async () => {
+    if (!ticker) return toast.error("Please enter coin symbol");
+
+    try {
+      setCoinData(null)
+      setIsLoading(true);
+      const response = await getCoinQuickCheck(ticker);
+      if (response?.data?.status === "success") {
+        const data = response.data.data;
+        setCoinData(data);
+        console.log(data, "sdkjsajdksajkdasjkdkjasdjksa");
+      } else {
+        toast.error(response?.data?.message);
+      }
+    } catch (error) {
+      toast.error(error?.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -27,12 +51,22 @@ const CoinCheck = () => {
     <Box sx={coinCheckStyles.container}>
       <Box sx={coinCheckStyles.card}>
         <Box sx={coinCheckStyles.header}>
-          <Typography variant="h4" fontSize="16px" fontWeight={600} color="text.primary">
+          <Typography
+            variant="h4"
+            fontSize="16px"
+            fontWeight={600}
+            color="text.primary"
+          >
             AI Proof — Quick coin check
           </Typography>
-          <Typography variant="body3" fontSize="12px" fontWeight={400} color="text.primary">
-            Deep AI analysis of any coin in seconds. Enter the ticker, get a full breakdown and
-            recommendation.
+          <Typography
+            variant="body3"
+            fontSize="12px"
+            fontWeight={400}
+            color="text.primary"
+          >
+            Deep AI analysis of any coin in seconds. Enter the ticker, get a
+            full breakdown and recommendation.
           </Typography>
         </Box>
 
@@ -44,11 +78,28 @@ const CoinCheck = () => {
             onKeyPress={handleKeyPress}
             style={coinCheckStyles.inputStyle}
           />
-          <IconButton onClick={handleSearch} sx={coinCheckStyles.searchButton}>
-            <SearchIcon sx={{ color: "#ffffff" }} />
-          </IconButton>
+
+          {isLoading ? (
+            <CircularProgress color="#fff" size={30} />
+          ) : (
+            <IconButton
+              disabled={!ticker || isLoading}
+              onClick={handleCoinQuickCheck}
+              sx={coinCheckStyles.searchButton}
+              // loading={isLoading}
+            >
+              <SearchIcon sx={{ color: "#ffffff" }} />
+            </IconButton>
+          )}
         </Box>
-          
+
+        {coinData && (
+          <Box mt={2}>
+            <Typography color="#fff">
+              Analysis: {coinData?.aiAnalysis}
+            </Typography>
+          </Box>
+        )}
       </Box>
     </Box>
   );

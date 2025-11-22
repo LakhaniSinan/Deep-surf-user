@@ -1,9 +1,23 @@
 import React, { useState } from "react";
-import { Box, Typography, Button, Grid } from "@mui/material";
+import { Box, Typography, Button, Grid, Skeleton } from "@mui/material";
 import VolumeCard from "../volumeCard";
+import VolumeCardSkeleton from "../../components/skeleton/volumeCardSkeleton";
 
-const TopVolumeSection = ({ data }) => {
+const TopVolumeSection = ({ data1, data2, isLoading }) => {
   const [selectedTimeframe, setSelectedTimeframe] = useState("24h");
+  const data = selectedTimeframe === "24h" ? data1 : data2;
+
+  const finalData = data?.map((item) => ({
+    ...item,
+    volumeFormatted:
+      selectedTimeframe === "24h"
+        ? item.volumeFormatted
+        : item.volume7dFormatted,
+    changeFormatted:
+      selectedTimeframe === "24h"
+        ? item.change24hFormatted
+        : item.change7dFormatted,
+  }));
 
   return (
     <Box
@@ -27,6 +41,8 @@ const TopVolumeSection = ({ data }) => {
         <Typography variant="h4" fontSize="1rem" color="text.primary">
           Top 10 by volume
         </Typography>
+
+        {/* Buttons */}
         <Box display="flex" gap={1}>
           <Button
             onClick={() => setSelectedTimeframe("24h")}
@@ -40,12 +56,9 @@ const TopVolumeSection = ({ data }) => {
               backgroundColor:
                 selectedTimeframe === "24h" ? "#2a2a2a" : "transparent",
               color: "text.primary",
-              border: "none",
-              boxShadow: "none",
               "&:hover": {
                 backgroundColor:
                   selectedTimeframe === "24h" ? "#2a2a2a" : "neutral.hover",
-                boxShadow: "none",
               },
             }}
           >
@@ -63,12 +76,9 @@ const TopVolumeSection = ({ data }) => {
               backgroundColor:
                 selectedTimeframe === "7d" ? "#2a2a2a" : "transparent",
               color: "text.primary",
-              border: "none",
-              boxShadow: "none",
               "&:hover": {
                 backgroundColor:
                   selectedTimeframe === "7d" ? "#2a2a2a" : "neutral.hover",
-                boxShadow: "none",
               },
             }}
           >
@@ -77,18 +87,28 @@ const TopVolumeSection = ({ data }) => {
         </Box>
       </Box>
 
-      <Grid container spacing={2}>
-        {data.map((item) => (
-          <Grid item size={{ xs: 12, sm: 6, md: 2.4 }} key={item.id}>
-            <VolumeCard
-              name={item.name}
-              volume={item.volume}
-              percentChange={item.percentChange}
-              isPositive={item.isPositive}
-            />
-          </Grid>
-        ))}
-      </Grid>
+      {/* Cards Grid */}
+
+      {isLoading ? (
+        <VolumeCardSkeleton />
+      ) : finalData?.length === 0 ? (
+        <Typography textAlign={"center"} color="#fff" mt={2} fontWeight={600}>
+          No Data Found
+        </Typography>
+      ) : (
+        <Grid container spacing={2}>
+          {finalData?.map((item, index) => (
+            <Grid item size={{ xs: 4, sm: 3, md: 2.4 }} key={index}>
+              <VolumeCard
+                name={item.symbol}
+                volume={item.volumeFormatted}
+                percentChange={item.changeFormatted}
+                isPositive={item?.changeFormatted?.includes("-") ? false : true}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      )}
     </Box>
   );
 };

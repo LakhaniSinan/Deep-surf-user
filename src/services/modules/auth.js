@@ -23,7 +23,12 @@ const resetPassword = (payload) => {
 const changePassword = (payload) => {
   return Api(ENDPOINTS.USER.CHANGE_PASSWORD, payload, "put");
 };
-
+const conformNewPassword = (payload) => {
+  return Api(ENDPOINTS.USER.RESET_PASSWORD, payload, "put");
+};
+const socialAuthLogin = (payload) => {
+  return Api(ENDPOINTS.USER.SOCIAL_AUTH, payload, "post");
+};
 export {
   signUp,
   login,
@@ -31,4 +36,6 @@ export {
   forgetPassword,
   resetPassword,
   changePassword,
+  conformNewPassword,
+  socialAuthLogin,
 };

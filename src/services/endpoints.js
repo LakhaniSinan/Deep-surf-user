@@ -2,9 +2,6 @@ export const ENDPOINTS = {
   AUTH: {
     LOGIN: "users/login",
     SIGNUP: "users/create",
-    FORGOT_PASSWORD: "users/forgot-password",
-    RESET_PASSWOERD: "users/reset-password",
-    CHANGE_PASSWORD: "users/change-password",
     VERIFY_OTP: "users/verify-otp",
   },
   USER: {
@@ -13,6 +10,13 @@ export const ENDPOINTS = {
     FORGET_PASSWORD: "users/forgot-password",
     RESET_PASSWORD: "users/reset-password",
     CHANGE_PASSWORD: "users/change-password",
-    
+    SOCIAL_AUTH: "users/social-auth",
+  },
+  HOME: {
+    HOME_DATA: "home/fetch-data",
+    QUICK_CHECK: "home/quick-check",
+  },
+  MFTSCAN: {
+    MFTSCAN_DATA: "home/mtf-scan",
   },
 };

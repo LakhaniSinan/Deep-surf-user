@@ -12,6 +12,9 @@ import AiTools from "../app/aiTools";
 import MarketOutLook from "../app/marketOutLook";
 import VerficationProcess from "../app/auth/otpVerfication";
 import ForGetPassword from "../app/auth/forgotPassword";
+import SetNewPassword from "../app/auth/setPassword";
+import LoginVerficationProcess from "../app/auth/loginOtpVerification";
+import ForgetVerfication from "../app/auth/loginOtpVerification";
 
 const AUTH_ROUTES = [
   {
@@ -48,6 +51,21 @@ const AUTH_ROUTES = [
     component: <ForGetPassword />,
     exact: "exact",
     path: "/forgot-password",
+  },
+  {
+    id: 3,
+    name: "ForgetVerfication",
+    component: <ForgetVerfication />,
+    exact: "exact",
+    path: "/forget-verfication",
+  },
+
+  {
+    id: 3,
+    name: "SetNewPassword",
+    component: <SetNewPassword />,
+    exact: "exact",
+    path: "/new-password",
   },
 ];
 

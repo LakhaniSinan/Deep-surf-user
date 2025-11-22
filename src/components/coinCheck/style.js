@@ -83,6 +83,7 @@ export const coinCheckStyles = {
     width: 36,
     height: 36,
     borderRadius: '50%',
+    cursor:"pointer",
     '&:hover': {
       backgroundColor: '#333333',
     },

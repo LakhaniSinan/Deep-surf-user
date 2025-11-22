@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import CustomInput from "../../components/customInput/index";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IconImage from "../../assets/icons/vector.svg";
 import CustomButton from "../../components/customButton";
 // import ButtonIcon from "../../assets/icons/Vector (3).svg";
@@ -153,9 +153,13 @@ const MTFSection = () => {
           background={"#1C1C1C"}
           flexWrap={"wrap"}
         >
-          <CustomButton  variant={"calculatorToggle"} title="Interpretation" sx={{
-            fontSize:"14px" ,
-          }} />
+          <CustomButton
+            variant={"calculatorToggle"}
+            title="Interpretation"
+            sx={{
+              fontSize: "14px",
+            }}
+          />
           <Typography variant="h6" fontSize="14px">
             All timeframes agree on growth - a strong bullish signal!
           </Typography>

@@ -5,11 +5,13 @@ import CustomInput from "../../../components/customInput";
 import theme from "../../../theme";
 import CustomButton from "../../../components/customButton";
 import { useNavigate } from "react-router-dom";
-import { forgetPassword } from "../../../services/modules/auth";
+import { forgetPassword, verifyOtp } from "../../../services/modules/auth"; // verifyOtp import
 import { toast } from "react-toastify";
 
 const ForGetPassword = () => {
   const navigate = useNavigate();
+  const [otp, setOtp] = useState("");
+  const [isOtpSent, setIsOtpSent] = useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -38,14 +40,32 @@ const ForGetPassword = () => {
 
     try {
       setIsLoading(true);
-      const payload = { email: formData.email };
-      const response = await forgetPassword(payload);
 
-      if (response?.data?.status === "success") {
-        toast.success(response.data?.message || "Password reset email sent!");
-        navigate("/verification"); // redirect back to login page
+      if (!isOtpSent) {
+        const response = await forgetPassword({ email: formData.email });
+        console.log("ForgetPasswordResponse:", response);
+
+        if (response?.data?.status === "success") {
+          toast.success(response.data?.message || "OTP sent to your email");
+          setIsOtpSent(true);
+          navigate("/forget-verfication", { state: { email: formData.email } });
+        } else {
+          toast.error(response?.data?.message || "Failed to send OTP");
+        }
       } else {
-        toast.error(response?.data?.message || "Failed to send reset email");
+        if (!otp.trim()) {
+          toast.error("Please enter OTP!");
+          return;
+        }
+
+        
+
+        if (response?.data?.status === "success") {
+          toast.success("OTP verified successfully!");
+          navigate("/new-password"); // redirect to reset password page
+        } else {
+          toast.error(response?.data?.message || "Invalid OTP");
+        }
       }
     } catch (error) {
       toast.error(error?.message || "Something went wrong");
@@ -65,6 +85,7 @@ const ForGetPassword = () => {
         FORGET PASSWORD
       </Typography>
 
+      {/* Email Input */}
       <Box mt={2}>
         <CustomInput
           placeholder="Email"
@@ -74,13 +95,26 @@ const ForGetPassword = () => {
           onChange={handleChange}
           error={Boolean(formError.email)}
           helperText={formError.email}
+          disabled={isOtpSent} // disable email after OTP sent
         />
       </Box>
 
+      {/* OTP Input */}
+      {isOtpSent && (
+        <Box mt={2}>
+          <CustomInput
+            placeholder="Enter OTP"
+            value={otp}
+            onChange={(e) => setOtp(e.target.value)}
+          />
+        </Box>
+      )}
+
+      {/* Send / Verify Button */}
       <Box display="flex" justifyContent="center" mt={4} width="100%">
         <CustomButton
           variant="gradient"
-          title="Send"
+          title={isOtpSent ? "Verify OTP" : "Send OTP"}
           fullWidth
           handleClickBtn={handleForgetPassword}
           loading={isLoading}

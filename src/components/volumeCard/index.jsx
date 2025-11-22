@@ -1,14 +1,14 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import theme from "../../theme";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
-const VolumeCard = ({ name, volume, percentChange, isPositive }) => {
+const VolumeCard = ({ name, volume, percentChange, isPositive  }) => {
   return (
     <Box
       sx={{
-        backgroundColor: isPositive
-          ? "#1EB363"
-          : "#D43333",
+        backgroundColor: isPositive ? "#1EB363" : "#D43333",
         borderRadius: "8px",
         padding: "6px",
         display: "flex",
@@ -58,10 +58,9 @@ const VolumeCard = ({ name, volume, percentChange, isPositive }) => {
           {volume}
         </Typography>
         <Typography
+          color="#fff"
+          fontSize={"10px"}
           sx={{
-            color: isPositive ? "#22c55e" : "#ef4444",
-            fontSize: "10px",
-            fontWeight: 600,
             display: "flex",
             alignItems: "center",
             gap: "4px",
@@ -72,7 +71,12 @@ const VolumeCard = ({ name, volume, percentChange, isPositive }) => {
             },
           }}
         >
-          <span>{isPositive ? "↑" : "↓"}</span> {percentChange}%
+          {isPositive ? (
+            <KeyboardArrowUpIcon fontSize="small" htmlColor="white" />
+          ) : (
+            <KeyboardArrowDownIcon fontSize="small" htmlColor="white" />
+          )}{" "}
+          {percentChange}
         </Typography>
       </Box>
     </Box>

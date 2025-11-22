@@ -7,7 +7,7 @@ import googleLogo from "../../../assets/icons/google.svg";
 import AuthLayout from "../../../components/authLayout";
 import CustomButton from "../../../components/customButton";
 import CustomInput from "../../../components/customInput";
-import { login } from "../../../services/modules/auth";
+import { login, socialAuthLogin } from "../../../services/modules/auth";
 import theme from "../../../theme";
 import { loginValidation } from "../../../utils/validations";
 import { useAuthStore } from "../../../store";
@@ -77,25 +77,37 @@ const Login = () => {
 
   const handleGoogleLogin = async () => {
     try {
-      const result = await signInWithPopup(auth, googleProvider); // ✅ correct provider
+      const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
-      const token = await user.getIdToken();
 
-      loginUser(
-        {
-          uid: user.uid,
-          name: user.displayName,
-          email: user.email,
-          photoURL: user.photoURL,
-        },
-        token
-      );
+      // 👇 Backend ke liye payload
+      const payload = {
+        provider: "google",
+        email: user.email,
+        username: user.displayName,
+        socialId: user.uid, // ya `google-${user.uid}` agar backend ka format ye ho
+        profilePicture: user.photoURL,
+      };
 
-      toast.success("Logged in with Google!");
-      navigate("/profile");
+      // 🚀 Backend API call using your function
+      const response = await socialAuthLogin(payload);
+
+      if (response?.data?.status === "success") {
+        const data = response.data.data;
+        const token = data.token;
+        const userData = data.user;
+
+        // 🟢 Set in Zustand
+        loginUser(userData, token);
+
+        toast.success(response?.data?.message || "Logged in with Google!");
+        navigate("/profile");
+      } else {
+        toast.error(response?.data?.message || "Google login failed");
+      }
     } catch (error) {
-      console.log(error);
-      toast.error(error.message || "Google login failed");
+      console.error(error);
+      toast.error(error?.message || "Google login failed");
     }
   };
 

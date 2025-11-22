@@ -10,8 +10,13 @@ import {
 } from "@mui/material";
 import theme from "../../theme";
 import Sparkline from "./Sparkline";
+import PositiveIcon from "../../assets/icons/positive-coins-icon.svg";
+import NegativeIcon from "../../assets/icons/negative-coin-icon.svg";
+import TopCardSkeleton from "../../components/skeleton/topCoinCardSkeleton";
 
-const TopCoinsTable = ({ data }) => {
+const TopCoinsTable = ({ data, isLoading }) => {
+  console.log("TopCoinsTableData:", data);
+
   return (
     <Box
       sx={{
@@ -31,157 +36,184 @@ const TopCoinsTable = ({ data }) => {
         Top coins
       </Typography>
 
-      <TableContainer>
-        <Table sx={{ width: "100%" }}>
-          <TableBody>
-            {data.map((coin, index) => (
-              <TableRow
-                key={coin.id || index}
-                sx={{
-                  borderBottom:
-                    index < data.length - 1
-                      ? `1px solid ${theme.palette.neutral.line}`
-                      : "none",
-                  "&:hover": {
-                    backgroundColor: theme.palette.neutral.hover,
-                  },
-                  "&:last-child td": {
-                    borderBottom: "none",
-                  },
-                }}
-              >
-                {/* Coin Icon & Info */}
-                <TableCell
+      {isLoading ? (
+        <TopCardSkeleton />
+      ) : data?.length === 0 ? (
+        <Typography textAlign={"center"} color="#fff" mt={2} fontWeight={600}>
+          No Data Found
+        </Typography>
+      ) : (
+        <TableContainer>
+          <Table sx={{ width: "100%" }}>
+            <TableBody>
+              {data.map((coin, index) => (
+                <TableRow
+                  key={coin.id || index}
                   sx={{
-                    padding: "8px 0",
-                    border: "none",
+                    borderBottom:
+                      index < data.length - 1
+                        ? `1px solid ${theme.palette.neutral.line}`
+                        : "none",
+                    "&:hover": {
+                      backgroundColor: theme.palette.neutral.hover,
+                    },
+                    "&:last-child td": {
+                      borderBottom: "none",
+                    },
                   }}
                 >
-                  <Box display="flex" alignItems="center" gap={2}>
-                    <Box
-                      sx={{
-                        width: "30px",
-                        height: "30px",
-                        borderRadius: "50%",
-                        backgroundColor: coin.iconBg || "#2a2a2a",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        flexShrink: 0,
-                      }}
-                    >
-                      {coin.icon ? (
-                        <img
-                          src={coin.icon}
-                          alt={coin.ticker}
-                          style={{
-                            width: "20px",
-                            height: "20px",
-                            objectFit: "contain",
-                          }}
-                        />
-                      ) : (
+                  {/* Coin Icon & Info */}
+                  <TableCell
+                    sx={{
+                      padding: "8px 0",
+                      border: "none",
+                    }}
+                  >
+                    <Box display="flex" alignItems="center" gap={1}>
+                      <Box
+                        sx={{
+                          width: "30px",
+                          height: "30px",
+                          borderRadius: "50%",
+                          backgroundColor: coin.iconBg || "#2a2a2a",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          flexShrink: 0,
+                        }}
+                      >
+                        {coin.logo ? (
+                          <img
+                            src={coin.logo}
+                            alt={coin.ticker}
+                            style={{
+                              width: "20px",
+                              height: "20px",
+                              objectFit: "contain",
+                            }}
+                          />
+                        ) : (
+                          <Typography
+                            sx={{
+                              color: "text.primary",
+                              fontSize: "12px",
+                              fontWeight: 600,
+                            }}
+                          >
+                            {coin.ticker?.[0] || "?"}
+                          </Typography>
+                        )}
+                      </Box>
+                      <Box>
                         <Typography
                           sx={{
                             color: "text.primary",
                             fontSize: "12px",
                             fontWeight: 600,
+                            lineHeight: 1.2,
                           }}
                         >
-                          {coin.ticker?.[0] || "?"}
+                          {coin.ticker}
                         </Typography>
+                        <Typography
+                          sx={{
+                            color: "#FFFFFF",
+                            fontSize: "15px",
+                            fontWeight: 500,
+                            lineHeight: 1.2,
+                            mt: 0.5,
+                          }}
+                        >
+                          {coin.symbol}
+                        </Typography>
+                        <Typography
+                          sx={{
+                            color: "neutral.mutedText",
+                            fontSize: "12px",
+                            fontWeight: 400,
+                            lineHeight: 1.2,
+                            mt: 0.5,
+                          }}
+                        >
+                          {coin.name}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </TableCell>
+
+                  {/* Sparkline Graph */}
+                  <TableCell
+                    sx={{
+                      padding: "8px",
+                      border: "none",
+                      width: "80px",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: "80px",
+                        height: "30px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {/* <Sparkline
+                      data={coin.sparkline || []}
+                      isPositive={coin.percentChange >= 0}
+                    /> */}
+
+                      {coin.change24hFormatted?.includes("-") ? (
+                        <img src={NegativeIcon} />
+                      ) : (
+                        <img src={PositiveIcon} />
                       )}
                     </Box>
-                    <Box>
+                  </TableCell>
+
+                  {/* Price & Percentage Change - Same Column */}
+                  <TableCell
+                    sx={{
+                      padding: "8px 0",
+                      border: "none",
+                      textAlign: "right",
+                    }}
+                  >
+                    <Box
+                      display="flex"
+                      flexDirection="column"
+                      alignItems="flex-end"
+                      gap={0.5}
+                    >
                       <Typography
                         sx={{
                           color: "text.primary",
                           fontSize: "12px",
-                          fontWeight: 600,
-                          lineHeight: 1.2,
+                          fontWeight: 500,
                         }}
                       >
-                        {coin.ticker}
+                        {coin.priceFormatted}
                       </Typography>
                       <Typography
                         sx={{
-                          color: "neutral.mutedText",
+                          color: coin.change24hFormatted.includes("-")
+                            ? "#ef4444"
+                            : "green",
                           fontSize: "12px",
-                          fontWeight: 400,
-                          lineHeight: 1.2,
-                          mt: 0.5,
+                          fontWeight: 500,
                         }}
                       >
-                        {coin.name}
+                        {coin.change24hFormatted.includes("-") ? "" : "+"}
+                        {coin.change24hFormatted}
                       </Typography>
                     </Box>
-                  </Box>
-                </TableCell>
-
-                {/* Sparkline Graph */}
-                <TableCell
-                  sx={{
-                    padding: "8px",
-                    border: "none",
-                    width: "80px",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      width: "80px",
-                      height: "30px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Sparkline
-                      data={coin.sparkline || []}
-                      isPositive={coin.percentChange >= 0}
-                    />
-                  </Box>
-                </TableCell>
-
-                {/* Price & Percentage Change - Same Column */}
-                <TableCell
-                  sx={{
-                    padding: "8px 0",
-                    border: "none",
-                    textAlign: "right",
-                  }}
-                >
-                  <Box
-                    display="flex"
-                    flexDirection="column"
-                    alignItems="flex-end"
-                    gap={0.5}
-                  >
-                    <Typography
-                      sx={{
-                        color: "text.primary",
-                        fontSize: "12px",
-                        fontWeight: 500,
-                      }}
-                    >
-                      {coin.price}
-                    </Typography>
-                    <Typography
-                      sx={{
-                        color: coin.percentChange >= 0 ? "#22c55e" : "#ef4444",
-                        fontSize: "12px",
-                        fontWeight: 500,
-                      }}
-                    >
-                      {coin.percentChange >= 0 ? "+" : ""}
-                      {coin.percentChange?.toFixed(2)}%
-                    </Typography>
-                  </Box>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
     </Box>
   );
 };

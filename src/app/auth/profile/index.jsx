@@ -178,7 +178,7 @@ function Profile() {
           <CustomButton
             variant="gradient"
             title="Continue"
-            fullWidth
+            width="100%"
             handleClickBtn={handleContinue}
             loading={isLoading}
           />

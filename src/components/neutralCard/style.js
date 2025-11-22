@@ -14,7 +14,7 @@ export const StyledCard = styled(Card)({
 
   borderRadius: "24px",
   //   padding: '32px',
-  //   width: '320px',
+    width: '100%',
   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
 });
 
@@ -33,7 +33,7 @@ export const SubtitleText = styled(Typography)({
 export const SentimentTitle = styled(Typography)({
   color: "#FFE600",
   fontWeight: 500,
-  fontSize: "2rem",
+  fontSize: "1.6rem",
 });
 
 export const GaugeContainer = styled(Box)({
