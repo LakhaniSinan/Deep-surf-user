@@ -75,61 +75,67 @@ import { toast } from "react-toastify";
 const ForgetVerification = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  // Email from previous screen
   const email = location?.state?.email;
-  // State
   const [otp, setOtp] = useState("");
   const [formError, setFormError] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  // If email is missing, redirect back to forget password
   if (!email) {
     navigate("/forget-password");
     return null;
   }
+
+    const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleVerify();
+    }
+  }
   const handleVerify = async () => {
     setIsLoading(true);
     const isValid = otpValidation(otp, email, setFormError);
+    console.log("isssssssssssss", isValid);
+
     if (!isValid) {
       toast.error("Please fix errors before submitting!");
       setIsLoading(false);
       return;
     }
-    // Navigate to New Password screen with email & OTP
     navigate("/new-password", { state: { email, otp } });
     setIsLoading(false);
   };
 
   return (
-    <AuthLayout title="Verification Process">
-      <Box mt={4}>
-        <Typography mb={2}>
-          Enter the OTP sent to your email: <b>{email}</b>
-        </Typography>
-
-        <CustomOtp
-          value={otp}
-          onChange={(val) => {
-            setOtp(val);
-            setFormError((prev) => ({ ...prev, otp: "" }));
-          }}
-        />
-        {formError.otp && (
-          <Typography color="error" mt={1}>
-            {formError.otp}
+    <Box>
+      <AuthLayout title="Verification Process" showBackButton>
+        <Box mt={1}>
+          <Typography color="white" mb={4}>
+            Enter the OTP sent to your email: <b>{email}</b>
           </Typography>
-        )}
-      </Box>
-
-      <Box display="flex" justifyContent="center" mt={6} width="100%">
-        <CustomButton
-          variant="gradient"
-          title="Verify OTP"
-          fullWidth
-          handleClickBtn={handleVerify}
-          loading={isLoading}
-        />
-      </Box>
-    </AuthLayout>
+          <CustomOtp
+            value={otp}
+            onKeyPress={handleKeyPress}
+            onChange={(val) => {
+              setOtp(val);
+              setFormError((prev) => ({ ...prev, otp: "" }));
+            }}
+          />
+          {formError.otp && (
+            <Typography color="error" mt={1}>
+              {formError.otp}
+            </Typography>
+          )}
+        </Box>
+        <Box display="flex" justifyContent="center" mt={3} width="100%">
+          <CustomButton
+            variant="gradient"
+            title="Verify OTP"
+            fullWidth
+            handleClickBtn={handleVerify}
+            loading={isLoading}
+            width="100%"
+          />
+        </Box>
+      </AuthLayout>
+    </Box>
   );
 };
 

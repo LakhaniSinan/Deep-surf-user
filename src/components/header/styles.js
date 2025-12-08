@@ -1,14 +1,17 @@
 export const headerStyles = {
   headerContainer: {
-    // width: "100%",
     height: "84px",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    px: { xs: 2, sm: 2, md: 3 },
-    backgroundColor: "transparent",
-    position: "relative",
-    overflow: "hidden",
+    px: { xs: 2, sm: 2, md: 23 },
+    // position: "fixed",
+    // top: 0,
+    // left: 0,
+    // right: 0,
+    // zIndex: 1200,
+    // overflow: "hidden",
+    marginTop: "20px",
   },
 
   logo: {
@@ -51,7 +54,9 @@ export const headerStyles = {
     border: isActive
       ? "0.3px solid rgba(255, 255, 255, 0.36)"
       : "1px solid transparent",
-    boxShadow: isActive ? "inset 0px 4px 5px 0px rgba(255, 255, 255, 0.19)" : "none",
+    boxShadow: isActive
+      ? "inset 0px 4px 5px 0px rgba(255, 255, 255, 0.19)"
+      : "none",
     "&:hover": {
       backgroundColor: isActive
         ? "background.veryLightGray"
@@ -156,10 +161,14 @@ export const drawerStyles = {
     border: isActive
       ? "0.3px solid rgba(255, 255, 255, 0.36)"
       : "1px solid transparent",
-    boxShadow: isActive ? "inset 0px 4px 5px 0px rgba(255, 255, 255, 0.19)" : "none",
+    boxShadow: isActive
+      ? "inset 0px 4px 5px 0px rgba(255, 255, 255, 0.19)"
+      : "none",
     marginBottom: 1,
     "&:hover": {
-      backgroundColor: isActive ? "background.veryLightGray" : "background.extraLightGray",
+      backgroundColor: isActive
+        ? "background.veryLightGray"
+        : "background.extraLightGray",
       transform: "translateX(8px)",
     },
   }),
@@ -212,4 +221,3 @@ export const drawerStyles = {
     fontSize: "20px",
   },
 };
-

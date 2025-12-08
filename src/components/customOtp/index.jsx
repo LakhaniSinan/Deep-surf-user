@@ -3,9 +3,9 @@ import OtpInput from "react-otp-input";
 
 export default function CustomOtp({ value, onChange }) {
   const inputStyle = {
-    width: "30px",
-    height: "30px",
-    margin: "0 7px",
+    width: "40px",
+    height: "50px",
+    margin: "0 5px",
     fontSize: "18px",
     borderRadius: "8px",
     border: "1px solid #777",

@@ -56,6 +56,12 @@ const menuItems = [
     activeIcon: ReferralActiveIcon,
     inactiveIcon: ReferralInactiveIcon,
   },
+  {
+    name: "Faq",
+    path: "/settings/faq",
+    activeIcon: ReferralActiveIcon,
+    inactiveIcon: ReferralInactiveIcon,
+  },
 ];
 
 const SettingTabs = ({ children }) => {
@@ -127,7 +133,7 @@ const SettingTabs = ({ children }) => {
   );
 
   return (
-    <Box sx={{ display: "flex", gap: 2 , height: "100%" , mb: 5 }}>
+    <Box sx={{ display: "flex", gap: 2, height: "100%", mb: 5 }}>
       {isMobile && (
         <IconButton
           color="inherit"

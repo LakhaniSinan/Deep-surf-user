@@ -5,9 +5,13 @@ import IconImage from "../../assets/icons/vector.svg";
 import CustomButton from "../../components/customButton";
 // import ButtonIcon from "../../assets/icons/Vector (3).svg";
 import PaginatedTable from "../../components/dynamicTable";
-import StarIcon from "../../assets/icons/Vector (3).svg";
+import StarIcon from "../../assets/icons/stairs.svg";
+import { yellow } from "@mui/material/colors";
+import { proAnylysisData } from "../../services/modules/home";
+import { toast } from "react-toastify";
+const MTFSection = ({ getProAnanlsisData, coinData }) => {
+  console.log("coinData", coinData?.mtfScan);
 
-const MTFSection = () => {
   const [search, setSearch] = useState("");
 
   const handleInputChange = (field) => (event) => {
@@ -15,7 +19,6 @@ const MTFSection = () => {
       [field]: event.target.value,
     });
   };
-
   const billingHistoryHeaders = [
     { id: "TF", label: "TF", align: "left" },
     { id: "trend", label: "trend", align: "left" },
@@ -23,58 +26,31 @@ const MTFSection = () => {
     { id: "MACD", label: "MACD", align: "right" },
     { id: "Status", label: "Status", align: "left" },
   ];
-
   const billingHistoryRows = [
     {
-      TF: "1h",
-      trend: "Neutral",
-      RSI: 30.0,
-      MACD: -30.0,
-      Status: "HOLD",
+      TF: coinData?.mtfScan?.timeframes?.[0]?.tf,
+      trend: coinData?.mtfScan?.timeframes?.[0]?.trend,
+      RSI: coinData?.mtfScan?.timeframes?.[0]?.rsi,
+      MACD: coinData?.mtfScan?.timeframes?.[0]?.macd,
+      Status: coinData?.mtfScan?.timeframes?.[0]?.status,
     },
     {
-      TF: "4h",
-      trend: "Neutral",
-      RSI: 30.0,
-      MACD: -30.0,
-      Status: "HOLD",
+      TF: coinData?.mtfScan?.timeframes?.[1]?.tf,
+      trend: coinData?.mtfScan?.timeframes?.[1]?.trend,
+      RSI: coinData?.mtfScan?.timeframes?.[1]?.rsi,
+      MACD: coinData?.mtfScan?.timeframes?.[1]?.macd,
+      Status: coinData?.mtfScan?.timeframes?.[1]?.status,
     },
     {
-      TF: "1d",
-      trend: "Neutral",
-      RSI: 30.0,
-      MACD: -30.0,
-      Status: "HOLD",
+      TF: coinData?.mtfScan?.timeframes?.[2]?.tf,
+      trend: coinData?.mtfScan?.timeframes?.[2]?.trend,
+      RSI: coinData?.mtfScan?.timeframes?.[2]?.rsi,
+      MACD: coinData?.mtfScan?.timeframes?.[2]?.macd,
+      Status: coinData?.mtfScan?.timeframes?.[2]?.status,
     },
   ];
-
   return (
     <>
-      <Box
-        sx={{
-          backgroundColor: "#161616",
-          borderRadius: "20px",
-          padding: "25px",
-          marginTop: "40px",
-        }}
-      >
-        <Typography
-          variant="h6"
-          sx={{
-            color: "#fff",
-            marginBottom: "15px",
-            fontSize: "15px",
-          }}
-        >
-          MTF Scan — Multi-Timeframe Analysis
-        </Typography>
-        <CustomInput
-          InputEndIcon={<img src={IconImage} />}
-          placeholder="ETH"
-          value={search.search || ""}
-          onChange={handleInputChange("search")}
-        />
-      </Box>
       <Box
         sx={{
           backgroundColor: "#161616",
@@ -88,21 +64,24 @@ const MTFSection = () => {
         <Typography
           variant="h6"
           sx={{
-            color: "text.secondary",
+            color: "text.grayish",
             marginBottom: "15px",
+            fontSize : "22px"
           }}
         >
-          ETH/USDT
+          {coinData?.basicInfo?.pair}
         </Typography>
         <Typography
           variant="h1"
           sx={{
             marginBottom: "10px",
-            fontSize: "22px",
+            fontSize: "25px",
           }}
         >
-          $3300,51
-          <span style={{ color: "#3EDD87", fontSize: "15px" }}> + 2.87%</span>
+          {coinData?.basicInfo?.priceFormatted}
+          <span style={{ color: coinData?.basicInfo?.change24hFormatted.includes("-") ? "red" : "green", fontSize: "18px", marginLeft: "10px", fontWeight: "400px" }}>
+            {coinData?.basicInfo?.change24hFormatted}
+          </span>
         </Typography>
         <Box
           display="flex"
@@ -111,15 +90,14 @@ const MTFSection = () => {
           flexWrap={{ xs: "wrap", md: "nowrap" }}
         >
           <CustomButton
-            variant="gradient"
             title="Al Recommendation"
             icon={<img src={StarIcon} style={{ width: 20, height: 20 }} />}
             sx={{
               borderRadius: "20px",
-              padding: "4px 10px",
+              padding: "4px 35px",
               minWidth: "auto",
               width: { xs: "100%", md: "auto" },
-              backgroundColor: "#FFE600",
+              backgroundColor: "#FF6421",
               color: "#fff",
             }}
           />
@@ -128,9 +106,11 @@ const MTFSection = () => {
             fontSize="14px"
             flex={{ xs: "100%", md: "1" }}
           >
-            <span>Hold back</span>
+            <span style={{ color: "#FFE600" }}>
+              {coinData?.mtfScan?.aiRecommendation}
+            </span>
             <br />
-            confidence: 84%
+            confidence:{coinData?.mtfScan?.confidence}
           </Typography>
         </Box>
         <Box sx={{ marginTop: "50px" }}>
@@ -143,25 +123,33 @@ const MTFSection = () => {
           />
         </Box>
         <Box
-          display={"flex"}
-          alignItems={"center"}
-          gap={"15px"}
-          marginTop={"10px"}
-          // width={"100%"}
-          height={"87px"}
-          borderRadius={"24px"}
-          background={"#1C1C1C"}
-          flexWrap={"wrap"}
+          display="flex"
+          alignItems="center"
+          gap="20px"
+          flexWrap={{ xs: "wrap", md: "nowrap" }}
+          marginTop={"20px"}
         >
           <CustomButton
-            variant={"calculatorToggle"}
+            // variant="gradient"
             title="Interpretation"
             sx={{
-              fontSize: "14px",
+              borderRadius: "20px",
+              padding: "4px 30px",
+              minWidth: "auto",
+              width: { xs: "100%", md: "auto" },
+              backgroundColor: "#FF6421",
+              color: "#fff",
+              fontWeight: "400px",
             }}
           />
-          <Typography variant="h6" fontSize="14px">
-            All timeframes agree on growth - a strong bullish signal!
+          <Typography
+            variant="body2"
+            fontSize="13px"
+            flex={{ xs: "100%", md: "1" }}
+            color="#fff"
+            fontWeight={600}
+          >
+            All timeframes agree on growth - a strong bullish signal!{" "}
           </Typography>
         </Box>
       </Box>

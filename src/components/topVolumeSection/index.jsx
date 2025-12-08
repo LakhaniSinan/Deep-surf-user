@@ -4,6 +4,8 @@ import VolumeCard from "../volumeCard";
 import VolumeCardSkeleton from "../../components/skeleton/volumeCardSkeleton";
 
 const TopVolumeSection = ({ data1, data2, isLoading }) => {
+  console.log("fhfyfyrfrjfffrfrf" , data1 , data2);
+  
   const [selectedTimeframe, setSelectedTimeframe] = useState("24h");
   const data = selectedTimeframe === "24h" ? data1 : data2;
 
@@ -19,7 +21,7 @@ const TopVolumeSection = ({ data1, data2, isLoading }) => {
         : item.change7dFormatted,
   }));
 
-  return (
+  return ( 
     <Box
       sx={{
         width: "100%",

@@ -1,32 +1,40 @@
 import { Box, Grid, Typography } from "@mui/material";
-const MarketIntelligence = () => {
+const MarketIntelligence = ({ coinData }) => {
+  console.log(
+    "wwwwwwwwwwwwwwwwwwwww",
+    coinData?.enhancedMarketIntelligence?.fundingRate?.value
+  );
+
   const marketStats = [
     {
       title: "Funding Rate",
-      value: "-0.005%",
-      description: "Neutral",
+      value: coinData?.enhancedMarketIntelligence?.fundingRate?.value,
+      description: coinData?.enhancedMarketIntelligence?.fundingRate?.sentiment,
     },
     {
       title: "L/S Ratio",
-      value: "2.26",
+      value: coinData?.enhancedMarketIntelligence?.longShortRatio?.value,
       description: "Heavily long",
     },
     {
       title: "24h Volume",
-      value: "$31.1B",
-      description: "Top 0% | Vol: 11.44%",
+      value: coinData?.enhancedMarketIntelligence?.volume24h?.value,
+      description: coinData?.enhancedMarketIntelligence?.volume24h?.description,
     },
     {
       title: "Liq. Risk",
-      value: "2.0% 2.0%",
-      description: "Nearest zones",
+      value: coinData?.enhancedMarketIntelligence?.liquidationRisk?.long,
+      value1: coinData?.enhancedMarketIntelligence?.liquidationRisk?.long,
+      description: coinData?.enhancedMarketIntelligence?.liquidationRisk?.zones,
     },
   ];
 
   return (
     <>
       <Box mt={"25px"}>
-        <Typography variant="h5">Enhanced Market Intelligence </Typography>
+        <Typography variant="h5" fontSize={"20px"}>
+          Enhanced Market Intelligence{" "}
+        </Typography>
       </Box>
       <Box>
         <Grid container spacing={2} marginTop={2}>
@@ -39,19 +47,20 @@ const MarketIntelligence = () => {
                 <Typography
                   variant="h5"
                   mt="10px"
-                  color={item.value === "2.0% 2.0%" ? "#3EDD87" : "#FFFFFF"}
+                  color={coinData?.enhancedMarketIntelligence?.fundingRate?.value.includes("-") ? "text.errorColor" : "text.greenColor"}
                 >
-                  {item.value}
+                  {item.value} {item.value1}
                 </Typography>
                 <Typography
                   variant="h6"
-                  mt="10px"
+                  mt="12px"
+                  fontSize={"12px"}
                   color={
                     item.description === "Neutral"
                       ? "#FFD700"
                       : item.description === "Heavily long"
-                      ? "#4CAF50"
-                      : "#FFFFFF"
+                        ? "#4CAF50"
+                        : "#FFFFFF"
                   }
                 >
                   {item.description}

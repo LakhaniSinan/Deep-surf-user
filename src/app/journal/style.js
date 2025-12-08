@@ -12,6 +12,7 @@ export const styles = {
     p: 0,
     overflow: "hidden",
     boxSizing: "border-box",
+    bgcolor: "background.black",
   },
 
   sectionContainer: {

@@ -12,10 +12,12 @@ const ForGetPassword = () => {
   const navigate = useNavigate();
   const [otp, setOtp] = useState("");
   const [isOtpSent, setIsOtpSent] = useState(false);
+  const [user, setuser] = useState({})
 
   const [formData, setFormData] = useState({
     email: "",
   });
+  console.log("fefgehhjfhfjke", formData);
   const [isLoading, setIsLoading] = useState(false);
   const [formError, setFormError] = useState({});
 
@@ -31,10 +33,16 @@ const ForGetPassword = () => {
     }));
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleForgetPassword();
+    }
+  }
+
   const handleForgetPassword = async () => {
     if (!formData.email.trim()) {
       setFormError({ email: "Email is required" });
-      toast.error("Please enter your email!");
+      // toast.error("Please enter your email!");
       return;
     }
 
@@ -43,29 +51,18 @@ const ForGetPassword = () => {
 
       if (!isOtpSent) {
         const response = await forgetPassword({ email: formData.email });
+        console.log("eftgyuhijohdjnm", response)
         console.log("ForgetPasswordResponse:", response);
 
         if (response?.data?.status === "success") {
           toast.success(response.data?.message || "OTP sent to your email");
           setIsOtpSent(true);
           navigate("/forget-verfication", { state: { email: formData.email } });
+          setuser(user.data)
         } else {
           toast.error(response?.data?.message || "Failed to send OTP");
         }
       } else {
-        if (!otp.trim()) {
-          toast.error("Please enter OTP!");
-          return;
-        }
-
-        
-
-        if (response?.data?.status === "success") {
-          toast.success("OTP verified successfully!");
-          navigate("/new-password"); // redirect to reset password page
-        } else {
-          toast.error(response?.data?.message || "Invalid OTP");
-        }
       }
     } catch (error) {
       toast.error(error?.message || "Something went wrong");
@@ -75,18 +72,18 @@ const ForGetPassword = () => {
   };
 
   return (
-    <AuthLayout title="Get Started">
+    <AuthLayout title="Get Started" showBackButton>
       <Typography
-        marginTop={"70px"}
+        marginTop={"10px"}
         variant="h4"
         color={theme.palette.text.secondary}
         mb={2}
       >
-        FORGET PASSWORD
+        FORGOT PASSWORD
       </Typography>
 
       {/* Email Input */}
-      <Box mt={2}>
+      <Box mt={3}>
         <CustomInput
           placeholder="Email"
           defaultStyle={theme.palette.text.secondary}
@@ -95,7 +92,8 @@ const ForGetPassword = () => {
           onChange={handleChange}
           error={Boolean(formError.email)}
           helperText={formError.email}
-          disabled={isOtpSent} // disable email after OTP sent
+          disabled={isOtpSent}
+          onKeyPress={handleKeyPress}
         />
       </Box>
 
@@ -118,6 +116,7 @@ const ForGetPassword = () => {
           fullWidth
           handleClickBtn={handleForgetPassword}
           loading={isLoading}
+          width="100%"
         />
       </Box>
     </AuthLayout>

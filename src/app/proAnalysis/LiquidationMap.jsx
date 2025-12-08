@@ -2,22 +2,79 @@ import { Box, Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
 import CustomInput from "../../components/customInput";
 import IconImage from "../../assets/icons/vector.svg";
+import ArrowBtn from "../../assets/icons/arrow-icon.svg"
+import ArrowDownIcon from "../../assets/icons/arrow-down-icon.svg"
 
-const LiquidationMap = () => {
+const LiquidationMapData = ({ coinData }) => {
+  console.log(
+    coinData,
+    "propsssssssssssssssssssssssss"
+  );
+
   const longLiquidations = [
-    { price: "$132,302", percent: 20 },
-    { price: "$145,000", percent: 22 },
-    { price: "$158,500", percent: 25 },
-    { price: "$170,000", percent: 30 },
-    { price: "$185,000", percent: 35 },
+    {
+      id: coinData?.liquidationMap?.longLiquidations[0].rank,
+      price: coinData?.liquidationMap?.longLiquidations[0].priceFormatted,
+      percent: coinData?.liquidationMap?.longLiquidations[0].percentFromPrice,
+      value: coinData?.liquidationMap?.longLiquidations[0].leverage,
+    },
+    {
+      id: coinData?.liquidationMap?.longLiquidations[1].rank,
+      price: coinData?.liquidationMap?.longLiquidations[1].priceFormatted,
+      percent: coinData?.liquidationMap?.longLiquidations[1].percentFromPrice,
+      value: coinData?.liquidationMap?.longLiquidations[1].leverage,
+    },
+    {
+      id: coinData?.liquidationMap?.longLiquidations[2].rank,
+      price: coinData?.liquidationMap?.longLiquidations[2].priceFormatted,
+      percent: coinData?.liquidationMap?.longLiquidations[2].percentFromPrice,
+      value: coinData?.liquidationMap?.longLiquidations[2].leverage2,
+    },
+    {
+      id: coinData?.liquidationMap?.longLiquidations[3].rank,
+      price: coinData?.liquidationMap?.longLiquidations[3].priceFormatted,
+      percent: coinData?.liquidationMap?.longLiquidations[3].percentFromPrice,
+      value: coinData?.liquidationMap?.longLiquidations[3].leverage,
+    },
+    {
+      id: coinData?.liquidationMap?.longLiquidations[4].rank,
+      price: coinData?.liquidationMap?.longLiquidations[4].priceFormatted,
+      percent: coinData?.liquidationMap?.longLiquidations[4].percentFromPrice,
+      value: coinData?.liquidationMap?.longLiquidations[4].leverage,
+    },
   ];
 
   const shortLiquidations = [
-    { price: "$145,678", percent: -25 },
-    { price: "$158,920", percent: -15 },
-    { price: "$167,432", percent: -30 },
-    { price: "$175,000", percent: -18 },
-    { price: "$189,456", percent: -22 },
+    {
+      id: coinData?.liquidationMap?.shortLiquidations[0].rank,
+      price: coinData?.liquidationMap?.shortLiquidations[0].priceFormatted,
+      percent: coinData?.liquidationMap?.shortLiquidations[0].percentFromPrice,
+      value: coinData?.liquidationMap?.shortLiquidations[0].leverage,
+    },
+    {
+      id: coinData?.liquidationMap?.shortLiquidations[1].rank,
+      price: coinData?.liquidationMap?.shortLiquidations[1].priceFormatted,
+      percent: coinData?.liquidationMap?.shortLiquidations[1].percentFromPrice,
+      value: coinData?.liquidationMap?.shortLiquidations[1].leverage,
+    },
+    {
+      id: coinData?.liquidationMap?.shortLiquidations[2].rank,
+      price: coinData?.liquidationMap?.shortLiquidations[2].priceFormatted,
+      percent: coinData?.liquidationMap?.shortLiquidations[2].percentFromPrice,
+      value: coinData?.liquidationMap?.shortLiquidations?.[2].leverage,
+    },
+    {
+      id: coinData?.liquidationMap?.shortLiquidations[3].rank,
+      price: coinData?.liquidationMap?.shortLiquidations[3].priceFormatted,
+      percent: coinData?.liquidationMap?.shortLiquidations[3].percentFromPrice,
+      value: coinData?.liquidationMap?.shortLiquidations[3].leverage,
+    },
+    {
+      id: coinData?.liquidationMap?.shortLiquidations[4].rank,
+      price: coinData?.liquidationMap?.shortLiquidations[4].priceFormatted,
+      percent: coinData?.liquidationMap?.shortLiquidations[4].percentFromPrice,
+      value: coinData?.liquidationMap?.shortLiquidations[4].leverage,
+    },
   ];
 
   const [search, setSearch] = useState("");
@@ -34,16 +91,19 @@ const LiquidationMap = () => {
         mt={"10px"}
         padding={"25px"}
         borderRadius={"40px"}
+
       >
-        <Typography variant="h5">Liquidation Map</Typography>
-        <Box mt={"20px"}>
+        <Typography variant="h5" fontSize={"18px"}>
+          Liquidation Map
+        </Typography>
+        {/* <Box mt={"20px"}>
           <CustomInput
             placeholder="ETH"
             value={search.search || ""}
             onChange={handleInputChange("search")}
             InputEndIcon={<img src={IconImage} />}
           />
-        </Box>
+        </Box> */}
         <Box
           display={"flex"}
           alignItems={"center"}
@@ -51,24 +111,72 @@ const LiquidationMap = () => {
           mt={"20px"}
           flexDirection={"column"} // ✅ correct
         >
-          <Typography variant="h4">Current BTC Price</Typography>
-          <Typography variant="h5">$111,540.7</Typography>
+          <Typography variant="h4" fontSize={"20px"}>
+            Current BTC Price
+          </Typography>
+          <Typography variant="h5" fontSize={"15px"}>
+            {coinData?.liquidationMap?.priceFormatted}
+          </Typography>
         </Box>
 
         <Box mt={3}>
-          <Grid container spacing={4}>
+          <Grid container spacing={7}>
             <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
-              <Typography color="#3EDD87" mb={2}>
+              <Typography color="text.greenColor" mb={2}>
                 LONG Liquidations
               </Typography>
 
               {longLiquidations.map((item, index) => (
-                
-                <Box key={index} mb={2}>
-                  <Box display="flex" justifyContent="space-between" mb={0.5}>
-                    <Typography color="#fff">{item.price}</Typography>
-                    <Typography color="#3EDD87">+{item.percent}%</Typography>
-                  </Box>
+                <Box
+                  key={index}
+                  mb={2}
+                  backgroundColor={"#1C1C1C"}
+                  padding={"15px"}
+                  borderRadius={"20px"}
+                >
+                  <Box
+                    display="flex"
+                    justifyContent="space-between"
+                    mb={1}
+                    width={"100%"}
+                    height={"36px"}
+                  >
+                    <Box display={"flex"} gap={"10px"} alignItems={"center"}>
+                      <Typography>{item.id} </Typography>
+                      <Box display={"flex"}>
+                        <Typography
+                          fontSize={"18px"}
+                          fontWeight={600}
+                          color="#fff"
+                        >
+                          {item.price}{" "}
+                          <span
+                            style={{
+                              fontSize: "11px",
+                              color: "#8D8D8D",
+                            }}
+                          >
+                            {item.value}
+                          </span>
+                        </Typography>
+                      </Box>
+                    </Box>
+                    <Box display={"flex"} alignItems={"center"} gap={0.4}>
+                      <Box>
+                        <img
+                          src={ArrowDownIcon}
+                          width="10px"
+                          height="10px"
+                          style={{
+                            color: "invert(21%) sepia(89%) saturate(6233%) hue-rotate(-1deg) brightness(100%) contrast(100%)"
+                          }}
+                          alt="arrow"
+                        />
+                      </Box>
+                      <Box>
+                        <Typography color="text.greenColor">{item.percent}</Typography>
+                      </Box>
+                    </Box>                  </Box>
 
                   <Box
                     sx={{
@@ -82,7 +190,7 @@ const LiquidationMap = () => {
                       sx={{
                         width: `${item.percent}%`,
                         height: "100%",
-                        backgroundColor: "#3EDD87",
+                        backgroundColor: "text.greenColor",
                         borderRadius: "20px",
                       }}
                     />
@@ -95,10 +203,56 @@ const LiquidationMap = () => {
                 SHORT Liquidations
               </Typography>
               {shortLiquidations.map((item, index) => (
-                <Box key={index} mb={2}>
-                  <Box display="flex" justifyContent="space-between" mb={0.5}>
-                    <Typography color="#fff">{item.price}</Typography>
-                    <Typography color="#FF4E4E">{item.percent}%</Typography>
+                <Box
+                  key={index}
+                  mb={2}
+                  backgroundColor={"#1C1C1C"}
+                  padding={"15px"}
+                  borderRadius={"20px"}
+                >
+                  <Box
+                    display="flex"
+                    justifyContent="space-between"
+                    mb={1}
+                    width={"100%"}
+                    height={"36px"}
+                  >
+                    <Box display={"flex"} gap={"10px"} alignItems={"center"}>
+                      <Typography fontSize={"14px"} color="#fff">
+                        {item.id}
+                      </Typography>
+                      <Typography
+                        fontSize={"18px"}
+                        color="#fff"
+                        fontWeight={600}
+                      >
+                        {item.price}{" "}
+                        <span
+                          style={{
+                            fontSize: "12px",
+                            color: "#8D8D8D",
+                          }}
+                        >
+                          {item.value}
+                        </span>
+                      </Typography>
+                    </Box>
+                    <Box display={"flex"} alignItems={"center"} gap={0.4}>
+                      <Box>
+                        <img
+                          src={ArrowBtn}
+                          width="10px"
+                          height="10px"
+                          style={{
+                            color: "invert(21%) sepia(89%) saturate(6233%) hue-rotate(-1deg) brightness(100%) contrast(100%)"
+                          }}
+                          alt="arrow"
+                        />
+                      </Box>
+                      <Box>
+                        <Typography color="#FF4E4E">{item.percent}</Typography>
+                      </Box>
+                    </Box>
                   </Box>
 
                   <Box
@@ -128,4 +282,4 @@ const LiquidationMap = () => {
   );
 };
 
-export default LiquidationMap;
+export default LiquidationMapData;

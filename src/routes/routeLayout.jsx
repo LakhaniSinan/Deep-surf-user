@@ -15,7 +15,7 @@ export const AuthProtectedLayout = () => {
   const { user } = useAuthStore();
   console.log("fghefgehfef", user);
   if (user) {
-    return <Navigate to="/" />;
+    return <Navigate to="/dashboard" />;
   }
   return <Outlet />;
 };

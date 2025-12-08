@@ -16,7 +16,31 @@ export const ENDPOINTS = {
     HOME_DATA: "home/fetch-data",
     QUICK_CHECK: "home/quick-check",
   },
-  MFTSCAN: {
-    MFTSCAN_DATA: "home/mtf-scan",
+
+  PROANALYSIS: {
+    GET: "home/pro-analytics",
+  },
+
+  AITOOLS: {
+    GET: "home/ai-tools",
+  },
+
+  MARKETOUTLOOK: {
+    MARKET_OUT_LOOK: "home/market-outlook",
+  },
+  LIQUIDATIONMAP: {
+    LIQUIDATION_MAP: "home/liquidation-map",
+  },
+  MFTDATA: {
+    MFT_SCAN_DATA: "home/mtf-scan",
+  },
+  HEATMAPDATA: {
+    HEAT_MAP_DATA: "home/heatmap",
+  },
+  FAQDATA: {
+    FAQ_DATA: "faqs",
+  },
+  ADD_WAITLIST: {
+    ADD_TO_WAITLIST: "waitlist/join",
   },
 };

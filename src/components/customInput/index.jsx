@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { InputAdornment, TextField, useTheme, IconButton } from "@mui/material";
+import { InputAdornment, TextField, IconButton } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
@@ -10,12 +10,7 @@ function CustomInput({
   onEndIconClick,
   fullWidth = true,
   readonly,
-  defaultStyle,
-  style,
   inputBgColor,
-  inputWidth,
-  error,
-  helperText,
   type = "text",
   sx,
   ...props
@@ -26,72 +21,59 @@ function CustomInput({
     <TextField
       fullWidth={fullWidth}
       type={showPassword && type === "password" ? "text" : type}
-      error={error}
-      helperText={helperText}
       {...props}
       InputProps={{
         readOnly: readonly,
         startAdornment: InputStartIcon && (
           <InputAdornment position="start">{InputStartIcon}</InputAdornment>
         ),
-        endAdornment: InputEndIcon && (
+        endAdornment: type === "password" ? (
           <InputAdornment position="end">
-            {type === "password" ? (
-              <IconButton
-                onClick={() => setShowPassword((prev) => !prev)}
-                edge="end"
+            <IconButton
+              onClick={() => setShowPassword((prev) => !prev)}
+              edge="end"
+              sx={{ padding: "6px", color: "#fff" }}
+            >
+              {showPassword ? <VisibilityOff /> : <Visibility />}
+            </IconButton>
+
+          </InputAdornment>
+        ) : (
+          InputEndIcon && (
+            <InputAdornment position="end">
+              <IconButton edge="end" onClick={onEndIconClick} sx={{ padding: "6px", color: "#fff" }}
               >
-                {showPassword ? (
-                  <VisibilityOff sx={{ color: "#ffffffff  " }} />
-                ) : (
-                  <Visibility sx={{ color: "#ffffffff" }} />
-                )}
-              </IconButton>
-            ) : (
-              <IconButton edge="end" onClick={onEndIconClick}>
                 {InputEndIcon}
               </IconButton>
-            )}
-          </InputAdornment>
+            </InputAdornment>
+          )
         ),
       }}
       sx={(theme) => ({
         "& .MuiOutlinedInput-root": {
           borderRadius: "16px",
-          background: inputBgColor || theme.palette.neutral?.card || "#242424",
-          border: "1px solid transparent",
-          "& fieldset": {
-            border: "none",
+          background: inputBgColor || "#242424",
+          border: "0.1px solid #FFFFFF", "& fieldset": {
+            border: "none"
           },
           "&:hover": {
-            background:
-              inputBgColor || theme.palette.neutral?.hover || "#2F2F2F",
+            background: inputBgColor || "#2F2F2F",
           },
           "&.Mui-focused": {
-            background:
-              inputBgColor || theme.palette.neutral?.surface || "#1f1f1f",
-            borderColor: "#8F8F8F",
+            background: inputBgColor || "#1f1f1f",
+            borderColor: "transparentF",
           },
         },
-
         "& .MuiInputBase-input": {
-          padding: "10px 20px",
+          padding: "10px 12px",
           fontSize: "15px",
           color: theme.palette.text.primary,
+          fontFamily : "'inter'",
           "&::placeholder": {
-            color: theme.palette.neutral?.mutedText || "#808080",
+            color: "#808080",
             opacity: 1,
           },
         },
-
-        "& .MuiFormLabel-root": {
-          // display: "none",
-        },
-
-        "& .MuiFormHelperText-root": {
-          // display: "none",
-        },
-
         ...(typeof sx === "function" ? sx(theme) : sx),
       })}
     />
@@ -105,12 +87,6 @@ CustomInput.propTypes = {
   fullWidth: PropTypes.bool,
   readonly: PropTypes.bool,
   type: PropTypes.string,
-};
-
-CustomInput.defaultProps = {
-  fullWidth: true,
-  readonly: false,
-  type: "text",
 };
 
 export default CustomInput;

@@ -1,7 +1,7 @@
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import StatCard from "../../components/statCard/index";
 
-function DashboardStats() {
+function DashboardStats({ coinData }) {
   const statsData = [
     {
       title: "Confluence Score",
@@ -22,41 +22,41 @@ function DashboardStats() {
 
   return (
     <>
-      <Box mt={"10px"}>
-        <Typography variant="h4" color="#FFFFFF">
-          Confluence Score
-        </Typography>
-      </Box>
+      <Box mt={"10px"}
+      >
+        <Grid container spacing={3}>
+          <Grid item size={{ xs: 6, sm: 6 }}>
+            <Typography
+              variant="h5"
+              fontSize={{ xs: 16, md: 23 }}
+              fontWeight={600}
+              color="#FFFFFF"
+            >
+              Confluence Score
+            </Typography>
+          </Grid>
+          <Grid item size={{ xs: 6, sm: 6 }}>
+            <Typography
+              variant="h5"
+              fontSize={{ xs: 16, md: 23 }}
+              fontWeight={600}
+              color="#FFFFFF"
+            >
+              Supertrend
+            </Typography>
+          </Grid>
+        </Grid>
+      </Box >
       <Box
         sx={{
           width: "100%",
-          mt: 3,
+          mt: 2,
           color: "#fff",
-          p: 3,
+          // p: 3,
           borderRadius: "16px",
-          background: "#111",
+          backgroundColor: "#161616"
         }}
       >
-        {/* TOP HEADINGS ROW */}
-        <Box sx={{ position: "relative", mb: 3 }}>
-          <Typography variant="h6" sx={{ fontWeight: 600 }}>
-            Confluence Score
-          </Typography>
-
-          <Typography
-            variant="h6"
-            sx={{
-              fontWeight: 600,
-              position: "absolute",
-              left: "50%",
-              transform: "translateX(-50%)", // exactly center
-            }}
-          >
-            Supertrend
-          </Typography>
-        </Box>
-
-        {/* ALL CARDS ROW IN ONE FLEX CONTAINER */}
         <Box
           sx={{
             display: "flex",
@@ -64,16 +64,17 @@ function DashboardStats() {
             gap: 3,
           }}
         >
-          {/* Bullish Card */}
           <Box
             sx={{
               flex: "1 1 180px",
-              background: "#0F0F0F",
+              background: "#1C1C1C",
+
               p: 2,
               borderRadius: "12px",
+              textAlign: "center",
             }}
           >
-            <Typography variant="caption" sx={{ color: "#bbb" }}>
+            <Typography variant="caption" sx={{ color: "#FFFFFF" }}>
               Confluence Score
             </Typography>
             <Typography
@@ -89,7 +90,7 @@ function DashboardStats() {
                 fontWeight: 700,
               }}
             >
-              6
+              {coinData?.confluenceScore?.bullish}
             </Typography>
           </Box>
 
@@ -97,52 +98,52 @@ function DashboardStats() {
           <Box
             sx={{
               flex: "1 1 180px",
-              background: "#0F0F0F",
+              background: "#1C1C1C",
               p: 2,
               borderRadius: "12px",
+              textAlign: "center",
             }}
           >
-            <Typography variant="caption" sx={{ color: "#bbb" }}>
+            <Typography variant="caption" sx={{ color: "#FFFFFF" }}>
               Confluence Score
             </Typography>
             <Typography
-              sx={{ color: "#ff4d4d", fontSize: "18px", fontWeight: 600 }}
+              sx={{ color: "text.SalmonRed", fontSize: "18px", fontWeight: 600 }}
             >
               Bearish
             </Typography>
             <Typography
               sx={{
                 mt: 1,
-                color: "#ff4d4d",
+                color: "text.SalmonRed",
                 fontSize: "22px",
                 fontWeight: 700,
               }}
             >
-              4
+              {coinData?.confluenceScore?.bullish}
             </Typography>
           </Box>
-
-          {/* Trend Card */}
           <Box
             sx={{
               flex: "1 1 180px",
-              background: "#0F0F0F",
+              background: "#1C1C1C",
               p: 2,
               borderRadius: "12px",
+              textAlign: "center",
             }}
           >
-            <Typography variant="caption" sx={{ color: "#bbb" }}>
+            <Typography variant="h6" sx={{  color: "accent.contrastText" , fontWeight : "500px" }}>
               Trend
             </Typography>
             <Typography
               sx={{
                 mt: 1,
-                color: "#4CAF50",
+                color: "text.greenColor",
                 fontSize: "22px",
-                fontWeight: 700,
+                fontWeight: 600,
               }}
             >
-              Bullish
+              {coinData?.supertrend?.trend}
             </Typography>
           </Box>
 
@@ -150,52 +151,24 @@ function DashboardStats() {
           <Box
             sx={{
               flex: "1 1 180px",
-              background: "#0F0F0F",
+              background: "#1C1C1C",
               p: 2,
               borderRadius: "12px",
+              textAlign: "center",
+              marginTop: "10px",
             }}
           >
-            <Typography variant="caption" sx={{ color: "#bbb" }}>
+            <Typography variant="caption" sx={{ color: "accent.contrastText" }}>
               Signal Level
             </Typography>
             <Typography
-              sx={{ mt: 1, color: "#fff", fontSize: "22px", fontWeight: 700 }}
+              sx={{ mt: 1, color: "accent.contrastText", fontSize: "22px", fontWeight: 600 }}
             >
-              $3 120.88
+              {coinData?.supertrend?.signalLevel}
             </Typography>
           </Box>
         </Box>
       </Box>
-
-      {/* <Grid container spacing={10} marginTop={2}>
-        <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
-          <Grid container spacing={5}>
-            {statsData.map((item, index) => (
-              <Grid key={index} size={{ xs: 12, sm: 6, md: 6 }}>
-                <StatCard
-                  title={item.title}
-                  subtitle={item.subtitle}
-
-                />
-              </Grid>
-            ))}
-          </Grid>
-        </Grid>
-
-        <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
-          <Grid container spacing={5}>
-            {statsData2.map((item, index) => (
-              <Grid key={index} size={{ xs: 12, sm: 6, md: 6 }}>
-                <StatCard
-                  title={item.title}
-                  subtitle={item.subtitle}
-                  price={item.price}
-                />
-              </Grid>
-            ))}
-          </Grid>
-        </Grid>
-      </Grid> */}
     </>
   );
 }

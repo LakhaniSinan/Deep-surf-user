@@ -20,7 +20,7 @@ const CoinCheck = () => {
   const [ticker, setTicker] = useState("");
   const [coinData, setCoinData] = useState(null);
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = (e) => { 
     if (e.key === "Enter") {
       handleCoinQuickCheck();
     }
@@ -30,7 +30,7 @@ const CoinCheck = () => {
     if (!ticker) return toast.error("Please enter coin symbol");
 
     try {
-      setCoinData(null)
+      setCoinData(null);
       setIsLoading(true);
       const response = await getCoinQuickCheck(ticker);
       if (response?.data?.status === "success") {
@@ -54,7 +54,7 @@ const CoinCheck = () => {
           <Typography
             variant="h4"
             fontSize="16px"
-            fontWeight={600}
+            fontWeight={700}
             color="text.primary"
           >
             AI Proof — Quick coin check
@@ -62,8 +62,9 @@ const CoinCheck = () => {
           <Typography
             variant="body3"
             fontSize="12px"
-            fontWeight={400}
+            fontWeight={300}
             color="text.primary"
+            fontFamily="inter"
           >
             Deep AI analysis of any coin in seconds. Enter the ticker, get a
             full breakdown and recommendation.

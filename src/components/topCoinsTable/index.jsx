@@ -10,8 +10,8 @@ import {
 } from "@mui/material";
 import theme from "../../theme";
 import Sparkline from "./Sparkline";
-import PositiveIcon from "../../assets/icons/positive-coins-icon.svg";
-import NegativeIcon from "../../assets/icons/negative-coin-icon.svg";
+// import PositiveIcon from "../../assets/icons/positive-coins-icon.svg";
+// import NegativeIcon from "../../assets/icons/negative-coin-icon.svg";
 import TopCardSkeleton from "../../components/skeleton/topCoinCardSkeleton";
 
 const TopCoinsTable = ({ data, isLoading }) => {
@@ -24,6 +24,8 @@ const TopCoinsTable = ({ data, isLoading }) => {
         backgroundColor: theme.palette.background.paper,
         borderRadius: "12px",
         padding: "16px",
+        overflowX: "auto", // 👈 Add here
+        maxHeight: "410px",
       }}
     >
       <Typography
@@ -44,9 +46,13 @@ const TopCoinsTable = ({ data, isLoading }) => {
         </Typography>
       ) : (
         <TableContainer>
-          <Table sx={{ width: "100%" }}>
+          <Table
+            sx={{
+              width: "100%",
+            }}
+          >
             <TableBody>
-              {data.map((coin, index) => (
+              {data?.map((coin, index) => (
                 <TableRow
                   key={coin.id || index}
                   sx={{
@@ -158,16 +164,16 @@ const TopCoinsTable = ({ data, isLoading }) => {
                         justifyContent: "center",
                       }}
                     >
-                      {/* <Sparkline
-                      data={coin.sparkline || []}
-                      isPositive={coin.percentChange >= 0}
-                    /> */}
+                      <Sparkline
+                        data={coin.sparkline || []}
+                        isPositive={!coin.change24hFormatted?.includes("-")}
+                      />
 
-                      {coin.change24hFormatted?.includes("-") ? (
+                      {/* {coin.change24hFormatted?.includes("-") ? (
                         <img src={NegativeIcon} />
                       ) : (
                         <img src={PositiveIcon} />
-                      )}
+                      )} */}
                     </Box>
                   </TableCell>
 

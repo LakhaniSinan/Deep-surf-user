@@ -4,6 +4,8 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import { APP_Route, AUTH_ROUTES } from "./routes";
 import { AuthProtectedLayout, ProtectedLayout } from "./routes/routeLayout";
+import LandingPage from "./app/landingPage";
+import UserProfile from "./app/auth/profile";
 
 function App() {
   return (
@@ -13,7 +15,10 @@ function App() {
 
       <Router>
         <Routes>
-          {/* Auth routes */}
+          {/* Public Route (Landing Page) */}
+          <Route path="/" element={<LandingPage />} />
+
+          {/* Auth Routes */}
           <Route element={<AuthProtectedLayout />}>
             {AUTH_ROUTES?.map((route) => (
               <Route
@@ -24,9 +29,10 @@ function App() {
             ))}
           </Route>
 
-          {/* App routes */}
+          <Route path="/user-profile" element={<UserProfile />} />
 
-          <Route path="/" element={<ProtectedLayout />}>
+          {/* Protected Routes */}
+          <Route element={<ProtectedLayout />}>
             {APP_Route?.map((route) => (
               <Route
                 key={route.id}

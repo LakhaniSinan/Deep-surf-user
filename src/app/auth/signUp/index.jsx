@@ -19,9 +19,14 @@ import { signUpValidation } from "../../../utils/validations";
 import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "../../../config/firebase";
+import { useAuthStore } from "../../../store";
 
 function SignUp() {
   const navigate = useNavigate();
+  const { loginUser } = useAuthStore();
+
   const [isLoading, setIsLoading] = useState(false);
   const [formError, setFormError] = useState({});
   const [formData, setFormData] = useState({
@@ -45,10 +50,10 @@ function SignUp() {
   const handleSignUp = async () => {
     const validate = signUpValidation(formData, setFormError);
 
-    if (!validate) {
-      toast.error("Please fix errors before submitting!");
-      return;
-    }
+    // if (!validate) {
+    //   toast.error("Please fix errors before submitting!");
+    //   return;
+    // }
 
     try {
       setIsLoading(true);
@@ -62,7 +67,7 @@ function SignUp() {
         toast.error(response?.data?.message || "Signup failed");
       }
     } catch (error) {
-      toast.error(error?.message || "Something went wrong");
+      toast.error(error?.message || "Something went wrong"); b
     } finally {
       setIsLoading(false);
     }
@@ -121,6 +126,7 @@ function SignUp() {
         <Box mt={2}>
           <CustomInput
             placeholder="Password"
+            defaultStyle={theme.palette.text.secondary}
             type="password"
             value={formData.password}
             onChange={(e) => handleChange("password", e.target.value)}
@@ -132,13 +138,15 @@ function SignUp() {
         </Box>
 
         {/* OTP */}
-        <Box mt={3}>
+        <Box mt={3} textAlign={"left"} >
           <Typography
             sx={{
               marginBottom: "12px",
+
             }}
             variant="body2"
             color={theme.palette.text.secondary}
+
           >
             Enter Join Code
           </Typography>
@@ -147,16 +155,33 @@ function SignUp() {
             onChange={(val) => handleChange("otp", val)}
           />
         </Box>
-        {/* Terms */}
         <Box display="flex" alignItems="center" gap={1} mt={2}>
           <Checkbox
             checked={formData.agree}
             onChange={(e) => handleChange("agree", e.target.checked)}
+            sx={{
+              color: "#fff",
+              '&.Mui-checked': {
+                color: "#fff",
+              },
+            }}
           />
-          <Typography variant="body2" color={theme.palette.text.secondary}>
+          <Typography
+            variant="body2"
+            color={theme.palette.text.secondary}
+            sx={{
+              cursor: "pointer",
+              fontWeight: formData.agree ? "norma" : "bold",
+              color: formData.agree ? "#fff" : theme.palette.text.secondary,
+              textDecoration: formData.agree ? "underline" : "none",
+              transition: "0.3s ease",
+              fontSize: "13px"
+            }}
+          >
             I agree to Terms & Privacy Policy
           </Typography>
         </Box>
+
         {/* Button */}
         <Box mt={5} display="flex" width="100%">
           <CustomButton
@@ -170,6 +195,11 @@ function SignUp() {
             }}
           />
         </Box>
+        <Box mt={2}>
+          <Typography fontFamily={"inter"} color="text.mediumGrey">
+            OR
+          </Typography>
+        </Box>
 
         <Box
           border={1}
@@ -180,7 +210,7 @@ function SignUp() {
           display="flex"
           justifyContent="center"
           alignItems="center"
-          marginTop={5}
+          marginTop={2}
           onClick={handleGoogleLogin} // 👈 add this
         >
           <img
@@ -191,7 +221,7 @@ function SignUp() {
             style={{ objectFit: "contain" }}
           />
         </Box>
-        <Box mt={2} textAlign="center">
+        <Box mt={1} textAlign="center">
           <Typography variant="body2" color={theme.palette.text.secondary}>
             Already have an account?{" "}
             <span

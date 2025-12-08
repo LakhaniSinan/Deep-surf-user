@@ -13,14 +13,24 @@ import TopCoinsTable from "../../components/topCoinsTable";
 import TopVolumeSection from "../../components/topVolumeSection";
 import { getHomeData } from "../../services/modules/home";
 import StatCardSkeleton from "../../components/skeleton/statesCardSkeleton";
+import { useLocation } from "react-router-dom";
+import { useAuthStore } from "../../store";
+import CustomButton from "../../components/customButton";
+import PlusIcon from "../../assets/icons/plus.svg";
+import RelaodIcon from "../../assets/icons/relaod-Icon.svg";
+import Speedometer from "../../components/speedMeter";
+import { color } from "d3";
 
 const Home = () => {
   const [homeResponse, setHomeResponse] = useState(null);
+  console.log("fufhufrfrfrfrf", homeResponse?.overallSentiment?.score);
   const [topCoins, setTopCoins] = useState([]);
+  console.log("fjfhrufhrufrfrfrrfr", topCoins);
   const [sentiment, setSentiment] = useState(null);
   const [macroData, setMacroData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  const { user } = useAuthStore();
+  const username = user?.username || user?.name;
   const fetchHomeData = async () => {
     try {
       setIsLoading(true);
@@ -32,7 +42,7 @@ const Home = () => {
         setSentiment(data.overallSentiment);
         setMacroData(data.macroeconomics);
       } else {
-        console.warn("Home API returned an error:", response.message);
+        console.log("Home API returned an error:", response.message);
       }
     } catch (error) {
       console.error("❌ Home API Error:", error);
@@ -42,7 +52,6 @@ const Home = () => {
   };
 
   useEffect(() => {
-    
     fetchHomeData();
   }, []);
 
@@ -83,22 +92,49 @@ const Home = () => {
     >
       <Header />
       <Container maxWidth="lg">
-        <Box mt={2}>
-          <Typography
-            variant="h1"
-            fontSize="24px"
-            fontWeight={700}
-            color="text.primary"
-          >
-            Welcome back,{" "}
-            <span style={{ color: "orange" }}>
-              {homeResponse?.username || "user"}
-            </span>
-          </Typography>
+        <Box
+          display={"flex"}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+        >
+          <Box mt={"30px"}>
+            <Typography
+              variant="h1"
+              fontSize="26px"
+              fontWeight={700}
+              color="text.primary"
+            >
+              Welcome back, {" "}
+              <span style={{ color: "#FF6421", fontFamily: "inter" }}>
+                {username}
+              </span>
+            </Typography>
+          </Box>
+
+          <Box display={"flex"} gap={2} alignItems={"center"} mt={"20px"}>
+            <Box>
+              <img src={RelaodIcon} width={"20px"} />
+            </Box>
+            <Box display={"flex"} alignItems={"center"}>
+              <CustomButton
+                variant="calculatorSmall"
+                title="Add tools"
+                icon={<img src={PlusIcon} />}
+              // sx={{
+              //   fontSize: "13px",
+              //   backgroundColor: "#1A1A1A",
+              //   border: "1px solid #1A1A1A",
+              //   borderRadius: "15px",
+              //   color: "#7B7B7B",
+
+              // }}
+              />
+            </Box>
+          </Box>
         </Box>
 
-        <Grid container spacing={2} mb={2} >
-          <Grid item size={{ xs: 12, md: 6 }}>
+        <Grid container spacing={2} mb={2}>
+          <Grid item size={{ xs: 12, md: 5 }}>
             <Box display="flex" flexDirection="column" gap={2}>
               <CoinCheck />
               {isLoading ? (
@@ -128,7 +164,32 @@ const Home = () => {
                     </Grid>
                   ))}
                   <Grid item size={{ xs: 12, sm: 4 }}>
-                    <NeutralCard data={sentiment} />
+                    <Box
+                      display={"flex"}
+                      flexDirection={"column"}
+                      textAlign={"center"}
+                      backgroundColor="#1C1C1C"
+                      borderRadius={"20px"}
+                      height={"210px"}
+                      padding={"10px"}
+                    >
+                      <Box mt={3}>
+                        <Typography color="#fff" fontSize={"15px"}>
+                          Overall Sentiment
+                        </Typography>
+                        <Typography mt={1} color="text.yellowColor" fontSize={"15px"}>
+                          Neutral
+                        </Typography>
+
+                        <Box mt={2}>
+                          <Speedometer
+                            size={50}
+                            score={homeResponse?.overallSentiment?.score}
+                          />
+                        </Box>
+
+                      </Box>
+                    </Box>
                   </Grid>
                 </Grid>
               )}
@@ -142,12 +203,12 @@ const Home = () => {
             </Box>
           </Grid>
 
-          <Grid item size={{ xs: 12, md: 6 }} mt={2}>
+          <Grid item size={{ xs: 12, md: 7 }} mt={2}>
             <Grid container spacing={2}>
-              <Grid item size={{ xs: 12, sm: 7 }}>
+              <Grid item size={{ xs: 12, sm: 6 }}>
                 <TopCoinsTable data={topCoins} isLoading={isLoading} />
               </Grid>
-              <Grid item size={{ xs: 12, sm: 5 }}>
+              <Grid item size={{ xs: 12, sm: 6 }}>
                 <Macroeconomics data={macroData} isLoading={isLoading} />
               </Grid>
             </Grid>

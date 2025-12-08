@@ -11,23 +11,27 @@ import useAuthStore from "../../store/authStore";
 
 const Header = () => {
   const navigate = useNavigate();
+  const { user } = useAuthStore();
+  console.log("user", user);
+
   const location = useLocation();
   const { logout } = useAuthStore();
   const [drawerOpen, setDrawerOpen] = useState(false);
-
-  const [anchorEl, setAnchorEl] = useState(null); // For person menu
+  const [profilePicture, setProfilePicture] = useState(
+    user?.profilePicture || ""
+  );
+  console.log("profilepicture ", profilePicture);
+  const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);
 
   const navItems = [
-    { link: "/", label: "Dashboard" },
+    { link: "/dashboard", label: "Dashboard" },
     { link: "/journal", label: "Journal" },
-    { link: "/faq", label: "FAQ" },
     { link: "/chart", label: "Chart" },
     { link: "/calculator", label: "Calculator" },
     { link: "/ai-tools", label: "AI Tools" },
     { link: "/pro-analytics", label: "Pro Analytics" },
     { link: "/market-outlook", label: "Market Outlook" },
-    { link: "/settings", label: "Settings" },
   ];
 
   const [activeNav, setActiveNav] = useState(() => {
@@ -67,8 +71,11 @@ const Header = () => {
   const handleLogout = () => {
     handleCloseMenu();
     logout();
-    // Add your logout logic here, e.g., clearing token
-    navigate("/login"); // Redirect to login page after logout
+    navigate("/login");
+  };
+
+  const handleSetting = () => {
+    navigate("/settings/");
   };
 
   const renderNavItems = () => {
@@ -97,7 +104,7 @@ const Header = () => {
           gap={1.5}
           flexShrink={0}
           sx={{ minWidth: 0, cursor: "pointer" }}
-          onClick={() => navigate("/home")}
+          onClick={() => navigate("/dashboard")}
         >
           <Box
             component="img"
@@ -127,7 +134,21 @@ const Header = () => {
               onClick={handlePersonClick}
               sx={headerStyles.profileIcon}
             >
-              <PersonIcon sx={{ color: "text.primary", fontSize: "24px" }} />
+              {profilePicture ? (
+                <Box
+                  component="img"
+                  src={profilePicture}
+                  alt="Profile"
+                  sx={{
+                    width: 32,
+                    height: 32,
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                  }}
+                />
+              ) : (
+                <PersonIcon />
+              )}
             </IconButton>
 
             <Menu
@@ -136,17 +157,14 @@ const Header = () => {
               onClose={handleCloseMenu}
               anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
               transformOrigin={{ vertical: "top", horizontal: "right" }}
-              sx={{
-                width: "200px",
-              }}
             >
+              <MenuItem onClick={handleSetting}>Settings</MenuItem>
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </Box>
+
         </Box>
       </Box>
-
-      {/* 🔹 Mobile Drawer */}
       <NavigationDrawer
         open={drawerOpen}
         onClose={handleDrawerToggle}

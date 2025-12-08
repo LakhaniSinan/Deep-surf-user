@@ -9,6 +9,7 @@ import {
   DialogContent,
   DialogActions,
   TextField,
+  Grid,
 } from "@mui/material";
 import CustomInput from "../../../components/customInput";
 import CustomButton from "../../../components/customButton";
@@ -17,24 +18,25 @@ import { useAuthStore } from "../../../store";
 import { changePassword } from "../../../services/modules/auth";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import theme from "../../../theme";
+import { uploadMediaService } from "../../../utils/help";
 
 function PersonalInformation() {
-  const { user, loginUser } = useAuthStore();
-  const navigate = useNavigate();
-
-  const [username, setUsername] = useState(user?.name || "");
+  const { user } = useAuthStore();
+  const [username, setUsername] = useState(user?.username || "");
+  console.log("dwuhdiwdwyguhwijd", username);
   const [email, setEmail] = useState(user?.email || "");
   const [profilePicture, setProfilePicture] = useState(
     user?.profilePicture || ""
   );
+  console.log("profilepicture", profilePicture);
+
+
   const [isLoading, setIsLoading] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
   const [currentPassword, setCurrentPassword] = useState("");
-  console.log("CurrentPassword:", currentPassword);
   const [newPassword, setNewPassword] = useState("");
-  console.log("NewPassword:", newPassword);
   const [confirmPassword, setConfirmPassword] = useState("");
-
   const handleChange = (field, value) => {
     setFormData((prev) => ({
       ...prev,
@@ -46,16 +48,36 @@ function PersonalInformation() {
     }));
   };
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
 
-    const reader = new FileReader();
-    reader.onloadend = () => setProfilePicture(reader.result);
-    reader.readAsDataURL(file);
+
+  const handleImageUpload = async (event) => {
+    console.log("hittttttttttttttttttttttttttttttttt")
+    const file = event.target.files?.[0];
+    console.log("fileeeeeeeeeeeeeeeeeeeeee", file);
+    if (!file) return;
+    console.log("file", file);
+    try {
+      setIsLoading(true);
+      const uploadRes = await uploadMediaService(file);
+      console.log("Uploaded Image:", uploadRes);
+      setProfilePicture(uploadRes);
+      toast.success("Profile picture uploaded!");
+      event.target.value = "";
+    } catch (error) {
+      toast.error(error?.message || "Image upload failed");
+    } finally {
+      setIsLoading(false);
+    }
+
   };
 
-  // 🟢 API Call for Change Password
+
+
+
+
+  const handleUserName = () => {
+    console.log("[efoigfhijefeguhjhewnf", handleUserName);
+  };
   const handlePasswordChange = async () => {
     if (
       !currentPassword.trim() ||
@@ -86,7 +108,6 @@ function PersonalInformation() {
         setCurrentPassword("");
         setNewPassword("");
         setConfirmPassword("");
-
         setOpenDialog(false);
       } else {
         toast.error(response?.data?.message || "Failed to change password");
@@ -101,8 +122,6 @@ function PersonalInformation() {
   return (
     <Box display="flex" flexDirection="column" gap={4}>
       <Typography variant="titleLg">Personal Information</Typography>
-
-      {/* Avatar */}
       <Stack
         direction={{ xs: "column", sm: "row" }}
         spacing={3}
@@ -113,14 +132,22 @@ function PersonalInformation() {
           sx={{ width: 76, height: 76 }}
         />
         <Stack direction="column" spacing={1}>
-          <Typography fontWeight={600}>{username}</Typography>
-          <Stack
+          <Typography fontWeight={600}>{user?.username}</Typography>
+
+          <Box
             component="label"
-            direction="row"
-            alignItems="center"
-            sx={{ cursor: "pointer" }}
+            sx={{
+              cursor: "pointer",
+              backgroundColor: "##00000000",
+              border: "1px solid #8F8F8F",
+              padding: "8px 12px",
+              display: "inline-block",
+              borderRadius : "10px",
+              px : "40px",
+              py : "10px",
+              fontFamily:"inter"
+            }}
           >
-            <AddCircleOutlineIcon />
             Upload Image
             <input
               type="file"
@@ -128,34 +155,99 @@ function PersonalInformation() {
               hidden
               onChange={handleImageUpload}
             />
-          </Stack>
+          </Box>
+
+
         </Stack>
+
       </Stack>
 
       {/* Username */}
-      <CustomInput
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Enter username"
-      />
+      <Typography>Username</Typography>
+      <Grid container spacing={1}>
+        <Grid item size={{ xs: 12, md: 9 }}>
+          <CustomInput
+            value={username}
+            // onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter username"
+          />
+        </Grid>
+        <Grid item size={{ xs: 12, md: 3 }}>
+          {/* <CustomButton
+            title="Change"
+            value={username}
+            // handleClickBtn={() => setOpenDialog(true)}
+            sx={{
+              cursor: "pointer",
+              backgroundColor: "#00000000",
+              border: "1px solid #8F8F8F",
+            }}
+            handleChange={handleUserName}
+            onChange={(e) => setUsername(e.target.value)}
+          /> */}
+        </Grid>
+      </Grid>
 
-      {/* Email */}
-      <CustomInput
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Enter email"
-      />
+      <Grid container spacing={1}>
+        <Grid item size={{ xs: 12, md: 9 }}>
+          <CustomInput
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter email"
+            readonly
+          />
+        </Grid>
+        <Grid item size={{ xs: 12, md: 3 }}>
+          {/* <CustomButton
+            title="Change"
+            // handleClickBtn={() => setOpenDialog(true)}
+            sx={{
+              cursor: "pointer",
+              backgroundColor: "#00000000",
+              border: "1px solid #8F8F8F",
+            }}
+          /> */}
+        </Grid>
+      </Grid>
 
-      {/* Password Dialog Button */}
-      <CustomButton
-        title="Change Password"
-        handleClickBtn={() => setOpenDialog(true)}
-      />
+      <Grid container spacing={1}>
+        <Grid item size={{ xs: 12, md: 9 }}>
+          <CustomInput
+            type="Password"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter email"
+          />
+        </Grid>
+        <Grid item size={{ xs: 12, md: 3 }}>
+          <CustomButton
+            title="Change"
+            handleClickBtn={() => setOpenDialog(true)}
+            sx={{
+              cursor: "pointer",
+              backgroundColor: "#00000000",
+              border: "1px solid #8F8F8F",
+            }}
+          />
+        </Grid>
+      </Grid>
+      <Box>
+        <CustomButton
+          title="Save Profile"
+          // handleClickBtn={() => setOpenDialog(true)}
+          sx={{
+            cursor: "pointer",
+            backgroundColor: "#3E3E46",
+            border: "1px solid #8F8F8F",
+          }}
+        />
+      </Box>
 
-      {/* Change Password Dialog */}
-      <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
-        <DialogTitle>Change Password</DialogTitle>
+      <Dialog fullWidth open={openDialog} onClose={() => setOpenDialog(false)}>
+        <DialogTitle color="#ffff" textAlign={"center"}>
+          Change Password
+        </DialogTitle>
         <DialogContent
           sx={{ display: "flex", flexDirection: "column", gap: 2 }}
         >
@@ -166,6 +258,9 @@ function PersonalInformation() {
             onChange={(e) => setCurrentPassword(e.target.value)}
             InputEndIcon={true}
             showPassword={true}
+            sx={{
+              width: "100%",
+            }}
           />
           <CustomInput
             placeholder="New Password"
@@ -188,12 +283,14 @@ function PersonalInformation() {
           <CustomButton
             title="Cancel"
             handleClickBtn={() => setOpenDialog(false)}
+            variant="gradient"
           />
           <CustomButton
             title="Save"
             handleClickBtn={handlePasswordChange}
             loading={isLoading}
             setOpenDialog={setOpenDialog}
+            variant="gradient"
           />
         </DialogActions>
       </Dialog>

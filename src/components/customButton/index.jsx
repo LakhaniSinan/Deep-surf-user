@@ -9,12 +9,13 @@ const CustomButton = ({
   icon,
   radius = 8,
   width = "fit-content",
+  onKeyPress,
   ...props
 }) => {
   const borderRadiusValue = typeof radius === "number" ? `${radius}px` : radius;
-  
+
   // Calculator variants should use theme styles, not default styles
-  const isCalculatorVariant = 
+  const isCalculatorVariant =
     variant === "calculatorToggle" || variant === "calculatorSmall";
 
   return (
@@ -29,18 +30,19 @@ const CustomButton = ({
         width: width,
         transition: "all 0.3s ease",
         display: "flex",
+        fontFamily: "'Inter', sans-serif",
         alignItems: "center",
         gap: icon ? theme.spacing(1) : 0,
         ...(isCalculatorVariant
           ? {} // Let theme variant handle styling (fontSize, padding, minHeight, colors)
           : {
-              fontWeight: 600,
-              color: "#fff",
-              fontSize: "16px",
-              py: 1.25,
-              px: 3,
-              minHeight: 48,
-            }),
+            fontWeight: 600,
+            color: "#fff",
+            fontSize: "13px",
+            py: 1.25,
+            px: 5,
+            minHeight: 48,
+          }),
         ...(loading && {
           cursor: "not-allowed",
           opacity: 0.7,

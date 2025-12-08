@@ -18,12 +18,13 @@ const Login = () => {
   const navigate = useNavigate();
   const { loginUser } = useAuthStore();
   const [isLoading, setIsLoading] = useState(false);
+  console.log("loading", isLoading);
+
   const [formError, setFormError] = useState({});
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
   const handleChange = (event) => {
     const { value, name } = event.target;
     setFormData((prev) => ({
@@ -36,12 +37,17 @@ const Login = () => {
     }));
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleLogin();
+    }
+  }
   const handleLogin = async () => {
     const validate = loginValidation(formData, setFormError);
-    if (!validate) {
-      toast.error("Please fix errors before submitting!");
-      return;
-    }
+    // if (!validate) {
+    //   toast.error("Please fix errors before submitting!");
+    //   return;
+    // }
     try {
       setIsLoading(true);
       const payload = {
@@ -49,23 +55,27 @@ const Login = () => {
         password: formData.password,
       };
       const response = await login(payload);
+      console.log("fgywfuiscgysuycgh", response?.data?.message);
 
       if (response?.data?.status === "success") {
-        const data = response.data.data;
-        const token = data.token;
-        const user = data.user;
+        const data = response?.data?.data;
+        const token = response?.data?.data?.token;
+        const user = response?.data?.data?.user;
         loginUser(user, token);
-        navigate("/profile");
+        navigate("/dashboard");
         toast.success(response?.data?.message);
       } else {
-        toast.error(response?.data?.message || "Login failed");
+        // toast.error(response?.data?.message || "Login failed");
       }
     } catch (error) {
-      toast.error(error?.message || "Login Failed");
+      // toast.error(error?.message || "Login Failed");
     } finally {
       setIsLoading(false);
     }
   };
+
+  console.log("fffffffffffffffff", handleLogin);
+
 
   const handleNavigate = () => {
     console.log("sign", formData);
@@ -101,7 +111,7 @@ const Login = () => {
         loginUser(userData, token);
 
         toast.success(response?.data?.message || "Logged in with Google!");
-        navigate("/profile");
+        navigate("/dashbaord");
       } else {
         toast.error(response?.data?.message || "Google login failed");
       }
@@ -114,7 +124,6 @@ const Login = () => {
   return (
     <AuthLayout title="Welcome back!">
       <Container>
-        {/* Email Field */}
         <Box mt={2}>
           <CustomInput
             placeholder="Email"
@@ -122,11 +131,13 @@ const Login = () => {
             value={formData.email}
             name="email"
             onChange={handleChange}
-            error={Boolean(formError.email)} // 👈 FIXED
+            error={Boolean(formError.email)}
             helperText={formError.email}
+            onKeyPress={handleKeyPress}
+          // inputBgColor={"#101010"}
+
           />
         </Box>
-        {/* Password Field */}
         <Box mt={2}>
           <CustomInput
             placeholder="Password"
@@ -140,6 +151,9 @@ const Login = () => {
             helperText={formError.password}
             InputEndIcon={true}
             showPassword={true}
+            onKeyPress={handleKeyPress}
+          // inputBgColor={"#101010"}
+
           />
         </Box>
         <Box mt={2}>
@@ -147,13 +161,14 @@ const Login = () => {
             display="flex"
             justifyContent="space-between"
             alignItems="center"
+            flexDirection={"row-reverse"}
           >
             <Typography
               variant="body2"
               sx={{
                 color: "#ffffff",
                 cursor: "pointer",
-                fontSize: "14px",
+                fontSize: "12px",
                 "&:hover": { textDecoration: "underline" },
               }}
               onClick={() => navigate("/forgot-password")}
@@ -162,9 +177,7 @@ const Login = () => {
             </Typography>
           </Box>
         </Box>
-
-        {/* Login Button */}
-        <Box display="flex" justifyContent="center" mt={8} width="100%">
+        <Box display="flex" justifyContent="center" mt={2} width="100%">
           <CustomButton
             variant="h4"
             title="Login"
@@ -174,33 +187,32 @@ const Login = () => {
             }}
             handleClickBtn={handleLogin}
             loading={isLoading}
+          // disabled={isLoading}
           />
         </Box>
-        {/* OR Text */}
         <Box mt={2}>
           <Typography variant="body2" color={theme.palette.text.secondary}>
             OR
           </Typography>
         </Box>
-        {/* Social Buttons */}
         <Box
           display="flex"
           justifyContent="center"
           mt={2}
           gap={2}
           width="100%"
-          flexWrap="wrap" // ✅ wrap on small screens
+          flexWrap="wrap"
         >
           <Box
             border={1}
-            py={0.8} // small screens ke liye padding thodi kam
-            px={{ xs: 6, sm: 9 }} // xs = extra small, sm = small screen
+            py={0.8}
+            px={{ xs: 6, sm: 9 }}
             borderColor={theme.palette.text.secondary}
             borderRadius={2}
             display="flex"
             justifyContent="center"
             alignItems="center"
-            onClick={handleGoogleLogin} // 👈 add this
+            onClick={handleGoogleLogin}
           >
             <img
               src={googleLogo}
@@ -211,7 +223,6 @@ const Login = () => {
             />
           </Box>
         </Box>
-        {/* Sign Up Link */}
         <Box mt={4}>
           <Typography variant="body2" color={theme.palette.text.secondary}>
             Don’t have an account?{" "}
@@ -227,5 +238,4 @@ const Login = () => {
     </AuthLayout>
   );
 };
-
 export default Login;

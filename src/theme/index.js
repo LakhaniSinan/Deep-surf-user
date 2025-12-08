@@ -9,7 +9,7 @@ const theme = createTheme({
     },
     accent: {
       main: "#FF6421",
-      contrastText: "#FFFFFF",
+      contrastText: "#FFFF",
     },
     secondary: {
       main: "#f50057",
@@ -21,6 +21,7 @@ const theme = createTheme({
       lineStrong: "rgba(255,255,255,0.15)",
       hover: "rgba(255,255,255,0.12)",
       mutedText: "rgba(255,255,255,0.45)",
+      Apricot: "rgba(240, 156, 96, 0.35)",
     },
     background: {
       default: "#101010",
@@ -31,15 +32,31 @@ const theme = createTheme({
       lightGray: "#1A1A1A",
       veryLightGray: "#141414",
       extraLightGray: "#0D0D0D",
+      jetBlack: "#1C1C1C",
       mediumGray: "#333333",
+      PeachGradient:
+        "linear-gradient(90deg, rgba(255,103,22,0.18) 0%, rgba(255,160,84,0.10) 100%)",
     },
     text: {
-      primary: "#ffffffff",
+      primary: "#ffff",
       secondary: "#5E6267",
-      greenColor : "#3EDD87",
-      yellowColor : "#FFD700",
-      lightRedColor : "#FF4450",
-      grey : "#5C616F"
+      grayish: "#AEB0B3",
+      greenColor: "#3EDD87",
+      errorColor: "#FF4C4C",
+      yellowColor: "#FFD700",
+      lightRedColor: "#FF4450",
+      grey: "#5C616F",
+      lightGrey: "#8D8D8D",
+      peach: "#FFB37D",
+      CoolGray: "#A3A3A3",
+      lightGreen: "#85FFB6",
+      DarkGrey: "#565656",
+      Orange: "#FF6C03",
+      Gainsboro: "#D9D9D9",
+      SalmonRed: "#FF8181",
+      DarkMaroon: "#391417",
+      LightRed: "#FF6C82",
+      mediumGrey: "#747474",
     },
     gradients: {
       drawer:
@@ -52,72 +69,74 @@ const theme = createTheme({
   },
 
   typography: {
-    fontFamily: '"Poppins", sans-serif',
+    // fontFamily: '"Poppins", sans-serif',
+    fontFamily: "'Inter', sans-serif",
+
     h1: {
-      fontFamily: '"Poppins", sans-serif',
+      fontFamily: "'Inter', sans-serif",
       fontSize: "2.5rem",
       fontWeight: 700,
       lineHeight: 1.2,
     },
 
     h2: {
-      fontFamily: '"Poppins", sans-serif',
+      fontFamily: "Inter, sans-serif",
       fontSize: "2rem",
       fontWeight: 700,
       lineHeight: 1.3,
     },
-    
+
     h3: {
-      fontFamily: '"Poppins", sans-serif',
+      fontFamily: "Inter, sans-serif",
       fontSize: "1.75rem",
       fontWeight: 600,
       lineHeight: 1.4,
     },
     h4: {
-      fontFamily: '"Poppins", sans-serif',
+      fontFamily: "Inter, sans-serif",
       fontSize: "1.5rem",
       fontWeight: 600,
       lineHeight: 1.4,
     },
     h5: {
-      fontFamily: '"Poppins", sans-serif',
+      fontFamily: "Inter, sans-serif",
       fontSize: "1.25rem",
       fontWeight: 600,
       lineHeight: 1.5,
     },
     h6: {
-      fontFamily: '"Poppins", sans-serif',
+      fontFamily: "Inter, sans-serif",
       fontSize: "1rem",
       fontWeight: 600,
       lineHeight: 1.5,
     },
     body1: {
-      fontFamily: '"Poppins", sans-serif',
+      fontFamily: "Inter, sans-serif",
       fontSize: "1rem", // 16px
       fontWeight: 400,
       lineHeight: 1.6,
     },
     body2: {
-      fontFamily: '"Poppins", sans-serif',
+      fontFamily: "Inter, sans-serif",
       fontSize: "0.875rem", // 14px
       fontWeight: 400,
       lineHeight: 1.5,
     },
     titleLg: {
-      fontFamily: '"Poppins", sans-serif',
+      fontFamily: "Inter, sans-serif",
       fontSize: "1.75rem",
       fontWeight: 600,
       lineHeight: 1.35,
       letterSpacing: "0.01em",
     },
     labelMd: {
-      fontFamily: '"Poppins", sans-serif',
+      fontFamily: "Inter, sans-serif",
       fontSize: "0.875rem",
       fontWeight: 500,
       letterSpacing: "0.08em",
     },
     helperSm: {
-      fontFamily: '"Poppins", sans-serif',
+      fontFamily: "Inter, sans-serif",
       fontSize: "0.75rem",
       fontWeight: 400,
       lineHeight: 1.4,
@@ -191,10 +210,11 @@ const theme = createTheme({
           // 🟠 Calculator toggle button (small, orange when selected)
           props: { variant: "calculatorToggle" },
           style: {
-            backgroundColor: "#FF6421",
+            background: "linear-gradient(90deg, #FF1A00, #FF6C03, #FFA305)",
             border: "none",
             color: "#FFFFFF",
-            padding: "6px 16px",
+            // padding: "8px 50px",
+            padding: "13px 54px",
             fontSize: "14px",
             minHeight: "36px",
             fontWeight: 600,
@@ -207,10 +227,10 @@ const theme = createTheme({
           // 📦 Calculator small button (for presets and unselected toggles)
           props: { variant: "calculatorSmall" },
           style: {
-            backgroundColor: "rgba(255,255,255,0.03)",
+            backgroundColor: "#1A1A1A",
             border: "none",
-            color: "#FFFFFF",
-            padding: "6px 16px",
+            color: "#7B7B7B",
+            padding: "8px 30px",
             fontSize: "14px",
             minHeight: "36px",
             fontWeight: 500,
@@ -223,7 +243,6 @@ const theme = createTheme({
       ],
     },
 
-    
     MuiTypography: {
       variants: [
         {

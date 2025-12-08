@@ -5,23 +5,28 @@ import CustomInput from "../../../components/customInput";
 import theme from "../../../theme";
 import CustomButton from "../../../components/customButton";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { setProfileValidation } from "../../../utils/validations";
 import { setProfile } from "../../../services/modules/user";
 import { useAuthStore } from "../../../store";
 import { toast } from "react-toastify";
 import { uploadMediaService } from "../../../utils/help";
 
-function Profile() {
+const UserProfile = () => {
   const navigate = useNavigate();
   const { user, setUser } = useAuthStore();
-  console.log("fghefgehfef", user);
+  console.log("feyfuhejfkeuhjfhujefn", user)
+  console.log("feyfuhejfkeuhjfhccdcdujefn", setUser)
+  const { login } = useAuthStore();
+  console.log("fgfbjkfuhbjefghbfuhwenm", login)
   const [isLoading, setIsLoading] = useState(false);
   const [formErrors, setFormErrors] = useState({});
   const [profileData, setProfileData] = useState({
     username: user?.username || "",
     profileImage: user?.profilePicture || "",
   });
+
+  console.log("fgshdjbscnsmcdhuwvbwscn", profileData);
 
   const handleChange = (field, value) => {
     if (field === "username" && value.length > 30)
@@ -46,7 +51,7 @@ function Profile() {
 
   const handleImageUpload = async (event) => {
     const file = event.target.files?.[0];
-    if (!file) return; // Prevent crash
+    if (!file) return;
 
     try {
       setIsLoading(true);
@@ -56,11 +61,11 @@ function Profile() {
 
       setProfileData((prev) => ({
         ...prev,
-        profileImage: uploadRes, // Correct image update
+        profileImage: uploadRes,
       }));
 
       toast.success("Profile picture uploaded!");
-      event.target.value = ""; // Clear input for safety
+      event.target.value = "";
     } catch (error) {
       toast.error(error?.message || "Image upload failed");
     } finally {
@@ -71,23 +76,30 @@ function Profile() {
   const handleContinue = async () => {
     const validate = setProfileValidation(profileData, setFormErrors);
 
-    if (!validate) {
-      toast.error("Please fix errors before submitting!");
-      return;
-    }
-
+    // if (!validate) {
+    //   toast.error("Please fix errors before submitting!");
+    //   return;
+    // }
+    console.log("vvvvvvvvvvvvvvvvvvv", validate);
     try {
       setIsLoading(true);
       const payload = {
         username: profileData.username,
         profilePicture: profileData.profileImage,
       };
+      console.log("fygiujkqcsaxsa", payload);
       const response = await setProfile(payload);
-
+      console.log("rrrrrrrrrrrrrrrrrrrrrrrr", response);
       if (response?.data?.status === "success") {
         const data = response?.data?.data;
-        setUser(data?.user);
-        navigate("/home");
+        console.log(response, "kskskskskskksks")
+        console.log("ddddddddddddddddddddddddd", data);
+        const token = response?.data?.data?.token;
+        console.log("ttttttttttttttttttttt", token);
+        const user = response?.data?.data?.user;
+        // setUser(data?.user);
+        // login(token, user);
+        navigate("/login");
         toast.success(response?.data?.message);
       } else {
         toast.error(response?.data?.message || "Login failed");
@@ -186,6 +198,6 @@ function Profile() {
       </Container>
     </AuthLayout>
   );
-}
+};
 
-export default Profile;
+export default UserProfile;

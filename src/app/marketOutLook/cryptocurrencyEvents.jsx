@@ -3,40 +3,44 @@ import BtcIcon from "../../assets/icons/bitcoin-logo.svg";
 import EthIcon from "../../assets/icons/eth-icon.svg";
 import CustomButton from "../../components/customButton";
 
-const CryptocurrencyEvents = () => {
+const CryptocurrencyEvents = ({ data, data2, data3 }) => {
+  console.log("OnChainSignals: ", data3); // ✅ Correct console
+
   const marketData = [
     {
-      title: "Bearish (60%)",
-      titleColor: "#FF4D4F",
-      description: "Drop of 15-25% over 2-3 days. Shorting opportunities.",
+      title: data?.event_0?.scenarios?.bearish?.label,
+      titleColor: data?.event_0?.scenarios?.bearish?.color,
+      description: data?.event_0?.scenarios?.bearish?.description,
     },
     {
-      title: "Neutral (25%)",
-      titleColor: "#FFE600",
-      description: "The team does not sell immediately, drop of 5-10%.",
+      title: data?.event_0?.scenarios?.neutral?.label,
+      titleColor: data?.event_0?.scenarios?.neutral?.color,
+      description: data?.event_0?.scenarios?.neutral?.description,
     },
     {
-      title: "Bullish (15%)",
-      titleColor: "#3EDD87",
-      description: "Team buyback + news = growth",
+      title: data?.event_0?.scenarios?.bullish?.label,
+      titleColor: data?.event_0?.scenarios?.bullish?.color,
+      description: data?.event_0?.scenarios?.bullish?.description, // 🔥 Corrected
     },
   ];
+
   const cards = [
     {
+      // title: data2.btcETF?.symbol,
       title: "BTC ETF",
-      value: "+ $623M (yesterday)",
-      text: "7 consecutive days of inflows!",
+      value: data2?.btcETF?.priceChange24h,
+      text: data2?.btcETF?.flowDescription,
       icon: BtcIcon,
     },
     {
       title: "ETH ETF",
-      value: "+ $314M (yesterday)",
-      text: "Recovery of interest",
+      value: data2?.ethETF?.priceChange24h,
+      text: data2?.ethETF?.flowDescription,
       icon: EthIcon,
     },
     {
       title: "Trend",
-      value: "Strong institutional demand",
+      value: data2.trendAnalysis,
       text: "",
       icon: null, // No icon
     },
@@ -49,14 +53,14 @@ const CryptocurrencyEvents = () => {
         </Typography>
       </Box>
       <Box mt="12px">
-        <Typography variant="h6" fontSize="15px">
-          APEX Token Unlock (Friday, 00:00 UTC)
+        <Typography variant="body1" fontWeight={500} fontSize="16px">
+          {data?.event_0?.title}
         </Typography>
         <Typography variant="body1" mt="20px" fontSize="12px">
-          Supply: 50M APEX ($10.5M)|% of supply: 3.2%
+          {data?.event_0?.description}
         </Typography>
         <Typography variant="body1" fontSize="13px" mt="5px">
-          Recipients: Team (60%), Early Investors (40%)
+          {data?.event_0?.recipients}
         </Typography>
       </Box>
       <Box>
@@ -67,7 +71,7 @@ const CryptocurrencyEvents = () => {
                 sx={{
                   color: "#fff",
                   padding: 2,
-                  borderRadius: 2,
+                  borderRadius: "30px",
                   height: "100%",
                   width: "100%",
                   backgroundColor: "#1C1C1C",
@@ -90,8 +94,8 @@ const CryptocurrencyEvents = () => {
       </Box>
       <Box mt="10px">
         <Typography color="#fff" fontSize="14px">
-          Best entry: 1-2 days after unlock, when selling subsides. Monitor
-          on-chain wallet movements of the team.
+          {/* {data?.cryptoEvent?.event_0?.bestEntry} */}
+          {data?.event_0?.bestEntry}
         </Typography>
       </Box>
       <Box mt="20px" variant="h6">
@@ -125,7 +129,7 @@ const CryptocurrencyEvents = () => {
 
                 <Box display="flex" gap="5px">
                   <Typography
-                    sx={{ color: "#4caf50", fontWeight: 500, fontSize: "13px" }}
+                    sx={{ color: data2?.btcETF?.priceChange24h.includes("-") ? "text.errorColor" : "text.greenColor", fontWeight: 500, fontSize: "13px" }}
                   >
                     {item.value}
                   </Typography>
@@ -140,7 +144,12 @@ const CryptocurrencyEvents = () => {
           ))}
         </Grid>
       </Box>
-      <Box mt="10px" backgroundColor="#1C1C1C" padding="20px" borderRadius="25px">
+      <Box
+        mt="10px"
+        backgroundColor="#1C1C1C"
+        padding="20px"
+        borderRadius="25px"
+      >
         <Box
           display="flex"
           alignItems="center"
@@ -149,54 +158,74 @@ const CryptocurrencyEvents = () => {
           borderRadius="20px"
         >
           <CustomButton
-            variant="gradient"
-            title="Conclusion"
+            title={data2?.conclusion?.label}
             sx={{
               borderRadius: "20px",
               width: { xs: "100%", md: "auto" },
-              backgroundColor: "#FFE600",
+              backgroundColor: "#FF6421",
               color: "#ffff",
-              padding: "4px 13px",
+              padding: "3px 35px",
             }}
           />
-          <Typography variant="h6" fontSize="13px">
-            Sustained inflows into BTC/ETH ETFs — a strong bullish indicator.
-            Institutions are accumulating positions. Supports further growth.
+          <Typography variant="h6" fontSize="13px" fontWeight={600}>
+            {data2?.conclusion?.message}
           </Typography>
         </Box>
       </Box>
       <Box mt="15px">
-        <Typography variant="h6">On-Chain Signals</Typography>
+        <Typography variant="h6" fontSize={"14px"}>
+          On-Chain Signals
+        </Typography>
       </Box>
       <Grid container spacing={3} mt="12px">
         <Grid item size={{ xs: 12, md: 3 }}>
-          <Typography variant="h5" fontSize="16px">Exchange Netflow</Typography>
-          <Typography mt="10px" variant="body1" fontSize="15px">
-            -15,000 BTC withdrawn from exchanges in a week —
-            <span style={{ color: "#3EDD87" }}>Bullish</span>
+          <Typography variant="h5" fontSize="14px">
+            Exchange Netflow
+          </Typography>
+          <Typography
+            mt="10px"
+            variant="body1"
+            fontWeight={400}
+            fontSize="15px"
+          >
+            {data3?.exchangeNetflow?.description}{" "}
+            <span style={{ color: "#3EDD87" }}>
+              {data3?.exchangeNetflow?.sentiment}
+            </span>
           </Typography>
         </Grid>
         <Grid item size={{ xs: 12, md: 3 }}>
-          <Typography variant="h5" fontSize="16px">Long/Short Ratio</Typography>
+          <Typography variant="h5" fontSize="15px">
+            Long/Short Ratio
+          </Typography>
           <Typography mt="10px" variant="body1" fontSize="15px">
-            52/48 <br /> slight imbalance, healthy balance
+            {data3?.longShortRatio?.value} <br />
+            {data3?.longShortRatio?.description}
           </Typography>
         </Grid>
         <Grid item size={{ xs: 12, md: 3 }}>
-          <Typography variant="h5" fontSize="16px">Funding Rate</Typography>
-          <Typography mt="10px" variant="body1" fontSize="15px">
-            +0.008% <br /> <span style={{ color: "#FFE600" }}>Neutral,</span> no
-            overheating
+          <Typography variant="h5" fontSize="16px">
+            Funding Rate
+          </Typography>
+          <Typography mt="10px" variant="body1" fontSize="15px" sx={{ color: data3?.fundingRate?.value.includes("-") ? "text.errorColor" : "text.greenColor" }}>
+            +{data3?.fundingRate?.value} <br />{" "}
+            <span style={{ color: "#FFE600" }}>
+              {data3?.fundingRate?.sentiment}{" "}
+            </span>
+            {data3?.fundingRate?.description}
           </Typography>
         </Grid>
         <Grid item size={{ xs: 12, md: 3 }}>
-          <Typography variant="h5" fontSize="16px">Open Interest</Typography>
+          <Typography variant="h5" fontSize="16px">
+            Open Interest
+          </Typography>
           <Typography mt="10px" variant="body1" fontSize="15px">
-            +8% over the week interest is growing
+            {data3?.openInterest?.value} <span>{data3?.openInterest?.description} </span>
           </Typography>
         </Grid>
       </Grid>
     </Box>
   );
 };
+
 export default CryptocurrencyEvents;

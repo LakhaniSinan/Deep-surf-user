@@ -1,48 +1,52 @@
 import { Box, Grid, Typography } from "@mui/material";
 import CustomButton from "../../components/customButton";
-import StarIcon from "../../assets/icons/Vector (3).svg";
+import StarIcon from "../../assets/icons/stairs.svg";
 import AttentionIcon from "../../assets/icons/attention.svg";
 import CircleIcon from "../../assets/icons/ellipse.svg";
 
-const Macroeconomics = () => {
+const Macroeconomics = ({ data }) => {
+  console.log("frjfurfhrhfu", data);
+  // console.log("ghrghghygrggrrg", data?.cpiReport);
+
   const economicReports = [
     {
-      title: "US CPI Report (Wednesday, 13:30 EST)",
-      forecast: "Forecast: 2.9% (previous: 3.0%)",
+      title: data?.unemploymentRate?.title,
+      forecast: "forecast",
+      forecast: data?.unemploymentRate?.forecast,
       impact: "Impact:",
-      status: " Extremely high (volatility 8-15%)",
+      status: data?.unemploymentRate?.impact,
     },
     {
-      title: "US Unemployment Rate (Thursday, 8:30 EST)",
-      forecast: "Forecast: 4.1% (previous: 4.2%)",
+      title: data?.cpiReport?.title,
+      forecast: data?.cpiReport?.forecast,
       impact: "Impact:",
-      status: "Positive for risk assets",
+      status: data?.cpiReport?.impact,
     },
   ];
 
   const steps = [
-    "24 hours BEFORE: Close 50% of positions with high leverage (10x). Set alerts at $50k and $53k.",
-    "2 hours BEFORE: Full risk-off. Do not open new positions. Tighten stops.",
-    "Exit moment: Wait 30–45 minutes! The first reaction is often false.",
-    "In 1–2 hours: If the direction is confirmed, enter with the trend at a reduced size.",
-    "In 2–4 hours: The market will find a new balance. Return to the usual strategy.",
+    data?.actionPlan[0],
+    data?.actionPlan[1],
+    data?.actionPlan[2],
+    data?.actionPlan[3],
+    data?.actionPlan[4],
   ];
 
   const marketData = [
     {
-      title: "Bullish",
-      titleColor: "text.greenColor",
-      description: "Forecast data or better: BTC tests $108k, altcoins 3-5%",
+      title: data?.scenarios?.bullish?.label,
+      titleColor: data?.scenarios?.bullish?.color,
+      description: data?.scenarios?.bullish?.description,
     },
     {
-      title: "Neutral",
-      titleColor: "text.yellowColor",
-      description: "Forecast data or better: BTC tests $108k, altcoins 3-5%",
+      title: data?.scenarios?.neutral?.label,
+      titleColor: data?.scenarios?.neutral?.color,
+      description: data?.scenarios?.neutral?.description,
     },
     {
-      title: "Bearish",
-      titleColor: "text.lightRedColor",
-      description: "Forecast data or better: BTC tests $108k, altcoins 3-5%",
+      title: data?.scenarios?.bearish?.label,
+      titleColor: data?.scenarios?.bearish?.color,
+      description: data?.scenarios?.bearish?.description,
     },
   ];
 
@@ -51,19 +55,22 @@ const Macroeconomics = () => {
       <Box
         backgroundColor="#161616"
         borderRadius="20px"
-        padding="20px"
+        padding="25px"
         mt="20px"
       >
-        <Typography variant="h1" fontSize="20px">
+        <Typography variant="h1" fontSize="20px" fontWeight={600}>
           Macroeconomics
         </Typography>
-        <Grid container spacing={1} padding="15px">
-          <Grid item xs={12}>
+        <Grid container spacing={1} mt={2}>
+          <Grid item size={{xs : 12}}>
             <Box
               display="flex"
               alignItems="center"
               gap="20px"
               flexWrap={{ xs: "wrap", md: "nowrap" }}
+              backgroundColor="#1C1C1C"
+              padding="20px 20px"
+              borderRadius={"20px"}
             >
               <CustomButton
                 variant="gradient"
@@ -71,23 +78,21 @@ const Macroeconomics = () => {
                 icon={<img src={StarIcon} style={{ width: 20, height: 20 }} />}
                 sx={{
                   borderRadius: "20px",
-                  padding: "4px 10px",
+                  padding: "4px 30px",
                   minWidth: "auto",
                   width: { xs: "100%", md: "auto" },
                   backgroundColor: "#FFE600",
-                  color: "#000000",
+                  color: "#fff",
                 }}
               />
 
               <Typography
                 variant="body2"
-                fontSize="14px"
-                flex={{ xs: "100%", md: "1" }} // 👈 laptop per text properly stretch kare
+                fontSize="13px"
+                flex={{ xs: "100%", md: "1" }}
+                fontWeight={500}
               >
-                The unemployment rate improved from 4.2% to 4.1%. This is a
-                positive ('bullish') signal. A strong but not overheated labor
-                market supports the Fed's view of a potential 'soft landing' for
-                the economy.
+             {data?.summary}
               </Typography>
             </Box>
           </Grid>
@@ -105,9 +110,10 @@ const Macroeconomics = () => {
                   width: "100%",
                 }}
               >
-                <Typography variant="h6" fontSize="14px">
+                <Typography variant="h6" fontWeight={500} fontSize="13px">
                   {report.title}
                 </Typography>
+
                 <Typography mt="10px" variant="body1" fontSize="14px">
                   {report.forecast}
                 </Typography>
@@ -141,10 +147,20 @@ const Macroeconomics = () => {
                     backgroundColor: "#1C1C1C",
                   }}
                 >
-                  <Typography variant="body1" color={item.titleColor}>
+                  <Typography
+                    variant="h6"
+                    fontWeight={500}
+                    color={item.titleColor}
+                    fontSize={"16px"}
+                  >
                     {item.title}
                   </Typography>
-                  <Typography mt="10px" variant="body1" fontSize="15px">
+                  <Typography
+                    mt="10px"
+                    variant="h6"
+                    fontWeight={400}
+                    fontSize="13px"
+                  >
                     {item.description}
                   </Typography>
                 </Box>
@@ -158,31 +174,30 @@ const Macroeconomics = () => {
             display="flex"
             alignItems="center"
             gap="20px"
-            flexWrap="wrap"
+            // flexWrap="wrap"
             borderRadius="20px"
+            flexDirection={{ xs: "column", md: "row" }} // 👈 Ye add karo
           >
             <CustomButton
               variant="h6"
               title="Attention"
               icon={<img src={AttentionIcon} />}
               sx={{
-                borderRadius: "20px",
+                borderRadius: "18px",
                 width: { xs: "100%", md: "auto" },
                 backgroundColor: "#FFE600",
                 color: "#000000",
-                padding: "4px 13px",
+                padding: "3px 50px",
               }}
             />
-            <Typography variant="h4" fontSize="13px">
-              Consumer Price Index (CPI) data — a key event for all markets!
-              Expect high volatility — in the first 2 hours, movement could
-              reach 8.7%.
+            <Typography variant="h4" fontSize="12px" fontWeight={500}>
+              {data?.summary}
             </Typography>
           </Box>
         </Box>
         <Box
           sx={{
-            padding: { xs: "16px", sm: "20px" }, // ⭐ Mobile: kam padding
+            padding: { xs: "16px", sm: "20px" },
             borderRadius: "12px",
           }}
         >
@@ -191,8 +206,8 @@ const Macroeconomics = () => {
             sx={{
               color: "#fff",
               mb: 2,
-              fontWeight: 600,
-              fontSize: "20px",
+              fontWeight: 500,
+              fontSize: "16px",
             }}
           >
             Detailed action plan:
@@ -204,10 +219,10 @@ const Macroeconomics = () => {
               key={index}
               sx={{
                 marginBottom: "13px",
-                display: "flex", // 👈 force flex layout
-                flexDirection: "row", // 👈 ensure icon and text are side by side
+                display: "flex",
+                flexDirection: "row",
                 alignItems: "flex-start",
-                flexWrap: "nowrap", // 👈 icon break na ho
+                flexWrap: "nowrap",
               }}
             >
               <Box
@@ -215,8 +230,8 @@ const Macroeconomics = () => {
                   display: "flex",
                   position: "relative",
                   alignItems: "flex-start",
-                  marginRight: "10px",
-                  flexShrink: 0, // 👈 icon compress na ho
+                  marginRight: "20px",
+                  flexShrink: 0,
                 }}
               >
                 {index !== steps.length - 1 && (
@@ -248,33 +263,35 @@ const Macroeconomics = () => {
                   color: "#ccc",
                   fontSize: "13px",
                   wordBreak: "break-word",
-                  flex: 1, // 👈 text ko expand hone do
+                  flex: 1,
                 }}
               >
                 {text}
               </Typography>
             </Grid>
           ))}
-
-          <Typography
-            sx={{
-              mt: 2,
-              color: "#aaa",
-              fontSize: { xs: "12px", sm: "14px" }, // ⭐ Mobile: chota footnote
-            }}
-          >
-            Historical data: If CPI comes in below forecast, the stock market
-            (S&P 500) typically rises by +0.2% on average within 24 hours.
-          </Typography>
+          <Box mt={"30px"}>
+            <Typography
+              sx={{
+                mt: 2,
+                color: "#FFFFFF",
+                fontSize: { xs: "12px", sm: "15px" },
+                fontWeight: "400px",
+              }}
+            >
+              {data?.historicalContext}
+            </Typography>
+          </Box>
         </Box>
         <Box padding="10px">
-          <Typography variant="h3" fontSize="17px">Fed Speeches</Typography>
-          <Typography mt="10px" fontSize="14px" variant="body1">
-            Powell: No scheduled events
+          <Typography variant="h3" fontWeight={600} fontSize="18px">
+            Fed Speeches
           </Typography>
-          <Typography fontSize="14px" variant="body1" fontStyle="14px">
-            Other members: Williams (Tuesday), Bostic (Wednesday) watch for
-            hawkish rhetoric
+          <Typography mt="10px" fontSize="14px">
+            Powell:{data?.fedSpeeches?.powell}
+          </Typography>
+          <Typography fontSize="14px" variant="body1">
+            {data?.fedSpeeches?.otherMembers}
           </Typography>
         </Box>
       </Box>

@@ -1,27 +1,35 @@
-import { Box, Grid, Typography } from "@mui/material";
-import React from "react";
+import { Box, Grid, LinearProgress, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import CustomButton from "../../components/customButton";
-const Pattern = () => {
+const Pattern = ({ coinData }) => {
+  console.log("3333333333333333333333", coinData?.aiAnalysis);
+  const confidenceStr = coinData?.patternRecognition?.[0]?.confidence || "0%";
+  const confidenceValue = Number(confidenceStr.replace("%", ""));
+
   return (
     <>
       <Box>
         <Grid container spacing={2} mt="15px">
-          <Grid item xs={12} md={3}>
+          <Grid item size={{ xs: 12, md: 4 }}>
             <Box
               display="flex"
               alignItems="center"
-              justifyContent="space-between"
               gap="20px"
             >
-              <Typography variant="h4">Pattern Recognition</Typography>
+              <Typography variant="h4" fontSize={"20px"}>
+                Pattern Recognition
+              </Typography>
               <CustomButton
                 variant="h6"
-                title="2 found"
+                title={`${coinData?.patternRecognition?.[0]?.totalPatternsFound} found`}
                 sx={{
-                  fontSize: "15px",
+                  fontSize: "13px",
                   backgroundColor: "transparent",
-                  border: "1px solid #FFFFFF",
+                  border: "0.2px solid accent.contrastText",
                   borderRadius: "15px",
+                  px: "30px",
+                  py: "0px",
+                  minHeight: "40px",
                 }}
               />
             </Box>
@@ -30,42 +38,48 @@ const Pattern = () => {
       </Box>
       <Box
         display="flex"
-        flexDirection={{ xs: "column", md: "row" }} // ← responsive fix
+        flexDirection={{ xs: "column", md: "row" }}
         justifyContent="space-between"
         alignItems={{ xs: "flex-start", md: "center" }}
         backgroundColor="#1C1C1C"
         padding="15px"
         borderRadius="8px"
         marginTop="20px"
-        gap={{ xs: 2, md: 0 }} // Mobile me thora gap aayega
+        gap={{ xs: 2, md: 0 }}
       >
-        {/* LEFT SIDE — 5 TEXTS */}
         <Box gap="12px">
-          <Typography variant="h4" color="text.lightRedColor">
-            Double Top
+          <Typography variant="h4" fontSize={"16px"} color="text.lightRedColor">
+            {coinData?.patternRecognition?.[1]?.name}
           </Typography>
-          <Typography variant="body1" color="text.grey">
-            Bearish pattern
+          <Typography variant="body1" color={coinData?.patternRecognition?.[1]?.type === "Neutral" ? "text.yellowColor" : "text.greenColor"}>
+            {coinData?.patternRecognition?.[1]?.type}
           </Typography>
           <Typography
             variant="h5"
-            color="#fff"
+            color="accent.contrastText"
             mt="10px"
             fontSize={"15px"}
             fontWeight={400}
           >
-            Double Top at 3762.80, Support 3692.96, Target 3623.12
+            {coinData?.patternRecognition?.[1]?.description}
           </Typography>
-
           <Box mt="10px">
             <CustomButton
               variant="h6"
               backgroundColor="#1A1A1A"
               title={
-                <span style={{ color: "#FFFFFF", fontSize: "20px" }}>
+                <span style={{ color: "accent.contrastText", fontFamily: "'Inter', sans-serif", fontSize: "15px" }}>
                   Target :{" "}
-                  <span style={{ color: "red", transition: "all 0.3s ease" }}>
-                    $3623.12
+                  <span
+                    style={{
+                      color: "red",
+                      transition: "all 0.3s ease",
+                      fontSize: "15px",
+                      py: "8px",
+                      fontFamily: "'Inter', sans-serif"
+                    }}
+                  >
+                    {`${coinData?.patternRecognition?.[1]?.target}`}
                   </span>
                 </span>
               }
@@ -76,26 +90,31 @@ const Pattern = () => {
             />
           </Box>
         </Box>
-
-        {/* RIGHT SIDE — BUTTON */}
         <Box width={{ xs: "100%", md: "auto" }} mt={{ xs: 2, md: 0 }}>
-          <Typography color="#FFFFFF" variant="h6">
-            Confidence: 80%
-          </Typography>
-          <Box
-            backgroundColor="accent.main"
-            borderRadius="8px"
-            mt="5px"
-            p="5px 10px"
-            width={{ xs: "100%", md: "70%" }}
-          ></Box>
+          <Box>
+            <Box>{` Confidence: ${confidenceValue}%`}</Box>
+            <Box sx={{ width: "100%", mt: 2 }}>
+              <LinearProgress
+                variant="determinate"
+                value={confidenceValue}
+                sx={{
+                  height: 10,
+                  borderRadius: "30px",
+                  bgcolor: "text.Gainsboro",
+                  fontFamily: "'inter'",
+                  "& .MuiLinearProgress-bar": {
+                    bgcolor: "accent.main",
+                    borderRadius: "30px",
+                  },
+                }}
+              />
+            </Box>
+          </Box>
         </Box>
-      </Box>
-
-      {/* SECOND CARD */}
+      </Box >
       <Box
         display="flex"
-        flexDirection={{ xs: "column", md: "row" }} // responsive fix
+        flexDirection={{ xs: "column", md: "row" }}
         justifyContent="space-between"
         alignItems={{ xs: "flex-start", md: "center" }}
         backgroundColor="#1C1C1C"
@@ -106,10 +125,10 @@ const Pattern = () => {
       >
         <Box gap="12px">
           <Typography variant="h4" color="text.lightRedColor">
-            Rising Wedge
+            {coinData?.patternRecognition?.[0]?.name}
           </Typography>
-          <Typography variant="body1" color="text.grey">
-            Bearish pattern
+          <Typography variant="body1" color={coinData?.patternRecognition?.[0]?.type ? "text.greenColor" : "text.yellowColor"}>
+            {coinData?.patternRecognition?.[0]?.type}
           </Typography>
 
           <Typography
@@ -119,8 +138,7 @@ const Pattern = () => {
             fontSize={"15px"}
             fontWeight={400}
           >
-            Rising Wedge: Bearish pattern, waiting for breakdown → Target
-            3817.67
+            {coinData?.patternRecognition?.[0]?.description}
           </Typography>
 
           <Box
@@ -133,8 +151,12 @@ const Pattern = () => {
               variant="h6"
               backgroundColor="#1A1A1A"
               title={
-                <span style={{ color: "#FFFFFF", fontSize: "20px" }}>
-                  Target : <span style={{ color: "red" }}>$3623.12</span>
+                <span style={{ color: "#FFFFFF", fontSize: "15px" }}>
+                  Target :{" "}
+                  <span style={{ color: "red" }}>
+                    {" "}
+                    {coinData?.patternRecognition?.[0]?.target}
+                  </span>
                 </span>
               }
               sx={{
@@ -147,8 +169,12 @@ const Pattern = () => {
               variant="h1"
               backgroundColor="#1A1A1A"
               title={
-                <span style={{ color: "#FFFFFF", fontSize: "20px" }}>
-                  Breakout : <span style={{ color: "red" }}>$3951.72</span>
+                <span style={{ color: "#FFFFFF", fontSize: "15px" }}>
+                  Breakout :{" "}
+                  <span style={{ color: "red" }}>
+                    {" "}
+                    {coinData?.patternRecognition?.[0]?.breakout}
+                  </span>
                 </span>
               }
               sx={{
@@ -160,36 +186,43 @@ const Pattern = () => {
         </Box>
 
         <Box width={{ xs: "100%", md: "auto" }} mt={{ xs: 2, md: 0 }}>
-          <Typography color="#FFFFFF" variant="h6">
-            Confidence: 75%
-          </Typography>
-          <Box
-            backgroundColor="accent.main"
-            borderRadius="8px"
-            mt="5px"
-            p="5px 10px"
-            width={{ xs: "100%", md: "70%" }}
-          ></Box>
+          <Box>
+            <Box>{` Confidence: ${confidenceValue}%`}</Box>
+
+            <Box sx={{ width: "100%", mt: 2 }}>
+              <LinearProgress
+                variant="determinate"
+                value={confidenceValue}
+                sx={{
+                  height: 10,
+                  borderRadius: "30px",
+                  bgcolor: "text.Gainsboro",
+                  "& .MuiLinearProgress-bar": {
+                    bgcolor: "accent.main",
+                    borderRadius: "30px",
+                  },
+                }}
+              />
+            </Box>
+          </Box>
         </Box>
       </Box>
 
-      <Grid container spacing={2} marginTop={5}>
+      <Grid container spacing={2} marginTop={3} backgroundColor="background.lightGray" p={2} borderRadius={"10px"}>
         <Grid item size={{ xs: 12, sm: 2 }}>
-          <Box display={"flex"} alignItems={"center"} gap={2}>
+          <Box display={"flex"} alignItems={"center"} gap={1} >
             <CustomButton
-              sx={{
-                borderRadius: "10px",
-              }}
-              variant={"gradient"}
               title="How to use"
+              sx={{
+                borderRadius: "20px",
+                backgroundColor: "accent.main",
+              }}
             />
           </Box>
         </Grid>
-        <Grid item size={{ xs: 12, sm: 10 }}>
-          <Typography variant="body1" fontSize={15}>
-            Patterns are historically proven formations that often lead to
-            predictable price movements. High Confidence (75%) = strong pattern.
-            Always wait for a breakout for confirmation!
+        <Grid item mt={1} size={{ xs: 12, sm: 10 }}>
+          <Typography variant="body1" fontSize={15} fontWeight={600}>
+            {coinData?.aiAnalysis}
           </Typography>
         </Grid>
       </Grid>
