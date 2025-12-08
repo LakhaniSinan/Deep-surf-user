@@ -191,7 +191,7 @@ const CryptocurrencyEvents = () => {
         </Grid>
         <Grid item size={{ xs: 12, md: 3 }}>
           <Typography variant="h5" fontSize="16px">Open Interest</Typography>
-          <Typography mt="10px"variant="body1" fontSize="15px">
+          <Typography mt="10px" variant="body1" fontSize="15px">
             +8% over the week interest is growing
           </Typography>
         </Grid>
@@ -199,5 +199,4 @@ const CryptocurrencyEvents = () => {
     </Box>
   );
 };
-
 export default CryptocurrencyEvents;
