@@ -1,16 +1,23 @@
-import { Box, Grid, Typography } from "@mui/material";
-import React from "react";
+import { Box, Grid, Stack, Typography } from "@mui/material";
+import React, { useEffect } from "react";
 import CustomButton from "../../../components/customButton";
-// import Limited from "../../../assets/icons/limited.png";
 import Okx from "../../../assets/icons/okx.png";
 import Binance from "../../../assets/icons/binance.png";
 import Bybit from "../../../assets/icons/bybit.png";
 import Mexc from "../../../assets/icons/mexc.png";
 import BitGet from "../../../assets/icons/bitget.svg";
 import Bing from "../../../assets/icons/bing x.png";
-import TimingImages from "../../../assets/icons/timing.png"
+import TimingImages from "../../../assets/images/timing-image.png";
+import logos from "../../../assets/images/logos.png"
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const AiDriven = () => {
+
+  useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+  }, []);
+
   return (
     <>
       <Box
@@ -18,31 +25,30 @@ const AiDriven = () => {
         alignItems="center"
         gap={1}
         mt={7}
+        data-aos="fade-down"
         sx={{
-          // border: "1px solid #FFF3EA",
           borderRadius: "30px",
           padding: "9px 14px",
-          background: "rgba(52, 30, 21, 0.5)", // 0.5 transparency
+          background: "rgba(52, 30, 21, 0.5)",
           backdropFilter: "blur(10px)",
-
           cursor: "pointer",
-          alignItems: "center"
+          alignItems: "center",
         }}
       >
         <img src={TimingImages} alt="timer" style={{ width: 16, height: 16 }} />
-
-        <h5 style={{
-          background: 'linear-gradient(to right, #FFB37D, #FFF3EA)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          fontFamily: "'inter' , san-sarif",
-          fontWeight: "500"
-        }}>
-          Limited access
+        <h5
+          style={{
+            background: "linear-gradient(to right, #FFB37D, #FFF3EA)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            fontFamily: "'inter', sans-serif",
+            fontWeight: "500",
+          }}
+        >
+          AI analysis
         </h5>
       </Box>
-
-      <Box mt={5}>
+      <Box mt={5} data-aos="fade-up">
         <Typography
           color="accent.contrastText"
           fontSize={{ xs: 30, md: 60 }}
@@ -56,7 +62,7 @@ const AiDriven = () => {
           AI-driven Trading <br /> Intelligence Engine
         </Typography>
       </Box>
-      <Box mt={4.8}>
+      <Box mt={4.8} data-aos="fade-up">
         <Typography
           color="text.CoolGray"
           fontSize={{ xs: 12, md: 16 }}
@@ -70,21 +76,22 @@ const AiDriven = () => {
           time market data, and years of quantitative research.
         </Typography>
       </Box>
-      <Box mt={4}>
+      <Box mt={4} data-aos="zoom-in">
         <CustomButton
           title="Get started"
-          variant="calculatorToggle"
           sx={{
-            // backgroundColor: "#FF6C03",
             color: "#fff",
-            bodrerRadius: "10px",
+            borderRadius: "10px",
+            background: "#FF6C03",
+            fontSize: "16px",
+            px: "45px",
             "&:hover": {
               boxShadow: "0px 6px 25px rgba(255,150,0,0.5)",
             },
           }}
         />
       </Box>
-      <Box mt={16} textAlign={"center"}>
+      <Box mt={16} textAlign={"center"} data-aos="fade-up">
         <Typography
           color="accent.contrastText"
           fontSize={{ xs: 20, md: 33 }}
@@ -105,6 +112,7 @@ const AiDriven = () => {
         >
           Built for those who think in probabilities, not predictions.
         </Typography>
+
         <Grid
           container
           spacing={{ xs: 1, md: 13 }}
@@ -112,62 +120,21 @@ const AiDriven = () => {
           alignItems="center"
           justifyContent={{ xs: "space-between", md: "space-evenly" }}
           wrap="nowrap"
+          data-aos="fade-up"
         >
-          <Grid item xs="auto">
+          {/* {[Okx, Binance, Bybit, Mexc, BitGet, Bing].map((img, index) => (
+            <Grid item xs="auto" key={index} sx={{ alignItems: "center" }}> */}
+          <Stack px={3} alignItems={"center"}>
             <Box
               component="img"
-              src={Okx}
-              alt="Okx"
-              sx={{ width: { xs: 25, md: 40 } }}
+              src={logos}
+              alt="logo"
+              sx={{ width: { xs: "80%", md: "54%" } }}
             />
-          </Grid>
-
-          <Grid item xs="auto">
-            <Box
-              component="img"
-              src={Binance}
-              alt="Binance"
-              sx={{ width: { xs: 22, md: 40 } }}
-            />
-          </Grid>
-
-          <Grid item xs="auto">
-            <Box
-              component="img"
-              src={Bybit}
-              alt="Bybit"
-              sx={{ width: { xs: 22, md: 40 } }}
-            />
-          </Grid>
-
-          <Grid item xs="auto">
-            <Box
-              component="img"
-              src={Mexc}
-              alt="Mexc"
-              sx={{ width: { xs: 22, md: 40 } }}
-            />
-          </Grid>
-
-          <Grid item xs="auto">
-            <Box
-              component="img"
-              src={BitGet}
-              alt="BitGet"
-              sx={{ width: { xs: 22, md: 40 } }}
-            />
-          </Grid>
-
-          <Grid item xs="auto">
-            <Box
-              component="img"
-              src={Bing}
-              alt="Bing"
-              sx={{ width: { xs: 24, md: 45 } }}
-            />
-          </Grid>
+          </Stack>
+          {/* </Grid> */}
+          {/* ))} */}
         </Grid>
-
       </Box>
     </>
   );

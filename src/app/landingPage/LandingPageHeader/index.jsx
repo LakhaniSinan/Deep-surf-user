@@ -7,8 +7,7 @@ import logo from "../../../assets/images/Deepsurf-logo.png";
 import NavigationDrawer from "./drawer";
 import { headerStyles } from "./styles";
 import WaitlistDialog from "../../../components/waitList";
-import NavbarAnimation from "./navbarAnimation";
-import "./navbarAnimation.css";
+
 
 const Header = () => {
   const navigate = useNavigate();
@@ -49,27 +48,16 @@ const Header = () => {
 
   return (
     <>
-      {/* HEADER */}
-      <NavbarAnimation
-        width="100%"
-        height={80}
-        borderRadius={0}
-        brightness={50}
-        opacity={0.95}
-        blur={15}
-        displace={0}
-        backgroundOpacity={0.5}
-        className="header-glass"
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 9999,
-          border: '2px solid red'
-        }}
-      >
-        <Box 
+
+      <Box py={2} sx={{
+        background: "linear-gradient(to top, rgba(0,0,0,0.3), rgba(0,0,0,0.3))",
+        position: "fixed",
+        left: 0,
+        right: 0,
+        zIndex: 999
+
+      }}>
+        <Box
           sx={{
             display: 'flex',
             alignItems: 'center',
@@ -126,15 +114,11 @@ const Header = () => {
               );
             })}
           </Box>
-
-          {/* Mobile Menu Button */}
           <IconButton onClick={handleDrawerToggle} sx={headerStyles.menuButton}>
             <MenuIcon sx={{ fontSize: "24px" }} />
           </IconButton>
         </Box>
-      </NavbarAnimation>
-
-      {/* Mobile Drawer */}
+      </Box>
       <NavigationDrawer
         open={drawerOpen}
         onClose={handleDrawerToggle}
@@ -143,7 +127,6 @@ const Header = () => {
         onNavClick={handleNavClick}
       />
 
-      {/* Waitlist Dialog Component */}
       <WaitlistDialog
         open={waitlistOpen}
         onClose={() => setWaitlistOpen(false)}

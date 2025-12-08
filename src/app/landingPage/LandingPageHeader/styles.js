@@ -5,16 +5,10 @@ export const headerStyles = {
     justifyContent: "space-between",
     alignItems: "center",
     px: { xs: 2, sm: 2, md: 20 },
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: 999,
-    
-    // px: {xs : 5 , sm : 2 , md : 30}
-  },
+ 
+    },
   logo: {
-    width: { xs: 100, sm: 120, md: 140 },
+    width: { xs: 100, sm: 120, md: 120 },
     height: "auto",
     maxWidth: "100%",
   },

@@ -6,6 +6,7 @@ import ProPerietaryTech from "./proprietaryTech/index.jsx";
 import InSideDeep from "./inSideDeep.jsx/index.jsx";
 import JoinSection from "./footer/index.jsx";
 
+
 const LandingPage = () => {
   return (
     <>

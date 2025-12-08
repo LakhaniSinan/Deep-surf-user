@@ -6,10 +6,18 @@ import { APP_Route, AUTH_ROUTES } from "./routes";
 import { AuthProtectedLayout, ProtectedLayout } from "./routes/routeLayout";
 import LandingPage from "./app/landingPage";
 import UserProfile from "./app/auth/profile";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 
 function App() {
+  AOS.init({
+    duration: 800,
+    once: true,
+  });
   return (
     <>
+
       {/* Global ToastContainer */}
       <ToastContainer />
 

@@ -1,25 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Typography, Stack } from "@mui/material";
 import CustomButton from "../../../components/customButton";
 import CustomInput from "../../../components/customInput";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import TeleGramIcon from "../../../assets/icons/telegram.svg";
 import DiscardIcon from "../../../assets/icons/discord.svg";
 import XIcon from "../../../assets/icons/x.svg";
 
 const JoinSection = () => {
+
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+  }, []);
+
   return (
     <Box
       sx={{
-        width: { xs: "100%", sm: "85%", md: "85%" },
+        width: { xs: "100%", sm: "85%", md: "81%" },
         py: { xs: 2, md: 3 },
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         px: { xs: 1, sm: 2, md: 6 },
-        marginTop: "8px",
+        mt: "8px",
       }}
+      data-aos="fade-up"
     >
       <Box
+        data-aos="zoom-in"
         sx={{
           width: "100%",
           backgroundColor: "#1A1A1A",
@@ -32,18 +43,17 @@ const JoinSection = () => {
         {/* Tag Button */}
         <Box display="flex" justifyContent="center" alignItems="center">
           <Box
-            display={"flex"}
-            alignItems={"center"}
+            data-aos="fade-down"
             sx={{
               backgroundColor: "#3EDD871C",
+              display: "flex",
+              alignItems: "center",
               px: { xs: 2, sm: 3, md: 3 },
               py: 2,
               borderRadius: "30px",
-              width: "fit-content",
               gap: 1,
             }}
           >
-            {/* Dot */}
             <Box
               sx={{
                 width: "8px",
@@ -52,20 +62,13 @@ const JoinSection = () => {
                 borderRadius: "50%",
               }}
             />
-
-            {/* Text using Typography */}
             <Typography
               sx={{
                 color: "#3EDD87",
                 fontSize: "12px",
                 fontWeight: 500,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                textAlign: "center",
                 lineHeight: 1,
-                cursor: "default",
-                fontFamily: "inter"
+                fontFamily: "inter",
               }}
             >
               Access is by invitation only
@@ -73,9 +76,9 @@ const JoinSection = () => {
           </Box>
         </Box>
 
-
         {/* Heading */}
         <Typography
+          data-aos="fade-up"
           sx={{
             fontSize: { xs: "22px", sm: "30px", md: "40px" },
             fontWeight: { xs: 600, md: 700 },
@@ -90,6 +93,8 @@ const JoinSection = () => {
 
         {/* Description */}
         <Typography
+          data-aos="fade-up"
+          data-aos-delay="150"
           sx={{
             color: "#A3A3A3",
             fontSize: { xs: "12px", sm: "14px" },
@@ -102,6 +107,8 @@ const JoinSection = () => {
 
         {/* Input + Button */}
         <Stack
+          data-aos="fade-up"
+          data-aos-delay="250"
           direction={{ xs: "column", sm: "row" }}
           spacing={1}
           justifyContent="center"
@@ -138,9 +145,11 @@ const JoinSection = () => {
           />
         </Stack>
       </Box>
-
-      {/* Footer Section */}
-      <Box sx={{ textAlign: "center", mt: { xs: 6, md: 7 } }}>
+      <Box
+        sx={{ textAlign: "center", mt: { xs: 6, md: 7 } }}
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
         <Typography
           sx={{
             color: "#fff",
@@ -156,21 +165,14 @@ const JoinSection = () => {
 
         {/* Icons */}
         <Stack
+          // data-aos="zoom-in"
           direction="row"
           spacing={{ xs: 3, md: 6 }}
           justifyContent="center"
           mt={{ xs: 6, md: 4 }}
         >
-          <Box
-            component="img"
-            src={TeleGramIcon}
-            sx={{ width: { xs: 20, sm: 24 } }}
-          />
-          <Box
-            component="img"
-            src={DiscardIcon}
-            sx={{ width: { xs: 20, sm: 24 } }}
-          />
+          <Box component="img" src={TeleGramIcon} sx={{ width: { xs: 20, sm: 24 } }} />
+          <Box component="img" src={DiscardIcon} sx={{ width: { xs: 20, sm: 24 } }} />
           <Box component="img" src={XIcon} sx={{ width: { xs: 20, sm: 24 } }} />
         </Stack>
       </Box>

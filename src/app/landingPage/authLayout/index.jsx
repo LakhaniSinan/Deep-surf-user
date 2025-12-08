@@ -1,6 +1,6 @@
 // Layout.jsx
 import { Box } from "@mui/material";
-// import Header from "../../landingPage/LandingPageHeader";
+import Header from "../../landingPage/LandingPageHeader";
 import bgImage from "../../../assets/images/background.png";
 
 const Layout = ({ children }) => {
@@ -8,13 +8,17 @@ const Layout = ({ children }) => {
     <Box
       sx={{
         minHeight: "100vh",
-        backgroundImage: `url(${bgImage})`,
+        backgroundImage: `
+    linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0)),
+    url(${bgImage})
+  `,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
+
     >
-      {/* <Header /> */}
+      <Header />
       <Box
         sx={{
           paddingTop: {
@@ -23,7 +27,7 @@ const Layout = ({ children }) => {
             md: "180px"
           },
           display: "flex",
-          // justifyContent: "center",
+          justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
         }}
