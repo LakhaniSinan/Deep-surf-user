@@ -19,18 +19,19 @@ const JoinSection = () => {
   return (
     <Box
       sx={{
-        width: { xs: "100%", sm: "85%", md: "81%" },
+        width: { xs: "100%", sm: "85%", md: "100%" },
         py: { xs: 2, md: 3 },
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        px: { xs: 1, sm: 2, md: 6 },
         mt: "8px",
       }}
       data-aos="fade-up"
+      overflow={"hidden"}
     >
       <Box
         data-aos="zoom-in"
+        overflow={"hidden"}
         sx={{
           width: "100%",
           backgroundColor: "#1A1A1A",
@@ -44,6 +45,7 @@ const JoinSection = () => {
         <Box display="flex" justifyContent="center" alignItems="center">
           <Box
             data-aos="fade-down"
+            overflow={"hidden"}
             sx={{
               backgroundColor: "#3EDD871C",
               display: "flex",
@@ -79,6 +81,7 @@ const JoinSection = () => {
         {/* Heading */}
         <Typography
           data-aos="fade-up"
+          overflow={"hidden"}
           sx={{
             fontSize: { xs: "22px", sm: "30px", md: "40px" },
             fontWeight: { xs: 600, md: 700 },
@@ -95,6 +98,7 @@ const JoinSection = () => {
         <Typography
           data-aos="fade-up"
           data-aos-delay="150"
+          overflow={"hidden"}
           sx={{
             color: "#A3A3A3",
             fontSize: { xs: "12px", sm: "14px" },
@@ -109,6 +113,7 @@ const JoinSection = () => {
         <Stack
           data-aos="fade-up"
           data-aos-delay="250"
+          overflow={"hidden"}
           direction={{ xs: "column", sm: "row" }}
           spacing={1}
           justifyContent="center"
@@ -149,6 +154,7 @@ const JoinSection = () => {
         sx={{ textAlign: "center", mt: { xs: 6, md: 7 } }}
         data-aos="fade-up"
         data-aos-delay="200"
+        overflow={"hidden"}
       >
         <Typography
           sx={{
@@ -167,6 +173,7 @@ const JoinSection = () => {
         <Stack
           // data-aos="zoom-in"
           direction="row"
+          overflow={"hidden"}
           spacing={{ xs: 3, md: 6 }}
           justifyContent="center"
           mt={{ xs: 6, md: 4 }}

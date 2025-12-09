@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import Layout from "./authLayout";
 import AiDriven from "./aiDrivenTrading";
 import AiDrivenCard from "./aiDrivenCard.jsx";
@@ -21,10 +21,12 @@ const LandingPage = () => {
           flexDirection: "column",
         }}
       >
-        <AiDrivenCard />
-        <ProPerietaryTech />
-        <InSideDeep />
-        <JoinSection />
+        <Container maxWidth="lg" sx={{ mt: 8 }}>
+          <AiDrivenCard />
+          <ProPerietaryTech />
+          <InSideDeep />
+          <JoinSection />
+        </Container>
       </Box>
     </>
   );

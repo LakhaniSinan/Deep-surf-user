@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Box, IconButton, Button } from "@mui/material";
+import { Box, IconButton, Button, AppBar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../../../assets/images/Deepsurf-logo.png";
@@ -40,7 +40,6 @@ const Header = () => {
       setWaitlistOpen(true);
       return;
     }
-
     setActiveNav(item.label);
     navigate(item.link);
     setDrawerOpen(false);
@@ -48,15 +47,16 @@ const Header = () => {
 
   return (
     <>
-
-      <Box py={2} sx={{
-        background: "linear-gradient(to top, rgba(0,0,0,0.3), rgba(0,0,0,0.3))",
-        position: "fixed",
-        left: 0,
-        right: 0,
-        zIndex: 999
-
-      }}>
+      <AppBar
+        position="fixed"
+        sx={{
+          background: "linear-gradient(to top, rgba(0,0,0,0.3), rgba(0,0,0,0.3))",
+          boxShadow: "none",
+          px: { xs: 0, sm: 1, md: 18 },
+          py: 2,
+          zIndex: 999,
+        }}
+      >
         <Box
           sx={{
             display: 'flex',
@@ -115,10 +115,10 @@ const Header = () => {
             })}
           </Box>
           <IconButton onClick={handleDrawerToggle} sx={headerStyles.menuButton}>
-            <MenuIcon sx={{ fontSize: "24px" }} />
+            <MenuIcon sx={{ fontSize: "20px" }} />
           </IconButton>
         </Box>
-      </Box>
+      </AppBar>
       <NavigationDrawer
         open={drawerOpen}
         onClose={handleDrawerToggle}

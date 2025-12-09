@@ -6,6 +6,7 @@ const ProPerietaryTech = () => {
     <Box
       mt={2}
       data-aos="zoom-in-up"
+      overflow={"hidden"}
       data-aos-duration="600"
       data-aos-delay="600"
     >
@@ -17,7 +18,7 @@ const ProPerietaryTech = () => {
           maxWidth: {
             xs: "100%",
             sm: "90%",
-            md: "75%",
+            md: "100%",
           },
           display: "block",
           margin: "0 auto",
@@ -25,7 +26,7 @@ const ProPerietaryTech = () => {
         alt="Proprietary Technology"
       />
     </Box>
-  );
+  )
 };
 
 export default ProPerietaryTech;

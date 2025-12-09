@@ -59,11 +59,12 @@ const InSideDeep = () => {
     <Box
       mt={2}
       backgroundColor="neutral.surface"
-      padding={{ xs: "21px", md: "30px 90px" }}
+      padding={{ xs: "10px", md: "30px 90px" }}
       borderRadius="20px"
-      width={{ xs: "100%", md: "75%" }}
-      mx="auto"
+      width={{ xs: "100%", md: "100%" }}
+      // mx="auto"
       data-aos="fade-up"
+      overflow={"hidden"}
     >
       <Box mt="40px" textAlign={{ xs: "center", md: "left" }}>
         <Typography
@@ -75,9 +76,7 @@ const InSideDeep = () => {
           <span style={{ color: "#FF6421", fontWeight: 700, fontFamily: "inter" }}>Deepsurf</span>
         </Typography>
       </Box>
-
-      <Grid container spacing={4} alignItems="center">
-        {/* LEFT MENU */}
+      <Grid container spacing={4} alignItems="flex-start" mt={2} >
         <Grid item size={{ xs: 12, md: 4 }}
         >
           <Box>
@@ -87,6 +86,7 @@ const InSideDeep = () => {
                 mt={2}
                 onClick={() => setActiveId(item.id)}
                 data-aos="fade-right"
+                overflow={"hidden"}
                 data-aos-delay={index * 100}
                 sx={{
                   cursor: "pointer",
@@ -124,42 +124,65 @@ const InSideDeep = () => {
           size={{ xs: 12, md: 8 }}
           data-aos="fade-left"
           data-aos-delay="200"
+          overflow={"hidden"}
         >
-          <Box
+          {/* <Box
             sx={{
               width: "100%",
               display: "flex",
-              height : {xs : "auto" , md : "550px"},
+              height: { xs: "auto", md: "550px" },
               justifyContent: "center",
-              alignItems: "center",
+              alignItems: "flex-start",
               mt: { xs: 2, md: 0 },
               transition: "0.4s ease-in-out",
               backgroundImage: `url(${DeepSurfBackgroundLogo})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
-              p: { xs: 0, md: 5 },
+              p: { xs: 0, md: 6 },
               borderRadius: "18px",
-              // boxShadow: "0px 0px 100px rgba(0,0,0,0.6)",
             }}
-          >
-            <Box
-              component="img"
-              src={activeImage}
-              alt="Market Outlook"
-              sx={{
-                width: { xs: "100%", md: "120%" }, // <-- images ko bara kiya
-                maxWidth: "1400px",               // optional: maximum size limit
-                height: "auto",
-                display: "block",
-                transition: "opacity .4s ease, transform .4s ease",
-                opacity: 1,
-                transform: "scale(1.05)",        // thoda zoom effect
-                borderRadius: "12px",
-              }}
-              key={activeImage}
-            />
-          </Box>
+          > */}
+
+
+          <Box
+            component="img"
+            src={DeepSurfBackgroundLogo}
+            alt="Market Outlook"
+            sx={{
+              width: { xs: "100%", md: "100%" },
+              position: "relative",
+              top: -10,
+              left: { xs: -10, md: -40 },
+              maxWidth: "1400px",
+              height: "auto",
+              transition: "opacity .4s ease, transform .4s ease",
+              opacity: 1,
+              transform: "scale(1.05)",
+              borderRadius: "12px",
+            }}
+            key={DeepSurfBackgroundLogo}
+          />
+
+
+          <Box
+            component="img"
+            src={activeImage}
+            alt="Market Outlook"
+            sx={{
+              width: { xs: "100%", md: "100%" },
+              position: "absolute",
+              top: { xs: 18, md: 40 },
+              maxWidth: "1400px",
+              height: "auto",
+              display: "block",
+              transition: "opacity .4s ease, transform .4s ease",
+              opacity: 1,
+              transform: "scale(1.05)",
+              borderRadius: "12px",
+            }}
+            key={activeImage}
+          />
         </Grid>
 
       </Grid>

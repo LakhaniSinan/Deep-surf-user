@@ -26,6 +26,7 @@ const AiDriven = () => {
         gap={1}
         mt={7}
         data-aos="fade-down"
+        overflow={"hidden"}
         sx={{
           borderRadius: "30px",
           padding: "9px 14px",
@@ -48,7 +49,7 @@ const AiDriven = () => {
           AI analysis
         </h5>
       </Box>
-      <Box mt={5} data-aos="fade-up">
+      <Box mt={5} data-aos="fade-up" overflow={"hidden"}>
         <Typography
           color="accent.contrastText"
           fontSize={{ xs: 30, md: 60 }}
@@ -76,7 +77,7 @@ const AiDriven = () => {
           time market data, and years of quantitative research.
         </Typography>
       </Box>
-      <Box mt={4} data-aos="zoom-in">
+      <Box mt={4} data-aos="zoom-in" overflow={"hidden"}>
         <CustomButton
           title="Get started"
           sx={{
@@ -91,7 +92,7 @@ const AiDriven = () => {
           }}
         />
       </Box>
-      <Box mt={16} textAlign={"center"} data-aos="fade-up">
+      <Box mt={16} textAlign={"center"} data-aos="fade-up" overflow={"hidden"}>
         <Typography
           color="accent.contrastText"
           fontSize={{ xs: 20, md: 33 }}
@@ -121,6 +122,7 @@ const AiDriven = () => {
           justifyContent={{ xs: "space-between", md: "space-evenly" }}
           wrap="nowrap"
           data-aos="fade-up"
+          overflow={"hidden"}
         >
           {/* {[Okx, Binance, Bybit, Mexc, BitGet, Bing].map((img, index) => (
             <Grid item xs="auto" key={index} sx={{ alignItems: "center" }}> */}
@@ -129,7 +131,7 @@ const AiDriven = () => {
               component="img"
               src={logos}
               alt="logo"
-              sx={{ width: { xs: "80%", md: "54%" } }}
+              sx={{ width: { xs: "100%", md: "54%" } }}
             />
           </Stack>
           {/* </Grid> */}

@@ -4,11 +4,9 @@ export const headerStyles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    px: { xs: 2, sm: 2, md: 20 },
- 
-    },
+  },
   logo: {
-    width: { xs: 100, sm: 120, md: 120 },
+    width: { xs: 90, sm: 120, md: 120 }, // smaller on xs
     height: "auto",
     maxWidth: "100%",
   },
@@ -69,12 +67,11 @@ export const headerStyles = {
 
   menuButton: {
     display: { xs: "flex", lg: "none" },
-    width: "40px",
-    height: "40px",
-    borderRadius: "30%",
+    width: "35px",
+    height: "35px",
+    borderRadius: "50%",
     backgroundColor: "background.gray",
     color: "text.primary",
-    border: "1px solid rgba(255, 255, 255, 0.1)",
     "&:hover": {
       backgroundColor: "background.lightGray",
       transform: "scale(1.05)",
