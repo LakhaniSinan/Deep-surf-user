@@ -1,6 +1,6 @@
 import { DialogActions } from "@mui/material";
 import React from "react";
-import GlobalButton from "../button/index";
+import GlobalButton from "../../components/button/index";
 
 const DialogActionButtons = ({
     onConfirm,

@@ -67,15 +67,15 @@ const Trading = ({ tradingData }) => {
             <Box bgcolor={"#1C1C1C"} p={2} borderRadius={"20px"}>
               <Typography color="#3EDD87">LONG setups</Typography>
               <Box display={"flex"} gap={"3px"} mt={1}>
-                <Box fontSize={"13px"} fontFamily={"'inter'"}>{tradingData?.longSetups?.[0]?.asset} : {tradingData?.longSetups?.[0]?.description}
+                <Box fontSize={"13px"} fontFamily={"Inter Tight"}>{tradingData?.longSetups?.[0]?.asset} : {tradingData?.longSetups?.[0]?.description}
                 </Box>
               </Box>
               <Box display={"flex"} gap={"3px"} mt={1}>
-                <Box fontSize={"13px"} fontFamily={"'inter'"}>{tradingData?.longSetups?.[1]?.asset} : {tradingData?.longSetups?.[1]?.description}
+                <Box fontSize={"13px"} fontFamily={"Inter Tight"}>{tradingData?.longSetups?.[1]?.asset} : {tradingData?.longSetups?.[1]?.description}
                 </Box>
               </Box>
               <Box display={"flex"} gap={"3px"} mt={1}>
-                <Box fontSize={"13px"} fontFamily={"'inter'"}>{tradingData?.longSetups?.[2]?.asset} : {tradingData?.longSetups?.[2]?.description}
+                <Box fontSize={"13px"} fontFamily={"Inter Tight"}>{tradingData?.longSetups?.[2]?.asset} : {tradingData?.longSetups?.[2]?.description}
                 </Box>
               </Box>
             </Box>
@@ -84,13 +84,13 @@ const Trading = ({ tradingData }) => {
             <Box bgcolor={"#1C1C1C"} p={2} borderRadius={"20px"}>
               <Typography color="#FF4C4C">SHORT setups</Typography>
               <Box display={"flex"} gap={"3px"} mt={1} flexWrap={"nowrap"}>
-                <Box fontSize={"13px"} fontFamily={"'inter'"} >{tradingData?.longSetups?.[0]?.asset} : {tradingData?.longSetups?.[0]?.description}</Box>
+                <Box fontSize={"13px"} fontFamily={"Inter Tight"} >{tradingData?.longSetups?.[0]?.asset} : {tradingData?.longSetups?.[0]?.description}</Box>
               </Box>
               <Box display={"flex"} gap={"3px"} mt={1}>
-                <Box fontSize={"13px"} fontFamily={"'inter'"}>{tradingData?.longSetups?.[1]?.asset} : {tradingData?.longSetups?.[1]?.description}</Box>
+                <Box fontSize={"13px"} fontFamily={"Inter Tight"}>{tradingData?.longSetups?.[1]?.asset} : {tradingData?.longSetups?.[1]?.description}</Box>
               </Box>
               <Box display={"flex"} gap={"3px"} mt={1}>
-                <Box fontSize={"13px"} fontFamily={"'inter'"}>{tradingData?.longSetups?.[2]?.asset} : {tradingData?.longSetups?.[2]?.description}</Box>
+                <Box fontSize={"13px"} fontFamily={"Inter Tight"}>{tradingData?.longSetups?.[2]?.asset} : {tradingData?.longSetups?.[2]?.description}</Box>
               </Box>
             </Box>
           </Grid>

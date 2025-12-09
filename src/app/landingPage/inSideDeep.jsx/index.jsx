@@ -2,188 +2,146 @@ import { Box, Grid, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { keyframes } from "@mui/system";
 
-// Import different images
+
+// Main images
 import MarketOutLook from "../../../assets/images/marketOutlook.png";
 import ProAnalytics from "../../../assets/images/proAnalysis.png";
 import JournalImg from "../../../assets/images/journal.png";
 import CalculatorImg from "../../../assets/images/calculator.png";
 import AiToolsImg from "../../../assets/images/aiTools.png";
+
+// Bottom images
+import MarketOutLookBgImages from "../../../assets/images/marketOutLookBackgroundImage.png"
+import ProAnalysisBgImages from "../../../assets/images/proAnalyticsBackgroundImages.png";
+import JournalBgImages from "../../../assets/images/journalBackgroundImages.png";
+import CalculatorImages from "../../../assets/images/calculatorBackgroundImages.png";
+import AiToolsImages from "../../../assets/images/aiToolsBackgroundImages.png";
 import DeepSurfBackgroundLogo from "../../../assets/images/background-logo.png";
 
 const InSideDeep = () => {
   const data = [
-    {
-      id: "1",
-      title: "Market Outlook",
-      decription: "Daily macro, flows, whales, risk calendar",
-      image: MarketOutLook,
-    },
-    {
-      id: "2",
-      title: "Pro Analytics",
-      decription:
-        "Order flow, open interest, heatmap, liquidity levels, microstructure, ETF & on-chain metrics",
-      image: ProAnalytics,
-    },
-    {
-      id: "3",
-      title: "Journal",
-      decription: "API-based trade import, AI coaching, Watchlist, Alerts",
-      image: JournalImg,
-    },
-    {
-      id: "4",
-      title: "Calculator",
-      decription:
-        "ATR-based sizing, what-if simulation, auto export to journal",
-      image: CalculatorImg,
-    },
-    {
-      id: "5",
-      title: "AI Tools",
-      decription:
-        "Comprehensive analysis of tokens based on more than 50 parameters and metrics, AI Pump Detection",
-      image: AiToolsImg,
-    },
+    { id: "1", title: "Market Outlook", decription: "Daily macro, flows, whales, risk calendar", image: MarketOutLook, bottomImage: MarketOutLookBgImages },
+    { id: "2", title: "Pro Analytics", decription: "Order flow, open interest, heatmap, liquidity levels, microstructure, ETF & on-chain metrics", image: ProAnalytics, bottomImage: ProAnalysisBgImages },
+    { id: "3", title: "Journal", decription: "API-based trade import, AI coaching, Watchlist, Alerts", image: JournalImg, bottomImage: JournalBgImages },
+    { id: "4", title: "Calculator", decription: "ATR-based sizing, what-if simulation, auto export to journal", image: CalculatorImg, bottomImage: CalculatorImages },
+    { id: "5", title: "AI Tools", decription: "Comprehensive analysis of tokens based on more than 50 parameters and metrics, AI Pump Detection", image: AiToolsImg, bottomImage: AiToolsImages },
   ];
 
   const [activeId, setActiveId] = useState("1");
-  const activeImage = data.find((item) => item.id === activeId)?.image;
+  const [fade, setFade] = useState(false);
+  const [animating, setAnimating] = useState(false);
+  const activeItem = data.find(item => item.id === activeId);
 
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
 
+
+  const slideUp = keyframes`
+  0% { transform: translateY(40px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+  `;
+
+  const slideDown = keyframes`
+  0% { transform: translateY(-40px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+  `;
+  const handleClick = (id) => {
+    if (id === activeId) return; // same image pe click hai to ignore
+    setAnimating(true);
+    setTimeout(() => {
+      setActiveId(id);
+      setAnimating(false);
+    }, 500); // timing same as animation
+  };
   return (
     <Box
-      mt={2}
+      mt={3}
       backgroundColor="neutral.surface"
       padding={{ xs: "10px", md: "30px 90px" }}
       borderRadius="20px"
-      width={{ xs: "100%", md: "100%" }}
-      // mx="auto"
+      width="100%"
+      overflow="hidden"
       data-aos="fade-up"
-      overflow={"hidden"}
     >
       <Box mt="40px" textAlign={{ xs: "center", md: "left" }}>
-        <Typography
-          fontSize={{ xs: "24px", md: "28px" }}
-          fontWeight={700}
-          color="#fff"
-        >
-          Inside{" "}
-          <span style={{ color: "#FF6421", fontWeight: 700, fontFamily: "inter" }}>Deepsurf</span>
+        <Typography fontSize={{ xs: "24px", md: "28px" }} fontWeight={700} color="#fff">
+          Inside <span style={{ color: "#FF6421", fontWeight: 700, fontFamily: "Inter Tight" }}>Deepsurf</span>
         </Typography>
       </Box>
-      <Grid container spacing={4} alignItems="flex-start" mt={2} >
-        <Grid item size={{ xs: 12, md: 4 }}
-        >
-          <Box>
-            {data.map((item, index) => (
-              <Box
-                key={item.id}
-                mt={2}
-                onClick={() => setActiveId(item.id)}
-                data-aos="fade-right"
-                overflow={"hidden"}
-                data-aos-delay={index * 100}
-                sx={{
-                  cursor: "pointer",
-                  transition: "0.3s",
-                  "&:hover": { opacity: 0.9 },
-                }}
-              >
-                <Typography
-                  fontSize="18px"
-                  fontWeight={800}
-                  sx={{
-                    color: activeId === item.id ? "#FFFFFF" : "#A3A3A3",
-                  }}
-                >
-                  {item.title}
-                </Typography>
-                <Typography
-                  fontSize="11px"
-                  fontWeight={400}
-                  sx={{
-                    color: "#FFFFFF",
-                    opacity: activeId === item.id ? 1 : 0.6,
-                  }}
-                >
-                  {item.decription}
-                </Typography>
-              </Box>
-            ))}
-          </Box>
+      <Grid container spacing={4} mt={4}>
+        <Grid item size={{ xs: 12, md: 4 }} >
+          {data.map((item) => (
+            <Box
+              key={item.id}
+              mt={2}
+              onClick={() => handleClick(item.id)}
+              sx={{
+                cursor: "pointer",
+                transition: "0.3s",
+                "&:hover": { opacity: 0.9 },
+              }}
+            >
+              <Typography fontSize="18px" fontWeight={800} sx={{ color: activeId === item.id ? "#fff" : "#A3A3A3" }}>
+                {item.title}
+              </Typography>
+              <Typography fontSize="11px" fontWeight={400} sx={{ color: "#fff", opacity: activeId === item.id ? 1 : 0.6 }}>
+                {item.decription}
+              </Typography>
+            </Box>
+          ))}
         </Grid>
-
-        {/* IMAGE SECTION */}
-        <Grid
-          item
-          size={{ xs: 12, md: 8 }}
-          data-aos="fade-left"
-          data-aos-delay="200"
-          overflow={"hidden"}
-        >
-          {/* <Box
-            sx={{
-              width: "100%",
-              display: "flex",
-              height: { xs: "auto", md: "550px" },
-              justifyContent: "center",
-              alignItems: "flex-start",
-              mt: { xs: 2, md: 0 },
-              transition: "0.4s ease-in-out",
-              backgroundImage: `url(${DeepSurfBackgroundLogo})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              p: { xs: 0, md: 6 },
-              borderRadius: "18px",
-            }}
-          > */}
-
-
+        <Grid item size={{ xs: 12, md: 8 }} sx={{ position: "relative", overflow: "hidden" }}>
           <Box
             component="img"
             src={DeepSurfBackgroundLogo}
-            alt="Market Outlook"
-            sx={{
-              width: { xs: "100%", md: "100%" },
-              position: "relative",
-              top: -10,
-              left: { xs: -10, md: -40 },
-              maxWidth: "1400px",
-              height: "auto",
-              transition: "opacity .4s ease, transform .4s ease",
-              opacity: 1,
-              transform: "scale(1.05)",
-              borderRadius: "12px",
-            }}
-            key={DeepSurfBackgroundLogo}
+            alt="Background Logo"
+            position={"fixed"}
+            top={{ xs: "430px", md: "100px" }}
+            right={{ xs: "-20px", md: "85px" }}
+            width={{ xs: "100%", md: "60%" }}
+            height={{ xs: "80%", md: "70%" }}
+            objectFit={"cover"}
+            zIndex={0}
           />
-
-
           <Box
             component="img"
-            src={activeImage}
-            alt="Market Outlook"
+            src={activeItem.image}
+            alt={activeItem.title}
+            width={"100%"}
+            height={"auto"}
+            justifyContent={"center"}
+            // maxHeight={"500px"}
+            borderRadius={"12px"}
+            position={"relative"}
+            zIndex={1}
             sx={{
-              width: { xs: "100%", md: "100%" },
-              position: "absolute",
-              top: { xs: 18, md: 40 },
-              maxWidth: "1400px",
-              height: "auto",
-              display: "block",
-              transition: "opacity .4s ease, transform .4s ease",
-              opacity: 1,
-              transform: "scale(1.05)",
-              borderRadius: "12px",
+              transform: animating ? "translateY(120px)" : "translateY(0)",
+              opacity: animating ? 0 : 1,
+              transition: "transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity .35s",
             }}
-            key={activeImage}
           />
+
+          {/* Bottom Image */}
+          <Box mt={2} sx={{ overflowX: "auto", position: "relative"}}>
+            <Box
+              component="img"
+              src={activeItem.bottomImage}
+              alt="Bottom image"
+              width={"100%"}
+              // maxHeight={"200px"}
+              borderRadius={"12px"}
+              sx={{
+                transform: animating ? "translateY(-120px)" : "translateY(0)",
+                opacity: animating ? 0 : 1,
+                transition: "transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity .35s",
+              }}
+            />
+          </Box>
         </Grid>
+
 
       </Grid>
     </Box>

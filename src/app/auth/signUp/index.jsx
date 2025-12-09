@@ -196,7 +196,7 @@ function SignUp() {
           />
         </Box>
         <Box mt={2}>
-          <Typography fontFamily={"inter"} color="text.mediumGrey">
+          <Typography fontFamily={"Inter Tight"} color="text.mediumGrey">
             OR
           </Typography>
         </Box>

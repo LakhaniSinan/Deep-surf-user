@@ -11,6 +11,8 @@ function CustomInput({
   fullWidth = true,
   readonly,
   inputBgColor,
+  error,
+  helperText,
   type = "text",
   sx,
   ...props
@@ -22,6 +24,8 @@ function CustomInput({
       fullWidth={fullWidth}
       type={showPassword && type === "password" ? "text" : type}
       {...props}
+      error={error}
+      helperText={helperText}
       InputProps={{
         readOnly: readonly,
         startAdornment: InputStartIcon && (
@@ -68,7 +72,7 @@ function CustomInput({
           padding: "10px 12px",
           fontSize: "15px",
           color: theme.palette.text.primary,
-          fontFamily : "'inter'",
+          fontFamily: "'Inter Tight'",
           "&::placeholder": {
             color: "#808080",
             opacity: 1,

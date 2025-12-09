@@ -30,7 +30,7 @@ const CustomButton = ({
         width: width,
         transition: "all 0.3s ease",
         display: "flex",
-        fontFamily: "'Inter', sans-serif",
+        fontFamily: "Inter Tight",
         alignItems: "center",
         gap: icon ? theme.spacing(1) : 0,
         ...(isCalculatorVariant

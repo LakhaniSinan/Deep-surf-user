@@ -8,7 +8,7 @@ import Mexc from "../../../assets/icons/mexc.png";
 import BitGet from "../../../assets/icons/bitget.svg";
 import Bing from "../../../assets/icons/bing x.png";
 import TimingImages from "../../../assets/images/timing-image.png";
-import logos from "../../../assets/images/logos.png"
+import logos from "../../../assets/images/logos.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -18,6 +18,12 @@ const AiDriven = () => {
     AOS.init({ duration: 800, once: true });
   }, []);
 
+  // Scroll function
+  const scrollToJoin = () => {
+    const element = document.getElementById("join-section");
+    element?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <>
       <Box
@@ -26,7 +32,6 @@ const AiDriven = () => {
         gap={1}
         mt={7}
         data-aos="fade-down"
-        overflow={"hidden"}
         sx={{
           borderRadius: "30px",
           padding: "9px 14px",
@@ -42,13 +47,14 @@ const AiDriven = () => {
             background: "linear-gradient(to right, #FFB37D, #FFF3EA)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
-            fontFamily: "'inter', sans-serif",
+            fontFamily: "Inter Tight",
             fontWeight: "500",
           }}
         >
-          AI analysis
+          Limited access
         </h5>
       </Box>
+
       <Box mt={5} data-aos="fade-up" overflow={"hidden"}>
         <Typography
           color="accent.contrastText"
@@ -56,30 +62,29 @@ const AiDriven = () => {
           fontWeight={600}
           lineHeight={1.1}
           textAlign={"center"}
-          sx={{
-            fontFamily: "'Inter', sans-serif",
-          }}
+          fontFamily={"Inter Tight"}
         >
           AI-driven Trading <br /> Intelligence Engine
         </Typography>
       </Box>
+
       <Box mt={4.8} data-aos="fade-up">
         <Typography
           color="text.CoolGray"
           fontSize={{ xs: 12, md: 16 }}
           fontWeight={600}
           lineHeight={1.3}
-          sx={{
-            fontFamily: "'Inter', sans-serif",
-          }}
+          fontFamily={"Inter Tight"}
         >
           Powered by proprietary machine learning models, real- <br />
           time market data, and years of quantitative research.
         </Typography>
       </Box>
+
       <Box mt={4} data-aos="zoom-in" overflow={"hidden"}>
         <CustomButton
           title="Get started"
+          handleClickBtn={scrollToJoin} // scroll add kiya
           sx={{
             color: "#fff",
             borderRadius: "10px",
@@ -92,14 +97,13 @@ const AiDriven = () => {
           }}
         />
       </Box>
-      <Box mt={16} textAlign={"center"} data-aos="fade-up" overflow={"hidden"}>
+
+      <Box mt={{ xs: 10, md: 16 }} textAlign={"center"} data-aos="fade-up" overflow={"hidden"}>
         <Typography
           color="accent.contrastText"
           fontSize={{ xs: 20, md: 33 }}
           fontWeight={700}
-          sx={{
-            fontFamily: "'Inter', sans-serif",
-          }}
+          sx={{ fontFamily: "Inter Tight" }}
         >
           Trusted by traders worldwide.
         </Typography>
@@ -107,9 +111,7 @@ const AiDriven = () => {
           textAlign={"center"}
           fontSize={{ xs: 10, md: 16 }}
           color="accent.contrastText"
-          sx={{
-            fontFamily: "'Inter', sans-serif",
-          }}
+          sx={{ fontFamily: "Inter Tight" }}
         >
           Built for those who think in probabilities, not predictions.
         </Typography>
@@ -124,8 +126,6 @@ const AiDriven = () => {
           data-aos="fade-up"
           overflow={"hidden"}
         >
-          {/* {[Okx, Binance, Bybit, Mexc, BitGet, Bing].map((img, index) => (
-            <Grid item xs="auto" key={index} sx={{ alignItems: "center" }}> */}
           <Stack px={3} alignItems={"center"}>
             <Box
               component="img"
@@ -134,8 +134,6 @@ const AiDriven = () => {
               sx={{ width: { xs: "100%", md: "54%" } }}
             />
           </Stack>
-          {/* </Grid> */}
-          {/* ))} */}
         </Grid>
       </Box>
     </>

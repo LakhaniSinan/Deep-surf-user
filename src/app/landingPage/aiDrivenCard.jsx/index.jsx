@@ -44,9 +44,6 @@
 
 // export default AiDrivenCard;
 
-
-
-
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
 import AiButton from "../../../assets/images/login.png"
 import BullishImages from "../../../assets/images/bullish.png"
@@ -59,7 +56,7 @@ const AiDrivenCard = () => {
   return (
 
     <Grid container spacing={2} justifyContent="center">
-      <Grid item size={{ xs: 12, sm : 6 , md: 6 }} data-aos="fade-up-right" overflow={"hidden"}>
+      <Grid item size={{ xs: 12, sm: 6, md: 6 }} data-aos="fade-up-right" overflow={"hidden"}>
         <Box
           sx={{
             display: "flex",
@@ -67,7 +64,7 @@ const AiDrivenCard = () => {
             gap: 5,
             px: "25px",
             height: { xs: "auto", md: "330px" },
-            border: "1px solid rgba(173,173,173,0.08)",
+            border: "1px solid rgba(255,255,255,0.20)",
             borderRadius: "22px",
             background: "rgba(34, 33, 33, 0.55)",
             backdropFilter: "blur(40px)",
@@ -78,11 +75,12 @@ const AiDrivenCard = () => {
             py: { xs: 3, md: "15px" },
           }}
         >
-          <Box color={"#fff"} sx={{ flex: 1, pr: 2, mt: 5 }}>
+          <Box color={"#fff"} sx={{ flex: 1, pr: 2, mt: 6 }}>
             <Typography
               fontSize={"25px"}
               fontWeight={700}
               lineHeight={1.15}
+              fontFamily={"Inter Tight"}
               mt={1.5}
               sx={{ fontSize: { xs: "20px", md: "25px" } }}
             >
@@ -91,11 +89,11 @@ const AiDrivenCard = () => {
 
             <Typography
               fontSize={"13px"}
-              mt={3}
+              mt={4}
               sx={{
                 color: "#FFFFFF",
                 lineHeight: 1.2,
-                fontSize: { xs: "12px", md: "13px" },
+                fontSize: { xs: "12px", md: "12px" },
                 fontWeight: 400
               }}
             >
@@ -133,7 +131,7 @@ const AiDrivenCard = () => {
                   background: "linear-gradient(to right, #FFB37D, #FFF3EA)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
-                  fontFamily: "'inter', sans-serif",
+                  fontFamily: "Inter Tight",
                   fontWeight: "500",
                 }}
               >
@@ -144,7 +142,7 @@ const AiDrivenCard = () => {
               sx={{
                 lineHeight: 1.3,
                 mt: 1,
-                fontFamily: "inter",
+                fontFamily: "Inter Tight",
                 fontSize: { xs: "10px", md: "11px" },
                 background: "linear-gradient(90deg, #FFFFFF, #FFAD73)",
                 WebkitBackgroundClip: "text",
@@ -176,7 +174,7 @@ const AiDrivenCard = () => {
       </Grid>
 
       {/* CARD 2 */}
-      <Grid item size={{ xs: 12, sm : 6 , md: 6 }} data-aos="fade-up-left" overflow={"hidden"}>
+      <Grid item size={{ xs: 12, sm: 6, md: 6 }} data-aos="fade-up-left" overflow={"hidden"}>
         <Box
           sx={{
             display: "flex",
@@ -184,7 +182,7 @@ const AiDrivenCard = () => {
             gap: 4,
             px: "25px",
             height: { xs: "auto", md: "330px" },
-            border: "1px solid rgba(173,173,173,0.08)",
+            border: "1px solid rgba(255,255,255,0.20)",
             borderRadius: "22px",
             background: "rgba(34, 33, 33, 0.55)",
             backdropFilter: "blur(40px)",
@@ -196,7 +194,7 @@ const AiDrivenCard = () => {
 
           }}
         >
-          <Box color={"#fff"} sx={{ flex: 1, pr: 2, mt: 5 }}>
+          <Box color={"#fff"} sx={{ flex: 1, pr: 2, mt: 6 }}>
             <Typography
               fontSize={"25px"}
               fontWeight={700}
@@ -207,7 +205,7 @@ const AiDrivenCard = () => {
               Advanced Tools for <br /> Market Perception.
             </Typography>
             <Typography
-              fontSize={"10px"}
+              fontSize={"12px"}
               mt={4}
               sx={{ color: "#FFFFFF" }}
               lineHeight={1.2}
@@ -220,19 +218,19 @@ const AiDrivenCard = () => {
           </Box>
           <Box
             color={"#fff"}
-            mt={2}
+            mt={3}
             sx={{
               flex: 0.95,
               width: { xs: "100%", md: "auto" }
             }}
           >
-            <Typography mt={{ xs: 2, md: 6.5 }} fontSize={"10px"}
+            <Typography mt={{ xs: 2, md: 5.5 }} fontSize={"10px"}
               sx={{ fontSize: { xs: "9px", md: "10px" } }}
             >
               On-Chain Signals
             </Typography>
 
-            <Box mt={{ xs: 2, md: 3 }}>
+            <Box mt={{ xs: 2, md: 0 }}>
               <img
                 src={ExchangeImages}
                 alt="Bullish"

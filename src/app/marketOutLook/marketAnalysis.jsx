@@ -31,7 +31,7 @@ const AiMarketAnalysis = () => {
             borderRadius: "20px",
             marginTop: "30px",
             width: { xs: "100%", md: "auto" },
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "Inter Tight",
           }}
         />
       </Box>

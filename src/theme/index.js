@@ -70,73 +70,73 @@ const theme = createTheme({
 
   typography: {
     // fontFamily: '"Poppins", sans-serif',
-    fontFamily: "'Inter', sans-serif",
+    fontFamily: "'Inter Tight'",
 
     h1: {
-      fontFamily: "'Inter', sans-serif",
+      fontFamily: "Inter Tight",
       fontSize: "2.5rem",
       fontWeight: 700,
       lineHeight: 1.2,
     },
 
     h2: {
-      fontFamily: "Inter, sans-serif",
+      fontFamily: "Inter Tight",
       fontSize: "2rem",
       fontWeight: 700,
       lineHeight: 1.3,
     },
 
     h3: {
-      fontFamily: "Inter, sans-serif",
+      fontFamily: "Inter Tight",
       fontSize: "1.75rem",
       fontWeight: 600,
       lineHeight: 1.4,
     },
     h4: {
-      fontFamily: "Inter, sans-serif",
+      fontFamily: "Inter Tight",
       fontSize: "1.5rem",
       fontWeight: 600,
       lineHeight: 1.4,
     },
     h5: {
-      fontFamily: "Inter, sans-serif",
+      fontFamily: "Inter Tight",
       fontSize: "1.25rem",
       fontWeight: 600,
       lineHeight: 1.5,
     },
     h6: {
-      fontFamily: "Inter, sans-serif",
+      fontFamily: "Inter Tight",
       fontSize: "1rem",
       fontWeight: 600,
       lineHeight: 1.5,
     },
     body1: {
-      fontFamily: "Inter, sans-serif",
+      fontFamily: "Inter Tight",
       fontSize: "1rem", // 16px
       fontWeight: 400,
       lineHeight: 1.6,
     },
     body2: {
-      fontFamily: "Inter, sans-serif",
+      fontFamily: "Inter Tight",
       fontSize: "0.875rem", // 14px
       fontWeight: 400,
       lineHeight: 1.5,
     },
     titleLg: {
-      fontFamily: "Inter, sans-serif",
+      fontFamily: "Inter Tightf",
       fontSize: "1.75rem",
       fontWeight: 600,
       lineHeight: 1.35,
       letterSpacing: "0.01em",
     },
     labelMd: {
-      fontFamily: "Inter, sans-serif",
+      fontFamily: "Inter Tight",
       fontSize: "0.875rem",
       fontWeight: 500,
       letterSpacing: "0.08em",
     },
     helperSm: {
-      fontFamily: "Inter, sans-serif",
+      fontFamily: "Inter Tight",
       fontSize: "0.75rem",
       fontWeight: 400,
       lineHeight: 1.4,
@@ -253,6 +253,7 @@ const theme = createTheme({
             lineHeight: 1.35,
             letterSpacing: "0.01em",
             color: "#F5F5F5",
+            fontFamily: "Inter Tight",
           },
         },
         {
@@ -263,6 +264,7 @@ const theme = createTheme({
             letterSpacing: "0.08em",
             textTransform: "uppercase",
             color: "rgba(255,255,255,0.72)",
+            fontFamily: "Inter Tight",
           },
         },
         {
@@ -271,6 +273,7 @@ const theme = createTheme({
             fontSize: "0.75rem",
             fontWeight: 400,
             color: "rgba(255,255,255,0.38)",
+            fontFamily: "Inter Tight",
           },
         },
       ],

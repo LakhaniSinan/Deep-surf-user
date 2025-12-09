@@ -6,7 +6,7 @@ import { styled } from "@mui/material/styles";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiPaper-root": {
     borderRadius: "28px",
-    padding: "2px",
+    padding: "10px",
   },
 }));
 

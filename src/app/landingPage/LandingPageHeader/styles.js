@@ -6,7 +6,7 @@ export const headerStyles = {
     alignItems: "center",
   },
   logo: {
-    width: { xs: 90, sm: 120, md: 120 }, // smaller on xs
+    width: { xs: 90, sm: 120, md: 150 }, // smaller on xs
     height: "auto",
     maxWidth: "100%",
   },
@@ -38,7 +38,7 @@ export const headerStyles = {
   },
 
   navItem: (isActive) => ({
-    fontFamily: "'Inter', sans-serif",
+    fontFamily: "Inter Tight",
     padding: "14px 28px",
     borderRadius: "50px",
     cursor: "pointer",

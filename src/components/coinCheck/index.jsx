@@ -64,7 +64,7 @@ const CoinCheck = () => {
             fontSize="12px"
             fontWeight={300}
             color="text.primary"
-            fontFamily="inter"
+            fontFamily="Inter Tight"
           >
             Deep AI analysis of any coin in seconds. Enter the ticker, get a
             full breakdown and recommendation.

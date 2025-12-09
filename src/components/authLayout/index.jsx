@@ -17,7 +17,7 @@ const AuthLayout = ({
       display="flex"
       justifyContent="center"
       alignItems="center"
-      // sx={{ pt: "84px" }}  // header ke liye space
+    // sx={{ pt: "84px" }}  // header ke liye space
     >
       <Box
         bgcolor="background.paper"
@@ -93,13 +93,13 @@ const AuthLayout = ({
 
         {/* 🔹 Page Title */}
         <Box my={3}>
-          <Typography variant="h4" color="text.primary" fontFamily={"'inter'"}>
+          <Typography variant="h4" color="text.primary" fontFamily={"Inter Tight"}>
             {title}
           </Typography>
         </Box>
 
         {/* 🔹 Page Content */}
-        <Box width="100%" fontFamily={"'inter'"}>{children}</Box>
+        <Box width="100%" fontFamily={"Inter Tight"}>{children}</Box>
       </Box>
     </Box>
   );

@@ -68,7 +68,7 @@ const Pattern = ({ coinData }) => {
               variant="h6"
               backgroundColor="#1A1A1A"
               title={
-                <span style={{ color: "accent.contrastText", fontFamily: "'Inter', sans-serif", fontSize: "15px" }}>
+                <span style={{ color: "accent.contrastText", fontFamily: "", fontSize: "15px" }}>
                   Target :{" "}
                   <span
                     style={{
@@ -76,7 +76,7 @@ const Pattern = ({ coinData }) => {
                       transition: "all 0.3s ease",
                       fontSize: "15px",
                       py: "8px",
-                      fontFamily: "'Inter', sans-serif"
+                      fontFamily: "Inter Tight"
                     }}
                   >
                     {`${coinData?.patternRecognition?.[1]?.target}`}
@@ -101,7 +101,7 @@ const Pattern = ({ coinData }) => {
                   height: 10,
                   borderRadius: "30px",
                   bgcolor: "text.Gainsboro",
-                  fontFamily: "'inter'",
+                  fontFamily: "Inter Tight",
                   "& .MuiLinearProgress-bar": {
                     bgcolor: "accent.main",
                     borderRadius: "30px",

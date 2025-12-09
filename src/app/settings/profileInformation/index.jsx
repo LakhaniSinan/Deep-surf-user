@@ -145,7 +145,7 @@ function PersonalInformation() {
               borderRadius : "10px",
               px : "40px",
               py : "10px",
-              fontFamily:"inter"
+              fontFamily:"Inter Tight"
             }}
           >
             Upload Image

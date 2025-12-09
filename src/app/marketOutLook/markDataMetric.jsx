@@ -470,7 +470,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
         </Typography>
         <Grid container spacing={2} marginTop="20px">
           <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
-            <Typography fontSize={"15px"} fontFamily={"'inter'"} color="#3EDD87">
+            <Typography fontSize={"15px"} fontFamily={"'Inter Tight'"} color="#3EDD87">
               Gainers
             </Typography>
             {Gainers.map((item, index) => (
@@ -513,7 +513,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
             ))}
           </Grid>
           <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
-            <Typography fontSize={"16px"} color="#FF4C4C" fontFamily={"'inter'"}>
+            <Typography fontSize={"16px"} color="#FF4C4C" fontFamily={"Inter Tight"}>
               Losers
             </Typography>
             {Losers?.slice(0, 5).map((item) => (
@@ -557,7 +557,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
           </Grid>
         </Grid>
         <Box mt="20px">
-          <Typography variant="h6" fontFamily={"'inter'"}>Risk Calendar (30 days)</Typography>
+          <Typography variant="h6" fontFamily={"Inter Tight"}>Risk Calendar (30 days)</Typography>
         </Box>
         <Box marginTop="20px" backgroundColor="#1C1C1C">
           <Grid container spacing={1} padding="10px">

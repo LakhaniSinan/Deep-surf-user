@@ -105,7 +105,7 @@ const Home = () => {
               color="text.primary"
             >
               Welcome back, {" "}
-              <span style={{ color: "#FF6421", fontFamily: "inter" }}>
+              <span style={{ color: "#FF6421", fontFamily: "Inter Tight" }}>
                 {username}
               </span>
             </Typography>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Box, IconButton, Button, AppBar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -7,6 +7,7 @@ import logo from "../../../assets/images/Deepsurf-logo.png";
 import NavigationDrawer from "./drawer";
 import { headerStyles } from "./styles";
 import WaitlistDialog from "../../../components/waitList";
+import AddToWaitList from "../../../components/waitList";
 
 
 const Header = () => {
@@ -14,13 +15,12 @@ const Header = () => {
   const location = useLocation();
 
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [waitlistOpen, setWaitlistOpen] = useState(false);
+  // const [waitlistOpen, setWaitlistOpen] = useState(false);
 
   const navItems = [
-    { link: "", label: "Waitlist" },
+    { link: "", label: "Waitlist", },
     { link: "/login", label: "Login" },
   ];
-
   const [activeNav, setActiveNav] = useState(() => {
     const currentPath = location.pathname;
     const activeItem = navItems.find((item) => item.link === currentPath);
@@ -37,6 +37,8 @@ const Header = () => {
 
   const handleNavClick = (item) => {
     if (item.label === "Waitlist") {
+      const element = document.getElementById("join-section");
+      element?.scrollIntoView({ behavior: "smooth" });
       setWaitlistOpen(true);
       return;
     }
@@ -48,13 +50,14 @@ const Header = () => {
   return (
     <>
       <AppBar
-        position="fixed"
+        position="static"
         sx={{
-          background: "linear-gradient(to top, rgba(0,0,0,0.3), rgba(0,0,0,0.3))",
+          background: "transparent",
           boxShadow: "none",
           px: { xs: 0, sm: 1, md: 18 },
           py: 2,
-          zIndex: 999,
+          paddingTop: "50px",
+          // zIndex: 999,
         }}
       >
         <Box
@@ -86,33 +89,33 @@ const Header = () => {
             }}
           >
             {navItems.map((item) => {
-              const isActive = activeNav === item.label;
+              const isLogin = item.label === "Login";
+              const isWaitList = item.label === "Waitlist" // sirf Login ke liye
               return (
                 <Button
                   key={item.label}
                   onClick={() => handleNavClick(item)}
                   sx={{
-                    px: 3,
-                    py: 1.3,
-                    borderRadius: "12px",
-                    fontSize: "14px",
-                    color: "white",
-                    border: isActive
-                      ? "1px solid rgba(255,255,255,0.5)"
-                      : "1px solid rgba(255,255,255,0.2)",
-                    background: isActive
-                      ? "rgba(255,255,255,0.12)"
-                      : "rgba(255,255,255,0.06)",
-                    backdropFilter: "blur(12px)",
-                    "&:hover": {
-                      background: "rgba(255,255,255,0.18)",
-                    },
+                    px: isLogin ? 6 : 3, // agar Login to 5, baaki normal
+                    py: isLogin ? 1.3 : 2,
+                    borderRadius: isLogin ? "12px" : "0px",
+                    // fontSize: "16px",
+                    fontSize: isWaitList ? "16px" : "15px",
+                    color: isLogin ? "rgba(163, 163, 163, 1)" : "rgba(163, 163, 163, 1)",
+                    border: isLogin
+                      ? "1px solid rgba(255,255,255,0.2)"
+                      : "none",
+                    background: isLogin
+                      ? "transparent" : "",
+                    // backdropFilter: isLogin ? "blur(12px)" : "none",
+
                   }}
                 >
                   {item.label}
                 </Button>
               );
             })}
+
           </Box>
           <IconButton onClick={handleDrawerToggle} sx={headerStyles.menuButton}>
             <MenuIcon sx={{ fontSize: "20px" }} />
@@ -127,10 +130,11 @@ const Header = () => {
         onNavClick={handleNavClick}
       />
 
-      <WaitlistDialog
+      {/* <WaitlistDialog
         open={waitlistOpen}
-        onClose={() => setWaitlistOpen(false)}
-      />
+        onClick={() => addToWaitList.current?.openDialog({ type: "add" })}
+      /> */}
+
     </>
   );
 };

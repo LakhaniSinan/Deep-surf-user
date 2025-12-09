@@ -20,8 +20,8 @@ const Setting = () => {
       <Header />
       <Container maxWidth="lg">
         <Box my={5}>
-          <Typography variant="h1" fontSize={"30px"} color={theme.palette.text.primary} fontFamily={"inter"}>
-            Welcome back, {""} <span fontFamily="inter"
+          <Typography variant="h1" fontSize={"30px"} color={theme.palette.text.primary} fontFamily={"Inter Tight"}>
+            Welcome back, {""} <span fontFamily="Inter Tight"
               color={theme.palette.text.primary}>
               {username}
             </span>

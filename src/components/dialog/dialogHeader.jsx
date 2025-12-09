@@ -15,7 +15,7 @@ const DialogHeader = ({ title, secondaryHeading, onClose, icon }) => {
                 spacing={1}
             >
                 <Stack>
-                    <Typography variant="h5">{title}</Typography>
+                    <Typography variant="h3" fontFamily={"Inter Tight"}>{title}</Typography>
                     {secondaryHeading && (
                         <Typography
                             variant="body2"
