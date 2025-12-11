@@ -9,18 +9,18 @@ const Macroeconomics = ({ data }) => {
   // console.log("ghrghghygrggrrg", data?.cpiReport);
 
   const economicReports = [
+
     {
-      title: data?.unemploymentRate?.title,
-      forecast: "forecast",
-      forecast: data?.unemploymentRate?.forecast,
-      impact: "Impact:",
-      status: data?.unemploymentRate?.impact,
-    },
-    {
-      title: data?.cpiReport?.title,
-      forecast: data?.cpiReport?.forecast,
+      title: `${data?.cpiReport?.title} ${data?.cpiReport?.date}`,
+      forecast: ` Forecast ${data?.cpiReport?.forecast} (previous: ${data?.cpiReport?.previous}) `,
       impact: "Impact:",
       status: data?.cpiReport?.impact,
+    },
+    {
+      title: `${data?.unemploymentRate?.title} ${data?.unemploymentRate?.date}`,
+      forecast: ` Forecast ${data?.unemploymentRate?.forecast} (previous: ${data?.unemploymentRate?.previous}) `,
+      impact: "Impact:",
+      status: data?.unemploymentRate?.impact,
     },
   ];
 
@@ -58,11 +58,11 @@ const Macroeconomics = ({ data }) => {
         padding="25px"
         mt="20px"
       >
-        <Typography variant="h1" fontSize="20px" fontWeight={600}>
+        <Typography variant="h1" fontSize="25px" fontWeight={600}>
           Macroeconomics
         </Typography>
         <Grid container spacing={1} mt={2}>
-          <Grid item size={{xs : 12}}>
+          <Grid item size={{ xs: 12 }}>
             <Box
               display="flex"
               alignItems="center"
@@ -74,14 +74,14 @@ const Macroeconomics = ({ data }) => {
             >
               <CustomButton
                 variant="gradient"
-                title="Attention"
+                title="AI Analysis"
                 icon={<img src={StarIcon} style={{ width: 20, height: 20 }} />}
                 sx={{
                   borderRadius: "20px",
                   padding: "4px 30px",
                   minWidth: "auto",
                   width: { xs: "100%", md: "auto" },
-                  backgroundColor: "#FFE600",
+                  backgroundColor: "rgba(255, 100, 33, 1)",
                   color: "#fff",
                 }}
               />
@@ -90,9 +90,9 @@ const Macroeconomics = ({ data }) => {
                 variant="body2"
                 fontSize="13px"
                 flex={{ xs: "100%", md: "1" }}
-                fontWeight={500}
+                fontWeight={600}
               >
-             {data?.summary}
+                {data?.summary}
               </Typography>
             </Box>
           </Grid>
@@ -110,16 +110,16 @@ const Macroeconomics = ({ data }) => {
                   width: "100%",
                 }}
               >
-                <Typography variant="h6" fontWeight={500} fontSize="13px">
+                <Typography variant="h6" fontWeight={600} fontSize="15px" >
                   {report.title}
                 </Typography>
 
-                <Typography mt="10px" variant="body1" fontSize="14px">
+                <Typography mt="10px" fontWeight={300} variant="body1" fontSize="12px">
                   {report.forecast}
                 </Typography>
                 <Box display="flex" gap="10px">
                   <Typography variant="body1" fontSize="13px">
-                    {report.impact}
+                    {report.impact}{""}{""}
                   </Typography>
                   <Typography
                     variant="body1"
@@ -140,18 +140,20 @@ const Macroeconomics = ({ data }) => {
                 <Box
                   sx={{
                     color: "#fff",
-                    padding: 2,
-                    borderRadius: 2,
+                    padding: 1,
+                    borderRadius: 3,
                     height: "100%",
                     width: "100%",
                     backgroundColor: "#1C1C1C",
+                    fontFamily: "inter Tight"
                   }}
                 >
                   <Typography
                     variant="h6"
-                    fontWeight={500}
+                    fontWeight={550}
                     color={item.titleColor}
-                    fontSize={"16px"}
+                    fontSize={"20px"}
+                    fontFamily={"inter Tight"}
                   >
                     {item.title}
                   </Typography>
@@ -160,6 +162,7 @@ const Macroeconomics = ({ data }) => {
                     variant="h6"
                     fontWeight={400}
                     fontSize="13px"
+                    fontFamily={"inter Tight"}
                   >
                     {item.description}
                   </Typography>
@@ -188,9 +191,10 @@ const Macroeconomics = ({ data }) => {
                 backgroundColor: "#FFE600",
                 color: "#000000",
                 padding: "3px 50px",
+                fontFamily: "inter Tight"
               }}
             />
-            <Typography variant="h4" fontSize="12px" fontWeight={500}>
+            <Typography variant="h4" fontSize="12px" fontWeight={550} fontFamily={"inter Tight"}>
               {data?.summary}
             </Typography>
           </Box>
@@ -204,10 +208,11 @@ const Macroeconomics = ({ data }) => {
           <Typography
             variant="h3"
             sx={{
-              color: "#fff",
+              color: "rgba(255, 255, 255, 1)",
               mb: 2,
               fontWeight: 500,
               fontSize: "16px",
+              fontFamily : "inter Tight"
             }}
           >
             Detailed action plan:
@@ -260,7 +265,7 @@ const Macroeconomics = ({ data }) => {
 
               <Typography
                 sx={{
-                  color: "#ccc",
+                  color: "rgba(255, 255, 255, 1)",
                   fontSize: "13px",
                   wordBreak: "break-word",
                   flex: 1,
@@ -276,7 +281,7 @@ const Macroeconomics = ({ data }) => {
                 mt: 2,
                 color: "#FFFFFF",
                 fontSize: { xs: "12px", sm: "15px" },
-                fontWeight: "400px",
+                fontWeight: 600
               }}
             >
               {data?.historicalContext}
@@ -284,11 +289,11 @@ const Macroeconomics = ({ data }) => {
           </Box>
         </Box>
         <Box padding="10px">
-          <Typography variant="h3" fontWeight={600} fontSize="18px">
+          <Typography variant="h3" fontWeight={550} fontSize="18px">
             Fed Speeches
           </Typography>
-          <Typography mt="10px" fontSize="14px">
-            Powell:{data?.fedSpeeches?.powell}
+          <Typography mt="10px" fontSize="14px" fontWeight={400}>
+            Powell: {data?.fedSpeeches?.powell}
           </Typography>
           <Typography fontSize="14px" variant="body1">
             {data?.fedSpeeches?.otherMembers}

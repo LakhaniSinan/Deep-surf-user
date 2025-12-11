@@ -19,7 +19,7 @@ const cardStyle = {
 const Coin = ({ data, overallSentimentData, dayOfWeek }) => {
   console.log("frhfhfrfhrufrhfrrf", dayOfWeek?.dayOfWeek);
 
-  return (  
+  return (
     <Box sx={{ background: "#000", marginTop: "25px" }}>
       <Grid container spacing={3}>
         {/* LEFT CARD */}
@@ -35,10 +35,10 @@ const Coin = ({ data, overallSentimentData, dayOfWeek }) => {
             }}
           >
             <Box>
-              <Typography variant="h4" fontSize="15px">
+              <Typography variant="h4" fontSize="20px" fontFamily={"inter Tight"} fontWeight={600}>
                 {dayOfWeek?.date}
               </Typography>
-              <Typography sx={{ color: "#bbb" }}>
+              <Typography sx={{ color: "#fff", fontWeight: 550, fontSize: "15px" }} fontFamily={"inter Tight"}>
                 {dayOfWeek?.dayOfWeek}
               </Typography>
             </Box>
@@ -47,122 +47,129 @@ const Coin = ({ data, overallSentimentData, dayOfWeek }) => {
               variant="h6"
               fontWeight={400}
               fontSize="13px"
-              marginTop="30px"
+              marginTop="25px"
+              fontFamily={"inter Tight"}
+            color = "rgba(255, 255, 255, 1)"
             >
-              {dayOfWeek?.marketStrength}
-            </Typography>
-          </Paper>
-        </Grid>
+            {dayOfWeek?.marketStrength}
+          </Typography>
+        </Paper>
+      </Grid>
 
-        {/* TOP COINS CARD */}
-        <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
-          <Paper
-            elevation={2}
-            sx={{
-              ...cardStyle,
-              height: "200px",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-            }}
-          >
-            <Typography variant="h6" sx={{ mb: 1 }}>
-              Top Coins
-            </Typography>
+      {/* TOP COINS CARD */}
+      <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
+        <Paper
+          elevation={2}
+          sx={{
+            ...cardStyle,
+            height: "200px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <Typography variant="h6" sx={{ mb: 1 }}>
+            Top Coins
+          </Typography>
 
-            {data.slice(0, 3).map((coin, i) => (
-              <Box
-                key={i}
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  px: 1,
-                  py: 0.5,
-                  // responsive layout
-                  // flexWrap: { xs: "wrap", sm: "nowrap" },
-                  gap: { xs: 1, sm: 0 },
-                }}
-              >
-                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                  <img src={coin.logo} width={30} height={30} alt="logo" />
-                  <Box>
-                    <Typography sx={{ color: "#FFFFFF", fontSize: "13px" }}>
-                      {coin.name}
-                    </Typography>
-                    <Typography color="#FFFFFF99" fontSize={"13px"}>
-                      {coin.symbol}
-                    </Typography>
-                  </Box>
-                </Box>
-
-                {/* CENTER (sparkline) */}
-                <Box
-                  sx={{
-                    flexGrow: 1,
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Sparkline
-                    data={coin.sparkline || []}
-                    isPositive={!coin.change24hFormatted?.includes("-")}
-                  />
-                </Box>
-
-                {/* RIGHT SIDE (price + change) */}
-                <Box sx={{ textAlign: "right" }}>
-                  <Typography
-                    sx={{ color: "#FFFFFF", lineHeight: 1 }}
-                    fontSize={15}
-                  >
-                    {coin.priceFormatted}
+          {data.slice(0, 3).map((coin, i) => (
+            <Box
+              key={i}
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                px: 1,
+                py: 0.5,
+                // responsive layout
+                // flexWrap: { xs: "wrap", sm: "nowrap" },
+                gap: { xs: 1, sm: 0 },
+              }}
+            >
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <img src={coin.logo} width={30} height={30} alt="logo" />
+                <Box>
+                  <Typography sx={{ color: "#FFFFFF", fontSize: "13px", fontFamily: "inter Tight", fontWeight: 600 }}>
+                    {coin.name}
                   </Typography>
-                  <Typography
-                    sx={{
-                      color: coin.change24hFormatted.includes("-")
-                        ? "#ef4444"
-                        : "green",
-                      fontSize: "15px",
-                    }}
+                  <Typography color="#FFFFFF99" fontSize={"13px"} fontFamily={"inter Tight"}
                   >
-                    {coin.change24hFormatted.includes("-") ? "" : "+"}
-                    {coin?.change24hFormatted}
+                    {coin.symbol}
                   </Typography>
                 </Box>
               </Box>
-            ))}
-          </Paper>
-        </Grid>
 
-        <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
-          <Paper
-            elevation={4}
-            sx={{
-              ...cardStyle,
-              height: "200px",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-            }}
-          >
-            <Box sx={{ textAlign: "center" }}>
-              <Typography variant="h6">Overall Sentiment</Typography>
-              <Typography sx={{ color: "#d8d800" }}>
-                {overallSentimentData?.label}
-              </Typography>
+              {/* CENTER (sparkline) */}
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                  fontFamily: "inter Tight"
+                }}
+              >
+                <Sparkline
+                  data={coin.sparkline || []}
+                  isPositive={!coin.change24hFormatted?.includes("-")}
+                />
+              </Box>
+
+              {/* RIGHT SIDE (price + change) */}
+              <Box sx={{ textAlign: "right" }}>
+                <Typography
+                  sx={{ color: "#FFFFFF", lineHeight: 1 }}
+                  fontSize={15}
+                  fontWeight={600}
+                  fontFamily={"inter Tight"}
+                >
+                  {coin.priceFormatted}
+                </Typography>
+                <Typography
+                  sx={{
+                    color: coin.change24hFormatted.includes("-")
+                      ? "#ef4444"
+                      : "green",
+                    fontSize: "15px",
+                    fontFamily: "inter Tight"
+                  }}
+                >
+                  {coin.change24hFormatted.includes("-") ? "" : "+"}
+                  {coin?.change24hFormatted}
+                </Typography>
+              </Box>
             </Box>
-            <Box display={"flex"} justifyContent={"center"}>
-              <Speedometer
-                percentage={30}
-                size={50}
-                maxValue={overallSentimentData?.score}
-              />
-            </Box>
-          </Paper>
-        </Grid>
+          ))}
+        </Paper>
       </Grid>
-    </Box>
+
+      <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
+        <Paper
+          elevation={4}
+          sx={{
+            ...cardStyle,
+            height: "200px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <Box sx={{ textAlign: "center" }}>
+            <Typography variant="h6">Overall Sentiment</Typography>
+            <Typography sx={{ color: "#d8d800" }}>
+              {overallSentimentData?.label}
+            </Typography>
+          </Box>
+          <Box display={"flex"} justifyContent={"center"}>
+            <Speedometer
+              percentage={30}
+              size={50}
+              maxValue={overallSentimentData?.score}
+            />
+          </Box>
+        </Paper>
+      </Grid>
+    </Grid >
+    </Box >
   );
 };
 

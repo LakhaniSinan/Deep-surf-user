@@ -10,7 +10,8 @@ export const styles = {
     backgroundRepeat: "no-repeat",
     m: 0,
     p: 0,
-    overflow: "hidden",
+    overflowX: "hidden",
+    overflowY: "auto",
     boxSizing: "border-box",
   },
 

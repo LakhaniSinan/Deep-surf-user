@@ -31,7 +31,7 @@ const DialogActionButtons = ({
                         height: "45px",
                         padding: "20px 30px",
                         borderRadius: "15px",
-                        backgroundColor: "#000000",
+                        backgroundColor: "#rgba(0, 0, 0, 1)",
                         color: "#fff",
                         dispay: "flex",
                         justifyContent: "space-between",
@@ -50,7 +50,7 @@ const DialogActionButtons = ({
                     style={{
                         width: "auto",
                         height: "45px",
-                        padding: "20px 30px",
+                        padding: "20px 15px",
                         borderRadius: "15px",
                         backgroundColor: "accent.main",
                         color: "#ffff",

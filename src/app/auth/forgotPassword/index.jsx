@@ -74,7 +74,7 @@ const ForGetPassword = () => {
   return (
     <AuthLayout title="Get Started" showBackButton>
       <Typography
-        marginTop={"10px"}
+        marginTop={"6px"}
         variant="h4"
         color={theme.palette.text.secondary}
         mb={2}
@@ -83,6 +83,12 @@ const ForGetPassword = () => {
       </Typography>
 
       {/* Email Input */}
+
+      <Box>
+        <Typography color="#fff" fontSize={"16px"} textAlign={"left"} marginLeft={"2px"}>
+          Enter your registered email to reset your password.
+        </Typography>
+      </Box>
       <Box mt={3}>
         <CustomInput
           placeholder="Email"

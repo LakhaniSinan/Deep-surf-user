@@ -9,13 +9,13 @@ const AiMarketAnalysis = () => {
       justifyContent={"space-between"}
       alignItems={"center"}
       flexWrap={{ xs: "wrap", md: "nowrap" }}
-      mt={3}
+      mt={2}
     >
       <Box>
-        <Typography fontSize={"15px"} color="#fff">
+        <Typography fontSize={"18px"} fontWeight={600} >
           AI Market Analysis
         </Typography>
-        <Typography fontSize={"11px"}>
+        <Typography fontSize={"12px"} color="neutral.mediumGray" fontWeight={600}>
           Daily AI analysis of macroeconomics, the crypto market, key events,
           and trading recommendations
         </Typography>
@@ -27,7 +27,7 @@ const AiMarketAnalysis = () => {
           fullWidth={{ xs: "100%" }}
           sx={{
             backgroundColor: "#FF6421",
-            fontSize: "12px",
+            fontSize: "15px",
             borderRadius: "20px",
             marginTop: "30px",
             width: { xs: "100%", md: "auto" },

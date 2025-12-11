@@ -99,10 +99,10 @@ const InSideDeep = () => {
             src={DeepSurfBackgroundLogo}
             alt="Background Logo"
             position={"fixed"}
-            top={{ xs: "430px", md: "100px" }}
-            right={{ xs: "-20px", md: "85px" }}
-            width={{ xs: "100%", md: "60%" }}
-            height={{ xs: "80%", md: "70%" }}
+            top={{ xs: "430px", md: "50px" }}
+            right={{ xs: "-20px", md: "45px" }}
+            width={{ xs: "100%", md: "70%" }}
+            height={{ xs: "80%", md: "80%" }}
             objectFit={"cover"}
             zIndex={0}
           />
@@ -116,7 +116,7 @@ const InSideDeep = () => {
             // maxHeight={"500px"}
             borderRadius={"12px"}
             position={"relative"}
-            zIndex={1}
+            zIndex={0}
             sx={{
               transform: animating ? "translateY(120px)" : "translateY(0)",
               opacity: animating ? 0 : 1,
@@ -125,7 +125,7 @@ const InSideDeep = () => {
           />
 
           {/* Bottom Image */}
-          <Box mt={2} sx={{ overflowX: "auto", position: "relative"}}>
+          <Box mt={2} sx={{ overflowX: "auto", position: "relative" }}>
             <Box
               component="img"
               src={activeItem.bottomImage}

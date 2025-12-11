@@ -62,7 +62,7 @@ const MarketOutLook = () => {
     <>
       <Header />
       <Container maxWidth="lg" sx={{ paddingTop: "30px", color: "white" }}>
-        <Typography variant="h1" fontSize="24px">
+        <Typography variant="h1" fontSize="30px" fontWeight={600}>
           Market Outlook
         </Typography>
 

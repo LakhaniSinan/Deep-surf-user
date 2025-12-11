@@ -1,16 +1,11 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import CustomButton from "../../../components/customButton";
-import Okx from "../../../assets/icons/okx.png";
-import Binance from "../../../assets/icons/binance.png";
-import Bybit from "../../../assets/icons/bybit.png";
-import Mexc from "../../../assets/icons/mexc.png";
-import BitGet from "../../../assets/icons/bitget.svg";
-import Bing from "../../../assets/icons/bing x.png";
 import TimingImages from "../../../assets/images/timing-image.png";
 import logos from "../../../assets/images/logos.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
+
 
 const AiDriven = () => {
 
@@ -55,20 +50,22 @@ const AiDriven = () => {
         </h5>
       </Box>
 
-      <Box mt={5} data-aos="fade-up" overflow={"hidden"}>
-        <Typography
-          color="accent.contrastText"
-          fontSize={{ xs: 30, md: 60 }}
-          fontWeight={600}
-          lineHeight={1.1}
-          textAlign={"center"}
-          fontFamily={"Inter Tight"}
-        >
-          AI-driven Trading <br /> Intelligence Engine
-        </Typography>
-      </Box>
 
-      <Box mt={4.8} data-aos="fade-up">
+      <Typography
+        data-aos="zoom-in"
+        overflow={"hidden"}
+        color="accent.contrastText"
+        fontSize={{ xs: 30, md: 60 }}
+        fontWeight={600}
+        lineHeight={1.1}
+        textAlign="center"
+        fontFamily="Inter Tight"
+      >
+        AI-driven Trading <br /> Intelligence Engine
+      </Typography>
+      <Box mt={4.8}
+        data-aos="fade-up"
+      >
         <Typography
           color="text.CoolGray"
           fontSize={{ xs: 12, md: 16 }}
@@ -76,12 +73,15 @@ const AiDriven = () => {
           lineHeight={1.3}
           fontFamily={"Inter Tight"}
         >
+
           Powered by proprietary machine learning models, real- <br />
           time market data, and years of quantitative research.
         </Typography>
       </Box>
 
-      <Box mt={4} data-aos="zoom-in" overflow={"hidden"}>
+      <Box mt={4}
+        data-aos="zoom-in"
+        overflow={"hidden"}>
         <CustomButton
           title="Get started"
           handleClickBtn={scrollToJoin} // scroll add kiya

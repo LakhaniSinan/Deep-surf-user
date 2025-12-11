@@ -59,23 +59,23 @@ const Trading = ({ tradingData }) => {
         padding="25px"
         mt="20px"
       >
-        <Typography variant="h4" fontSize={"18px"} fontWeight={500}>
+        <Typography variant="h4" fontSize={"25px"} fontWeight={600}>
           Trading recommendations for today
         </Typography>
         <Grid container spacing={2} mt={2}>
           <Grid item size={{ xs: 12, md: 6 }}>
-            <Box bgcolor={"#1C1C1C"} p={2} borderRadius={"20px"}>
-              <Typography color="#3EDD87">LONG setups</Typography>
+            <Box bgcolor={"rgba(28, 28, 28, 1)"} p={2} borderRadius={"20px"}>
+              <Typography color="#3EDD87" fontWeight={550}>LONG setups</Typography>
               <Box display={"flex"} gap={"3px"} mt={1}>
-                <Box fontSize={"13px"} fontFamily={"Inter Tight"}>{tradingData?.longSetups?.[0]?.asset} : {tradingData?.longSetups?.[0]?.description}
+                <Box fontSize={"13px"} color="neutral.Snowwhite" fontWeight={500} fontFamily={"Inter Tight"}>{tradingData?.longSetups?.[0]?.asset}: {tradingData?.longSetups?.[0]?.description}
                 </Box>
               </Box>
               <Box display={"flex"} gap={"3px"} mt={1}>
-                <Box fontSize={"13px"} fontFamily={"Inter Tight"}>{tradingData?.longSetups?.[1]?.asset} : {tradingData?.longSetups?.[1]?.description}
+                <Box fontSize={"13px"} color="neutral.Snowwhite" fontFamily={"Inter Tight"}>{tradingData?.longSetups?.[1]?.asset} : {tradingData?.longSetups?.[1]?.description}
                 </Box>
               </Box>
               <Box display={"flex"} gap={"3px"} mt={1}>
-                <Box fontSize={"13px"} fontFamily={"Inter Tight"}>{tradingData?.longSetups?.[2]?.asset} : {tradingData?.longSetups?.[2]?.description}
+                <Box fontSize={"13px"} color="neutral.Snowwhite" fontFamily={"Inter Tight"}>{tradingData?.longSetups?.[2]?.asset} : {tradingData?.longSetups?.[2]?.description}
                 </Box>
               </Box>
             </Box>
@@ -109,17 +109,18 @@ const Trading = ({ tradingData }) => {
                   color: "#000000",
                   marginTop: "10px",
                   px: "30px",
+                  fontFamily: "inter Tight"
                 }}
               />
             </Grid>
             <Grid size={{ xs: 12, sm: 12, md: 5 }}>
-              <Typography fontSize="12px" mt="10px">
+              <Typography fontSize="15px" mt="10px" fontFamily={"inter Tight"} fontWeight={600}>
                 {tradingData?.riskManagement?.actions}
               </Typography>
             </Grid>
           </Grid>
         </Box>
-        <Typography mt="20px" variant="h5" fontSize="20px">
+        <Typography mt="20px" fontFamily={'inter Tight'} color="neutral.Snowwhite" variant="h5" fontSize="25px" fontWeight={600}>
           Key levels
         </Typography>
         <Box sx={{ color: "#fff", marginTop: "20px" }}>
@@ -146,12 +147,12 @@ const Trading = ({ tradingData }) => {
                     <Grid item size={{ xs: 6 }}>
                       <Typography
                         fontSize="13px"
-                        sx={{ color: "#aaa", mb: 1, fontWeight: 500 }}
+                        sx={{ color: "neutral.lightgray", mb: 1, fontWeight: 590, fontSize: "15px" }}
                       >
                         Resistance areas
                       </Typography>
                       {item.resistance.map((lvl, i) => (
-                        <Typography key={i} fontSize="15px">
+                        <Typography key={i} fontSize="18px" fontFamily={"inter Tight"} fontWeight={600} color="neutral.Snowwhite">
                           {lvl}
                         </Typography>
                       ))}
@@ -160,12 +161,12 @@ const Trading = ({ tradingData }) => {
                     <Grid item size={{ xs: 6 }}>
                       <Typography
                         fontSize="13px"
-                        sx={{ color: "#aaa", mb: 1, fontWeight: 500 }}
+                        sx={{ color: "neutral.lightgray", mb: 1, fontWeight: 590, fontSize: "15px" }}
                       >
                         Support areas
                       </Typography>
                       {item.support.map((lvl, i) => (
-                        <Typography key={i} fontSize="15px">
+                        <Typography key={i} fontSize="18px" fontFamily={"inter Tight"} fontWeight={600} color="neutral.Snowwhite">
                           {lvl}
                         </Typography>
                       ))}
@@ -186,14 +187,16 @@ const Trading = ({ tradingData }) => {
                   borderRadius: "20px",
                   width: { xs: "100%", md: "auto" },
                   backgroundColor: "#FF6421",
-                  color: "#fff",
+                  color: "neutral.Snowwhite",
                   px: "30px",
+                  fontSize : "15px",
+                  fontWeight : 400
                   // marginTop: "5px",
                 }}
               />
             </Grid>
             <Grid mt="5px" size={{ xs: 12, sm: 12, md: 9 }}>
-              <Typography fontSize="13px" color="#fff" fontWeight={400}>
+              <Typography fontSize="13px" color="#fff" fontWeight={600}>
                 {tradingData?.aiVerdict?.message}
                 <br />
                 {tradingData?.aiVerdict?.mainRisk}

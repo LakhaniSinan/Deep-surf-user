@@ -11,8 +11,8 @@ import { login, socialAuthLogin } from "../../../services/modules/auth";
 import theme from "../../../theme";
 import { loginValidation } from "../../../utils/validations";
 import { useAuthStore } from "../../../store";
-import { auth, googleProvider } from "../../../config/firebase"; // ✅ apna provider aur auth
-import { signInWithPopup } from "firebase/auth"; // ✅ Firebase Auth se import
+import { auth, googleProvider } from "../../../config/firebase";
+import { signInWithPopup } from "firebase/auth"; 
 
 const Login = () => {
   const navigate = useNavigate();
@@ -169,6 +169,7 @@ const Login = () => {
                 color: "#ffffff",
                 cursor: "pointer",
                 fontSize: "12px",
+                fontFamily : 'Inter Tight',
                 "&:hover": { textDecoration: "underline" },
               }}
               onClick={() => navigate("/forgot-password")}

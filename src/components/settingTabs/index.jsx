@@ -176,7 +176,7 @@ const SettingTabs = ({ children }) => {
         component="main"
         sx={{
           flexGrow: 1,
-          p: { xs: 2, md: 4 },
+          p: { xs: 2, md: 2 },
           bgcolor: "#161616",
           color: "white",
           borderRadius: "16px",

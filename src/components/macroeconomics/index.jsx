@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import starIcon from "../../assets/icons/stars.svg";
-import warningIcon from "../../assets/icons/warning.svg";
+import warningTriangleIcon from "../../assets/icons/warning-triangle-icon.svg"
 import MacroEconomicCardSkeleton from "../../components/skeleton/macroeconomicCardSkeleton";
 
 const Macroeconomics = ({ data, description, isLoading }) => {
@@ -10,6 +10,7 @@ const Macroeconomics = ({ data, description, isLoading }) => {
   // Convert object into array for mapping (safe)
   const reports = data ? Object.values(data || {}) : [];
 
+
   return (
     <Box
       sx={{
@@ -17,12 +18,12 @@ const Macroeconomics = ({ data, description, isLoading }) => {
         backgroundColor: (theme) => theme.palette.background.paper, // ✅ Fix
         borderRadius: "12px",
         padding: "25px",
-        height : "410px"
+        height: "410px"
       }}
     >
       <Typography
         variant="h2"
-        fontSize="1rem"
+        fontSize="1.5rem"
         fontWeight={600}
         color="text.primary"
         mb={3}
@@ -49,7 +50,7 @@ const Macroeconomics = ({ data, description, isLoading }) => {
                   mb: 1.5,
                 }}
               >
-                {report?.title || "N/A"} {/* 👈 Safe */}
+                {report?.title || "N/A"} {report?.date || "N/A"}
               </Typography>
 
               <Box display="flex" flexDirection="column" gap={0.5} mb={2}>
@@ -60,7 +61,7 @@ const Macroeconomics = ({ data, description, isLoading }) => {
                     fontWeight: 400,
                   }}
                 >
-                  Forecast: {report?.forecast || "N/A"}
+                  Forecast: {`${report?.forecast} (previous ${report?.previous})`}
                 </Typography>
                 <Typography
                   sx={{
@@ -75,7 +76,7 @@ const Macroeconomics = ({ data, description, isLoading }) => {
 
               <Box
                 sx={{
-                  backgroundColor: (theme) => theme.palette.background.gray, // ❗ Fix
+                  backgroundColor: (theme) => theme.palette.background.gray,
                   borderRadius: "16px",
                   padding: "9px",
                   display: "flex",
@@ -83,12 +84,25 @@ const Macroeconomics = ({ data, description, isLoading }) => {
                   gap: 0.5,
                 }}
               >
-                {(report?.impact || "").toLowerCase().includes("high") || // 🔥 FIXED
-                (report?.title || "").toLowerCase().includes("critical") ? (
-                  <img src={warningIcon} alt="warning" />
+                {/* {(report?.impact || "").toLowerCase().includes("high") || 
+                  (report?.title || "").toLowerCase().includes("critical") ? (
+                  <img src={warningTriangleIcon} alt="warning" />
                 ) : (
                   <img src={starIcon} alt="star" />
-                )}
+                )} */}
+                {
+                  // Check first for "critical" in title
+                  (report?.title || "").toLowerCase().includes("critical")
+                    ? <img src={warningTriangleIcon} alt="warning" />
+                    : // Then check for "high" in impact
+                    (report?.impact || "").toLowerCase().includes("high")
+                      ? <img src={starIcon} alt="star" />
+                      : // Default icon
+                      <img src={starIcon} alt="star" />
+                }
+
+
+
 
                 <Typography
                   sx={{
@@ -99,7 +113,7 @@ const Macroeconomics = ({ data, description, isLoading }) => {
                     flex: 1,
                   }}
                 >
-                  {report?.description || "N/A"} {/* 👈 Safe */}
+                  {report?.description || "N/A"}
                 </Typography>
               </Box>
             </Box>

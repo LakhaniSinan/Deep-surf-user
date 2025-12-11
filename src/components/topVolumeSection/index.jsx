@@ -40,7 +40,7 @@ const TopVolumeSection = ({ data1, data2, isLoading }) => {
           gap: "16px",
         }}
       >
-        <Typography variant="h4" fontSize="1rem" color="text.primary">
+        <Typography variant="h4" fontSize="1rem" color="text.primary" fontFamily="Inter Tight">
           Top 10 by volume
         </Typography>
 
@@ -54,6 +54,7 @@ const TopVolumeSection = ({ data1, data2, isLoading }) => {
               borderRadius: "20px",
               textTransform: "none",
               fontSize: "0.875rem",
+              fontFamily:"Inter Tight",
               fontWeight: 500,
               backgroundColor:
                 selectedTimeframe === "24h" ? "#2a2a2a" : "transparent",

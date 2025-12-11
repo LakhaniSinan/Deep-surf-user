@@ -22,6 +22,11 @@ const theme = createTheme({
       hover: "rgba(255,255,255,0.12)",
       mutedText: "rgba(255,255,255,0.45)",
       Apricot: "rgba(240, 156, 96, 0.35)",
+      Snowwhite: "rgba(255, 255, 255, 1)",
+      charcoalGrey: "rgba(26, 26, 26, 1)",
+      vermilionOrange: "rgba(255, 100, 33, 1)",
+      mediumGray: "rgba(140, 140, 140, 1)",
+      lightgray: "rgba(207, 207, 207, 1)"
     },
     background: {
       default: "#101010",
@@ -88,7 +93,7 @@ const theme = createTheme({
 
     h3: {
       fontFamily: "Inter Tight",
-      fontSize: "1.75rem",
+      fontSize: "35px",
       fontWeight: 600,
       lineHeight: 1.4,
     },
@@ -259,10 +264,10 @@ const theme = createTheme({
         {
           props: { variant: "labelMd" },
           style: {
-            fontSize: "0.875rem",
-            fontWeight: 500,
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
+            fontSize: "14px",
+            fontWeight: 600,
+            letterSpacing: "0.02em",
+            // textTransform: "uppercase",
             color: "rgba(255,255,255,0.72)",
             fontFamily: "Inter Tight",
           },

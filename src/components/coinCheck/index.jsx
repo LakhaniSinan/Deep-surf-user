@@ -13,14 +13,13 @@ import theme from "../../theme";
 import { getCoinQuickCheck } from "../../services/modules/home";
 import { toast } from "react-toastify";
 
-// Separate styles object
 
 const CoinCheck = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [ticker, setTicker] = useState("");
   const [coinData, setCoinData] = useState(null);
 
-  const handleKeyPress = (e) => { 
+  const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       handleCoinQuickCheck();
     }
@@ -55,22 +54,21 @@ const CoinCheck = () => {
             variant="h4"
             fontSize="16px"
             fontWeight={700}
-            color="text.primary"
-          >
+            color="neutral.Snowwhite"
+            fontFamily="Inter Tight"          >
             AI Proof — Quick coin check
           </Typography>
           <Typography
             variant="body3"
             fontSize="12px"
-            fontWeight={300}
-            color="text.primary"
+            fontWeight={500}
+            color="neutral.Snowwhite"
             fontFamily="Inter Tight"
           >
             Deep AI analysis of any coin in seconds. Enter the ticker, get a
             full breakdown and recommendation.
           </Typography>
         </Box>
-
         <Box sx={coinCheckStyles.searchContainer}>
           <CustomInput
             placeholder="Enter the coin ticker for analysis"
@@ -87,7 +85,7 @@ const CoinCheck = () => {
               disabled={!ticker || isLoading}
               onClick={handleCoinQuickCheck}
               sx={coinCheckStyles.searchButton}
-              // loading={isLoading}
+            // loading={isLoading}
             >
               <SearchIcon sx={{ color: "#ffffff" }} />
             </IconButton>

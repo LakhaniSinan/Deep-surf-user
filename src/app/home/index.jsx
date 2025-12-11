@@ -100,12 +100,13 @@ const Home = () => {
           <Box mt={"30px"}>
             <Typography
               variant="h1"
-              fontSize="26px"
+              fontSize="30px"
               fontWeight={700}
               color="text.primary"
+              fontFamily="Inter Tight"
             >
               Welcome back, {" "}
-              <span style={{ color: "#FF6421", fontFamily: "Inter Tight" }}>
+              <span style={{ color: "#FF6421", fontFamily: "Inter Tight", fontSize: "30px" }}>
                 {username}
               </span>
             </Typography>
@@ -170,18 +171,18 @@ const Home = () => {
                       textAlign={"center"}
                       backgroundColor="#1C1C1C"
                       borderRadius={"20px"}
-                      height={"210px"}
-                      padding={"10px"}
+                      height={"203px"}
+                      padding={"8px"}
                     >
-                      <Box mt={3}>
-                        <Typography color="#fff" fontSize={"15px"}>
+                      <Box mt={3} >
+                        <Typography color="#fff" fontSize={"10px"} lineHeight={0.8}>
                           Overall Sentiment
                         </Typography>
-                        <Typography mt={1} color="text.yellowColor" fontSize={"15px"}>
+                        <Typography color="text.yellowColor" fontSize={"23px"} fontWeight={550}>
                           Neutral
                         </Typography>
 
-                        <Box mt={2}>
+                        <Box mt={"8px"}>
                           <Speedometer
                             size={50}
                             score={homeResponse?.overallSentiment?.score}
@@ -214,8 +215,8 @@ const Home = () => {
             </Grid>
           </Grid>
         </Grid>
-      </Container>
-    </Box>
+      </Container >
+    </Box >
   );
 };
 

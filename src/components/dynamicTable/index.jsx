@@ -10,9 +10,13 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import ContentCopyRoundedIcon from "@mui/icons-material/ContentCopyRounded";
+import VisibilityIcon from "@mui/icons-material/Visibility";  // Add this import
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
+import WithdrawDetails from "../../app/settings/refferals/withdrawDetails";
+import AddEditNewClientDialog from "../../app/settings/refferals/withdrawRequest";
+import UserWithdraw from "../../app/settings/refferals/withdrawDetails";
 
 export default function PaginatedTable({
   tableWidth,
@@ -28,6 +32,8 @@ export default function PaginatedTable({
 }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const withdrawDetails = useRef();
 
   const columnKeys = useMemo(
     () => (Array.isArray(displayRows) ? displayRows : []),
@@ -71,18 +77,18 @@ export default function PaginatedTable({
       borderBottom: "1px solid rgba(255,255,255,0.08)",
       padding: "14px 16px",
       fontWeight: 600,
-      textTransform: "uppercase",
+      // textTransform: "uppercase",
       fontSize: "12px",
       letterSpacing: "0.08em",
       ...(headerWhite
         ? {
-            backgroundColor: "#fff",
-            color: "#111",
-          }
+          backgroundColor: "#fff",
+          color: "#111",
+        }
         : {
-            backgroundColor: "rgba(255,255,255,0.02)",
-            color: "#A5A5A5",
-          }),
+          backgroundColor: "rgba(255,255,255,0.02)",
+          color: "#A5A5A5",
+        }),
     },
     "& .MuiTableCell-root": {
       borderBottom: "1px solid rgba(255,255,255,0.08)",
@@ -120,6 +126,67 @@ export default function PaginatedTable({
           </TableCell>
         );
 
+      case "name":
+        return (
+          <TableCell align={headerAlignMap[val] || "left"}>
+            <Box display="flex" flexDirection="column" justifyContent="center">
+              <Typography fontSize={"15px"} variant="subtitle2" color="#E3E3E3" fontWeight={600} >
+                {row.name}
+              </Typography>
+              <Typography fontSize={"12px"} variant="caption" color="#aaa">
+                {row.email}
+              </Typography>
+            </Box>
+          </TableCell>
+        );
+
+      case "refferal status":
+        // Custom rendering for "refferal status"
+        return (
+          <TableCell align={headerAlignMap[val] || "center"}>
+            <Box
+              sx={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                px: 2,
+                py: 0.75,
+                borderRadius: "14px",
+                fontSize: "13px",
+                fontWeight: 600,
+                backgroundColor:
+                  (row[val] || row["referralStatus"] || "")
+                    .toString()
+                    .toLowerCase()
+                    .includes("payment completed")
+                    ? "rgba(0, 34, 16, 1)"
+                    : (row[val] || row["referralStatus"] || "")
+                      .toString()
+                      .toLowerCase()
+                      .includes("sign up")
+                      ? "rgba(2, 144, 209, 0.87)"
+                      : "#fff",
+                color:
+                  (row[val] || row["referralStatus"] || "")
+                    .toString()
+                    .toLowerCase()
+                    .includes("payment completed")
+                    ? "#4caf50"
+                    : (row[val] || row["referralStatus"] || "")
+                      .toString()
+                      .toLowerCase()
+                      .includes("sign up")
+                      ? "rgba(208, 229, 240, 1)"
+                      : "#E3E3E3",
+                minWidth: 60,
+                textTransform: "capitalize"
+              }}
+            >
+              {(row[val] || row["referralStatus"] || "")}
+            </Box>
+          </TableCell>
+        );
+
       case "status":
         return (
           <TableCell align={headerAlignMap[val] || "center"}>
@@ -130,23 +197,22 @@ export default function PaginatedTable({
                 justifyContent: "center",
                 px: 2,
                 py: 0.75,
-                borderRadius: "999px",
+                borderRadius: "100%",
                 fontSize: "13px",
                 fontWeight: 600,
                 backgroundColor: (row[val] || "")
                   .toString()
                   .toLowerCase()
-                  .includes("success")
-                  ? "rgba(92, 184, 92, 0.14)"
-                  : "rgba(255,255,255,0.08)",
+                  .includes("In Progress")
+                  ? "rgba(255, 223, 167, 0.28)"
+                  : "#fff",
                 color: (row[val] || "")
                   .toString()
                   .toLowerCase()
-                  .includes("success")
+                  .includes("Completed")
                   ? "#5CB85C"
                   : "#E3E3E3",
                 minWidth: 96,
-                textTransform: "capitalize",
               }}
             >
               {row.status}
@@ -154,57 +220,75 @@ export default function PaginatedTable({
           </TableCell>
         );
 
-      case "trend_pro":
+      case "action":
+      case "Action":
         return (
           <TableCell align={headerAlignMap[val] || "center"}>
-            <Typography color={"background.yellow"}>{row.trend}</Typography>
+            <IconButton
+              size="small"
+              sx={{
+                color: "#FFFFFF",
+                "&:hover": {
+                  backgroundColor: "rgba(255,255,255,0.1)",
+                  color: "#FFFFFF",
+                },
+              }}
+              onClick={() => {
+                if (onView) {
+                  onView(row);
+                } else {
+                  console.log("View row:", row);
+                }
+              }}
+            >
+              <VisibilityIcon onClick={() => withdrawDetails.current?.openDialog({ type: "add" })} fontSize="small" width="24px" height="24px" />
+            </IconButton>
           </TableCell>
         );
 
-      case "status_pro":
+      case "Status":
         return (
           <TableCell align={headerAlignMap[val] || "center"}>
-            <Typography color={"background.green"}>{row.Status}</Typography>
-          </TableCell>
-        );
-
-      case "apiKey":
-        return (
-          <TableCell align={headerAlignMap[val] || "left"}>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              <Typography
-                variant="body2"
-                sx={{ color: "#F1F1F1", wordBreak: "break-all" }}
-              >
-                {row[val]}
-              </Typography>
-              {onCopy && (
-                <IconButton
-                  size="small"
-                  sx={{ color: "#B4B4B4" }}
-                  onClick={() => onCopy(row[val], row)}
-                >
-                  <ContentCopyRoundedIcon fontSize="inherit" />
-                </IconButton>
-              )}
+            <Box
+              sx={{
+                borderRadius: "100%",
+                fontSize: "13px",
+                fontWeight: 600,
+                backgroundColor: (row[val] || "")
+                  .toString()
+                  .toLowerCase()
+                  .includes("in progress")
+                  ? "rgba(255, 223, 167, 0.28)"
+                  : (row[val] || "")
+                    .toString()
+                    .toLowerCase()
+                    .includes("completed")
+                    ? "rgba(0, 34, 16, 1)"
+                    : "#fff",
+                color: (row[val] || "")
+                  .toString()
+                  .toLowerCase()
+                  .includes("in progress")
+                  ? "rgba(245, 159, 10, 1)"
+                  : (row[val] || "")
+                    .toString()
+                    .toLowerCase()
+                    .includes("completed")
+                    ? "rgba(62, 221, 135, 1)"
+                    : "#E3E3E3",
+                minWidth: 76,
+                borderRadius: "20px",
+                display: "inline-block",
+                textAlign: "center",
+                py : "5px",
+                px : "5px"
+              }}
+            >
+              {row[val]}
             </Box>
           </TableCell>
         );
 
-      case "action":
-        return (
-          <TableCell align={headerAlignMap[val] || "center"}>
-            {onDelete && (
-              <IconButton
-                size="small"
-                sx={{ color: "#B4B4B4", "&:hover": { color: "#FF6B6B" } }}
-                onClick={() => onDelete(row)}
-              >
-                <DeleteOutlineRoundedIcon fontSize="inherit" />
-              </IconButton>
-            )}
-          </TableCell>
-        );
 
       default:
         const cellValue = row[val];
@@ -220,11 +304,11 @@ export default function PaginatedTable({
             >
               {hasLineBreaks
                 ? cellValue.split("\n").map((line, idx) => (
-                    <React.Fragment key={idx}>
-                      {line}
-                      {idx < cellValue.split("\n").length - 1 && <br />}
-                    </React.Fragment>
-                  ))
+                  <React.Fragment key={idx}>
+                    {line}
+                    {idx < cellValue.split("\n").length - 1 && <br />}
+                  </React.Fragment>
+                ))
                 : cellValue}
             </Typography>
           </TableCell>
@@ -318,6 +402,9 @@ export default function PaginatedTable({
           }}
         />
       )}
+      <UserWithdraw ref={withdrawDetails} />
+
     </TableContainer>
+
   );
 }

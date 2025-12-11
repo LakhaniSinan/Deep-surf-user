@@ -2,13 +2,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Inter Tight";
-  padding-top: "100px";
+  font-Family: "Inter Tight";
 }
 
-/* Global Scrollbar Styling - Thin & Stylish */
-
-/* For Webkit browsers (Chrome, Safari, Edge) */
 * {
   scrollbar-width: thin;
   scrollbar-color: #343a40 #f5f5f5;

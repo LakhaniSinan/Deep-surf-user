@@ -34,6 +34,7 @@ const TopCoinsTable = ({ data, isLoading }) => {
         fontWeight={600}
         color="text.primary"
         mb={3}
+        fontFamily="Inter Tight"
       >
         Top coins
       </Typography>
@@ -104,6 +105,7 @@ const TopCoinsTable = ({ data, isLoading }) => {
                               color: "text.primary",
                               fontSize: "12px",
                               fontWeight: 600,
+                              fontFamily: "inter Tight"
                             }}
                           >
                             {coin.ticker?.[0] || "?"}
@@ -125,7 +127,7 @@ const TopCoinsTable = ({ data, isLoading }) => {
                           sx={{
                             color: "#FFFFFF",
                             fontSize: "15px",
-                            fontWeight: 500,
+                            fontWeight: 550,
                             lineHeight: 1.2,
                             mt: 0.5,
                           }}
@@ -139,6 +141,7 @@ const TopCoinsTable = ({ data, isLoading }) => {
                             fontWeight: 400,
                             lineHeight: 1.2,
                             mt: 0.5,
+                            fontFamily: "inter Tight"
                           }}
                         >
                           {coin.name}
@@ -195,7 +198,9 @@ const TopCoinsTable = ({ data, isLoading }) => {
                         sx={{
                           color: "text.primary",
                           fontSize: "12px",
-                          fontWeight: 500,
+                          fontWeight: 600,
+                          fontFamily: "inter Tight"
+
                         }}
                       >
                         {coin.priceFormatted}
@@ -207,6 +212,8 @@ const TopCoinsTable = ({ data, isLoading }) => {
                             : "green",
                           fontSize: "12px",
                           fontWeight: 500,
+                          fontFamily: "inter Tight"
+
                         }}
                       >
                         {coin.change24hFormatted.includes("-") ? "" : "+"}
