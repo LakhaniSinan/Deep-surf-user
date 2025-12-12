@@ -1,0 +1,70 @@
+{
+  "header": {
+    "language": "Idioma",
+    "waitlist": "Lista de espera",
+    "login": "Iniciar sesión",
+    "english": "Inglés",
+    "turkish": "Turco",
+    "spanish": "Español",
+    "russian": "Ruso"
+  },
+  "hero": {
+    "limitedAccess": "Acceso limitado",
+    "title": "Motor de Inteligencia de Trading <br /> Impulsado por IA",
+    "subtitle": "Impulsado por modelos de aprendizaje automático propietarios, datos de <br /> mercado en tiempo real y años de investigación cuantitativa.",
+    "getStarted": "Comenzar",
+    "trustedBy": "Confiado por traders en todo el mundo.",
+    "builtFor": "Construido para aquellos que piensan en probabilidades, no en predicciones."
+  },
+  "aiDrivenCard": {
+    "title": "Impulsado por IA. <br /> Inspirado en humanos.",
+    "description": "El motor de IA multicapa de DeepSurf transforma datos sin procesar en información procesable, pronósticos y señales de sesgo, para que puedas operar con claridad, precisión y confianza.",
+    "aiAnalysis": "Análisis de IA",
+    "analysisText": "La tasa de desempleo mejoró del 4.2% al 4.1%. Esta es una señal alcista positiva. Un mercado laboral fuerte pero no sobrecalentado respalda la visión de la Fed de un posible \"aterrizaje suave\" para la economía.",
+    "advancedToolsTitle": "Herramientas Avanzadas para <br /> la Percepción del Mercado.",
+    "advancedToolsDescription": "Ve el mercado como un sistema vivo: flujos de liquidez, regímenes de volatilidad, patrones de microestructura y dinámicas de sentimiento. El conjunto de análisis de DeepSurf te ayuda no solo a ver los movimientos, sino a sentirlos antes de que ocurran.",
+    "onChainSignals": "Señales On-Chain",
+    "whalesTracker": "Rastreador de ballenas"
+  },
+  "proprietaryTech": {
+    "title": "100% Tecnología Propietaria.",
+    "subtitle": "Sin Subcontratación. Sin Ruido.",
+    "description": "El motor de IA multicapa de DeepSurf transforma datos sin procesar en información procesable, pronósticos y señales de sesgo, para que puedas operar con claridad, precisión y confianza."
+  },
+  "insideDeep": {
+    "title": "Dentro de <span style=\"color: #FF6421; font-weight: 700; font-family: Inter Tight\">Deepsurf</span>",
+    "marketOutlook": {
+      "title": "Perspectiva del Mercado",
+      "description": "Macro diario, flujos, ballenas, calendario de riesgos"
+    },
+    "proAnalytics": {
+      "title": "Análisis Pro",
+      "description": "Flujo de órdenes, interés abierto, mapa de calor, niveles de liquidez, microestructura, métricas de ETF y on-chain"
+    },
+    "journal": {
+      "title": "Diario",
+      "description": "Importación de operaciones basada en API, coaching de IA, Lista de seguimiento, Alertas"
+    },
+    "calculator": {
+      "title": "Calculadora",
+      "description": "Dimensionamiento basado en ATR, simulación what-if, exportación automática al diario"
+    },
+    "aiTools": {
+      "title": "Herramientas de IA",
+      "description": "Análisis integral de tokens basado en más de 50 parámetros y métricas, Detección de Bombeo de IA"
+    }
+  },
+  "footer": {
+    "accessTag": "El acceso es solo por invitación",
+    "title": "Conviértete en un Trader <br /> Líder ahora",
+    "description": "Únete a la lista de espera para estar entre los primeros dentro de la red privada de DeepSurf.",
+    "emailPlaceholder": "Ingresa tu correo electrónico...",
+    "joinButton": "Unirse",
+    "emailRequired": "El correo electrónico es obligatorio",
+    "emailInvalid": "El correo electrónico no es válido",
+    "requestFailed": "Solicitud fallida",
+    "requestError": "Solicitud Fallida",
+    "tagline": "DeepSurf — El futuro de la inteligencia de mercado. <br /> Construido con precisión. Impulsado por IA. Protegido por diseño."
+  }
+}
+

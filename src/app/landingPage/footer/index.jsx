@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography, Stack } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import CustomButton from "../../../components/customButton";
 import CustomInput from "../../../components/customInput";
 import AOS from "aos";
@@ -12,6 +13,7 @@ import addToWaitList from "../../../services/modules/addWaitList";
 import { toast } from "react-toastify";
 
 const JoinSection = () => {
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
@@ -27,9 +29,9 @@ const JoinSection = () => {
     const newErrors = {};
 
     if (!formData.email.trim()) {
-      newErrors.email = "Email is Required";
+      newErrors.email = t("footer.emailRequired");
     } else if (!EMAIL_REGEX.test(formData.email.trim())) {
-      newErrors.email = "Email is not valid";
+      newErrors.email = t("footer.emailInvalid");
     }
 
     setErrors(newErrors);
@@ -45,10 +47,10 @@ const JoinSection = () => {
       if (response?.data?.status === "success") {
         toast.success(response?.data?.message);
       } else {
-        toast.error(response?.data?.message || "Request failed");
+        toast.error(response?.data?.message || t("footer.requestFailed"));
       }
     } catch (error) {
-      toast.error(error?.message || "Request Failed");
+      toast.error(error?.message || t("footer.requestError"));
     } finally {
       setIsLoading(false);
     }
@@ -112,7 +114,7 @@ const JoinSection = () => {
                 fontFamily: "Inter Tight",
               }}
             >
-              Access is by invitation only
+              {t("footer.accessTag")}
             </Typography>
           </Box>
         </Box>
@@ -130,7 +132,7 @@ const JoinSection = () => {
             fontFamily: "Inter Tight",
           }}
         >
-          Become a Leading <br /> Trader now
+          <span dangerouslySetInnerHTML={{ __html: t("footer.title") }} />
         </Typography>
 
         {/* Description */}
@@ -145,7 +147,7 @@ const JoinSection = () => {
             fontFamily: "Inter Tight",
           }}
         >
-          Join the waitlist to be among the first inside the DeepSurf private.
+          {t("footer.description")}
         </Typography>
 
         {/* Input + Button */}
@@ -161,7 +163,7 @@ const JoinSection = () => {
             sx={{ width: "100%" }}
           >
             <CustomInput
-              placeholder="Enter your email..."
+              placeholder={t("footer.emailPlaceholder")}
               value={formData.email}
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
@@ -180,7 +182,7 @@ const JoinSection = () => {
 
             <CustomButton
               variant="calculatorSmall"
-              title="Join"
+              title={t("footer.joinButton")}
               handleClickBtn={handleAddToWaitList}
               sx={{
                 bgcolor: "text.DarkGrey",
@@ -224,8 +226,7 @@ const JoinSection = () => {
             fontFamily: "Inter Tight",
           }}
         >
-          DeepSurf — The future of market intelligence. <br />
-          Built with precision. Powered by AI. Protected by design.
+          <span dangerouslySetInnerHTML={{ __html: t("footer.tagline") }} />
         </Typography>
 
         {/* Icons */}

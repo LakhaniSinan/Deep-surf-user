@@ -1,5 +1,6 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import CustomButton from "../../../components/customButton";
 import TimingImages from "../../../assets/images/timing-image.png";
 import logos from "../../../assets/images/logos.png";
@@ -8,6 +9,7 @@ import "aos/dist/aos.css";
 
 
 const AiDriven = () => {
+  const { t } = useTranslation();
 
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
@@ -46,7 +48,7 @@ const AiDriven = () => {
             fontWeight: "500",
           }}
         >
-          Limited access
+          {t("hero.limitedAccess")}
         </h5>
       </Box>
 
@@ -61,7 +63,7 @@ const AiDriven = () => {
         textAlign="center"
         fontFamily="Inter Tight"
       >
-        AI-driven Trading <br /> Intelligence Engine
+        <span dangerouslySetInnerHTML={{ __html: t("hero.title") }} />
       </Typography>
       <Box mt={4.8}
         data-aos="fade-up"
@@ -74,8 +76,7 @@ const AiDriven = () => {
           fontFamily={"Inter Tight"}
         >
 
-          Powered by proprietary machine learning models, real- <br />
-          time market data, and years of quantitative research.
+          <span dangerouslySetInnerHTML={{ __html: t("hero.subtitle") }} />
         </Typography>
       </Box>
 
@@ -83,7 +84,7 @@ const AiDriven = () => {
         data-aos="zoom-in"
         overflow={"hidden"}>
         <CustomButton
-          title="Get started"
+          title={t("hero.getStarted")}
           handleClickBtn={scrollToJoin} // scroll add kiya
           sx={{
             color: "#fff",
@@ -105,7 +106,7 @@ const AiDriven = () => {
           fontWeight={700}
           sx={{ fontFamily: "Inter Tight" }}
         >
-          Trusted by traders worldwide.
+          {t("hero.trustedBy")}
         </Typography>
         <Typography
           textAlign={"center"}
@@ -113,7 +114,7 @@ const AiDriven = () => {
           color="accent.contrastText"
           sx={{ fontFamily: "Inter Tight" }}
         >
-          Built for those who think in probabilities, not predictions.
+          {t("hero.builtFor")}
         </Typography>
 
         <Grid

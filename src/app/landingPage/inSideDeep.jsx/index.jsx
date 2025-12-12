@@ -1,5 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { keyframes } from "@mui/system";
@@ -21,12 +22,14 @@ import AiToolsImages from "../../../assets/images/aiToolsBackgroundImages.png";
 import DeepSurfBackgroundLogo from "../../../assets/images/background-logo.png";
 
 const InSideDeep = () => {
+  const { t } = useTranslation();
+  
   const data = [
-    { id: "1", title: "Market Outlook", decription: "Daily macro, flows, whales, risk calendar", image: MarketOutLook, bottomImage: MarketOutLookBgImages },
-    { id: "2", title: "Pro Analytics", decription: "Order flow, open interest, heatmap, liquidity levels, microstructure, ETF & on-chain metrics", image: ProAnalytics, bottomImage: ProAnalysisBgImages },
-    { id: "3", title: "Journal", decription: "API-based trade import, AI coaching, Watchlist, Alerts", image: JournalImg, bottomImage: JournalBgImages },
-    { id: "4", title: "Calculator", decription: "ATR-based sizing, what-if simulation, auto export to journal", image: CalculatorImg, bottomImage: CalculatorImages },
-    { id: "5", title: "AI Tools", decription: "Comprehensive analysis of tokens based on more than 50 parameters and metrics, AI Pump Detection", image: AiToolsImg, bottomImage: AiToolsImages },
+    { id: "1", title: t("insideDeep.marketOutlook.title"), decription: t("insideDeep.marketOutlook.description"), image: MarketOutLook, bottomImage: MarketOutLookBgImages },
+    { id: "2", title: t("insideDeep.proAnalytics.title"), decription: t("insideDeep.proAnalytics.description"), image: ProAnalytics, bottomImage: ProAnalysisBgImages },
+    { id: "3", title: t("insideDeep.journal.title"), decription: t("insideDeep.journal.description"), image: JournalImg, bottomImage: JournalBgImages },
+    { id: "4", title: t("insideDeep.calculator.title"), decription: t("insideDeep.calculator.description"), image: CalculatorImg, bottomImage: CalculatorImages },
+    { id: "5", title: t("insideDeep.aiTools.title"), decription: t("insideDeep.aiTools.description"), image: AiToolsImg, bottomImage: AiToolsImages },
   ];
 
   const [activeId, setActiveId] = useState("1");
@@ -68,7 +71,7 @@ const InSideDeep = () => {
     >
       <Box mt="40px" textAlign={{ xs: "center", md: "left" }}>
         <Typography fontSize={{ xs: "24px", md: "28px" }} fontWeight={700} color="#fff">
-          Inside <span style={{ color: "#FF6421", fontWeight: 700, fontFamily: "Inter Tight" }}>Deepsurf</span>
+          <span dangerouslySetInnerHTML={{ __html: t("insideDeep.title") }} />
         </Typography>
       </Box>
       <Grid container spacing={4} mt={4}>

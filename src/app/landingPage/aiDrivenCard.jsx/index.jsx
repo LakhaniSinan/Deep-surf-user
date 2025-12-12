@@ -45,6 +45,7 @@
 // export default AiDrivenCard;
 
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
+import { useTranslation } from "react-i18next";
 import AiButton from "../../../assets/images/login.png"
 import BullishImages from "../../../assets/images/bullish.png"
 import BearishImages from "../../../assets/images/berish.png"
@@ -53,6 +54,7 @@ import WhalesTrackersImages from "../../../assets/images/whale-tracker.png";
 import StarImage from "../../../assets/icons/star.svg";
 
 const AiDrivenCard = () => {
+  const { t } = useTranslation();
   return (
 
     <Grid container spacing={2} justifyContent="center">
@@ -84,7 +86,7 @@ const AiDrivenCard = () => {
               mt={1.5}
               sx={{ fontSize: { xs: "20px", md: "25px" } }}
             >
-              AI Driven. <br /> Human inspired.
+              <span dangerouslySetInnerHTML={{ __html: t("aiDrivenCard.title") }} />
             </Typography>
 
             <Typography
@@ -94,12 +96,10 @@ const AiDrivenCard = () => {
                 color: "#FFFFFF",
                 lineHeight: 1.2,
                 fontSize: { xs: "12px", md: "12px" },
-                fontWeight: 400
+                fontWeight: 300
               }}
             >
-              DeepSurf’s multi-layered AI engine transforms raw data into actionable
-              insights, forecasts, and bias signals — so you can trade with clarity,
-              precision, and confidence.
+              {t("aiDrivenCard.description")}
             </Typography>
           </Box>
 
@@ -135,7 +135,7 @@ const AiDrivenCard = () => {
                   fontWeight: "500",
                 }}
               >
-                AI analysis
+                {t("aiDrivenCard.aiAnalysis")}
               </h5>
             </Box>
             <Typography
@@ -150,9 +150,7 @@ const AiDrivenCard = () => {
                 textAlign: "left"
               }}
             >
-              The unemployment rate improved from 4.2% to 4.1%. This is a positive
-              Bullish signal. A strong but not overheated labor market supports the
-              Fed’s view of a potential “soft landing” for the economy.
+              {t("aiDrivenCard.analysisText")}
             </Typography>
             <Box mt={1.5}>
               <img
@@ -202,7 +200,7 @@ const AiDrivenCard = () => {
               mt={{ xs: 1, md: 2 }}
               sx={{ fontSize: { xs: "20px", md: "26px" } }}
             >
-              Advanced Tools for <br /> Market Perception.
+              <span dangerouslySetInnerHTML={{ __html: t("aiDrivenCard.advancedToolsTitle") }} />
             </Typography>
             <Typography
               fontSize={"12px"}
@@ -211,9 +209,7 @@ const AiDrivenCard = () => {
               lineHeight={1.2}
             // sx={{ fontSize: { xs: "11px", md: "12px" }, color: "#FFFFFF" }}
             >
-              See the market as a living system - liquidity flows, volatility regimes,
-              microstructure patterns, and sentiment dynamics. DeepSurf’s analytics suite
-              helps you not only see the moves - but feel them before they happen.
+              {t("aiDrivenCard.advancedToolsDescription")}
             </Typography>
           </Box>
           <Box
@@ -227,7 +223,7 @@ const AiDrivenCard = () => {
             <Typography mt={{ xs: 2, md: 5.5 }} fontSize={"10px"}
               sx={{ fontSize: { xs: "9px", md: "10px" } }}
             >
-              On-Chain Signals
+              {t("aiDrivenCard.onChainSignals")}
             </Typography>
 
             <Box mt={{ xs: 2, md: 0 }}>
@@ -240,7 +236,7 @@ const AiDrivenCard = () => {
             <Typography fontSize={"10px"}
               sx={{ fontSize: { xs: "9px", md: "10px" } }}
             >
-              Whales tracker
+              {t("aiDrivenCard.whalesTracker")}
             </Typography>
             <Box mt={"3px"}>
               <img

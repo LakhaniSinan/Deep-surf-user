@@ -1,0 +1,70 @@
+{
+  "header": {
+    "language": "Dil",
+    "waitlist": "Bekleme Listesi",
+    "login": "Giriş Yap",
+    "english": "İngilizce",
+    "turkish": "Türkçe",
+    "spanish": "İspanyolca",
+    "russian": "Rusça"
+  },
+  "hero": {
+    "limitedAccess": "Sınırlı erişim",
+    "title": "AI Destekli Ticaret <br /> Zeka Motoru",
+    "subtitle": "Özel makine öğrenimi modelleri, gerçek zamanlı <br /> piyasa verileri ve yıllarca süren nicel araştırmalarla desteklenmektedir.",
+    "getStarted": "Başlayın",
+    "trustedBy": "Dünya çapında yatırımcılar tarafından güvenilir.",
+    "builtFor": "Tahminler değil, olasılıklar düşünenler için inşa edilmiştir."
+  },
+  "aiDrivenCard": {
+    "title": "AI Destekli. <br /> İnsan ilhamlı.",
+    "description": "DeepSurf'un çok katmanlı AI motoru, ham verileri eyleme dönüştürülebilir içgörüler, tahminler ve önyargı sinyalleri haline getirir — böylece netlik, hassasiyet ve güvenle işlem yapabilirsiniz.",
+    "aiAnalysis": "AI analizi",
+    "analysisText": "İşsizlik oranı %4.2'den %4.1'e iyileşti. Bu olumlu bir Yükseliş sinyalidir. Güçlü ancak aşırı ısınmamış bir işgücü piyasası, Fed'in ekonominin potansiyel \"yumuşak iniş\" görüşünü desteklemektedir.",
+    "advancedToolsTitle": "Piyasa Algısı için <br /> Gelişmiş Araçlar.",
+    "advancedToolsDescription": "Piyasayı canlı bir sistem olarak görün - likidite akışları, volatilite rejimleri, mikro yapı desenleri ve duygu dinamikleri. DeepSurf'un analitik paketi, sadece hareketleri görmenize değil, gerçekleşmeden önce hissetmenize yardımcı olur.",
+    "onChainSignals": "Zincir Üzeri Sinyaller",
+    "whalesTracker": "Balina takipçisi"
+  },
+  "proprietaryTech": {
+    "title": "%100 Özel Teknoloji.",
+    "subtitle": "Dış Kaynak Kullanımı Yok. Gürültü Yok.",
+    "description": "DeepSurf'un çok katmanlı AI motoru, ham verileri eyleme dönüştürülebilir içgörüler, tahminler ve önyargı sinyalleri haline getirir - böylece netlik, hassasiyet ve güvenle işlem yapabilirsiniz."
+  },
+  "insideDeep": {
+    "title": "<span style=\"color: #FF6421; font-weight: 700; font-family: Inter Tight\">Deepsurf</span> İçinde",
+    "marketOutlook": {
+      "title": "Piyasa Görünümü",
+      "description": "Günlük makro, akışlar, balinalar, risk takvimi"
+    },
+    "proAnalytics": {
+      "title": "Pro Analitik",
+      "description": "Emir akışı, açık pozisyon, ısı haritası, likidite seviyeleri, mikro yapı, ETF ve zincir üzeri metrikler"
+    },
+    "journal": {
+      "title": "Günlük",
+      "description": "API tabanlı işlem içe aktarma, AI koçluğu, İzleme listesi, Uyarılar"
+    },
+    "calculator": {
+      "title": "Hesap Makinesi",
+      "description": "ATR tabanlı boyutlandırma, ne-olur simülasyonu, günlüğe otomatik dışa aktarma"
+    },
+    "aiTools": {
+      "title": "AI Araçları",
+      "description": "50'den fazla parametre ve metrik temelinde tokenların kapsamlı analizi, AI Pompa Tespiti"
+    }
+  },
+  "footer": {
+    "accessTag": "Erişim yalnızca davet ile",
+    "title": "Şimdi Önde Gelen <br /> Yatırımcı Olun",
+    "description": "DeepSurf özel ağına ilk girenler arasında olmak için bekleme listesine katılın.",
+    "emailPlaceholder": "E-posta adresinizi girin...",
+    "joinButton": "Katıl",
+    "emailRequired": "E-posta Gerekli",
+    "emailInvalid": "E-posta geçerli değil",
+    "requestFailed": "İstek başarısız",
+    "requestError": "İstek Başarısız",
+    "tagline": "DeepSurf — Piyasa zekasının geleceği. <br /> Hassasiyetle inşa edildi. AI ile desteklenir. Tasarım ile korunur."
+  }
+}
+
