@@ -12,7 +12,7 @@ import theme from "../../../theme";
 import { loginValidation } from "../../../utils/validations";
 import { useAuthStore } from "../../../store";
 import { auth, googleProvider } from "../../../config/firebase";
-import { signInWithPopup } from "firebase/auth"; 
+import { signInWithPopup } from "firebase/auth";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -169,7 +169,7 @@ const Login = () => {
                 color: "#ffffff",
                 cursor: "pointer",
                 fontSize: "12px",
-                fontFamily : 'Inter Tight',
+                fontFamily: 'Inter Tight',
                 "&:hover": { textDecoration: "underline" },
               }}
               onClick={() => navigate("/forgot-password")}
@@ -188,7 +188,6 @@ const Login = () => {
             }}
             handleClickBtn={handleLogin}
             loading={isLoading}
-          // disabled={isLoading}
           />
         </Box>
         <Box mt={2}>

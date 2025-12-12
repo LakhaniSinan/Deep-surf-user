@@ -159,9 +159,13 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
         padding="25px"
         mt="20px"
       >
-        <Typography variant="h5" fontSize="20px">
-          Market Data & Metrics
-        </Typography>
+        <Box mt="10px" display="flex" justifyContent="space-between">
+          <Typography variant="h3" fontSize={"25px"} color="neutral.Snowwhite">
+            Whales tracker
+          </Typography>
+          <img src={ReLoadIcon} alt="" />
+        </Box>
+
         <Typography sx={{ mt: 2, color: "#8D8D8D" }}>
           Loading market data...
         </Typography>
@@ -476,7 +480,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
         </Typography>
         <Grid container spacing={2} marginTop="20px">
           <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
-            <Typography fontSize={"18px"} fontFamily={"Inter Tight"} color="rgba(62, 221, 135, 1)">
+            <Typography fontSize={"18px"} fontFamily={"Inter Tight"} color="neutral.brightGreen">
               Gainers
             </Typography>
             {Gainers.map((item, index) => (
@@ -503,14 +507,14 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                       {item.id}
                     </Typography>
                     <Typography
-                      sx={{ color: "#fff", fontWeight: 600, fontSize: "16px" }}
+                      sx={{ color: "neutral.Snowwhite", fontWeight: 600, fontSize: "16px" }}
                     >
                       {item.title}
                     </Typography>
                   </Box>
 
                   <Typography
-                    sx={{ color: "#31D0AA", fontWeight: 600, fontSize: "13px" }}
+                    sx={{ color: "neutral.brightGreen", fontWeight: 600, fontSize: "13px" }}
                   >
                     {item.percentage}
                   </Typography>
@@ -519,14 +523,14 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
             ))}
           </Grid>
           <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
-            <Typography fontSize={"18px"} fontFamily={"Inter Tight"} color="rgba(62, 221, 135, 1)">
+            <Typography fontSize={"18px"} fontFamily={"Inter Tight"} color="neutral.brightRed">
               Losers
             </Typography>
             {Losers?.slice(0, 5).map((item) => (
               <Grid item xs={12} md={6} key={item.id}>
                 <Box
                   sx={{
-                    backgroundColor: "#1C1C1C",
+                    backgroundColor: "neutral.darkGrey",
                     padding: "16px 16px",
                     borderRadius: "15px",
                     display: "flex",
@@ -538,7 +542,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                   <Box display="flex" gap="15px">
                     <Typography
                       sx={{
-                        color: "#8D8D8D",
+                        color: "neutral.gray",
                         fontWeight: 600,
                         fontSize: "15px",
                       }}
@@ -546,14 +550,14 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                       {item.id}
                     </Typography>
                     <Typography
-                      sx={{ color: "#fff", fontWeight: 600, fontSize: "16px" }}
+                      sx={{ color: "neutral.Snowwhite", fontWeight: 600, fontSize: "16px" }}
                     >
                       {item.title}
                     </Typography>
                   </Box>
 
                   <Typography
-                    sx={{ color: "#FF4C4C", fontWeight: 600, fontSize: "13px" }}
+                    sx={{ color: "neutral.brightRed", fontWeight: 600, fontSize: "13px" }}
                   >
                     {item.percentage}
                   </Typography>
@@ -563,9 +567,10 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
           </Grid>
         </Grid>
         <Box mt="20px">
-          <Typography variant="h6" fontFamily={"Inter Tight"}>Risk Calendar (30 days)</Typography>
+          <Typography variant="h6" fontFamily={"Inter Tight"} fontSize={"25px"} color="neutral.Snowwhite">Risk Calendar (30 days)</Typography>
         </Box>
-        <Box marginTop="20px" backgroundColor="#1C1C1C">
+        <Box marginTop="20px" bgcolor="neutral.darkGrey"
+        >
           <Grid container spacing={1} padding="10px">
             <Grid item>
               <Box
@@ -600,7 +605,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
             <Grid item size={{ xs: 12, md: 6 }} key={index}>
               <Box
                 sx={{
-                  backgroundColor: "#1C1C1C",
+                  bgcolor: "neutral.darkGrey",
                   padding: "14px 18px",
                   borderRadius: "15px",
                   display: "flex",
@@ -610,12 +615,12 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
               >
                 <Box>
                   <Typography
-                    sx={{ color: "#fff", fontSize: "12px", fontWeight: 600 }}
+                    sx={{ color: "neutral.Snowwhite", fontSize: "14px", fontWeight: 600 }}
                   >
                     {item.title}
                   </Typography>
                   <Typography
-                    sx={{ color: "#B0B0B0", fontSize: "14px", mt: "4px" }}
+                    color="neutral.gray" fontSize="16px" mt="4px" fontWeight={550}
                   >
                     {item.date}
                   </Typography>
@@ -628,7 +633,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                     borderRadius: "10px",
                     color: item.color,
                     backgroundColor: item.backgroundColor,
-                    borderRadius: "20px",
+                    borderRadius: "10px",
                     px: "40px",
                     py: "0px",
                     minHeight: "40px",
@@ -644,7 +649,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
             <Grid item size={{ xs: 12, md: 6 }} key={index}>
               <Box
                 sx={{
-                  backgroundColor: "#1C1C1C",
+                  bgcolor: "neutral.darkGrey",
                   padding: "20px 30px",
                   borderRadius: "12px",
                   display: "flex",
@@ -654,12 +659,12 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
               >
                 <Box>
                   <Typography
-                    sx={{ color: "#fff", fontSize: "12px", fontWeight: 600 }}
+                    sx={{ color: "neutral.Snowwhite", fontSize: "14px", fontWeight: 600 }}
                   >
                     {item.title}
                   </Typography>
                   <Typography
-                    sx={{ color: "#B0B0B0", fontSize: "14px", mt: "4px" }}
+                    sx={{ color: "neutral.gray", fontSize: "15px", mt: "4px", fontWeight: 550 }}
                   >
                     {item.date}
                   </Typography>
@@ -672,7 +677,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                     borderRadius: "10px",
                     color: item.color,
                     backgroundColor: item.backgroundColor,
-                    borderRadius: "20px",
+                    borderRadius: "10px",
                     px: "40px",
                     py: "0px",
                     minHeight: "40px",
@@ -684,7 +689,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
         </Grid>
         <Box backgroundColor="#161616" borderRadius={"20px"} p={2} mt={"10px"}>
           <Box mt="10px" display="flex" justifyContent="space-between">
-            <Typography variant="h3" fontSize={"18px"}>
+            <Typography variant="h3" fontSize={"25px"} color="neutral.Snowwhite">
               Whales tracker
             </Typography>
             <img src={ReLoadIcon} alt="" />
@@ -694,10 +699,10 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
               <Grid item size={{ xs: 12, sm: 6, md: 6 }} key={index}>
                 <Box
                   sx={{
-                    background: "#1C1C1C",
-                    padding: "15px",
+                    bgcolor: "neutral.darkGrey",
+                    padding: "25px",
                     borderRadius: "12px",
-                    color: "#fff",
+                    color: "neutral.Snowwhite",
                   }}
                 >
                   <Grid
@@ -705,7 +710,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                     alignItems="center"
                     justifyContent="space-between"
                   >
-                    <Grid item>
+                    <Grid item >
                       <Box display="flex" alignItems="center" gap={3}>
                         <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
                           {item.shortCode}
@@ -728,7 +733,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                       </Box>
                     </Grid>
                     <Grid item>
-                      <Typography sx={{ fontSize: "14px" }}>
+                      <Typography sx={{ fontSize: "14px", color: "neutral.gray", fontWeight: 550 }}>
                         {item.time}
                       </Typography>
                     </Grid>
@@ -741,18 +746,18 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                       </Typography>
                     </Box>
                     <Box>
-                      <Typography sx={{ fontSize: "12px", color: "#B4B4B4" }}>
+                      <Typography sx={{ fontSize: "12px", fontWeight: 600, color: "rgba(180, 180, 180, 1)" }}>
                         {item.amount}
                       </Typography>
                     </Box>
                   </Box>
                   <Box display="flex" justifyContent="space-between">
                     <Typography
-                      sx={{ fontSize: "13px", marginTop: "30px", color: "#FFF" }}
+                      sx={{ fontSize: "15px", marginTop: "30px", color: "#FFF" }}
                     >
                       {item.source}
                     </Typography>
-                    <Box display="flex" gap="20px" mt="10px">
+                    {/* <Box display="flex" gap="20px" mt="10px">
                       <Box>
                         <Typography fontSize="12px" color="#B4B4B4">
                           {item.Liquidation}
@@ -769,7 +774,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                           {item.value2}
                         </Typography>
                       </Box>
-                    </Box>
+                    </Box> */}
                   </Box>
                 </Box>
               </Grid>

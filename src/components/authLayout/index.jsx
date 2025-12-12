@@ -6,8 +6,8 @@ import backButton from "../../assets/images/back.png";
 const AuthLayout = ({
   children,
   title,
-  showBackButton = false,   // default false
-  secondaryImage = null,    // default null
+  showBackButton = false,   
+  secondaryImage = null,    
 }) => {
   return (
     <Box
@@ -17,7 +17,6 @@ const AuthLayout = ({
       display="flex"
       justifyContent="center"
       alignItems="center"
-    // sx={{ pt: "84px" }}  // header ke liye space
     >
       <Box
         bgcolor="background.paper"

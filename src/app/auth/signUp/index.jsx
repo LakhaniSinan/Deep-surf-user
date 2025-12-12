@@ -175,8 +175,14 @@ function SignUp() {
               color: formData.agree ? "#fff" : theme.palette.text.secondary,
               textDecoration: formData.agree ? "underline" : "none",
               transition: "0.3s ease",
-              fontSize: "13px"
+              fontSize: "13px",
+              "&:hover": {
+                color: "#FF6421",
+                textDecoration: "underline",
+              },
             }}
+            onClick={() => navigate("/term-and-condition")}
+
           >
             I agree to Terms & Privacy Policy
           </Typography>

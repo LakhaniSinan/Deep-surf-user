@@ -92,8 +92,8 @@ const Header = () => {
               display: { xs: "none", lg: "flex" },
               alignItems: "center",
               gap: 3,
-              px: 2, 
-              py: 1, 
+              px: 2,
+              py: 1,
             }}
           >
             {navItems.map((item) => {

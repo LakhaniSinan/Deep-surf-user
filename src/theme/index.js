@@ -26,7 +26,11 @@ const theme = createTheme({
       charcoalGrey: "rgba(26, 26, 26, 1)",
       vermilionOrange: "rgba(255, 100, 33, 1)",
       mediumGray: "rgba(140, 140, 140, 1)",
-      lightgray: "rgba(207, 207, 207, 1)"
+      lightgray: "rgba(207, 207, 207, 1)",
+      brightRed: "rgba(255, 76, 76, 1)",
+      brightGreen: "rgba(62, 221, 135, 1)",
+      gray: "rgba(180, 180, 180, 1)",
+      darkGrey : "rgba(28, 28, 28, 1)"
     },
     background: {
       default: "#101010",

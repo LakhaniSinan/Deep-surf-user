@@ -16,6 +16,7 @@ import SetNewPassword from "../app/auth/setPassword";
 import ForgetVerfication from "../app/auth/loginOtpVerification";
 import SetUserProfile from "../app/auth/profile";
 import UserProfile from "../app/auth/profile";
+import TermAndCondition from "../app/termsAndConditions";
 
 const AUTH_ROUTES = [
 
@@ -62,6 +63,13 @@ const AUTH_ROUTES = [
     component: <SetNewPassword />,
     exact: "exact",
     path: "/new-password",
+  },
+   {
+    id: 7,
+    name: "TermAndCondition",
+    component: <TermAndCondition />,
+    exact: "exact",
+    path: "/term-and-condition",
   },
 ];
 

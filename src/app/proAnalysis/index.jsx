@@ -17,6 +17,8 @@ import IconImage from "../../assets/icons/vector.svg";
 const ProAnalysis = () => {
   const [ticker, setTicker] = useState("");
   const [coinData, setCoinData] = useState(null);
+  console.log("conDatshndeccdcd", coinData);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const getProAnanlsisData = async () => {
@@ -25,6 +27,8 @@ const ProAnalysis = () => {
       setIsLoading(true);
       setCoinData(null);
       const res = await proAnylysisData(ticker);
+      console.log("ressssssssssssssss", res);
+
       console.log("rrrrrrrrrrrrrrrrrrrrrrrrr", res);
 
       if (res?.data?.status === "success") {
@@ -73,7 +77,7 @@ const ProAnalysis = () => {
             InputEndIcon={
               isLoading ? (
                 <CircularProgress
-                  size={30}       // Icon size ke hisaab se adjust kar sakte ho
+                  size={30}
                   sx={{ color: "#fff" }}
                 />
               ) : (
@@ -98,7 +102,6 @@ const ProAnalysis = () => {
 
 
         </Box>
-        {/* MFT Section */}
         {isLoading ? (
           <MTFSectionSkeleton />
         ) : coinData ? (
@@ -111,21 +114,18 @@ const ProAnalysis = () => {
           />
         ) : null}
 
-        {/* HeatMap */}
         {isLoading ? (
           <HeatMapSkeleton />
         ) : coinData ? (
           <HeatMap data={coinData} />
         ) : null}
 
-        {/* Liquidation Map */}
         {isLoading ? (
           <LiquidationMapDataSkeleton />
         ) : coinData ? (
           <LiquidationMapData coinData={coinData} />
         ) : null}
 
-        {/* Futures Metrics */}
         {isLoading ? (
           <FuturesMetricsSkeleton />
         ) : coinData ? (
