@@ -177,24 +177,27 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
         padding="25px"
         mt="20px"
       >
-        <Typography variant="h5" fontSize="20px">
+        <Typography variant="h5" fontSize="30px" fontWeight={600} fontFamily="inter Tight">
           Market Data & Metrics
         </Typography>
-        <Box mt="20px">
-          <Grid container spacing={2}>
-            <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
+        <Box mt="10px">
+          <Grid container spacing={1}>
+            <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
               <Card sx={cardStyle}>
                 <Typography
                   variant="caption"
                   sx={{
-                    color: "#b3b3b3",
+                    color: "neutral.Snowwhite",
                     textAlign: "center",
                     display: "block",
+                    fontSize: "15px",
+                    fontWeight: 600,
+                    fontFamily: "inter Tight"
                   }}
                 >
                   Fear and Greed Index
                 </Typography>
-                <Typography variant="h6" textAlign="center">
+                <Typography variant="h6" textAlign="center" color="rgba(255, 230, 0, 1)" fontFamily="inter Tight" fontSize={"25px"}>
                   {marketMetricesData?.fearGreedIndex?.sentiment}
                 </Typography>
                 {/* <Box
@@ -236,12 +239,10 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                     {marketMetricesData?.fearGreedIndex?.value}
                   </Box>
                 </Box> */}
-                <Box textAlign={"center"}>
-
+                <Box textAlign={"center"} mt={"-15px"}>
                   <Speedometer
                     percentage={30}
                     size={50}
-                  // maxValue={overallSentimentData?.score}
                   />
 
                 </Box>
@@ -251,77 +252,83 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
             <Grid item size={{ xs: 12, sm: 6, md: 2 }}>
               <Card sx={cardStyle}>
                 <Typography
-                  variant="caption"
+                  variant="h6"
                   fontWeight={600}
-                  sx={{ color: "#fff" }}
+                  fontFamily={"inter Tight"}
+                  color="neutral.Snowwhite"
                 >
                   BTC Dominance
                 </Typography>
-                <Box display="flex" gap="20px">
-                  <Typography fontSize="25px" variant="h6" sx={{ mt: 1 }}>
+                <Box display="flex" gap="15px" alignItems={"center"}>
+                  <Typography fontSize="30px" fontWeight={600} variant="h6" mt={2}>
                     {marketMetricesData?.btcDominance?.value}
                   </Typography>
-                  <Typography fontSize="22px" variant="h6" sx={{ mt: 1 }}>
+                  <Typography fontSize="30px " mt={2}>
                     <img src={DropDownIcon} alt="" />
                   </Typography>
                 </Box>
-                <Typography sx={{ color: "#4ade80", fontSize: "13px" }}>
+                <Typography color="neutral.Snowwhite" fontWeight={500}>
                   {marketMetricesData?.btcDominance?.trend}
                 </Typography>
               </Card>
             </Grid>
 
-            <Grid item size={{ xs: 12, sm: 6, md: 2.5 }}>
+            <Grid item size={{ xs: 12, sm: 6, md: 2 }}>
               <Card sx={cardStyle}>
-                <Box display="flex" gap="10px">
-                  <Box>
+                <Box display="flex" gap="10px" alignItems={"center"}>
+                  <Box alignItems={"center"}>
                     <img src={BtcIcon} alt="" />
                   </Box>
                   <Typography
                     variant="caption"
                     fontWeight={600}
-                    sx={{ color: "#fff" }}
+                    color="neutral.Snowwhite"
+                    fontSize={"15px"}
                   >
                     BTC 24h
                   </Typography>
                 </Box>
                 <Typography
-                  fontSize="20px"
-                  fontWeight={400}
+                  fontSize="25px"
+                  fontWeight={520}
                   variant="h6"
-                  sx={{ mt: 1 }}
+                  mt={4}
+                  fontFamily={"inter Tight"}
+
                 >
                   {marketMetricesData?.prices24h?.btc?.price}
                 </Typography>
-                <Typography sx={{ color: marketMetricesData?.prices24h?.btc?.change?.includes("-") ? "red" : "green", fontSize: "13px" }}>
+                <Typography sx={{ color: marketMetricesData?.prices24h?.btc?.change?.includes("-") ? "rgba(255, 76, 76, 1)" : "rgba(62, 221, 135, 1)", fontSize: "14px" }}>
                   {marketMetricesData?.prices24h?.btc?.change}
                 </Typography>
               </Card>
             </Grid>
 
-            <Grid item size={{ xs: 12, sm: 6, md: 2.5 }}>
+            <Grid item size={{ xs: 12, sm: 6, md: 2 }}>
               <Card sx={cardStyle}>
-                <Box display="flex" gap="10px">
+                <Box display="flex" gap="10px" alignItems={"center"}>
                   <Box>
                     <img src={EthIcon} alt="" />
                   </Box>
                   <Typography
                     variant="caption"
                     fontWeight={600}
-                    sx={{ color: "#fff" }}
+                    color="neutral.Snowwhite"
+                    fontSize={"15px"}
                   >
                     ETH 24h
                   </Typography>
                 </Box>
                 <Typography
-                  fontSize="20px"
-                  fontWeight={400}
+                  fontSize="25px"
+                  fontWeight={520}
                   variant="h6"
-                  sx={{ mt: 1 }}
+                  mt={4}
+                  fontFamily={"inter Tight"}
                 >
                   {marketMetricesData?.prices24h?.eth?.price}
                 </Typography>
-                <Typography sx={{ color: marketMetricesData?.prices24h?.eth?.change.includes("-") ? "red" : "green", fontSize: "13px" }}>
+                <Typography sx={{ color: marketMetricesData?.prices24h?.btc?.change?.includes("-") ? "rgba(255, 76, 76, 1)" : "rgba(62, 221, 135, 1)", fontSize: "14px" }}>
                   {marketMetricesData?.prices24h?.eth?.change}
                 </Typography>
               </Card>
@@ -336,20 +343,22 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                   <Typography
                     variant="caption"
                     fontWeight={600}
-                    sx={{ color: "#fff" }}
+                    color="neutral.Snowwhite"
+                    fontSize={"15px"}
                   >
                     SOL 24h
                   </Typography>
                 </Box>
                 <Typography
-                  fontSize="22px"
-                  fontWeight={400}
+                  fontSize="25px"
+                  fontWeight={520}
                   variant="h6"
-                  sx={{ mt: 1 }}
+                  mt={5}
+                  fontFamily={"inter Tight"}
                 >
                   {marketMetricesData?.prices24h?.sol?.price}
                 </Typography>
-                <Typography sx={{ color: marketMetricesData?.prices24h?.sol?.change?.includes("-") ? "red" : "green", fontSize: "13px" }}>
+                <Typography sx={{ color: marketMetricesData?.prices24h?.btc?.change?.includes("-") ? "rgba(255, 76, 76, 1)" : "rgba(62, 221, 135, 1)", fontSize: "14px" }}>
                   {marketMetricesData?.prices24h?.sol?.change}
                 </Typography>
               </Card>
@@ -370,38 +379,37 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                 gap="8px"
                 marginTop="10px"
                 marginLeft={"45px"}
+                alignItems={"center"}
               >
                 <img src={BtcIcon} alt="" />
 
-                <Typography variant="h2" fontSize="14px">
+                <Typography variant="h2" fontFamily={"inter Tight"}
+                  fontSize="23px" fontWeight={550} color="neutral.Snowwhite"
+                >
                   BTC ETF Flows
                 </Typography>
               </Box>
-              <Box display="flex" justifyContent="space-around">
+              <Box display="flex" justifyContent="space-around" mt={2}>
                 <Box>
-                  <Typography variant="h4" fontSize="12px" marginTop="12px">
+                  <Typography variant="h4" fontWeight={500} fontSize="15px" marginTop="10px">
                     {marketMetricesData?.etfFlowsSummary?.btc?.today?.label}
                   </Typography>
-                  <Typography variant="h4" marginTop="10px" fontSize="15px">
+                  <Typography variant="h4" marginTop="10px" fontWeight={600} fontSize="20px">
                     {marketMetricesData?.etfFlowsSummary?.btc?.today?.amount}
                   </Typography>
-                  <Typography variant="h4" fontSize="10px" marginTop="10px">
-                    {marketMetricesData?.etfFlowsSummary?.btc?.today?.amount}
+                  <Typography variant="h4" fontSize="15px" fontWeight={550} marginTop="10px">
+                    {marketMetricesData?.etfFlowsSummary?.btc?.today?.usdValue}
                   </Typography>
                 </Box>
                 <Box height="100px" width="1px" backgroundColor="#8D8D8D"></Box>
                 <Box>
-                  <Typography marginTop="10px" variant="h4" fontSize="15px">
+                  <Typography marginTop="10px" variant="h4" fontWeight={550} fontSize="15px">
                     {marketMetricesData?.etfFlowsSummary?.btc?.in2Days?.label}
                   </Typography>
-                  <Typography
-                    marginTop="10px"
-                    variant="h4"
-                    fontSize={{ xs: "8px", md: "16px" }}
-                  >
+                  <Typography variant="h4" marginTop="10px" fontWeight={600} fontSize="20px">
                     {marketMetricesData?.etfFlowsSummary?.btc?.in2Days?.amount}
                   </Typography>
-                  <Typography variant="h4" fontSize="13px" marginTop="10px">
+                  <Typography variant="h4" fontSize="15px" fontWeight={550} marginTop="10px">
                     {
                       marketMetricesData?.etfFlowsSummary?.btc?.in2Days
                         ?.usdValue
@@ -425,35 +433,33 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
               >
                 <img src={EthIcon} alt="" />
 
-                <Typography variant="h2" fontSize="14px">
+                <Typography variant="h2" fontFamily={"inter Tight"}
+                  fontSize="23px" fontWeight={550} color="neutral.Snowwhite"
+                >
                   ETH ETF Flows
                 </Typography>
               </Box>
-              <Box display="flex" justifyContent="space-around">
+              <Box display="flex" justifyContent="space-around" mt={2}>
                 <Box>
-                  <Typography variant="h4" fontSize="12px" marginTop="12px">
+                  <Typography variant="h4" fontWeight={500} fontSize="15px" marginTop="10px">
                     {marketMetricesData?.etfFlowsSummary?.eth?.today?.label}
                   </Typography>
-                  <Typography variant="h4" marginTop="10px" fontSize="15px">
+                  <Typography variant="h4" marginTop="10px" fontWeight={600} fontSize="20px">
                     {marketMetricesData?.etfFlowsSummary?.eth?.today?.amount}
                   </Typography>
-                  <Typography variant="h4" fontSize="10px" marginTop="10px">
+                  <Typography variant="h4" fontSize="15px" fontWeight={550} marginTop="10px">
                     {marketMetricesData?.etfFlowsSummary?.eth?.today?.usdValue}
                   </Typography>
                 </Box>
                 <Box height="100px" width="1px" backgroundColor="#8D8D8D"></Box>
                 <Box>
-                  <Typography marginTop="10px" variant="h4" fontSize="15px">
+                  <Typography marginTop="10px" variant="h4" fontWeight={550} fontSize="15px">
                     {marketMetricesData?.etfFlowsSummary?.eth?.in2Days?.label}
                   </Typography>
-                  <Typography
-                    marginTop="10px"
-                    variant="h4"
-                    fontSize={{ xs: "8px", md: "16px" }}
-                  >
+                  <Typography variant="h4" marginTop="10px" fontWeight={600} fontSize="20px">
                     {marketMetricesData?.etfFlowsSummary?.eth?.in2Days?.amount}
                   </Typography>
-                  <Typography variant="h4" fontSize="14px" marginTop="10px">
+                  <Typography variant="h4" fontSize="15px" fontWeight={550} marginTop="10px">
                     {
                       marketMetricesData?.etfFlowsSummary?.eth?.in2Days
                         ?.usdValue
@@ -465,12 +471,12 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
           </Grid>
         </Box>
 
-        <Typography variant="h6" fontSize={"16px"} mt={2}>
+        <Typography variant="h6" fontWeight={550} fontSize={"20px"} mt={2} color="neutral.Snowwhite">
           {"Top Movers in 24h (volume > £50M )"}
         </Typography>
         <Grid container spacing={2} marginTop="20px">
           <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
-            <Typography fontSize={"15px"} fontFamily={"'Inter Tight'"} color="#3EDD87">
+            <Typography fontSize={"18px"} fontFamily={"Inter Tight"} color="rgba(62, 221, 135, 1)">
               Gainers
             </Typography>
             {Gainers.map((item, index) => (
@@ -513,7 +519,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
             ))}
           </Grid>
           <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
-            <Typography fontSize={"16px"} color="#FF4C4C" fontFamily={"Inter Tight"}>
+            <Typography fontSize={"18px"} fontFamily={"Inter Tight"} color="rgba(62, 221, 135, 1)">
               Losers
             </Typography>
             {Losers?.slice(0, 5).map((item) => (
