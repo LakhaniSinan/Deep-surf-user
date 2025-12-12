@@ -64,6 +64,7 @@
 // export default ForgetVerfication;
 
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Box, Typography } from "@mui/material";
 import AuthLayout from "../../../components/authLayout";
 import CustomOtp from "../../../components/customOtp";
@@ -75,6 +76,7 @@ import { toast } from "react-toastify";
 const ForgetVerification = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
   const email = location?.state?.email;
   const [otp, setOtp] = useState("");
   const [formError, setFormError] = useState({});
@@ -105,10 +107,10 @@ const ForgetVerification = () => {
 
   return (
     <Box>
-      <AuthLayout title="Verification Process" showBackButton>
+      <AuthLayout title={t("auth.forgotOtpVerification.title")} showBackButton>
         <Box mt={1}>
           <Typography color="white" mb={4}>
-            Enter the OTP sent to your email: <b>{email}</b>
+            {t("auth.forgotOtpVerification.enterOtp")} <b>{email}</b>
           </Typography>
           <CustomOtp
             value={otp}
@@ -127,7 +129,7 @@ const ForgetVerification = () => {
         <Box display="flex" justifyContent="center" mt={3} width="100%">
           <CustomButton
             variant="gradient"
-            title="Verify OTP"
+            title={t("auth.forgotOtpVerification.verifyOtp")}
             fullWidth
             handleClickBtn={handleVerify}
             loading={isLoading}

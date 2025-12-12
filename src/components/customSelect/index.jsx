@@ -16,6 +16,8 @@ const CustomSelect = ({
   placeholder = "Select",
   children,
   renderValue,
+  height,
+  backgroundColor,
 }) => {
   const hasCustomChildren = React.Children.count(children) > 0;
 
@@ -85,10 +87,11 @@ const CustomSelect = ({
           /* ☝️ FIX END */
 
           sx={{
-            backgroundColor: "rgba(255,255,255,0.04)",
+            backgroundColor: backgroundColor ? backgroundColor : "rgba(255,255,255,0.04)",
             borderRadius: "14px",
             border: "1px solid rgba(255,255,255,0.08)",
             color: "#F1F1F1",
+            height: height ? height : "45px",
             "& .MuiSelect-icon": {
               color: "#C7C7C7",
             },

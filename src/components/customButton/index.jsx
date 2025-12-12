@@ -10,6 +10,7 @@ const CustomButton = ({
   radius = 8,
   width = "fit-content",
   onKeyPress,
+  height,
   ...props
 }) => {
   const borderRadiusValue = typeof radius === "number" ? `${radius}px` : radius;
@@ -41,7 +42,7 @@ const CustomButton = ({
             fontSize: "13px",
             py: 1.25,
             px: 5,
-            minHeight: 48,
+            minHeight: height ? height : 48,
           }),
         ...(loading && {
           cursor: "not-allowed",

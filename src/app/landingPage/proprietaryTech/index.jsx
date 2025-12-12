@@ -1,7 +1,9 @@
 import { Box, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import MacBookImage from "../../../assets/images/macbookelement.png"
 // import MacBookImages from "../../../assets/images/macbook element 1 (1).png"
 const ProprietaryTechSection = () => {
+  const { t } = useTranslation();
   return (
     <Box
       width="100%"
@@ -32,7 +34,7 @@ const ProprietaryTechSection = () => {
             fontWeight={700}
             textAlign={{ xs: "left" }}
           >
-            100% Proprietary Tech.
+            {t("proprietaryTech.title")}
           </Typography>
           <Typography
             color={"accent.contrastText"}
@@ -41,7 +43,7 @@ const ProprietaryTechSection = () => {
             mb={3}
             opacity={"0.85"}
           >
-            No Outsourcing. No Noise.
+            {t("proprietaryTech.subtitle")}
           </Typography>
           <Typography
             color={"accent.contrastText"}
@@ -50,7 +52,7 @@ const ProprietaryTechSection = () => {
             maxWidth={"300px"}
             mt={{ xs: 2, md: 6 }}
           >
-            DeepSurf’s multi-layered AI engine transforms raw data into actionable insights, forecasts, and bias signals - so you can trade with clarity, precision, and confidence.
+            {t("proprietaryTech.description")}
           </Typography>
         </Box>
         <Box

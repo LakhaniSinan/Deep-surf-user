@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import AuthLayout from "../../../components/authLayout";
 import { Avatar, Box, Container, IconButton, Typography } from "@mui/material";
 import CustomInput from "../../../components/customInput";
@@ -14,6 +15,7 @@ import { uploadMediaService } from "../../../utils/help";
 
 const UserProfile = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { user, setUser } = useAuthStore();
   console.log("feyfuhejfkeuhjfhujefn", user)
   console.log("feyfuhejfkeuhjfhccdcdujefn", setUser)
@@ -112,7 +114,7 @@ const UserProfile = () => {
   };
 
   return (
-    <AuthLayout title={"Set up your profile"}>
+    <AuthLayout title={t("auth.profile.title")}>
       <Container>
         <Box display={"flex"} justifyContent={"center"} my={5}>
           <Box position="relative">
@@ -161,7 +163,7 @@ const UserProfile = () => {
                     textAlign={"center"}
                     color={theme.palette.text.secondary}
                   >
-                    Add profile picture
+                    {t("auth.profile.addProfilePicture")}
                   </Typography>
                 </>
               )}
@@ -171,7 +173,7 @@ const UserProfile = () => {
 
         <Box mt={2}>
           <CustomInput
-            placeholder="Create username"
+            placeholder={t("auth.profile.createUsernamePlaceholder")}
             defaultStyle={theme.palette.text.secondary}
             value={profileData.username}
             onChange={(e) => handleChange("username", e.target.value)}
@@ -182,14 +184,14 @@ const UserProfile = () => {
 
         <Box mt={1} display={"flex"} justifyContent={"start"}>
           <Typography variant="body2" color={theme.palette.text.secondary}>
-            Max. 30 Characters
+            {t("auth.profile.maxCharacters")}
           </Typography>
         </Box>
 
         <Box display="flex" justifyContent="center" mt={8} width="100%">
           <CustomButton
             variant="gradient"
-            title="Continue"
+            title={t("auth.profile.continueButton")}
             width="100%"
             handleClickBtn={handleContinue}
             loading={isLoading}

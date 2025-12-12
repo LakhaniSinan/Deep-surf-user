@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography, Stack } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import CustomButton from "../../../components/customButton";
 import CustomInput from "../../../components/customInput";
 import AOS from "aos";
@@ -12,6 +13,7 @@ import addToWaitList from "../../../services/modules/addWaitList";
 import { toast } from "react-toastify";
 
 const JoinSection = () => {
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
@@ -27,9 +29,9 @@ const JoinSection = () => {
     const newErrors = {};
 
     if (!formData.email.trim()) {
-      newErrors.email = "Email is Required";
+      newErrors.email = t("footer.emailRequired");
     } else if (!EMAIL_REGEX.test(formData.email.trim())) {
-      newErrors.email = "Email is not valid";
+      newErrors.email = t("footer.emailInvalid");
     }
 
     setErrors(newErrors);
@@ -45,10 +47,10 @@ const JoinSection = () => {
       if (response?.data?.status === "success") {
         toast.success(response?.data?.message);
       } else {
-        toast.error(response?.data?.message || "Request failed");
+        toast.error(response?.data?.message || t("footer.requestFailed"));
       }
     } catch (error) {
-      toast.error(error?.message || "Request Failed");
+      toast.error(error?.message || t("footer.requestError"));
     } finally {
       setIsLoading(false);
     }
@@ -56,7 +58,7 @@ const JoinSection = () => {
 
   return (
     <Box
-      id="join-section" 
+      id="join-section"
       sx={{
         width: { xs: "100%", sm: "85%", md: "100%" },
         py: { xs: 2, md: 3 },
@@ -112,7 +114,7 @@ const JoinSection = () => {
                 fontFamily: "Inter Tight",
               }}
             >
-              Access is by invitation only
+              {t("footer.accessTag")}
             </Typography>
           </Box>
         </Box>
@@ -130,7 +132,7 @@ const JoinSection = () => {
             fontFamily: "Inter Tight",
           }}
         >
-          Become a Leading <br /> Trader now
+          <span dangerouslySetInnerHTML={{ __html: t("footer.title") }} />
         </Typography>
 
         {/* Description */}
@@ -145,7 +147,7 @@ const JoinSection = () => {
             fontFamily: "Inter Tight",
           }}
         >
-          Join the waitlist to be among the first inside the DeepSurf private.
+          {t("footer.description")}
         </Typography>
 
         {/* Input + Button */}
@@ -161,7 +163,7 @@ const JoinSection = () => {
             sx={{ width: "100%" }}
           >
             <CustomInput
-              placeholder="Enter your email..."
+              placeholder={t("footer.emailPlaceholder")}
               value={formData.email}
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
@@ -172,7 +174,9 @@ const JoinSection = () => {
                 borderRadius: "8px",
                 "& .MuiOutlinedInput-root": {
                   "& fieldset": { borderColor: "rgba(255, 255, 255, 0.2)" },
-                  "&:hover fieldset": { borderColor: "rgba(255, 255, 255, 0.4)" },
+                  "&:hover fieldset": {
+                    borderColor: "rgba(255, 255, 255, 0.4)",
+                  },
                 },
                 input: { color: "#fff", fontSize: "14px", py: 1.2 },
               }}
@@ -180,7 +184,7 @@ const JoinSection = () => {
 
             <CustomButton
               variant="calculatorSmall"
-              title="Join"
+              title={t("footer.joinButton")}
               handleClickBtn={handleAddToWaitList}
               sx={{
                 bgcolor: "text.DarkGrey",
@@ -224,8 +228,7 @@ const JoinSection = () => {
             fontFamily: "Inter Tight",
           }}
         >
-          DeepSurf — The future of market intelligence. <br />
-          Built with precision. Powered by AI. Protected by design.
+          <span dangerouslySetInnerHTML={{ __html: t("footer.tagline") }} />
         </Typography>
 
         {/* Icons */}
@@ -236,9 +239,24 @@ const JoinSection = () => {
           justifyContent="center"
           mt={{ xs: 6, md: 4 }}
         >
-          <Box component="img" src={TeleGramIcon} sx={{ width: { xs: 20, sm: 24 } }} />
-          <Box component="img" src={DiscardIcon} sx={{ width: { xs: 20, sm: 24 } }} />
-          <Box component="img" src={XIcon} sx={{ width: { xs: 20, sm: 24 } }} />
+          <Box
+            component="img"
+            onClick={() => window.open("https://t.me/deepsurfai", "_blank")}
+            src={TeleGramIcon}
+            sx={{ width: { xs: 20, sm: 24, cursor: "pointer" } }}
+          />
+          {/* <Box
+            component="img"
+            onClick={() => window.open("https://t.me/deepsurfai", "_blank")}
+            src={DiscardIcon}
+            sx={{ width: { xs: 20, sm: 24 } }}
+          /> */}
+          <Box
+            component="img"
+            onClick={() => window.open("https://x.com/deepsurf_ai", "_blank")}
+            src={XIcon}
+            sx={{ width: { xs: 20, sm: 24, cursor: "pointer" } }}
+          />
         </Stack>
       </Box>
     </Box>

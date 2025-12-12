@@ -1,0 +1,126 @@
+{
+  "header": {
+    "language": "Language",
+    "waitlist": "Waitlist",
+    "login": "Login",
+    "english": "English",
+    "turkish": "Turkish",
+    "spanish": "Spanish",
+    "russian": "Russian"
+  },
+  "hero": {
+    "limitedAccess": "Limited access",
+    "title": "AI-driven Trading <br /> Intelligence Engine",
+    "subtitle": "Powered by proprietary machine learning models, real- <br /> time market data, and years of quantitative research.",
+    "getStarted": "Get started",
+    "trustedBy": "Trusted by traders worldwide.",
+    "builtFor": "Built for those who think in probabilities, not predictions."
+  },
+  "aiDrivenCard": {
+    "title": "AI Driven. <br /> Human inspired.",
+    "description": "DeepSurf's multi-layered AI engine transforms raw data into actionable insights, forecasts, and bias signals — so you can trade with clarity, precision, and confidence.",
+    "aiAnalysis": "AI analysis",
+    "analysisText": "The unemployment rate improved from 4.2% to 4.1%. This is a positive Bullish signal. A strong but not overheated labor market supports the Fed's view of a potential \"soft landing\" for the economy.",
+    "advancedToolsTitle": "Advanced Tools for <br /> Market Perception.",
+    "advancedToolsDescription": "See the market as a living system - liquidity flows, volatility regimes, microstructure patterns, and sentiment dynamics. DeepSurf's analytics suite helps you not only see the moves - but feel them before they happen.",
+    "onChainSignals": "On-Chain Signals",
+    "whalesTracker": "Whales tracker"
+  },
+  "proprietaryTech": {
+    "title": "100% Proprietary Tech.",
+    "subtitle": "No Outsourcing. No Noise.",
+    "description": "DeepSurf's multi-layered AI engine transforms raw data into actionable insights, forecasts, and bias signals - so you can trade with clarity, precision, and confidence."
+  },
+  "insideDeep": {
+    "title": "Inside <span style=\"color: #FF6421; font-weight: 700; font-family: Inter Tight\">Deepsurf</span>",
+    "marketOutlook": {
+      "title": "Market Outlook",
+      "description": "Daily macro, flows, whales, risk calendar"
+    },
+    "proAnalytics": {
+      "title": "Pro Analytics",
+      "description": "Order flow, open interest, heatmap, liquidity levels, microstructure, ETF & on-chain metrics"
+    },
+    "journal": {
+      "title": "Journal",
+      "description": "API-based trade import, AI coaching, Watchlist, Alerts"
+    },
+    "calculator": {
+      "title": "Calculator",
+      "description": "ATR-based sizing, what-if simulation, auto export to journal"
+    },
+    "aiTools": {
+      "title": "AI Tools",
+      "description": "Comprehensive analysis of tokens based on more than 50 parameters and metrics, AI Pump Detection"
+    }
+  },
+  "footer": {
+    "accessTag": "Access is by invitation only",
+    "title": "Become a Leading <br /> Trader now",
+    "description": "Join the waitlist to be among the first inside the DeepSurf private.",
+    "emailPlaceholder": "Enter your email...",
+    "joinButton": "Join",
+    "emailRequired": "Email is Required",
+    "emailInvalid": "Email is not valid",
+    "requestFailed": "Request failed",
+    "requestError": "Request Failed",
+    "tagline": "DeepSurf — The future of market intelligence. <br /> Built with precision. Powered by AI. Protected by design."
+  },
+  "auth": {
+    "back": "Back",
+    "login": {
+      "title": "Welcome back!",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Password",
+      "forgotPassword": "Forgot Password?",
+      "loginButton": "Login",
+      "or": "OR",
+      "dontHaveAccount": "Don't have an account?",
+      "signUp": "Sign Up"
+    },
+    "signUp": {
+      "title": "Get Started",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Password",
+      "enterJoinCode": "Enter Join Code",
+      "agreeTerms": "I agree to Terms & Privacy Policy",
+      "signUpButton": "Sign Up",
+      "or": "OR",
+      "alreadyHaveAccount": "Already have an account?",
+      "login": "Login"
+    },
+    "forgotPassword": {
+      "title": "Get Started",
+      "heading": "FORGOT PASSWORD",
+      "description": "Enter your registered email to reset your password.",
+      "emailPlaceholder": "Email",
+      "otpPlaceholder": "Enter OTP",
+      "sendOtp": "Send OTP",
+      "verifyOtp": "Verify OTP"
+    },
+    "otpVerification": {
+      "title": "Verification Process",
+      "verifyOtp": "Verify OTP"
+    },
+    "forgotOtpVerification": {
+      "title": "Verification Process",
+      "enterOtp": "Enter the OTP sent to your email:",
+      "verifyOtp": "Verify OTP"
+    },
+    "setPassword": {
+      "title": "GET STARTED",
+      "heading": "SET NEW PASSWORD",
+      "newPasswordPlaceholder": "New Password",
+      "confirmPasswordPlaceholder": "Confirm Password",
+      "setPasswordButton": "Set New Password"
+    },
+    "profile": {
+      "title": "Set up your profile",
+      "addProfilePicture": "Add profile picture",
+      "createUsernamePlaceholder": "Create username",
+      "maxCharacters": "Max. 30 Characters",
+      "continueButton": "Continue"
+    }
+  }
+}
+
