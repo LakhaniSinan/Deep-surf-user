@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import AuthLayout from "../../../components/authLayout";
 import CustomOtp from "../../../components/customOtp";
 import CustomButton from "../../../components/customButton";
@@ -12,6 +13,7 @@ import { useAuthStore } from "../../../store";
 const VerificationProcess = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
   // const { loginUser } = useAuthStore();
   const { setToken } = useAuthStore()
   const [otp, setOtp] = useState("");
@@ -45,7 +47,7 @@ const VerificationProcess = () => {
   };
 
   return (
-    <AuthLayout title="Verification Process" showBackButton >
+    <AuthLayout title={t("auth.otpVerification.title")} showBackButton >
       <Box mt={3}>
         <CustomOtp
           value={otp}
@@ -64,7 +66,7 @@ const VerificationProcess = () => {
         <Box width="100%">
           <CustomButton
             variant="gradient"
-            title="Verify OTP"
+            title={t("auth.otpVerification.verifyOtp")}
             fullWidth
             handleClickBtn={handleVerify}
             loading={isLoading}

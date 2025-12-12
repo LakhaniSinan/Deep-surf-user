@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import AuthLayout from "../../../components/authLayout";
 import { Box, Typography } from "@mui/material";
 import CustomInput from "../../../components/customInput";
@@ -10,6 +11,7 @@ import { toast } from "react-toastify";
 
 const ForGetPassword = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [otp, setOtp] = useState("");
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [user, setuser] = useState({})
@@ -72,26 +74,26 @@ const ForGetPassword = () => {
   };
 
   return (
-    <AuthLayout title="Get Started" showBackButton>
+    <AuthLayout title={t("auth.forgotPassword.title")} showBackButton>
       <Typography
         marginTop={"6px"}
         variant="h4"
         color={theme.palette.text.secondary}
         mb={2}
       >
-        FORGOT PASSWORD
+        {t("auth.forgotPassword.heading")}
       </Typography>
 
       {/* Email Input */}
 
       <Box>
-        <Typography color="#fff" fontSize={"16px"} textAlign={"left"} marginLeft={"2px"}>
-          Enter your registered email to reset your password.
+        <Typography color="#fff" fontSize={"13px"} textAlign={"left"} marginLeft={"2px"}>
+          {t("auth.forgotPassword.description")}
         </Typography>
       </Box>
       <Box mt={3}>
         <CustomInput
-          placeholder="Email"
+          placeholder={t("auth.forgotPassword.emailPlaceholder")}
           defaultStyle={theme.palette.text.secondary}
           value={formData.email}
           name="email"
@@ -107,7 +109,7 @@ const ForGetPassword = () => {
       {isOtpSent && (
         <Box mt={2}>
           <CustomInput
-            placeholder="Enter OTP"
+            placeholder={t("auth.forgotPassword.otpPlaceholder")}
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
           />
@@ -118,7 +120,7 @@ const ForGetPassword = () => {
       <Box display="flex" justifyContent="center" mt={4} width="100%">
         <CustomButton
           variant="gradient"
-          title={isOtpSent ? "Verify OTP" : "Send OTP"}
+          title={isOtpSent ? t("auth.forgotPassword.verifyOtp") : t("auth.forgotPassword.sendOtp")}
           fullWidth
           handleClickBtn={handleForgetPassword}
           loading={isLoading}

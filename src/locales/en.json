@@ -65,6 +65,62 @@
     "requestFailed": "Request failed",
     "requestError": "Request Failed",
     "tagline": "DeepSurf — The future of market intelligence. <br /> Built with precision. Powered by AI. Protected by design."
+  },
+  "auth": {
+    "back": "Back",
+    "login": {
+      "title": "Welcome back!",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Password",
+      "forgotPassword": "Forgot Password?",
+      "loginButton": "Login",
+      "or": "OR",
+      "dontHaveAccount": "Don't have an account?",
+      "signUp": "Sign Up"
+    },
+    "signUp": {
+      "title": "Get Started",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Password",
+      "enterJoinCode": "Enter Join Code",
+      "agreeTerms": "I agree to Terms & Privacy Policy",
+      "signUpButton": "Sign Up",
+      "or": "OR",
+      "alreadyHaveAccount": "Already have an account?",
+      "login": "Login"
+    },
+    "forgotPassword": {
+      "title": "Get Started",
+      "heading": "FORGOT PASSWORD",
+      "description": "Enter your registered email to reset your password.",
+      "emailPlaceholder": "Email",
+      "otpPlaceholder": "Enter OTP",
+      "sendOtp": "Send OTP",
+      "verifyOtp": "Verify OTP"
+    },
+    "otpVerification": {
+      "title": "Verification Process",
+      "verifyOtp": "Verify OTP"
+    },
+    "forgotOtpVerification": {
+      "title": "Verification Process",
+      "enterOtp": "Enter the OTP sent to your email:",
+      "verifyOtp": "Verify OTP"
+    },
+    "setPassword": {
+      "title": "GET STARTED",
+      "heading": "SET NEW PASSWORD",
+      "newPasswordPlaceholder": "New Password",
+      "confirmPasswordPlaceholder": "Confirm Password",
+      "setPasswordButton": "Set New Password"
+    },
+    "profile": {
+      "title": "Set up your profile",
+      "addProfilePicture": "Add profile picture",
+      "createUsernamePlaceholder": "Create username",
+      "maxCharacters": "Max. 30 Characters",
+      "continueButton": "Continue"
+    }
   }
 }
 

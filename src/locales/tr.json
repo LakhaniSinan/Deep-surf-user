@@ -65,6 +65,62 @@
     "requestFailed": "İstek başarısız",
     "requestError": "İstek Başarısız",
     "tagline": "DeepSurf — Piyasa zekasının geleceği. <br /> Hassasiyetle inşa edildi. AI ile desteklenir. Tasarım ile korunur."
+  },
+  "auth": {
+    "back": "Geri",
+    "login": {
+      "title": "Tekrar hoş geldiniz!",
+      "emailPlaceholder": "E-posta",
+      "passwordPlaceholder": "Şifre",
+      "forgotPassword": "Şifrenizi mi unuttunuz?",
+      "loginButton": "Giriş Yap",
+      "or": "VEYA",
+      "dontHaveAccount": "Hesabınız yok mu?",
+      "signUp": "Kayıt Ol"
+    },
+    "signUp": {
+      "title": "Başlayın",
+      "emailPlaceholder": "E-posta",
+      "passwordPlaceholder": "Şifre",
+      "enterJoinCode": "Katılım Kodunu Girin",
+      "agreeTerms": "Şartları ve Gizlilik Politikasını kabul ediyorum",
+      "signUpButton": "Kayıt Ol",
+      "or": "VEYA",
+      "alreadyHaveAccount": "Zaten hesabınız var mı?",
+      "login": "Giriş Yap"
+    },
+    "forgotPassword": {
+      "title": "Başlayın",
+      "heading": "ŞİFREYİ UNUTTUM",
+      "description": "Şifrenizi sıfırlamak için kayıtlı e-posta adresinizi girin.",
+      "emailPlaceholder": "E-posta",
+      "otpPlaceholder": "OTP Girin",
+      "sendOtp": "OTP Gönder",
+      "verifyOtp": "OTP Doğrula"
+    },
+    "otpVerification": {
+      "title": "Doğrulama Süreci",
+      "verifyOtp": "OTP Doğrula"
+    },
+    "forgotOtpVerification": {
+      "title": "Doğrulama Süreci",
+      "enterOtp": "E-postanıza gönderilen OTP'yi girin:",
+      "verifyOtp": "OTP Doğrula"
+    },
+    "setPassword": {
+      "title": "BAŞLAYIN",
+      "heading": "YENİ ŞİFRE BELİRLE",
+      "newPasswordPlaceholder": "Yeni Şifre",
+      "confirmPasswordPlaceholder": "Şifreyi Onayla",
+      "setPasswordButton": "Yeni Şifre Belirle"
+    },
+    "profile": {
+      "title": "Profilinizi oluşturun",
+      "addProfilePicture": "Profil resmi ekle",
+      "createUsernamePlaceholder": "Kullanıcı adı oluştur",
+      "maxCharacters": "Maks. 30 Karakter",
+      "continueButton": "Devam Et"
+    }
   }
 }
 

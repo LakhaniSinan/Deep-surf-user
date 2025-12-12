@@ -2,13 +2,16 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import logo from "../../assets/images/Deepsurf-logo.png";
 import backButton from "../../assets/images/back.png";
-
+import CustomButton from "../customButton";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useTranslation } from "react-i18next";
 const AuthLayout = ({
   children,
   title,
-  showBackButton = false,   // default false
-  secondaryImage = null,    // default null
+  showBackButton = false, // default false
+  secondaryImage = null, // default null
 }) => {
+  const { t } = useTranslation();
   return (
     <Box
       width="100%"
@@ -17,15 +20,14 @@ const AuthLayout = ({
       display="flex"
       justifyContent="center"
       alignItems="center"
-    // sx={{ pt: "84px" }}  // header ke liye space
+      // sx={{ pt: "84px" }}  // header ke liye space
     >
       <Box
         bgcolor="background.paper"
         p={{
           xs: "8px",
-          md: 4
-        }
-        }
+          md: 4,
+        }}
         borderRadius={7}
         boxShadow={3}
         display="flex"
@@ -48,18 +50,35 @@ const AuthLayout = ({
         >
           {/* Arrow Button - Left */}
           {showBackButton && (
-            <Box
-              component="img"
-              src={backButton}
-              alt="Back"
-              width={60}
-              height={37}
+            // <Box
+            //   component="img"
+            //   src={backButton}
+            //   alt="Back"
+            //   width={60}
+            //   height={37}
+            //   sx={{
+            //     cursor: "pointer",
+            //     position: "absolute",
+            //     left: 10,
+            //     // backgroundColor: "#fff",
+            //     padding: "5px",
+            //   }}
+            //   onClick={() => window.history.back()}
+            // />
+
+            <CustomButton
+              height="30px"
+              startIcon={
+                <ArrowBackIcon size="xs" sx={{ color: "#fff", fontSize: "10px" }} />
+              }
+              variant="gradient"
+              title={t("auth.back")}
               sx={{
                 cursor: "pointer",
                 position: "absolute",
                 left: 10,
                 // backgroundColor: "#fff",
-                padding: "5px",
+                padding: "0px 10px",
               }}
               onClick={() => window.history.back()}
             />
@@ -90,16 +109,21 @@ const AuthLayout = ({
           )}
         </Box>
 
-
         {/* 🔹 Page Title */}
         <Box my={3}>
-          <Typography variant="h4" color="text.primary" fontFamily={"Inter Tight"}>
+          <Typography
+            variant="h4"
+            color="text.primary"
+            fontFamily={"Inter Tight"}
+          >
             {title}
           </Typography>
         </Box>
 
         {/* 🔹 Page Content */}
-        <Box width="100%" fontFamily={"Inter Tight"}>{children}</Box>
+        <Box width="100%" fontFamily={"Inter Tight"}>
+          {children}
+        </Box>
       </Box>
     </Box>
   );

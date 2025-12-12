@@ -1,6 +1,7 @@
 import { Box, Container, Typography } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { toast, ToastContainer } from "react-toastify";
 import appleLogo from "../../../assets/icons/apple.svg";
 import googleLogo from "../../../assets/icons/google.svg";
@@ -16,6 +17,7 @@ import { signInWithPopup } from "firebase/auth";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { loginUser } = useAuthStore();
   const [isLoading, setIsLoading] = useState(false);
   console.log("loading", isLoading);
@@ -122,11 +124,11 @@ const Login = () => {
   };
 
   return (
-    <AuthLayout title="Welcome back!">
+    <AuthLayout title={t("auth.login.title")}>
       <Container>
         <Box mt={2}>
           <CustomInput
-            placeholder="Email"
+            placeholder={t("auth.login.emailPlaceholder")}
             defaultStyle={theme.palette.text.secondary}
             value={formData.email}
             name="email"
@@ -140,7 +142,7 @@ const Login = () => {
         </Box>
         <Box mt={2}>
           <CustomInput
-            placeholder="Password"
+            placeholder={t("auth.login.passwordPlaceholder")}
             defaultStyle={theme.palette.text.secondary}
             inputPadding="14px 16px"
             type="password"
@@ -174,14 +176,14 @@ const Login = () => {
               }}
               onClick={() => navigate("/forgot-password")}
             >
-              Forgot Password?
+              {t("auth.login.forgotPassword")}
             </Typography>
           </Box>
         </Box>
         <Box display="flex" justifyContent="center" mt={2} width="100%">
           <CustomButton
             variant="h4"
-            title="Login"
+            title={t("auth.login.loginButton")}
             width="100%"
             sx={{
               backgroundColor: "#FF6421",
@@ -191,9 +193,9 @@ const Login = () => {
           // disabled={isLoading}
           />
         </Box>
-        <Box mt={2}>
+        {/* <Box mt={2}>
           <Typography variant="body2" color={theme.palette.text.secondary}>
-            OR
+            {t("auth.login.or")}
           </Typography>
         </Box>
         <Box
@@ -223,15 +225,15 @@ const Login = () => {
               style={{ objectFit: "contain" }}
             />
           </Box>
-        </Box>
+        </Box> */}
         <Box mt={4}>
           <Typography variant="body2" color={theme.palette.text.secondary}>
-            Don’t have an account?{" "}
+            {t("auth.login.dontHaveAccount")}{" "}
             <span
               style={{ color: "white", cursor: "pointer" }}
               onClick={handleNavigate}
             >
-              Sign Up
+              {t("auth.login.signUp")}
             </span>
           </Typography>
         </Box>

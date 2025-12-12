@@ -65,6 +65,62 @@
     "requestFailed": "Solicitud fallida",
     "requestError": "Solicitud Fallida",
     "tagline": "DeepSurf — El futuro de la inteligencia de mercado. <br /> Construido con precisión. Impulsado por IA. Protegido por diseño."
+  },
+  "auth": {
+    "back": "Atrás",
+    "login": {
+      "title": "¡Bienvenido de nuevo!",
+      "emailPlaceholder": "Correo electrónico",
+      "passwordPlaceholder": "Contraseña",
+      "forgotPassword": "¿Olvidaste tu contraseña?",
+      "loginButton": "Iniciar sesión",
+      "or": "O",
+      "dontHaveAccount": "¿No tienes una cuenta?",
+      "signUp": "Registrarse"
+    },
+    "signUp": {
+      "title": "Comenzar",
+      "emailPlaceholder": "Correo electrónico",
+      "passwordPlaceholder": "Contraseña",
+      "enterJoinCode": "Ingresar código de unión",
+      "agreeTerms": "Acepto los Términos y la Política de Privacidad",
+      "signUpButton": "Registrarse",
+      "or": "O",
+      "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+      "login": "Iniciar sesión"
+    },
+    "forgotPassword": {
+      "title": "Comenzar",
+      "heading": "OLVIDÉ MI CONTRASEÑA",
+      "description": "Ingresa tu correo electrónico registrado para restablecer tu contraseña.",
+      "emailPlaceholder": "Correo electrónico",
+      "otpPlaceholder": "Ingresar OTP",
+      "sendOtp": "Enviar OTP",
+      "verifyOtp": "Verificar OTP"
+    },
+    "otpVerification": {
+      "title": "Proceso de verificación",
+      "verifyOtp": "Verificar OTP"
+    },
+    "forgotOtpVerification": {
+      "title": "Proceso de verificación",
+      "enterOtp": "Ingresa el OTP enviado a tu correo electrónico:",
+      "verifyOtp": "Verificar OTP"
+    },
+    "setPassword": {
+      "title": "COMENZAR",
+      "heading": "ESTABLECER NUEVA CONTRASEÑA",
+      "newPasswordPlaceholder": "Nueva contraseña",
+      "confirmPasswordPlaceholder": "Confirmar contraseña",
+      "setPasswordButton": "Establecer nueva contraseña"
+    },
+    "profile": {
+      "title": "Configura tu perfil",
+      "addProfilePicture": "Agregar foto de perfil",
+      "createUsernamePlaceholder": "Crear nombre de usuario",
+      "maxCharacters": "Máx. 30 caracteres",
+      "continueButton": "Continuar"
+    }
   }
 }
 

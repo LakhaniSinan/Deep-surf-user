@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import AuthLayout from "../../../components/authLayout";
 import CustomInput from "../../../components/customInput";
 import { Box, Typography } from "@mui/material";
@@ -12,6 +13,7 @@ import { Regex } from "../../../constants/regix";
 
 const SetNewPassword = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const [formError, setFormError] = useState({});
   const [formData, setFormData] = useState({
@@ -92,7 +94,7 @@ const SetNewPassword = () => {
     }
   };
   return (
-    <AuthLayout title={"GET STARTED"} showBackButton>
+    <AuthLayout title={t("auth.setPassword.title")} showBackButton>
       <Typography
         marginTop={"10px"}
         variant="h4"
@@ -100,11 +102,11 @@ const SetNewPassword = () => {
         mb={2}
         fontSize={"20px"}
       >
-        SET NEW PASSWORD
+        {t("auth.setPassword.heading")}
       </Typography>
       <Box mt={3}>
         <CustomInput
-          placeholder="New Password"
+          placeholder={t("auth.setPassword.newPasswordPlaceholder")}
           type="password"
           value={formData.newPassword}
           onChange={(e) => handleChange("newPassword", e.target.value)}
@@ -119,7 +121,7 @@ const SetNewPassword = () => {
       </Box>
       <Box mt={3}>
         <CustomInput
-          placeholder="Confirm Password"
+          placeholder={t("auth.setPassword.confirmPasswordPlaceholder")}
           type="password"
           value={formData.confirmPassword}
           onChange={(e) => handleChange("confirmPassword", e.target.value)}
@@ -135,7 +137,7 @@ const SetNewPassword = () => {
       <Box display="flex" justifyContent="center" mt={4} width="100%">
         <CustomButton
           variant="gradient"
-          title="Set New Password"
+          title={t("auth.setPassword.setPasswordButton")}
           fullWidth
           handleClickBtn={handleConfirmPassword}
           loading={isLoading}

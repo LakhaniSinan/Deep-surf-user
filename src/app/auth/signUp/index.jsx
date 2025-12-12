@@ -6,6 +6,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import AuthLayout from "../../../components/authLayout";
 import CustomInput from "../../../components/customInput";
 import theme from "../../../theme";
@@ -25,6 +26,7 @@ import { useAuthStore } from "../../../store";
 
 function SignUp() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { loginUser } = useAuthStore();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -67,7 +69,8 @@ function SignUp() {
         toast.error(response?.data?.message || "Signup failed");
       }
     } catch (error) {
-      toast.error(error?.message || "Something went wrong"); b
+      toast.error(error?.message || "Something went wrong");
+      b;
     } finally {
       setIsLoading(false);
     }
@@ -110,11 +113,11 @@ function SignUp() {
   };
 
   return (
-    <AuthLayout title={"Get Started"}>
+    <AuthLayout title={t("auth.signUp.title")}>
       <Container>
         <Box mt={2}>
           <CustomInput
-            placeholder="Email"
+            placeholder={t("auth.signUp.emailPlaceholder")}
             defaultStyle={theme.palette.text.secondary}
             value={formData.email}
             onChange={(e) => handleChange("email", e.target.value)}
@@ -125,7 +128,7 @@ function SignUp() {
 
         <Box mt={2}>
           <CustomInput
-            placeholder="Password"
+            placeholder={t("auth.signUp.passwordPlaceholder")}
             defaultStyle={theme.palette.text.secondary}
             type="password"
             value={formData.password}
@@ -138,17 +141,15 @@ function SignUp() {
         </Box>
 
         {/* OTP */}
-        <Box mt={3} textAlign={"left"} >
+        <Box mt={3} textAlign={"left"}>
           <Typography
             sx={{
               marginBottom: "12px",
-
             }}
             variant="body2"
             color={theme.palette.text.secondary}
-
           >
-            Enter Join Code
+            {t("auth.signUp.enterJoinCode")}
           </Typography>
           <CustomOtp
             value={formData.otp}
@@ -161,7 +162,7 @@ function SignUp() {
             onChange={(e) => handleChange("agree", e.target.checked)}
             sx={{
               color: "#fff",
-              '&.Mui-checked': {
+              "&.Mui-checked": {
                 color: "#fff",
               },
             }}
@@ -169,16 +170,17 @@ function SignUp() {
           <Typography
             variant="body2"
             color={theme.palette.text.secondary}
+            textAlign="left"
             sx={{
               cursor: "pointer",
               fontWeight: formData.agree ? "norma" : "bold",
               color: formData.agree ? "#fff" : theme.palette.text.secondary,
               textDecoration: formData.agree ? "underline" : "none",
               transition: "0.3s ease",
-              fontSize: "13px"
+              fontSize: "13px",
             }}
           >
-            I agree to Terms & Privacy Policy
+            {t("auth.signUp.agreeTerms")}
           </Typography>
         </Box>
 
@@ -187,7 +189,7 @@ function SignUp() {
           <CustomButton
             handleClickBtn={handleSignUp}
             // variant="h5"
-            title="Sign Up"
+            title={t("auth.signUp.signUpButton")}
             width="100%"
             loading={isLoading}
             sx={{
@@ -195,9 +197,9 @@ function SignUp() {
             }}
           />
         </Box>
-        <Box mt={2}>
+        {/* <Box mt={2}>
           <Typography fontFamily={"Inter Tight"} color="text.mediumGrey">
-            OR
+            {t("auth.signUp.or")}
           </Typography>
         </Box>
 
@@ -220,15 +222,15 @@ function SignUp() {
             height={20}
             style={{ objectFit: "contain" }}
           />
-        </Box>
+        </Box> */}
         <Box mt={1} textAlign="center">
           <Typography variant="body2" color={theme.palette.text.secondary}>
-            Already have an account?{" "}
+            {t("auth.signUp.alreadyHaveAccount")}{" "}
             <span
               style={{ color: "white", cursor: "pointer" }}
               onClick={handleNavigate}
             >
-              Login
+              {t("auth.signUp.login")}
             </span>
           </Typography>
         </Box>

@@ -58,7 +58,7 @@ const JoinSection = () => {
 
   return (
     <Box
-      id="join-section" 
+      id="join-section"
       sx={{
         width: { xs: "100%", sm: "85%", md: "100%" },
         py: { xs: 2, md: 3 },
@@ -174,7 +174,9 @@ const JoinSection = () => {
                 borderRadius: "8px",
                 "& .MuiOutlinedInput-root": {
                   "& fieldset": { borderColor: "rgba(255, 255, 255, 0.2)" },
-                  "&:hover fieldset": { borderColor: "rgba(255, 255, 255, 0.4)" },
+                  "&:hover fieldset": {
+                    borderColor: "rgba(255, 255, 255, 0.4)",
+                  },
                 },
                 input: { color: "#fff", fontSize: "14px", py: 1.2 },
               }}
@@ -237,9 +239,24 @@ const JoinSection = () => {
           justifyContent="center"
           mt={{ xs: 6, md: 4 }}
         >
-          <Box component="img" src={TeleGramIcon} sx={{ width: { xs: 20, sm: 24 } }} />
-          <Box component="img" src={DiscardIcon} sx={{ width: { xs: 20, sm: 24 } }} />
-          <Box component="img" src={XIcon} sx={{ width: { xs: 20, sm: 24 } }} />
+          <Box
+            component="img"
+            onClick={() => window.open("https://t.me/deepsurfai", "_blank")}
+            src={TeleGramIcon}
+            sx={{ width: { xs: 20, sm: 24, cursor: "pointer" } }}
+          />
+          {/* <Box
+            component="img"
+            onClick={() => window.open("https://t.me/deepsurfai", "_blank")}
+            src={DiscardIcon}
+            sx={{ width: { xs: 20, sm: 24 } }}
+          /> */}
+          <Box
+            component="img"
+            onClick={() => window.open("https://x.com/deepsurf_ai", "_blank")}
+            src={XIcon}
+            sx={{ width: { xs: 20, sm: 24, cursor: "pointer" } }}
+          />
         </Stack>
       </Box>
     </Box>

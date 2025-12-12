@@ -65,6 +65,62 @@
     "requestFailed": "Запрос не выполнен",
     "requestError": "Запрос не выполнен",
     "tagline": "DeepSurf — Будущее рыночной разведки. <br /> Построено с точностью. Работает на ИИ. Защищено дизайном."
+  },
+  "auth": {
+    "back": "Назад",
+    "login": {
+      "title": "С возвращением!",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Пароль",
+      "forgotPassword": "Забыли пароль?",
+      "loginButton": "Войти",
+      "or": "ИЛИ",
+      "dontHaveAccount": "Нет аккаунта?",
+      "signUp": "Регистрация"
+    },
+    "signUp": {
+      "title": "Начать",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Пароль",
+      "enterJoinCode": "Введите код присоединения",
+      "agreeTerms": "Я согласен с Условиями и Политикой конфиденциальности",
+      "signUpButton": "Регистрация",
+      "or": "ИЛИ",
+      "alreadyHaveAccount": "Уже есть аккаунт?",
+      "login": "Войти"
+    },
+    "forgotPassword": {
+      "title": "Начать",
+      "heading": "ЗАБЫЛИ ПАРОЛЬ",
+      "description": "Введите зарегистрированный email для сброса пароля.",
+      "emailPlaceholder": "Email",
+      "otpPlaceholder": "Введите OTP",
+      "sendOtp": "Отправить OTP",
+      "verifyOtp": "Проверить OTP"
+    },
+    "otpVerification": {
+      "title": "Процесс проверки",
+      "verifyOtp": "Проверить OTP"
+    },
+    "forgotOtpVerification": {
+      "title": "Процесс проверки",
+      "enterOtp": "Введите OTP, отправленный на ваш email:",
+      "verifyOtp": "Проверить OTP"
+    },
+    "setPassword": {
+      "title": "НАЧАТЬ",
+      "heading": "УСТАНОВИТЬ НОВЫЙ ПАРОЛЬ",
+      "newPasswordPlaceholder": "Новый пароль",
+      "confirmPasswordPlaceholder": "Подтвердите пароль",
+      "setPasswordButton": "Установить новый пароль"
+    },
+    "profile": {
+      "title": "Настройте свой профиль",
+      "addProfilePicture": "Добавить фото профиля",
+      "createUsernamePlaceholder": "Создать имя пользователя",
+      "maxCharacters": "Макс. 30 символов",
+      "continueButton": "Продолжить"
+    }
   }
 }
 
