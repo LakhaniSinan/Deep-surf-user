@@ -56,6 +56,7 @@ const NavigationDrawer = ({
             <Typography sx={{ color: "#A3A3A3", fontSize: "14px", mb: 1 }}>
               {item.label}
             </Typography>
+
             <CustomSelect
               backgroundColor="transparent"
               value={selectedLang.code}
@@ -69,10 +70,7 @@ const NavigationDrawer = ({
                       component="img"
                       src={globeIcon}
                       alt="Language"
-                      sx={{
-                        width: "20px",
-                        height: "20px",
-                      }}
+                      sx={{ width: "20px", height: "20px" }}
                     />
                     <Typography sx={{ color: "#A3A3A3", fontSize: "15px" }}>
                       {t(lang.labelKey)}
@@ -106,13 +104,24 @@ const NavigationDrawer = ({
       }
 
       const isActive = activeNav === item.label;
+      const isLogin = item.label === t("header.login");
+
       return (
         <Box
           key={item.label}
-          onClick={() => onNavClick(item)}
-          sx={drawerStyles.drawerNavItem(isActive)}
+          onClick={isLogin ? undefined : () => onNavClick(item)}
+          sx={{
+            ...drawerStyles.drawerNavItem(isActive),
+            cursor: isLogin ? "not-allowed" : "pointer",
+            opacity: isLogin ? 0.5 : 1,
+          }}
         >
-          <Typography sx={drawerStyles.drawerNavItemText(isActive)}>
+          <Typography
+            sx={{
+              ...drawerStyles.drawerNavItemText(isActive),
+              color: isLogin ? "#777" : undefined,
+            }}
+          >
             {item.label}
           </Typography>
         </Box>
@@ -130,7 +139,7 @@ const NavigationDrawer = ({
         "& .MuiDrawer-paper": drawerStyles.drawerPaper,
       }}
     >
-      {/* Drawer Header */}
+      {/* Header */}
       <Box sx={drawerStyles.drawerHeader}>
         <Box
           component="img"
@@ -143,18 +152,10 @@ const NavigationDrawer = ({
         </IconButton>
       </Box>
 
-      {/* Drawer Navigation Items */}
-      <Box sx={drawerStyles.drawerNavContainer}>{renderDrawerNavItems()}</Box>
-
-      {/* Drawer Footer */}
-      {/* <Box sx={drawerStyles.drawerFooter}>
-        <Box sx={drawerStyles.drawerFooterProfile}>
-          <PersonIcon sx={drawerStyles.drawerFooterProfileIcon} />
-          <Typography sx={drawerStyles.drawerFooterProfileText}>
-            Profile
-          </Typography>
-        </Box>
-      </Box> */}
+      {/* Nav Items */}
+      <Box sx={drawerStyles.drawerNavContainer}>
+        {renderDrawerNavItems()}
+      </Box>
     </Drawer>
   );
 };
