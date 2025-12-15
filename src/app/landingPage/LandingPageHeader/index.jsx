@@ -185,14 +185,27 @@ const Header = () => {
               }
 
               const isLogin = item.label === t("header.login");
-              return (
+
+              return isLogin ? (
+                <Typography
+                  key={item.label}
+                  sx={{
+                    px: 6,
+                    py: 1.3,
+                    borderRadius: "12px",
+                    fontSize: "15px",
+                    color: "gray",       // disabled color
+                    cursor: "not-allowed",
+                  }}
+                >
+                  {item.label}
+                </Typography>
+              ) : (
                 <Button
                   key={item.label}
                   onClick={() => handleNavClick(item)}
                   sx={{
                     px: 6,
-                    // backdropFilter: "blur(6px)",
-                    // background: "rgba(50, 47, 47, 0.4)", 
                     py: 1.3,
                     borderRadius: "12px",
                     fontSize: "15px",
@@ -203,6 +216,7 @@ const Header = () => {
                   {item.label}
                 </Button>
               );
+
             })}
           </Box>
 

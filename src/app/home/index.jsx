@@ -111,7 +111,7 @@ const Home = () => {
               </span>
             </Typography>
           </Box>
-          
+
 
           <Box display={"flex"} gap={2} alignItems={"center"} mt={"20px"}>
             <Box>
@@ -174,6 +174,7 @@ const Home = () => {
                       borderRadius={"20px"}
                       height={"203px"}
                       padding={"8px"}
+
                     >
                       <Box mt={3} >
                         <Typography color="#fff" fontSize={"10px"} lineHeight={0.8}>
@@ -195,7 +196,7 @@ const Home = () => {
                   </Grid>
                 </Grid>
               )}
-              <Box mt={2}>
+              <Box mt={1}>
                 <TopVolumeSection
                   data1={homeResponse?.topCoinsByVolume24h}
                   data2={homeResponse?.topCoinsByVolume7d}
