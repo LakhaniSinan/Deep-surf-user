@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, Grid, Paper, Typography } from "@mui/material";
-import CrypoImage1 from "../../assets/icons/CrypotoLogo2.svg";
-import CrypoImage2 from "../../assets/icons/CrypotoLogo3.svg";
-import CrypoImage3 from "../../assets/icons/CrypotoLogo1.svg";
-import Graphy1 from "../../assets/icons/graph1.svg";
-import Graphy2 from "../../assets/icons/graph2.svg";
-import Graphy3 from "../../assets/icons/graph3.svg";
+// import CrypoImage1 from "../../assets/icons/CrypotoLogo2.svg";
+// import CrypoImage2 from "../../assets/icons/CrypotoLogo3.svg";
+// import CrypoImage3 from "../../assets/icons/CrypotoLogo1.svg";
+// import Graphy1 from "../../assets/icons/graph1.svg";
+// import Graphy2 from "../../assets/icons/graph2.svg";
+// import Graphy3 from "../../assets/icons/graph3.svg";
 import Speedometer from "../../components/speedMeter";
 import Sparkline from "../../components/topCoinsTable/Sparkline";
 
@@ -17,7 +17,7 @@ const cardStyle = {
 };
 
 const Coin = ({ data, overallSentimentData, dayOfWeek }) => {
-  console.log("frhfhfrfhrufrhfrrf", dayOfWeek?.dayOfWeek);
+  console.log("frhfhfrfhrufrhfrrf", overallSentimentData);
 
   return (
     <Box sx={{ background: "#000", marginTop: "25px" }}>

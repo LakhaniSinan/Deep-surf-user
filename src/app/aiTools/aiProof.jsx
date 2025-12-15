@@ -24,8 +24,8 @@ const AiProof = ({ coinData }) => {
           backgroundColor: "#161616",
           borderRadius: "20px",
           padding: {
-            xs : "5px" ,
-            md : "10px"
+            xs: "5px",
+            md: "10px"
           },
           width: "100%",
           maxWidth: "1449px",
@@ -47,8 +47,8 @@ const AiProof = ({ coinData }) => {
           <span
             style={{
               color: coinData?.coin?.change24hFormatted?.includes("-")
-                ? "red"
-                : "green",
+                ? "rgba(255, 76, 76, 1)"
+                : "rgba(62, 221, 135, 1)",
               fontSize: "18px",
               marginLeft: "10px"
             }}
@@ -84,11 +84,11 @@ const AiProof = ({ coinData }) => {
             fontSize="14px"
             flex={{ xs: "100%", md: "1" }}
           >
-            <span style={{ color: "#FFE600" }}>
+            <span style={{ color: "rgba(255, 230, 0, 1)", fontWeight: 600, fontSize: "15px" }}>
               {coinData?.recommendation?.action}
-            </span>
+            </span >
             <br />
-            confidence:{coinData?.recommendation?.confidence}
+            confidence: {coinData?.recommendation?.confidence}%
           </Typography>
         </Box>
       </Box>

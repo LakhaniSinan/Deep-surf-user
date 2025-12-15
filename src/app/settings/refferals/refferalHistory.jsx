@@ -32,7 +32,7 @@ const WithDrawalRequestTransaction = () => {
         },
         {
             userid: "#1",
-            referralDate: "Nov 15, 2024",
+            referralDate: "Nov 18, 2024",
             name: "Michael Chen",
             email: "ssarah.johnson@email.com",
             referralStatus: "Sign up",
@@ -41,7 +41,7 @@ const WithDrawalRequestTransaction = () => {
         },
         {
             userid: "#1",
-            referralDate: "Nov 15, 2024",
+            referralDate: "Nov 22, 2024",
             name: "Emily Rodriguez",
             email: "sarah.johnson@email.com",
             referralStatus: "Payment Completed",
@@ -50,7 +50,7 @@ const WithDrawalRequestTransaction = () => {
         },
         {
             userid: "#1",
-            referralDate: "Nov 15, 2024",
+            referralDate: "Nov 28, 2024",
             name: "David Kim",
             email: "sarah.johnson@email.com",
             referralStatus: "Sign up",
@@ -76,7 +76,7 @@ const WithDrawalRequestTransaction = () => {
                                 backgroundColor: activeTab === "Referrals History"
                                     ? "neutral.vermilionOrange"
                                     : "neutral.charcoalGrey",
-                                color: activeTab === "Referrals History" ? "neutral.Snowwhite" : "#fff"
+                                color: activeTab === "Referrals History" ? "neutral.Snowwhite" : "neutral.Snowwhite"
 
                             }}
                             onClick={() => setActiveTab("Referrals History")}
@@ -92,7 +92,7 @@ const WithDrawalRequestTransaction = () => {
                                 backgroundColor: activeTab === "Transaction History"
                                     ? "neutral.vermilionOrange"
                                     : "neutral.charcoalGrey",
-                                color: activeTab === "Referrals History" ? "neutral.Snowwhite" : "#fff"
+                                color: activeTab === "Referrals History" ? "neutral.Snowwhite" : "neutral.Snowwhite"
 
                             }}
                             onClick={() => setActiveTab("Transaction History")}
@@ -106,7 +106,7 @@ const WithDrawalRequestTransaction = () => {
                         <PaginatedTable
                             tableHeader={recentRefferalHeaders}
                             tableData={recentRefferalRows}
-                            displayRows={["userid", "referralDate",  "name", "refferal status", "commission"]}
+                            displayRows={["userid", "referralDate", "name", "refferal status", "commission"]}
                             isLoading={false}
                             showPagination={false}
 

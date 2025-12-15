@@ -1,6 +1,6 @@
 import ReactSpeedometer from "react-d3-speedometer";
-const Speedometer = ({ size = 28, score = 100 }) => {
-  console.log("asaSJHAsjhaSJHAhjsaJHSAjhsA", size, score);
+const Speedometer = ({ size = 28, score = 100, maxValue}) => {
+  console.log("asaSJHAsjhaSJHAhjsaJHSAjhsA", maxValue);
 
   return (
     <div>
@@ -18,7 +18,7 @@ const Speedometer = ({ size = 28, score = 100 }) => {
         labelFontSize="0px"
         currentValueText={`${score}`}
         currentValueText1={`${score}`}
-
+        // currentValueText2={`${maxValue}`}
         textColor="#fff"
         ringWidth={10}
         needleTransitionDuration={1000}

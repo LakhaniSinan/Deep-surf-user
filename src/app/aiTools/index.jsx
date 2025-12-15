@@ -49,7 +49,7 @@ const AiTools = () => {
       <Container maxWidth="lg" sx={{
         paddingTop: "30px", color: "white",
       }}>
-        <Typography variant="h1" fontSize="25px">
+        <Typography variant="h1" fontSize="35px" fontWeight={600}>
           AI Tools
         </Typography>
         <Box
@@ -69,7 +69,7 @@ const AiTools = () => {
             AI Proof — Quick coin verification
           </Typography>
           <Typography
-            sx={{ color: "#fff", marginBottom: "15px", fontSize: "12px" }}
+            sx={{ color: "neutral.Snowwhite", marginBottom: "15px", fontSize: "12px", fontWeight : 400 }}
           >
             In-depth AI analysis of any coin in seconds. Enter the ticker,
             receive a complete breakdown and recommendation.

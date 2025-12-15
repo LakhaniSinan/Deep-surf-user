@@ -390,7 +390,7 @@ const TermAndCondition = () => {
                             <img src={DeepSurfLogo} width={110} height={50} />
                         </Typography>
 
-                        <Box
+                        {/* <Box
                             sx={{
                                 display: { xs: "none", lg: "flex" },
                                 justifyContent: "center",
@@ -402,7 +402,7 @@ const TermAndCondition = () => {
                             <Typography variant="button" sx={{ color: "#fff" }}>About</Typography>
                             <Typography variant="button" sx={{ color: "#fff" }}>Services</Typography>
                             <Typography variant="button" sx={{ color: "#fff" }}>Contact</Typography>
-                        </Box>
+                        </Box> */}
                         <IconButton
                             edge="end"
                             color="inherit"

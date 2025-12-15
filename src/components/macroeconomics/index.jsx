@@ -1,7 +1,8 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import starIcon from "../../assets/icons/stars.svg";
-import warningTriangleIcon from "../../assets/icons/warning-triangle-icon.svg"
+import warningTriangleIcon from "../../assets/icons/warning-triangle-icon.svg";
+import warningIcon from "../../assets/icons/warningIcon.svg";
 import MacroEconomicCardSkeleton from "../../components/skeleton/macroeconomicCardSkeleton";
 
 const Macroeconomics = ({ data, description, isLoading }) => {
@@ -9,6 +10,25 @@ const Macroeconomics = ({ data, description, isLoading }) => {
 
   // Convert object into array for mapping (safe)
   const reports = data ? Object.values(data || {}) : [];
+
+  // Helper function to determine which icon to show
+  const getIcon = (report) => {
+    const title = (report?.title || "").toLowerCase();
+    console.log("titwwwwwwwwwwwwle", title);
+
+    const impact = (report?.impact || "").toLowerCase();
+    console.log("impactwwwwwwwwwww", impact);
+
+    console.log("Report:", { title, impact }); // Debug log
+
+    if (title.includes("unemployment ")) {
+      return starIcon;
+    } else if (impact.includes("cpi")) {
+      return warningIcon;
+    } else {
+      return warningTriangleIcon;
+    }
+  };
 
 
   return (
@@ -18,7 +38,7 @@ const Macroeconomics = ({ data, description, isLoading }) => {
         backgroundColor: (theme) => theme.palette.background.paper, // ✅ Fix
         borderRadius: "12px",
         padding: "25px",
-        height: "410px"
+        height: "auto"
       }}
     >
       <Typography
@@ -57,7 +77,7 @@ const Macroeconomics = ({ data, description, isLoading }) => {
                 <Typography
                   sx={{
                     color: "text.primary",
-                    fontSize: "10px",
+                    fontSize: "11px",
                     fontWeight: 400,
                   }}
                 >
@@ -84,26 +104,7 @@ const Macroeconomics = ({ data, description, isLoading }) => {
                   gap: 0.5,
                 }}
               >
-                {/* {(report?.impact || "").toLowerCase().includes("high") || 
-                  (report?.title || "").toLowerCase().includes("critical") ? (
-                  <img src={warningTriangleIcon} alt="warning" />
-                ) : (
-                  <img src={starIcon} alt="star" />
-                )} */}
-                {
-                  // Check first for "critical" in title
-                  (report?.title || "").toLowerCase().includes("critical")
-                    ? <img src={warningTriangleIcon} alt="warning" />
-                    : // Then check for "high" in impact
-                    (report?.impact || "").toLowerCase().includes("high")
-                      ? <img src={starIcon} alt="star" />
-                      : // Default icon
-                      <img src={starIcon} alt="star" />
-                }
-
-
-
-
+                <img src={getIcon(report)} alt="icon" />
                 <Typography
                   sx={{
                     color: "text.primary",

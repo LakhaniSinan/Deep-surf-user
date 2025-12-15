@@ -12,7 +12,7 @@ const Journal = () => {
       <Header />
       <Container maxWidth="lg">
         <Box my={5}>
-          <Typography variant="h1" color={theme.palette.text.primary}>
+          <Typography variant="h1" color={theme.palette.text.primary} fontSize={"35px"}>
             Journal
           </Typography>
         </Box>
@@ -20,7 +20,7 @@ const Journal = () => {
         <Box sx={styles.sectionContainer}>
 
           <Box>
-            <Typography variant="h5" color={theme.palette.text.primary}>
+            <Typography variant="h5" color={"neutral.Snowwhite"}>
               My Coins & Alerts
             </Typography>
             <Typography variant="body2" color={theme.palette.text.secondary}>
@@ -32,7 +32,7 @@ const Journal = () => {
           <Box sx={styles.formCard}>
             <Box sx={styles.formInner}>
               <Box sx={styles.formHeader}>
-                <Typography variant="h5" color={theme.palette.text.primary}>
+                <Typography variant="h5" color={"neutral.Snowwhite"}>
                   Add to Journal
                 </Typography>
               </Box>
@@ -57,7 +57,7 @@ const Journal = () => {
 
             </Box>
           </Box>
-        
+
         </Box>
       </Container>
     </Box>

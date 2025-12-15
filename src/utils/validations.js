@@ -1,4 +1,4 @@
-import { EMAIL_REGEX } from "../constants/regix";
+import { EMAIL_REGEX, PASSWORD_REGEX } from "../constants/regix";
 
 const signUpValidation = (inputValues, setInputErrors) => {
   const errors = {};
@@ -7,6 +7,17 @@ const signUpValidation = (inputValues, setInputErrors) => {
   if (inputValues.email?.trim() && !EMAIL_REGEX.test(inputValues.email.trim()))
     errors.email = "Email is not valid";
   if (!inputValues.password?.trim()) errors.password = "Password is required";
+  if (inputValues.password && inputValues.password.length < 6) {
+    errors.password = "Password must be greater than 6 characters";
+  }
+
+  if (
+    inputValues.password.trim() &&
+    !PASSWORD_REGEX.test(inputValues.password)
+  ) {
+    errors.password =
+      "Must include uppercase, lowercase, number & special character";
+  }
 
   setInputErrors(errors);
   return Object.keys(errors).length === 0;

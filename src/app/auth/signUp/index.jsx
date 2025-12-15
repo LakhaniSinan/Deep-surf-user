@@ -51,12 +51,10 @@ function SignUp() {
 
   const handleSignUp = async () => {
     const validate = signUpValidation(formData, setFormError);
-
-    // if (!validate) {
-    //   toast.error("Please fix errors before submitting!");
-    //   return;
-    // }
-
+    if (!validate) {
+      // toast.error("Please fix errors before submitting!");
+      return;
+    }
     try {
       setIsLoading(true);
       const payload = { email: formData.email, password: formData.password };
@@ -76,37 +74,37 @@ function SignUp() {
     }
   };
 
-  const handleGoogleLogin = async () => {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
+  // const handleGoogleLogin = async () => {
+  //   try {
+  //     const result = await signInWithPopup(auth, googleProvider);
 
-      // 🚀 Supposed response from backend (jo aap ne diya)
-      const response = {
-        data: {
-          user: {
-            id: 84,
-            username: result.user.displayName,
-            email: result.user.email,
-            profilePicture: result.user.photoURL,
-            referralCode: "A6040F",
-            provider: "google",
-          },
-          token: await result.user.getIdToken(),
-        },
-        status: "success",
-        message: `Login successful. Welcome back ${result.user.displayName}`,
-      };
+  //     // 🚀 Supposed response from backend (jo aap ne diya)
+  //     const response = {
+  //       data: {
+  //         user: {
+  //           id: 84,
+  //           username: result.user.displayName,
+  //           email: result.user.email,
+  //           profilePicture: result.user.photoURL,
+  //           referralCode: "A6040F",
+  //           provider: "google",
+  //         },
+  //         token: await result.user.getIdToken(),
+  //       },
+  //       status: "success",
+  //       message: `Login successful. Welcome back ${result.user.displayName}`,
+  //     };
 
-      // 🟢 Store in Zustand
-      loginUser(response.data.user, response.data.token);
+  //     // 🟢 Store in Zustand
+  //     loginUser(response.data.user, response.data.token);
 
-      toast.success(response.message);
-      navigate("/profile");
-    } catch (error) {
-      console.log(error);
-      toast.error(error.message || "Google login failed");
-    }
-  };
+  //     toast.success(response.message);
+  //     navigate("/profile");
+  //   } catch (error) {
+  //     console.log(error);
+  //     toast.error(error.message || "Google login failed");
+  //   }
+  // };
 
   const handleNavigate = () => {
     navigate("/login");
@@ -178,6 +176,9 @@ function SignUp() {
               textDecoration: formData.agree ? "underline" : "none",
               transition: "0.3s ease",
               fontSize: "13px",
+              "& hover ": {
+                color: "neutral.brightRed"
+              }
             }}
             onClick={() => navigate("/term-and-condition")}
 
@@ -194,6 +195,7 @@ function SignUp() {
             title={t("auth.signUp.signUpButton")}
             width="100%"
             loading={isLoading}
+
             sx={{
               backgroundColor: "#FF6421",
             }}

@@ -43,4 +43,8 @@ export const ENDPOINTS = {
   ADD_WAITLIST: {
     ADD_TO_WAITLIST: "waitlist/join",
   },
+
+  CREATE_CLIENT: {
+    GET_ALL_CLIENT: "client/create",
+  },
 };

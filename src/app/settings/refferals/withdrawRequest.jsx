@@ -49,27 +49,15 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
     };
     const inputStyle = {
         "& .MuiOutlinedInput-root": {
-            backgroundColor: "#red",
+            backgroundColor: "neutral.black",
             borderRadius: "12px",
             color: "#fff",
-            // paddingRight: "10px",
-
-            "& fieldset": {
-                border: "1px solid rgba(255,255,255,0.12)",
-            },
-
-            "&:hover fieldset": {
-                border: "1px solid rgba(255,255,255,0.2)",
-            },
-
-            "&.Mui-focused fieldset": {
-            },
         },
 
         "& .MuiInputBase-input": {
             padding: "12px 14px",
             fontSize: "13px",
-            color: "#fff",
+            color: "neutral.Snowwhite",
         },
     };
 
@@ -83,6 +71,7 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
                     value={formData.walletMethod}
                     onChange={(e) => setField("walletMethod", e.target.value)}
                     placeholder="Select"
+                    backgroundColor={"neutral.black"}
                 >
                     <MenuItem value="binance">Mobile Wallet</MenuItem>
                     <MenuItem value="paypal">Bank Wallet</MenuItem>
@@ -118,8 +107,11 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
                     value={formData.currency}
                     onChange={(e) => setField("currency", e.target.value)}
                     placeholder="USD"
+                    backgroundColor={"neutral.black"}
                 >
-                    <MenuItem value="USD">USD</MenuItem>
+                    <MenuItem sx={{
+                        bgcolor : ""
+                    }} value="USD">USD</MenuItem>
                     <MenuItem value="EUR">EUR</MenuItem>
                     <MenuItem value="GBP">GBP</MenuItem>
                 </CustomSelect>

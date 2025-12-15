@@ -30,7 +30,11 @@ const theme = createTheme({
       brightRed: "rgba(255, 76, 76, 1)",
       brightGreen: "rgba(62, 221, 135, 1)",
       gray: "rgba(180, 180, 180, 1)",
-      darkGrey : "rgba(28, 28, 28, 1)"
+      darkGrey: "rgba(28, 28, 28, 1)",
+      black: "rgba(0, 0, 0, 1)",
+      coolGray: "rgba(152, 154, 160, 1)",
+      aquablue: "rgba(2, 144, 209, 0.87)",
+      green: "rgba(0, 34, 16, 1)",
     },
     background: {
       default: "#101010",
@@ -45,6 +49,7 @@ const theme = createTheme({
       mediumGray: "#333333",
       PeachGradient:
         "linear-gradient(90deg, rgba(255,103,22,0.18) 0%, rgba(255,160,84,0.10) 100%)",
+      backgroundColor: "linear-gradient(90deg, #FF1A00, #FF6C03, #FFA305)",
     },
     text: {
       primary: "#ffff",
@@ -62,7 +67,7 @@ const theme = createTheme({
       DarkGrey: "#565656",
       Orange: "#FF6C03",
       Gainsboro: "#D9D9D9",
-      SalmonRed: "#FF8181",
+      SalmonRed: "rgba(255, 129, 129, 1)",
       DarkMaroon: "#391417",
       LightRed: "#FF6C82",
       mediumGrey: "#747474",

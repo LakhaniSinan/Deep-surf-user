@@ -12,6 +12,9 @@ import PendingRoundedIcon from "@mui/icons-material/PendingRounded";
 import ScheduleRoundedIcon from "@mui/icons-material/ScheduleRounded";
 import CloseIcon from "@mui/icons-material/Close";
 
+
+// import CompleteButton from "../../../assets/icons/"
+
 import DialogContainer from "../../../components/dialog/dialogContainer";
 
 const defaultDetails = {
@@ -73,14 +76,14 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
         <DialogContainer
             onClose={handleClose}
             open={open}
-          
+
         >
             <Stack
                 direction="row"
                 alignItems="center"
                 justifyContent="space-between"
                 spacing={1}
-                sx={{ px: 1, p : 1 }}
+                sx={{ px: 1, p: 1 }}
             >
                 <Stack direction="row" spacing={1.25} alignItems="center">
                     <Typography variant="h6" fontSize="26px" fontWeight={700}>
@@ -116,9 +119,9 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
             </Stack>
 
             <Box
-               sx={{
-                p : 2
-               }}
+                sx={{
+                    p: 2
+                }}
             >
                 <Typography
                     variant="subtitle2"
@@ -131,9 +134,8 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
 
                 <Box
                     sx={{
-                        backgroundColor: "#0c0c0d",
+                        backgroundColor: "neutral.black",
                         borderRadius: "14px",
-                        border: "1px solid rgba(255,255,255,0.05)",
                         p: 2,
                     }}
                 >
@@ -171,7 +173,7 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
                         <Typography variant="caption" sx={{ color: "#8c8d93" }}>
                             Bank Name
                         </Typography>
-                        <Typography variant="body1" fontWeight={600}>
+                        <Typography variant="body1" fontWeight={400}>
                             {details.bankName}
                         </Typography>
                     </Stack>
@@ -180,15 +182,19 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
 
             <Box
                 sx={{
-                    mt: 1,
                     borderRadius: "18px",
-                    p: 4,
+                    p: 2,
                 }}
             >
                 <Typography
                     variant="subtitle2"
                     fontWeight={500}
-                    sx={{ mb: 1.5, color: "#e9eaec" , fontSize: "20px" }}
+                    sx={{
+                        mb: 1.5,
+                        color: "neutral.Snowwhite",
+                        fontSize: "20px",
+                        fontWeight: 600
+                    }}
                 >
                     Status Timeline
                 </Typography>
@@ -209,7 +215,6 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
                                         height: 34,
                                         borderRadius: "50%",
                                         backgroundColor: `${item.color || "#f6a623"}1a`,
-                                        border: `1px solid ${item.color || "#f6a623"}`,
                                         display: "grid",
                                         placeItems: "center",
                                         boxShadow: `0 0 0 4px rgba(255,255,255,0.02)`,
@@ -226,14 +231,14 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
                                 <Stack spacing={0.25}>
                                     <Typography
                                         variant="body1"
-                                        fontWeight={700}
-                                        sx={{ color: "#e9eaec" }}
+                                        fontWeight={400}
+                                        color="neutral.Snowwhite"
                                     >
                                         {item.label}
                                     </Typography>
                                     <Typography
                                         variant="caption"
-                                        sx={{ color: "#9b9da3", letterSpacing: 0.1 }}
+                                        sx={{ color: "rgba(255, 255, 255, 0.6)", letterSpacing: 0.1 }}
                                     >
                                         {item.date}
                                     </Typography>

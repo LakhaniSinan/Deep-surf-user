@@ -11,12 +11,9 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useMemo, useRef, useState } from "react";
-import ContentCopyRoundedIcon from "@mui/icons-material/ContentCopyRounded";
 import VisibilityIcon from "@mui/icons-material/Visibility";  // Add this import
-import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
-import WithdrawDetails from "../../app/settings/refferals/withdrawDetails";
-import AddEditNewClientDialog from "../../app/settings/refferals/withdrawRequest";
 import UserWithdraw from "../../app/settings/refferals/withdrawDetails";
+import { color } from "d3";
 
 export default function PaginatedTable({
   tableWidth,
@@ -60,12 +57,18 @@ export default function PaginatedTable({
 
   const tableStyle = {
     "&.MuiTableContainer-root": {
-      backgroundColor: "transparent",
+      backgroundColor: "neutral.darkGrey",
       borderRadius: "18px",
       overflow: "hidden",
       boxShadow: "none",
       border: "1px solid rgba(255,255,255,0.08)",
+      color: "red"
     },
+    // "& .MuiTypography-root": {
+
+    //   color: "neutral.darkGrey"
+
+    // },
     "& .MuiTable": {
       borderCollapse: "separate",
       borderSpacing: "0",
@@ -104,6 +107,8 @@ export default function PaginatedTable({
   };
 
   const renderCell = (row, val, index) => {
+    console.log("rrrrrrrrrrrr", row);
+
     switch (val) {
       case "index":
         return (
@@ -117,8 +122,9 @@ export default function PaginatedTable({
                 height: 36,
                 borderRadius: "50%",
                 backgroundColor: "#e3f2fd",
-                color: "#1976d2",
+                // color: "#1976d2",
                 fontWeight: "600",
+                // border : "1px solid red"
               }}
             >
               {index + 1}
@@ -130,7 +136,7 @@ export default function PaginatedTable({
         return (
           <TableCell align={headerAlignMap[val] || "left"}>
             <Box display="flex" flexDirection="column" justifyContent="center">
-              <Typography fontSize={"15px"} variant="subtitle2" color="#E3E3E3" fontWeight={600} >
+              <Typography fontSize={"12px"} variant="subtitle2" color="#E3E3E3" fontWeight={600} >
                 {row.name}
               </Typography>
               <Typography fontSize={"12px"} variant="caption" color="#aaa">
@@ -139,6 +145,19 @@ export default function PaginatedTable({
             </Box>
           </TableCell>
         );
+
+      case "userid":
+        return (
+          <TableCell>
+            <Box
+              sx={{
+                fontWeight: 600
+              }}
+            >
+              {row[val]}
+            </Box>
+          </TableCell>
+        )
 
       case "refferal status":
         // Custom rendering for "refferal status"
@@ -153,25 +172,25 @@ export default function PaginatedTable({
                 py: 0.75,
                 borderRadius: "14px",
                 fontSize: "13px",
-                fontWeight: 600,
+                fontWeight: 400,
                 backgroundColor:
                   (row[val] || row["referralStatus"] || "")
                     .toString()
                     .toLowerCase()
                     .includes("payment completed")
-                    ? "rgba(0, 34, 16, 1)"
+                    ? "neutral.green"
                     : (row[val] || row["referralStatus"] || "")
                       .toString()
                       .toLowerCase()
                       .includes("sign up")
-                      ? "rgba(2, 144, 209, 0.87)"
-                      : "#fff",
+                      ? "neutral.aquablue"
+                      : "neutral.Snowwhite",
                 color:
                   (row[val] || row["referralStatus"] || "")
                     .toString()
                     .toLowerCase()
                     .includes("payment completed")
-                    ? "#4caf50"
+                    ? "neutral.brightGreen"
                     : (row[val] || row["referralStatus"] || "")
                       .toString()
                       .toLowerCase()
@@ -227,10 +246,10 @@ export default function PaginatedTable({
             <IconButton
               size="small"
               sx={{
-                color: "#FFFFFF",
+                color: "neutral.Snowwhite",
                 "&:hover": {
                   backgroundColor: "rgba(255,255,255,0.1)",
-                  color: "#FFFFFF",
+                  color: "neutral.Snowwhite",
                 },
               }}
               onClick={() => {
@@ -264,7 +283,7 @@ export default function PaginatedTable({
                     .toLowerCase()
                     .includes("completed")
                     ? "rgba(0, 34, 16, 1)"
-                    : "#fff",
+                    : "neutral.Snowwhite",
                 color: (row[val] || "")
                   .toString()
                   .toLowerCase()
@@ -275,13 +294,13 @@ export default function PaginatedTable({
                     .toLowerCase()
                     .includes("completed")
                     ? "rgba(62, 221, 135, 1)"
-                    : "#E3E3E3",
+                    : "neutral.Snowwhite",
                 minWidth: 76,
                 borderRadius: "20px",
                 display: "inline-block",
                 textAlign: "center",
-                py : "5px",
-                px : "5px"
+                py: "5px",
+                px: "5px"
               }}
             >
               {row[val]}
@@ -289,6 +308,45 @@ export default function PaginatedTable({
           </TableCell>
         );
 
+      case "referralDate":
+        return (
+          <TableCell>
+            <Box
+              sx={{
+                fontWeight: 600,
+                color: "neutral.Snowwhite",
+                letterSpacing: "0.8px"
+              }}>
+              {row[val]}
+            </Box>
+
+          </TableCell>
+        )
+
+      case "commission":
+        return (
+          <TableCell>
+            <Box
+              sx={{
+                fontSize: "18px",
+                fontWeight: 600,
+                color: "neutral.Snowwhite"
+              }}
+            >
+              {row[val]}
+            </Box>
+          </TableCell>
+        )
+      // case "requestDate":
+      //   return (
+      //     <TableCell>
+      //       <Box sx={{
+      //         fontWeight: 600,
+      //       }}>
+      //       </Box>
+      //       {row.requestDate}
+      //     </TableCell>
+      //   )
 
       default:
         const cellValue = row[val];
@@ -296,23 +354,23 @@ export default function PaginatedTable({
           typeof cellValue === "string" && cellValue.includes("\n");
         const align = headerAlignMap[val] || "left";
 
-        return (
-          <TableCell align={align}>
-            <Typography
-              fontSize="13px"
-              sx={{ fontWeight: 500, color: "#F1F1F1" }}
-            >
-              {hasLineBreaks
-                ? cellValue.split("\n").map((line, idx) => (
-                  <React.Fragment key={idx}>
-                    {line}
-                    {idx < cellValue.split("\n").length - 1 && <br />}
-                  </React.Fragment>
-                ))
-                : cellValue}
-            </Typography>
-          </TableCell>
-        );
+      return (
+        <TableCell align={align}>
+          <Typography
+            fontSize="13px"
+            sx={{ fontWeight: 500, color: "#F1F1F1" }}
+          >
+            {hasLineBreaks
+              ? cellValue.split("\n").map((line, idx) => (
+                <React.Fragment key={idx}>
+                  {line}
+                  {idx < cellValue.split("\n").length - 1 && <br />}
+                </React.Fragment>
+              ))
+              : cellValue}
+          </Typography>
+        </TableCell>
+      );
     }
   };
 

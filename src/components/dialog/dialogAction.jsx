@@ -19,6 +19,8 @@ const DialogActionButtons = ({
             sx={{
                 padding: "16px",
                 gap: 2,
+                display: "flex",
+                justifyContent: "space-between"
             }}
         >
             {showCancelBtn && (
@@ -31,10 +33,11 @@ const DialogActionButtons = ({
                         height: "45px",
                         padding: "20px 30px",
                         borderRadius: "15px",
-                        backgroundColor: "#rgba(0, 0, 0, 1)",
-                        color: "#fff",
+                        backgroundColor: "neutral.black",
+                        color: "neutral.Snowwhite",
                         dispay: "flex",
                         justifyContent: "space-between",
+                        border: "none"
                     }}
                     disabled={confirmLoading}
                     loading={confirmLoading}
@@ -50,9 +53,9 @@ const DialogActionButtons = ({
                     style={{
                         width: "auto",
                         height: "45px",
-                        padding: "20px 15px",
+                        padding: "20px 10px",
                         borderRadius: "15px",
-                        backgroundColor: "accent.main",
+                        background: "linear-gradient(90deg, #FF1A00, #FF6C03, #FFA305)",
                         color: "#ffff",
                     }}
                     {...confirmBtnProps}
