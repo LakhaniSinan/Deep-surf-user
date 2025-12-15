@@ -37,8 +37,8 @@ const Macroeconomics = ({ data, description, isLoading }) => {
         width: "100%",
         backgroundColor: (theme) => theme.palette.background.paper, // ✅ Fix
         borderRadius: "12px",
-        padding: "25px",
-        height: "auto"
+        padding: "20px",
+        maxHeight: "390px",
       }}
     >
       <Typography
@@ -46,7 +46,7 @@ const Macroeconomics = ({ data, description, isLoading }) => {
         fontSize="1.5rem"
         fontWeight={600}
         color="text.primary"
-        mb={3}
+        mb={1}
       >
         Macroeconomics
       </Typography>

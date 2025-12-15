@@ -10,8 +10,6 @@ import {
 } from "@mui/material";
 import theme from "../../theme";
 import Sparkline from "./Sparkline";
-// import PositiveIcon from "../../assets/icons/positive-coins-icon.svg";
-// import NegativeIcon from "../../assets/icons/negative-coin-icon.svg";
 import TopCardSkeleton from "../../components/skeleton/topCoinCardSkeleton";
 
 const TopCoinsTable = ({ data, isLoading }) => {
@@ -22,10 +20,12 @@ const TopCoinsTable = ({ data, isLoading }) => {
       sx={{
         width: "100%",
         backgroundColor: theme.palette.background.paper,
-        borderRadius: "12px",
+        borderRadius: "10px",
         padding: "16px",
-        overflowX: "auto", // 👈 Add here
-        maxHeight: "410px",
+        overflowX: "auto",
+        maxHeight: "390px",
+        borderTopRightRadius: "30px",
+        borderBottomRightRadius: "30px"
       }}
     >
       <Typography
