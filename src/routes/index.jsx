@@ -64,7 +64,7 @@ const AUTH_ROUTES = [
     exact: "exact",
     path: "/new-password",
   },
-   {
+  {
     id: 7,
     name: "TermAndCondition",
     component: <TermAndCondition />,

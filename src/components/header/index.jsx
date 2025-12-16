@@ -71,7 +71,7 @@ const Header = () => {
   const handleLogout = () => {
     handleCloseMenu();
     logout();
-    navigate("/login");
+    navigate("/");
   };
 
   const handleSetting = () => {
