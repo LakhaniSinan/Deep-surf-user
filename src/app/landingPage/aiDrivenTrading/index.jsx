@@ -7,22 +7,27 @@ import logos from "../../../assets/images/logos.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-
 const AiDriven = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    AOS.init({ duration: 800, once: true });
+    AOS.init({
+      duration: 800,
+      once: true,
+      easing: "ease-out-cubic",
+    });
   }, []);
 
   // Scroll function
   const scrollToJoin = () => {
-    const element = document.getElementById("join-section");
-    element?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("join-section")?.scrollIntoView({
+      behavior: "smooth",
+    });
   };
 
   return (
     <>
+      {/* Tagline */}
       <Box
         display="flex"
         alignItems="center"
@@ -35,57 +40,56 @@ const AiDriven = () => {
           background: "rgba(52, 30, 21, 0.5)",
           backdropFilter: "blur(10px)",
           cursor: "pointer",
-          alignItems: "center",
         }}
       >
         <img src={TimingImages} alt="timer" style={{ width: 16, height: 16 }} />
-        <h5
-          style={{
+        <Typography
+          sx={{
             background: "linear-gradient(to right, #FFB37D, #FFF3EA)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             fontFamily: "Inter Tight",
-            fontWeight: "500",
+            fontWeight: 500,
+            fontSize: "14px",
           }}
         >
           {t("hero.limitedAccess")}
-        </h5>
+        </Typography>
       </Box>
 
-
+      {/* MAIN HEADING (FIXED) */}
       <Typography
         data-aos="zoom-in"
-        overflow={"hidden"}
         color="accent.contrastText"
         fontSize={{ xs: 30, md: 60 }}
         fontWeight={600}
-        lineHeight={1.1}
+        lineHeight={1.3}          
         textAlign="center"
         fontFamily="Inter Tight"
+        sx={{ overflow: "visible" }}
       >
         <span dangerouslySetInnerHTML={{ __html: t("hero.title") }} />
       </Typography>
-      <Box mt={4.8}
-        data-aos="fade-up"
-      >
+
+      {/* SUBTITLE */}
+      <Box mt={4.8} data-aos="fade-up">
         <Typography
           color="text.CoolGray"
           fontSize={{ xs: 12, md: 16 }}
           fontWeight={600}
-          lineHeight={1.3}
-          fontFamily={"Inter Tight"}
+          lineHeight={1.4}
+          fontFamily="Inter Tight"
+          textAlign="center"
         >
-
           <span dangerouslySetInnerHTML={{ __html: t("hero.subtitle") }} />
         </Typography>
       </Box>
 
-      <Box mt={4}
-        data-aos="zoom-in"
-        overflow={"hidden"}>
+      {/* CTA BUTTON */}
+      <Box mt={4} data-aos="zoom-in">
         <CustomButton
           title={t("hero.getStarted")}
-          handleClickBtn={scrollToJoin} // scroll add kiya
+          handleClickBtn={scrollToJoin}
           sx={{
             color: "#fff",
             borderRadius: "10px",
@@ -99,20 +103,25 @@ const AiDriven = () => {
         />
       </Box>
 
-      <Box mt={{ xs: 10, md: 16 }} textAlign={"center"} data-aos="fade-up" overflow={"hidden"}>
+      {/* TRUSTED BY */}
+      <Box
+        mt={{ xs: 10, md: 16 }}
+        textAlign="center"
+        data-aos="fade-up"
+      >
         <Typography
           color="accent.contrastText"
           fontSize={{ xs: 20, md: 33 }}
           fontWeight={700}
-          sx={{ fontFamily: "Inter Tight" }}
+          fontFamily="Inter Tight"
         >
           {t("hero.trustedBy")}
         </Typography>
+
         <Typography
-          textAlign={"center"}
           fontSize={{ xs: 10, md: 16 }}
           color="accent.contrastText"
-          sx={{ fontFamily: "Inter Tight" }}
+          fontFamily="Inter Tight"
         >
           {t("hero.builtFor")}
         </Typography>
@@ -122,12 +131,10 @@ const AiDriven = () => {
           spacing={{ xs: 1, md: 13 }}
           mt={7}
           alignItems="center"
-          justifyContent={{ xs: "space-between", md: "space-evenly" }}
+          justifyContent={{ xs: "center", md: "space-evenly" }}
           wrap="nowrap"
-          data-aos="fade-up"
-          overflow={"hidden"}
         >
-          <Stack px={3} alignItems={"center"}>
+          <Stack px={3} alignItems="center">
             <Box
               component="img"
               src={logos}
