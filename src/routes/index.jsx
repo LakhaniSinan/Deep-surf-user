@@ -17,6 +17,7 @@ import ForgetVerfication from "../app/auth/loginOtpVerification";
 import SetUserProfile from "../app/auth/profile";
 import UserProfile from "../app/auth/profile";
 import TermAndCondition from "../app/termsAndConditions";
+import MyLoginPage from "../app/auth/login/myLoginPage";
 
 const AUTH_ROUTES = [
 
@@ -32,6 +33,13 @@ const AUTH_ROUTES = [
     name: "Login",
     path: "/login",
     component: <Login />,
+  },
+
+  {
+    id: 1,
+    name: "myLoginPag",
+    path: "/my-login-page-url",
+    component: <MyLoginPage />,
   },
 
 
