@@ -17,9 +17,13 @@ const Referrals = () => {
   const [copiedField, setCopiedField] = useState(null);
   const [referalsStats, setRefferalStats] = useState(null);
   const [refferHistoryData, setRefferalHistoryData] = useState(null);
+  console.log("refereeeeeeeeee" , refferHistoryData?.pagination);
+  
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-  const [pagination, setPagination] = useState(null);
+  const [pagination, setPagination] = useState(0);
+  console.log("pahinationvvvvvvvv"  , pagination );
+  
   const [isLoading, setIsLoading] = useState(false);
 
   const handleCopy = async (value, field) => {
@@ -49,7 +53,7 @@ const Referrals = () => {
       setIsLoading(true);
       const response = await refferHistory({ page, limit });
       setRefferalHistoryData(response?.data?.data);
-      setPagination(response?.data?.pagination);
+      setPagination(response?.data?.data?.pagination);
     } catch (error) {
       toast.error("Failed to fetch referral history");
     } finally {

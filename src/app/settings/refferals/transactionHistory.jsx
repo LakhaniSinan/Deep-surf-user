@@ -12,9 +12,10 @@ const TransactionHistory = () => {
     const [transactionData, setTransactionData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [totalRecords, setTotalRecords] = useState(0);
+    console.log("eeeeeeeeeeeee", totalRecords);
 
     const [transactionPage, setTransactionPage] = useState(1);
-    const [transactionLimit, setTransactionLimit] = useState(10);
+    const [transactionLimit, setTransactionLimit] = useState(5);
 
     const billingHistoryHeaders = [
         { id: "id", label: "ID", align: "left" },
@@ -32,16 +33,20 @@ const TransactionHistory = () => {
             setIsLoading(true);
             const response = await transactionHistory({
                 page: transactionPage,
-                limit: transactionLimit
+                limit: transactionLimit,
             });
-            setTransactionData(response?.data?.data || []);
-            setTotalRecords(response?.data?.pagination?.total || 0);
+
+            if (response?.data?.status === "success") {
+                setTransactionData(response?.data?.data?.data || []);
+                setTotalRecords(response?.data?.data?.pagination?.total || 0);
+            }
         } catch (error) {
             toast.error("Failed to fetch transaction history");
         } finally {
             setIsLoading(false);
         }
     };
+
 
     useEffect(() => {
         fetchTransactionData();
@@ -59,10 +64,10 @@ const TransactionHistory = () => {
 
             <PaginatedTable
                 tableHeader={billingHistoryHeaders}
-                tableData={transactionData?.data}
+                tableData={transactionData}
                 displayRows={["id", "requestDate", "batchNo", "amount", "account", "currency", "status", "action"]}
                 isLoading={isLoading}
-                showPagination={false} // disable internal pagination
+                showPagination={false}
             />
 
             <TablePagination
@@ -76,8 +81,9 @@ const TransactionHistory = () => {
                     setTransactionLimit(newLimit);
                     setTransactionPage(1);
                 }}
-                rowsPerPageOptions={[10, 12, 20, 50]}
+                rowsPerPageOptions={[5, 10, 20, 50]}
             />
+
 
             <AddEditNewClientDialog ref={allNewClienttEditRef} />
         </Box>
