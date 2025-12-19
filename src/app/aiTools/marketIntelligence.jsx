@@ -40,8 +40,8 @@ const MarketIntelligence = ({ coinData }) => {
         <Grid container spacing={2} marginTop={2}>
           {marketStats.map((item, index) => (
             <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
-              <Box key={index} mb={2} p={2} bgcolor="#1C1C1C" borderRadius={2}>
-                <Typography variant="body2" color="#FFFFFF">
+              <Box key={index} mb={2} p={2} bgcolor="neutral.darkGrey" borderRadius={2}>
+                <Typography variant="body2" color="neutral.Snowwhite">
                   {item.title}
                 </Typography>
                 <Typography
@@ -54,10 +54,11 @@ const MarketIntelligence = ({ coinData }) => {
                 <Typography
                   variant="h6"
                   mt="12px"
-                  fontSize={"12px"}
+                  fontSize={"16px"}
+                  fontWeight={400}
                   color={
                     item.description === "Neutral"
-                      ? "#FFD700"
+                      ? "neutral.brightYellow"
                       : item.description === "Heavily long"
                         ? "#4CAF50"
                         : "#FFFFFF"

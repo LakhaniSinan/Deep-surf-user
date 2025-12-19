@@ -16,7 +16,7 @@ const Pattern = ({ coinData }) => {
               alignItems="center"
               gap="20px"
             >
-              <Typography variant="h4" fontSize={"20px"}>
+              <Typography variant="h4" fontSize={"25px"}>
                 Pattern Recognition
               </Typography>
               <CustomButton
@@ -25,7 +25,7 @@ const Pattern = ({ coinData }) => {
                 sx={{
                   fontSize: "13px",
                   backgroundColor: "transparent",
-                  border: "0.2px solid accent.contrastText",
+                  border: "0.1px solid rgba(255, 255, 255, 1)",
                   borderRadius: "15px",
                   px: "30px",
                   py: "0px",
@@ -41,7 +41,7 @@ const Pattern = ({ coinData }) => {
         flexDirection={{ xs: "column", md: "row" }}
         justifyContent="space-between"
         alignItems={{ xs: "flex-start", md: "center" }}
-        backgroundColor="#1C1C1C"
+        backgroundColor="rgba(26, 26, 26, 1)"
         padding="15px"
         borderRadius="8px"
         marginTop="20px"
@@ -68,7 +68,7 @@ const Pattern = ({ coinData }) => {
               variant="h6"
               backgroundColor="#1A1A1A"
               title={
-                <span style={{ color: "accent.contrastText", fontFamily: "", fontSize: "15px" }}>
+                <span style={{ color: "accent.contrastText", fontFamily: "", fontSize: "15px" , fontWeight: 500 }}>
                   Target :{" "}
                   <span
                     style={{
@@ -124,7 +124,7 @@ const Pattern = ({ coinData }) => {
         gap={{ xs: 2, md: 0 }}
       >
         <Box gap="12px">
-          <Typography variant="h4" color="text.lightRedColor">
+          <Typography variant="h4" color="text.lightRedColor" fontSize={"20px"}>
             {coinData?.patternRecognition?.[0]?.name}
           </Typography>
           <Typography variant="body1" color={coinData?.patternRecognition?.[0]?.type ? "text.greenColor" : "text.yellowColor"}>
@@ -149,18 +149,18 @@ const Pattern = ({ coinData }) => {
           >
             <CustomButton
               variant="h6"
-              backgroundColor="#1A1A1A"
+              backgroundColor="rgba(0, 0, 0, 0)"
               title={
-                <span style={{ color: "#FFFFFF", fontSize: "15px" }}>
+                <span style={{ color: "#FFFFFF", fontSize: "15px" ,  fontWeight: 500 }}>
                   Target :{" "}
-                  <span style={{ color: "red" }}>
+                  <span style={{ color: "rgba(255, 68, 80, 1)" }}>
                     {" "}
                     {coinData?.patternRecognition?.[0]?.target}
                   </span>
                 </span>
               }
               sx={{
-                border: "1px solid #FFFFFF",
+                border: "1px solid rgba(255, 255, 255, 1)",
                 width: { xs: "100%", md: "auto" },
               }}
             />
@@ -169,9 +169,9 @@ const Pattern = ({ coinData }) => {
               variant="h1"
               backgroundColor="#1A1A1A"
               title={
-                <span style={{ color: "#FFFFFF", fontSize: "15px" }}>
+                <span style={{ color: "#FFFFFF", fontSize: "15px", fontWeight: 500 }}>
                   Breakout :{" "}
-                  <span style={{ color: "red" }}>
+                  <span style={{ color: "rgba(255, 68, 80, 1)" }}>
                     {" "}
                     {coinData?.patternRecognition?.[0]?.breakout}
                   </span>

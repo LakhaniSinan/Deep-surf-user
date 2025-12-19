@@ -36,6 +36,8 @@ const theme = createTheme({
       aquablue: "rgba(2, 144, 209, 0.87)",
       green: "rgba(0, 34, 16, 1)",
       coolGrey: "rgba(162, 163, 171, 1)",
+      redOrange: "rgba(255, 68, 80, 1)",
+      brightYellow: "rgba(255, 230, 0, 1)",
     },
     background: {
       default: "#101010",

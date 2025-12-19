@@ -10,7 +10,7 @@ const IndicatorAnalysis = ({ coinData }) => {
   return (
     <>
       <Box mt={5}>
-        <Typography variant="h3" fontSize={"18px"}>
+        <Typography variant="h3" fontSize={"25px"}>
           Indicator Analysis{" "}
         </Typography>
       </Box>

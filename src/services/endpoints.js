@@ -65,4 +65,5 @@ export const ENDPOINTS = {
   WTHDRAWREQUEST: {
     WITHDRAW_REQUEST: "referrals/withdrawal/:id",
   },
+  
 };
