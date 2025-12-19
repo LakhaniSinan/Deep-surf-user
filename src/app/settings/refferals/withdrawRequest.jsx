@@ -1,6 +1,5 @@
-// New AddEditClient component with perfect UI
 import React, { forwardRef, useImperativeHandle, useState } from "react";
-import { Box, MenuItem, Typography } from "@mui/material";
+import { MenuItem } from "@mui/material";
 
 import CustomInput from "../../../components/customInput";
 import CustomSelect from "../../../components/customSelect";
@@ -10,6 +9,8 @@ import DialogHeader from "../../../components/dialog/dialogHeader";
 import DialogBody from "../../../components/dialog/dialogBody";
 import DialogActionButtons from "../../../components/dialog/dialogAction";
 import Label from "../../../components/label";
+import { toast } from "react-toastify";
+import { requestWithdrawal } from "../../../services/modules/refferal";
 
 const WithdrawalRequest = forwardRef(({ props }, ref) => {
     const [open, setOpen] = useState(false);
@@ -19,13 +20,20 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
         walletMethod: "",
         accountNumber: "",
         amount: "",
-        currency: "USD",
+        currency: "",
     });
+    console.log("formdatatataaaaaaaaaa", formData);
+
 
     useImperativeHandle(ref, () => ({
-        openDialog(params) {
+        openDialog() {
             setOpen(true);
-            if (params?.data) setFormData({ ...params.data });
+            setFormData({
+                walletMethod: "",
+                accountNumber: "",
+                amount: "",
+                currency: "",
+            });
         },
         closeDialog() {
             handleClose();
@@ -39,26 +47,66 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
             walletMethod: "",
             accountNumber: "",
             amount: "",
-            currency: "USD",
+            currency: "",
         });
         setError({});
     };
 
     const setField = (key, value) => {
         setFormData((prev) => ({ ...prev, [key]: value }));
+        setError((prev) => ({ ...prev, [key]: "" }))
     };
+
     const inputStyle = {
         "& .MuiOutlinedInput-root": {
             backgroundColor: "neutral.black",
             borderRadius: "12px",
             color: "#fff",
         },
-
         "& .MuiInputBase-input": {
             padding: "12px 14px",
             fontSize: "13px",
             color: "neutral.Snowwhite",
         },
+    };
+
+    const handleWithdrawRequest = async () => {
+        const newError = {};
+        if (!formData.walletMethod) newError.walletMethod = "Required";
+        if (!formData.accountNumber) newError.accountNumber = "Required";
+        if (!formData.amount) newError.amount = "Required";
+        if (!formData.currency) newError.currency = "Required";
+
+        if (Object.keys(newError).length > 0) {
+            setError(newError);
+            return;
+        }
+
+        try {
+            setIsLoading(true);
+
+            const payload = {
+                walletMethod: formData.walletMethod,
+                accountNumber: formData.accountNumber.trim(),
+                amount: (formData.amount),
+                currency: formData.currency,
+            };
+
+            console.log("PayloadsenuuutoddddddddAPI:", payload);
+
+            const response = await requestWithdrawal(payload);
+            console.log("dddddddddddddddd" , response);
+            console.log("hihhhhhhhhhhhhhh");
+            
+            
+            toast.success(response?.data?.data || "Withdrawal Request Submitted");
+            handleClose();
+        } catch (err) {
+            console.error(err,"bggggggggggggggggg");
+            toast.error("Failed to submit withdrawal request");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -70,15 +118,14 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
                 <CustomSelect
                     value={formData.walletMethod}
                     onChange={(e) => setField("walletMethod", e.target.value)}
-                    placeholder="Select"
+                    placeholder="Select Wallet Method"
                     backgroundColor={"neutral.black"}
                 >
-                    <MenuItem value="binance">Mobile Wallet</MenuItem>
-                    <MenuItem value="paypal">Bank Wallet</MenuItem>
-                    <MenuItem value="bank">Card</MenuItem>
+                    <MenuItem value="Mobile Wallet">Mobile Wallet</MenuItem>
+                    <MenuItem value="Bank Transfer">Bank Wallet</MenuItem> 
+                    <MenuItem value="Card">Card</MenuItem>
                 </CustomSelect>
 
-                {/* Account Number */}
                 <Label title="Account Number" required error={!!error.accountNumber} />
                 <CustomInput
                     value={formData.accountNumber}
@@ -89,40 +136,36 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
                     sx={inputStyle}
                 />
 
-                {/* Amount */}
                 <Label title="Amount to Withdraw" required error={!!error.amount} />
                 <CustomInput
                     type="number"
                     value={formData.amount}
-                    placeholder="Enter Payment"
+                    placeholder="Enter Amount"
                     error={!!error.amount}
                     helperText={error.amount}
                     onChange={(e) => setField("amount", e.target.value)}
                     sx={inputStyle}
                 />
 
-                {/* Currency */}
                 <Label title="Currency" required error={!!error.currency} />
                 <CustomSelect
                     value={formData.currency}
                     onChange={(e) => setField("currency", e.target.value)}
-                    placeholder="USD"
+                    placeholder="Select Currency"
                     backgroundColor={"neutral.black"}
                 >
-                    <MenuItem sx={{
-                        bgcolor : ""
-                    }} value="USD">USD</MenuItem>
+                    <MenuItem value="USD">USD</MenuItem>
                     <MenuItem value="EUR">EUR</MenuItem>
                     <MenuItem value="GBP">GBP</MenuItem>
                 </CustomSelect>
-
             </DialogBody>
 
             <DialogActionButtons
                 onCancel={handleClose}
+                onConfirm={handleWithdrawRequest}
                 confirmText="Submit Withdraw Request"
                 confirmLoading={isLoading}
-                cancelBtnProps={{ disabled: isLoading }}
+                // cancelBtnProps={{ disabled: isLoading }}
             />
         </DialogContainer>
     );

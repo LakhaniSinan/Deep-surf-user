@@ -51,28 +51,32 @@ function SignUp() {
 
   const handleSignUp = async () => {
     const validate = signUpValidation(formData, setFormError);
-    if (!validate) {
-      // toast.error("Please fix errors before submitting!");
-      return;
-    }
+    if (!validate) return;
+
     try {
       setIsLoading(true);
-      const payload = { email: formData.email, password: formData.password };
+
+      const payload = {
+        email: formData.email,
+        password: formData.password,
+        referralCode: formData.otp,
+      };
+
       const response = await signUp(payload);
+
       if (response?.data?.status === "success") {
         toast.success(response?.data?.message);
         navigate("/verification", { state: { email: formData.email } });
-        console.log("Signupsuccessful", response);
       } else {
         toast.error(response?.data?.message || "Signup failed");
       }
     } catch (error) {
       toast.error(error?.message || "Something went wrong");
-      b;
     } finally {
       setIsLoading(false);
     }
   };
+
 
   // const handleGoogleLogin = async () => {
   //   try {

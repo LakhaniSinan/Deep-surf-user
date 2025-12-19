@@ -47,4 +47,22 @@ export const ENDPOINTS = {
   CREATE_CLIENT: {
     GET_ALL_CLIENT: "client/create",
   },
+
+  REFFERAL_STATS: {
+    REFFERAL: "referrals/stats",
+  },
+
+  REFFERAL_HISTORY: {
+    REFFERAL_DATA: "referrals/history",
+  },
+  TRANSACTION_HISTORY: {
+    TRANSACTION_DATA: "referrals/transactions",
+  },
+  WITHDRAW: {
+    WITHDRAW_REQUEST: "referrals/withdraw",
+  },
+
+  WTHDRAWREQUEST: {
+    WITHDRAW_REQUEST: "referrals/withdrawal/:id",
+  },
 };

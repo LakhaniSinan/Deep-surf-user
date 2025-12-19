@@ -146,20 +146,20 @@ export default function PaginatedTable({
           </TableCell>
         );
 
-      case "userid":
-        return (
-          <TableCell>
-            <Box
-              sx={{
-                fontWeight: 600
-              }}
-            >
-              {row[val]}
-            </Box>
-          </TableCell>
-        )
+      // case "userid":
+      //   return (
+      //     <TableCell>
+      //       <Box
+      //         sx={{
+      //           fontWeight: 600
+      //         }}
+      //       >
+      //         {row[val]}
+      //       </Box>
+      //     </TableCell>
+      //   )
 
-      case "refferal status":
+      case "referralStatus":
         // Custom rendering for "refferal status"
         return (
           <TableCell align={headerAlignMap[val] || "center"}>
@@ -207,6 +207,10 @@ export default function PaginatedTable({
         );
 
       case "status":
+        const statusValue = (row[val] || "").toString().toLowerCase();
+        const isCompleted = statusValue.includes("completed");
+        const isPending = statusValue.includes("pending");
+
         return (
           <TableCell align={headerAlignMap[val] || "center"}>
             <Box
@@ -216,21 +220,19 @@ export default function PaginatedTable({
                 justifyContent: "center",
                 px: 2,
                 py: 0.75,
-                borderRadius: "100%",
+                borderRadius: "14px",
                 fontSize: "13px",
                 fontWeight: 600,
-                backgroundColor: (row[val] || "")
-                  .toString()
-                  .toLowerCase()
-                  .includes("In Progress")
-                  ? "rgba(255, 223, 167, 0.28)"
-                  : "#fff",
-                color: (row[val] || "")
-                  .toString()
-                  .toLowerCase()
-                  .includes("Completed")
-                  ? "#5CB85C"
-                  : "#E3E3E3",
+                backgroundColor: isCompleted
+                  ? "rgba(0, 34, 16, 1)"
+                  : isPending
+                    ? "rgba(255, 223, 167, 0.28)"
+                    : "transparent",
+                color: isCompleted
+                  ? "rgba(62, 221, 135, 1)"
+                  : isPending
+                    ? "rgba(245, 159, 10, 1)"
+                    : "inherit",
                 minWidth: 96,
               }}
             >
@@ -238,6 +240,7 @@ export default function PaginatedTable({
             </Box>
           </TableCell>
         );
+
 
       case "action":
       case "Action":
@@ -260,12 +263,12 @@ export default function PaginatedTable({
                 }
               }}
             >
-              <VisibilityIcon onClick={() => withdrawDetails.current?.openDialog({ type: "add" })} fontSize="small" width="24px" height="24px" />
+              <VisibilityIcon onClick={() => withdrawDetails.current?.openDialog({ type: "add", id: row.id, data: row })} fontSize="small" width="24px" height="24px" />
             </IconButton>
           </TableCell>
         );
 
-      case "Status":
+      case "status":
         return (
           <TableCell align={headerAlignMap[val] || "center"}>
             <Box
@@ -354,23 +357,23 @@ export default function PaginatedTable({
           typeof cellValue === "string" && cellValue.includes("\n");
         const align = headerAlignMap[val] || "left";
 
-      return (
-        <TableCell align={align}>
-          <Typography
-            fontSize="13px"
-            sx={{ fontWeight: 500, color: "#F1F1F1" }}
-          >
-            {hasLineBreaks
-              ? cellValue.split("\n").map((line, idx) => (
-                <React.Fragment key={idx}>
-                  {line}
-                  {idx < cellValue.split("\n").length - 1 && <br />}
-                </React.Fragment>
-              ))
-              : cellValue}
-          </Typography>
-        </TableCell>
-      );
+        return (
+          <TableCell align={align}>
+            <Typography
+              fontSize="13px"
+              sx={{ fontWeight: 500, color: "#F1F1F1" }}
+            >
+              {hasLineBreaks
+                ? cellValue.split("\n").map((line, idx) => (
+                  <React.Fragment key={idx}>
+                    {line}
+                    {idx < cellValue.split("\n").length - 1 && <br />}
+                  </React.Fragment>
+                ))
+                : cellValue}
+            </Typography>
+          </TableCell>
+        );
     }
   };
 

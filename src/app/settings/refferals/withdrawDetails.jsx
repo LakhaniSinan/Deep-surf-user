@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useMemo, useState } from "react";
+import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useState } from "react";
 import {
     Box,
     Chip,
@@ -16,6 +16,7 @@ import CloseIcon from "@mui/icons-material/Close";
 // import CompleteButton from "../../../assets/icons/"
 
 import DialogContainer from "../../../components/dialog/dialogContainer";
+import { withdrawDetails } from "../../../services/modules/refferal";
 
 const defaultDetails = {
     status: "Completed",
@@ -47,10 +48,42 @@ const defaultDetails = {
 const UserWithdraw = forwardRef(({ props }, ref) => {
     const [open, setOpen] = useState(false);
     const [details, setDetails] = useState(defaultDetails);
+    // console.log("dattaaaaaaaaaaaaaaa" , details);
 
+
+
+
+    const handleClose = () => setOpen(false);
+
+
+    const [isLoading, setIsloading] = useState(false)
+    const [withdrawDetail, setWithdrawDetail] = useState(null)
+    console.log("wwwwwwwwwwwwwwwwwww", withdrawDetail
+    );
+
+    const fetchWithdrawRequest = async (id) => {
+        if (!id) return console.warn("No ID provided for withdrawDetails API");
+
+        try {
+            setIsloading(true);
+            const response = await withdrawDetails(id); // id pass ho raha hai
+            const data = response?.data?.data;
+            setWithdrawDetail(data);
+        } catch (error) {
+            console.log("Failed to fetch withdraw details API", error);
+        } finally {
+            setIsloading(false);
+        }
+    };
     useImperativeHandle(ref, () => ({
         openDialog(params) {
             setOpen(true);
+            const id = params?.data?.id || params?.id;
+            if (id) {
+                fetchWithdrawRequest(id);
+            } else {
+                console.warn("No ID provided for withdrawal details");
+            }
             if (params?.data) {
                 setDetails({ ...defaultDetails, ...params.data });
             }
@@ -60,7 +93,6 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
         },
     }));
 
-    const handleClose = () => setOpen(false);
 
     const statusColor = useMemo(() => {
         const completedColor = "#2ecc71";
@@ -71,6 +103,9 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
         if (details.status?.toLowerCase() === "in process") return inProcessColor;
         return submittedColor;
     }, [details.status]);
+    useEffect(() => {
+        fetchWithdrawRequest()
+    }, [])
 
     return (
         <DialogContainer
@@ -90,7 +125,7 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
                         Withdrawal Details
                     </Typography>
                     <Chip
-                        label={details.status || "Completed"}
+                        label={withdrawDetail?.status || "Completed"}
                         size="small"
                         sx={{
                             height: 22,
@@ -149,7 +184,7 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
                                 Account Type
                             </Typography>
                             <Typography variant="body1" fontWeight={400}>
-                                {details.walletMethod}
+                                {withdrawDetail?.walletMethod?.network} {withdrawDetail?.walletMethod?.walletAddress}
                             </Typography>
                         </Stack>
 
@@ -200,7 +235,7 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
                 </Typography>
 
                 <Stack spacing={1.5}>
-                    {details.timeline?.map((item, idx) => {
+                    {withdrawDetail?.statusTimeline?.map((item, idx) => {
                         const Icon = item.icon || PendingRoundedIcon;
                         return (
                             <Stack
@@ -234,7 +269,7 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
                                         fontWeight={400}
                                         color="neutral.Snowwhite"
                                     >
-                                        {item.label}
+                                        {item.status}
                                     </Typography>
                                     <Typography
                                         variant="caption"
