@@ -41,7 +41,7 @@ const TechnicalIndicator = ({ coinData }) => {
       <Typography variant="h5" marginTop={"20px"}>
         Technical Indicators
       </Typography>
-      <Box sx={{  borderRadius: 1, }}>
+      <Box sx={{ borderRadius: 1, }}>
         <Grid container spacing={1}>
           {technicalIndicators.map((item, index) => (
             <Grid key={index} item xs="auto" size={{ xs: 6, sm: 12, md: 1.4 }}>
@@ -49,7 +49,7 @@ const TechnicalIndicator = ({ coinData }) => {
                 elevation={0}
                 sx={{
                   py: 2,
-                  px : 1,
+                  px: 1,
                   // minWidth: 50,
                   display: "flex",
                   justifyContent: "center",
@@ -59,7 +59,7 @@ const TechnicalIndicator = ({ coinData }) => {
                   borderRadius: 2,
                   border: "1px solid #FFFFFF",
                   marginTop: "10px",
-                  fontSize : "15px"
+                  fontSize: "15px"
                 }}
               >
                 <Typography variant="body2" sx={{ fontWeight: 500, mr: 0.5 }}>
@@ -73,88 +73,88 @@ const TechnicalIndicator = ({ coinData }) => {
           ))}
         </Grid>
       </Box>
-      {/* Community sentiment */}
-      <Typography variant="h4" fontSize={"18px"} marginTop={"13px"}>
-        Community sentiment
-      </Typography>
-      <Box display="flex" mt="30px">
-        {/* Long Progress */}
-        <Box
-          position="relative"
-          width="100%"
-          border="2px solid #0B2015"
-          borderRadius="30px"
-        >
-          <LinearProgress
-            variant="determinate"
-            value={longdataValue}
-            sx={{
-              height: 50,
-              borderRadius: "30px",
-              backgroundColor: "transparent",
-              "& .MuiLinearProgress-bar": {
-                bgcolor: "#0B2015",
+      <Box marginTop={"25px"}>
+        <Typography variant="h4" fontSize={"18px"} >
+          Community sentiment
+        </Typography >
+      </Box>
+      <Box display="flex" mt="30px" >
+          <Box
+            position="relative"
+            width="100%"
+            // border="2px solid #0B2015"
+            borderRadius="30px"
+            bodrer="none"
+          >
+            <LinearProgress
+              variant="determinate"
+              value={longdataValue}
+              sx={{
+                height: 50,
                 borderRadius: "30px",
-              },
+                backgroundColor: "transparent",
+                "& .MuiLinearProgress-bar": {
+                  bgcolor: "#0B2015",
+                  borderRadius: "30px",
+                },
 
-              "& .MuiLinearProgress-root": {
-                display: "block",
-              },
-            }}
-          />
-          <Typography
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: `${longdataValue}%`,
-              transform: "translate(-50%, -50%)",
-              fontSize: "11px",
-              fontWeight: "bold",
-              color: "text.greenColor",
-              transition: "left 0.3s ease",
-            }}
+                "& .MuiLinearProgress-root": {
+                  display: "block",
+                },
+              }}
+            />
+            <Typography
+              sx={{
+                position: "absolute",
+                top: "50%",
+                left: `${longdataValue}%`,
+                transform: "translate(-50%, -50%)",
+                fontSize: "11px",
+                fontWeight: "bold",
+                color: "text.greenColor",
+                transition: "left 0.3s ease",
+              }}
+            >
+              {longdataValue}%
+            </Typography>
+          </Box>
+          <Box
+            position="relative"
+            width="100%"
+            // border="2px solid #391417"
+            // borderRadius="30px"
           >
-            {longdataValue}%
-          </Typography>
-        </Box>
-        {/* Short Progress */}
-        <Box
-          position="relative"
-          width="100%"
-          border="2px solid #391417"
-          borderRadius="30px"
-        >
-          <LinearProgress
-            variant="determinate"
-            value={strDataValue}
-            sx={{
-              height: 50,
-              borderRadius: "30px",
-              backgroundColor: "transparent",
-              "& .MuiLinearProgress-bar": {
-                bgcolor: "text.DarkMaroon",
+            <LinearProgress
+              variant="determinate"
+              value={strDataValue}
+              sx={{
+                height: 50,
                 borderRadius: "30px",
-              },
-            }}
-          />
-          <Typography
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: `${strDataValue}%`, // 👉 Text follows progress
-              transform: "translate(-50%, -50%)",
-              fontSize: "11px",
-              fontWeight: "bold",
-              color: "#FF6666",
-              transition: "left 0.3s ease",
-            }}
-          >
-            {strDataValue}%
-          </Typography>
-        </Box>
+                backgroundColor: "transparent",
+                "& .MuiLinearProgress-bar": {
+                  bgcolor: "text.DarkMaroon",
+                  borderRadius: "30px",
+                },
+              }}
+            />
+            <Typography
+              sx={{
+                position: "absolute",
+                top: "50%",
+                left: `${strDataValue}%`, // 👉 Text follows progress
+                transform: "translate(-50%, -50%)",
+                fontSize: "11px",
+                fontWeight: "bold",
+                color: "#FF6666",
+                transition: "left 0.3s ease",
+              }}
+            >
+              {strDataValue}%
+            </Typography>
+          </Box>
       </Box>
 
-      <Box sx={{ p : {xs : 0 , md : 2} ,  borderRadius: 2 , marginTop:2 }}>
+      <Box sx={{ p: { xs: 0, md: 2 }, borderRadius: 2, marginTop: 2 }}>
         <Grid container spacing={2}>
           {levels.map((item, index) => (
             <Grid item size={{ xs: 12, sm: 6 }} key={index}>

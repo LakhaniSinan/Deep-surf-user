@@ -57,12 +57,13 @@ export default function PaginatedTable({
 
   const tableStyle = {
     "&.MuiTableContainer-root": {
-      backgroundColor: "neutral.darkGrey",
+      // backgroundColor: "neutral.darkGrey",
+      backgroundColor: "rgba(28, 28, 28, 1)",
       borderRadius: "18px",
       overflow: "hidden",
       boxShadow: "none",
       border: "1px solid rgba(255,255,255,0.08)",
-      color: "red"
+      // color: "red"
     },
     // "& .MuiTypography-root": {
 
@@ -104,6 +105,9 @@ export default function PaginatedTable({
       // backgroundColor: "#fafafa",
       borderTop: "1px solid #eee",
     },
+    "& .MuiTableRow-root": {
+      backgroundColor: "black"
+    }
   };
 
   const renderCell = (row, val, index) => {
@@ -250,6 +254,7 @@ export default function PaginatedTable({
               size="small"
               sx={{
                 color: "neutral.Snowwhite",
+                fontWeight: 500,
                 "&:hover": {
                   backgroundColor: "rgba(255,255,255,0.1)",
                   color: "neutral.Snowwhite",

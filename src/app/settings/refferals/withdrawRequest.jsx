@@ -61,7 +61,7 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
 
     const inputStyle = {
         "& .MuiOutlinedInput-root": {
-            backgroundColor: "neutral.black",
+            // backgroundColor: "neutral.black",
             borderRadius: "12px",
             color: "#fff",
         },
@@ -171,8 +171,8 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
                 open={successOpen}
                 onClose={() => setSuccessOpen(false)}
                 sx={{
-                    "& .MuiBox-root " : {
-                        backgroundColor : "red"
+                    "& .MuiBox-root ": {
+                        backgroundColor: "red"
                     }
                 }}
             >

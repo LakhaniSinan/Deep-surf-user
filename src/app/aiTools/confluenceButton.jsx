@@ -24,7 +24,7 @@ function DashboardStats({ coinData }) {
     <>
       <Box mt={"10px"}
       >
-        <Grid container spacing={3}>
+        <Grid container spacing={6}>
           <Grid item size={{ xs: 6, sm: 6 }}>
             <Typography
               variant="h5"
@@ -54,7 +54,7 @@ function DashboardStats({ coinData }) {
           color: "#fff",
           // p: 3,
           borderRadius: "16px",
-          backgroundColor: "#161616"
+          backgroundColor: "#rgba(28, 28, 28, 1)"
         }}
       >
         <Box
@@ -66,7 +66,7 @@ function DashboardStats({ coinData }) {
         >
           <Box
             sx={{
-              flex: "1 1 180px",
+              flex: "1 1 150px",
               background: "#1C1C1C",
 
               p: 2,
@@ -74,18 +74,17 @@ function DashboardStats({ coinData }) {
               textAlign: "center",
             }}
           >
-            <Typography variant="caption" sx={{ color: "#FFFFFF" }}>
+            <Typography variant="caption" color="neutral.coolGrey">
               Confluence Score
             </Typography>
             <Typography
-              sx={{ color: "#4CAF50", fontSize: "18px", fontWeight: 600 }}
+              sx={{ color: "neutral.brightGreen", fontSize: "18px", fontWeight: 600 }}
             >
               Bullish
             </Typography>
             <Typography
               sx={{
-                mt: 1,
-                color: "#4CAF50",
+                color: "neutral.brightGreen",
                 fontSize: "22px",
                 fontWeight: 700,
               }}
@@ -97,14 +96,14 @@ function DashboardStats({ coinData }) {
           {/* Bearish Card */}
           <Box
             sx={{
-              flex: "1 1 180px",
+              flex: "1 1 150px",
               background: "#1C1C1C",
               p: 2,
               borderRadius: "12px",
               textAlign: "center",
             }}
           >
-            <Typography variant="caption" sx={{ color: "#FFFFFF" }}>
+            <Typography variant="caption" color="neutral.coolGrey">
               Confluence Score
             </Typography>
             <Typography
@@ -114,7 +113,6 @@ function DashboardStats({ coinData }) {
             </Typography>
             <Typography
               sx={{
-                mt: 1,
                 color: "text.SalmonRed",
                 fontSize: "22px",
                 fontWeight: 700,
@@ -125,14 +123,14 @@ function DashboardStats({ coinData }) {
           </Box>
           <Box
             sx={{
-              flex: "1 1 180px",
+              flex: "1 1 150px",
               background: "#1C1C1C",
               p: 2,
               borderRadius: "12px",
               textAlign: "center",
             }}
           >
-            <Typography variant="h6" sx={{  color: "accent.contrastText" , fontWeight : "500px" }}>
+            <Typography variant="h6" color="neutral.Snowwhite" fontWeight="500px">
               Trend
             </Typography>
             <Typography
@@ -150,15 +148,14 @@ function DashboardStats({ coinData }) {
           {/* Signal Level Card */}
           <Box
             sx={{
-              flex: "1 1 180px",
+              flex: "1 1 150px",
               background: "#1C1C1C",
               p: 2,
               borderRadius: "12px",
               textAlign: "center",
-              marginTop: "10px",
             }}
           >
-            <Typography variant="caption" sx={{ color: "accent.contrastText" }}>
+            <Typography variant="caption" color="neutral.Snowwhite">
               Signal Level
             </Typography>
             <Typography
