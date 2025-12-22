@@ -1,9 +1,26 @@
 import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import MacBookImage from "../../../assets/images/macbookelement.png"
-// import MacBookImages from "../../../assets/images/macbook element 1 (1).png"
+
+// {spanish image}
+import SpanishMacBookImage from "../../../assets/images/spanish-macBook-image.png"
+// {turkish image}
+import TurkishMacBookImage from "../../../assets/images/turkish-macbook-image.png"
+// {russian image}
+import RussianMacBookImage from "../../../assets/images/russian-macbook-image.png"
 const ProprietaryTechSection = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  console.log("fffffffffffffffffff", i18n.language);
+  const currentLanguage = i18n.language;
+  console.log("ddddddddddddddddddddddddddd", currentLanguage);
+
+  const mackbookImages = {
+    en: MacBookImage,
+    es: SpanishMacBookImage,
+    tr: TurkishMacBookImage,
+    ru: RussianMacBookImage
+  }
+  const mackbookImage = mackbookImages[currentLanguage] || MacBookImage;
   return (
     <Box
       width="100%"
@@ -64,7 +81,7 @@ const ProprietaryTechSection = () => {
         >
           <Box
             component="img"
-            src={MacBookImage}
+            src={mackbookImage}
             mt={{ xs: "5px", md: "96px" }}
             alt="dashboard"
             width={"100%"}

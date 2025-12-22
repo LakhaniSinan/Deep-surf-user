@@ -63,7 +63,7 @@ const AiDriven = () => {
         color="accent.contrastText"
         fontSize={{ xs: 30, md: 60 }}
         fontWeight={600}
-        lineHeight={1.3}          
+        lineHeight={1.3}
         textAlign="center"
         fontFamily="Inter Tight"
         sx={{ overflow: "visible" }}

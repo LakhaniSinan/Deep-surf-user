@@ -53,8 +53,90 @@ import ExchangeImages from "../../../assets/images/exchange-Image.png";
 import WhalesTrackersImages from "../../../assets/images/whale-tracker.png";
 import StarImage from "../../../assets/icons/star.svg";
 
+
+// {  spaish image }
+
+import SpanishBullishImage from "../../../assets/images/spanish-bullish-image.png"
+import SpanishBearishImage from "../../../assets/images/spanish-bearish-image.png"
+import SpanishExchnageImage from "../../../assets/images/spanish-exchange-image.png"
+import SpanishWhaleTrackerImage from "../../../assets/images/spanish-whale-tracker-image.png"
+
+
+// {turkish image}
+import TurkishBullishImage from "../../../assets/images/turkish-bullish-image.png"
+import TurkishBearishImage from "../../../assets/images/turkish-bearish-image.png"
+import TurkishExchnageImage from "../../../assets/images/turkish-exchange-image.png"
+import TurkishWhaleTrackerImage from "../../../assets/images/turkish-wahle-tracker-image.png"
+
+
+// { russian image}
+import RussianBullishImage from "../../../assets/images/russian-bullish-image.png"
+import RussianBearishImage from "../../../assets/images/russian-bearish-image.png"
+import RussianExchnageImage from "../../../assets/images/russian-exchnage-tracker-image.png"
+import RussianWhaleTrackerImage from "../../../assets/images/russian-whale-tracker-image.png"
+
+
 const AiDrivenCard = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  // console.log("tttttttttttttttttttttttt", i18n.language);
+  // // { spaish image }
+  // const bullishSpanisgImage =
+  //   i18n.language === "es" ? SpanishBullishImage : BullishImages;
+  // const bearishSpanisgImage =
+  //   i18n.language === "es" ? SpanishBearishImage : BearishImages;
+  // const exchangeSpanisgImage =
+  //   i18n.language === "es" ? SpanishExchnageImage : ExchangeImages;
+  // const whalesTrackerSpanisgImage =
+  //   i18n.language === "es" ? SpanishWhaleTrackerImage : WhalesTrackersImages;
+  // // {turkish image}
+  // const bullishTurkishImage =
+  //   i18n.language === "tr" ? TurkishBullishImage : BullishImages;
+  // const bearishTurkishImage =
+  //   i18n.language === "tr" ? TurkishBearishImage : BearishImages;
+  // const exchangeTurkishImage =
+  //   i18n.language === "tr" ? TurkishExchnageImage : ExchangeImages;
+  // const whalesTrackerTurkishImage =
+  //   i18n.language === "tr" ? TurkishWhaleTrackerImage : WhalesTrackersImages;
+  const currentLang = i18n.language;
+  console.log("rrrrrrrrrrrrrrr", currentLang);
+
+  // Bullish
+  const bullishImageByLang = {
+    en: BullishImages,
+    es: SpanishBullishImage,
+    tr: TurkishBullishImage,
+    ru: RussianBullishImage
+  };
+
+  // Bearish
+  const bearishImageByLang = {
+    en: BearishImages,
+    es: SpanishBearishImage,
+    tr: TurkishBearishImage,
+    ru: RussianBearishImage
+  };
+
+  // Exchange
+  const exchangeImageByLang = {
+    en: ExchangeImages,
+    es: SpanishExchnageImage,
+    tr: TurkishExchnageImage,
+    ru: RussianExchnageImage,
+  };
+
+  // Whale Tracker
+  const whaleImageByLang = {
+    en: WhalesTrackersImages,
+    es: SpanishWhaleTrackerImage,
+    tr: TurkishWhaleTrackerImage,
+    ru: RussianWhaleTrackerImage,
+  };
+
+  // Final selected images
+  const bullishImage = bullishImageByLang[currentLang] || BullishImages;
+  const bearishImage = bearishImageByLang[currentLang] || BearishImages;
+  const exchangeImage = exchangeImageByLang[currentLang] || ExchangeImages;
+  const whaleImage = whaleImageByLang[currentLang] || WhalesTrackersImages;
   return (
 
     <Grid container spacing={2} justifyContent="center">
@@ -154,7 +236,7 @@ const AiDrivenCard = () => {
             </Typography>
             <Box mt={1.5}>
               <img
-                src={BullishImages}
+                src={bullishImage}
                 alt="Bullish"
                 style={{ width: "100%", borderRadius: "6px" }}
               />
@@ -162,7 +244,7 @@ const AiDrivenCard = () => {
 
             <Box mt={1}>
               <img
-                src={BearishImages}
+                src={bearishImage}
                 alt="Bearish"
                 style={{ width: "100%", borderRadius: "6px" }}
               />
@@ -228,7 +310,7 @@ const AiDrivenCard = () => {
 
             <Box mt={{ xs: 2, md: 0 }}>
               <img
-                src={ExchangeImages}
+                src={exchangeImage}
                 alt="Bullish"
                 style={{ width: "100%", borderRadius: "6px" }}
               />
@@ -240,7 +322,7 @@ const AiDrivenCard = () => {
             </Typography>
             <Box mt={"3px"}>
               <img
-                src={WhalesTrackersImages}
+                src={whaleImage}
                 alt="Bearish"
                 style={{ width: "100%", borderRadius: "6px" }}
               />

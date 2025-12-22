@@ -10,19 +10,19 @@ const FuturesMetrics = ({ coinData }) => {
   const fundingData = [
     {
       title: "Funding Rate",
-      value: coinData?.futuresMetrics?.fundingRate?.value,
-      status: coinData?.futuresMetrics?.fundingRate?.label,
+      value: coinData?.futuresMetrics?.fundingRate,
+      status: coinData?.futuresMetrics?.fundingRateLabel,
     },
 
     {
       title: "Open Interest",
-      value: coinData?.futuresMetrics?.openInterest?.value,
-      status: coinData?.futuresMetrics?.openInterest?.change,
+      value: coinData?.futuresMetrics?.openInterest,
+      status: coinData?.futuresMetrics?.openInterestChange,
     },
 
     {
       title: "L/S Positions",
-      value: coinData?.futuresMetrics?.longShortPositions?.value,
+      value: coinData?.futuresMetrics?.longShortPositions,
       status: coinData?.futuresMetrics?.longShortPositions?.warning,
       stye: {
         width: "100%",
@@ -35,7 +35,7 @@ const FuturesMetrics = ({ coinData }) => {
 
     {
       title: "L/S Accounts",
-      value: coinData?.futuresMetrics?.longShortAccounts?.value,
+      value: coinData?.futuresMetrics?.longShortAccounts,
       status: "Neutral",
       stye: {
         width: "100%",
@@ -48,8 +48,8 @@ const FuturesMetrics = ({ coinData }) => {
 
     {
       title: "Cumulative Delta",
-      value: coinData?.futuresMetrics?.cumulativeDelta?.value,
-      status: coinData?.futuresMetrics?.cumulativeDelta?.label,
+      value: coinData?.futuresMetrics?.cumulativeDelta,
+      status: coinData?.futuresMetrics?.cumulativeDeltaLabel,
     },
   ];
 
@@ -121,7 +121,7 @@ const FuturesMetrics = ({ coinData }) => {
                   fontSize={"22px"}
                   mt={2}
                   sx={{
-                    color: coinData?.futuresMetrics?.fundingRate?.value.includes('-') ? "text.errorColor" : "text.greenColor",
+                    color: coinData?.futuresMetrics?.fundingRate?.includes('-') ? "text.errorColor" : "text.greenColor",
                   }}
                 >
                   {item.value}
@@ -131,9 +131,10 @@ const FuturesMetrics = ({ coinData }) => {
                 <Typography
                   variant="h6"
                   sx={{
-                    color: coinData?.futuresMetrics?.fundingRate?.label.includes("-") ? "text.errorColor" : "text.greenColor",
-                    fontSize: "12px",
+                    color: coinData?.futuresMetrics?.fundingRateLabel?.includes("-") ? "text.errorColor" : "text.greenColor",
+                    fontSize: "15px",
                     marginTop: "40px",
+                    fontFamily : "inter Tight",
                   }}
                 >
                   {item.status}
