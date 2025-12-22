@@ -13,7 +13,7 @@ const WithDrawalRequestTransaction = ({
     const [activeTab, setActiveTab] = useState("Referrals History");
 
     const handleChangePage = (event, newPage) => {
-        setPage(newPage + 1); 
+        setPage(newPage + 1);
     };
 
     const handleChangeRowsPerPage = (event) => {
@@ -37,7 +37,7 @@ const WithDrawalRequestTransaction = ({
             </Typography>
 
             <Grid container spacing={1} mt={2}>
-                <Grid item size={{xs : 6}} >
+                <Grid item size={{ xs: 12, md: 6 }} >
                     <CustomButton
                         title="Referrals History"
                         width="100%"
@@ -50,7 +50,7 @@ const WithDrawalRequestTransaction = ({
                         onClick={() => setActiveTab("Referrals History")}
                     />
                 </Grid>
-                <Grid item size={{xs : 6}} >
+                <Grid item size={{ xs: 12, md: 6 }} >
                     <CustomButton
                         title="Transaction History"
                         width="100%"
@@ -90,6 +90,44 @@ const WithDrawalRequestTransaction = ({
                             onPageChange={handleChangePage}
                             onRowsPerPageChange={handleChangeRowsPerPage}
                             rowsPerPageOptions={[5, 10, 20, 50]}
+                            sx={{
+                                mt: 2,
+                                ".MuiTablePagination-toolbar": {
+                                    display: "flex",
+                                    gap: "10px",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                    fontFamily: "inter Tight",
+                                    color: "neutral.white",
+                                },
+
+                                ".MuiTablePagination-selectLabel": {
+                                    color: "#ccc",
+                                    fontFamily: "inter Tight",
+                                    marginRight: "8px",
+                                },
+
+                                ".MuiTablePagination-select": {
+                                    color: "white",
+                                    border: "1px solid rgba(218, 218, 218, 1)",
+                                    borderRadius: "5px",
+                                    padding: "2px",
+                                    backgroundColor: "#000",
+                                    alignItems: "center"
+                                },
+
+                                ".MuiTablePagination-displayedRows": {
+                                    color: "#ccc",
+                                    fontFamily: "inter Tight",
+                                    marginLeft: "8px",
+                                },
+
+                                ".MuiTablePagination-actions button": {
+                                    color: "white",
+                                    marginLeft: "5px",
+                                    marginRight: "5px",
+                                },
+                            }}
                         />
                     </>
                 ) : (

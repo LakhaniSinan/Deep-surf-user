@@ -57,19 +57,13 @@ export default function PaginatedTable({
 
   const tableStyle = {
     "&.MuiTableContainer-root": {
-      // backgroundColor: "neutral.darkGrey",
       backgroundColor: "rgba(28, 28, 28, 1)",
       borderRadius: "18px",
       overflow: "hidden",
       boxShadow: "none",
       border: "1px solid rgba(255,255,255,0.08)",
-      // color: "red"
     },
-    // "& .MuiTypography-root": {
 
-    //   color: "neutral.darkGrey"
-
-    // },
     "& .MuiTable": {
       borderCollapse: "separate",
       borderSpacing: "0",
@@ -78,10 +72,9 @@ export default function PaginatedTable({
       backgroundColor: "transparent",
     },
     "& .MuiTableHead-root .MuiTableCell-root": {
-      borderBottom: "1px solid rgba(255,255,255,0.08)",
+      // borderBottom: "1px solid rgba(255,255,255,0.08)",
       padding: "14px 16px",
       fontWeight: 600,
-      // textTransform: "uppercase",
       fontSize: "12px",
       letterSpacing: "0.08em",
       ...(headerWhite
@@ -95,18 +88,17 @@ export default function PaginatedTable({
         }),
     },
     "& .MuiTableCell-root": {
-      borderBottom: "1px solid rgba(255,255,255,0.08)",
+      // borderBottom: "1px solid rgba(255,255,255,0.08)",
       padding: "16px",
       color: "#E3E3E3",
       textAlign: "left",
     },
     "& .MuiTablePagination-toolbar": {
       minHeight: "60px",
-      // backgroundColor: "#fafafa",
       borderTop: "1px solid #eee",
     },
     "& .MuiTableRow-root": {
-      backgroundColor: "black"
+      // backgroundColor: "black"
     }
   };
 
@@ -213,7 +205,7 @@ export default function PaginatedTable({
       case "status":
         const statusValue = (row[val] || "").toString().toLowerCase();
         const isCompleted = statusValue.includes("completed");
-        const isPending = statusValue.includes("pending");
+        const isPending = statusValue.includes("In Process");
 
         return (
           <TableCell align={headerAlignMap[val] || "center"}>
@@ -230,8 +222,8 @@ export default function PaginatedTable({
                 backgroundColor: isCompleted
                   ? "rgba(0, 34, 16, 1)"
                   : isPending
-                    ? "rgba(255, 223, 167, 0.28)"
-                    : "transparent",
+                    ? "transparent"
+                    : "rgba(255, 223, 167, 0.28)",
                 color: isCompleted
                   ? "rgba(62, 221, 135, 1)"
                   : isPending
@@ -392,7 +384,14 @@ export default function PaginatedTable({
       : Math.min(tableData?.length || 6, 10) || 6;
 
   return (
-    <TableContainer sx={[tableStyle, tableSx]}>
+    <TableContainer sx={[
+      tableStyle,
+      tableSx,
+      {
+        overflowX: "auto",
+        WebkitOverflowScrolling: "touch",
+      },
+    ]}>
       <Table sx={{ width: tableWidth || "100%" }}>
         <TableHead>
           <TableRow>
@@ -401,7 +400,7 @@ export default function PaginatedTable({
                 <Typography
                   fontWeight={600}
                   fontSize="12px"
-                  color={headerWhite ? "#111" : "#EAEAEA"}
+                  color={headerWhite ? "#111" : "rgba(152, 154, 160, 1)"}
                 >
                   {header.label || header.title}
                 </Typography>
@@ -414,16 +413,15 @@ export default function PaginatedTable({
           {paginatedData?.map((row, index) => (
             <TableRow
               key={index}
-              hover
               sx={{
                 backgroundColor: "rgba(255,255,255,0.02)",
                 borderRadius: "12px",
                 transition: "all 0.3s ease",
-                "&:hover": {
-                  backgroundColor: "rgba(255,255,255,0.05)",
-                  transform: "translateY(-1px)",
-                  boxShadow: "0 8px 18px rgba(0,0,0,0.25)",
-                },
+                // "&:hover": {
+                //   backgroundColor: "rgba(255,255,255,0.05)",
+                //   transform: "translateY(-1px)",
+                //   boxShadow: "0 8px 18px rgba(0,0,0,0.25)",
+                // },
               }}
             >
               {columnKeys.map((val) => renderCell(row, val, index))}
@@ -452,7 +450,7 @@ export default function PaginatedTable({
         </TableBody>
       </Table>
 
-      {showPagination && (
+      {/* {showPagination && (
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
@@ -467,7 +465,7 @@ export default function PaginatedTable({
               { fontWeight: "500", color: "#666" },
           }}
         />
-      )}
+      )} */}
       <UserWithdraw ref={withdrawDetails} />
 
     </TableContainer>

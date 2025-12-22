@@ -17,13 +17,13 @@ const Referrals = () => {
   const [copiedField, setCopiedField] = useState(null);
   const [referalsStats, setRefferalStats] = useState(null);
   const [refferHistoryData, setRefferalHistoryData] = useState(null);
-  console.log("refereeeeeeeeee" , refferHistoryData?.pagination);
-  
+  console.log("refereeeeeeeeee", refferHistoryData?.pagination);
+
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [pagination, setPagination] = useState(0);
-  console.log("pahinationvvvvvvvv"  , pagination );
-  
+  console.log("pahinationvvvvvvvv", pagination);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const handleCopy = async (value, field) => {
@@ -73,7 +73,6 @@ const Referrals = () => {
     <>
       <Box display="flex" flexDirection="column" gap={4}>
         <Typography variant="titleLg">Referrals</Typography>
-
         <Box>
           <Grid container spacing={{ xs: 3, md: 4 }} alignItems="center" justifyContent="space-between">
             {/* Total Referrals */}

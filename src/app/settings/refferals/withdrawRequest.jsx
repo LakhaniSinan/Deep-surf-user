@@ -14,6 +14,7 @@ import Success from "../../../assets/icons/success.svg"
 import { requestWithdrawal } from "../../../services/modules/refferal";
 import CustomButton from "../../../components/customButton";
 
+
 const WithdrawalRequest = forwardRef(({ props }, ref) => {
     const [open, setOpen] = useState(false);
     const [successOpen, setSuccessOpen] = useState(false);
@@ -26,7 +27,6 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
         amount: "",
         currency: "",
     });
-
     useImperativeHandle(ref, () => ({
         openDialog() {
             setOpen(true);
@@ -41,7 +41,6 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
             handleClose();
         },
     }));
-
     const handleClose = () => {
         if (isLoading) return;
         setOpen(false);
@@ -61,9 +60,10 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
 
     const inputStyle = {
         "& .MuiOutlinedInput-root": {
-            // backgroundColor: "neutral.black",
+            backgroundColor: "neutral.black",
             borderRadius: "12px",
             color: "#fff",
+            border: "none",
         },
         "& .MuiInputBase-input": {
             padding: "12px 14px",
@@ -78,28 +78,27 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
         if (!formData.accountNumber) newError.accountNumber = "Required";
         if (!formData.amount) newError.amount = "Required";
         if (!formData.currency) newError.currency = "Required";
-
         if (Object.keys(newError).length > 0) {
             setError(newError);
             return;
         }
-
         try {
             setIsLoading(true);
-
             const payload = {
                 walletMethod: formData.walletMethod,
                 accountNumber: formData.accountNumber.trim(),
                 amount: formData.amount,
                 currency: formData.currency,
             };
-
-            await requestWithdrawal(payload);
-
-            setSuccessOpen(true); // ✅ success box open
-            handleClose();        // withdraw dialog close
+            const response = await requestWithdrawal(payload);
+            if (response?.data?.message?.includes("Insufficient balance")) {
+                setError({ ...newError, amount: response.data.message });
+                return;
+            }
+            setSuccessOpen(true);
+            handleClose();
         } catch (err) {
-            console.error(err);
+            setError({ ...newError, amount: "Something went wrong. Try again." });
         } finally {
             setIsLoading(false);
         }
@@ -110,7 +109,6 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
             {/* WITHDRAW REQUEST DIALOG */}
             <DialogContainer onClose={handleClose} open={open}>
                 <DialogHeader title="Request Withdrawal" onClose={handleClose} />
-
                 <DialogBody>
                     <Label title="Wallet Method" required error={!!error.walletMethod} />
                     <CustomSelect
@@ -119,8 +117,15 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
                         placeholder="Select Wallet Method"
                         backgroundColor={"neutral.black"}
                     >
-                        <MenuItem value="Mobile Wallet">Mobile Wallet</MenuItem>
-                        <MenuItem value="Bank Transfer">Bank Wallet</MenuItem>
+                        <MenuItem
+                            sx={{
+                                background: "linear-gradient(90deg, #FF1A00, #FF6C03, #FFA305)",
+                                borderRadius: "10px",
+                                padding: "5px 10px"
+
+                            }}
+                            value="Mobile Wallet">Mobile Wallet</MenuItem>
+                        <MenuItem color="background.gray" value="Bank Transfer">Bank Wallet</MenuItem>
                         <MenuItem value="Card">Card</MenuItem>
                     </CustomSelect>
 
@@ -133,7 +138,6 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
                         onChange={(e) => setField("accountNumber", e.target.value)}
                         sx={inputStyle}
                     />
-
                     <Label title="Amount to Withdraw" required error={!!error.amount} />
                     <CustomInput
                         type="number"
@@ -144,7 +148,6 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
                         onChange={(e) => setField("amount", e.target.value)}
                         sx={inputStyle}
                     />
-
                     <Label title="Currency" required error={!!error.currency} />
                     <CustomSelect
                         value={formData.currency}
@@ -152,12 +155,16 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
                         placeholder="Select Currency"
                         backgroundColor={"neutral.black"}
                     >
-                        <MenuItem value="USD">USD</MenuItem>
+                        <MenuItem sx={{
+                            background: "linear-gradient(90deg, #FF1A00, #FF6C03, #FFA305)",
+                            borderRadius: "10px",
+                            padding: "5px 10px"
+
+                        }} value="USD">USD</MenuItem>
                         <MenuItem value="EUR">EUR</MenuItem>
                         <MenuItem value="GBP">GBP</MenuItem>
                     </CustomSelect>
                 </DialogBody>
-
                 <DialogActionButtons
                     onCancel={handleClose}
                     onConfirm={handleWithdrawRequest}
@@ -165,14 +172,13 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
                     confirmLoading={isLoading}
                 />
             </DialogContainer>
-
-            {/* SUCCESS DIALOG */}
             <DialogContainer
                 open={successOpen}
                 onClose={() => setSuccessOpen(false)}
                 sx={{
                     "& .MuiBox-root ": {
-                        backgroundColor: "red"
+                        backgroundColor: "linear-gradient(90deg, #FF1A00, #FF6C03, #FFA305)",
+                        borderRadius: "12px",
                     }
                 }}
             >

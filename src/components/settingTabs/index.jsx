@@ -142,9 +142,9 @@ const SettingTabs = ({ children }) => {
           onClick={handleDrawerToggle}
           sx={{
             position: "fixed",
-            top: 20,
+            top: 90,
             left: 20,
-            zIndex: 1300,
+            zIndex: 999,
             color: "#fff",
           }}
         >

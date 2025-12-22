@@ -1,4 +1,4 @@
-import { Box, TablePagination } from "@mui/material";
+import { Box, TablePagination, useMediaQuery, useTheme } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import CustomButton from "../../../components/customButton";
 import AddEditNewClientDialog from "./withdrawRequest";
@@ -8,17 +8,11 @@ import PaginatedTable from "../../../components/dynamicTable";
 
 const TransactionHistory = () => {
     const allNewClienttEditRef = useRef();
-
     const [transactionData, setTransactionData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [totalRecords, setTotalRecords] = useState(0);
-    console.log("eeeeeeeeeeeee", totalRecords);
-
     const [transactionPage, setTransactionPage] = useState(1);
     const [transactionLimit, setTransactionLimit] = useState(5);
-    console.log("fffffffffffffffffff" , transactionData);
-    
-
     const billingHistoryHeaders = [
         { id: "id", label: "ID", align: "left" },
         { id: "requestDate", label: "Request Date", align: "right" },
@@ -56,7 +50,7 @@ const TransactionHistory = () => {
 
     return (
         <Box bgcolor={"rgba(22, 22, 22, 1)"} borderRadius={"15px"} p={2} mt={1}>
-            <Box display={"flex"} justifyContent={"right"} mb={1}>
+            <Box display={"flex"} justifyContent={"flex-end"} mb={2}>
                 <CustomButton
                     title="Request Withdraw"
                     onClick={() => allNewClienttEditRef.current?.openDialog({ type: "add" })}
@@ -84,6 +78,44 @@ const TransactionHistory = () => {
                     setTransactionPage(1);
                 }}
                 rowsPerPageOptions={[5, 10, 20, 50]}
+                sx={{
+                    mt: 2,
+                    ".MuiTablePagination-toolbar": {
+                        display: "flex",
+                        gap: "10px",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        fontFamily: "inter Tight",
+                        color: "neutral.white",
+                    },
+
+                    ".MuiTablePagination-selectLabel": {
+                        color: "#ccc",
+                        fontFamily: "inter Tight",
+                        marginRight: "8px",
+                    },
+
+                    ".MuiTablePagination-select": {
+                        color: "white",
+                        border: "1px solid rgba(218, 218, 218, 1)",
+                        borderRadius: "5px",
+                        padding: "2px",
+                        backgroundColor: "#000",
+                        alignItems: "center"
+                    },
+
+                    ".MuiTablePagination-displayedRows": {
+                        color: "#ccc",
+                        fontFamily: "inter Tight",
+                        marginLeft: "8px",
+                    },
+
+                    ".MuiTablePagination-actions button": {
+                        color: "white",
+                        marginLeft: "5px",
+                        marginRight: "5px",
+                    },
+                }}
             />
 
 

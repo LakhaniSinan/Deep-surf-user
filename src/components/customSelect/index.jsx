@@ -74,7 +74,7 @@ const CustomSelect = ({
           MenuProps={{
             PaperProps: {
               sx: {
-                backgroundColor: "rgba(23,23,23,1)",
+                backgroundColor: "linear-gradient(90deg, #FF1A00, #FF6C03, #FFA305)",
                 color: "#fff",
                 borderRadius: "10px",
                 mt: 1,
@@ -119,22 +119,22 @@ const CustomSelect = ({
           {hasCustomChildren
             ? children
             : options.map((opt) => (
-                <MenuItem
-                  key={opt.value}
-                  value={opt.value}
-                  sx={{ display: "flex", alignItems: "center", gap: 1 }}
-                >
-                  {opt.icon && (
-                    <Box
-                      component="img"
-                      src={opt.icon}
-                      alt={opt.label}
-                      sx={{ width: 18, height: 18, borderRadius: "50%" }}
-                    />
-                  )}
-                  <Typography variant="body2">{opt.label}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem
+                key={opt.value}
+                value={opt.value}
+                sx={{ display: "flex", alignItems: "center", gap: 1 }}
+              >
+                {opt.icon && (
+                  <Box
+                    component="img"
+                    src={opt.icon}
+                    alt={opt.label}
+                    sx={{ width: 18, height: 18, borderRadius: "50%" }}
+                  />
+                )}
+                <Typography variant="body2">{opt.label}</Typography>
+              </MenuItem>
+            ))}
         </Select>
       </FormControl>
     </Stack>

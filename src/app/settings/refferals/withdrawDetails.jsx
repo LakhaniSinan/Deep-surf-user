@@ -7,83 +7,46 @@ import {
     Divider,
     IconButton,
 } from "@mui/material";
-import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import PendingRoundedIcon from "@mui/icons-material/PendingRounded";
-import ScheduleRoundedIcon from "@mui/icons-material/ScheduleRounded";
 import CloseIcon from "@mui/icons-material/Close";
-
-
-// import CompleteButton from "../../../assets/icons/"
-
 import DialogContainer from "../../../components/dialog/dialogContainer";
 import { withdrawDetails } from "../../../services/modules/refferal";
+import TimeLine from "../../../assets/icons/time-line.svg";
+import CompleteBtn from "../../../assets/icons/success-icon.png";
 
 const defaultDetails = {
     status: "Completed",
     walletMethod: "Bank Account • ****4321",
     accountHolder: "Sarah Johnson",
     bankName: "Chase Bank",
-    timeline: [
-        {
-            label: "Submitted",
-            date: "Dec 5, 2024 at 7:32 PM",
-            color: "#f6a623",
-            icon: CheckCircleRoundedIcon,
-        },
-        {
-            label: "In Process",
-            date: "Dec 6, 2024 at 8:00 P",
-            color: "#f6c343",
-            icon: ScheduleRoundedIcon,
-        },
-        {
-            label: "Completed",
-            date: "Dec 6, 2024 at 8:00 P",
-            color: "#2ecc71",
-            icon: CheckCircleRoundedIcon,
-        },
-    ],
 };
 
 const UserWithdraw = forwardRef(({ props }, ref) => {
     const [open, setOpen] = useState(false);
     const [details, setDetails] = useState(defaultDetails);
-    // console.log("dattaaaaaaaaaaaaaaa" , details);
-
-
-
+    const [isLoading, setIsloading] = useState(false);
+    const [withdrawDetail, setWithdrawDetail] = useState(null);
 
     const handleClose = () => setOpen(false);
 
-
-    const [isLoading, setIsloading] = useState(false)
-    const [withdrawDetail, setWithdrawDetail] = useState(null)
-    console.log("wwwwwwwwwwwwwwwwwww", withdrawDetail
-    );
-
     const fetchWithdrawRequest = async (id) => {
-        if (!id) return console.warn("No ID provided for withdrawDetails API");
-
+        if (!id) return;
         try {
             setIsloading(true);
-            const response = await withdrawDetails(id); // id pass ho raha hai
-            const data = response?.data?.data;
-            setWithdrawDetail(data);
+            const response = await withdrawDetails(id);
+            setWithdrawDetail(response?.data?.data);
         } catch (error) {
             console.log("Failed to fetch withdraw details API", error);
         } finally {
             setIsloading(false);
         }
     };
+
     useImperativeHandle(ref, () => ({
         openDialog(params) {
             setOpen(true);
             const id = params?.data?.id || params?.id;
-            if (id) {
-                fetchWithdrawRequest(id);
-            } else {
-                console.warn("No ID provided for withdrawal details");
-            }
+            if (id) fetchWithdrawRequest(id);
             if (params?.data) {
                 setDetails({ ...defaultDetails, ...params.data });
             }
@@ -93,35 +56,18 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
         },
     }));
 
-
     const statusColor = useMemo(() => {
-        const completedColor = "#2ecc71";
-        const inProcessColor = "#f6c343";
-        const submittedColor = "#f6a623";
-
-        if (details.status?.toLowerCase() === "completed") return completedColor;
-        if (details.status?.toLowerCase() === "in process") return inProcessColor;
-        return submittedColor;
+        if (details.status?.toLowerCase() === "completed") return "#2ecc71";
+        if (details.status?.toLowerCase() === "in process") return "#f6c343";
+        return "#f6a623";
     }, [details.status]);
-    useEffect(() => {
-        fetchWithdrawRequest()
-    }, [])
 
     return (
-        <DialogContainer
-            onClose={handleClose}
-            open={open}
-
-        >
-            <Stack
-                direction="row"
-                alignItems="center"
-                justifyContent="space-between"
-                spacing={1}
-                sx={{ px: 1, p: 1 }}
-            >
-                <Stack direction="row" spacing={1.25} alignItems="center">
-                    <Typography variant="h6" fontSize="26px" fontWeight={700}>
+        <DialogContainer onClose={handleClose} open={open}>
+            {/* Header */}
+            <Stack direction="row" justifyContent="space-between" alignItems="center" p={1}>
+                <Stack direction="row" spacing={1.2} alignItems="center">
+                    <Typography fontSize="26px" fontWeight={700}>
                         Withdrawal Details
                     </Typography>
                     <Chip
@@ -129,18 +75,16 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
                         size="small"
                         sx={{
                             height: 22,
-                            fontSize: "12px",
+                            fontSize: 12,
                             fontWeight: 600,
                             bgcolor: `${statusColor}1a`,
                             color: statusColor,
                             borderRadius: "10px",
-                            px: 1,
                         }}
                     />
                 </Stack>
 
                 <IconButton
-                    aria-label="close"
                     onClick={handleClose}
                     sx={{
                         borderRadius: 2,
@@ -153,130 +97,100 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
                 </IconButton>
             </Stack>
 
-            <Box
-                sx={{
-                    p: 2
-                }}
-            >
-                <Typography
-                    variant="subtitle2"
-                    fontWeight={700}
-                    sx={{ mb: 1.5, color: "#e9eaec" }}
-                    fontSize={"20px"}
-                >
+            {/* Wallet Method */}
+            <Box p={2}>
+                <Typography fontSize="20px" fontWeight={700} mb={1.5}>
                     Wallet Method
                 </Typography>
 
-                <Box
-                    sx={{
-                        backgroundColor: "neutral.black",
-                        borderRadius: "14px",
-                        p: 2,
-                    }}
-                >
-                    <Stack
-                        direction={{ xs: "column", sm: "row" }}
-                        spacing={2}
-                        justifyContent="space-between"
-                    >
-                        <Stack spacing={0.5} flex={1}>
-                            <Typography variant="caption" sx={{ color: "#8c8d93" }}>
+                <Box sx={{ backgroundColor: "neutral.black", borderRadius: 3, p: 2 }}>
+                    <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
+                        <Stack flex={1}>
+                            <Typography variant="caption" color="#8c8d93">
                                 Account Type
                             </Typography>
-                            <Typography variant="body1" fontWeight={400}>
-                                {withdrawDetail?.walletMethod?.network} {withdrawDetail?.walletMethod?.walletAddress}
+                            <Typography>
+                                {withdrawDetail?.walletMethod?.network}{" "}
+                                {withdrawDetail?.walletMethod?.walletAddress}
                             </Typography>
                         </Stack>
 
-                        <Stack spacing={0.5} flex={1}>
-                            <Typography variant="caption" fontWeight={400} sx={{ color: "#8c8d93" }}>
+                        <Stack flex={1}>
+                            <Typography variant="caption" color="#8c8d93">
                                 Account Holder
                             </Typography>
-                            <Typography variant="body1" fontWeight={400}>
-                                {details.accountHolder}
-                            </Typography>
+                            <Typography>{details.accountHolder}</Typography>
                         </Stack>
                     </Stack>
 
-                    <Divider
-                        sx={{
-                            my: 1,
-                        }}
-                    />
+                    <Divider sx={{ my: 1 }} />
 
-                    <Stack spacing={0.5}>
-                        <Typography variant="caption" sx={{ color: "#8c8d93" }}>
-                            Bank Name
-                        </Typography>
-                        <Typography variant="body1" fontWeight={400}>
-                            {details.bankName}
-                        </Typography>
-                    </Stack>
+                    <Typography variant="caption" color="#8c8d93">
+                        Bank Name
+                    </Typography>
+                    <Typography>{details.bankName}</Typography>
                 </Box>
             </Box>
 
-            <Box
-                sx={{
-                    borderRadius: "18px",
-                    p: 2,
-                }}
-            >
-                <Typography
-                    variant="subtitle2"
-                    fontWeight={500}
-                    sx={{
-                        mb: 1.5,
-                        color: "neutral.Snowwhite",
-                        fontSize: "20px",
-                        fontWeight: 600
-                    }}
-                >
+            {/* STATUS TIMELINE */}
+            <Box p={2}>
+                <Typography fontSize="20px" fontWeight={600} mb={1.5}>
                     Status Timeline
                 </Typography>
 
-                <Stack spacing={1.5}>
+                <Stack spacing={2}>
                     {withdrawDetail?.statusTimeline?.map((item, idx) => {
-                        const Icon = item.icon || PendingRoundedIcon;
+                        let StatusIcon = PendingRoundedIcon;
+
+                        if (item.status?.toLowerCase() === "completed") {
+                            StatusIcon = CompleteBtn;
+                        } else {
+                            StatusIcon = TimeLine;
+                        }
+
                         return (
                             <Stack
-                                key={`${item.label}-${idx}`}
+                                key={`${item.status}-${idx}`}
                                 direction="row"
                                 spacing={1.5}
-                                alignItems="center"
+                                alignItems="flex-start"
                             >
                                 <Box
                                     sx={{
                                         width: 34,
                                         height: 34,
                                         borderRadius: "50%",
-                                        backgroundColor: `${item.color || "#f6a623"}1a`,
+                                        backgroundColor: `${"#f6a623"}1a`,
                                         display: "grid",
                                         placeItems: "center",
-                                        boxShadow: `0 0 0 4px rgba(255,255,255,0.02)`,
+                                        position: "relative",
                                     }}
                                 >
-                                    <Icon
-                                        sx={{
-                                            color: item.color || "#f6a623",
-                                            fontSize: 20,
-                                        }}
+                                    <Box
+                                        component="img"
+                                        src={StatusIcon}
+                                        alt={item.status}
+                                        sx={{ width: 25, height: 25 }}
                                     />
+                                    {idx !== withdrawDetail.statusTimeline.length - 1 && (
+                                        <Box
+                                            sx={{
+                                                position: "absolute",
+                                                top: "100%",
+                                                left: "50%",
+                                                transform: "translateX(-50%)",
+                                                height: 28,
+                                                borderLeft: "1px dotted",
+                                                borderColor: item.color || "#fff",
+                                            }}
+                                        />
+                                    )}
                                 </Box>
 
-                                <Stack spacing={0.25}>
-                                    <Typography
-                                        variant="body1"
-                                        fontWeight={400}
-                                        color="neutral.Snowwhite"
-                                    >
-                                        {item.status}
-                                    </Typography>
-                                    <Typography
-                                        variant="caption"
-                                        sx={{ color: "rgba(255, 255, 255, 0.6)", letterSpacing: 0.1 }}
-                                    >
-                                        {item.date}
-                                    </Typography>
+                                {/* TEXT */}
+                                <Stack spacing={0.3}>
+                                    <Typography>{item.status}</Typography>
+                                    <Typography variant="caption">{item.date}</Typography>
                                 </Stack>
                             </Stack>
                         );
@@ -284,24 +198,19 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
                 </Stack>
             </Box>
 
-            <Stack
-                direction="row"
-                justifyContent="flex-end"
-                sx={{ mt: 2.5, mb: 0.5, px: 0.5 }}
-            >
+            {/* Footer */}
+            <Stack direction="row" justifyContent="flex-end" px={1} pb={1}>
                 <Box
                     component="button"
                     onClick={handleClose}
                     style={{
                         background: "#050505",
-                        color: "#f5f6f7",
+                        color: "#fff",
                         border: "1px solid rgba(255,255,255,0.08)",
                         borderRadius: 14,
                         padding: "10px 28px",
-                        cursor: "pointer",
-                        boxShadow: "0 10px 24px rgba(0,0,0,0.35)",
                         fontWeight: 600,
-                        fontSize: "13px",
+                        cursor: "pointer",
                     }}
                 >
                     Cancel
@@ -312,4 +221,3 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
 });
 
 export default UserWithdraw;
-
