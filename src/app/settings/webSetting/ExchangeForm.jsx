@@ -1,6 +1,7 @@
 import { Grid, Stack, Typography } from "@mui/material";
 import CustomInput from "../../../components/customInput";
 import CustomButton from "../../../components/customButton";
+import { useTranslation } from "react-i18next";
 
 const ExchangeForm = ({
   values,
@@ -14,32 +15,33 @@ const ExchangeForm = ({
 
     onChange(field, event.target.value);
   };
+  const { t } = useTranslation();
 
   return (
     <Stack spacing={3}>
       <Stack direction="row" spacing={1} alignItems="center">
         <Typography variant="labelMd" sx={{ color: "#C7C7C7" }}>
-          Add exchange
+          {t("setting.addChange")}
         </Typography>
       </Stack>
       <Grid container spacing={{ xs: 3, md: 3 }}>
         <Grid item xs={12} md={4}>
           <CustomInput
-            placeholder="API Key"
+            placeholder={t("setting.aPIkeys")}
             value={values.apiKey}
             onChange={handleChange("apiKey")}
           />
         </Grid>
         <Grid item xs={12} md={4}>
           <CustomInput
-            placeholder="API Secret"
+            placeholder={t("setting.apiSecret")}
             value={values.apiSecret}
             onChange={handleChange("apiSecret")}
           />
         </Grid>
         <Grid item xs={12} md={4}>
           <CustomInput
-            placeholder="Passphrase"
+            placeholder={t("setting.passPhrase")}
             value={values.passphrase}
             onChange={handleChange("passphrase")}
           />
@@ -48,7 +50,7 @@ const ExchangeForm = ({
 
       <Stack direction="row" spacing={2}>
         <CustomButton
-          title="Save API Key"
+          title={t("setting.saveApiKeys")}
           variant="softOutlined"
           handleClickBtn={onSave}
           loading={isSaving}
@@ -56,7 +58,7 @@ const ExchangeForm = ({
         />
 
         <CustomButton
-          title="Cancel"
+          title={t("setting.cancel")}
           variant="softOutlined"
           handleClickBtn={onCancel}
           width={120}

@@ -3,13 +3,10 @@ import CustomButton from "../../components/customButton";
 import StarIcon from "../../assets/icons/stairs.svg";
 import AttentionIcon from "../../assets/icons/attention.svg";
 import CircleIcon from "../../assets/icons/ellipse.svg";
-
+import { useTranslation } from "react-i18next";
 const Macroeconomics = ({ data }) => {
-  console.log("frjfurfhrhfu", data);
-  // console.log("ghrghghygrggrrg", data?.cpiReport);
-
+  const { t } = useTranslation();
   const economicReports = [
-
     {
       title: `${data?.cpiReport?.title} ${data?.cpiReport?.date}`,
       forecast: ` Forecast ${data?.cpiReport?.forecast} (previous: ${data?.cpiReport?.previous}) `,
@@ -23,7 +20,6 @@ const Macroeconomics = ({ data }) => {
       status: data?.unemploymentRate?.impact,
     },
   ];
-
   const steps = [
     data?.actionPlan[0],
     data?.actionPlan[1],
@@ -31,7 +27,6 @@ const Macroeconomics = ({ data }) => {
     data?.actionPlan[3],
     data?.actionPlan[4],
   ];
-
   const marketData = [
     {
       title: data?.scenarios?.bullish?.label,
@@ -49,7 +44,6 @@ const Macroeconomics = ({ data }) => {
       description: data?.scenarios?.bearish?.description,
     },
   ];
-
   return (
     <>
       <Box
@@ -59,7 +53,7 @@ const Macroeconomics = ({ data }) => {
         mt="20px"
       >
         <Typography variant="h1" fontSize="25px" fontWeight={600}>
-          Macroeconomics
+          {t("MarketOutlook.Macroeconomics.macroEconomicTitle")}
         </Typography>
         <Grid container spacing={1} mt={2}>
           <Grid item size={{ xs: 12 }}>
@@ -74,7 +68,7 @@ const Macroeconomics = ({ data }) => {
             >
               <CustomButton
                 variant="gradient"
-                title="AI Analysis"
+                title={t("MarketOutlook.Macroeconomics.aiAnalysisTitle")}
                 icon={<img src={StarIcon} style={{ width: 20, height: 20 }} />}
                 sx={{
                   borderRadius: "20px",
@@ -85,7 +79,6 @@ const Macroeconomics = ({ data }) => {
                   color: "#fff",
                 }}
               />
-
               <Typography
                 variant="body2"
                 fontSize="13px"
@@ -179,11 +172,11 @@ const Macroeconomics = ({ data }) => {
             gap="20px"
             // flexWrap="wrap"
             borderRadius="20px"
-            flexDirection={{ xs: "column", md: "row" }} // 👈 Ye add karo
+            flexDirection={{ xs: "column", md: "row" }}
           >
             <CustomButton
               variant="h6"
-              title="Attention"
+              title={t("MarketOutlook.Macroeconomics.attentionTitle")}
               icon={<img src={AttentionIcon} />}
               sx={{
                 borderRadius: "18px",
@@ -212,10 +205,10 @@ const Macroeconomics = ({ data }) => {
               mb: 2,
               fontWeight: 500,
               fontSize: "16px",
-              fontFamily : "inter Tight"
+              fontFamily: "inter Tight"
             }}
           >
-            Detailed action plan:
+            {t("MarketOutlook.Macroeconomics.detailedActionPlanTitle")}:
           </Typography>
 
           {steps.map((text, index) => (
@@ -290,10 +283,10 @@ const Macroeconomics = ({ data }) => {
         </Box>
         <Box padding="10px">
           <Typography variant="h3" fontWeight={550} fontSize="18px">
-            Fed Speeches
+            {t("MarketOutlook.Macroeconomics.fedSpeechesTitle")}
           </Typography>
           <Typography mt="10px" fontSize="14px" fontWeight={400}>
-            Powell: {data?.fedSpeeches?.powell}
+            {t("MarketOutlook.Macroeconomics.powellTitle")}: {data?.fedSpeeches?.powell}
           </Typography>
           <Typography fontSize="14px" variant="body1">
             {data?.fedSpeeches?.otherMembers}

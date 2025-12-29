@@ -8,12 +8,12 @@ import logo from "../../assets/images/Deepsurf-logo.png";
 import NavigationDrawer from "./drawer";
 import { headerStyles } from "./styles";
 import useAuthStore from "../../store/authStore";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const navigate = useNavigate();
   const { user } = useAuthStore();
   console.log("user", user);
-
   const location = useLocation();
   const { logout } = useAuthStore();
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -23,17 +23,18 @@ const Header = () => {
   console.log("profilepicture ", profilePicture);
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);
-
+  const { t } = useTranslation();
   const navItems = [
-    { link: "/dashboard", label: "Dashboard" },
-    { link: "/journal", label: "Journal" },
-    { link: "/chart", label: "Chart" },
-    { link: "/calculator", label: "Calculator" },
-    { link: "/ai-tools", label: "AI Tools" },
-    { link: "/pro-analytics", label: "Pro Analytics" },
-    { link: "/market-outlook", label: "Market Outlook" },
-  ];
+    { link: "/dashboard", label: t("dashboard.navitem.dashboard") },
+    { link: "/journal", label: t("dashboard.navitem.journal") },
+    { link: "/chart", label: t("dashboard.navitem.chart") },
+    { link: "/calculator", label: t("dashboard.navitem.calculator") },
+    { link: "/ai-tools", label: t("dashboard.navitem.aiTools") },
+    { link: "/pro-analytics", label: t("dashboard.navitem.proAnalytics") },
+    { link: "/market-outlook", label: t("dashboard.navitem.marketOutlook") },
+    { link: "/notification", label: t("dashboard.navitem.notification") }
 
+  ];
   const [activeNav, setActiveNav] = useState(() => {
     const currentPath = location.pathname;
     const activeItem = navItems.find((item) => item.link === currentPath);
@@ -127,7 +128,6 @@ const Header = () => {
           <IconButton onClick={handleDrawerToggle} sx={headerStyles.menuButton}>
             <MenuIcon sx={{ fontSize: "24px" }} />
           </IconButton>
-
           {/* Person Icon */}
           <Box>
             <IconButton
@@ -150,7 +150,6 @@ const Header = () => {
                 <PersonIcon />
               )}
             </IconButton>
-
             <Menu
               anchorEl={anchorEl}
               open={openMenu}
@@ -158,8 +157,8 @@ const Header = () => {
               anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
               transformOrigin={{ vertical: "top", horizontal: "right" }}
             >
-              <MenuItem onClick={handleSetting}>Settings</MenuItem>
-              <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              <MenuItem onClick={handleSetting}>{t("dashboard.navitem.setting")}</MenuItem>
+              <MenuItem onClick={handleLogout}>{t("dashboard.navitem.logout")}</MenuItem>
             </Menu>
           </Box>
 
@@ -175,5 +174,4 @@ const Header = () => {
     </>
   );
 };
-
 export default Header;

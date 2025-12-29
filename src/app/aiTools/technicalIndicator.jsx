@@ -7,19 +7,17 @@ import {
   Stack,
   LinearProgress,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 const TechnicalIndicator = ({ coinData }) => {
-  console.log(
-    "rrrrrrrrrrrrrrrrrrrrrrrr",
-    coinData?.communitySentiment?.shortPercent
-  );
+  const { t } = useTranslation();
   const levels = [
     {
-      label: "Support",
+      label: (t("AiTools.CommunitySentiment.support")),
       value: coinData?.communitySentiment?.support,
       color: "#3EDD87",
     },
     {
-      label: "Resistance",
+      label: (t("AiTools.CommunitySentiment.resistance")),
       value: coinData?.communitySentiment?.resistance,
       color: "#FF6C82",
     },
@@ -38,8 +36,8 @@ const TechnicalIndicator = ({ coinData }) => {
   const strDataValue = Number(shortDataStr.replace("%", ""));
   return (
     <>
-      <Typography variant="h5" marginTop={"20px"}>
-        Technical Indicators
+      <Typography variant="h5" marginTop={"10px"} fontSize={"18px"}>
+        {t("AiTools.IndicatorAnalysis.technicalIndicators")}
       </Typography>
       <Box sx={{ borderRadius: 1, }}>
         <Grid container spacing={1}>
@@ -57,7 +55,7 @@ const TechnicalIndicator = ({ coinData }) => {
                   backgroundColor: "#00000000",
                   color: "#94969A",
                   borderRadius: 2,
-                  border: "1px solid #FFFFFF",
+                  border: "0.5px solid #94969A",
                   marginTop: "10px",
                   fontSize: "15px"
                 }}
@@ -75,83 +73,83 @@ const TechnicalIndicator = ({ coinData }) => {
       </Box>
       <Box marginTop={"25px"}>
         <Typography variant="h4" fontSize={"18px"} >
-          Community sentiment
+          {t("AiTools.CommunitySentiment.communitySentimentHeading")}
         </Typography >
       </Box>
       <Box display="flex" mt="30px" >
-          <Box
-            position="relative"
-            width="100%"
-            // border="2px solid #0B2015"
-            borderRadius="30px"
-            bodrer="none"
-          >
-            <LinearProgress
-              variant="determinate"
-              value={longdataValue}
-              sx={{
-                height: 50,
+        <Box
+          position="relative"
+          width="100%"
+          // border="2px solid #0B2015"
+          borderRadius="30px"
+          bodrer="none"
+        >
+          <LinearProgress
+            variant="determinate"
+            value={longdataValue}
+            sx={{
+              height: 50,
+              borderRadius: "30px",
+              backgroundColor: "transparent",
+              "& .MuiLinearProgress-bar": {
+                bgcolor: "#0B2015",
                 borderRadius: "30px",
-                backgroundColor: "transparent",
-                "& .MuiLinearProgress-bar": {
-                  bgcolor: "#0B2015",
-                  borderRadius: "30px",
-                },
+              },
 
-                "& .MuiLinearProgress-root": {
-                  display: "block",
-                },
-              }}
-            />
-            <Typography
-              sx={{
-                position: "absolute",
-                top: "50%",
-                left: `${longdataValue}%`,
-                transform: "translate(-50%, -50%)",
-                fontSize: "11px",
-                fontWeight: "bold",
-                color: "text.greenColor",
-                transition: "left 0.3s ease",
-              }}
-            >
-              {longdataValue}%
-            </Typography>
-          </Box>
-          <Box
-            position="relative"
-            width="100%"
-            // border="2px solid #391417"
-            // borderRadius="30px"
+              "& .MuiLinearProgress-root": {
+                display: "block",
+              },
+            }}
+          />
+          <Typography
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: `${longdataValue}%`,
+              transform: "translate(-50%, -50%)",
+              fontSize: "11px",
+              fontWeight: "bold",
+              color: "text.greenColor",
+              transition: "left 0.3s ease",
+            }}
           >
-            <LinearProgress
-              variant="determinate"
-              value={strDataValue}
-              sx={{
-                height: 50,
+            {longdataValue}%
+          </Typography>
+        </Box>
+        <Box
+          position="relative"
+          width="100%"
+        // border="2px solid #391417"
+        // borderRadius="30px"
+        >
+          <LinearProgress
+            variant="determinate"
+            value={strDataValue}
+            sx={{
+              height: 50,
+              borderRadius: "30px",
+              backgroundColor: "transparent",
+              "& .MuiLinearProgress-bar": {
+                bgcolor: "text.DarkMaroon",
                 borderRadius: "30px",
-                backgroundColor: "transparent",
-                "& .MuiLinearProgress-bar": {
-                  bgcolor: "text.DarkMaroon",
-                  borderRadius: "30px",
-                },
-              }}
-            />
-            <Typography
-              sx={{
-                position: "absolute",
-                top: "50%",
-                left: `${strDataValue}%`, // 👉 Text follows progress
-                transform: "translate(-50%, -50%)",
-                fontSize: "11px",
-                fontWeight: "bold",
-                color: "#FF6666",
-                transition: "left 0.3s ease",
-              }}
-            >
-              {strDataValue}%
-            </Typography>
-          </Box>
+              },
+            }}
+          />
+          <Typography
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: `${strDataValue}%`, // 👉 Text follows progress
+              transform: "translate(-50%, -50%)",
+              fontSize: "11px",
+              fontWeight: "bold",
+              color: "#FF6666",
+              transition: "left 0.3s ease",
+            }}
+          >
+            {strDataValue}%
+          </Typography>
+        </Box>
       </Box>
 
       <Box sx={{ p: { xs: 0, md: 2 }, borderRadius: 2, marginTop: 2 }}>

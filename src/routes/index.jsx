@@ -18,6 +18,7 @@ import SetUserProfile from "../app/auth/profile";
 import UserProfile from "../app/auth/profile";
 import TermAndCondition from "../app/termsAndConditions";
 import MyLoginPage from "../app/auth/login/myLoginPage";
+import Notification from "../app/notification";
 
 const AUTH_ROUTES = [
 
@@ -145,6 +146,13 @@ const APP_Route = [
     component: <MarketOutLook />,
     exact: "exact",
     path: "/market-outlook",
+  },
+  {
+    id: 10,
+    name: "Notification",
+    component: <Notification />,
+    exact: "exact",
+    path: "/notification",
   },
 ];
 

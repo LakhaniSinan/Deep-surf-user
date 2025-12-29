@@ -1,3 +1,4 @@
+import './i18n';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,6 +9,7 @@ import LandingPage from "./app/landingPage";
 import UserProfile from "./app/auth/profile";
 import AOS from "aos";
 import "aos/dist/aos.css";
+
 
 
 function App() {

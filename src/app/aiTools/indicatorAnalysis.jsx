@@ -4,14 +4,14 @@ import Check from "../../assets/icons/checkBtn.svg";
 import CancelIcon from "../../assets/icons/cancelBtn.svg";
 import Warning from "../../assets/icons/warningIcon.svg";
 import fire from "../../assets/icons/fireIcon.svg";
-
+import { useTranslation } from "react-i18next";
 const IndicatorAnalysis = ({ coinData }) => {
-  console.log("dfcedscfedffffffffffffffffff", coinData?.indicatorAnalysis);
+  const { t } = useTranslation();
   return (
     <>
       <Box mt={5}>
         <Typography variant="h3" fontSize={"25px"}>
-          Indicator Analysis{" "}
+           {t("AiTools.Indicator.indicatorTitle")}{" "}
         </Typography>
       </Box>
       <Box mt={2} sx={{ backgroundColor: "background.jetBlack", borderRadius: 4, p: 2 }}>

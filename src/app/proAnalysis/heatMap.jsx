@@ -2,14 +2,15 @@ import { Box, Grid, Typography } from "@mui/material";
 import CustomButton from "../../components/customButton";
 import VolumeCard from "../../components/volumeCard";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const HeatMap = ({ data }) => {
   const [selectedTimeframe, setSelectedTimeframe] = useState("24h");
-
+  const { t } = useTranslation();
   const buttonData = [
-    { id: 1, title: "24h Volume", value: "24h" },
-    { id: 2, title: "7d Volume", value: "7d" },
-    { id: 3, title: "Volatility", value: "volatility" },
+    { id: 1, title: (t("ProAnalytics.HeatMapVolume.volume24h")), value: "24h" },
+    { id: 2, title: (t("ProAnalytics.HeatMapVolume.volume7d")), value: "7d" },
+    { id: 3, title: (t("ProAnalytics.HeatMapVolume.volatility")), value: "volatility" },
   ];
 
   // 🔍 Select data based on current timeframe
@@ -31,7 +32,7 @@ const HeatMap = ({ data }) => {
       borderRadius={"25px"}
     >
       <Typography variant="h1" fontSize="16px">
-        Heatmap—Volume & Volatility
+        {t("ProAnalytics.HeatMapVolume.heatmapVolumeVolatility")}
       </Typography>
 
       <Typography
@@ -42,8 +43,7 @@ const HeatMap = ({ data }) => {
           fontSize: "14px",
         }}
       >
-        Top coins by trading volume and volatility (AtR/Price). Helps to find
-        active trading instruments.
+        {t("ProAnalytics.HeatMapVolume.topCoinsDescription")}
       </Typography>
 
       {/* 🔹 Buttons */}
@@ -74,10 +74,11 @@ const HeatMap = ({ data }) => {
       <Box mt={"20px"}>
         <Typography variant="h6" color="#FFFFFF">
           {selectedTimeframe === "24h"
-            ? "Top 20 by 24h volume:"
+            ? (t("ProAnalytics.HeatMapVolume.top20Volume24h"))
             : selectedTimeframe === "7d"
-            ? "Top 20 by 7d volume:"
-            : "Top coins by volatility:"}
+              ? (t("ProAnalytics.HeatMapVolume.top20Volume7d"))
+              : (t("ProAnalytics.HeatMapVolume.topCoinsByVolatility"))
+          }
         </Typography>
       </Box>
       <Grid container spacing={2} marginTop={"20px"}>
@@ -86,7 +87,7 @@ const HeatMap = ({ data }) => {
             item
             size={{ xs: 6, sm: 4, md: 1.2 }}
             key={index}
-            // sx={{ flexBasis: "20%" }}
+          // sx={{ flexBasis: "20%" }}
           >
             <VolumeCard
               name={item?.symbol}
@@ -100,8 +101,8 @@ const HeatMap = ({ data }) => {
                 selectedTimeframe === "24h"
                   ? item?.change24h >= 0
                   : selectedTimeframe === "7d"
-                  ? item?.change24h >= 0
-                  : item?.change24h >= 0
+                    ? item?.change24h >= 0
+                    : item?.change24h >= 0
               }
             />
           </Grid>

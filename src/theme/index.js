@@ -38,6 +38,8 @@ const theme = createTheme({
       coolGrey: "rgba(162, 163, 171, 1)",
       redOrange: "rgba(255, 68, 80, 1)",
       brightYellow: "rgba(255, 230, 0, 1)",
+      richblack: "rgba(16, 16, 16, 1)",
+      grey: "#aaa",
     },
     background: {
       default: "#101010",

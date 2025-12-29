@@ -7,6 +7,8 @@ import { useState } from "react";
 import DashboardStats from "./confluenceButton";
 import TechnicalIndicator from "./technicalIndicator";
 import StarIcon from "../../assets/icons/stairs.svg";
+import { useTranslation } from "react-i18next";
+
 const AiProof = ({ coinData }) => {
   console.log("wwwwwwwwwwwddddddddddddwwwwwwwwwwww", coinData?.coin?.pair);
 
@@ -17,6 +19,8 @@ const AiProof = ({ coinData }) => {
       [field]: event.target.value,
     });
   };
+  const { t } = useTranslation();
+
   return (
     <>
       <Box
@@ -68,7 +72,7 @@ const AiProof = ({ coinData }) => {
           p={2}
         >
           <CustomButton
-            title="Recommendation"
+            title={t("AiTools.Recommendation")}
             icon={<img src={StarIcon} style={{ width: 20, height: 20 }} />}
             sx={{
               borderRadius: "20px",
@@ -88,7 +92,7 @@ const AiProof = ({ coinData }) => {
               {coinData?.recommendation?.action}
             </span >
             <br />
-            confidence: {coinData?.recommendation?.confidence}%
+            {t("AiTools.Confidence")}: {coinData?.recommendation?.confidence}%
           </Typography>
         </Box>
       </Box>

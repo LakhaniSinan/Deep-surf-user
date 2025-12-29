@@ -19,12 +19,14 @@ import IctLiquidSkeleton from "../../components/skeleton/aiTools/ictLiquid";
 import MarketIntelligenceSkeleton from "../../components/skeleton/aiTools/marketAnalysis";
 import PatternSkeleton from "../../components/skeleton/aiTools/pattern";
 import IndicatorAnalysisSkeleton from "../../components/skeleton/aiTools/indicatorAnalysis";
+import { useTranslation } from "react-i18next";
+
 
 const AiTools = () => {
   const [ticker, setTicker] = useState("");
   const [coinData, setCoinData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  const { t } = useTranslation();
   const getAiToolsData = async () => {
     if (!ticker) return toast.error("Please enter coin symbol");
     try {
@@ -50,7 +52,7 @@ const AiTools = () => {
         paddingTop: "30px", color: "white",
       }}>
         <Typography variant="h1" fontSize="35px" fontWeight={600}>
-          AI Tools
+          {t("AiTools.aiToolsTitle")}
         </Typography>
         <Box
           sx={{
@@ -66,13 +68,12 @@ const AiTools = () => {
             variant="h3"
             sx={{ color: "#fff", marginBottom: "10px", fontSize: "18px" }}
           >
-            AI Proof — Quick coin verification
+            {t("AiTools.aiProofTitle")}
           </Typography>
           <Typography
-            sx={{ color: "neutral.Snowwhite", marginBottom: "15px", fontSize: "12px", fontWeight : 400 }}
+            sx={{ color: "neutral.Snowwhite", marginBottom: "15px", fontSize: "12px", fontWeight: 400 }}
           >
-            In-depth AI analysis of any coin in seconds. Enter the ticker,
-            receive a complete breakdown and recommendation.
+            {t("AiTools.aiProofHeading")}
           </Typography>
           <CustomInput
             placeholder="ETH"

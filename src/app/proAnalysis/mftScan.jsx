@@ -1,19 +1,15 @@
 import { Box, Typography } from "@mui/material";
-import CustomInput from "../../components/customInput/index";
 import { useEffect, useState } from "react";
-import IconImage from "../../assets/icons/vector.svg";
 import CustomButton from "../../components/customButton";
 // import ButtonIcon from "../../assets/icons/Vector (3).svg";
 import PaginatedTable from "../../components/dynamicTable";
 import StarIcon from "../../assets/icons/stairs.svg";
-import { yellow } from "@mui/material/colors";
-import { proAnylysisData } from "../../services/modules/home";
-import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 const MTFSection = ({ getProAnanlsisData, coinData }) => {
-  console.log("coinData", coinData?.mtfScan);
-
+  console.log("coindata", coinData);
+  
+  const { t } = useTranslation();
   const [search, setSearch] = useState("");
-
   const handleInputChange = (field) => (event) => {
     setSearch({
       [field]: event.target.value,
@@ -66,7 +62,7 @@ const MTFSection = ({ getProAnanlsisData, coinData }) => {
           sx={{
             color: "text.grayish",
             marginBottom: "15px",
-            fontSize : "22px"
+            fontSize: "22px"
           }}
         >
           {coinData?.basicInfo?.pair}
@@ -90,7 +86,7 @@ const MTFSection = ({ getProAnanlsisData, coinData }) => {
           flexWrap={{ xs: "wrap", md: "nowrap" }}
         >
           <CustomButton
-            title="Al Recommendation"
+            title={t("ProAnalytics.aiRecommendation")}
             icon={<img src={StarIcon} style={{ width: 20, height: 20 }} />}
             sx={{
               borderRadius: "20px",
@@ -110,14 +106,14 @@ const MTFSection = ({ getProAnanlsisData, coinData }) => {
               {coinData?.mtfScan?.aiRecommendation}
             </span>
             <br />
-            confidence:{coinData?.mtfScan?.confidence}
+            {t("AiTools.PatternRecognition.confidence")}:{coinData?.mtfScan?.confidence}
           </Typography>
         </Box>
         <Box sx={{ marginTop: "50px" }}>
           <PaginatedTable
             tableHeader={billingHistoryHeaders}
             tableData={billingHistoryRows}
-            displayRows={["TF", "trend_pro", "RSI", "MACD", "status_pro"]}
+            displayRows={["TF", "trend", "RSI", "MACD", "Status"]}
             isLoading={false}
             showPagination={false}
           />
@@ -131,7 +127,7 @@ const MTFSection = ({ getProAnanlsisData, coinData }) => {
         >
           <CustomButton
             // variant="gradient"
-            title="Interpretation"
+            title={t("ProAnalytics.interpretation")}
             sx={{
               borderRadius: "20px",
               padding: "4px 30px",
@@ -149,7 +145,7 @@ const MTFSection = ({ getProAnanlsisData, coinData }) => {
             color="#fff"
             fontWeight={600}
           >
-            All timeframes agree on growth - a strong bullish signal!{" "}
+            {t("ProAnalytics.allTimeframesAgree")}{" "}
           </Typography>
         </Box>
       </Box>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Grid,
@@ -10,21 +10,28 @@ import {
 import CustomSelect from "../../components/customSelect";
 import CustomInput from "../../components/customInput";
 import CustomButton from "../../components/customButton";
-
+import { useTranslation } from "react-i18next";
+import getCalculator from "../../services/modules/calculator";
+import { toast } from "react-toastify";
 const CalculatorForm = () => {
+  const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(false)
+  const [calculator, setCalculator] = useState(null)
+  console.log("ffurfrjfrfrfrfr" , calculator);
+  
   const [formData, setFormData] = useState({
-    exchange: "binance-futures",
-    feeType: "taker",
+    exchange: "",
+    feeType: "",
     fee: "0.060",
     fundingRate: "0.010",
     positionDuration: "<8hours",
     ticker: "",
-    pair: "BTCUSDT",
+    pair: "",
     sizingMethod: "risk",
-    deposit: "2000",
-    riskOrMargin: "1",
-    direction: "long",
-    leverage: "20",
+    deposit: "",
+    riskOrMargin: "",
+    direction: "",
+    leverage: "",
     entryMethod: "atr",
     atr: "837.9928",
     target: "3",
@@ -34,21 +41,21 @@ const CalculatorForm = () => {
   });
 
   const exchangeOptions = [
-    { value: "binance-futures", label: "Binance Futures" },
+    { value: "binance-futures", label: (t("Chart.binanceFutures")) },
     { value: "binance", label: "Binance" },
     { value: "bybit", label: "Bybit" },
     { value: "okx", label: "OKX" },
   ];
 
   const feeTypeOptions = [
-    { value: "taker", label: "Taker (Market Order)" },
-    { value: "maker", label: "Maker (Limit Order)" },
+    { value: "taker", label: (t("Chart.takerMarketOrder")) },
+    { value: "maker", label: (t("Chart.makerLimitOrder")) },
   ];
 
   const positionDurationOptions = [
-    { value: "<8hours", label: "<8 hours (no funding)" },
-    { value: "8-24hours", label: "8-24 hours" },
-    { value: ">24hours", label: ">24 hours" },
+    { value: "<8hours", label: (t("Chart.hoursNofunding")) },
+    { value: "8-24hours", label: (t("Chart.8-24Hours")) },
+    { value: ">24hours", label: (t("Chart.24Hours")) },
   ];
 
   const pairOptions = [
@@ -69,28 +76,24 @@ const CalculatorForm = () => {
       [field]: event.target.value,
     });
   };
-
   const handleInputChange = (field) => (event) => {
     setFormData({
       ...formData,
       [field]: event.target.value,
     });
   };
-
   const handleSizingMethod = (method) => {
     setFormData({
       ...formData,
       sizingMethod: method,
     });
   };
-
   const handleEntryMethod = (method) => {
     setFormData({
       ...formData,
       entryMethod: method,
     });
   };
-
   const handlePreset = (preset) => {
     // Quick preset configurations
     const presets = {
@@ -122,11 +125,39 @@ const CalculatorForm = () => {
     });
   };
 
-  const handleCalculate = () => {
-    // Calculate logic here
-    console.log("Calculating with data:", formData);
+
+  const handleCalculate = async () => {
+    try {
+      setIsLoading(true);
+      const payload = {
+        exchange: formData.exchange,
+        feeType: formData.feeType,
+        pair : formData.pair,
+        deposit : formData.deposit,
+        riskPercent : formData.riskOrMargin,
+        direction : formData.direction,
+        leverage : formData.leverage
+      };
+      const response = await getCalculator(payload);
+      if (response?.data?.status === "success") {
+        setCalculator(response.data.data);
+        toast.success("Calculation Successful");
+      } else {
+        toast.error(response?.data?.message || "Calculation failed");
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "API failed");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
+
+  // useEffect(() => {
+  //   if (payload) {
+  //     handleCalculate();
+  //   }
+  // });
   return (
     <Box
       sx={{
@@ -141,7 +172,7 @@ const CalculatorForm = () => {
         <Grid container spacing={1}>
           <Grid item size={{ xs: 12, md: 6 }}>
             <CustomSelect
-              label="Exchange"
+              label={t("Chart.Exchange")}
               value={formData.exchange}
               onChange={handleChange("exchange")}
               options={exchangeOptions}
@@ -149,7 +180,7 @@ const CalculatorForm = () => {
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
             <CustomSelect
-              label="Fee Type"
+              label={t("Chart.feeType")}
               value={formData.feeType}
               onChange={handleChange("feeType")}
               options={feeTypeOptions}
@@ -162,7 +193,7 @@ const CalculatorForm = () => {
                 fontSize={12}
                 sx={{ color: "#C7C7C7", letterSpacing: "0.02em" }}
               >
-                Fee, %
+                {t("Chart.Fee%")}
               </Typography>
               <CustomInput
                 placeholder="0.060"
@@ -178,7 +209,7 @@ const CalculatorForm = () => {
                 fontSize={12}
                 sx={{ color: "#C7C7C7", letterSpacing: "0.02em" }}
               >
-                Funding Rate (per 8h), %
+                {t("Chart.FundingRate")}
               </Typography>
               <CustomInput
                 placeholder="0.010"
@@ -188,12 +219,11 @@ const CalculatorForm = () => {
             </Stack>
           </Grid>
         </Grid>
-
         {/* Position & Pair Section */}
         <Grid container spacing={1}>
-          <Grid item size={{ xs: 12, md: 6 }}>
+          <Grid item size={{ xs: 12, md: 12 }}>
             <CustomSelect
-              label="Position Duration"
+              label={t("Chart.positionDuration")}
               value={formData.positionDuration}
               onChange={handleChange("positionDuration")}
               options={positionDurationOptions}
@@ -206,7 +236,7 @@ const CalculatorForm = () => {
                 fontSize={12}
                 sx={{ color: "#C7C7C7", letterSpacing: "0.02em" }}
               >
-                Search by Ticker
+                {t("Chart.searchbyTicker")}
               </Typography>
               <CustomInput
                 placeholder="btc, eth, zec ..."
@@ -217,7 +247,7 @@ const CalculatorForm = () => {
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
             <CustomSelect
-              label="Pair (futures)"
+              label={t("Chart.Pairfutures")}
               value={formData.pair}
               onChange={handleChange("pair")}
               options={pairOptions}
@@ -232,7 +262,7 @@ const CalculatorForm = () => {
             fontSize={12}
             sx={{ color: "#C7C7C7", mb: 2, display: "block" }}
           >
-            Sizing Options:
+            {t("Chart.sizingOptions")}
           </Typography>
           <Stack direction="row" spacing={2}>
             <CustomButton
@@ -241,7 +271,7 @@ const CalculatorForm = () => {
                   ? "calculatorToggle"
                   : "calculatorSmall"
               }
-              title="Size from Risk %"
+              title={t("Chart.sizefromRisk")}
               handleClickBtn={() => handleSizingMethod("risk")}
             />
             <CustomButton
@@ -250,7 +280,7 @@ const CalculatorForm = () => {
                   ? "calculatorToggle"
                   : "calculatorSmall"
               }
-              title="Size from Margin $"
+              title={t("Chart.sizefromMargin")}
               handleClickBtn={() => handleSizingMethod("margin")}
             />
           </Stack>
@@ -265,7 +295,7 @@ const CalculatorForm = () => {
                 fontSize={12}
                 sx={{ color: "#C7C7C7", letterSpacing: "0.02em" }}
               >
-                Deposit ($)
+                {t("Chart.Deposit")}
               </Typography>
               <CustomInput
                 placeholder="2000"
@@ -282,7 +312,7 @@ const CalculatorForm = () => {
                 fontSize={12}
                 sx={{ color: "#C7C7C7", letterSpacing: "0.02em" }}
               >
-                {formData.sizingMethod === "risk" ? "Risk %" : "Margin $"}
+                {formData.sizingMethod === "risk" ? (t("Chart.Risk")) : (t("Chart.Margin$"))}
               </Typography>
               <CustomInput
                 placeholder="1"
@@ -294,7 +324,7 @@ const CalculatorForm = () => {
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
             <CustomSelect
-              label="Direction"
+              label={t("Chart.Direction")}
               value={formData.direction}
               onChange={handleChange("direction")}
               options={directionOptions}
@@ -307,7 +337,7 @@ const CalculatorForm = () => {
                 fontSize={12}
                 sx={{ color: "#C7C7C7", letterSpacing: "0.02em" }}
               >
-                Leverage (x)
+                {t("Chart.Leverage")}
               </Typography>
               <CustomInput
                 placeholder="20"
@@ -326,7 +356,7 @@ const CalculatorForm = () => {
             fontSize={12}
             sx={{ color: "#C7C7C7", mb: 2, display: "block" }}
           >
-            Entry/Stop/Take Configuration:
+            {t("Chart.entryStopTakeConfiguration")}
           </Typography>
           <Stack direction="row" spacing={2} mb={3}>
             <CustomButton
@@ -335,7 +365,7 @@ const CalculatorForm = () => {
                   ? "calculatorToggle"
                   : "calculatorSmall"
               }
-              title="ATR Template"
+              title={t("Chart.aTRTemplate")}
               handleClickBtn={() => handleEntryMethod("atr")}
             />
             <CustomButton
@@ -344,7 +374,7 @@ const CalculatorForm = () => {
                   ? "calculatorToggle"
                   : "calculatorSmall"
               }
-              title="Manual (Entry/Stop/Take)"
+              title={t("Chart.Manual")}
               handleClickBtn={() => handleEntryMethod("manual")}
             />
           </Stack>
@@ -358,7 +388,7 @@ const CalculatorForm = () => {
                     fontSize={12}
                     sx={{ color: "#C7C7C7", letterSpacing: "0.02em" }}
                   >
-                    ATR (1h,14)
+                    {t("Chart.ATR")}
                   </Typography>
                   <CustomInput
                     placeholder="837.9928"
@@ -375,7 +405,7 @@ const CalculatorForm = () => {
                     fontSize={12}
                     sx={{ color: "#C7C7C7", letterSpacing: "0.02em" }}
                   >
-                    Target (R-multiplier)
+                    {t("Chart.target")}
                   </Typography>
                   <CustomInput
                     placeholder="3"
@@ -392,7 +422,7 @@ const CalculatorForm = () => {
                     fontSize={12}
                     sx={{ color: "#C7C7C7", letterSpacing: "0.02em" }}
                   >
-                    Level
+                    {t("Chart.level")}
                   </Typography>
                   <CustomInput
                     placeholder="115,132.00"
@@ -409,7 +439,7 @@ const CalculatorForm = () => {
                     fontSize={12}
                     sx={{ color: "#C7C7C7", letterSpacing: "0.02em" }}
                   >
-                    Lot: step / minimum (units)
+                    {t("Chart.lotStep")}
                   </Typography>
                   <Stack direction="row" spacing={2}>
                     <CustomInput
@@ -440,7 +470,7 @@ const CalculatorForm = () => {
             fontSize={12}
             sx={{ color: "#C7C7C7", mb: 2, display: "block" }}
           >
-            Quick Presets:
+            {t("Chart.quickPresets")}
           </Typography>
           <Stack
             direction="row"
@@ -449,7 +479,7 @@ const CalculatorForm = () => {
           >
             <CustomButton
               variant="calculatorSmall"
-              title="Scalp"
+              title={t("Chart.scalp")}
               handleClickBtn={() => handlePreset("scalp")}
               width="100%"
             />
@@ -461,13 +491,13 @@ const CalculatorForm = () => {
             />
             <CustomButton
               variant="calculatorSmall"
-              title="Intraday"
+              title={t("Chart.intraday")}
               handleClickBtn={() => handlePreset("intraday")}
               width="100%"
             />
             <CustomButton
               variant="calculatorSmall"
-              title="Safe"
+              title={t("Chart.safe")}
               handleClickBtn={() => handlePreset("safe")}
               width="100%"
             />
@@ -477,7 +507,7 @@ const CalculatorForm = () => {
         {/* Calculate Button */}
         <CustomButton
           variant="gradient"
-          title="Calculate"
+          title="Calculator"
           handleClickBtn={handleCalculate}
           width="100%"
           sx={{
@@ -487,6 +517,7 @@ const CalculatorForm = () => {
             fontWeight: 600,
           }}
         />
+
       </Stack>
     </Box>
   );

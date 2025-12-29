@@ -1,8 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import CustomButton from "../../components/customButton";
-
+import { useTranslation } from "react-i18next";
 const AiMarketAnalysis = () => {
+  const { t } = useTranslation();
   return (
     <Box
       display={"flex"}
@@ -13,16 +14,15 @@ const AiMarketAnalysis = () => {
     >
       <Box>
         <Typography fontSize={"18px"} fontWeight={600} >
-          AI Market Analysis
+          {t("MarketOutlook.aiMarketAnalysisTitle")}
         </Typography>
         <Typography fontSize={"12px"} color="neutral.mediumGray" fontWeight={600}>
-          Daily AI analysis of macroeconomics, the crypto market, key events,
-          and trading recommendations
+          {t("MarketOutlook.dailyAIAnalysisDescription")}
         </Typography>
       </Box>
       <Box>
         <CustomButton
-          title="Generate Analysls"
+          title={t("MarketOutlook.generateAnalysisTitle")}
           variant="h6"
           fullWidth={{ xs: "100%" }}
           sx={{
@@ -38,5 +38,4 @@ const AiMarketAnalysis = () => {
     </Box>
   );
 };
-
 export default AiMarketAnalysis;

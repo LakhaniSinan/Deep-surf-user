@@ -13,12 +13,13 @@ import LiquidationMapDataSkeleton from "../../components/skeleton/liquadationMap
 import FuturesMetricsSkeleton from "../../components/skeleton/liquidationMap";
 import CustomInput from "../../components/customInput";
 import IconImage from "../../assets/icons/vector.svg";
-
+import { useTranslation } from "react-i18next";
 const ProAnalysis = () => {
   const [ticker, setTicker] = useState("");
   const [coinData, setCoinData] = useState(null);
-  console.log("conDatshndeccdcd", coinData);
-
+  console.log("coindata" . coinData);
+  
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
 
   const getProAnanlsisData = async () => {
@@ -27,10 +28,6 @@ const ProAnalysis = () => {
       setIsLoading(true);
       setCoinData(null);
       const res = await proAnylysisData(ticker);
-      console.log("ressssssssssssssss", res);
-
-      console.log("rrrrrrrrrrrrrrrrrrrrrrrrr", res);
-
       if (res?.data?.status === "success") {
         const data = res?.data?.data;
         setCoinData(data);
@@ -49,10 +46,8 @@ const ProAnalysis = () => {
       <Header />
       <Container maxWidth="lg" sx={{ paddingTop: "30px", color: "white" }}>
         <Typography variant="h1" fontSize="24px">
-          Pro Analytics
+          {t("ProAnalytics.proAnalyticsHeading")}
         </Typography>
-
-        {/* 🔍 Input at the top */}
         <Box
           sx={{
             backgroundColor: "#161616",
@@ -69,7 +64,7 @@ const ProAnalysis = () => {
               fontSize: "15px",
             }}
           >
-            MTF Scan — Multi-Timeframe Analysis
+            {t("ProAnalytics.mtfScan")}
           </Typography>
 
           <CustomInput

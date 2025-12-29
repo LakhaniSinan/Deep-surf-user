@@ -4,13 +4,9 @@ import CustomInput from "../../components/customInput";
 import IconImage from "../../assets/icons/vector.svg";
 import ArrowBtn from "../../assets/icons/arrow-icon.svg"
 import ArrowDownIcon from "../../assets/icons/arrow-down-icon.svg"
-
+import { useTranslation } from "react-i18next";
 const LiquidationMapData = ({ coinData }) => {
-  console.log(
-    coinData,
-    "propsssssssssssssssssssssssss"
-  );
-
+  const { t } = useTranslation();
   const longLiquidations = [
     {
       id: coinData?.liquidationMap?.longLiquidations[0].rank,
@@ -43,7 +39,6 @@ const LiquidationMapData = ({ coinData }) => {
       value: coinData?.liquidationMap?.longLiquidations[4].leverage,
     },
   ];
-
   const shortLiquidations = [
     {
       id: coinData?.liquidationMap?.shortLiquidations[0].rank,
@@ -76,9 +71,7 @@ const LiquidationMapData = ({ coinData }) => {
       value: coinData?.liquidationMap?.shortLiquidations[4].leverage,
     },
   ];
-
   const [search, setSearch] = useState("");
-
   const handleInputChange = (field) => (event) => {
     setSearch({
       [field]: event.target.value,
@@ -94,7 +87,7 @@ const LiquidationMapData = ({ coinData }) => {
 
       >
         <Typography variant="h5" fontSize={"18px"}>
-          Liquidation Map
+          {t("ProAnalytics.LiquidationMap.liquidationMapTitle")}
         </Typography>
         {/* <Box mt={"20px"}>
           <CustomInput
@@ -112,20 +105,19 @@ const LiquidationMapData = ({ coinData }) => {
           flexDirection={"column"} // ✅ correct
         >
           <Typography variant="h4" fontSize={"20px"}>
-            Current BTC Price
+            {/* {t("ProAnalytics.LiquidationMap.currentBTCPrice")} */}
+            {t("ProAnalytics.LiquidationMap.Current")} {coinData?.basicInfo?.symbol} {t("ProAnalytics.LiquidationMap.price")}
           </Typography>
           <Typography variant="h5" fontSize={"15px"}>
             {coinData?.liquidationMap?.priceFormatted}
           </Typography>
         </Box>
-
         <Box mt={3}>
           <Grid container spacing={7}>
             <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
               <Typography color="text.greenColor" mb={2}>
-                LONG Liquidations
+                {t("ProAnalytics.LiquidationMap.longLiquidations")}
               </Typography>
-
               {longLiquidations.map((item, index) => (
                 <Box
                   key={index}
@@ -176,8 +168,8 @@ const LiquidationMapData = ({ coinData }) => {
                       <Box>
                         <Typography color="text.greenColor">{item.percent}</Typography>
                       </Box>
-                    </Box>                  </Box>
-
+                    </Box>
+                  </Box>
                   <Box
                     sx={{
                       width: "100%",
@@ -200,7 +192,7 @@ const LiquidationMapData = ({ coinData }) => {
             </Grid>
             <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
               <Typography color="#FF4E4E" mb={2}>
-                SHORT Liquidations
+                {t("ProAnalytics.LiquidationMap.shortLiquidations")}/
               </Typography>
               {shortLiquidations.map((item, index) => (
                 <Box

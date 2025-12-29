@@ -4,23 +4,15 @@ import starIcon from "../../assets/icons/stars.svg";
 import warningTriangleIcon from "../../assets/icons/warning-triangle-icon.svg";
 import warningIcon from "../../assets/icons/warningIcon.svg";
 import MacroEconomicCardSkeleton from "../../components/skeleton/macroeconomicCardSkeleton";
+import { useTranslation } from "react-i18next";
+
 
 const Macroeconomics = ({ data, description, isLoading }) => {
-  console.log("fijfkefmfihefjkenmfef", data?.cpiReport?.description);
-
-  // Convert object into array for mapping (safe)
+  const { t } = useTranslation();
   const reports = data ? Object.values(data || {}) : [];
-
-  // Helper function to determine which icon to show
   const getIcon = (report) => {
     const title = (report?.title || "").toLowerCase();
-    console.log("titwwwwwwwwwwwwle", title);
-
     const impact = (report?.impact || "").toLowerCase();
-    console.log("impactwwwwwwwwwww", impact);
-
-    console.log("Report:", { title, impact }); // Debug log
-
     if (title.includes("unemployment ")) {
       return starIcon;
     } else if (impact.includes("cpi")) {
@@ -29,8 +21,6 @@ const Macroeconomics = ({ data, description, isLoading }) => {
       return warningTriangleIcon;
     }
   };
-
-
   return (
     <Box
       sx={{
@@ -48,14 +38,14 @@ const Macroeconomics = ({ data, description, isLoading }) => {
         color="text.primary"
         mb={1}
       >
-        Macroeconomics
+        {t("dashboard.macroEconomic.title")}
       </Typography>
 
       {isLoading ? (
         <MacroEconomicCardSkeleton />
       ) : reports.length === 0 ? ( // 👈 Optional: Show no data
         <Typography textAlign="center" color="#fff" fontWeight={600}>
-          No Data Found
+            {t("dashboard.macroEconomic.notFound")}
         </Typography>
       ) : (
         <Box display="flex" flexDirection="column" gap={3}>

@@ -1,8 +1,9 @@
 import { Box, Grid, LinearProgress, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import CustomButton from "../../components/customButton";
+import { useTranslation } from "react-i18next";
 const Pattern = ({ coinData }) => {
-  console.log("3333333333333333333333", coinData?.aiAnalysis);
+  const { t } = useTranslation();
   const confidenceStr = coinData?.patternRecognition?.[0]?.confidence || "0%";
   const confidenceValue = Number(confidenceStr.replace("%", ""));
 
@@ -17,7 +18,7 @@ const Pattern = ({ coinData }) => {
               gap="20px"
             >
               <Typography variant="h4" fontSize={"25px"}>
-                Pattern Recognition
+                {t("AiTools.PatternRecognition.patternRecognition")}
               </Typography>
               <CustomButton
                 variant="h6"
@@ -68,8 +69,8 @@ const Pattern = ({ coinData }) => {
               variant="h6"
               backgroundColor="#1A1A1A"
               title={
-                <span style={{ color: "accent.contrastText", fontFamily: "", fontSize: "15px" , fontWeight: 500 }}>
-                  Target :{" "}
+                <span style={{ color: "accent.contrastText", fontFamily: "", fontSize: "15px", fontWeight: 500 }}>
+                  {t("AiTools.PatternRecognition.target")} :{" "}
                   <span
                     style={{
                       color: "red",
@@ -92,7 +93,7 @@ const Pattern = ({ coinData }) => {
         </Box>
         <Box width={{ xs: "100%", md: "auto" }} mt={{ xs: 2, md: 0 }}>
           <Box>
-            <Box>{` Confidence: ${confidenceValue}%`}</Box>
+            <Box>{t("AiTools.PatternRecognition.confidence")}{`: ${confidenceValue}%`}</Box>
             <Box sx={{ width: "100%", mt: 2 }}>
               <LinearProgress
                 variant="determinate"
@@ -151,8 +152,8 @@ const Pattern = ({ coinData }) => {
               variant="h6"
               backgroundColor="rgba(0, 0, 0, 0)"
               title={
-                <span style={{ color: "#FFFFFF", fontSize: "15px" ,  fontWeight: 500 }}>
-                  Target :{" "}
+                <span style={{ color: "#FFFFFF", fontSize: "15px", fontWeight: 500 }}>
+                  {t("AiTools.PatternRecognition.target")} :{" "}
                   <span style={{ color: "rgba(255, 68, 80, 1)" }}>
                     {" "}
                     {coinData?.patternRecognition?.[0]?.target}
@@ -170,7 +171,7 @@ const Pattern = ({ coinData }) => {
               backgroundColor="#1A1A1A"
               title={
                 <span style={{ color: "#FFFFFF", fontSize: "15px", fontWeight: 500 }}>
-                  Breakout :{" "}
+                  {t("AiTools.PatternRecognition.breakout")} :{" "}
                   <span style={{ color: "rgba(255, 68, 80, 1)" }}>
                     {" "}
                     {coinData?.patternRecognition?.[0]?.breakout}
@@ -187,7 +188,7 @@ const Pattern = ({ coinData }) => {
 
         <Box width={{ xs: "100%", md: "auto" }} mt={{ xs: 2, md: 0 }}>
           <Box>
-            <Box>{` Confidence: ${confidenceValue}%`}</Box>
+            <Box> {t("AiTools.PatternRecognition.confidence")}{` : ${confidenceValue}%`}</Box>
 
             <Box sx={{ width: "100%", mt: 2 }}>
               <LinearProgress
@@ -212,7 +213,7 @@ const Pattern = ({ coinData }) => {
         <Grid item size={{ xs: 12, sm: 2 }}>
           <Box display={"flex"} alignItems={"center"} gap={1} >
             <CustomButton
-              title="How to use"
+              title={t("AiTools.PatternRecognition.howToUse")}
               sx={{
                 borderRadius: "20px",
                 backgroundColor: "accent.main",

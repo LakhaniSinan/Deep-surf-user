@@ -11,17 +11,18 @@ import WebSettings from "./webSetting";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Fqa from "./faq";
 import { useAuthStore } from "../../store";
-
+import { useTranslation } from "react-i18next";
 const Setting = () => {
   const { user } = useAuthStore();
   const username = user?.username || user?.name
+  const { t } = useTranslation();
   return (
     <Box sx={styles.pageRoot}>
       <Header />
       <Container maxWidth="lg">
         <Box my={5}>
           <Typography variant="h1" fontSize={"30px"} color={theme.palette.text.primary} fontFamily={"Inter Tight"}>
-            Welcome back, {""} <span fontFamily="Inter Tight"
+           {t("Setting.settingTitle")}, {""} <span fontFamily="Inter Tight"
               color={theme.palette.text.primary}>
               {username}
             </span>

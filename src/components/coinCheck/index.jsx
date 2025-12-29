@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import {
   Box,
   TextField,
@@ -6,6 +6,7 @@ import {
   Typography,
   CircularProgress,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import SearchIcon from "@mui/icons-material/Search";
 import { coinCheckStyles } from "./style";
 import CustomInput from "../customInput";
@@ -14,10 +15,18 @@ import { getCoinQuickCheck } from "../../services/modules/home";
 import { toast } from "react-toastify";
 
 
+
 const CoinCheck = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [ticker, setTicker] = useState("");
   const [coinData, setCoinData] = useState(null);
+  const { t, i18n } = useTranslation();
+
+  console.log("Language", i18n.language);
+  console.log("AIpppppppppppProof", t("dashboard.aiProof"));
+  console.log(i18n.exists("dashboard.aiProof"));
+
+
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
@@ -45,6 +54,7 @@ const CoinCheck = () => {
       setIsLoading(false);
     }
   };
+  console.log(t("auth.dashbaord.aiProof"));
 
   return (
     <Box sx={coinCheckStyles.container}>
@@ -56,7 +66,8 @@ const CoinCheck = () => {
             fontWeight={700}
             color="neutral.Snowwhite"
             fontFamily="Inter Tight"          >
-            AI Proof — Quick coin check
+            {t("dashboard.aiProof")
+            }
           </Typography>
           <Typography
             variant="body3"
@@ -65,13 +76,12 @@ const CoinCheck = () => {
             color="neutral.Snowwhite"
             fontFamily="Inter Tight"
           >
-            Deep AI analysis of any coin in seconds. Enter the ticker, get a
-            full breakdown and recommendation.
+            {t("dashboard.aiProofHeading")}
           </Typography>
         </Box>
         <Box sx={coinCheckStyles.searchContainer}>
           <CustomInput
-            placeholder="Enter the coin ticker for analysis"
+            placeholder={t("dashboard.placeHolderTittle")}
             value={ticker}
             onChange={(e) => setTicker(e.target.value)}
             onKeyPress={handleKeyPress}

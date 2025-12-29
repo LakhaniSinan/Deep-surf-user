@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import PaginatedTable from "../../../components/dynamicTable";
 import CustomButton from "../../../components/customButton";
 import TransactionHistory from "./transactionHistory";
-
+import { useTranslation } from "react-i18next";
 const WithDrawalRequestTransaction = ({
     referHistory,
     pagination,
@@ -11,11 +11,10 @@ const WithDrawalRequestTransaction = ({
     setLimit,
 }) => {
     const [activeTab, setActiveTab] = useState("Referrals History");
-
+    const { t } = useTranslation();
     const handleChangePage = (event, newPage) => {
         setPage(newPage + 1);
-    };
-
+    }
     const handleChangeRowsPerPage = (event) => {
         const newLimit = parseInt(event.target.value, 10);
         setLimit(newLimit);
@@ -23,23 +22,23 @@ const WithDrawalRequestTransaction = ({
     };
 
     const recentRefferalHeaders = [
-        { id: "id", label: "ID", align: "left" },
-        { id: "referralDate", label: "Referral Date", align: "left" },
-        { id: "name", label: "Source", align: "right" },
-        { id: "referralStatus", label: "Referral Status", align: "right" },
-        { id: "commission", label: "Commission", align: "right" },
+        { id: "id", label: (t("Referrals.id")), align: "left" },
+        { id: "referralDate", label: (t("Referrals.referraldate")), align: "left" },
+        { id: "name", label: (t("Referrals.source")), align: "right" },
+        { id: "referralStatus", label: (t("Referrals.referralstatus")), align: "right" },
+        { id: "commission", label: (t("Referrals.commission")), align: "right" },
     ];
 
     return (
         <Box bgcolor="rgba(22, 22, 22, 1)" borderRadius="15px" p={2} mt={2}>
             <Typography color="neutral.Snowwhite" variant="h2">
-                Withdrawal & Transaction
+                {t("Referrals.withdrawalTransaction")}
             </Typography>
 
             <Grid container spacing={1} mt={2}>
                 <Grid item size={{ xs: 12, md: 6 }} >
                     <CustomButton
-                        title="Referrals History"
+                        title={t("Referrals.referralsHistory")}
                         width="100%"
                         sx={{
                             backgroundColor:
@@ -52,7 +51,7 @@ const WithDrawalRequestTransaction = ({
                 </Grid>
                 <Grid item size={{ xs: 12, md: 6 }} >
                     <CustomButton
-                        title="Transaction History"
+                        title={t("Referrals.transactionHistory")}
                         width="100%"
                         sx={{
                             backgroundColor:

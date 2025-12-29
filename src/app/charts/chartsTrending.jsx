@@ -20,6 +20,8 @@ import "chartjs-adapter-date-fns";
 import { Box, Typography, Button, ButtonGroup, IconButton } from "@mui/material";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import { format } from "date-fns";
+import { useTranslation } from "react-i18next";
+
 
 // Register Chart.js components
 ChartJS.register(
@@ -225,6 +227,7 @@ const ChartsTrending = () => {
     }),
     [chartData, supportLine]
   );
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -296,20 +299,20 @@ const ChartsTrending = () => {
                 color: priceChange < 0 ? "#ef5350" : "text.secondary",
               }}
             >
-              Change {priceChange >= 0 ? "+" : ""}
+              {t("ProfileInformation.change")} {priceChange >= 0 ? "+" : ""}
               {priceChange.toFixed(2)}
             </Typography>
             <Typography sx={{ fontSize: "12px", color: "text.secondary" }}>
-              Volume {volume}K
+              {t("Chart.volume")} {volume}K
             </Typography>
             <Typography sx={{ fontSize: "12px", color: "#ef5350" }}>
-              Low {low.toFixed(4)}
+              {t("Chart.low")} {low.toFixed(4)}
             </Typography>
             <Typography sx={{ fontSize: "12px", color: "text.secondary" }}>
-              High {high.toFixed(4)}
+              {t("Chart.high")} {high.toFixed(4)}
             </Typography>
             <Typography sx={{ fontSize: "12px", color: "text.secondary" }}>
-              Close {close.toFixed(4)}
+              {t("Chart.close")} {close.toFixed(4)}
             </Typography>
           </Box>
         </Box>

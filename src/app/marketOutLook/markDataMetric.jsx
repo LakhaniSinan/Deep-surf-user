@@ -7,13 +7,9 @@ import AttentionIcon from "../../assets/icons/attention.svg";
 import CustomButton from "../../components/customButton";
 import ReLoadIcon from "../../assets/icons/relaod-Icon.svg";
 import Speedometer from "../../components/speedMeter";
-
+import { useTranslation } from "react-i18next";
 const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
-  console.log(
-    "fijfrufhjncfmdcfdcfdfr",
-    riskCalendar?.riskCalendar?.events[0].title
-  );
-
+  const { t } = useTranslation();
   const cardStyle = {
     backgroundColor: "#1a1a1a",
     padding: "20px",
@@ -21,12 +17,8 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
     color: "#fff",
     height: "170px",
   };
-
-  // Check if gainers data exists and has enough items
   const hasGainersData = top?.gainers && top.gainers.length >= 5;
   const hasloserData = top?.losers && top.losers.length >= 5;
-  console.log("gvrdfvdfefdrfcd", hasloserData);
-
   const Gainers = hasGainersData
     ? [
       {
@@ -182,7 +174,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
         mt="20px"
       >
         <Typography variant="h5" fontSize="30px" fontWeight={600} fontFamily="inter Tight">
-          Market Data & Metrics
+         {t("MarketOutlook.MarketDataMetrics.marketDataMetricsTitle")}
         </Typography>
         <Box mt="10px">
           <Grid container spacing={1}>
@@ -199,7 +191,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                     fontFamily: "inter Tight"
                   }}
                 >
-                  Fear and Greed Index
+                 {t("MarketOutlook.MarketDataMetrics.fearGreedIndexTitle")}
                 </Typography>
                 <Typography variant="h6" textAlign="center" color="rgba(255, 230, 0, 1)" fontFamily="inter Tight" fontSize={"25px"}>
                   {marketMetricesData?.fearGreedIndex?.sentiment}
@@ -261,7 +253,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                   fontFamily={"inter Tight"}
                   color="neutral.Snowwhite"
                 >
-                  BTC Dominance
+                   {t("MarketOutlook.MarketDataMetrics.btcDominanceTitle")}
                 </Typography>
                 <Box display="flex" gap="15px" alignItems={"center"}>
                   <Typography fontSize="30px" fontWeight={600} variant="h6" mt={2}>
@@ -289,7 +281,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                     color="neutral.Snowwhite"
                     fontSize={"15px"}
                   >
-                    BTC 24h
+                   {t("MarketOutlook.MarketDataMetrics.btc24hTitle")}
                   </Typography>
                 </Box>
                 <Typography
@@ -320,7 +312,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                     color="neutral.Snowwhite"
                     fontSize={"15px"}
                   >
-                    ETH 24h
+                     {t("MarketOutlook.MarketDataMetrics.eth24hTitle")}
                   </Typography>
                 </Box>
                 <Typography
@@ -350,7 +342,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                     color="neutral.Snowwhite"
                     fontSize={"15px"}
                   >
-                    SOL 24h
+                     {t("MarketOutlook.MarketDataMetrics.sol24hTitle")}
                   </Typography>
                 </Box>
                 <Typography
@@ -390,7 +382,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                 <Typography variant="h2" fontFamily={"inter Tight"}
                   fontSize="23px" fontWeight={550} color="neutral.Snowwhite"
                 >
-                  BTC ETF Flows
+                  {t("MarketOutlook.MarketDataMetrics.btcEtfFlowsTitle")}
                 </Typography>
               </Box>
               <Box display="flex" justifyContent="space-around" mt={2}>
@@ -440,7 +432,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                 <Typography variant="h2" fontFamily={"inter Tight"}
                   fontSize="23px" fontWeight={550} color="neutral.Snowwhite"
                 >
-                  ETH ETF Flows
+                 {t("MarketOutlook.MarketDataMetrics.ethEtfFlowsTitle")}
                 </Typography>
               </Box>
               <Box display="flex" justifyContent="space-around" mt={2}>
@@ -476,12 +468,12 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
         </Box>
 
         <Typography variant="h6" fontWeight={550} fontSize={"20px"} mt={2} color="neutral.Snowwhite">
-          {"Top Movers in 24h (volume > £50M )"}
+          {t("MarketOutlook.MarketDataMetrics.topMovers24hTitle")}
         </Typography>
         <Grid container spacing={2} marginTop="20px">
           <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
             <Typography fontSize={"18px"} fontFamily={"Inter Tight"} color="neutral.brightGreen">
-              Gainers
+             {t("MarketOutlook.MarketDataMetrics.gainersTitle")}
             </Typography>
             {Gainers.map((item, index) => (
               <Grid item xs={12} md={6} key={index}>
@@ -524,7 +516,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
           </Grid>
           <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
             <Typography fontSize={"18px"} fontFamily={"Inter Tight"} color="neutral.brightRed">
-              Losers
+              {t("MarketOutlook.MarketDataMetrics.losersTitle")}
             </Typography>
             {Losers?.slice(0, 5).map((item) => (
               <Grid item xs={12} md={6} key={item.id}>
@@ -567,7 +559,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
           </Grid>
         </Grid>
         <Box mt="20px">
-          <Typography variant="h6" fontFamily={"Inter Tight"} fontSize={"25px"} color="neutral.Snowwhite">Risk Calendar (30 days)</Typography>
+          <Typography variant="h6" fontFamily={"Inter Tight"} fontSize={"25px"} color="neutral.Snowwhite"> {t("MarketOutlook.MarketDataMetrics.riskCalendar30DaysTitle")}</Typography>
         </Box>
         <Box marginTop="20px" bgcolor="neutral.darkGrey"
         >
@@ -582,7 +574,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
               >
                 <CustomButton
                   variant="h6"
-                  title="Attention"
+                  title={t("MarketOutlook.MarketDataMetrics.attentionTitle")}
                   icon={<img src={AttentionIcon} />}
                   sx={{
                     borderRadius: "20px",
@@ -690,7 +682,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
         <Box backgroundColor="#161616" borderRadius={"20px"} p={2} mt={"10px"}>
           <Box mt="10px" display="flex" justifyContent="space-between">
             <Typography variant="h3" fontSize={"25px"} color="neutral.Snowwhite">
-              Whales tracker
+              {t("MarketOutlook.MarketDataMetrics.whalesTrackerTitle")}
             </Typography>
             <img src={ReLoadIcon} alt="" />
           </Box>

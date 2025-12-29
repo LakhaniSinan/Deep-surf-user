@@ -1,6 +1,8 @@
 import { DialogActions } from "@mui/material";
 import React from "react";
 import GlobalButton from "../../components/button/index";
+import { useTranslation } from "react-i18next";
+
 
 const DialogActionButtons = ({
     onConfirm,
@@ -14,7 +16,9 @@ const DialogActionButtons = ({
     confirmBtnProps,
     confirmLoading = false,
 }) => {
+    const { t } = useTranslation();
     return (
+
         <DialogActions
             sx={{
                 padding: "16px",
@@ -27,7 +31,7 @@ const DialogActionButtons = ({
                 <GlobalButton
                     variant={"outlined"}
                     handleClickBtn={onCancel}
-                    title={cancelText}
+                    title={(t("setting.cancel"))}
                     style={{
                         width: "auto",
                         height: "45px",

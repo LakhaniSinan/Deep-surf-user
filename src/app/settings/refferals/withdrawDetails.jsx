@@ -13,7 +13,7 @@ import DialogContainer from "../../../components/dialog/dialogContainer";
 import { withdrawDetails } from "../../../services/modules/refferal";
 import TimeLine from "../../../assets/icons/time-line.svg";
 import CompleteBtn from "../../../assets/icons/success-icon.png";
-
+import { useTranslation } from "react-i18next";
 const defaultDetails = {
     status: "Completed",
     walletMethod: "Bank Account • ****4321",
@@ -22,10 +22,13 @@ const defaultDetails = {
 };
 
 const UserWithdraw = forwardRef(({ props }, ref) => {
+    const { t } = useTranslation();
     const [open, setOpen] = useState(false);
     const [details, setDetails] = useState(defaultDetails);
     const [isLoading, setIsloading] = useState(false);
     const [withdrawDetail, setWithdrawDetail] = useState(null);
+    console.log("withfffffffffffffffff", withdrawDetail?.walletAddress);
+
 
     const handleClose = () => setOpen(false);
 
@@ -68,7 +71,7 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
             <Stack direction="row" justifyContent="space-between" alignItems="center" p={1}>
                 <Stack direction="row" spacing={1.2} alignItems="center">
                     <Typography fontSize="26px" fontWeight={700}>
-                        Withdrawal Details
+                        {t("WithdrawalDetails.withdrawalDetails")}
                     </Typography>
                     <Chip
                         label={withdrawDetail?.status || "Completed"}
@@ -89,53 +92,70 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
                     sx={{
                         borderRadius: 2,
                         backgroundColor: "#ff7a1a",
-                        boxShadow: "0 10px 24px rgba(255,122,26,0.35)",
-                        "&:hover": { backgroundColor: "#ff7a1a" },
+                        boxShadow: "0 0px 0px rgba(255, 100, 33, 1)",
+                        "&:hover": { backgroundColor: "rgba(255, 100, 33, 1)" },
                     }}
                 >
-                    <CloseIcon sx={{ color: "#0f0f10" }} />
+                    <CloseIcon sx={{ color: "rgba(255, 255, 255, 1)" }} />
                 </IconButton>
             </Stack>
 
             {/* Wallet Method */}
             <Box p={2}>
-                <Typography fontSize="20px" fontWeight={700} mb={1.5}>
-                    Wallet Method
+                <Typography fontSize="20px" fontWeight={400} mb={1.5}>
+                    {t("WithdrawalDetails.walletMethod")}
                 </Typography>
 
                 <Box sx={{ backgroundColor: "neutral.black", borderRadius: 3, p: 2 }}>
                     <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
                         <Stack flex={1}>
-                            <Typography variant="caption" color="#8c8d93">
-                                Account Type
+                            <Typography variant="caption" color="rgba(255, 255, 255, 0.6)">
+                                {t("WithdrawalDetails.walletAddress")}
                             </Typography>
-                            <Typography>
-                                {withdrawDetail?.walletMethod?.network}{" "}
-                                {withdrawDetail?.walletMethod?.walletAddress}
+                            <Typography color="rgba(255, 255, 255, 1)">
+                                {withdrawDetail?.walletAddress}{" "}
+                                {/* {withdrawDetail?.walletMethod?.walletAddress} */}
                             </Typography>
                         </Stack>
 
                         <Stack flex={1}>
-                            <Typography variant="caption" color="#8c8d93">
-                                Account Holder
+                            <Typography variant="caption" color="rgba(255, 255, 255, 0.6)">
+                                {t("WithdrawalDetails.walletHolder")}
                             </Typography>
-                            <Typography>{details.accountHolder}</Typography>
+                            <Typography color="rgba(255, 255, 255, 1)">{withdrawDetail?.walletHolder}</Typography>
                         </Stack>
                     </Stack>
 
-                    <Divider sx={{ my: 1 }} />
 
-                    <Typography variant="caption" color="#8c8d93">
-                        Bank Name
-                    </Typography>
-                    <Typography>{details.bankName}</Typography>
+
+                    <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
+                        <Stack flex={1}>
+                            <Typography variant="caption" color="rgba(255, 255, 255, 0.6)">
+                                {t("WithdrawalDetails.Network")}
+                            </Typography>
+                            <Typography color="rgba(255, 255, 255, 1)">
+                                {details.network}{" "}
+                                {/* {withdrawDetail?.walletMethod?.walletAddress} */}
+                            </Typography>
+                        </Stack>
+
+                        <Stack flex={1}>
+                            <Typography variant="caption" color="rgba(255, 255, 255, 0.6)">
+                                {t("setting.currency")}
+                            </Typography>
+                            <Typography sx={{ fontWeight: 400, color: "rgba(255, 255, 255, 1)" }}>{details.currency}</Typography>
+                        </Stack>
+                    </Stack>
+
+                    {/* <Divider sx={{ my: 1 }} /> */}
+
                 </Box>
             </Box>
 
             {/* STATUS TIMELINE */}
             <Box p={2}>
                 <Typography fontSize="20px" fontWeight={600} mb={1.5}>
-                    Status Timeline
+                    {t("WithdrawalDetails.statusTimeline")}
                 </Typography>
 
                 <Stack spacing={2}>
@@ -189,8 +209,8 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
 
                                 {/* TEXT */}
                                 <Stack spacing={0.3}>
-                                    <Typography>{item.status}</Typography>
-                                    <Typography variant="caption">{item.date}</Typography>
+                                    <Typography color="rgba(255, 255, 255, 1)">{item.status}</Typography>
+                                    <Typography variant="caption" fontWeight={300} color="rgba(255, 255, 255, 0.6)">{item.date}</Typography>
                                 </Stack>
                             </Stack>
                         );
@@ -213,7 +233,7 @@ const UserWithdraw = forwardRef(({ props }, ref) => {
                         cursor: "pointer",
                     }}
                 >
-                    Cancel
+                    {t("WithdrawalDetails.cancel")}
                 </Box>
             </Stack>
         </DialogContainer>

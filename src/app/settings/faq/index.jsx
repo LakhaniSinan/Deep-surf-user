@@ -5,18 +5,18 @@ import theme from "../../../theme";
 import { styles } from "./style";
 import AccordionList from "../../../components/accordionList";
 import { getFaqData } from "../../../services/modules/home";
-
+import { useTranslation } from "react-i18next";
 const Fqa = () => {
   const [faqData, setFaqData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  // console.log("fuhfjdnfmdfcedfcdef", faqData?.[0].title);
+  const { t } = useTranslation();
   const getFaq = async () => {
     try {
       setIsLoading(true);
       const response = await getFaqData();
       if (response?.data.status === "success") {
         const data = response?.data?.data;
-        console.log("fhbfvfdkbfcdcfdfc",  faqData?.[0]);
+        console.log("fhbfvfdkbfcdcfdfc", faqData?.[0]);
         setFaqData(data);
       }
     } catch (error) {
@@ -35,13 +35,13 @@ const Fqa = () => {
       <Container maxWidth="lg">
         <Box mt={2}>
           <Typography variant="h3" color={theme.palette.text.primary}>
-            Frequently Asked Questions (FAQ)
+            {t("FrequentlyAskedQuestions(FAQ).FrequentlyAskedQuestions(FAQ)")}
           </Typography>
         </Box>
 
         <Box mt={3}>
           <AccordionList
-            title="General Information"
+            title={t("FrequentlyAskedQuestions(FAQ).generalInformation")}
             items={[
               {
                 question: faqData?.[0].title,
@@ -61,7 +61,7 @@ const Fqa = () => {
 
         <Box mt={1}>
           <AccordionList
-            title="Security and Privacy"
+            title={t("FrequentlyAskedQuestions(FAQ).securityandPrivacy")}
             items={[
               {
                 question: faqData?.[0].title,
@@ -81,7 +81,7 @@ const Fqa = () => {
 
         <Box mt={1}>
           <AccordionList
-            title="Access and Support"
+            title={t("FrequentlyAskedQuestions(FAQ).accessandSupport")}
             items={[
               {
                 question: faqData?.[0].title,

@@ -1,27 +1,24 @@
 import { Box, Grid, Typography } from "@mui/material";
-import React, { useState } from "react";
-import CustomInput from "../../components/customInput";
-import IconImage from "../../assets/icons/vector.svg";
-import { color } from "d3";
-
+import { useTranslation } from "react-i18next";
 const FuturesMetrics = ({ coinData }) => {
-  console.log("3333333333333333333333333", coinData);
+  console.log("coisnDatatataaa", coinData?.basicInfo?.symbol);
 
+  const { t } = useTranslation();
   const fundingData = [
     {
-      title: "Funding Rate",
+      title: (t("ProAnalytics.FuturesMetrics.fundingRate")),
       value: coinData?.futuresMetrics?.fundingRate,
       status: coinData?.futuresMetrics?.fundingRateLabel,
     },
 
     {
-      title: "Open Interest",
+      title: (t("ProAnalytics.FuturesMetrics.openInterest")),
       value: coinData?.futuresMetrics?.openInterest,
       status: coinData?.futuresMetrics?.openInterestChange,
     },
 
     {
-      title: "L/S Positions",
+      title: (t("ProAnalytics.FuturesMetrics.lsPositions")),
       value: coinData?.futuresMetrics?.longShortPositions,
       status: coinData?.futuresMetrics?.longShortPositions?.warning,
       stye: {
@@ -34,7 +31,7 @@ const FuturesMetrics = ({ coinData }) => {
     },
 
     {
-      title: "L/S Accounts",
+      title: (t("ProAnalytics.FuturesMetrics.LsAccounts")),
       value: coinData?.futuresMetrics?.longShortAccounts,
       status: "Neutral",
       stye: {
@@ -52,14 +49,6 @@ const FuturesMetrics = ({ coinData }) => {
       status: coinData?.futuresMetrics?.cumulativeDeltaLabel,
     },
   ];
-
-  // const [search, setSearch] = useState("");
-
-  // const handleInputChange = (field) => (event) => {
-  //   setSearch({
-  //     [field]: event.target.value,
-  //   });
-  // };
   return (
     <>
       <Box
@@ -69,16 +58,9 @@ const FuturesMetrics = ({ coinData }) => {
         borderRadius={"40px"}
       >
         <Typography variant="h5" fontSize={"20px"}>
-          Futures Metrics
+          {t("ProAnalytics.FuturesMetrics.futuresMetricesTitle")}
+
         </Typography>
-        <Box mt={"20px"}>
-          {/* <CustomInput
-            placeholder="ETH"
-            value={search.search || ""}
-            onChange={handleInputChange("search")}
-            InputEndIcon={<img src={IconImage} />}
-          /> */}
-        </Box>
         <Box
           display={"flex"}
           alignItems={"center"}
@@ -86,11 +68,11 @@ const FuturesMetrics = ({ coinData }) => {
           mt={"20px"}
           flexDirection={"column"}
         >
-          <Typography variant="h4" fontSize={"18px"} fontWeight={500}>
-            Current ETH Price
+          <Typography variant="h4" fontSize={"18px"} fontWeight={600}>
+            {t("ProAnalytics.LiquidationMap.Current")} {coinData?.basicInfo?.symbol} {t("ProAnalytics.LiquidationMap.price")}
           </Typography>
           <Typography variant="h5" fontSize={"20px"}>
-            $4,321.7
+            {coinData?.basicInfo.priceFormatted}
           </Typography>
         </Box>
         <Grid container spacing={1} mt={5}>
@@ -134,7 +116,7 @@ const FuturesMetrics = ({ coinData }) => {
                     color: coinData?.futuresMetrics?.fundingRateLabel?.includes("-") ? "text.errorColor" : "text.greenColor",
                     fontSize: "15px",
                     marginTop: "40px",
-                    fontFamily : "inter Tight",
+                    fontFamily: "inter Tight",
                   }}
                 >
                   {item.status}

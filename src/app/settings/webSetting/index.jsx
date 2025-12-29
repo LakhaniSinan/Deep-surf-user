@@ -5,38 +5,28 @@ import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRound
 import SettingsForm from "./SettingsForm";
 import ExchangeTable from "./ExchangeTable";
 import ExchangeForm from "./ExchangeForm";
+import { useTranslation } from "react-i18next";
 
-const languageOptions = [
-  {
-    value: "en",
-    label: "English",
-    icon: "https://flagcdn.com/w20/gb.png",
-  },
-  {
-    value: "fr",
-    label: "French",
-    icon: "https://flagcdn.com/w20/fr.png",
-  },
-];
 
-const timezoneOptions = [
-  { value: "pst", label: "(GMT-8) Pacific Time" },
-  { value: "gmt", label: "(GMT+0) Greenwich Mean Time" },
-  { value: "ist", label: "(GMT+5:30) India Standard Time" },
-];
 
-const currencyOptions = [
-  { value: "usd", label: "US Dollar" },
-  { value: "eur", label: "Euro" },
-  { value: "gbp", label: "British Pound" },
-];
 
+
+
+const WebSettings = () => {
+  const { t } = useTranslation();
+  const theme = useTheme();
+  const [settings, setSettings] = useState({
+    language: "en",
+    timezone: "pst",
+    currency: "usd",
+  });
+  
 const initialExchanges = [
   {
-    id: "bybit",
-    exchange: "Bybit",
+    id: (t("setting.bybit")),
+    exchange: (t("setting.bybit")),
     apiKey: "fftt456765gjkkjhi83093895",
-    added: "Nov 12, 2025",
+    added:(t("setting.date")),
     status: "Active",
     action: "manage",
   },
@@ -49,14 +39,6 @@ const initialExchanges = [
     action: "manage",
   },
 ];
-
-const WebSettings = () => {
-  const theme = useTheme();
-  const [settings, setSettings] = useState({
-    language: "en",
-    timezone: "pst",
-    currency: "usd",
-  });
   const [exchanges, setExchanges] = useState(initialExchanges);
   const [showExchangeForm, setShowExchangeForm] = useState(false);
   const [newExchange, setNewExchange] = useState({
@@ -76,7 +58,28 @@ const WebSettings = () => {
       console.error("Clipboard copy failed", error);
     }
   };
+  const languageOptions = [
+    {
+      value: "en",
+      label: (t("setting.english")),
+      icon: "https://flagcdn.com/w20/gb.png",
+    },
+    {
+      value: "fr",
+      label: (t("setting.french")),
+      icon: "https://flagcdn.com/w20/fr.png",
+    }]
 
+  const timezoneOptions = [
+    { value: "pst", label: (t("setting.specificZone")) },
+    { value: "gmt", label: (t("setting.greenWichTime")) },
+    { value: "ist", label: (t("setting.indianStandard")) },
+  ];
+  const currencyOptions = [
+    { value: "usd", label: (t("setting.usDollar")) },
+    { value: "eur", label: (t("setting.euro")) },
+    { value: "gbp", label: (t("setting.britishpound")) },
+  ];
   const handleDeleteExchange = (row) => {
     setExchanges((prev) => prev.filter((item) => item.id !== row.id));
   };
@@ -122,7 +125,7 @@ const WebSettings = () => {
         gap: 4,
       }}
     >
-      <Typography variant="titleLg">Settings</Typography>
+      <Typography variant="titleLg">{t("setting.settingTitle")}</Typography>
 
       <SettingsForm
         language={settings.language}
@@ -141,7 +144,7 @@ const WebSettings = () => {
           alignItems="center"
         >
           <Typography variant="labelMd" sx={{ color: "#C7C7C7" }}>
-            API Keys
+            {t("setting.aPIkeys")}
           </Typography>
           <IconButton
             onClick={toggleExchangeForm}
@@ -151,14 +154,14 @@ const WebSettings = () => {
               <Stack direction="row" spacing={1} alignItems="center">
                 <ArrowBackIosNewRoundedIcon sx={{ fontSize: 16 }} />
                 <Typography variant="body2" sx={{ color: "#C7C7C7" }}>
-                  Back to list
+                  {t("setting.backToList")}
                 </Typography>
               </Stack>
             ) : (
               <Stack direction="row" spacing={1} alignItems="center">
                 <AddRoundedIcon />
                 <Typography variant="body2" sx={{ color: "#C7C7C7" }}>
-                  Add exchange
+                  {t("setting.addChange")}
                 </Typography>
               </Stack>
             )}

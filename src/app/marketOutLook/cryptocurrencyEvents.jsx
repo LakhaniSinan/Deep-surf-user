@@ -2,10 +2,9 @@ import { Box, Grid, Paper, Typography } from "@mui/material";
 import BtcIcon from "../../assets/icons/bitcoin-logo.svg";
 import EthIcon from "../../assets/icons/eth-icon.svg";
 import CustomButton from "../../components/customButton";
-
+import { useTranslation } from "react-i18next";
 const CryptocurrencyEvents = ({ data, data2, data3 }) => {
-  console.log("OnChainSignals: ", data3); // ✅ Correct console
-
+  const { t } = useTranslation();
   const marketData = [
     {
       title: data?.event_0?.scenarios?.bearish?.label,
@@ -20,26 +19,26 @@ const CryptocurrencyEvents = ({ data, data2, data3 }) => {
     {
       title: data?.event_0?.scenarios?.bullish?.label,
       titleColor: data?.event_0?.scenarios?.bullish?.color,
-      description: data?.event_0?.scenarios?.bullish?.description, // 🔥 Corrected
+      description: data?.event_0?.scenarios?.bullish?.description,
     },
   ];
 
   const cards = [
     {
       // title: data2.btcETF?.symbol,
-      title: "BTC ETF",
+      title: t("MarketOutlook.CryptocurrencyEvents.btcEtfTitle"),
       value: data2?.btcETF?.priceChange24h,
       text: data2?.btcETF?.flowDescription,
       icon: BtcIcon,
     },
     {
-      title: "ETH ETF",
+      title: t("MarketOutlook.CryptocurrencyEvents.ethEtfTitle"),
       value: data2?.ethETF?.priceChange24h,
       text: data2?.ethETF?.flowDescription,
       icon: EthIcon,
     },
     {
-      title: "Trend",
+      title:  t("MarketOutlook.CryptocurrencyEvents.trendTitle"),
       value: data2.trendAnalysis,
       text: "",
       icon: null, // No icon
@@ -49,7 +48,7 @@ const CryptocurrencyEvents = ({ data, data2, data3 }) => {
     <Box backgroundColor="#161616" borderRadius="20px" padding="25px" mt="20px">
       <Box>
         <Typography variant="h5" fontSize="25px">
-          Cryptocurrency Events
+          {t("MarketOutlook.CryptocurrencyEvents.cryptocurrencyTitle")}
         </Typography>
       </Box>
       <Box mt="25px">
@@ -78,7 +77,7 @@ const CryptocurrencyEvents = ({ data, data2, data3 }) => {
                 }}
               >
                 <Typography
-                  sx={{ color: item.titleColor, fontWeight: 400  , fontSize : "20px" , fontFamily:"inter Tight" }}
+                  sx={{ color: item.titleColor, fontWeight: 400, fontSize: "20px", fontFamily: "inter Tight" }}
                   variant="body1"
                 >
                   {item.title}
@@ -94,13 +93,12 @@ const CryptocurrencyEvents = ({ data, data2, data3 }) => {
       </Box>
       <Box mt="10px">
         <Typography color="#fff" fontSize="14px">
-          {/* {data?.cryptoEvent?.event_0?.bestEntry} */}
           {data?.event_0?.bestEntry}
         </Typography>
       </Box>
       <Box mt="40px" variant="h6">
         <Typography variant="h4" fontSize="22px" fontFamily={"inter Tight"} fontWeight={550}>
-          ETF Flows
+          {t("MarketOutlook.CryptocurrencyEvents.etfFlowsTitle")}
         </Typography>
       </Box>
       <Box sx={{ color: "#fff", mt: 2 }}>
@@ -158,7 +156,7 @@ const CryptocurrencyEvents = ({ data, data2, data3 }) => {
           borderRadius="20px"
         >
           <CustomButton
-            title="Conclusion"
+            title={t("MarketOutlook.CryptocurrencyEvents.conclusionTitle")}
             sx={{
               borderRadius: "20px",
               width: { xs: "100%", md: "auto" },
@@ -174,13 +172,13 @@ const CryptocurrencyEvents = ({ data, data2, data3 }) => {
       </Box>
       <Box mt="15px">
         <Typography variant="h6" fontSize={"14px"}>
-          On-Chain Signals
+         {t("MarketOutlook.CryptocurrencyEvents.onChainSignalsTitle")}
         </Typography>
       </Box>
       <Grid container spacing={3} mt="12px">
         <Grid item size={{ xs: 12, md: 3 }}>
           <Typography variant="h5" fontSize="14px">
-            Exchange Netflow
+             {t("MarketOutlook.CryptocurrencyEvents.exchangeNetflowTitle")}
           </Typography>
           <Typography
             mt="10px"
@@ -196,7 +194,7 @@ const CryptocurrencyEvents = ({ data, data2, data3 }) => {
         </Grid>
         <Grid item size={{ xs: 12, md: 3 }}>
           <Typography variant="h5" fontSize="15px">
-            Long/Short Ratio
+           {t("MarketOutlook.CryptocurrencyEvents.longShortRatioTitle")}
           </Typography>
           <Typography mt="10px" variant="body1" fontSize="15px">
             {data3?.longShortRatio?.value} <br />
@@ -205,7 +203,7 @@ const CryptocurrencyEvents = ({ data, data2, data3 }) => {
         </Grid>
         <Grid item size={{ xs: 12, md: 3 }}>
           <Typography variant="h5" fontSize="16px">
-            Funding Rate
+            {t("MarketOutlook.CryptocurrencyEvents.fundingRateTitle")}
           </Typography>
           <Typography mt="10px" variant="body1" fontSize="15px" sx={{ color: data3?.fundingRate?.value.includes("-") ? "text.errorColor" : "text.greenColor" }}>
             +{data3?.fundingRate?.value} <br />{" "}
@@ -217,7 +215,7 @@ const CryptocurrencyEvents = ({ data, data2, data3 }) => {
         </Grid>
         <Grid item size={{ xs: 12, md: 3 }}>
           <Typography variant="h5" fontSize="16px">
-            Open Interest
+           {t("MarketOutlook.CryptocurrencyEvents.openInterestTitle")}
           </Typography>
           <Typography mt="10px" variant="body1" fontSize="15px">
             {data3?.openInterest?.value} <span>{data3?.openInterest?.description} </span>

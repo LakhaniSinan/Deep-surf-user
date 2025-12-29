@@ -17,7 +17,7 @@ const Speedometer = ({ size = 28, score = 100, maxValue}) => {
         segments={5}
         labelFontSize="0px"
         currentValueText={`${score}`}
-        currentValueText1={`${score}`}
+        // currentValueText1={`${score}`}
         // currentValueText2={`${maxValue}`}
         textColor="#fff"
         ringWidth={10}
@@ -32,3 +32,4 @@ const Speedometer = ({ size = 28, score = 100, maxValue}) => {
   );
 };
 export default Speedometer;
+

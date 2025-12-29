@@ -1,26 +1,23 @@
-import React, { forwardRef, useImperativeHandle, useState } from "react";
+import React, { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { MenuItem, Box, Typography, Button } from "@mui/material";
-
 import CustomInput from "../../../components/customInput";
 import CustomSelect from "../../../components/customSelect";
-
 import DialogContainer from "../../../components/dialog/dialogContainer";
 import DialogHeader from "../../../components/dialog/dialogHeader";
 import DialogBody from "../../../components/dialog/dialogBody";
 import DialogActionButtons from "../../../components/dialog/dialogAction";
 import Label from "../../../components/label";
 import Success from "../../../assets/icons/success.svg"
-
-import { requestWithdrawal } from "../../../services/modules/refferal";
+import { requestWithdrawal, withdrawOption } from "../../../services/modules/refferal";
 import CustomButton from "../../../components/customButton";
-
-
+import { useTranslation } from "react-i18next";
 const WithdrawalRequest = forwardRef(({ props }, ref) => {
+    const { t } = useTranslation();
     const [open, setOpen] = useState(false);
     const [successOpen, setSuccessOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [withdrawalOptionData, setWithdrawalOptionData] = useState(null)
     const [error, setError] = useState({});
-
     const [formData, setFormData] = useState({
         walletMethod: "",
         accountNumber: "",
@@ -52,12 +49,10 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
             currency: "",
         });
     };
-
     const setField = (key, value) => {
         setFormData((prev) => ({ ...prev, [key]: value }));
         setError((prev) => ({ ...prev, [key]: "" }));
     };
-
     const inputStyle = {
         "& .MuiOutlinedInput-root": {
             backgroundColor: "neutral.black",
@@ -71,7 +66,6 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
             color: "neutral.Snowwhite",
         },
     };
-
     const handleWithdrawRequest = async () => {
         const newError = {};
         if (!formData.walletMethod) newError.walletMethod = "Required";
@@ -103,18 +97,71 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
             setIsLoading(false);
         }
     };
+    const withdrawalOption = async () => {
+        try {
+            setIsLoading(true);
+            const response = await withdrawOption();
+            const data = response?.data?.data
+            setWithdrawalOptionData(data)
+        } catch (error) {
+            console.log("failed to withdraw option APi");
+        } finally {
+            setIsLoading(false)
+
+        }
+    }
+    useEffect(() => {
+        withdrawalOption();
+    }, [])
 
     return (
         <>
             {/* WITHDRAW REQUEST DIALOG */}
             <DialogContainer onClose={handleClose} open={open}>
-                <DialogHeader title="Request Withdrawal" onClose={handleClose} />
+                <DialogHeader title={t("RequestWithdrawal.requestWithdrawalBtn")} onClose={handleClose} />
                 <DialogBody>
-                    <Label title="Wallet Method" required error={!!error.walletMethod} />
+                    <Label title={t("RequestWithdrawal.choseNetwork")} required error={!!error.walletMethod} />
                     <CustomSelect
                         value={formData.walletMethod}
                         onChange={(e) => setField("walletMethod", e.target.value)}
-                        placeholder="Select Wallet Method"
+                        placeholder={t("RequestWithdrawal.selectWalletMethod")}
+                        backgroundColor={"neutral.black"}
+                    >
+                        <MenuItem
+                            sx={{
+                                background: "linear-gradient(90deg, #FF1A00, #FF6C03, #FFA305)",
+                                borderRadius: "10px",
+                                padding: "5px 10px"
+                            }}
+                            value={withdrawalOptionData?.networks[1].value}>{withdrawalOptionData?.networks[1].label}</MenuItem>
+                        <MenuItem color="background.gray" value={withdrawalOptionData?.networks[2].value}>{withdrawalOptionData?.networks[2].label}</MenuItem>
+                        <MenuItem value={withdrawalOptionData?.networks[0].value}>{withdrawalOptionData?.networks[0].label}</MenuItem>
+                    </CustomSelect>
+
+                    <Label title={t("WithdrawalDetails.walletAddress")} required error={!!error.accountNumber} />
+                    <CustomInput
+                        value={formData.accountNumber}
+                        placeholder={t("RequestWithdrawal.enteryourAccountNumber")}
+                        error={!!error.accountNumber}
+                        helperText={error.accountNumber}
+                        onChange={(e) => setField("accountNumber", e.target.value)}
+                        sx={inputStyle}
+                    />
+                    <Label title={t("RequestWithdrawal.amountToWithdraw")} required error={!!error.amount} />
+                    <CustomInput
+                        type="number"
+                        value={formData.amount}
+                        placeholder={t("RequestWithdrawal.enterAmount")}
+                        error={!!error.amount}
+                        helperText={error.amount}
+                        onChange={(e) => setField("amount", e.target.value)}
+                        sx={inputStyle}
+                    />
+                    <Label title={t("setting.currency")} required error={!!error.currency} />
+                    <CustomSelect
+                        value={formData.currency}
+                        onChange={(e) => setField("currency", e.target.value)}
+                        placeholder={t("RequestWithdrawal.selectCurrency")}
                         backgroundColor={"neutral.black"}
                     >
                         <MenuItem
@@ -124,51 +171,15 @@ const WithdrawalRequest = forwardRef(({ props }, ref) => {
                                 padding: "5px 10px"
 
                             }}
-                            value="Mobile Wallet">Mobile Wallet</MenuItem>
-                        <MenuItem color="background.gray" value="Bank Transfer">Bank Wallet</MenuItem>
-                        <MenuItem value="Card">Card</MenuItem>
-                    </CustomSelect>
-
-                    <Label title="Account Number" required error={!!error.accountNumber} />
-                    <CustomInput
-                        value={formData.accountNumber}
-                        placeholder="Enter your Account Number"
-                        error={!!error.accountNumber}
-                        helperText={error.accountNumber}
-                        onChange={(e) => setField("accountNumber", e.target.value)}
-                        sx={inputStyle}
-                    />
-                    <Label title="Amount to Withdraw" required error={!!error.amount} />
-                    <CustomInput
-                        type="number"
-                        value={formData.amount}
-                        placeholder="Enter Amount"
-                        error={!!error.amount}
-                        helperText={error.amount}
-                        onChange={(e) => setField("amount", e.target.value)}
-                        sx={inputStyle}
-                    />
-                    <Label title="Currency" required error={!!error.currency} />
-                    <CustomSelect
-                        value={formData.currency}
-                        onChange={(e) => setField("currency", e.target.value)}
-                        placeholder="Select Currency"
-                        backgroundColor={"neutral.black"}
-                    >
-                        <MenuItem sx={{
-                            background: "linear-gradient(90deg, #FF1A00, #FF6C03, #FFA305)",
-                            borderRadius: "10px",
-                            padding: "5px 10px"
-
-                        }} value="USD">USD</MenuItem>
-                        <MenuItem value="EUR">EUR</MenuItem>
-                        <MenuItem value="GBP">GBP</MenuItem>
+                            value={withdrawalOptionData?.currencies[0].value}>{withdrawalOptionData?.currencies[0].label}</MenuItem>
+                        <MenuItem sx={{ color: "rgba(255, 255, 255, 0.46)" }} value={withdrawalOptionData?.currencies[1].value}>{withdrawalOptionData?.currencies[1].label}</MenuItem>
+                        <MenuItem sx={{ color: "rgba(255, 255, 255, 0.46)" }} value={withdrawalOptionData?.currencies[2].value}>{withdrawalOptionData?.currencies[2].label}</MenuItem>
                     </CustomSelect>
                 </DialogBody>
                 <DialogActionButtons
                     onCancel={handleClose}
                     onConfirm={handleWithdrawRequest}
-                    confirmText="Submit Withdraw Request"
+                    confirmText={t("RequestWithdrawal.SubmitWithdrawRequest")}
                     confirmLoading={isLoading}
                 />
             </DialogContainer>

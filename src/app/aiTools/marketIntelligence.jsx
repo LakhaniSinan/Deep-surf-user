@@ -1,28 +1,25 @@
 import { Box, Grid, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 const MarketIntelligence = ({ coinData }) => {
-  console.log(
-    "wwwwwwwwwwwwwwwwwwwww",
-    coinData?.enhancedMarketIntelligence?.fundingRate?.value
-  );
-
+    const { t } = useTranslation();
   const marketStats = [
     {
-      title: "Funding Rate",
+      title: (t("AiTools.MarketIntelligence.fundingRate")),
       value: coinData?.enhancedMarketIntelligence?.fundingRate?.value,
       description: coinData?.enhancedMarketIntelligence?.fundingRate?.sentiment,
     },
     {
-      title: "L/S Ratio",
+      title: (t("AiTools.MarketIntelligence.lsRatio")),
       value: coinData?.enhancedMarketIntelligence?.longShortRatio?.value,
       description: "Heavily long",
     },
     {
-      title: "24h Volume",
+      title:  (t("AiTools.MarketIntelligence.volume24h")),
       value: coinData?.enhancedMarketIntelligence?.volume24h?.value,
       description: coinData?.enhancedMarketIntelligence?.volume24h?.description,
     },
     {
-      title: "Liq. Risk",
+      title: (t("AiTools.MarketIntelligence.liquidityRisk")),
       value: coinData?.enhancedMarketIntelligence?.liquidationRisk?.long,
       value1: coinData?.enhancedMarketIntelligence?.liquidationRisk?.long,
       description: coinData?.enhancedMarketIntelligence?.liquidationRisk?.zones,
@@ -33,7 +30,7 @@ const MarketIntelligence = ({ coinData }) => {
     <>
       <Box mt={"25px"}>
         <Typography variant="h5" fontSize={"20px"}>
-          Enhanced Market Intelligence{" "}
+          {t("AiTools.MarketIntelligence.enhancedMarketIntelligence")}{" "}
         </Typography>
       </Box>
       <Box>

@@ -61,7 +61,8 @@ export default function PaginatedTable({
       borderRadius: "18px",
       overflow: "hidden",
       boxShadow: "none",
-      border: "1px solid rgba(255,255,255,0.08)",
+      // border: "1px solid rgba(255,255,255,0.08)",
+      border: "0.42px solid rgba(255, 255, 255, 1)"
     },
 
     "& .MuiTable": {
@@ -101,9 +102,13 @@ export default function PaginatedTable({
       // backgroundColor: "black"
     }
   };
-
+  const maskWalletAddress = (address) => {
+    if (!address || address.length <= 4) return address || "N/A";
+    return `****${address.slice(4)}`;
+  };
   const renderCell = (row, val, index) => {
-    console.log("rrrrrrrrrrrr", row);
+    console.log("lofffffffffffffffff", row);
+
 
     switch (val) {
       case "index":
@@ -141,20 +146,12 @@ export default function PaginatedTable({
             </Box>
           </TableCell>
         );
-
-      // case "userid":
-      //   return (
-      //     <TableCell>
-      //       <Box
-      //         sx={{
-      //           fontWeight: 600
-      //         }}
-      //       >
-      //         {row[val]}
-      //       </Box>
-      //     </TableCell>
-      //   )
-
+      case "walletAddress":
+        return (
+          <TableCell>
+            {maskWalletAddress(row.walletAddress)}
+          </TableCell>
+        );
       case "referralStatus":
         // Custom rendering for "refferal status"
         return (
@@ -228,7 +225,7 @@ export default function PaginatedTable({
                   ? "rgba(62, 221, 135, 1)"
                   : isPending
                     ? "rgba(245, 159, 10, 1)"
-                    : "inherit",
+                    : "rgba(245, 159, 10, 1)",
                 minWidth: 96,
               }}
             >
@@ -236,8 +233,27 @@ export default function PaginatedTable({
             </Box>
           </TableCell>
         );
+      //       case "status":
+      //         return (
+      //           <TableCell>
 
+      //           </TableCell>
 
+      // );
+      // case "status":
+      //   return (
+      //     <TableCell>
+      //       <Box
+      //         sx={{
+      //           fontWeight: 600,
+      //           color: "neutral.Snowwhite",
+      //           letterSpacing: "0.8px"
+      //         }}>
+      //         {row[val].Status}
+      //       </Box>
+
+      //     </TableCell>
+      //   )
       case "action":
       case "Action":
         return (
@@ -337,17 +353,88 @@ export default function PaginatedTable({
             </Box>
           </TableCell>
         )
-      // case "requestDate":
-      //   return (
-      //     <TableCell>
-      //       <Box sx={{
-      //         fontWeight: 600,
-      //       }}>
-      //       </Box>
-      //       {row.requestDate}
-      //     </TableCell>
-      //   )
+      case "id":
+        return (
+          <TableCell>
+            <Box fontWeight={500} >
+              {row[val]}
+            </Box>
+          </TableCell>
+        )
 
+      case "requestDate":
+        return (
+          <TableCell>
+            <Box fontWeight={500} fontSize={"15px"} >
+              {row[val]}
+            </Box>
+          </TableCell>
+        )
+
+      case "batchNo":
+        return (
+          <TableCell>
+            <Box fontWeight={500} fontSize={"15px"} >
+              {row[val]}
+            </Box>
+          </TableCell>
+        )
+      case "amount":
+        return (
+          <TableCell>
+            <Box fontWeight={500} fontSize={"15px"} >
+              {row[val]}
+            </Box>
+          </TableCell>
+        )
+      case "currency":
+        return (
+          <TableCell>
+            <Box fontWeight={500} fontSize={"15px"} >
+              {row[val]}
+            </Box>
+          </TableCell>
+        )
+      case "trend":
+        return (
+          <TableCell>
+            <Box fontWeight={600} color={row[val] === "Neutral" ? "neutral.brightYellow" : "red"}>
+              {row[val]}
+            </Box>
+          </TableCell>
+        )
+      case "TF":
+        return (
+          <TableCell>
+            <Box fontWeight={600} color={"neutral.Snowwhite"} fontSize={"15px"}>
+              {row[val]}
+            </Box>
+          </TableCell>
+        )
+      case "RSI":
+        return (
+          <TableCell>
+            <Box fontWeight={600} fontSize={"15px"}>
+              {row[val]}
+            </Box>
+          </TableCell>
+        )
+      case "MACD":
+        return (
+          <TableCell>
+            <Box color={row[val].includes("-") ? "neutral.redOrange" : "neutral.brightGreen"} fontWeight={600} fontSize={"15px"}>
+              {row[val]}
+            </Box>
+          </TableCell>
+        )
+      case "Status":
+        return (
+          <TableCell>
+            <Box fontWeight={600} fontSize={"15px"} color={"neutral.brightGreen"}>
+              {row[val]}
+            </Box>
+          </TableCell>
+        )
       default:
         const cellValue = row[val];
         const hasLineBreaks =

@@ -20,18 +20,15 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import theme from "../../../theme";
 import { uploadMediaService } from "../../../utils/help";
-
+import { useTranslation } from "react-i18next";
 function PersonalInformation() {
   const { user } = useAuthStore();
   const [username, setUsername] = useState(user?.username || "");
-  console.log("dwuhdiwdwyguhwijd", username);
   const [email, setEmail] = useState(user?.email || "");
   const [profilePicture, setProfilePicture] = useState(
     user?.profilePicture || ""
   );
-  console.log("profilepicture", profilePicture);
-
-
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
   const [currentPassword, setCurrentPassword] = useState("");
@@ -47,19 +44,13 @@ function PersonalInformation() {
       [field]: "",
     }));
   };
-
-
-
   const handleImageUpload = async (event) => {
-    console.log("hittttttttttttttttttttttttttttttttt")
     const file = event.target.files?.[0];
-    console.log("fileeeeeeeeeeeeeeeeeeeeee", file);
     if (!file) return;
     console.log("file", file);
     try {
       setIsLoading(true);
       const uploadRes = await uploadMediaService(file);
-      console.log("Uploaded Image:", uploadRes);
       setProfilePicture(uploadRes);
       toast.success("Profile picture uploaded!");
       event.target.value = "";
@@ -71,12 +62,7 @@ function PersonalInformation() {
 
   };
 
-
-
-
-
   const handleUserName = () => {
-    console.log("[efoigfhijefeguhjhewnf", handleUserName);
   };
   const handlePasswordChange = async () => {
     if (
@@ -121,7 +107,7 @@ function PersonalInformation() {
 
   return (
     <Box display="flex" flexDirection="column" gap={4}>
-      <Typography variant="titleLg">Personal Information</Typography>
+      <Typography variant="titleLg">{t("ProfileInformation.profileInformationTitle")}</Typography>
       <Stack
         direction={{ xs: "column", sm: "row" }}
         spacing={3}
@@ -142,13 +128,13 @@ function PersonalInformation() {
               border: "1px solid #8F8F8F",
               padding: "8px 12px",
               display: "inline-block",
-              borderRadius : "10px",
-              px : "40px",
-              py : "10px",
-              fontFamily:"Inter Tight"
+              borderRadius: "10px",
+              px: "40px",
+              py: "10px",
+              fontFamily: "Inter Tight"
             }}
           >
-            Upload Image
+            {t("ProfileInformation.uploadImage")}
             <input
               type="file"
               accept="image/*"
@@ -163,7 +149,7 @@ function PersonalInformation() {
       </Stack>
 
       {/* Username */}
-      <Typography>Username</Typography>
+      <Typography>{t("ProfileInformation.username")} </Typography>
       <Grid container spacing={1}>
         <Grid item size={{ xs: 12, md: 9 }}>
           <CustomInput
@@ -210,19 +196,20 @@ function PersonalInformation() {
           /> */}
         </Grid>
       </Grid>
-
       <Grid container spacing={1}>
         <Grid item size={{ xs: 12, md: 9 }}>
           <CustomInput
             type="Password"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter email"
+            InputEndIcon={true}
+            showPassword={true}
+          // onChange={(e) => setEmail(e.target.value)}
+          // placeholder="Enter email"
           />
         </Grid>
         <Grid item size={{ xs: 12, md: 3 }}>
           <CustomButton
-            title="Change"
+            title={t("ProfileInformation.change")}
             handleClickBtn={() => setOpenDialog(true)}
             sx={{
               cursor: "pointer",
@@ -234,7 +221,7 @@ function PersonalInformation() {
       </Grid>
       <Box>
         <CustomButton
-          title="Save Profile"
+          title={t("ProfileInformation.saveProfile")}
           // handleClickBtn={() => setOpenDialog(true)}
           sx={{
             cursor: "pointer",

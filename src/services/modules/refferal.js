@@ -27,8 +27,16 @@ const requestWithdrawal = (payload) => {
 
 const withdrawDetails = (id) => {
   console.log("idddddddddddd");
-  
-  return Api(`${ENDPOINTS.WTHDRAWREQUEST.WITHDRAW_REQUEST.replace(":id" , id)}`, null, "get");
+
+  return Api(
+    `${ENDPOINTS.WTHDRAWREQUEST.WITHDRAW_REQUEST.replace(":id", id)}`,
+    null,
+    "get"
+  );
+};
+
+const withdrawOption = () => {
+  return Api(ENDPOINTS.WITHDRAWALOPTION.WITHDRAW_OPTION, null, "get");
 };
 
 export {
@@ -37,4 +45,5 @@ export {
   transactionHistory,
   requestWithdrawal,
   withdrawDetails,
+  withdrawOption,
 };

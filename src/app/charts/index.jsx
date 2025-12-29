@@ -4,9 +4,9 @@ import Typography from "@mui/material/Typography";
 import Header from "../../components/header";
 import AskAI from "./askAi";
 import ChartsTrending from "./chartsTrending";
-
-
+import { useTranslation } from "react-i18next";
 export const Charts = () => {
+  const { t } = useTranslation();
   return (
     <Box sx={{ minHeight: "100vh" }}>
       <Header />
@@ -18,7 +18,7 @@ export const Charts = () => {
             fontWeight={700}
             color="text.primary"
           >
-            Charts
+            {t("Chart.chartTitle")}
           </Typography>
         </Box>
 

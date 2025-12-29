@@ -1,25 +1,8 @@
 import { Box, Grid, Paper, Typography } from "@mui/material";
-import StatCard from "../../components/statCard/index";
+import { useTranslation } from "react-i18next";
 
 function DashboardStats({ coinData }) {
-  const statsData = [
-    {
-      title: "Confluence Score",
-      subtitle: "Bullish ",
-    },
-    {
-      title: "Trend",
-      subtitle: "Bearish",
-      price: "4",
-    },
-  ];
-
-  const statsData2 = [
-    { title: "Trend", subtitle: "Bullish" },
-
-    { title: "Signal Level", subtitle: "$3 120,88" },
-  ];
-
+  const { t } = useTranslation();
   return (
     <>
       <Box mt={"10px"}
@@ -32,7 +15,7 @@ function DashboardStats({ coinData }) {
               fontWeight={600}
               color="#FFFFFF"
             >
-              Confluence Score
+              {t("AiTools.Confluence.confluenceScore")}
             </Typography>
           </Grid>
           <Grid item size={{ xs: 6, sm: 6 }}>
@@ -42,7 +25,7 @@ function DashboardStats({ coinData }) {
               fontWeight={600}
               color="#FFFFFF"
             >
-              Supertrend
+              {t("AiTools.Confluence.Supertrend")}
             </Typography>
           </Grid>
         </Grid>
@@ -75,12 +58,12 @@ function DashboardStats({ coinData }) {
             }}
           >
             <Typography variant="caption" color="neutral.coolGrey">
-              Confluence Score
+              {t("AiTools.Confluence.confluenceScoreHeading1")}
             </Typography>
             <Typography
               sx={{ color: "neutral.brightGreen", fontSize: "18px", fontWeight: 600 }}
             >
-              Bullish
+              {t("AiTools.Confluence.Bullish")}
             </Typography>
             <Typography
               sx={{
@@ -104,12 +87,12 @@ function DashboardStats({ coinData }) {
             }}
           >
             <Typography variant="caption" color="neutral.coolGrey">
-              Confluence Score
+              {t("AiTools.Confluence.ConfluenceScoreHeading2")}
             </Typography>
             <Typography
               sx={{ color: "text.SalmonRed", fontSize: "18px", fontWeight: 600 }}
             >
-              Bearish
+              {t("AiTools.Confluence.Bearish")}
             </Typography>
             <Typography
               sx={{
@@ -131,7 +114,7 @@ function DashboardStats({ coinData }) {
             }}
           >
             <Typography variant="h6" color="neutral.Snowwhite" fontWeight="500px">
-              Trend
+              {t("AiTools.Supertrend.Trend")}
             </Typography>
             <Typography
               sx={{
@@ -155,8 +138,8 @@ function DashboardStats({ coinData }) {
               textAlign: "center",
             }}
           >
-            <Typography variant="caption" color="neutral.Snowwhite">
-              Signal Level
+            <Typography variant="caption" color="neutral.Snowwhite" fontSize={"15px"}>
+              {t("AiTools.Supertrend.SignalLevel")}
             </Typography>
             <Typography
               sx={{ mt: 1, color: "accent.contrastText", fontSize: "22px", fontWeight: 600 }}

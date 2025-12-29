@@ -1,8 +1,11 @@
 import React from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import CustomButton from "../../components/customButton";
+import { useTranslation } from "react-i18next";
+
 
 const RiskCheck = () => {
+  const { t } = useTranslation();
   return (
     <Box
       sx={{
@@ -32,7 +35,7 @@ const RiskCheck = () => {
               color: "#C7C7C7",
             }}
           >
-            Trading: $0.04
+            {t("Chart.trading")}: $0.04
           </Typography>
         </Box>
 
@@ -40,7 +43,7 @@ const RiskCheck = () => {
         <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
           <CustomButton
             variant="softOutlined"
-            title="Copy Results"
+            title={t("Chart.copyResults")}
             handleClickBtn={() => console.log("Copy Results")}
             sx={{
               py: 0.75,
@@ -53,7 +56,7 @@ const RiskCheck = () => {
           />
           <CustomButton
             variant="gradient"
-            title="Open Order"
+            title={t("Chart.openOrder")}
             handleClickBtn={() => console.log("Open Order")}
             sx={{
               py: 0.75,
@@ -76,13 +79,13 @@ const RiskCheck = () => {
           /> */}
           <CustomButton
             variant="calculatorSmall"
-            title="Export CSV"
+            title={t("Chart.exportCSV")}
             handleClickBtn={() => console.log("Export CSV")}
             width="100%"
           />
           <CustomButton
             variant="calculatorSmall"
-            title="Export JSON"
+            title={t("Chart.exportJSON")}
             handleClickBtn={() => console.log("Export JSON")}
             width="100%"
           />

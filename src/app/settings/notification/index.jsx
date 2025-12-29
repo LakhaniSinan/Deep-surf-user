@@ -1,20 +1,24 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { useState } from "react";
 import CustomSwitch from "../../../components/switch";
+import { useTranslation } from "react-i18next";
+import Notification from "./notification";
 
-const notificationOptions = [
-  { id: "email", label: "Email" },
-  { id: "telegram", label: "Telegram" },
-  { id: "web", label: "Web" },
-];
+
+
 
 const Notifications = () => {
+  const { t } = useTranslation();
   const [preferences, setPreferences] = useState({
     email: true,
     telegram: true,
     web: false,
   });
-
+  const notificationOptions = [
+    { id: "email", label: (t("Notification.email")) },
+    { id: "telegram", label: (t("Notification.telegram")) },
+    { id: "web", label: (t("Notification.web")) },
+  ];
   const handleToggle = (channel) => (_, checked) => {
     setPreferences((prev) => ({ ...prev, [channel]: checked }));
   };
@@ -22,9 +26,9 @@ const Notifications = () => {
   return (
     <Box display={"flex"} flexDirection={"column"} gap={3}>
       <Box display={"flex"} flexDirection={"column"}>
-        <Typography variant="titleLg">Notifications</Typography>
+        <Typography variant="titleLg">{t("SettingsTab.notifications")}</Typography>
         <Typography variant="helperSm" sx={{ mt: 0.5 }}>
-          Get notified via
+          {t("Notification.GetNotifiedVia")}
         </Typography>
       </Box>
 
@@ -54,6 +58,7 @@ const Notifications = () => {
           </Stack>
         ))}
       </Stack>
+      <Notification />
     </Box>
   );
 };

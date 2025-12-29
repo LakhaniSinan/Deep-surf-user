@@ -9,25 +9,26 @@ import profileIcon from "../../assets/icons/profile.svg";
 import CustomInput from "../../components/customInput";
 import addIcon from "../../assets/icons/add-gray.svg";
 import sendIcon from "../../assets/icons/send.svg";
-
+import { useTranslation } from "react-i18next";
 const AskAI = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([
     {
       id: 1,
       type: "user",
-      content: "add support in the chart",
+      content: (t("Chart.addSupportInTheChart")),
     },
     {
       id: 2,
       type: "ai",
-      content: "Completed",
+      content: (t("Chart.completed")),
       status: "success",
       paragraphs: [
-        "I've added support levels to the Bitcoin chart. The chart now clearly highlights key support zones, showing areas where price historically finds buying interest. Each support level is marked with precise lines, making it easy to identify potential entry points or price floors.",
-        "Interactive tooltips and labels have been updated so that when you hover over a support level, you can see the exact price and relevant historical data. The chart remains fully responsive, maintaining clarity across different devices, and it's ready for integration of additional technical indicators in the future.",
-        "This update ensures that users can quickly understand critical support areas on the Bitcoin chart and make more informed decisions.",
+        (t("Chart.updateDescription1")),
+        (t("Chart.updateDescription2")),
+        (t("Chart.updateDescription3")),
       ],
     },
   ]);
@@ -88,7 +89,8 @@ const AskAI = () => {
             fontWeight={600}
             color="text.primary"
           >
-            Ask AI
+            {t("Chart.askAi")}
+
           </Typography>
           <img src={aiIcon} alt="ai" />
         </Box>
@@ -118,10 +120,10 @@ const AskAI = () => {
                   msg.status === "success"
                     ? "#4CAF50"
                     : msg.status === "info"
-                    ? "#2196F3"
-                    : msg.status === "error"
-                    ? "#F44336"
-                    : "#4CAF50"
+                      ? "#2196F3"
+                      : msg.status === "error"
+                        ? "#F44336"
+                        : "#4CAF50"
                 }
                 fontSize="12px"
                 fontWeight={600}
@@ -177,7 +179,7 @@ const AskAI = () => {
       <Box padding="12px 24px">
         <Box padding="6px 24px" border="1px solid #333333" borderRadius="12px">
           <CustomInput
-            placeholder="Ask AI about chart"
+            placeholder={t("Chart.askAIAboutChart")}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyPress={handleKeyPress}

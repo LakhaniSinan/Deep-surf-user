@@ -18,51 +18,12 @@ import SettingsActiveIcon from "../../assets/icons/settings-active.svg";
 import NotificationActiveIcon from "../../assets/icons/notification-active.svg";
 import SubscriptionActiveIcon from "../../assets/icons/subscription-active.svg";
 import ReferralActiveIcon from "../../assets/icons/referral-active.svg";
-
 import ProfileInactiveIcon from "../../assets/icons/person-active.svg";
 import SettingsInactiveIcon from "../../assets/icons/setting-inactive.svg";
 import NotificationInactiveIcon from "../../assets/icons/notification-inactive.svg";
 import SubscriptionInactiveIcon from "../../assets/icons/subcription-inactive.svg";
 import ReferralInactiveIcon from "../../assets/icons/referral-inactive.svg";
-
-const menuItems = [
-  {
-    name: "Profile information",
-    path: "/settings/profile-information",
-    activeIcon: ProfileActiveIcon,
-    inactiveIcon: ProfileInactiveIcon,
-  },
-  {
-    name: "Settings",
-    path: "/settings/website-settings",
-    activeIcon: SettingsActiveIcon,
-    inactiveIcon: SettingsInactiveIcon,
-  },
-  {
-    name: "Notifications",
-    path: "/settings/notifications",
-    activeIcon: NotificationActiveIcon,
-    inactiveIcon: NotificationInactiveIcon,
-  },
-  {
-    name: "Subscription",
-    path: "/settings/subscription",
-    activeIcon: SubscriptionActiveIcon,
-    inactiveIcon: SubscriptionInactiveIcon,
-  },
-  {
-    name: "Referrals",
-    path: "/settings/referrals",
-    activeIcon: ReferralActiveIcon,
-    inactiveIcon: ReferralInactiveIcon,
-  },
-  {
-    name: "Faq",
-    path: "/settings/faq",
-    activeIcon: ReferralActiveIcon,
-    inactiveIcon: ReferralInactiveIcon,
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const SettingTabs = ({ children }) => {
   const theme = useTheme();
@@ -70,13 +31,49 @@ const SettingTabs = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
-
+  const { t } = useTranslation();
   const drawerWidth = 220;
-
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
+  const menuItems = [
+    {
+      name: (t("SettingsTab.profileInformation")),
+      path: "/settings/profile-information",
+      activeIcon: ProfileActiveIcon,
+      inactiveIcon: ProfileInactiveIcon,
+    },
+    {
+      name: (t("SettingsTab.setting")),
+      path: "/settings/website-settings",
+      activeIcon: SettingsActiveIcon,
+      inactiveIcon: SettingsInactiveIcon,
+    },
+    {
+      name: (t("SettingsTab.notifications")),
+      path: "/settings/notifications",
+      activeIcon: NotificationActiveIcon,
+      inactiveIcon: NotificationInactiveIcon,
+    },
+    {
+      name: (t("SettingsTab.subscription")),
+      path: "/settings/subscription",
+      activeIcon: SubscriptionActiveIcon,
+      inactiveIcon: SubscriptionInactiveIcon,
+    },
+    {
+      name: (t("SettingsTab.referrals")),
+      path: "/settings/referrals",
+      activeIcon: ReferralActiveIcon,
+      inactiveIcon: ReferralInactiveIcon,
+    },
+    {
+      name: (t("SettingsTab.faq")),
+      path: "/settings/faq",
+      activeIcon: ReferralActiveIcon,
+      inactiveIcon: ReferralInactiveIcon,
+    },
+  ];
   const renderList = () => (
     <Box
       sx={{

@@ -1,19 +1,20 @@
 import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import theme from "../../theme";
 import Header from "../../components/header";
-
+import { useTranslation } from "react-i18next";
 import { styles } from "./style";
 import CustomInput from "../../components/customInput";
 import CustomButton from '../../components/customButton/index'
 
 const Journal = () => {
+  const { t } = useTranslation();
   return (
     <Box sx={styles.pageRoot}>
       <Header />
       <Container maxWidth="lg">
         <Box my={5}>
           <Typography variant="h1" color={theme.palette.text.primary} fontSize={"35px"}>
-            Journal
+            {t("journal.heading")}
           </Typography>
         </Box>
 
@@ -21,10 +22,10 @@ const Journal = () => {
 
           <Box>
             <Typography variant="h5" color={"neutral.Snowwhite"}>
-              My Coins & Alerts
+              {t("journal.myCoinsAlerts")}
             </Typography>
             <Typography variant="body2" color={theme.palette.text.secondary}>
-              Alerts work in real-time via WebSocket! Get instant notifications when conditions are met.
+              {t("journal.myCoinsAlertHeading")}
             </Typography>
           </Box>
 
@@ -33,7 +34,7 @@ const Journal = () => {
             <Box sx={styles.formInner}>
               <Box sx={styles.formHeader}>
                 <Typography variant="h5" color={"neutral.Snowwhite"}>
-                  Add to Journal
+                  {t("journal.addToJournal")}
                 </Typography>
               </Box>
 
@@ -50,7 +51,7 @@ const Journal = () => {
               </Stack>
 
               <Button sx={styles.saveButton}>
-                Save Alert
+                {t("journal.saveAlert")}
               </Button>
 
 

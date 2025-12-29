@@ -17,7 +17,6 @@ const AddToWaitList = forwardRef((props, ref) => {
     const [formData, setFormData] = useState({
         email: "",
     });
-
     useImperativeHandle(ref, () => ({
         openDialog(params) {
             setDialogData(params);
@@ -31,7 +30,6 @@ const AddToWaitList = forwardRef((props, ref) => {
             handleClose();
         },
     }));
-
     const handleClose = () => {
         setOpen(false);
         setFormData({
@@ -40,11 +38,9 @@ const AddToWaitList = forwardRef((props, ref) => {
         });
         setDialogData(null);
     };
-
     const setField = (key, value) => {
         setFormData({ ...formData, [key]: value });
     };
-
     const handleAddToWaitList = async () => {
         try {
             setIsLoading(true);
@@ -64,14 +60,12 @@ const AddToWaitList = forwardRef((props, ref) => {
             setIsLoading(false);
         }
     };
-
     return (
         <DialogContainer onClose={handleClose} open={open}>
             <DialogHeader
                 title={dialogData?.type === "add" ? "Join To WaitList" : ""}
                 onClose={handleClose}
             />
-
             <DialogBody>
                 <Label title="Email" />
                 <CustomInput
@@ -82,7 +76,6 @@ const AddToWaitList = forwardRef((props, ref) => {
                     inputBgColor={"#000"}
                 />
             </DialogBody>
-
             <DialogActionButtons
                 onCancel={handleClose}
                 onConfirm={handleAddToWaitList}

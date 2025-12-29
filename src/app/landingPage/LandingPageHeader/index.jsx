@@ -46,20 +46,17 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation();
-
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [waitlistOpen, setWaitlistOpen] = useState(false);
   const [activeNav, setActiveNav] = useState("");
   const currentLang = (i18n.language || "en").split("-")[0];
   const selectedLang =
     languages.find((l) => l.code === currentLang) || languages[0];
-
   const navItems = [
     { label: t("header.language"), dropdown: true },
     { link: "", label: t("header.waitlist") },
     { link: "/login", label: t("header.login") },
   ];
-
   useEffect(() => {
     const activeItem = navItems.find((item) => item.link === location.pathname);
     setActiveNav(activeItem ? activeItem.label : "");

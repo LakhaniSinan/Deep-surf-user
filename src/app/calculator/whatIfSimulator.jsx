@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import ProgressSlider from "../../components/progressSlider";
+import { useTranslation } from "react-i18next";
 
 const WhatIfSimulator = () => {
+  const { t } = useTranslation();
+
   const [priceChange, setPriceChange] = useState(23.029);
   const basePrice = 100000;
 
@@ -56,7 +59,7 @@ const WhatIfSimulator = () => {
               color: "#FFFFFF",
             }}
           >
-            What-If Simulator
+            {t("Chart.whatIfSimulator")}
           </Typography>
           <Typography
             onClick={handleReset}
@@ -70,7 +73,7 @@ const WhatIfSimulator = () => {
               },
             }}
           >
-            Reset
+            {t("Chart.Reset")}
           </Typography>
         </Stack>
 
@@ -84,7 +87,7 @@ const WhatIfSimulator = () => {
               mb: 0.5,
             }}
           >
-            New Price
+            {t("Chart.newPrice")}
           </Typography>
           <Typography
             sx={{
@@ -124,7 +127,7 @@ const WhatIfSimulator = () => {
                   mb: 0.5,
                 }}
               >
-                PnL
+                {t("Chart.pnL")}
               </Typography>
               <Typography
                 sx={{
@@ -148,7 +151,7 @@ const WhatIfSimulator = () => {
                   mb: 0.5,
                 }}
               >
-                ROI
+                {t("Chart.roi")}
               </Typography>
               <Typography
                 sx={{
@@ -172,7 +175,7 @@ const WhatIfSimulator = () => {
                   mb: 0.5,
                 }}
               >
-                Liquidation
+                {t("Chart.liquidation")}
               </Typography>
               <Typography
                 sx={{
@@ -195,7 +198,7 @@ const WhatIfSimulator = () => {
                   mb: 0.5,
                 }}
               >
-                Distance
+                {t("Chart.distance")}
               </Typography>
               <Typography
                 sx={{
@@ -224,7 +227,7 @@ const WhatIfSimulator = () => {
               textAlign: "left",
             }}
           >
-            Margin is 279% of the deposit. High risk!
+            {t("Chart.Margin")}
           </Typography>
         </Box>
       </Stack>

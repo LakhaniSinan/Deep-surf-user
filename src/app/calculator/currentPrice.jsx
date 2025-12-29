@@ -1,10 +1,71 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import CalculatorResultCard from "../../components/calculatorResultCard";
-import { calculatorResultsData } from "./calculatorResults";
+// import { calculatorResultsData } from "./calculatorResults";
 import RiskCheck from "./riskCheck";
 import WhatIfSimulator from "./whatIfSimulator";
+import { useTranslation } from "react-i18next";
+
 
 const CurrentPrice = () => {
+  const { t } = useTranslation();
+  const data = [
+    {
+      id: 1,
+      items: [
+        {
+          label: (t("Chart.pair")),
+          value: "BTC/USDT",
+        },
+        {
+          label:  (t("Chart.entryStopTake")),
+          value: "0.5000 / -1.0000 / 5.0000",
+        },
+        {
+          label: "ATR (1h,14)",
+          value: "1",
+        },
+      ],
+    },
+    {
+      id: 2,
+      items: [
+        {
+          label: (t("Chart.positionSize")),
+          value: "13",
+        },
+        {
+          label: (t("Chart.mominalPositions")),
+          value: "$6.50",
+        },
+      ],
+    },
+    {
+      id: 3,
+      items: [
+        {
+          label: (t("Chart.margin")),
+          value: "$0.33",
+        },
+        {
+          label:(t("Chart.RiskIn")),
+          value: "$20.00",
+        },
+      ],
+    },
+    {
+      id: 4,
+      items: [
+        {
+          label: (t("Chart.expectedProfit")),
+          value: "$58.46",
+        },
+        {
+          label: "R:R",
+          value: "3.00:1",
+        },
+      ],
+    },
+  ]
   return (
     <Stack
       spacing={3}
@@ -28,7 +89,7 @@ const CurrentPrice = () => {
               fontSize={12}
               sx={{ color: "#C7C7C7", mb: 0.5 }}
             >
-              Current Price
+              {t("Chart.currentPrice")}
             </Typography>
             <Typography
               sx={{
@@ -48,7 +109,7 @@ const CurrentPrice = () => {
               fontSize={12}
               sx={{ color: "#8F8F8F", mb: 0.5 }}
             >
-              Source
+              {t("Referrals.source")}
             </Typography>
             <Box
               sx={{
@@ -62,7 +123,7 @@ const CurrentPrice = () => {
                 mt: 1,
               }}
             >
-              Binance Futures
+              {t("Chart.binanceFutures")}
             </Box>
           </Box>
         </Stack>
@@ -70,7 +131,7 @@ const CurrentPrice = () => {
 
       {/* Calculator Results Grid */}
       <Grid container spacing={2}>
-        {calculatorResultsData.map((card) => (
+        {data.map((card) => (
           <Grid item size={{ xs: 12, sm: 6 }} key={card.id}>
             <CalculatorResultCard items={card.items} />
           </Grid>

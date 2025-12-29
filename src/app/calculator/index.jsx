@@ -2,12 +2,16 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import Header from "../../components/header";
 import CalculatorForm from "./calculatorForm";
 import CurrentPrice from "./currentPrice";
-
+import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
+import getCalculator from "../../services/modules/calculator";
+import { toast } from "react-toastify";
 const Calculator = () => {
+  const { t } = useTranslation();
   return (
     <Box>
       <Header />
-      <Container maxWidth="lg" sx={{ py: 5 }}>
+      <Container maxWidth="lg" sx={{ pt: 0 }}>
         <Box my={5}>
           <Typography
             variant="h1"
@@ -15,7 +19,7 @@ const Calculator = () => {
             fontWeight={600}
             color={"text.primary"}
           >
-            Calculator
+            {t("Calculator.calculatorTitle")}
           </Typography>
         </Box>
 

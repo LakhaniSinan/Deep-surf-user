@@ -14,7 +14,7 @@ import MacroeconomicsSkeleton from "../../components/skeleton/marketOutLookSkele
 import CryptocurrencyEventsSkeleton from "../../components/skeleton/marketOutLookSkeleton/cryptocurrencyEvent";
 import TradingSkeleton from "../../components/skeleton/marketOutLookSkeleton/trading";
 import MarkDataMetricSkeleton from "../../components/skeleton/marketOutLookSkeleton/marketAnanlysis";
-
+import { useTranslation } from "react-i18next";
 const MarketOutLook = () => {
   const [marketOutLook, setMarketOutLook] = useState(null);
   const [macroData, setMacroData] = useState(null);
@@ -28,7 +28,7 @@ const MarketOutLook = () => {
   const [overallSentiment, setOverallSentiment] = useState([]);
   const [dayOfWeek, setDayOfWeek] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
+  const { t } = useTranslation();
   const getMarketOutData = async () => {
     try {
       setIsLoading(true);
@@ -63,7 +63,7 @@ const MarketOutLook = () => {
       <Header />
       <Container maxWidth="lg" sx={{ paddingTop: "30px", color: "white" }}>
         <Typography variant="h1" fontSize="30px" fontWeight={600}>
-          Market Outlook
+         {t("MarketOutlook.marketOutLookTitle")}
         </Typography>
 
         {/* Loading Skeleton */}

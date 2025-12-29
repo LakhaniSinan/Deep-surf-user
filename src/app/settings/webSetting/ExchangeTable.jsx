@@ -1,12 +1,14 @@
 import PaginatedTable from "../../../components/dynamicTable";
-
+import { useTranslation } from "react-i18next";
 const ExchangeTable = ({ rows = [], onCopy, onDelete }) => {
+  const { t } = useTranslation();
+
   const tableHeader = [
-    { id: "exchange", label: "Exchanges", align: "left" },
-    { id: "apiKey", label: "API Keys", align: "left" },
-    { id: "added", label: "Added", align: "center" },
-    { id: "status", label: "Status", align: "center" },
-    { id: "action", label: "Action", align: "center" },
+    { id: "exchange", label: (t("setting.Exchanges")), align: "left" },
+    { id: "apiKey", label: (t("setting.aPIkeys")), align: "left" },
+    { id: "added", label: (t("setting.added")), align: "center" },
+    { id: "status", label: (t("setting.status")), align: "center" },
+    { id: "action", label: (t("setting.status")), align: "center" },
   ];
 
   const displayRows = ["exchange", "apiKey", "added", "status", "action"];

@@ -20,6 +20,8 @@ import PlusIcon from "../../assets/icons/plus.svg";
 import RelaodIcon from "../../assets/icons/relaod-Icon.svg";
 import Speedometer from "../../components/speedMeter";
 import { color } from "d3";
+import { useTranslation } from "react-i18next";
+
 
 const Home = () => {
   const [homeResponse, setHomeResponse] = useState(null);
@@ -29,6 +31,9 @@ const Home = () => {
   const [sentiment, setSentiment] = useState(null);
   const [macroData, setMacroData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { t  , i18n} = useTranslation();
+  console.log("ffrfrfrfrfrf" , i18n.language);
+  
   const { user } = useAuthStore();
   const username = user?.username || user?.name;
   const fetchHomeData = async () => {
@@ -68,16 +73,17 @@ const Home = () => {
       id: 1,
       icon: "ETH",
       iconSrc: ETHEREUM?.logo,
-      title: "Ethereum",
+      title: t("dashboard.ethereum"),
       subtitle: "ETH/USDT",
       price: ETHEREUM?.priceFormatted,
       percent: ETHEREUM?.change24h,
     },
+
     {
       id: 2,
       icon: "BTC",
       iconSrc: BITCOIN?.logo,
-      title: "Bitcoin",
+      title: t("dashboard.bitcoin"),
       subtitle: "BTC/USDT",
       price: BITCOIN?.priceFormatted,
       percent: BITCOIN?.change24h,
@@ -105,11 +111,13 @@ const Home = () => {
               color="text.primary"
               fontFamily="Inter Tight"
             >
-              Welcome back, {" "}
+              {t("dashboard.wellcomeBack")},{" "}
               <span style={{ color: "#FF6421", fontFamily: "Inter Tight", fontSize: "30px" }}>
                 {username}
               </span>
             </Typography>
+
+
           </Box>
 
 
@@ -120,7 +128,7 @@ const Home = () => {
             <Box display={"flex"} alignItems={"center"}>
               <CustomButton
                 variant="calculatorSmall"
-                title="Add tools"
+                title={t("dashboard.addTools")}
                 icon={<img src={PlusIcon} />}
               // sx={{
               //   fontSize: "13px",
@@ -176,12 +184,12 @@ const Home = () => {
                       padding={"8px"}
 
                     >
-                      <Box mt={3} >
-                        <Typography color="#fff" fontSize={"10px"} lineHeight={0.8}>
-                          Overall Sentiment
+                      <Box mt={2} >
+                        <Typography color="#fff" fontSize={"15px"} lineHeight={0.8} fontWeight={400}>
+                          {t("dashboard.overallSentiment")}
                         </Typography>
-                        <Typography color="text.yellowColor" fontSize={"23px"} fontWeight={550}>
-                          Neutral
+                        <Typography mt={0.5} color="text.yellowColor" fontSize={"14px"} fontWeight={500}>
+                          {sentiment?.label || t("dashboard.neutral")}
                         </Typography>
 
                         <Box mt={"8px"}>

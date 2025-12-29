@@ -5,6 +5,7 @@ import AddEditNewClientDialog from "./withdrawRequest";
 import { transactionHistory } from "../../../services/modules/refferal";
 import { toast } from "react-toastify";
 import PaginatedTable from "../../../components/dynamicTable";
+import { t } from "i18next";
 
 const TransactionHistory = () => {
     const allNewClienttEditRef = useRef();
@@ -14,14 +15,14 @@ const TransactionHistory = () => {
     const [transactionPage, setTransactionPage] = useState(1);
     const [transactionLimit, setTransactionLimit] = useState(5);
     const billingHistoryHeaders = [
-        { id: "id", label: "ID", align: "left" },
-        { id: "requestDate", label: "Request Date", align: "right" },
-        { id: "batchNo", label: "Batch No", align: "right" },
-        { id: "amount", label: "Amount", align: "right" },
-        { id: "accountDetails", label: "Account Details", align: "right" },
-        { id: "currency", label: "Currency", align: "right" },
-        { id: "status", label: "Status", align: "right" },
-        { id: "action", label: "Action", align: "right" },
+        { id: "id", label: (t("Referrals.id")), align: "left" },
+        { id: "requestDate", label: (t("Referrals.requestdate")), align: "right" },
+        { id: "batchNo", label: (t("Referrals.batchno")), align: "right" },
+        { id: "amount", label: (t("Subscription.amount")), align: "right" },
+        { id: "accountDetails", label: (t("Referrals.account")), align: "right" },
+        { id: "currency", label: (t("setting.currency")), align: "right" },
+        { id: "status", label: (t("setting.status")), align: "right" },
+        { id: "action", label: (t("setting.action")), align: "right" },
     ];
 
     const fetchTransactionData = async () => {
@@ -52,7 +53,7 @@ const TransactionHistory = () => {
         <Box bgcolor={"rgba(22, 22, 22, 1)"} borderRadius={"15px"} p={2} mt={1}>
             <Box display={"flex"} justifyContent={"flex-end"} mb={2}>
                 <CustomButton
-                    title="Request Withdraw"
+                    title={t("Referrals.requestwithdraw")}
                     onClick={() => allNewClienttEditRef.current?.openDialog({ type: "add" })}
                     sx={{ backgroundColor: "neutral.vermilionOrange", borderRadius: "20px", fontSize: "15px" }}
                 />
@@ -61,7 +62,7 @@ const TransactionHistory = () => {
             <PaginatedTable
                 tableHeader={billingHistoryHeaders}
                 tableData={transactionData}
-                displayRows={["id", "requestDate", "batchNo", "amount", "account", "currency", "status", "action"]}
+                displayRows={["id", "requestDate", "batchNo", "amount", "walletAddress", "currency", "status", "action"]}
                 isLoading={isLoading}
                 showPagination={false}
             />

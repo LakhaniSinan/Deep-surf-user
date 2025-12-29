@@ -4,12 +4,9 @@ import BtcIcon from "../../assets/icons/bitcoin-logo.svg";
 import EthIcon from "../../assets/icons/eth-icon.svg";
 import SolanaIcon from "../../assets/icons/solana-sol-icon.svg";
 import AttentionIcon from "../../assets/icons/effects.svg";
-
-import StarIcon from "../../assets/icons/stairs.svg";
-
+import { useTranslation } from "react-i18next";
 const Trading = ({ tradingData }) => {
-  // console.log("efygefegyuhfefbejnfe", tradingData?.longSetups[0]?.asset);
-
+  const { t } = useTranslation();
   const data = [
     {
       icon: BtcIcon,
@@ -60,12 +57,12 @@ const Trading = ({ tradingData }) => {
         mt="20px"
       >
         <Typography variant="h4" fontSize={"25px"} fontWeight={600}>
-          Trading recommendations for today
+          {t("MarketOutlook.TradingRecommendations.tradingRecommendationsToday")}
         </Typography>
         <Grid container spacing={2} mt={2}>
           <Grid item size={{ xs: 12, md: 6 }}>
             <Box bgcolor={"rgba(28, 28, 28, 1)"} p={2} borderRadius={"20px"}>
-              <Typography color="#3EDD87" fontWeight={550}>LONG setups</Typography>
+              <Typography color="#3EDD87" fontWeight={550}>{t("MarketOutlook.TradingRecommendations.longSetupsTitle")}</Typography>
               <Box display={"flex"} gap={"3px"} mt={1}>
                 <Box fontSize={"13px"} color="neutral.Snowwhite" fontWeight={500} fontFamily={"Inter Tight"}>{tradingData?.longSetups?.[0]?.asset}: {tradingData?.longSetups?.[0]?.description}
                 </Box>
@@ -82,7 +79,7 @@ const Trading = ({ tradingData }) => {
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
             <Box bgcolor={"#1C1C1C"} p={2} borderRadius={"20px"}>
-              <Typography color="#FF4C4C">SHORT setups</Typography>
+              <Typography color="#FF4C4C">{t("MarketOutlook.TradingRecommendations.shortSetupsTitle")}</Typography>
               <Box display={"flex"} gap={"3px"} mt={1} flexWrap={"nowrap"}>
                 <Box fontSize={"13px"} fontFamily={"Inter Tight"} >{tradingData?.longSetups?.[0]?.asset} : {tradingData?.longSetups?.[0]?.description}</Box>
               </Box>
@@ -100,7 +97,7 @@ const Trading = ({ tradingData }) => {
             <Grid item size={{ xs: 12, sm: 12, md: 2.6 }}>
               <CustomButton
                 variant={"body1"}
-                title="Risk management"
+                title={t("MarketOutlook.TradingRecommendations.riskManagementTitle")}
                 icon={<img src={AttentionIcon} />}
                 sx={{
                   borderRadius: "20px",
@@ -121,7 +118,7 @@ const Trading = ({ tradingData }) => {
           </Grid>
         </Box>
         <Typography mt="20px" fontFamily={'inter Tight'} color="neutral.Snowwhite" variant="h5" fontSize="25px" fontWeight={600}>
-          Key levels
+          {t("MarketOutlook.TradingRecommendations.keyLevelsTitle")}
         </Typography>
         <Box sx={{ color: "#fff", marginTop: "20px" }}>
           <Grid container spacing={2}>
@@ -149,7 +146,7 @@ const Trading = ({ tradingData }) => {
                         fontSize="13px"
                         sx={{ color: "neutral.lightgray", mb: 1, fontWeight: 590, fontSize: "15px" }}
                       >
-                        Resistance areas
+                        {t("MarketOutlook.TradingRecommendations.resistanceAreasTitle")}
                       </Typography>
                       {item.resistance.map((lvl, i) => (
                         <Typography key={i} fontSize="18px" fontFamily={"inter Tight"} fontWeight={600} color="neutral.Snowwhite">
@@ -163,7 +160,7 @@ const Trading = ({ tradingData }) => {
                         fontSize="13px"
                         sx={{ color: "neutral.lightgray", mb: 1, fontWeight: 590, fontSize: "15px" }}
                       >
-                        Support areas
+                         {t("MarketOutlook.TradingRecommendations.supportAreasTitle")}
                       </Typography>
                       {item.support.map((lvl, i) => (
                         <Typography key={i} fontSize="18px" fontFamily={"inter Tight"} fontWeight={600} color="neutral.Snowwhite">
@@ -181,7 +178,7 @@ const Trading = ({ tradingData }) => {
           <Grid container spacing={1}>
             <Grid item size={{ xs: 12, sm: 12, md: 2 }}>
               <CustomButton
-                title="Al's Verdict"
+                title={t("MarketOutlook.TradingRecommendations.alsVerdictTitle")}
                 icon={<img src={AttentionIcon} color="#fff" />}
                 sx={{
                   borderRadius: "20px",
@@ -189,8 +186,8 @@ const Trading = ({ tradingData }) => {
                   backgroundColor: "#FF6421",
                   color: "neutral.Snowwhite",
                   px: "30px",
-                  fontSize : "15px",
-                  fontWeight : 400
+                  fontSize: "15px",
+                  fontWeight: 400
                   // marginTop: "5px",
                 }}
               />

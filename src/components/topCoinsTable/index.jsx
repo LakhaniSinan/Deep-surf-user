@@ -11,6 +11,7 @@ import {
 import theme from "../../theme";
 import Sparkline from "./Sparkline";
 import TopCardSkeleton from "../../components/skeleton/topCoinCardSkeleton";
+import { t } from "i18next";
 
 const TopCoinsTable = ({ data, isLoading }) => {
   console.log("TopCoinsTableData:", data);
@@ -36,7 +37,7 @@ const TopCoinsTable = ({ data, isLoading }) => {
         mb={3}
         fontFamily="Inter Tight"
       >
-        Top coins
+        {t("dashboard.topCoins.title")}
       </Typography>
 
       {isLoading ? (
