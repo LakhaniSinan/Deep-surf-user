@@ -16,18 +16,20 @@ import IconImage from "../../assets/icons/vector.svg";
 import { useTranslation } from "react-i18next";
 const ProAnalysis = () => {
   const [ticker, setTicker] = useState("");
-  const [coinData, setCoinData] = useState(null);
-  console.log("coindata" . coinData);
-  
-  const { t } = useTranslation();
-  const [isLoading, setIsLoading] = useState(false);
+  console.log("ffrfffrfrf", ticker);
 
+  console.log("uehuehfejfefe", ticker);
+
+  const [coinData, setCoinData] = useState(null);
+  const { t, i18n } = useTranslation();
+  const [isLoading, setIsLoading] = useState(false);
+  const language = i18n.language || "en";
   const getProAnanlsisData = async () => {
     if (!ticker) return toast.error("Please enter coin symbol");
     try {
       setIsLoading(true);
       setCoinData(null);
-      const res = await proAnylysisData(ticker);
+      const res = await proAnylysisData({ ticker, language });
       if (res?.data?.status === "success") {
         const data = res?.data?.data;
         setCoinData(data);
@@ -92,10 +94,6 @@ const ProAnalysis = () => {
             onKeyPress={(e) => e.key === "Enter" && !isLoading && getProAnanlsisData()}
             sx={{ marginTop: "15px", marginBottom: "20px" }}
           />
-
-
-
-
         </Box>
         {isLoading ? (
           <MTFSectionSkeleton />

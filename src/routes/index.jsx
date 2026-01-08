@@ -19,6 +19,9 @@ import UserProfile from "../app/auth/profile";
 import TermAndCondition from "../app/termsAndConditions";
 import MyLoginPage from "../app/auth/login/myLoginPage";
 import Notification from "../app/notification";
+import EditJournal from "../app/journal/editjournal";
+import SaveAlert from "../app/journal/saveAlert";
+import CoinAlert from "../app/journal/journal";
 
 const AUTH_ROUTES = [
 
@@ -39,7 +42,7 @@ const AUTH_ROUTES = [
   {
     id: 1,
     name: "myLoginPag",
-    path: "/my-login-page-url",
+    path: "/my-login",
     component: <MyLoginPage />,
   },
 
@@ -153,6 +156,25 @@ const APP_Route = [
     component: <Notification />,
     exact: "exact",
     path: "/notification",
+  },
+  {
+    id: 11,
+    name: "EditJournal",
+    component: <EditJournal />,
+    path: "/edit/:id",
+  }
+  ,
+  {
+    id: 12,
+    name: "SaveAlert",
+    component: <SaveAlert />,
+    path: "/save-alert",
+  },
+  {
+    id: 13,
+    name: "CoinAlert",
+    component: <CoinAlert />,
+    path: "/coin-alert",
   },
 ];
 

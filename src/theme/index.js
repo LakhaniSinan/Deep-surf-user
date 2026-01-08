@@ -40,6 +40,10 @@ const theme = createTheme({
       brightYellow: "rgba(255, 230, 0, 1)",
       richblack: "rgba(16, 16, 16, 1)",
       grey: "#aaa",
+      primaryGreen: "rgba(2, 193, 115, 1)",
+      dangerRed: "rgba(225, 26, 56, 1)",
+      amber: "rgba(255, 230, 0, 1)",
+      mutedGrey: "rgba(102, 102, 102, 1)",
     },
     background: {
       default: "#101010",
@@ -55,6 +59,7 @@ const theme = createTheme({
       PeachGradient:
         "linear-gradient(90deg, rgba(255,103,22,0.18) 0%, rgba(255,160,84,0.10) 100%)",
       backgroundColor: "linear-gradient(90deg, #FF1A00, #FF6C03, #FFA305)",
+      charcoal: "rgba(22, 22, 22, 1)",
     },
     text: {
       primary: "#ffff",
@@ -76,6 +81,7 @@ const theme = createTheme({
       DarkMaroon: "#391417",
       LightRed: "#FF6C82",
       mediumGrey: "#747474",
+      bluishGray: "rgba(102, 106, 122, 1)",
     },
     gradients: {
       drawer:

@@ -10,6 +10,8 @@ const cardStyle = {
   color: "white",
 };
 const Coin = ({ data, overallSentimentData, dayOfWeek }) => {
+  console.log("huuuuuurgrgrgrgrgssssssssssssss", overallSentimentData?.score);
+
   const { t } = useTranslation();
   return (
     <Box sx={{ background: "#000", marginTop: "25px" }}>
@@ -116,8 +118,8 @@ const Coin = ({ data, overallSentimentData, dayOfWeek }) => {
                   <Typography
                     sx={{
                       color: coin.change24hFormatted.includes("-")
-                        ? "#ef4444"
-                        : "green",
+                        ? "neutral.dangerRed"
+                        : "neutral.primaryGreen",
                       fontSize: "15px",
                       fontFamily: "inter Tight"
                     }}
@@ -143,16 +145,16 @@ const Coin = ({ data, overallSentimentData, dayOfWeek }) => {
             }}
           >
             <Box sx={{ textAlign: "center" }}>
-              <Typography variant="h6">{t("MarketOutlook.overallSentimentTitle")}</Typography>
-              <Typography sx={{ color: "#d8d800" }}>
+              <Typography variant="h6" fontWeight={400}>{t("MarketOutlook.overallSentimentTitle")}</Typography>
+              <Typography color="neutral.amber" fontWeight={600} fontSize={"17px"}>
                 {overallSentimentData?.label}
               </Typography>
             </Box>
             <Box display={"flex"} justifyContent={"center"}>
               <Speedometer
-                percentage={30}
+                // percentage={30}
                 size={50}
-                maxValue={overallSentimentData?.score}
+                score={overallSentimentData?.score}
               />
             </Box>
           </Paper>

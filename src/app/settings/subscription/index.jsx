@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 const Subscription = () => {
   const { t } = useTranslation();
   const billingHistoryHeaders = [
-    { id: "date", label: (t("setting.date")), align: "left" },
+    { id: "date", label: "Date", align: "left" },
     { id: "details", label: (t("Subscription.details")), align: "left" },
     { id: "amount", label: (t("Subscription.amount")), align: "right" },
     { id: "status", label: t("Subscription.status"), align: "right" },
@@ -52,8 +52,8 @@ const Subscription = () => {
       <Stack spacing={2}>
         <Typography
           variant="labelMd"
-          fontSize="14px"
-          sx={{ color: "#C7C7C7" }}
+          fontSize="18px"
+          sx={{ color: "rgba(163, 163, 165, 1)" }}
         >
           {t("Subscription.billingHistory")}
         </Typography>

@@ -43,7 +43,7 @@ const HeatMap = ({ data }) => {
           fontSize: "14px",
         }}
       >
-        {t("ProAnalytics.HeatMapVolume.topCoinsDescription")}
+        {/* {t("ProAnalytics.HeatMapVolume.topCoinsDescription")} */}
       </Typography>
 
       {/* 🔹 Buttons */}

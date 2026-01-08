@@ -67,7 +67,6 @@ const Macroeconomics = ({ data }) => {
               borderRadius={"20px"}
             >
               <CustomButton
-                variant="gradient"
                 title={t("MarketOutlook.Macroeconomics.aiAnalysisTitle")}
                 icon={<img src={StarIcon} style={{ width: 20, height: 20 }} />}
                 sx={{

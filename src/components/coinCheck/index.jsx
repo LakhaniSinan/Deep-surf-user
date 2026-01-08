@@ -40,7 +40,8 @@ const CoinCheck = () => {
     try {
       setCoinData(null);
       setIsLoading(true);
-      const response = await getCoinQuickCheck(ticker);
+      const language = i18n.language || "en";
+      const response = await getCoinQuickCheck({ticker, language });
       if (response?.data?.status === "success") {
         const data = response.data.data;
         setCoinData(data);
@@ -105,7 +106,7 @@ const CoinCheck = () => {
         {coinData && (
           <Box mt={2}>
             <Typography color="#fff">
-              Analysis: {coinData?.aiAnalysis}
+              {t("dashboard.analysis")}: {coinData?.aiAnalysis}
             </Typography>
           </Box>
         )}

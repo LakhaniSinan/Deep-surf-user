@@ -144,12 +144,13 @@
     "bitcoin": "Bitcoin",
     "overallSentiment": "Overall Sentiment",
     "neutral": "Neutral",
+    "analysis": "Analysis",
     "macroEconomic": {
       "notFound": "Not Found",
       "title": "Macroeconomics"
     },
     "topCoins": {
-      "title": "Top Coins by AI Sentiment"
+      "title": "Top Coins"
     },
     "topCoinByVolume": {
       "notFound": "Not Found",
@@ -191,7 +192,8 @@
       "resistance": "Resistance"
     },
     "Indicator": {
-      "indicatorTitle": "Indicator Analysis"
+      "indicatorTitle": "ICT Liquidity Levels ",
+      "indicatorsHeading": "Indicator Analysis"
     },
     "MarketIntelligence": {
       "enhancedMarketIntelligence": "Enhanced Market Intelligence",
@@ -335,7 +337,7 @@
     "Leverage": "Leverage (x)",
     "Margin$": "Margin $",
     "exportCSV": "Export CSV",
-    "exportJSON": "Exportar JSON",
+    "exportJSON": "Export JSON",
     "newPrice": "New Price",
     "Reset": "Reset",
     "pnL": "PnL",

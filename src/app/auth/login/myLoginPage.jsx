@@ -174,7 +174,7 @@ const MyLoginPage = () => {
                         width="100%"
                         sx={{ backgroundColor: "#FF6421" }}
                         handleClickBtn={handleLogin}
-                        loading={isLoading}
+                        loader={false}
                     />
                 </Box>
 

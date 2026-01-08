@@ -231,7 +231,7 @@ function SignUp() {
             style={{ objectFit: "contain" }}
           />
         </Box> */}
-        {/* <Box mt={1} textAlign="center">
+        <Box mt={1} textAlign="center">
           <Typography variant="body2" color={theme.palette.text.secondary}>
             {t("auth.signUp.alreadyHaveAccount")}{" "}
             <span
@@ -241,7 +241,7 @@ function SignUp() {
               {t("auth.signUp.login")}
             </span>
           </Typography>
-        </Box> */}
+        </Box>
       </Container>
     </AuthLayout>
   );

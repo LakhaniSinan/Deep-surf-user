@@ -8,17 +8,17 @@ const CryptocurrencyEvents = ({ data, data2, data3 }) => {
   const marketData = [
     {
       title: data?.event_0?.scenarios?.bearish?.label,
-      titleColor: data?.event_0?.scenarios?.bearish?.color,
+      titleColor: "neutral.brightRed",
       description: data?.event_0?.scenarios?.bearish?.description,
     },
     {
       title: data?.event_0?.scenarios?.neutral?.label,
-      titleColor: data?.event_0?.scenarios?.neutral?.color,
+      titleColor: "neutral.brightYellow",
       description: data?.event_0?.scenarios?.neutral?.description,
     },
     {
       title: data?.event_0?.scenarios?.bullish?.label,
-      titleColor: data?.event_0?.scenarios?.bullish?.color,
+      titleColor: "neutral.brightGreen",
       description: data?.event_0?.scenarios?.bullish?.description,
     },
   ];
@@ -38,10 +38,10 @@ const CryptocurrencyEvents = ({ data, data2, data3 }) => {
       icon: EthIcon,
     },
     {
-      title:  t("MarketOutlook.CryptocurrencyEvents.trendTitle"),
+      title: t("MarketOutlook.CryptocurrencyEvents.trendTitle"),
       value: data2.trendAnalysis,
       text: "",
-      icon: null, // No icon
+      icon: null,
     },
   ];
   return (
@@ -73,11 +73,11 @@ const CryptocurrencyEvents = ({ data, data2, data3 }) => {
                   borderRadius: "30px",
                   height: "100%",
                   width: "100%",
-                  backgroundColor: "#1C1C1C",
+                  backgroundColor: "neutral.darkGrey",
                 }}
               >
                 <Typography
-                  sx={{ color: item.titleColor, fontWeight: 400, fontSize: "20px", fontFamily: "inter Tight" }}
+                  sx={{ color: item.titleColor, fontWeight: 500, fontSize: "20px", fontFamily: "inter Tight" }}
                   variant="body1"
                 >
                   {item.title}
@@ -109,7 +109,7 @@ const CryptocurrencyEvents = ({ data, data2, data3 }) => {
                 elevation={0}
                 sx={{
                   p: 1.5,
-                  backgroundColor: "rgba(28, 28, 28, 1)",
+                  backgroundColor: "neutral.darkGrey",
                   borderRadius: "20px",
                   height: "100%",
                   display: "flex",
@@ -124,13 +124,22 @@ const CryptocurrencyEvents = ({ data, data2, data3 }) => {
                     {item.title}
                   </Typography>
                 </Box>
-
                 <Box display="flex" gap="5px">
                   <Typography
-                    sx={{ color: data2?.btcETF?.priceChange24h.includes("-") ? "text.errorColor" : "text.greenColor", fontWeight: 500, fontSize: "13px" }}
+                    sx={{
+                      color:
+                        index === 2
+                          ? "neutral.brightGreen"
+                          : item.value?.includes("-")
+                            ? "neutral.brightRed"
+                            : "neutral.brightGreen",
+                      fontWeight: 500,
+                      fontSize: "13px",
+                    }}
                   >
                     {item.value}
                   </Typography>
+
                   {item.text && (
                     <Typography sx={{ fontSize: "13px", color: "neutral.Snowwhite" }}>
                       {item.text}
@@ -172,13 +181,13 @@ const CryptocurrencyEvents = ({ data, data2, data3 }) => {
       </Box>
       <Box mt="15px">
         <Typography variant="h6" fontSize={"14px"}>
-         {t("MarketOutlook.CryptocurrencyEvents.onChainSignalsTitle")}
+          {t("MarketOutlook.CryptocurrencyEvents.onChainSignalsTitle")}
         </Typography>
       </Box>
       <Grid container spacing={3} mt="12px">
         <Grid item size={{ xs: 12, md: 3 }}>
           <Typography variant="h5" fontSize="14px">
-             {t("MarketOutlook.CryptocurrencyEvents.exchangeNetflowTitle")}
+            {t("MarketOutlook.CryptocurrencyEvents.exchangeNetflowTitle")}
           </Typography>
           <Typography
             mt="10px"
@@ -194,7 +203,7 @@ const CryptocurrencyEvents = ({ data, data2, data3 }) => {
         </Grid>
         <Grid item size={{ xs: 12, md: 3 }}>
           <Typography variant="h5" fontSize="15px">
-           {t("MarketOutlook.CryptocurrencyEvents.longShortRatioTitle")}
+            {t("MarketOutlook.CryptocurrencyEvents.longShortRatioTitle")}
           </Typography>
           <Typography mt="10px" variant="body1" fontSize="15px">
             {data3?.longShortRatio?.value} <br />
@@ -215,7 +224,7 @@ const CryptocurrencyEvents = ({ data, data2, data3 }) => {
         </Grid>
         <Grid item size={{ xs: 12, md: 3 }}>
           <Typography variant="h5" fontSize="16px">
-           {t("MarketOutlook.CryptocurrencyEvents.openInterestTitle")}
+            {t("MarketOutlook.CryptocurrencyEvents.openInterestTitle")}
           </Typography>
           <Typography mt="10px" variant="body1" fontSize="15px">
             {data3?.openInterest?.value} <span>{data3?.openInterest?.description} </span>

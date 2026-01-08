@@ -8,10 +8,10 @@ const ExchangeTable = ({ rows = [], onCopy, onDelete }) => {
     { id: "apiKey", label: (t("setting.aPIkeys")), align: "left" },
     { id: "added", label: (t("setting.added")), align: "center" },
     { id: "status", label: (t("setting.status")), align: "center" },
-    { id: "action", label: (t("setting.status")), align: "center" },
+    { id: "Action", label: (t("setting.action")), align: "center" },
   ];
 
-  const displayRows = ["exchange", "apiKey", "added", "status", "action"];
+  const displayRows = ["exchange", "apiKey", "added", "status", "Action"];
 
   return (
     <PaginatedTable

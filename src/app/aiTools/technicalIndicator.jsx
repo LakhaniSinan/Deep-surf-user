@@ -76,81 +76,65 @@ const TechnicalIndicator = ({ coinData }) => {
           {t("AiTools.CommunitySentiment.communitySentimentHeading")}
         </Typography >
       </Box>
-      <Box display="flex" mt="30px" >
+      <Box
+        position="relative"
+        width="100%"
+        height="50px"
+        borderRadius="30px"
+        // bgcolor="#f0f0f0"
+        display="flex"
+        overflow="hidden"
+        mt={2}
+      >
+        {/* First box: longdataValue */}
         <Box
-          position="relative"
-          width="100%"
-          // border="2px solid #0B2015"
-          borderRadius="30px"
-          bodrer="none"
-        >
-          <LinearProgress
-            variant="determinate"
-            value={longdataValue}
-            sx={{
-              height: 50,
-              borderRadius: "30px",
-              backgroundColor: "transparent",
-              "& .MuiLinearProgress-bar": {
-                bgcolor: "#0B2015",
-                borderRadius: "30px",
-              },
+          width={`${longdataValue}%`}
+          height="100%"
+          bgcolor="#0B2015"
+          borderRadius="30px 0px 0px 30px" // Left corners rounded
+          transition="width 0.3s ease"
+        />
 
-              "& .MuiLinearProgress-root": {
-                display: "block",
-              },
-            }}
-          />
-          <Typography
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: `${longdataValue}%`,
-              transform: "translate(-50%, -50%)",
-              fontSize: "11px",
-              fontWeight: "bold",
-              color: "text.greenColor",
-              transition: "left 0.3s ease",
-            }}
-          >
-            {longdataValue}%
-          </Typography>
-        </Box>
+        {/* Second box: strDataValue */}
         <Box
-          position="relative"
-          width="100%"
-        // border="2px solid #391417"
-        // borderRadius="30px"
+          width={`${strDataValue}%`}
+          height="100%"
+          bgcolor="#8B0000"
+          borderRadius={`5px 50px 50px 5px`} 
+          transition="width 0.3s ease"
+        />
+
+        {/* First progress text */}
+        <Typography
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: `${longdataValue / 2}%`,
+            transform: "translate(-50%, -50%)",
+            fontSize: "11px",
+            fontWeight: "bold",
+            color: "green",
+          }}
         >
-          <LinearProgress
-            variant="determinate"
-            value={strDataValue}
-            sx={{
-              height: 50,
-              borderRadius: "30px",
-              backgroundColor: "transparent",
-              "& .MuiLinearProgress-bar": {
-                bgcolor: "text.DarkMaroon",
-                borderRadius: "30px",
-              },
-            }}
-          />
-          <Typography
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: `${strDataValue}%`, // 👉 Text follows progress
-              transform: "translate(-50%, -50%)",
-              fontSize: "11px",
-              fontWeight: "bold",
-              color: "#FF6666",
-              transition: "left 0.3s ease",
-            }}
-          >
-            {strDataValue}%
-          </Typography>
-        </Box>
+          {longdataValue}%
+        </Typography>
+
+        {/* Second progress text */}
+        <Typography
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: `${longdataValue + strDataValue / 2}%`,
+            transform: "translate(-50%, -50%)",
+            fontSize: "11px",
+            fontWeight: "bold",
+            color: "#FF6666",
+          }}
+        >
+          {strDataValue}%
+        </Typography>
       </Box>
+
 
       <Box sx={{ p: { xs: 0, md: 2 }, borderRadius: 2, marginTop: 2 }}>
         <Grid container spacing={2}>

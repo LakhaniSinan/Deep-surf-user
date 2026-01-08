@@ -8,7 +8,10 @@ import CustomButton from "../../components/customButton";
 import ReLoadIcon from "../../assets/icons/relaod-Icon.svg";
 import Speedometer from "../../components/speedMeter";
 import { useTranslation } from "react-i18next";
-const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
+import RelaodIcon from "../../assets/icons/relaod-Icon.svg";
+const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker }) => {
+  console.log("fgfyryfhruykfhaaaaaaaaaaaaaaaaaaaaaarjfrfrf", marketMetricesData?.fearGreedIndex?.value);
+
   const { t } = useTranslation();
   const cardStyle = {
     backgroundColor: "#1a1a1a",
@@ -140,6 +143,19 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
       value1: riskCalendar?.whalesTracker?.transactions[5]?.liquidation,
       value2: riskCalendar?.whalesTracker?.transactions[5]?.lastPositions,
     },
+    {
+      shortCode: riskCalendar?.whalesTracker?.transactions[2]?.address,
+      buttonTitle: riskCalendar?.whalesTracker?.transactions[2]?.actionType,
+      brought: riskCalendar?.whalesTracker?.transactions[2]?.actionText,
+      amount: riskCalendar?.whalesTracker?.transactions[2]?.value,
+      source: riskCalendar?.whalesTracker?.transactions[2]?.exchange,
+      time: riskCalendar?.whalesTracker?.transactions[2]?.timeAgo,
+      buttonColor: "#FF4C4C",
+      // Liquidation: "Liquidation",
+      // position: "Last 4 positions",
+      value1: riskCalendar?.whalesTracker?.transactions[5]?.liquidation,
+      value2: riskCalendar?.whalesTracker?.transactions[5]?.lastPositions,
+    },
   ];
 
   // Show loading state if no data
@@ -155,7 +171,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
           <Typography variant="h3" fontSize={"25px"} color="neutral.Snowwhite">
             Whales tracker
           </Typography>
-          <img src={ReLoadIcon} alt="" />
+          {/* <img src={ReLoadIcon} alt="" /> */}
         </Box>
 
         <Typography sx={{ mt: 2, color: "#8D8D8D" }}>
@@ -165,17 +181,31 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
     );
   }
 
+
+
   return (
     <>
       <Box
-        backgroundColor="#161616"
+        backgroundColor="background.charcoal"
         borderRadius="20px"
         padding="25px"
         mt="20px"
       >
-        <Typography variant="h5" fontSize="30px" fontWeight={600} fontFamily="inter Tight">
-         {t("MarketOutlook.MarketDataMetrics.marketDataMetricsTitle")}
-        </Typography>
+        <Box display={"flex"} justifyContent={"space-between"}>
+          <Box>
+            <Typography variant="h5" fontSize="30px" fontWeight={600} fontFamily="inter Tight">
+              {t("MarketOutlook.MarketDataMetrics.marketDataMetricsTitle")}
+            </Typography></Box>
+          <Box>
+            <img
+              src={RelaodIcon}
+              // onClick={handleReload}
+              style={{ cursor: "pointer", width: "25px", height: "25px" }}
+              width="20px"
+            />
+          </Box>
+        </Box>
+
         <Box mt="10px">
           <Grid container spacing={1}>
             <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
@@ -191,56 +221,16 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                     fontFamily: "inter Tight"
                   }}
                 >
-                 {t("MarketOutlook.MarketDataMetrics.fearGreedIndexTitle")}
+                  {t("MarketOutlook.MarketDataMetrics.fearGreedIndexTitle")}
                 </Typography>
-                <Typography variant="h6" textAlign="center" color="rgba(255, 230, 0, 1)" fontFamily="inter Tight" fontSize={"25px"}>
+                <Typography variant="h6" textAlign="center" color="neutral.brightYellow" fontFamily="inter Tight" fontSize={"25px"}>
                   {marketMetricesData?.fearGreedIndex?.sentiment}
                 </Typography>
-                {/* <Box
-                  sx={{
-                    width: 150,
-                    height: 70,
-                    background: "#222",
-                    borderRadius: "150px 150px 0 0",
-                    overflow: "hidden",
-                    margin: " 10px auto",
-                    position: "relative",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      width: "100%",
-                      height: "100%",
-                      background: "linear-gradient(90deg, red, yellow, green)",
-                      position: "absolute",
-                    }}
-                  />
-
-                  <Box
-                    sx={{
-                      width: 100,
-                      height: 50,
-                      background: "#111",
-                      borderRadius: "100px 100px 0 0",
-                      position: "absolute",
-                      bottom: 0,
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      fontSize: 26,
-                    }}
-                  >
-                    {marketMetricesData?.fearGreedIndex?.value}
-                  </Box>
-                </Box> */}
                 <Box textAlign={"center"} mt={"-15px"}>
                   <Speedometer
-                    percentage={30}
                     size={50}
+                    score={marketMetricesData?.fearGreedIndex?.value}
                   />
-
                 </Box>
               </Card>
             </Grid>
@@ -253,7 +243,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                   fontFamily={"inter Tight"}
                   color="neutral.Snowwhite"
                 >
-                   {t("MarketOutlook.MarketDataMetrics.btcDominanceTitle")}
+                  {t("MarketOutlook.MarketDataMetrics.btcDominanceTitle")}
                 </Typography>
                 <Box display="flex" gap="15px" alignItems={"center"}>
                   <Typography fontSize="30px" fontWeight={600} variant="h6" mt={2}>
@@ -281,7 +271,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                     color="neutral.Snowwhite"
                     fontSize={"15px"}
                   >
-                   {t("MarketOutlook.MarketDataMetrics.btc24hTitle")}
+                    {t("MarketOutlook.MarketDataMetrics.btc24hTitle")}
                   </Typography>
                 </Box>
                 <Typography
@@ -294,7 +284,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                 >
                   {marketMetricesData?.prices24h?.btc?.price}
                 </Typography>
-                <Typography sx={{ color: marketMetricesData?.prices24h?.btc?.change?.includes("-") ? "rgba(255, 76, 76, 1)" : "rgba(62, 221, 135, 1)", fontSize: "14px" }}>
+                <Typography sx={{ color: marketMetricesData?.prices24h?.btc?.change?.includes("-") ? "neutral.brightRed" : "neutral.brightGreen", fontSize: "14px" }}>
                   {marketMetricesData?.prices24h?.btc?.change}
                 </Typography>
               </Card>
@@ -312,7 +302,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                     color="neutral.Snowwhite"
                     fontSize={"15px"}
                   >
-                     {t("MarketOutlook.MarketDataMetrics.eth24hTitle")}
+                    {t("MarketOutlook.MarketDataMetrics.eth24hTitle")}
                   </Typography>
                 </Box>
                 <Typography
@@ -324,7 +314,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                 >
                   {marketMetricesData?.prices24h?.eth?.price}
                 </Typography>
-                <Typography sx={{ color: marketMetricesData?.prices24h?.btc?.change?.includes("-") ? "rgba(255, 76, 76, 1)" : "rgba(62, 221, 135, 1)", fontSize: "14px" }}>
+                <Typography sx={{ color: marketMetricesData?.prices24h?.btc?.change?.includes("-") ? "neutral.brightRed" : "neutral.brightGreen", fontSize: "14px" }}>
                   {marketMetricesData?.prices24h?.eth?.change}
                 </Typography>
               </Card>
@@ -342,7 +332,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                     color="neutral.Snowwhite"
                     fontSize={"15px"}
                   >
-                     {t("MarketOutlook.MarketDataMetrics.sol24hTitle")}
+                    {t("MarketOutlook.MarketDataMetrics.sol24hTitle")}
                   </Typography>
                 </Box>
                 <Typography
@@ -365,7 +355,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
           <Grid container spacing={3}>
             <Grid
               item
-              backgroundColor="#1C1C1C"
+              backgroundColor="neutral.darkGrey"
               padding="20px"
               borderRadius="10px"
               size={{ xs: 12, sm: 6 }}
@@ -432,7 +422,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                 <Typography variant="h2" fontFamily={"inter Tight"}
                   fontSize="23px" fontWeight={550} color="neutral.Snowwhite"
                 >
-                 {t("MarketOutlook.MarketDataMetrics.ethEtfFlowsTitle")}
+                  {t("MarketOutlook.MarketDataMetrics.ethEtfFlowsTitle")}
                 </Typography>
               </Box>
               <Box display="flex" justifyContent="space-around" mt={2}>
@@ -473,7 +463,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
         <Grid container spacing={2} marginTop="20px">
           <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
             <Typography fontSize={"18px"} fontFamily={"Inter Tight"} color="neutral.brightGreen">
-             {t("MarketOutlook.MarketDataMetrics.gainersTitle")}
+              {t("MarketOutlook.MarketDataMetrics.gainersTitle")}
             </Typography>
             {Gainers.map((item, index) => (
               <Grid item xs={12} md={6} key={index}>
@@ -625,8 +615,8 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                     borderRadius: "10px",
                     color: item.color,
                     backgroundColor: item.backgroundColor,
-                    borderRadius: "10px",
-                    px: "40px",
+                    borderRadius: "15px",
+                    px: "20px",
                     py: "0px",
                     minHeight: "40px",
 
@@ -669,8 +659,8 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                     borderRadius: "10px",
                     color: item.color,
                     backgroundColor: item.backgroundColor,
-                    borderRadius: "10px",
-                    px: "40px",
+                    borderRadius: "15px",
+                    px: "20px",
                     py: "0px",
                     minHeight: "40px",
                   }}
@@ -679,77 +669,78 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
             </Grid>
           ))}
         </Grid>
-        <Box backgroundColor="#161616" borderRadius={"20px"} p={2} mt={"10px"}>
-          <Box mt="10px" display="flex" justifyContent="space-between">
-            <Typography variant="h3" fontSize={"25px"} color="neutral.Snowwhite">
-              {t("MarketOutlook.MarketDataMetrics.whalesTrackerTitle")}
-            </Typography>
-            <img src={ReLoadIcon} alt="" />
-          </Box>
-          <Grid container spacing={2} mt="12px">
-            {data.map((item, index) => (
-              <Grid item size={{ xs: 12, sm: 6, md: 6 }} key={index}>
-                <Box
-                  sx={{
-                    bgcolor: "neutral.darkGrey",
-                    padding: "25px",
-                    borderRadius: "12px",
-                    color: "neutral.Snowwhite",
-                  }}
+      </Box>
+      <Box backgroundColor="background.charcoal" borderRadius={"20px"} p={3} mt={3}>
+        <Box mt="10px" display="flex" justifyContent="space-between">
+          <Typography variant="h3" fontSize={"25px"} color="neutral.Snowwhite">
+            {t("MarketOutlook.MarketDataMetrics.whalesTrackerTitle")}
+          </Typography>
+          <img src={ReLoadIcon} alt="" />
+        </Box>
+        <Grid container spacing={2} mt="12px">
+          {data.map((item, index) => (
+            <Grid item size={{ xs: 12, sm: 6, md: 6 }} key={index}>
+              <Box
+                sx={{
+                  bgcolor: "neutral.darkGrey",
+                  padding: "25px",
+                  borderRadius: "20px",
+                  color: "neutral.Snowwhite",
+                }}
+              >
+                <Grid
+                  container
+                  alignItems="center"
+                  justifyContent="space-between"
                 >
-                  <Grid
-                    container
-                    alignItems="center"
-                    justifyContent="space-between"
-                  >
-                    <Grid item >
-                      <Box display="flex" alignItems="center" gap={3}>
-                        <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
-                          {item.shortCode}
-                        </Typography>
-
-                        <CustomButton
-                          variant="h6"
-                          title={item.buttonTitle}
-                          sx={{
-                            backgroundColor: item.buttonColor,
-                            borderRadius: "10px",
-                            fontWeight: 600,
-                            fontSize: "10px",
-                            px: "30px",
-                            py: "0px",
-                            minHeight: "30px",
-
-                          }}
-                        />
-                      </Box>
-                    </Grid>
-                    <Grid item>
-                      <Typography sx={{ fontSize: "14px", color: "neutral.gray", fontWeight: 550 }}>
-                        {item.time}
+                  <Grid item >
+                    <Box display="flex" alignItems="center" gap={3}>
+                      <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+                        {item.shortCode}
                       </Typography>
-                    </Grid>
+
+                      <CustomButton
+                        variant="h6"
+                        title={item.buttonTitle}
+                        sx={{
+                          backgroundColor: item.buttonColor,
+                          borderRadius: "10px",
+                          fontWeight: 600,
+                          fontSize: "10px",
+                          px: "30px",
+                          py: "0px",
+                          minHeight: "30px",
+
+                        }}
+                      />
+                    </Box>
                   </Grid>
-                  <Box display={"flex"} gap={2} alignItems={"center"} mt={2}>
-                    <Box>
-                      <Typography sx={{ fontWeight: 600, fontSize: "15px" }}>
-                        {item.brought}
-
-                      </Typography>
-                    </Box>
-                    <Box>
-                      <Typography sx={{ fontSize: "12px", fontWeight: 600, color: "rgba(180, 180, 180, 1)" }}>
-                        {item.amount}
-                      </Typography>
-                    </Box>
-                  </Box>
-                  <Box display="flex" justifyContent="space-between">
-                    <Typography
-                      sx={{ fontSize: "15px", marginTop: "30px", color: "#FFF" }}
-                    >
-                      {item.source}
+                  <Grid item>
+                    <Typography sx={{ fontSize: "14px", color: "neutral.gray", fontWeight: 550 }}>
+                      {item.time}
                     </Typography>
-                    {/* <Box display="flex" gap="20px" mt="10px">
+                  </Grid>
+                </Grid>
+                <Box display={"flex"} gap={2} alignItems={"center"} mt={2}>
+                  <Box>
+                    <Typography sx={{ fontWeight: 600, fontSize: "15px" }}>
+                      {item.brought}
+
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <Typography sx={{ fontSize: "12px", fontWeight: 600, color: "rgba(180, 180, 180, 1)" }}>
+                      {item.amount}
+                    </Typography>
+                  </Box>
+                </Box>
+                <Box display="flex" justifyContent="space-between">
+                  <Typography
+                    sx={{ fontSize: "15px", marginTop: "30px", color: "#FFF" }}
+                  >
+                    {item.source}
+                  </Typography>
+                  {/* <Box display="flex" gap="20px" mt="10px">
                       <Box>
                         <Typography fontSize="12px" color="#B4B4B4">
                           {item.Liquidation}
@@ -767,12 +758,11 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar }) => {
                         </Typography>
                       </Box>
                     </Box> */}
-                  </Box>
                 </Box>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
       </Box>
     </>
   );

@@ -8,8 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-  "winbuild": "set GENERATE_SOURCEMAP=false && vite build"
-
+    "winbuild": "set GENERATE_SOURCEMAP=false && vite build"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -29,8 +28,10 @@
     "framer-motion": "^12.23.25",
     "i18next": "^25.7.2",
     "i18next-browser-languagedetector": "^8.2.0",
+    "lightweight-charts": "^5.1.0",
     "react": "^19.1.1",
     "react-chartjs-2": "^5.3.1",
+    "react-csv": "^2.2.2",
     "react-d3-speedometer": "^3.1.1",
     "react-dom": "^19.1.1",
     "react-i18next": "^16.5.0",

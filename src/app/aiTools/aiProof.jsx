@@ -10,17 +10,7 @@ import StarIcon from "../../assets/icons/stairs.svg";
 import { useTranslation } from "react-i18next";
 
 const AiProof = ({ coinData }) => {
-  console.log("wwwwwwwwwwwddddddddddddwwwwwwwwwwww", coinData?.coin?.pair);
-
-  // const [search, setSearch] = useState({ search: "" })
-  const handleInputChange = (field) => (event) => {
-    setSearch({
-      ...search,
-      [field]: event.target.value,
-    });
-  };
   const { t } = useTranslation();
-
   return (
     <>
       <Box
@@ -47,7 +37,7 @@ const AiProof = ({ coinData }) => {
           sx={{ marginBottom: "10px", fontSize: "30px" }}
         >
           {/* {coinData?.coin?.priceFormatted}% */}
-          {` $${coinData?.coin?.priceFormatted}`}
+          {` ${coinData?.coin?.priceFormatted}`}
           <span
             style={{
               color: coinData?.coin?.change24hFormatted?.includes("-")

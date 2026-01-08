@@ -15,6 +15,7 @@ export const ENDPOINTS = {
   HOME: {
     HOME_DATA: "home/fetch-data",
     QUICK_CHECK: "home/quick-check",
+    UPDATE_USER: "users/update",
   },
 
   PROANALYSIS: {
@@ -68,7 +69,41 @@ export const ENDPOINTS = {
   WITHDRAWALOPTION: {
     WITHDRAW_OPTION: "referrals/withdrawal-options",
   },
-  CALCULATOR_API: {
-    CALCULATOR: "calculations/calculate-position",
+  EXCHANGESUPPORT: {
+    EXCHANGE_SUPPORT: "exchange/supported",
+  },
+  EXCHANGEMARKET: {
+    EXCHANGE_MARKET: "exchange/market/Binance Futures",
+  },
+  EXCHANGEDATA: {
+    EXCHANGE_DATA: "exchange/Binance Futures/pair/BTCUSDT/meta",
+  },
+  EXCHNAGEARTVALUE: {
+    EXCHNAGE_ATR_VALUE: "exchange/analytics/Binance Futures/BTCUSDT/atr",
+  },
+  CALCULATORAPI: {
+    CALCULATOR_API: "calculations/calculate-position",
+  },
+  SIMULATEAPI: {
+    SIMULATE_API: "home/simulate-whatIf",
+  },
+  JOURNALAPI: {
+    JOURNAL_API: "journal/alerts",
+  },
+  JOURNALDROWPDOWN: {
+    JOURNAL_DROWPDOWN_API: "journal/dropdowns",
+  },
+  CREATEJOURNALALERT: {
+    CREATE_JOURNAL_ALERT_API: "journal/alerts",
+  },
+  JOURNALALERTBYID: {
+    JOURNAL_ALERT_BY_ID: "journal/alerts/:id",
+  },
+  JOURNALDELETEBYID: {
+    JOURNAL_DELETE_BY_ID: "journal/alerts/14",
+  },
+  CHARTAPI: {
+    CHART_API: (symbol, interval) =>
+      `chart/overview?symbol=${symbol}&interval=${interval}`,
   },
 };

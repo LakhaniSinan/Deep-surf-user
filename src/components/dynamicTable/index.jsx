@@ -1,6 +1,7 @@
 import {
   Box,
   IconButton,
+  Stack,
   Table,
   TableBody,
   TableCell,
@@ -12,7 +13,10 @@ import {
 } from "@mui/material";
 import React, { useMemo, useRef, useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";  // Add this import
+import DeleteIcon from "@mui/icons-material/Delete";
 import UserWithdraw from "../../app/settings/refferals/withdrawDetails";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+// import DeleteIconImg from "../../assets/icons/delete-icon.svg";
 import { color } from "d3";
 
 export default function PaginatedTable({
@@ -61,8 +65,8 @@ export default function PaginatedTable({
       borderRadius: "18px",
       overflow: "hidden",
       boxShadow: "none",
-      // border: "1px solid rgba(255,255,255,0.08)",
-      border: "0.42px solid rgba(255, 255, 255, 1)"
+      border: "1px solid rgba(255,255,255,0.08)",
+      // border: "0.42px solid rgba(255, 255, 255, 1)"
     },
 
     "& .MuiTable": {
@@ -107,8 +111,7 @@ export default function PaginatedTable({
     return `****${address.slice(4)}`;
   };
   const renderCell = (row, val, index) => {
-    console.log("lofffffffffffffffff", row);
-
+    console.log("fuefuegfefefefe", row[val]);
 
     switch (val) {
       case "index":
@@ -199,7 +202,7 @@ export default function PaginatedTable({
           </TableCell>
         );
 
-      case "status":
+      case "Status":
         const statusValue = (row[val] || "").toString().toLowerCase();
         const isCompleted = statusValue.includes("completed");
         const isPending = statusValue.includes("In Process");
@@ -233,51 +236,77 @@ export default function PaginatedTable({
             </Box>
           </TableCell>
         );
-      //       case "status":
-      //         return (
-      //           <TableCell>
-
-      //           </TableCell>
-
-      // );
       // case "status":
       //   return (
       //     <TableCell>
-      //       <Box
-      //         sx={{
-      //           fontWeight: 600,
-      //           color: "neutral.Snowwhite",
-      //           letterSpacing: "0.8px"
-      //         }}>
-      //         {row[val].Status}
+      //       <Box color={"neutral.brightGreen"} bgcolor={"rgba(0, 34, 16, 1)"} textAlign={"center"} fontWeight={400} p={1.5} borderRadius={"10px"} border={"1px solid rgba(62, 221, 135, 1)"}>
+      //         {row[val]}
       //       </Box>
-
       //     </TableCell>
-      //   )
+
+      //   );
+      case "amount":
+        return (
+          <TableCell>
+            <Box color={"neutral.Snowwhite"} fontWeight={500}>
+              {row[val]}
+            </Box>
+          </TableCell>
+        )
+      case "details":
+        return (
+          <TableCell>
+            <Box color={"neutral.Snowwhite"} fontWeight={500}>
+              {row[val]}
+            </Box>
+          </TableCell>
+        )
+      case "date":
+        return (
+          <TableCell>
+            <Box color={"neutral.Snowwhite"} fontWeight={500}>
+              {row[val]}
+            </Box>
+          </TableCell>
+        )
+      case "status":
+        return (
+          <TableCell>
+            <Box
+              sx={{
+                fontWeight: 600,
+                color: "neutral.Snowwhite",
+                letterSpacing: "0.8px"
+              }}>
+              {row[val].Status}
+            </Box>
+
+          </TableCell>
+        )
       case "action":
       case "Action":
         return (
           <TableCell align={headerAlignMap[val] || "center"}>
-            <IconButton
-              size="small"
-              sx={{
-                color: "neutral.Snowwhite",
-                fontWeight: 500,
-                "&:hover": {
-                  backgroundColor: "rgba(255,255,255,0.1)",
-                  color: "neutral.Snowwhite",
-                },
-              }}
-              onClick={() => {
-                if (onView) {
-                  onView(row);
-                } else {
-                  console.log("View row:", row);
-                }
-              }}
+            <Stack direction="row" spacing={1} justifyContent="center">
+              {/* Custom delete icon */}
+              <img
+                // src={DeleteIconImg}
+                alt="delete"
+                style={{ cursor: "pointer", width: "20px", height: "20px" }}
+                onClick={() => onDelete?.(row)}
+              />
+            </Stack>
+          </TableCell>
+        );
+        
+      case "status":
+        return (
+          <TableCell align="center" sx={{ border: "none", backgroundColor: "transparent" }}>
+            <Box
+
             >
-              <VisibilityIcon onClick={() => withdrawDetails.current?.openDialog({ type: "add", id: row.id, data: row })} fontSize="small" width="24px" height="24px" />
-            </IconButton>
+              {row[val]}
+            </Box>
           </TableCell>
         );
 
@@ -323,6 +352,41 @@ export default function PaginatedTable({
             </Box>
           </TableCell>
         );
+      case "exchange":
+        return (
+          <TableCell>
+            <Box color={"rgba(181, 182, 185, 1)"} fontWeight={"600"}>
+              {row[val]}
+            </Box>
+          </TableCell>
+        )
+      // --- Add this case for apiKey with copy icon ---
+      case "apiKey":
+        return (
+          <TableCell>
+            <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <Typography color="rgba(183, 183, 187, 1)" fontSize="15px" fontWeight={600}>
+                {row[val]}
+              </Typography>
+              <ContentCopyIcon
+                sx={{ cursor: "pointer", fontSize: 16, color: "rgba(181, 182, 185, 0.8)" }}
+                onClick={() => {
+                  navigator.clipboard.writeText(row[val]);
+                  onCopy?.(row[val], row);
+                }}
+              />
+            </Box>
+          </TableCell>
+        );
+
+      case "added":
+        return (
+          <TableCell>
+            <Box color={"rgba(181, 182, 185, 1)"} fontWeight={"400"}>
+              {row[val]}
+            </Box>
+          </TableCell>
+        )
 
       case "referralDate":
         return (
@@ -435,6 +499,7 @@ export default function PaginatedTable({
             </Box>
           </TableCell>
         )
+          ;
       default:
         const cellValue = row[val];
         const hasLineBreaks =

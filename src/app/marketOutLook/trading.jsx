@@ -4,6 +4,7 @@ import BtcIcon from "../../assets/icons/bitcoin-logo.svg";
 import EthIcon from "../../assets/icons/eth-icon.svg";
 import SolanaIcon from "../../assets/icons/solana-sol-icon.svg";
 import AttentionIcon from "../../assets/icons/effects.svg";
+import WarningIcon from "../../assets/icons/warning-icon.svg"
 import { useTranslation } from "react-i18next";
 const Trading = ({ tradingData }) => {
   const { t } = useTranslation();
@@ -51,9 +52,9 @@ const Trading = ({ tradingData }) => {
   return (
     <>
       <Box
-        backgroundColor="#161616"
+        backgroundColor="background.charcoal"
         borderRadius="20px"
-        padding="25px"
+        padding="25px"  
         mt="20px"
       >
         <Typography variant="h4" fontSize={"25px"} fontWeight={600}>
@@ -61,8 +62,8 @@ const Trading = ({ tradingData }) => {
         </Typography>
         <Grid container spacing={2} mt={2}>
           <Grid item size={{ xs: 12, md: 6 }}>
-            <Box bgcolor={"rgba(28, 28, 28, 1)"} p={2} borderRadius={"20px"}>
-              <Typography color="#3EDD87" fontWeight={550}>{t("MarketOutlook.TradingRecommendations.longSetupsTitle")}</Typography>
+            <Box bgcolor={"neutral.darkGrey"} p={2} borderRadius={"20px"}>
+              <Typography color="neutral.brightGreen" fontWeight={550}>{t("MarketOutlook.TradingRecommendations.longSetupsTitle")}</Typography>
               <Box display={"flex"} gap={"3px"} mt={1}>
                 <Box fontSize={"13px"} color="neutral.Snowwhite" fontWeight={500} fontFamily={"Inter Tight"}>{tradingData?.longSetups?.[0]?.asset}: {tradingData?.longSetups?.[0]?.description}
                 </Box>
@@ -78,8 +79,8 @@ const Trading = ({ tradingData }) => {
             </Box>
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
-            <Box bgcolor={"#1C1C1C"} p={2} borderRadius={"20px"}>
-              <Typography color="#FF4C4C">{t("MarketOutlook.TradingRecommendations.shortSetupsTitle")}</Typography>
+            <Box bgcolor={"neutral.darkGrey"} p={2} borderRadius={"20px"}>
+              <Typography color="neutral.brightRed">{t("MarketOutlook.TradingRecommendations.shortSetupsTitle")}</Typography>
               <Box display={"flex"} gap={"3px"} mt={1} flexWrap={"nowrap"}>
                 <Box fontSize={"13px"} fontFamily={"Inter Tight"} >{tradingData?.longSetups?.[0]?.asset} : {tradingData?.longSetups?.[0]?.description}</Box>
               </Box>
@@ -92,17 +93,17 @@ const Trading = ({ tradingData }) => {
             </Box>
           </Grid>
         </Grid>
-        <Box backgroundColor="#1C1C1C" p={2} borderRadius={"20px"} mt={"20px"}>
+        <Box backgroundColor="neutral.darkGrey" p={2} borderRadius={"20px"} mt={"20px"}>
           <Grid container spacing={1}>
             <Grid item size={{ xs: 12, sm: 12, md: 2.6 }}>
               <CustomButton
                 variant={"body1"}
                 title={t("MarketOutlook.TradingRecommendations.riskManagementTitle")}
-                icon={<img src={AttentionIcon} />}
+                icon={<img src={WarningIcon} />}
                 sx={{
                   borderRadius: "20px",
                   width: { xs: "100%", md: "auto" },
-                  backgroundColor: "#FFE600",
+                  backgroundColor: "neutral.brightYellow",
                   color: "#000000",
                   marginTop: "10px",
                   px: "30px",
@@ -120,13 +121,13 @@ const Trading = ({ tradingData }) => {
         <Typography mt="20px" fontFamily={'inter Tight'} color="neutral.Snowwhite" variant="h5" fontSize="25px" fontWeight={600}>
           {t("MarketOutlook.TradingRecommendations.keyLevelsTitle")}
         </Typography>
-        <Box sx={{ color: "#fff", marginTop: "20px" }}>
+        <Box sx={{ color: "neutral.Snowwhite", marginTop: "20px" }}>
           <Grid container spacing={2}>
             {data.map((item, index) => (
               <Grid item size={{ xs: 12, sm: 6, md: 4 }} key={index}>
                 <Paper
                   sx={{
-                    background: "#1C1C1C",
+                    bgcolor: "neutral.darkGrey",
                     p: 2,
                     borderRadius: "14px",
                     height: "100%",
@@ -174,12 +175,12 @@ const Trading = ({ tradingData }) => {
             ))}
           </Grid>
         </Box>
-        <Box backgroundColor="#1C1C1C" borderRadius="20px" p={2} mt={4}>
+        <Box backgroundColor="neutral.darkGrey" borderRadius="20px" p={2} mt={4}>
           <Grid container spacing={1}>
             <Grid item size={{ xs: 12, sm: 12, md: 2 }}>
               <CustomButton
                 title={t("MarketOutlook.TradingRecommendations.alsVerdictTitle")}
-                icon={<img src={AttentionIcon} color="#fff" />}
+                icon={<img src={AttentionIcon} color="neutral.Snowwhite" />}
                 sx={{
                   borderRadius: "20px",
                   width: { xs: "100%", md: "auto" },

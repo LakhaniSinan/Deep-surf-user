@@ -46,10 +46,11 @@ function App() {
             {APP_Route?.map((route) => (
               <Route
                 key={route.id}
-                path={route.path}
+                path={route.path} // make sure path = "/edit/:id" for EditJournal
                 element={route.component}
               />
             ))}
+
           </Route>
         </Routes>
       </Router>

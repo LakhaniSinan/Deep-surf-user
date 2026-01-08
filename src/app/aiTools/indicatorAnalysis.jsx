@@ -11,7 +11,7 @@ const IndicatorAnalysis = ({ coinData }) => {
     <>
       <Box mt={5}>
         <Typography variant="h3" fontSize={"25px"}>
-           {t("AiTools.Indicator.indicatorTitle")}{" "}
+           {t("AiTools.Indicator.indicatorsHeading")}{" "}
         </Typography>
       </Box>
       <Box mt={2} sx={{ backgroundColor: "background.jetBlack", borderRadius: 4, p: 2 }}>

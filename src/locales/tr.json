@@ -144,6 +144,7 @@
     "bitcoin": "Bitcoin",
     "overallSentiment": "Genel Duygu",
     "neutral": "Nötr",
+    "analysis": "Analiz",
     "macroEconomic": {
       "notFound": "Bulunamadı",
       "title": "Makro Ekonomi"

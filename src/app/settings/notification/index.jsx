@@ -31,7 +31,6 @@ const Notifications = () => {
           {t("Notification.GetNotifiedVia")}
         </Typography>
       </Box>
-
       <Stack
         direction={{ xs: "column", md: "row" }}
         spacing={{ xs: 3, md: 6 }}
@@ -58,7 +57,7 @@ const Notifications = () => {
           </Stack>
         ))}
       </Stack>
-      <Notification />
+      {/* <Notification /> */}
     </Box>
   );
 };

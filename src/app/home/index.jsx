@@ -27,19 +27,21 @@ const Home = () => {
   const [homeResponse, setHomeResponse] = useState(null);
   console.log("fufhufrfrfrfrf", homeResponse?.overallSentiment?.score);
   const [topCoins, setTopCoins] = useState([]);
-  console.log("fjfhrufhrufrfrfrrfr", topCoins);
   const [sentiment, setSentiment] = useState(null);
   const [macroData, setMacroData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const { t  , i18n} = useTranslation();
-  console.log("ffrfrfrfrfrf" , i18n.language);
-  
+  const { t, i18n } = useTranslation();
+  console.log("ffrfrfrfrfrf", i18n.language);
   const { user } = useAuthStore();
   const username = user?.username || user?.name;
+
   const fetchHomeData = async () => {
     try {
       setIsLoading(true);
-      const response = await getHomeData();
+      const language = i18n.language || "en";
+      console.log("fhfurhfurhfrfrf", language);
+
+      const response = await getHomeData({ language });
       if (response.data.status === "success") {
         const data = response.data.data;
         setHomeResponse(data);
@@ -50,7 +52,7 @@ const Home = () => {
         console.log("Home API returned an error:", response.message);
       }
     } catch (error) {
-      console.error("❌ Home API Error:", error);
+      console.error("Home API Error:", error);
     } finally {
       setIsLoading(false);
     }
@@ -123,7 +125,12 @@ const Home = () => {
 
           <Box display={"flex"} gap={2} alignItems={"center"} mt={"20px"}>
             <Box>
-              <img src={RelaodIcon} width={"20px"} />
+              <img
+                src={RelaodIcon}
+                onClick={fetchHomeData}
+                style={{ cursor: "pointer" }}
+                width="20px"
+              />
             </Box>
             <Box display={"flex"} alignItems={"center"}>
               <CustomButton

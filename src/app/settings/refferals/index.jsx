@@ -67,7 +67,7 @@ const Referrals = () => {
 
   return (
     <>
-      <Box display="flex" flexDirection="column" gap={4}>
+      <Box display="flex" flexDirection="column" gap={4} p={2}>
         <Typography variant="titleLg">{t("Referrals.refferralsTitle")}</Typography>
         <Box>
           <Grid container spacing={{ xs: 3, md: 4 }} alignItems="center" justifyContent="space-between">
@@ -138,31 +138,44 @@ const Referrals = () => {
             {/* Referral Link */}
             <Grid item size={{ xs: 12, md: 6 }}>
               <Stack spacing={1.5}>
-                <Typography variant="labelMd" fontSize="12px" sx={{ color: "#C7C7C7" }}>{t("Referrals.yourRefferalLink")}</Typography>
+                <Typography variant="labelMd" fontSize="15px" sx={{ color: "#C7C7C7" }}>{t("Referrals.yourRefferalLink")}</Typography>
                 <CustomInput
                   value={referalsStats?.referralLink || referralLink}
                   fullWidth
                   readonly
-                  InputEndIcon={<ContentCopyRoundedIcon fontSize="small" sx={{ color: "#FFFFFF" }} />}
+                  InputEndIcon={<ContentCopyRoundedIcon fontSize="small" sx={{ color: "rgba(142, 142, 142, 1)" }} />}
                   onEndIconClick={() => handleCopy(referralLink, "link")}
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      border: "0.3px solid rgba(124, 125, 127, 1)",
+                      borderRadius: "10px"
+                    },
+                    "& .MuiOutlinedInput-input": {
+                      color: "rgba(124, 125, 127, 1)"
+                    }
+                  }}
                 />
+
                 {copiedField === "link" && (
                   <Typography variant="helperSm" sx={{ color: "#5CB85C" }}>{t("Referrals.linkCopied")}</Typography>
                 )}
+                <Typography color="rgba(163, 163, 165, 1)" fontSize={"14px"} fontWeight={500}> 
+                  Share the link below with your friends
+                </Typography>
               </Stack>
             </Grid>
 
             {/* Promo Code */}
             <Grid item size={{ xs: 12, md: 6 }}>
               <Stack spacing={1} alignItems="flex-start">
-                <Typography variant="labelMd" fontSize="12px" sx={{ color: "neutral.Snowwhite" }}>{t("Referrals.promoCode")}</Typography>
+                <Typography variant="labelMd" fontWeight={400} fontSize="15px" sx={{ color: "neutral.Snowwhite" }}>{t("Referrals.promoCode")}</Typography>
                 <Stack direction="row" spacing={1} alignItems="center">
                   <Typography variant="h5" sx={{ color: "#FF6421" }}>{referalsStats?.referralCode || promoCode}</Typography>
                   <CustomButton
                     title={copiedField === "code" ? "Copied!" : ""}
                     handleClickBtn={() => handleCopy(promoCode, "code")}
                     width="auto"
-                    sx={{ border: "none", backgroundColor: "transparent", color: "#FFFFFF", minWidth: 0, px: 1 }}
+                    sx={{ border: "none", backgroundColor: "transparent", color: "rgba(142, 142, 142, 1)", minWidth: 0, px: 1 }}
                     icon={<ContentCopyRoundedIcon fontSize="small" />}
                   />
                 </Stack>

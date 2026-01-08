@@ -13,6 +13,7 @@ export const styles = {
     overflow: "hidden",
     boxSizing: "border-box",
     bgcolor: "background.black",
+    maxHeight: "50vh",
   },
 
   sectionContainer: {
@@ -22,9 +23,11 @@ export const styles = {
   },
 
   formCard: {
-    my: 3,
+    my: 2,
     bgcolor: "background.gray",
     borderRadius: 3,
+    // mt: 2,
+    p: 0.5,
   },
 
   formInner: {
@@ -36,10 +39,10 @@ export const styles = {
   },
 
   saveButton: {
-    backgroundColor: "background.mediumGray",
+    backgroundColor: "rgba(62, 62, 70, 1)",
     color: "text.secondary",
     textTransform: "none",
-    my: 2,
+    my: 4,
   },
 
   alertListWrapper: {
@@ -64,7 +67,8 @@ export const styles = {
 
   alertSubtitle: {
     mt: 0.5,
-    color: theme.palette.text.secondary,
+    color: "#fff",
+    fontWeight: 700,
   },
 
   alertBoldValue: {

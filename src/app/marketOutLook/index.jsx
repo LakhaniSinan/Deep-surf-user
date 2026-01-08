@@ -17,6 +17,8 @@ import MarkDataMetricSkeleton from "../../components/skeleton/marketOutLookSkele
 import { useTranslation } from "react-i18next";
 const MarketOutLook = () => {
   const [marketOutLook, setMarketOutLook] = useState(null);
+  console.log("deedgvebhdededed", marketOutLook);
+
   const [macroData, setMacroData] = useState(null);
   const [cryptoEvent, setCryptoEvent] = useState(null);
   const [eftFlow, setEftFlow] = useState({});
@@ -25,16 +27,24 @@ const MarketOutLook = () => {
   const [topMover, setTopMover] = useState({});
   const [marketMetrics, setMarketMetrices] = useState({});
   const [coins, setCoin] = useState([]);
+  const [whaleTracker, setWhaleTracker] = useState([]);
+  console.log("fhyufrjfrssssssssssssfrfr", whaleTracker);
+
   const [overallSentiment, setOverallSentiment] = useState([]);
   const [dayOfWeek, setDayOfWeek] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const language = i18n.language || "en";
+
+
   const getMarketOutData = async () => {
     try {
       setIsLoading(true);
-      const response = await getMarketOutLook();
+      const response = await getMarketOutLook({ language });
       if (response?.data.status === "success") {
         const data = response?.data?.data;
+        console.log("fyegfefe", data);
+
         setMarketOutLook(data);
         setMacroData(data?.macroeconomics);
         setDayOfWeek(data?.dayOfWeek);
@@ -46,6 +56,7 @@ const MarketOutLook = () => {
         setMarketMetrices(data?.marketMetrics);
         setCoin(data?.topCoins);
         setOverallSentiment(data?.overallSentiment);
+        setWhaleTracker(data?.whalesTracker)
       }
     } catch (error) {
       console.error("Error fetching market data:", error);
@@ -56,14 +67,14 @@ const MarketOutLook = () => {
 
   useEffect(() => {
     getMarketOutData();
-  }, []);
+  }, [language]);
 
   return (
     <>
       <Header />
       <Container maxWidth="lg" sx={{ paddingTop: "30px", color: "white" }}>
         <Typography variant="h1" fontSize="30px" fontWeight={600}>
-         {t("MarketOutlook.marketOutLookTitle")}
+          {t("MarketOutlook.marketOutLookTitle")}
         </Typography>
 
         {/* Loading Skeleton */}
@@ -85,6 +96,7 @@ const MarketOutLook = () => {
             color="text.lightRedColor"
             textAlign="center"
             mt={5}
+            fontFamily={"inter Tight"}
           >
             No Data Found
           </Typography>
@@ -110,6 +122,9 @@ const MarketOutLook = () => {
               top={topMover}
               marketMetricesData={marketMetrics}
               riskCalendar={marketOutLook}
+              // fetchMarketData={getMarketOutData} 
+              whaleTracker={whaleTracker}
+
             />
           </>
         )}

@@ -21,18 +21,21 @@ import PatternSkeleton from "../../components/skeleton/aiTools/pattern";
 import IndicatorAnalysisSkeleton from "../../components/skeleton/aiTools/indicatorAnalysis";
 import { useTranslation } from "react-i18next";
 
-
 const AiTools = () => {
   const [ticker, setTicker] = useState("");
   const [coinData, setCoinData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const language = i18n.language || "en";
+
   const getAiToolsData = async () => {
     if (!ticker) return toast.error("Please enter coin symbol");
+
     try {
       setIsLoading(true);
       setCoinData(null);
-      const res = await aiToolsData(ticker);
+      const res = await aiToolsData({ ticker, language });
+
       if (res?.data?.status === "success") {
         setCoinData(res?.data?.data);
       } else {
@@ -48,12 +51,14 @@ const AiTools = () => {
   return (
     <>
       <Header />
-      <Container maxWidth="lg" sx={{
-        paddingTop: "30px", color: "white",
-      }}>
+      <Container
+        maxWidth="lg"
+        sx={{ paddingTop: "30px", color: "white" }}
+      >
         <Typography variant="h1" fontSize="35px" fontWeight={600}>
           {t("AiTools.aiToolsTitle")}
         </Typography>
+
         <Box
           sx={{
             backgroundColor: "#161616",
@@ -71,36 +76,40 @@ const AiTools = () => {
             {t("AiTools.aiProofTitle")}
           </Typography>
           <Typography
-            sx={{ color: "neutral.Snowwhite", marginBottom: "15px", fontSize: "12px", fontWeight: 400 }}
+            sx={{
+              color: "neutral.Snowwhite",
+              marginBottom: "15px",
+              fontSize: "12px",
+              fontWeight: 400,
+            }}
           >
             {t("AiTools.aiProofHeading")}
           </Typography>
+
           <CustomInput
             placeholder="ETH"
             value={ticker}
             onChange={(e) => setTicker(e.target.value)}
             onKeyPress={(e) => e.key === "Enter" && getAiToolsData()}
             InputEndIcon={
-              isLoading ?
-                (<CircularProgress
-                  size={30}
-                  sx={{ color: "#fff" }}
-                />) : (
-                  < img
-                    src={IconImage}
-                    onClick={getAiToolsData}
-                    style={{ cursor: "pointer" }}
-                  />)
+              isLoading ? (
+                <CircularProgress size={30} sx={{ color: "#fff" }} />
+              ) : (
+                <img
+                  src={IconImage}
+                  onClick={getAiToolsData}
+                  style={{ cursor: "pointer" }}
+                />
+              )
             }
           />
         </Box>
-        <Box backgroundColor="#161616" p={"25px"} mt={2} borderRadius={"30px"}>
-          {isLoading ? (
-            <AiProofSkeleton />
-          ) : coinData ? (
-            <AiProof coinData={coinData} />
-          ) : null}
-          {isLoading ? (
+
+        <Box backgroundColor="#161616" p="25px" mt={2} borderRadius="30px">
+          {/* AiProof Section */}
+          {isLoading && <AiProofSkeleton />}
+          {!isLoading && coinData && <AiProof coinData={coinData} />}
+          {isLoading && (
             <>
               <DashboardStatsSkeleton />
               <TechnicalIndicatorSkeleton />
@@ -109,7 +118,9 @@ const AiTools = () => {
               <PatternSkeleton />
               <IndicatorAnalysisSkeleton />
             </>
-          ) : coinData ? (
+          )}
+
+          {!isLoading && coinData && (
             <>
               <DashboardStats coinData={coinData} />
               <TechnicalIndicator coinData={coinData} />
@@ -118,7 +129,7 @@ const AiTools = () => {
               <Pattern coinData={coinData} />
               <IndicatorAnalysis coinData={coinData} />
             </>
-          ) : null}
+          )}
         </Box>
       </Container>
     </>

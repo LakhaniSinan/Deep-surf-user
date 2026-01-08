@@ -18,6 +18,8 @@ const CustomSelect = ({
   renderValue,
   height,
   backgroundColor,
+  sx = {},          // ✅ ADD THIS
+
 }) => {
   const hasCustomChildren = React.Children.count(children) > 0;
 
@@ -58,7 +60,7 @@ const CustomSelect = ({
         <Typography
           variant="labelMd"
           fontSize="14px"
-          sx={{ color: "#C7C7C7", letterSpacing: "0.02em" }}
+          sx={{ color: "text.bluishGray", letterSpacing: "0.02em" }}
         >
           {label}
         </Typography>
@@ -110,6 +112,8 @@ const CustomSelect = ({
               gap: 1,
               py: 1,
             },
+            ...sx,        // ✅ MOST IMPORTANT LINE
+
           }}
           renderValue={(selected) => {
             if (renderValue) return renderValue(selected);

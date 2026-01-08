@@ -16,7 +16,7 @@ const Speedometer = ({ size = 28, score = 100, maxValue}) => {
         endColor="green"
         segments={5}
         labelFontSize="0px"
-        currentValueText={`${score}`}
+        currentValueText={`${score}` }
         // currentValueText1={`${score}`}
         // currentValueText2={`${maxValue}`}
         textColor="#fff"
@@ -28,7 +28,9 @@ const Speedometer = ({ size = 28, score = 100, maxValue}) => {
         needleWidth={1}
         forceRender={true}
       />
+      
     </div>
+    
   );
 };
 export default Speedometer;

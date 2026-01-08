@@ -112,6 +112,7 @@
     "ethereumIcon": "Ícono de Ethereum",
     "overallSentiment": "Sentimiento General",
     "neutral": "Neutral",
+    "analysis": "Análisis",
     "macroEconomic": {
       "notFound": "No encontrado",
       "title": "Macroeconomía"

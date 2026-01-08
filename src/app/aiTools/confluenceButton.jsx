@@ -101,7 +101,7 @@ function DashboardStats({ coinData }) {
                 fontWeight: 700,
               }}
             >
-              {coinData?.confluenceScore?.bullish}
+              {coinData?.confluenceScore?.bearish}
             </Typography>
           </Box>
           <Box

@@ -1,28 +1,36 @@
+// CurrentPrice.jsx
+import React from "react";
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import CalculatorResultCard from "../../components/calculatorResultCard";
-// import { calculatorResultsData } from "./calculatorResults";
 import RiskCheck from "./riskCheck";
 import WhatIfSimulator from "./whatIfSimulator";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"; // ✅ useTranslation import
 
+const CurrentPrice = ({ exchangeMarketData, calculatorResult }) => {
+  console.log("grgrgrgrgrgrgrgrdddddddddddddddd", exchangeMarketData);
 
-const CurrentPrice = () => {
   const { t } = useTranslation();
+
+  // Entry / Stop / Take as a single string with fallback
+  const entryStopTake = calculatorResult
+    ? `${calculatorResult.entryPrice ?? "-"} / ${calculatorResult.stopPrice ?? "-"} / ${calculatorResult.takePrice ?? "-"}`
+    : "- / - / -";
+
   const data = [
     {
       id: 1,
       items: [
         {
-          label: (t("Chart.pair")),
-          value: "BTC/USDT",
+          label: t("Chart.pair"),
+          value: calculatorResult?.pair ?? "-",
         },
         {
-          label:  (t("Chart.entryStopTake")),
-          value: "0.5000 / -1.0000 / 5.0000",
+          label: t("Chart.entryStopTake"),
+          value: entryStopTake,
         },
         {
           label: "ATR (1h,14)",
-          value: "1",
+          value: calculatorResult?.atrMultiplier ?? "-",
         },
       ],
     },
@@ -30,12 +38,12 @@ const CurrentPrice = () => {
       id: 2,
       items: [
         {
-          label: (t("Chart.positionSize")),
-          value: "13",
+          label: t("Chart.positionSize"),
+          value: calculatorResult?.positionSizeUnits ?? "-",
         },
         {
-          label: (t("Chart.mominalPositions")),
-          value: "$6.50",
+          label: t("Chart.mominalPositions"),
+          value: calculatorResult?.nominalPosition ? `$${calculatorResult.nominalPosition}` : "-",
         },
       ],
     },
@@ -43,12 +51,12 @@ const CurrentPrice = () => {
       id: 3,
       items: [
         {
-          label: (t("Chart.margin")),
-          value: "$0.33",
+          label: t("Chart.margin"),
+          value: calculatorResult?.margin ? `$${calculatorResult.margin}` : "-",
         },
         {
-          label:(t("Chart.RiskIn")),
-          value: "$20.00",
+          label: t("Chart.RiskIn"),
+          value: calculatorResult?.riskDollar ? `$${calculatorResult.riskDollar}` : "-",
         },
       ],
     },
@@ -56,16 +64,17 @@ const CurrentPrice = () => {
       id: 4,
       items: [
         {
-          label: (t("Chart.expectedProfit")),
-          value: "$58.46",
+          label: t("Chart.expectedProfit"),
+          value: calculatorResult?.expectedProfit ? `$${calculatorResult.expectedProfit}` : "-",
         },
         {
           label: "R:R",
-          value: "3.00:1",
+          value: calculatorResult?.rrRatio ?? "-",
         },
       ],
     },
-  ]
+  ];
+
   return (
     <Stack
       spacing={3}
@@ -78,16 +87,12 @@ const CurrentPrice = () => {
     >
       {/* Current Price Section */}
       <Box>
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-          alignItems="center"
-        >
+        <Stack direction="row" justifyContent="space-between" alignItems="center">
           <Box>
             <Typography
               variant="labelMd"
               fontSize={12}
-              sx={{ color: "#C7C7C7", mb: 0.5 }}
+              sx={{ color: "text.bluishGray", mb: 0.5 }}
             >
               {t("Chart.currentPrice")}
             </Typography>
@@ -99,7 +104,7 @@ const CurrentPrice = () => {
                 lineHeight: 1.2,
               }}
             >
-              $100,000
+              {exchangeMarketData?.current_price ?? "-"}
             </Typography>
           </Box>
 
@@ -107,7 +112,7 @@ const CurrentPrice = () => {
             <Typography
               variant="labelMd"
               fontSize={12}
-              sx={{ color: "#8F8F8F", mb: 0.5 }}
+              sx={{ color: "text.bluishGray", mb: 0.5 }}
             >
               {t("Referrals.source")}
             </Typography>
@@ -123,12 +128,12 @@ const CurrentPrice = () => {
                 mt: 1,
               }}
             >
-              {t("Chart.binanceFutures")}
+              {/* {t("Chart.binanceFutures")} */}
+              {exchangeMarketData?.exchange}
             </Box>
           </Box>
         </Stack>
       </Box>
-
       {/* Calculator Results Grid */}
       <Grid container spacing={2}>
         {data.map((card) => (
@@ -139,10 +144,10 @@ const CurrentPrice = () => {
       </Grid>
 
       {/* Risk Check Section */}
-      <RiskCheck />
+      <RiskCheck calculateData={calculatorResult} />
 
       {/* What-If Simulator */}
-      <WhatIfSimulator />
+      <WhatIfSimulator formData={calculatorResult} />
     </Stack>
   );
 };
