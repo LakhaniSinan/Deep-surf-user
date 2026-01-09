@@ -11,11 +11,9 @@ const Label = ({ title, required, style, htmlFor, ...props }) => {
             sx={{
                 marginBottom: "10px",
                 fontSize: "20px",
-                color: theme.palette.text.charcoalGrey,
-                ...style,
-                fontSize: "20px",
                 mt: "5px",
                 color: "text.primary",
+                ...style,
             }}
         >
             {title}
