@@ -100,7 +100,7 @@ export const ENDPOINTS = {
     JOURNAL_ALERT_BY_ID: "journal/alerts/:id",
   },
   JOURNALDELETEBYID: {
-    JOURNAL_DELETE_BY_ID: "journal/alerts/14",
+    JOURNAL_DELETE_BY_ID: "journal/alerts/:id",
   },
   CHARTAPI: {
     CHART_API: (symbol, interval) =>

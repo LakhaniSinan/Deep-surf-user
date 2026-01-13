@@ -5,7 +5,12 @@ import {
     Grid,
     Paper,
     Container,
-    Skeleton
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    Button
 } from "@mui/material";
 import CustomButton from "../../components/customButton";
 import PlusIcon from "../../assets/icons/plus-icon.svg";
@@ -19,12 +24,18 @@ import CoinAlertSkeleton from "../../components/skeleton/journal/coinAlertSkelet
 
 const CoinAlert = () => {
     const navigate = useNavigate();
+
     const [isLoading, setIsLoading] = useState(false);
     const [createAlert, setCreateAlert] = useState([]);
-    // console.log("feufefefdddddddddddddddddddddddddddddddddddddddddefefef", createAlert[0].id);
 
+    // delete dialog states
+    const [openDelete, setOpenDelete] = useState(false);
+    const [selectedId, setSelectedId] = useState(null);
+    const [deleteLoading, setDeleteLoading] = useState(false);
 
-
+    /* =============================
+       GET ALERTS
+    ============================== */
     const getCreateAlert = async () => {
         try {
             setIsLoading(true);
@@ -41,30 +52,39 @@ const CoinAlert = () => {
     useEffect(() => {
         getCreateAlert();
     }, []);
-    const handleDelete = async (id) => {
+
+    /* =============================
+       DELETE CONFIRM
+    ============================== */
+    const confirmDelete = async () => {
         try {
-            const response = await deleteJournalAlertById(id);
-            toast.success(response?.data?.message);
-            // setCreateAlert((prev) => prev.filter((item) => item.id !== id));
+            setDeleteLoading(true);
+            const response = await deleteJournalAlertById(selectedId);
+
+            toast.success(response?.data?.message || "Deleted successfully");
+
+            // 🔥 DELETE ke baad alerts API dobara call
+            await getCreateAlert();
         } catch (error) {
-            toast.error(error?.response?.message || "Delete failed");
+            toast.error(error?.response?.data?.message || "Delete failed");
+        } finally {
+            setDeleteLoading(false);
+            setOpenDelete(false);
+            setSelectedId(null);
         }
     };
-
 
     return (
         <>
             <Header />
+
             <Container>
                 <Box sx={{ color: "#fff", p: 3 }}>
-                    {/* Title */}
                     <Typography variant="h2" fontWeight={600} mb={3}>
                         Journal
                     </Typography>
 
-                    {/* Main Card */}
                     <Paper elevation={0} sx={{ bgcolor: "#141414", borderRadius: "14px", p: 3 }}>
-                        {/* Header */}
                         <Box mb={3}>
                             <Typography fontWeight={600} color="neutral.Snowwhite">
                                 My Coins & Alerts
@@ -72,7 +92,7 @@ const CoinAlert = () => {
 
                             <Box display="flex" alignItems="center" justifyContent="space-between" gap={1}>
                                 <Typography fontSize="13px" color="rgba(103, 107, 119, 1)">
-                                    Alerts operate in real-time via WebSocket. Receive instant notifications when conditions are met.
+                                    Alerts operate in real-time via WebSocket.
                                 </Typography>
 
                                 <CustomButton
@@ -87,11 +107,11 @@ const CoinAlert = () => {
                             </Box>
                         </Box>
 
-                        {/* Alert Cards */}
                         <Grid container spacing={2}>
-                            {isLoading
-                                ? <CoinAlertSkeleton />
-                                : createAlert.map((item, index) => (
+                            {isLoading ? (
+                                <CoinAlertSkeleton />
+                            ) : (
+                                createAlert.map((item, index) => (
                                     <Grid item size={{ xs: 12, sm: 6, md: 3 }} key={index}>
                                         <Paper
                                             elevation={0}
@@ -101,33 +121,90 @@ const CoinAlert = () => {
                                                 <Typography fontWeight={600} color="neutral.Snowwhite">
                                                     {item.ticker}
                                                 </Typography>
+
                                                 <Box display="flex" alignItems="center" gap="10px">
                                                     <img
                                                         src={EditIcon}
                                                         style={{ cursor: "pointer" }}
                                                         onClick={() => navigate(`/edit/${item.id}`)}
                                                     />
+
                                                     <img
                                                         src={DeleteIcon}
                                                         style={{ cursor: "pointer" }}
-                                                        onClick={() => handleDelete(item.id)}
+                                                        onClick={() => {
+                                                            setSelectedId(item.id);
+                                                            setOpenDelete(true);
+                                                        }}
                                                     />
                                                 </Box>
                                             </Box>
                                             <Typography fontSize="13px" fontWeight={600} color="neutral.Snowwhite">
                                                 Price {item.priceRelation} {item.targetPrice}
                                             </Typography>
-                                            <Typography fontSize="13px" color="rgba(94, 98, 103, 1)" mt={4} fontWeight={700}>
+
+                                            <Typography
+                                                fontSize="13px"
+                                                color="rgba(94, 98, 103, 1)"
+                                                mt={4}
+                                                fontWeight={700}
+                                            >
                                                 {item.createdAt}
                                             </Typography>
                                         </Paper>
                                     </Grid>
                                 ))
-                            }
+                            )}
                         </Grid>
                     </Paper>
                 </Box>
             </Container>
+
+            {/* =============================
+               DELETE CONFIRMATION DIALOG
+            ============================== */}
+            <Dialog
+                sx={{
+                    "& .MuiDialog-paper": {
+                        borderRadius: "15px",
+                        padding: "10px"
+                    }
+                }}
+                open={openDelete}
+                onClose={() => !deleteLoading && setOpenDelete(false)}
+            >
+                <DialogTitle>Delete Alert</DialogTitle>
+
+                <DialogContent>
+                    <DialogContentText>
+                        Are you sure you want to delete this alert?
+                    </DialogContentText>
+                </DialogContent>
+
+                <DialogActions sx={{ gap: 1, px: 2, pb: 2 }}>
+                    <CustomButton
+                        title="Cancel"
+                        onClick={() => setOpenDelete(false)}
+                        disabled={deleteLoading}
+                        sx={{
+                            backgroundColor: "neutral.charcoalGrey",
+                            minWidth: "100px"
+                        }}
+                    />
+
+                    <CustomButton
+                        title={deleteLoading ? "Deleting..." : "Delete"}
+                        onClick={confirmDelete}
+                        disabled={deleteLoading}
+                        loader={isLoading}
+                        sx={{
+                            backgroundColor: "accent.main",
+                            minWidth: "100px",
+                            opacity: deleteLoading ? 0.7 : 1
+                        }}
+                    />
+                </DialogActions>
+            </Dialog>
         </>
     );
 };

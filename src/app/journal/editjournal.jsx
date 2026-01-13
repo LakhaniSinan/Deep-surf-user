@@ -12,15 +12,15 @@ import CustomButton from "../../components/customButton";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
-import { exchangeMarketApi } from "../../services/modules/calculator";
+import { exchangeData, exchangeMarketApi } from "../../services/modules/calculator";
 
 const EditJournal = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false)
   const [dropDownValue, setDropDownValue] = useState({ priceRelation: [] });
   const [exchangeMarketData, setExchangeMarketData] = useState(null);
-  console.log("dwdwdwdddddddddddddddddd" , exchangeMarketData);
-  
+  console.log("dwdwdwdddddddddddddddddd", exchangeMarketData);
+
   const { t } = useTranslation();
   const { id } = useParams();
   console.log("alertttttttttttttttttttttttt", id);
@@ -30,12 +30,13 @@ const EditJournal = () => {
     value: "",
     priceRelation: ""
   })
+  const defaultPair = "BTCUSDT";
   const getJournalAlertById = async () => {
     try {
       setIsLoading(true)
       const payload = {  // Fixed typo: paylaod -> payload
         ticker: formData.ticker,
-        price: formData.price,
+        price: exchangeMarketData?.current_price, // Use API value
         priceRelation: formData.priceRelation,
         targetPrice: Number(formData.value)
       }
@@ -100,10 +101,12 @@ const EditJournal = () => {
       "& fieldset": {
         borderColor: "rgba(143, 143, 143, 1)",
         borderRadius: "12px",
+
       },
 
       "&:hover fieldset": {
         borderColor: "rgba(143, 143, 143, 1)",
+        color: "white",
       },
 
       "&.Mui-focused fieldset": {
@@ -127,6 +130,8 @@ const EditJournal = () => {
       const response = await exchangeMarketApi({ pair });
       const data = response?.data?.data;
       setExchangeMarketData(data);
+      console.log("ffffffffffdddddddddddddddddddddddddddddddddfffffffffffffff", data?.current_price);
+
     } catch (error) {
       console.log("failed to exchange market APi");
     } finally {
@@ -134,8 +139,10 @@ const EditJournal = () => {
     }
   };
   useEffect(() => {
-    exchangeMarket()
-  }, [])
+
+    exchangeMarket(defaultPair);
+  }, []);
+
 
   return (
     <Box sx={styles.pageRoot}>
@@ -176,14 +183,35 @@ const EditJournal = () => {
               </Box>
 
               <Stack direction="row" spacing={2} mt={5}>
-                <CustomInput sx={inputStyles} value={formData.ticker}
-                  border={theme.palette.background.default} onChange={(e) => handleChange("ticker", e.target.value)}
-                  placeholder={'Ticker (e.g., BTC)'} />
-                <CustomInput value={formData.price}
-                  sx={inputStyles} placeholder={'Price'} onChange={(e) => handleChange("price", e.target.value)}
+                <CustomInput
+                  sx={inputStyles}
+                  value={formData.ticker}
+                  border={theme.palette.background.default}
+                  onChange={(e) => handleChange("ticker", e.target.value)}
+                  placeholder={'Ticker (e.g., BTC)'}
+                />
+                <CustomInput
+                  sx={{
+                    ...inputStyles,
+                    "& .MuiOutlinedInput-root": {
+                      ...inputStyles["& .MuiOutlinedInput-root"],
+                    },
+                    "& .MuiOutlinedInput-input.Mui-disabled": {
+                      color: "#fff",             // text color
+                      WebkitTextFillColor: "#fff" // for Chrome/Safari
+                    },
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "rgba(143, 143, 143, 1)", // keep border color
+                    }
+                  }}
+                  value={exchangeMarketData?.current_price || ""}
+                  placeholder="Price"
+                  disabled
                 />
 
               </Stack>
+
+
 
               <Stack direction="row" spacing={2} mt={2} alignItems="center">
                 <Box sx={{ flex: 1 }}>
@@ -213,9 +241,6 @@ const EditJournal = () => {
                 loading={isLoading}   // <-- correct prop
                 sx={styles.saveButton}
               />
-
-
-
             </Box>
           </Box>
           {/* Alerts List (example card) */}

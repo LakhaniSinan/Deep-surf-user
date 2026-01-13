@@ -22,11 +22,14 @@ const updateJournalAlert = (id, payload) => {
   );
 };
 const deleteJournalAlertById = (id) => {
+  console.log("ffrfrfrfrhfucnmvvvvvvvvvvvvvvv", id);
   return Api(
     ENDPOINTS.JOURNALDELETEBYID.JOURNAL_DELETE_BY_ID.replace(":id", id),
+    null,
     "Delete"
   );
 };
+
 export {
   journalAlert,
   getDropdownApi,

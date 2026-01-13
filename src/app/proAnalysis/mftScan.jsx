@@ -6,8 +6,10 @@ import PaginatedTable from "../../components/dynamicTable";
 import StarIcon from "../../assets/icons/stairs.svg";
 import { useTranslation } from "react-i18next";
 const MTFSection = ({ getProAnanlsisData, coinData }) => {
+  console.log("fffffffffffffffffffffffffffffcccccccccccccccccccccccff", coinData?.mtfScan?.timeframes?.[0]?.trend);
+
   console.log("coindata", coinData);
-  
+
   const { t } = useTranslation();
   const [search, setSearch] = useState("");
   const handleInputChange = (field) => (event) => {
@@ -28,21 +30,21 @@ const MTFSection = ({ getProAnanlsisData, coinData }) => {
       trend: coinData?.mtfScan?.timeframes?.[0]?.trend,
       RSI: coinData?.mtfScan?.timeframes?.[0]?.rsi,
       MACD: coinData?.mtfScan?.timeframes?.[0]?.macd,
-      Status: coinData?.mtfScan?.timeframes?.[0]?.status,
+      status: coinData?.mtfScan?.timeframes?.[0]?.status,
     },
     {
       TF: coinData?.mtfScan?.timeframes?.[1]?.tf,
       trend: coinData?.mtfScan?.timeframes?.[1]?.trend,
       RSI: coinData?.mtfScan?.timeframes?.[1]?.rsi,
       MACD: coinData?.mtfScan?.timeframes?.[1]?.macd,
-      Status: coinData?.mtfScan?.timeframes?.[1]?.status,
+      status: coinData?.mtfScan?.timeframes?.[1]?.status,
     },
     {
       TF: coinData?.mtfScan?.timeframes?.[2]?.tf,
       trend: coinData?.mtfScan?.timeframes?.[2]?.trend,
       RSI: coinData?.mtfScan?.timeframes?.[2]?.rsi,
       MACD: coinData?.mtfScan?.timeframes?.[2]?.macd,
-      Status: coinData?.mtfScan?.timeframes?.[2]?.status,
+      status: coinData?.mtfScan?.timeframes?.[2]?.status,
     },
   ];
   return (
@@ -113,7 +115,7 @@ const MTFSection = ({ getProAnanlsisData, coinData }) => {
           <PaginatedTable
             tableHeader={billingHistoryHeaders}
             tableData={billingHistoryRows}
-            displayRows={["TF", "trend", "RSI", "MACD", "Status"]}
+            displayRows={["TF", "trend", "RSI", "MACD", "status"]}
             isLoading={false}
             showPagination={false}
           />

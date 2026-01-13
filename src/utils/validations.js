@@ -83,7 +83,7 @@ const setJournalAPiValidation = (inputValues, setInputErrors) => {
   const errors = {};
 
   if (!inputValues?.ticker?.trim()) errors.ticker = "Ticker is required";
-  if (!inputValues?.price?.trim()) errors.price = "Price is required";
+  // if (!inputValues?.price?.trim()) errors.price = "Price is required";
   if (!inputValues?.value?.trim()) errors.value = "Value is required";
   if (!inputValues?.priceRelation?.trim())
     errors.priceRelation = "Price Relation is required";

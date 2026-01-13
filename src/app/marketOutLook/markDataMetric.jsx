@@ -144,12 +144,12 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker })
       value2: riskCalendar?.whalesTracker?.transactions[5]?.lastPositions,
     },
     {
-      shortCode: riskCalendar?.whalesTracker?.transactions[2]?.address,
-      buttonTitle: riskCalendar?.whalesTracker?.transactions[2]?.actionType,
-      brought: riskCalendar?.whalesTracker?.transactions[2]?.actionText,
-      amount: riskCalendar?.whalesTracker?.transactions[2]?.value,
-      source: riskCalendar?.whalesTracker?.transactions[2]?.exchange,
-      time: riskCalendar?.whalesTracker?.transactions[2]?.timeAgo,
+      shortCode: riskCalendar?.whalesTracker?.transactions[3]?.address,
+      buttonTitle: riskCalendar?.whalesTracker?.transactions[3]?.actionType,
+      brought: riskCalendar?.whalesTracker?.transactions[3]?.actionText,
+      amount: riskCalendar?.whalesTracker?.transactions[3]?.value,
+      source: riskCalendar?.whalesTracker?.transactions[3]?.exchange,
+      time: riskCalendar?.whalesTracker?.transactions[3]?.timeAgo,
       buttonColor: "#FF4C4C",
       // Liquidation: "Liquidation",
       // position: "Last 4 positions",
@@ -205,7 +205,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker })
             />
           </Box>
         </Box>
-
+        
         <Box mt="10px">
           <Grid container spacing={1}>
             <Grid item size={{ xs: 12, sm: 6, md: 4 }}>

@@ -12,10 +12,12 @@ import { getCreateAlertApi, getDropdownApi } from '../../services/modules/journa
 import { toast } from 'react-toastify';
 import CustomButton from '../../components/customButton';
 import { setJournalAPiValidation } from "../../utils/validations";
+import { exchangeMarketApi } from '../../services/modules/calculator';
 
 const SaveAlert = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [dropDownValue, setDropDownValue] = useState({ priceRelation: [] });
+    const [exchangeMarketData, setExchangeMarketData] = useState(null);
     const [formData, setFormData] = useState({
         ticker: "",
         price: "",
@@ -26,7 +28,7 @@ const SaveAlert = () => {
 
     const { t } = useTranslation();
     const navigate = useNavigate();
-
+    const defaultPair = "BTCUSDT";
     // ================= DROPDOWN API =================
     const getDropDownValue = async () => {
         try {
@@ -67,6 +69,8 @@ const SaveAlert = () => {
     // ================= SAVE ALERT API =================
     const createJounalApi = async () => {
         const isValid = setJournalAPiValidation(formData, setFormErrors);
+        console.log("grgrgivfjvnfvbngtttttttttttttttttttttttttttt", isValid);
+
         if (!isValid) return;
 
         try {
@@ -91,6 +95,7 @@ const SaveAlert = () => {
                 }));
                 setFormErrors({});
             }
+            navigate("/coin-alert")
         } catch (error) {
             toast.error(error?.response?.data?.error || "Something went wrong");
         } finally {
@@ -110,11 +115,28 @@ const SaveAlert = () => {
         },
         "& input": { padding: "10px 14px", fontSize: "14px" },
     };
-
     const whiteSelectText = {
         "& .MuiSelect-select": { color: "#fff" },
         "& .MuiSelect-icon": { color: "rgba(141, 143, 149, 1)" },
     };
+    const exchangeMarket = async (pair) => {
+        try {
+            setIsLoading(true);
+            const response = await exchangeMarketApi({ pair });
+            const data = response?.data?.data;
+            setExchangeMarketData(data);
+            console.log("ffffffffffdddddddddddddddddddddddddddddddddfffffffffffffff", data?.current_price);
+
+        } catch (error) {
+            console.log("failed to exchange market APi");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+    useEffect(() => {
+
+        exchangeMarket(defaultPair);
+    }, []);
 
     return (
         <Box sx={styles.pageRoot}>
@@ -166,15 +188,26 @@ const SaveAlert = () => {
                                 />
 
                                 <CustomInput
-                                    value={formData.price}
+                                    value={exchangeMarketData?.current_price || ""}
                                     onChange={(e) => handleChange("price", e.target.value)}
-                                    sx={{ ...inputStyles, ...whiteSelectText }}
+                                    sx={{
+                                        ...inputStyles, ...whiteSelectText, "& .MuiOutlinedInput-root": {
+                                            ...inputStyles["& .MuiOutlinedInput-root"],
+                                        },
+                                        "& .MuiOutlinedInput-input.Mui-disabled": {
+                                            color: "#fff",  
+                                            WebkitTextFillColor: "#fff"
+                                        },
+                                        "& .MuiOutlinedInput-notchedOutline": {
+                                            borderColor: "rgba(143, 143, 143, 1)", 
+                                        }
+                                    }}
                                     placeholder={'Price'}
-                                    error={!!formErrors.price}
-                                    helperText={formErrors.price}
+
+                                    disabled
                                 />
                             </Stack>
-
+                                                                              
                             <Stack direction="row" spacing={2} mt={2}>
                                 <Box flex={1}>
                                     <CustomSelect

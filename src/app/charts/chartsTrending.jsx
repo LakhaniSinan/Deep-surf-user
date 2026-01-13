@@ -14,7 +14,7 @@ const formatChartTime = (date) => {
   return `${hours}:${minutes}`;
 };
 
-// Sample candlestick data generator
+
 const generateCandlestickData = (days = 2.5, intervalMinutes = 15) => {
   const data = [];
   const now = new Date();
@@ -67,7 +67,7 @@ const CandlestickChart = ({ data, supportLine }) => {
     window.addEventListener('resize', updateDimensions);
     return () => window.removeEventListener('resize', updateDimensions);
   }, []);
-  
+
   const padding = { top: 20, right: 60, bottom: 40, left: 20 };
   const chartWidth = dimensions.width - padding.left - padding.right;
   const chartHeight = dimensions.height - padding.top - padding.bottom;
@@ -97,125 +97,125 @@ const CandlestickChart = ({ data, supportLine }) => {
   return (
     <div ref={containerRef} style={{ position: 'relative', width: '100%', height: '100%' }}>
       {dimensions.width > 0 && (
-        <svg 
-          width={dimensions.width} 
-          height={dimensions.height} 
+        <svg
+          width={dimensions.width}
+          height={dimensions.height}
           style={{ background: 'transparent' }}
           onMouseLeave={handleMouseLeave}
         >
-        <g transform={`translate(${padding.left}, ${padding.top})`}>
-          {/* Grid lines */}
-          {[0, 0.25, 0.5, 0.75, 1].map((ratio, i) => {
-            const y = chartHeight * ratio;
-            const price = maxPrice - (priceRange * ratio);
-            return (
-              <g key={i}>
-                <line
-                  x1={0}
-                  y1={y}
-                  x2={chartWidth}
-                  y2={y}
-                  stroke="rgba(255, 255, 255, 0.05)"
-                  strokeWidth={1}
-                />
-                <text
-                  x={chartWidth + 10}
-                  y={y + 4}
-                  fill="rgba(255, 255, 255, 0.7)"
-                  fontSize="11"
-                  fontWeight="bold"
+          <g transform={`translate(${padding.left}, ${padding.top})`}>
+            {/* Grid lines */}
+            {[0, 0.25, 0.5, 0.75, 1].map((ratio, i) => {
+              const y = chartHeight * ratio;
+              const price = maxPrice - (priceRange * ratio);
+              return (
+                <g key={i}>
+                  <line
+                    x1={0}
+                    y1={y}
+                    x2={chartWidth}
+                    y2={y}
+                    stroke="rgba(255, 255, 255, 0.05)"
+                    strokeWidth={1}
+                  />
+                  <text
+                    x={chartWidth + 10}
+                    y={y + 4}
+                    fill="rgba(255, 255, 255, 0.7)"
+                    fontSize="11"
+                    fontWeight="bold"
+                  >
+                    {price.toFixed(2)}
+                  </text>
+                </g>
+              );
+            })}
+
+            {/* Support line */}
+            {supportLine && (
+              <line
+                x1={0}
+                y1={priceToY(supportLine)}
+                x2={chartWidth}
+                y2={priceToY(supportLine)}
+                stroke="#26a69a"
+                strokeWidth={2}
+                strokeDasharray="5,5"
+              />
+            )}
+
+            {/* Candlesticks */}
+            {data.map((d, i) => {
+              const x = (i + 0.5) * candleWidth;
+              const isGreen = d.close > d.open;
+              const color = isGreen ? "#26a69a" : "#ef5350";
+
+              const highY = priceToY(d.high);
+              const lowY = priceToY(d.low);
+              const openY = priceToY(d.open);
+              const closeY = priceToY(d.close);
+
+              const bodyTop = Math.min(openY, closeY);
+              const bodyHeight = Math.abs(closeY - openY);
+
+              return (
+                <g
+                  key={i}
+                  onMouseMove={(e) => handleMouseMove(e, d, i)}
+                  style={{ cursor: 'crosshair' }}
                 >
-                  {price.toFixed(2)}
+                  {/* Invisible wider area for better hover detection */}
+                  <rect
+                    x={x - candleWidth / 2}
+                    y={0}
+                    width={candleWidth}
+                    height={chartHeight}
+                    fill="transparent"
+                  />
+
+                  {/* Wick */}
+                  <line
+                    x1={x}
+                    y1={highY}
+                    x2={x}
+                    y2={lowY}
+                    stroke={color}
+                    strokeWidth={1}
+                  />
+                  {/* Body */}
+                  <rect
+                    x={x - barWidth / 2}
+                    y={bodyTop}
+                    width={barWidth}
+                    height={Math.max(bodyHeight, 1)}
+                    fill={color}
+                    stroke={color}
+                    strokeWidth={0.5}
+                  />
+                </g>
+              );
+            })}
+
+            {/* X-axis time labels */}
+            {[0, Math.floor(data.length / 4), Math.floor(data.length / 2), Math.floor(3 * data.length / 4), data.length - 1].map((i) => {
+              if (i >= data.length) return null;
+              const d = data[i];
+              const x = (i + 0.5) * candleWidth;
+              return (
+                <text
+                  key={i}
+                  x={x}
+                  y={chartHeight + 20}
+                  fill="rgba(255, 255, 255, 0.5)"
+                  fontSize="11"
+                  textAnchor="middle"
+                >
+                  {formatChartTime(d.date)}
                 </text>
-              </g>
-            );
-          })}
-
-          {/* Support line */}
-          {supportLine && (
-            <line
-              x1={0}
-              y1={priceToY(supportLine)}
-              x2={chartWidth}
-              y2={priceToY(supportLine)}
-              stroke="#26a69a"
-              strokeWidth={2}
-              strokeDasharray="5,5"
-            />
-          )}
-
-          {/* Candlesticks */}
-          {data.map((d, i) => {
-            const x = (i + 0.5) * candleWidth;
-            const isGreen = d.close > d.open;
-            const color = isGreen ? "#26a69a" : "#ef5350";
-            
-            const highY = priceToY(d.high);
-            const lowY = priceToY(d.low);
-            const openY = priceToY(d.open);
-            const closeY = priceToY(d.close);
-            
-            const bodyTop = Math.min(openY, closeY);
-            const bodyHeight = Math.abs(closeY - openY);
-
-            return (
-              <g 
-                key={i}
-                onMouseMove={(e) => handleMouseMove(e, d, i)}
-                style={{ cursor: 'crosshair' }}
-              >
-                {/* Invisible wider area for better hover detection */}
-                <rect
-                  x={x - candleWidth / 2}
-                  y={0}
-                  width={candleWidth}
-                  height={chartHeight}
-                  fill="transparent"
-                />
-                
-                {/* Wick */}
-                <line
-                  x1={x}
-                  y1={highY}
-                  x2={x}
-                  y2={lowY}
-                  stroke={color}
-                  strokeWidth={1}
-                />
-                {/* Body */}
-                <rect
-                  x={x - barWidth / 2}
-                  y={bodyTop}
-                  width={barWidth}
-                  height={Math.max(bodyHeight, 1)}
-                  fill={color}
-                  stroke={color}
-                  strokeWidth={0.5}
-                />
-              </g>
-            );
-          })}
-
-          {/* X-axis time labels */}
-          {[0, Math.floor(data.length / 4), Math.floor(data.length / 2), Math.floor(3 * data.length / 4), data.length - 1].map((i) => {
-            if (i >= data.length) return null;
-            const d = data[i];
-            const x = (i + 0.5) * candleWidth;
-            return (
-              <text
-                key={i}
-                x={x}
-                y={chartHeight + 20}
-                fill="rgba(255, 255, 255, 0.5)"
-                fontSize="11"
-                textAnchor="middle"
-              >
-                {formatChartTime(d.date)}
-              </text>
-            );
-          })}
-        </g>
-              </svg>
+              );
+            })}
+          </g>
+        </svg>
       )}
 
       {/* Tooltip */}
@@ -299,7 +299,7 @@ const ChartsTrending = ({ chart = {} }) => {
               {chart?.binanceSymbol || "BTC/USDT"}
             </h2>
           </div>
-          
+
           <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
             <span style={{ fontSize: "20px", fontWeight: 700 }}>
               {chart?.currentPriceFormatted || currentPrice.toFixed(2)}
