@@ -612,7 +612,6 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker })
                   title={item.buttonText}
                   sx={{
                     fontSize: "12px",
-                    borderRadius: "10px",
                     color: item.color,
                     backgroundColor: item.backgroundColor,
                     borderRadius: "15px",
@@ -656,7 +655,6 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker })
                   title={item.buttonText}
                   sx={{
                     fontSize: "12px",
-                    borderRadius: "10px",
                     color: item.color,
                     backgroundColor: item.backgroundColor,
                     borderRadius: "15px",

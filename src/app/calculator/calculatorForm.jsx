@@ -154,11 +154,10 @@ const CalculatorForm = ({
         deposit: formData.deposit,
         riskOrMargin: formData.riskOrMargin,
         positionSizeUnits: formData.positionSizeUnits || 0,
-        entryPrice: formData.level,
+        entryPrice: formData.entry || formData.level,
         pair: formData.pair,
         target: formData.target,
         atr: formData.atr,
-        entryPrice : formData.entry,
         stopPrice : formData.stopLoss,
         takePrice : formData.takeProfit
       };

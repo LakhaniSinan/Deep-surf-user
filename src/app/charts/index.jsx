@@ -3,17 +3,15 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Header from "../../components/header";
 import AskAI from "./askAi";
-import ChartsTrending from "./chartsTrending";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import getChartApi from "../../services/modules/chart";
 import { toast } from "react-toastify";
+import LightweightChart from "./lightweightChart";
 import ChartTools from "./slider";
-import Chart from "./chart";
-import ChartsTrading from "./chart";
 export const Charts = () => {
   const { t } = useTranslation();
-  const [symbol, setSymbol] = useState("BTCUSDT");
+  const [symbol, setSymbol] = useState("BTC"); 
   const [interval, setInterval] = useState("1h");
   const [chartData, setChartData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,9 +24,7 @@ export const Charts = () => {
       const response = await getChartApi(symbol, interval);
       setChartData(response?.data?.data);
     } catch (error) {
-      toast.error(
-        error?.response?.data?.message || "Chart API failed"
-      );
+      toast.error(error?.response?.data?.message || "Chart API failed");
     } finally {
       setIsLoading(false);
     }
@@ -60,12 +56,15 @@ export const Charts = () => {
               </Box>
             </Grid>
             <Grid size={{ xs: 12, md: 8 }}>
-              <ChartsTrending chart={chartData} />
+              <Box sx={{ flex: 1, minHeight: 0 }}>
+                <LightweightChart data={chartData} />
+              </Box>
+
               {/* <Box display="flex" width="100%">
                 <ChartsTrending />
                 <Box width={56} flexShrink={0}>
                   <ChartTools />
-                </Box>
+                </Box>in
                 <Box flex={1} minWidth={0}>
                   <ChartsTrading />
                 </Box>

@@ -254,6 +254,7 @@ export default function PaginatedTable({
           </TableCell>
         )
       case "amount":
+        // First occurrence - keep this one
         return (
           <TableCell>
             <Box color={"neutral.Snowwhite"} fontWeight={500}>
@@ -298,7 +299,7 @@ export default function PaginatedTable({
             <Stack direction="row" spacing={1} justifyContent="center">
               {/* Custom delete icon */}
               <img
-                src={DeleteIconImg}
+                // src={DeleteIconImg}
                 alt="delete"
                 style={{ cursor: "pointer", width: "20px", height: "20px" }}
                 onClick={() => onDelete?.(row)}
@@ -306,7 +307,7 @@ export default function PaginatedTable({
             </Stack>
           </TableCell>
         );
-
+        
       case "status":
         return (
           <TableCell align="center" sx={{ border: "none", backgroundColor: "transparent" }}>
@@ -323,7 +324,6 @@ export default function PaginatedTable({
           <TableCell align={headerAlignMap[val] || "center"}>
             <Box
               sx={{
-                borderRadius: "100%",
                 fontSize: "13px",
                 fontWeight: 600,
                 backgroundColor: (row[val] || "")
@@ -358,6 +358,21 @@ export default function PaginatedTable({
             >
               {row[val]}
             </Box>
+          </TableCell>
+        );
+      case "action":
+      case "Action":
+        return (
+          <TableCell align={headerAlignMap[val] || "center"}>
+            <Stack direction="row" spacing={1} justifyContent="center">
+              {/* Custom delete icon */}
+              <img
+                // src={DeleteIconImg}
+                alt="delete"
+                style={{ cursor: "pointer", width: "20px", height: "20px" }}
+                onClick={() => onDelete?.(row)}
+              />
+            </Stack>
           </TableCell>
         );
       case "exchange":
@@ -451,14 +466,6 @@ export default function PaginatedTable({
             </Box>
           </TableCell>
         )
-      case "amount":
-        return (
-          <TableCell>
-            <Box fontWeight={500} fontSize={"15px"} >
-              {row[val]}
-            </Box>
-          </TableCell>
-        )
       case "currency":
         return (
           <TableCell>
@@ -495,14 +502,6 @@ export default function PaginatedTable({
         return (
           <TableCell>
             <Box color={row[val].includes("-") ? "neutral.redOrange" : "neutral.brightGreen"} fontWeight={600} fontSize={"15px"}>
-              {row[val]}
-            </Box>
-          </TableCell>
-        )
-      case "Status":
-        return (
-          <TableCell>
-            <Box fontWeight={600} fontSize={"15px"} color={"neutral.brightGreen"}>
               {row[val]}
             </Box>
           </TableCell>
