@@ -25,6 +25,7 @@ const SaveAlert = () => {
         priceRelation: ""
     });
     const [formErrors, setFormErrors] = useState({});
+    const [saveLoading, setSaveLoading] = useState(false);
 
     const { t } = useTranslation();
     const navigate = useNavigate();
@@ -32,7 +33,7 @@ const SaveAlert = () => {
     // ================= DROPDOWN API =================
     const getDropDownValue = async () => {
         try {
-            setIsLoading(true);
+            setSaveLoading(true);   // ✅ yahan
             const response = await getDropdownApi();
             const data = response?.data?.data || response?.data;
             setDropDownValue(data || { priceRelation: [] });
@@ -40,7 +41,7 @@ const SaveAlert = () => {
             console.error("Error fetching dropdown:", error);
             toast.error("Failed to load dropdown data");
         } finally {
-            setIsLoading(false);
+            setSaveLoading(false); // ✅ yahan
         }
     };
 
@@ -74,7 +75,7 @@ const SaveAlert = () => {
         if (!isValid) return;
 
         try {
-            setIsLoading(true);
+            setSaveLoading(true);   // ✅ yahan
             const payload = {
                 ticker: formData.ticker,
                 price: formData.price,
@@ -99,7 +100,7 @@ const SaveAlert = () => {
         } catch (error) {
             toast.error(error?.response?.data?.error || "Something went wrong");
         } finally {
-            setIsLoading(false);
+            setSaveLoading(false); // ✅ yahan
         }
     };
 
@@ -195,11 +196,11 @@ const SaveAlert = () => {
                                             ...inputStyles["& .MuiOutlinedInput-root"],
                                         },
                                         "& .MuiOutlinedInput-input.Mui-disabled": {
-                                            color: "#fff",  
+                                            color: "#fff",
                                             WebkitTextFillColor: "#fff"
                                         },
                                         "& .MuiOutlinedInput-notchedOutline": {
-                                            borderColor: "rgba(143, 143, 143, 1)", 
+                                            borderColor: "rgba(143, 143, 143, 1)",
                                         }
                                     }}
                                     placeholder={'Price'}
@@ -207,7 +208,7 @@ const SaveAlert = () => {
                                     disabled
                                 />
                             </Stack>
-                                                                              
+
                             <Stack direction="row" spacing={2} mt={2}>
                                 <Box flex={1}>
                                     <CustomSelect
@@ -236,7 +237,7 @@ const SaveAlert = () => {
                             <CustomButton
                                 title={t("journal.saveAlert")}
                                 handleClickBtn={createJounalApi}
-                                loading={isLoading}   // <-- correct prop
+                                loading={saveLoading}
                                 sx={styles.saveButton}
                             />
 

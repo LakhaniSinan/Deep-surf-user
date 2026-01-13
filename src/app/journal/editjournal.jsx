@@ -19,6 +19,7 @@ const EditJournal = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [dropDownValue, setDropDownValue] = useState({ priceRelation: [] });
   const [exchangeMarketData, setExchangeMarketData] = useState(null);
+  const [saveLoading, setSaveLoading] = useState(false);
   console.log("dwdwdwdddddddddddddddddd", exchangeMarketData);
 
   const { t } = useTranslation();
@@ -33,7 +34,7 @@ const EditJournal = () => {
   const defaultPair = "BTCUSDT";
   const getJournalAlertById = async () => {
     try {
-      setIsLoading(true)
+      setSaveLoading(true);   // 🔥 yahan
       const payload = {  // Fixed typo: paylaod -> payload
         ticker: formData.ticker,
         price: exchangeMarketData?.current_price, // Use API value
@@ -58,7 +59,7 @@ const EditJournal = () => {
     } catch (error) {
       toast.error(error?.response?.data?.error || "Something went wrong");
     } finally {
-      setIsLoading(false);
+      setSaveLoading(false);  // 🔥 yahan
     }
   };
 
@@ -238,7 +239,7 @@ const EditJournal = () => {
               <CustomButton
                 title={t("journal.saveAlert")}
                 handleClickBtn={getJournalAlertById}
-                loading={isLoading}   // <-- correct prop
+                loading={saveLoading}   // ✅ FIX
                 sx={styles.saveButton}
               />
             </Box>

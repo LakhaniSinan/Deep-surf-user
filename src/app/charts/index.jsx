@@ -9,6 +9,8 @@ import getChartApi from "../../services/modules/chart";
 import { toast } from "react-toastify";
 import LightweightChart from "./lightweightChart";
 import ChartTools from "./slider";
+import ChartsTrendings from "./chartTrending";
+import TradingChart from "./chartTrending";
 export const Charts = () => {
   const { t } = useTranslation();
   const [symbol, setSymbol] = useState("BTC"); 
@@ -18,7 +20,6 @@ export const Charts = () => {
 
   const getChartAPi = async () => {
     if (!symbol || !interval) return;
-
     try {
       setIsLoading(true);
       const response = await getChartApi(symbol, interval);
@@ -58,6 +59,10 @@ export const Charts = () => {
             <Grid size={{ xs: 12, md: 8 }}>
               <Box sx={{ flex: 1, minHeight: 0 }}>
                 <LightweightChart data={chartData} />
+              </Box>
+              <Box>
+                {/* <ChartsTrendings/> */}
+                <TradingChart data={chartData}/>
               </Box>
 
               {/* <Box display="flex" width="100%">
