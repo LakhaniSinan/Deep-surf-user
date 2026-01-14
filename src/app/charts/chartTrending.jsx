@@ -381,103 +381,307 @@
 // };
 
 // export default ChartsTrendings;
+// import React, { useEffect, useRef, useState } from "react";
+// import { createChart } from 'lightweight-charts';
+// import { Box, Grid } from "@mui/material";
+
+// const generateCandlestickData = (candles = 100, basePrice = 15400) => {
+//     const data = [];
+//     let price = basePrice;
+//     for (let i = 0; i < candles; i++) {
+//         const open = price + (Math.random() - 0.5) * 50;
+//         const close = open + (Math.random() - 0.5) * 40;
+//         const high = Math.max(open, close) + Math.random() * 20;
+//         const low = Math.min(open, close) - Math.random() * 20;
+
+//         data.push({
+//             time: Math.floor(Date.now() / 1000) - (candles - i) * 60 * 15,
+//             open: parseFloat(open.toFixed(2)),
+//             high: parseFloat(high.toFixed(2)),
+//             low: parseFloat(low.toFixed(2)),
+//             close: parseFloat(close.toFixed(2)),
+//         });
+
+//         price = close;
+//     }
+//     return data;
+// };
+
+// const TradingChart = ({ data }) => {
+//     console.log("frfrfurfyrfgrtfrtfgrfrfrfrfrfrf", data?.priceRange?.max);
+
+//     const chartContainerRef = useRef();
+//     const chartRef = useRef();
+//     const seriesRef = useRef();
+
+//     const [chartData] = useState(generateCandlestickData());
+//     const [currentPrice, setCurrentPrice] = useState(15400);
+//     const [high, setHigh] = useState(0);
+//     const [low, setLow] = useState(0);
+//     const [close, setClose] = useState(0);
+//     const [volume] = useState(350);
+//     const [timeframe, setTimeframe] = useState("15m");
+
+//     useEffect(() => {
+//         if (!chartContainerRef.current) return;
+
+//         const chart = createChart(chartContainerRef.current, {
+//             width: chartContainerRef.current.clientWidth,
+//             height: 500,
+//             layout: {
+//                 background: { color: "#0d0d0d" },
+//                 textColor: "rgba(255,255,255,0.6)"
+//             },
+//             grid: {
+//                 vertLines: {
+//                     color: "rgba(42,46,57,0.5)",
+//                     style: 1,
+//                 },
+//                 horzLines: {
+//                     color: "rgba(42,46,57,0.5)",
+//                     style: 1,
+//                 }
+//             },
+//             crosshair: {
+//                 mode: 1,
+//                 vertLine: {
+//                     color: "rgba(255,255,255,0.3)",
+//                     width: 1,
+//                     style: 3,
+//                     labelBackgroundColor: "rgba(38,166,154,0.9)"
+//                 },
+//                 horzLine: {
+//                     color: "rgba(255,255,255,0.3)",
+//                     width: 1,
+//                     style: 3,
+//                     labelBackgroundColor: "rgba(38,166,154,0.9)"
+//                 }
+//             },
+//             // LEFT SCALE HIDDEN
+//             leftPriceScale: {
+//                 visible: false,  // ❌ Hidden
+//             },
+//             // ONLY RIGHT SCALE VISIBLE
+//             rightPriceScale: {
+//                 visible: true,  // ✅ Visible
+//                 borderVisible: false,
+//                 scaleMargins: {
+//                     top: 0.1,
+//                     bottom: 0.1,
+//                 },
+//             },
+//             timeScale: {
+//                 visible: true,
+//                 borderVisible: false,
+//                 timeVisible: true,
+//                 secondsVisible: false,
+//                 rightOffset: 5,
+//                 barSpacing: 8,
+//             }
+//         });
+
+//         const candleSeries = chart.addCandlestickSeries({
+//             upColor: "rgba(62, 221, 135, 1)",
+//             downColor: "#ef5350",
+//             borderUpColor: "rgba(62, 221, 135, 1)",
+//             borderDownColor: "#ef5350",
+//             wickUpColor: "rgba(62, 221, 135, 1)",
+//             wickDownColor: "#ef5350",
+//             priceScaleId: "right",
+//         });
+
+//         candleSeries.setData(chartData);
+
+//         chartRef.current = chart;
+//         seriesRef.current = candleSeries;
+
+//         // Stats update
+//         const prices = chartData.map(d => d.close);
+//         const highs = chartData.map(d => d.high);
+//         const lows = chartData.map(d => d.low);
+
+//         setCurrentPrice(prices[prices.length - 1]);
+//         setClose(prices[prices.length - 1]);
+//         setHigh(Math.max(...highs));
+//         setLow(Math.min(...lows));
+
+//         // Window resize handler
+//         const handleResize = () => {
+//             if (chartContainerRef.current && chart) {
+//                 chart.applyOptions({
+//                     width: chartContainerRef.current.clientWidth
+//                 });
+//             }
+//         };
+
+//         window.addEventListener('resize', handleResize);
+
+//         return () => {
+//             window.removeEventListener('resize', handleResize);
+//             chart.remove();
+//         };
+//     }, [chartData]);
+
+//     return (
+//         <div style={{
+//             backgroundColor: "#0d0d0d",
+//             color: "#fff",
+//             padding: "20px",
+//             borderRadius: "12px",
+//             height: "95vh",
+//             display: "flex",
+//             flexDirection: "column",
+//             fontFamily: "Inter Tight"
+//         }}>
+//             {/* Header */}
+//             <div style={{ marginBottom: "20px" }}>
+
+//                 <Grid container spacing={2} alignItems="center">
+//                     <Grid item size={{ xs: 12, sm: 6, md: 3 }} >
+//                         <Box display="flex" alignItems="center" height="100%">
+//                             <h2 style={{ margin: 0, fontSize: "16px", fontWeight: 500, color: "rgba(255,255,255,0.6)" }}>
+//                                 {data?.pair}
+//                             </h2>
+//                         </Box>
+//                     </Grid>
+
+//                     <Grid item size={{ xs: 12, sm: 6, md: 3 }} >
+//                         <Box>
+//                             <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+//                                 <span style={{ fontSize: "15px", fontWeight: 600 }}>
+//                                     {data?.currentPriceFormatted}
+//                                 </span>
+//                                 <span
+//                                     style={{
+//                                         fontSize: "14px",
+//                                         fontWeight: 500,
+//                                         color: data?.change24hFormatted?.includes("+") ? "rgba(62, 221, 135, 1)" : "#ef5350"
+//                                     }}
+//                                 >
+//                                     {data?.change24hFormatted || "0.00%"}
+//                                 </span>
+
+//                             </div>
+//                         </Box>
+//                     </Grid>
+
+//                     <Grid item size={{ xs: 12, sm: 6, md: 6 }} >
+//                         <Box display="flex" justifyContent="flex-end" flexWrap="wrap" gap="4px" height="100%">
+//                             {["1m", "5m", "15m", "30m", "1H", "4H", "1D"].map((tf) => (
+//                                 <button
+//                                     key={tf}
+//                                     onClick={() => setTimeframe(tf)}
+//                                     style={{
+//                                         minWidth: "36px",
+//                                         padding: "6px 10px",
+//                                         fontSize: "11px",
+//                                         fontWeight: 500,
+//                                         color: timeframe === tf ? "#fff" : "rgba(255,255,255,0.5)",
+//                                         backgroundColor: timeframe === tf ? "rgba(255,255,255,0.1)" : "transparent",
+//                                         border: "none",
+//                                         borderRadius: "4px",
+//                                         cursor: "pointer",
+//                                         transition: "all 0.2s",
+//                                     }}
+//                                     onMouseEnter={(e) => {
+//                                         if (timeframe !== tf) e.target.style.backgroundColor = "rgba(255,255,255,0.05)";
+//                                     }}
+//                                     onMouseLeave={(e) => {
+//                                         if (timeframe !== tf) e.target.style.backgroundColor = "transparent";
+//                                     }}
+//                                 >
+//                                     {tf}
+//                                 </button>
+//                             ))}
+//                         </Box>
+//                     </Grid>
+//                 </Grid>
+
+//                 {/* Stats */}
+//                 <div style={{
+//                     display: "flex",
+//                     gap: "20px",
+//                     fontSize: "12px",
+//                     marginTop: "12px",
+//                     flexWrap: "wrap",
+//                     color: "rgba(255,255,255,0.5)"
+//                 }}>
+//                     <span>
+//                         <span style={{ color: "rgba(255,255,255,0.4)" }}>Change: </span>
+//                         <span style={{ color: data?.changeAmountFormatted?.includes("-") ? "rgba(226, 70, 74, 1)" : "rgba(62, 221, 135, 1)" }}>{data?.changeAmountFormatted}</span>
+//                     </span>
+//                     <span>
+//                         <span style={{ color: "rgba(255,255,255,0.4)" }}>Volume: </span>
+//                         <span style={{ color: "rgba(226, 70, 74, 1)" }}>{data?.volumeFormatted}K</span>
+//                     </span>
+//                     <span>
+//                         <span style={{ color: "rgba(255,255,255,0.4)" }}>Low: </span>
+//                         <span style={{ color: "#ef5350" }}>{data?.low}</span>
+//                     </span>
+//                     <span>
+//                         <span style={{ color: "rgba(255,255,255,0.4)" }}>High: </span>
+//                         <span style={{ color: "rgba(226, 70, 74, 1)" }}>{data?.high}</span>
+//                     </span>
+//                     <span>
+//                         <span style={{ color: "rgba(255,255,255,0.4)" }}>Close: </span>
+//                         <span style={{ color: "rgba(226, 70, 74, 1)" }}>{data?.close}</span>
+//                     </span>
+
+//                 </div>
+//             </div>
+
+//             {/* Chart Container */}
+//             <div
+//                 ref={chartContainerRef}
+//                 style={{
+//                     flex: 1,
+//                     minHeight: 0,
+//                     position: "relative",
+//                     backgroundColor: "#0d0d0d",
+//                     borderRadius: "8px"
+//                 }}
+//             />
+//         </div>
+
+//     );
+// };
+
+// export default TradingChart;
+
+
+
+
 import React, { useEffect, useRef, useState } from "react";
 import { createChart } from 'lightweight-charts';
 import { Box, Grid } from "@mui/material";
 
-const generateCandlestickData = (candles = 100, basePrice = 15400) => {
-    const data = [];
-    let price = basePrice;
-    for (let i = 0; i < candles; i++) {
-        const open = price + (Math.random() - 0.5) * 50;
-        const close = open + (Math.random() - 0.5) * 40;
-        const high = Math.max(open, close) + Math.random() * 20;
-        const low = Math.min(open, close) - Math.random() * 20;
-
-        data.push({
-            time: Math.floor(Date.now() / 1000) - (candles - i) * 60 * 15,
-            open: parseFloat(open.toFixed(2)),
-            high: parseFloat(high.toFixed(2)),
-            low: parseFloat(low.toFixed(2)),
-            close: parseFloat(close.toFixed(2)),
-        });
-
-        price = close;
-    }
-    return data;
-};
-
 const TradingChart = ({ data }) => {
-    console.log("frfrfurfyrfgrtfrtfgrfrfrfrfrfrf", data?.priceRange?.max);
-
     const chartContainerRef = useRef();
     const chartRef = useRef();
     const seriesRef = useRef();
+    const tooltipRef = useRef();
 
-    const [chartData] = useState(generateCandlestickData());
     const [currentPrice, setCurrentPrice] = useState(15400);
     const [high, setHigh] = useState(0);
     const [low, setLow] = useState(0);
     const [close, setClose] = useState(0);
-    const [volume] = useState(350);
+    const [volume, setVolume] = useState(350);
     const [timeframe, setTimeframe] = useState("15m");
+    const [chartData, setChartData] = useState([]);
+    const [hoverData, setHoverData] = useState(null);
 
+    // ------------------ CREATE CHART ------------------
     useEffect(() => {
         if (!chartContainerRef.current) return;
 
         const chart = createChart(chartContainerRef.current, {
             width: chartContainerRef.current.clientWidth,
             height: 500,
-            layout: {
-                background: { color: "#0d0d0d" },
-                textColor: "rgba(255,255,255,0.6)"
-            },
-            grid: {
-                vertLines: {
-                    color: "rgba(42,46,57,0.5)",
-                    style: 1,
-                },
-                horzLines: {
-                    color: "rgba(42,46,57,0.5)",
-                    style: 1,
-                }
-            },
-            crosshair: {
-                mode: 1,
-                vertLine: {
-                    color: "rgba(255,255,255,0.3)",
-                    width: 1,
-                    style: 3,
-                    labelBackgroundColor: "rgba(38,166,154,0.9)"
-                },
-                horzLine: {
-                    color: "rgba(255,255,255,0.3)",
-                    width: 1,
-                    style: 3,
-                    labelBackgroundColor: "rgba(38,166,154,0.9)"
-                }
-            },
-            // LEFT SCALE HIDDEN
-            leftPriceScale: {
-                visible: false,  // ❌ Hidden
-            },
-            // ONLY RIGHT SCALE VISIBLE
-            rightPriceScale: {
-                visible: true,  // ✅ Visible
-                borderVisible: false,
-                scaleMargins: {
-                    top: 0.1,
-                    bottom: 0.1,
-                },
-            },
-            timeScale: {
-                visible: true,
-                borderVisible: false,
-                timeVisible: true,
-                secondsVisible: false,
-                rightOffset: 5,
-                barSpacing: 8,
-            }
+            layout: { background: { color: "#0d0d0d" }, textColor: "rgba(255,255,255,0.6)" },
+            grid: { vertLines: { color: "rgba(42,46,57,0.5)", style: 1 }, horzLines: { color: "rgba(42,46,57,0.5)", style: 1 } },
+            crosshair: { mode: 1, vertLine: { color: "rgba(255,255,255,0.3)", width: 1, style: 3 }, horzLine: { color: "rgba(255,255,255,0.3)", width: 1, style: 3 } },
+            rightPriceScale: { visible: true, borderVisible: false, scaleMargins: { top: 0.1, bottom: 0.1 } },
+            timeScale: { visible: true, borderVisible: false, timeVisible: true, secondsVisible: false, rightOffset: 5, barSpacing: 8 }
         });
 
         const candleSeries = chart.addCandlestickSeries({
@@ -490,54 +694,103 @@ const TradingChart = ({ data }) => {
             priceScaleId: "right",
         });
 
-        candleSeries.setData(chartData);
-
         chartRef.current = chart;
         seriesRef.current = candleSeries;
 
-        // Stats update
-        const prices = chartData.map(d => d.close);
-        const highs = chartData.map(d => d.high);
-        const lows = chartData.map(d => d.low);
+        // ------------------ TOOLTIP ------------------
+        const tooltip = document.createElement("div");
+        tooltip.style.position = "absolute";
+        tooltip.style.pointerEvents = "none";
+        tooltip.style.background = "#111";
+        tooltip.style.color = "#fff";
+        tooltip.style.padding = "6px 8px";
+        tooltip.style.borderRadius = "4px";
+        tooltip.style.fontSize = "12px";
+        tooltip.style.display = "none";
+        tooltipRef.current = tooltip;
+        chartContainerRef.current.appendChild(tooltip);
 
-        setCurrentPrice(prices[prices.length - 1]);
-        setClose(prices[prices.length - 1]);
-        setHigh(Math.max(...highs));
-        setLow(Math.min(...lows));
-
-        // Window resize handler
-        const handleResize = () => {
-            if (chartContainerRef.current && chart) {
-                chart.applyOptions({
-                    width: chartContainerRef.current.clientWidth
-                });
+        chart.subscribeCrosshairMove((param) => {
+            if (!param || !param.time) {
+                tooltip.style.display = "none";
+                setHoverData(null);
+                return;
             }
-        };
 
-        window.addEventListener('resize', handleResize);
+            const seriesData = param.seriesData.get(candleSeries);
+            if (seriesData) {
+                tooltip.style.display = "block";
+                tooltip.innerHTML = `
+                    Time: ${new Date(param.time * 1000).toLocaleTimeString()}<br/>
+                    Open: ${seriesData.open}<br/>
+                    High: ${seriesData.high}<br/>
+                    Low: ${seriesData.low}<br/>
+                    Close: ${seriesData.close}
+                `;
+                tooltip.style.left = `${param.point.x + 10}px`;
+                tooltip.style.top = `${param.point.y + 10}px`;
+
+                setHoverData({
+                    open: seriesData.open,
+                    high: seriesData.high,
+                    low: seriesData.low,
+                    close: seriesData.close
+                });
+            } else {
+                tooltip.style.display = "none";
+                setHoverData(null);
+            }
+        });
+
+        // ------------------ RESIZE ------------------
+        const handleResize = () => {
+            if (chartContainerRef.current && chart) chart.applyOptions({ width: chartContainerRef.current.clientWidth });
+        };
+        window.addEventListener("resize", handleResize);
 
         return () => {
-            window.removeEventListener('resize', handleResize);
+            window.removeEventListener("resize", handleResize);
             chart.remove();
         };
-    }, [chartData]);
+    }, []);
 
+    // ------------------ SET DATA ------------------
+    useEffect(() => {
+        if (!data) return;
+        const formattedData = data.chartData.map(c => ({
+            time: Math.floor(c.timestamp / 1000),
+            open: c.open,
+            high: c.high,
+            low: c.low,
+            close: c.close,
+            color: c.color
+        }));
+        setChartData(formattedData);
+
+        if (formattedData.length > 0) {
+            setHigh(data.priceRange.max);
+            setLow(data.priceRange.min);
+            setClose(formattedData[formattedData.length - 1].close);
+            setCurrentPrice(formattedData[formattedData.length - 1].close);
+            setVolume(data.volume || 350);
+        }
+        if (seriesRef.current) seriesRef.current.setData(formattedData);
+    }, [data]);
+
+    // ------------------ HELPER FUNCTION ------------------
+    const getColor = (value) => {
+        if (value === null || value === undefined) return "rgba(62, 221, 135, 1)";
+        value = parseFloat(value);
+        return value < 0 ? "#ef5350" : "rgba(62, 221, 135, 1)";
+    };
+
+    // ------------------ RENDER ------------------
     return (
-        <div style={{
-            backgroundColor: "#0d0d0d",
-            color: "#fff",
-            padding: "20px",
-            borderRadius: "12px",
-            height: "95vh",
-            display: "flex",
-            flexDirection: "column",
-            fontFamily: "Inter Tight"
-        }}>
+        <div style={{ backgroundColor: "#0d0d0d", color: "#fff", padding: "20px", borderRadius: "12px", height: "95vh", display: "flex", flexDirection: "column", fontFamily: "Inter Tight" }}>
             {/* Header */}
             <div style={{ marginBottom: "20px" }}>
-
                 <Grid container spacing={2} alignItems="center">
-                    <Grid item size={{ xs: 12, sm: 6, md: 3 }} >
+                    <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
                         <Box display="flex" alignItems="center" height="100%">
                             <h2 style={{ margin: 0, fontSize: "16px", fontWeight: 500, color: "rgba(255,255,255,0.6)" }}>
                                 {data?.pair}
@@ -545,32 +798,21 @@ const TradingChart = ({ data }) => {
                         </Box>
                     </Grid>
 
-                    <Grid item size={{ xs: 12, sm: 6, md: 3 }} >
+                    <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
                         <Box>
                             <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-                                <span style={{ fontSize: "15px", fontWeight: 600 }}>
-                                    {data?.currentPriceFormatted}
-                                </span>
-                                <span
-                                    style={{
-                                        fontSize: "14px",
-                                        fontWeight: 500,
-                                        color: data?.change24hFormatted?.includes("+") ? "rgba(62, 221, 135, 1)" : "#ef5350"
-                                    }}
-                                >
+                                <span style={{ fontSize: "15px", fontWeight: 600 }}>{data?.currentPriceFormatted}</span>
+                                <span style={{ fontSize: "14px", fontWeight: 500, color: getColor(data?.change24hFormatted) }}>
                                     {data?.change24hFormatted || "0.00%"}
                                 </span>
-
                             </div>
                         </Box>
                     </Grid>
 
-                    <Grid item size={{ xs: 12, sm: 6, md: 6 }} >
+                    <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
                         <Box display="flex" justifyContent="flex-end" flexWrap="wrap" gap="4px" height="100%">
-                            {["1m", "5m", "15m", "30m", "1H", "4H", "1D"].map((tf) => (
-                                <button
-                                    key={tf}
-                                    onClick={() => setTimeframe(tf)}
+                            {["1m", "5m", "15m", "30m", "1H", "4H", "1D"].map(tf => (
+                                <button key={tf} onClick={() => setTimeframe(tf)}
                                     style={{
                                         minWidth: "36px",
                                         padding: "6px 10px",
@@ -581,14 +823,10 @@ const TradingChart = ({ data }) => {
                                         border: "none",
                                         borderRadius: "4px",
                                         cursor: "pointer",
-                                        transition: "all 0.2s",
+                                        transition: "all 0.2s"
                                     }}
-                                    onMouseEnter={(e) => {
-                                        if (timeframe !== tf) e.target.style.backgroundColor = "rgba(255,255,255,0.05)";
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        if (timeframe !== tf) e.target.style.backgroundColor = "transparent";
-                                    }}
+                                    onMouseEnter={e => { if (timeframe !== tf) e.target.style.backgroundColor = "rgba(255,255,255,0.05)" }}
+                                    onMouseLeave={e => { if (timeframe !== tf) e.target.style.backgroundColor = "transparent" }}
                                 >
                                     {tf}
                                 </button>
@@ -596,56 +834,42 @@ const TradingChart = ({ data }) => {
                         </Box>
                     </Grid>
                 </Grid>
-                
-                {/* Stats */}
-                <div style={{
-                    display: "flex",
-                    gap: "20px",
-                    fontSize: "12px",
-                    marginTop: "12px",
-                    flexWrap: "wrap",
-                    color: "rgba(255,255,255,0.5)"
-                }}>
+
+                {/* Stats with hover + dynamic color */}
+                <div style={{ display: "flex", gap: "20px", fontSize: "12px", marginTop: "12px", flexWrap: "wrap", color: "rgba(255,255,255,0.5)" }}>
                     <span>
                         <span style={{ color: "rgba(255,255,255,0.4)" }}>Change: </span>
-                        <span style={{ color: data?.changeAmountFormatted?.includes("-") ? "rgba(226, 70, 74, 1)" : "rgba(62, 221, 135, 1)" }}>{data?.changeAmountFormatted}</span>
+                        <span style={{ color: getColor(data?.changeAmountFormatted) }}>
+                            {data?.changeAmountFormatted}
+                        </span>
                     </span>
                     <span>
                         <span style={{ color: "rgba(255,255,255,0.4)" }}>Volume: </span>
-                        <span style={{ color: "rgba(226, 70, 74, 1)" }}>{data?.volumeFormatted}K</span>
+                        <span style={{ color: getColor(volume) }}>{volume}K</span>
                     </span>
                     <span>
                         <span style={{ color: "rgba(255,255,255,0.4)" }}>Low: </span>
-                        <span style={{ color: "#ef5350" }}>{data?.low}</span>
+                        <span style={{ color: getColor(hoverData?.low || low) }}>{hoverData?.low || low}</span>
                     </span>
                     <span>
                         <span style={{ color: "rgba(255,255,255,0.4)" }}>High: </span>
-                        <span style={{ color: "rgba(226, 70, 74, 1)" }}>{data?.high}</span>
+                        <span style={{ color: getColor(hoverData?.high || high) }}>{hoverData?.high || high}</span>
                     </span>
                     <span>
                         <span style={{ color: "rgba(255,255,255,0.4)" }}>Close: </span>
-                        <span style={{ color: "rgba(226, 70, 74, 1)" }}>{data?.close}</span>
+                        <span style={{ color: getColor(hoverData?.close || close) }}>{hoverData?.close || close}</span>
                     </span>
-
                 </div>
             </div>
 
             {/* Chart Container */}
-            <div
-                ref={chartContainerRef}
-                style={{
-                    flex: 1,
-                    minHeight: 0,
-                    position: "relative",
-                    backgroundColor: "#0d0d0d",
-                    borderRadius: "8px"
-                }}
-            />
+            <div ref={chartContainerRef} style={{ flex: 1, minHeight: 0, position: "relative", backgroundColor: "#0d0d0d", borderRadius: "8px" }} />
         </div>
-        
     );
 };
 
 export default TradingChart;
+
+
 
 
