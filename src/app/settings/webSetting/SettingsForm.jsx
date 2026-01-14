@@ -1,5 +1,7 @@
 import { Grid } from "@mui/material";
 import CustomSelect from "../../../components/customSelect";
+import { useTranslation } from "react-i18next";
+
 
 const SettingsForm = ({
   language,
@@ -10,11 +12,13 @@ const SettingsForm = ({
   timezoneOptions,
   currencyOptions,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <Grid container spacing={{ xs: 3, md: 4 }}>
       <Grid item size={{ xs: 12, md: 4 }}>
         <CustomSelect
-          label="Language"
+          label={t("setting.language")}
           value={language}
           onChange={(event) => onChange("language", event.target.value)}
           options={languageOptions}
@@ -23,7 +27,7 @@ const SettingsForm = ({
       </Grid>
       <Grid item size={{ xs: 12, md: 4 }}>
         <CustomSelect
-          label="Timezone"
+          label={t("setting.timeZone")}
           value={timezone}
           onChange={(event) => onChange("timezone", event.target.value)}
           options={timezoneOptions}
@@ -32,7 +36,7 @@ const SettingsForm = ({
       </Grid>
       <Grid item size={{ xs: 12, md: 4 }}>
         <CustomSelect
-          label="Currency"
+          label={t("setting.currency")}
           value={currency}
           onChange={(event) => onChange("currency", event.target.value)}
           options={currencyOptions}

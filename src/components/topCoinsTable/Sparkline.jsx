@@ -1,6 +1,11 @@
 import React from "react";
 
-const Sparkline = ({ data = [], isPositive = true, width = 80, height = 30 }) => {
+const Sparkline = ({
+  data = [],
+  isPositive = true,
+  width = 80,
+  height = 30,
+}) => {
   // Default data agar koi data na ho
   const defaultData = [10, 20, 15, 25, 30, 20, 35, 40, 35, 45];
   const sparklineData = data.length > 0 ? data : defaultData;
@@ -26,7 +31,13 @@ const Sparkline = ({ data = [], isPositive = true, width = 80, height = 30 }) =>
       style={{ overflow: "visible" }}
     >
       <defs>
-        <linearGradient id={`gradient-${isPositive ? "green" : "red"}`} x1="0%" y1="0%" x2="0%" y2="100%">
+        <linearGradient
+          id={`gradient-${isPositive ? "#22c55e" : "red"}`}
+          x1="0%"
+          y1="0%"
+          x2="0%"
+          y2="100%"
+        >
           <stop
             offset="0%"
             stopColor={isPositive ? "#22c55e" : "#ef4444"}
@@ -34,7 +45,7 @@ const Sparkline = ({ data = [], isPositive = true, width = 80, height = 30 }) =>
           />
           <stop
             offset="100%"
-            stopColor={isPositive ? "#22c55e" : "#ef4444"}
+            // stopColor={isPositive ? "#22c55e" : "#ef4444"}
             stopOpacity="0"
           />
         </linearGradient>
@@ -57,4 +68,3 @@ const Sparkline = ({ data = [], isPositive = true, width = 80, height = 30 }) =>
 };
 
 export default Sparkline;
-

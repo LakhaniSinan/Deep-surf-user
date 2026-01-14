@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { Box, Typography, Button, Grid, Skeleton } from "@mui/material";
 import VolumeCard from "../volumeCard";
 import VolumeCardSkeleton from "../../components/skeleton/volumeCardSkeleton";
+import { useTranslation } from "react-i18next";
 
 const TopVolumeSection = ({ data1, data2, isLoading }) => {
+  console.log("fhfyfyrfrjfffrfrf", data1, data2);
+
   const [selectedTimeframe, setSelectedTimeframe] = useState("24h");
   const data = selectedTimeframe === "24h" ? data1 : data2;
-
+  const { t } = useTranslation();
   const finalData = data?.map((item) => ({
     ...item,
     volumeFormatted:
@@ -38,8 +41,8 @@ const TopVolumeSection = ({ data1, data2, isLoading }) => {
           gap: "16px",
         }}
       >
-        <Typography variant="h4" fontSize="1rem" color="text.primary">
-          Top 10 by volume
+        <Typography variant="h4" fontSize="1rem" color="text.primary" fontFamily="Inter Tight">
+          {t("dashboard.topCoinByVolume.title")}
         </Typography>
 
         {/* Buttons */}
@@ -52,6 +55,7 @@ const TopVolumeSection = ({ data1, data2, isLoading }) => {
               borderRadius: "20px",
               textTransform: "none",
               fontSize: "0.875rem",
+              fontFamily: "Inter Tight",
               fontWeight: 500,
               backgroundColor:
                 selectedTimeframe === "24h" ? "#2a2a2a" : "transparent",
@@ -93,7 +97,7 @@ const TopVolumeSection = ({ data1, data2, isLoading }) => {
         <VolumeCardSkeleton />
       ) : finalData?.length === 0 ? (
         <Typography textAlign={"center"} color="#fff" mt={2} fontWeight={600}>
-          No Data Found
+          {t("dashboard.topCoinByVolume.notFound")}
         </Typography>
       ) : (
         <Grid container spacing={2}>

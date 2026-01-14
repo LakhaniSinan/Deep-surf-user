@@ -1,27 +1,26 @@
 import { Box, Grid, Typography } from "@mui/material";
-import React, { useState } from "react";
-import CustomInput from "../../components/customInput";
-import IconImage from "../../assets/icons/vector.svg";
-import styled from "@emotion/styled";
+import { useTranslation } from "react-i18next";
+const FuturesMetrics = ({ coinData }) => {
+  console.log("coisnDatatataaa", coinData?.basicInfo?.symbol);
 
-const FuturesMetrics = () => {
+  const { t } = useTranslation();
   const fundingData = [
     {
-      title: "Funding Rate",
-      value: "0.000%",
-      status: "Neutral",
+      title: (t("ProAnalytics.FuturesMetrics.fundingRate")),
+      value: coinData?.futuresMetrics?.fundingRate,
+      status: coinData?.futuresMetrics?.fundingRateLabel,
     },
 
     {
-      title: "Open Interest",
-      value: "1.5M",
-      status: "+3.70% (24h)",
+      title: (t("ProAnalytics.FuturesMetrics.openInterest")),
+      value: coinData?.futuresMetrics?.openInterest,
+      status: coinData?.futuresMetrics?.openInterestChange,
     },
 
     {
-      title: "L/S Positions",
-      value: "2.34",
-      status: "Everyone is longing ETH. Becareful!",
+      title: (t("ProAnalytics.FuturesMetrics.lsPositions")),
+      value: coinData?.futuresMetrics?.longShortPositions,
+      status: coinData?.futuresMetrics?.longShortPositions?.warning,
       stye: {
         width: "100%",
         height: "5px",
@@ -32,8 +31,8 @@ const FuturesMetrics = () => {
     },
 
     {
-      title: "L/S Accounts",
-      value: "2.75",
+      title: (t("ProAnalytics.FuturesMetrics.LsAccounts")),
+      value: coinData?.futuresMetrics?.longShortAccounts,
       status: "Neutral",
       stye: {
         width: "100%",
@@ -46,35 +45,22 @@ const FuturesMetrics = () => {
 
     {
       title: "Cumulative Delta",
-      value: "+0.20M",
-      status: "Buying is predominant",
+      value: coinData?.futuresMetrics?.cumulativeDelta,
+      status: coinData?.futuresMetrics?.cumulativeDeltaLabel,
     },
   ];
-
-  const [search, setSearch] = useState("");
-
-  const handleInputChange = (field) => (event) => {
-    setSearch({
-      [field]: event.target.value,
-    });
-  };
   return (
     <>
       <Box
         backgroundColor={"#161616"}
-        mt={"10px"}
+        mt={"15px"}
         padding={"25px"}
         borderRadius={"40px"}
       >
-        <Typography variant="h5">Futures Metrics</Typography>
-        <Box mt={"20px"}>
-          <CustomInput
-            placeholder="ETH"
-            value={search.search || ""}
-            onChange={handleInputChange("search")}
-            InputEndIcon={<img src={IconImage} />}
-          />
-        </Box>
+        <Typography variant="h5" fontSize={"20px"}>
+          {t("ProAnalytics.FuturesMetrics.futuresMetricesTitle")}
+
+        </Typography>
         <Box
           display={"flex"}
           alignItems={"center"}
@@ -82,38 +68,55 @@ const FuturesMetrics = () => {
           mt={"20px"}
           flexDirection={"column"}
         >
-          <Typography variant="h4">Current ETH Price</Typography>
-          <Typography variant="h5">$4,321.7</Typography>
+          <Typography variant="h4" fontSize={"18px"} fontWeight={600}>
+            {t("ProAnalytics.LiquidationMap.Current")} {coinData?.basicInfo?.symbol} {t("ProAnalytics.LiquidationMap.price")}
+          </Typography>
+          <Typography variant="h5" fontSize={"20px"}>
+            {coinData?.basicInfo.priceFormatted}
+          </Typography>
         </Box>
         <Grid container spacing={1} mt={5}>
           {fundingData.map((item, index) => (
             <Grid item size={{ xs: 12, sm: 6, md: 2.4 }} key={index}>
               <Box
-              
                 sx={{
-                  backgroundColor: "#161616",
-                  borderRadius: "14px",
-                  padding: "20px",
+                  backgroundColor: "#1C1C1C",
+                  borderRadius: "15px",
+                  padding: "15px",
                   textAlign: "left",
                   border: "1px solid #2A2A2A",
-                  height: "187px",
+                  height: "220px",
+                  marginTop: "20px",
                 }}
               >
-                <Typography variant="h6" color="#fff">
+                <Typography
+                  variant="h6"
+                  fontSize={"20px"}
+                  fontWeight={400}
+                  color="#fff"
+                >
                   {item.title}
                 </Typography>
 
-                <Typography variant="h4" mt={1} color="#3EDD87">
+                <Typography
+                  variant="h4"
+                  fontSize={"22px"}
+                  mt={2}
+                  sx={{
+                    color: coinData?.futuresMetrics?.fundingRate?.includes('-') ? "text.errorColor" : "text.greenColor",
+                  }}
+                >
                   {item.value}
                 </Typography>
                 {item.stye && <Box sx={item.stye}></Box>}
 
                 <Typography
                   variant="h6"
-                  mt={1}
                   sx={{
-                    color: item.status === "Neutral" ? "#3EDD87" : "#FFE600",
-                    fontSize: "12px",
+                    color: coinData?.futuresMetrics?.fundingRateLabel?.includes("-") ? "text.errorColor" : "text.greenColor",
+                    fontSize: "15px",
+                    marginTop: "40px",
+                    fontFamily: "inter Tight",
                   }}
                 >
                   {item.status}
@@ -127,15 +130,16 @@ const FuturesMetrics = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            textAlign: "left", 
+            textAlign: "left",
             padding: "20px",
           }}
         >
-          <Typography sx={{
-            color : "#8D8D8D" ,
-            fontSize : "12px",
-
-          }}>
+          <Typography
+            sx={{
+              color: "#8D8D8D",
+              fontSize: "12px",
+            }}
+          >
             How to read: <br />
             • Funding 0.01% = Longs pay shorts (market overheating) <br />
             • L/S 1.5 = Dangerous skew towards LONG (correction possible) <br />

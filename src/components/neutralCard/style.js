@@ -4,17 +4,16 @@ export const Container = styled(Box)({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  //   minHeight: '100vh',
+  // minHeight: '80vh',
   backgroundColor: "#000",
-  //   padding: '24px'
+  // padding: '24px'
 });
 
 export const StyledCard = styled(Card)({
   backgroundColor: "#1a1a1a",
-
   borderRadius: "24px",
   //   padding: '32px',
-    width: '100%',
+  width: "100%",
   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
 });
 
@@ -60,5 +59,5 @@ export const ScoreBadge = styled(Box)({
 export const ScoreText = styled(Typography)({
   color: "white",
   fontWeight: 700,
-  fontSize: "2.5rem",
+  fontSize: "2rem",
 });

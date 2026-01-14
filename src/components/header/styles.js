@@ -1,18 +1,21 @@
 export const headerStyles = {
   headerContainer: {
-    // width: "100%",
     height: "84px",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    px: { xs: 2, sm: 2, md: 3 },
-    backgroundColor: "transparent",
-    position: "relative",
-    overflow: "hidden",
+    px: { xs: 2, sm: 2, md: 23 },
+    // position: "fixed",
+    // top: 0,
+    // left: 0,
+    // right: 0,
+    // zIndex: 1200,
+    // overflow: "hidden",
+    marginTop: "20px",
   },
 
   logo: {
-    width: { xs: 100, sm: 120, md: 140 },
+    width: { xs: 100, sm: 120, md: 120 },
     height: "auto",
     maxWidth: "100%",
   },
@@ -25,15 +28,17 @@ export const headerStyles = {
     mx: 2,
     minWidth: 0,
     overflow: "hidden",
+    // width: "50%",
   },
-
   navBar: {
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "background.black",
     border: "1px solid rgba(255, 255, 255, 0.36)",
     borderRadius: "50px",
-    padding: 1,
+    padding: "0.5rem",
+    width: "90%",
     maxWidth: "100%",
     overflowX: "auto",
     "&::-webkit-scrollbar": {
@@ -43,7 +48,7 @@ export const headerStyles = {
   },
 
   navItem: (isActive) => ({
-    padding: "14px 28px",
+    padding: "clamp(10px, 1.2vw, 14px) clamp(13px, 2vw, 23px)",
     borderRadius: "50px",
     cursor: "pointer",
     transition: "all 0.2s ease",
@@ -51,7 +56,9 @@ export const headerStyles = {
     border: isActive
       ? "0.3px solid rgba(255, 255, 255, 0.36)"
       : "1px solid transparent",
-    boxShadow: isActive ? "inset 0px 4px 5px 0px rgba(255, 255, 255, 0.19)" : "none",
+    boxShadow: isActive
+      ? "inset 0px 4px 5px 0px rgba(255, 255, 255, 0.19)"
+      : "none",
     "&:hover": {
       backgroundColor: isActive
         ? "background.veryLightGray"
@@ -66,7 +73,6 @@ export const headerStyles = {
     textAlign: "center",
     whiteSpace: "nowrap",
   }),
-
   menuButton: {
     display: { xs: "flex", lg: "none" },
     width: "40px",
@@ -156,10 +162,14 @@ export const drawerStyles = {
     border: isActive
       ? "0.3px solid rgba(255, 255, 255, 0.36)"
       : "1px solid transparent",
-    boxShadow: isActive ? "inset 0px 4px 5px 0px rgba(255, 255, 255, 0.19)" : "none",
+    boxShadow: isActive
+      ? "inset 0px 4px 5px 0px rgba(255, 255, 255, 0.19)"
+      : "none",
     marginBottom: 1,
     "&:hover": {
-      backgroundColor: isActive ? "background.veryLightGray" : "background.extraLightGray",
+      backgroundColor: isActive
+        ? "background.veryLightGray"
+        : "background.extraLightGray",
       transform: "translateX(8px)",
     },
   }),
@@ -212,4 +222,3 @@ export const drawerStyles = {
     fontSize: "20px",
   },
 };
-

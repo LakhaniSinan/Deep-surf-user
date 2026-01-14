@@ -8,28 +8,33 @@ import logo from "../../assets/images/Deepsurf-logo.png";
 import NavigationDrawer from "./drawer";
 import { headerStyles } from "./styles";
 import useAuthStore from "../../store/authStore";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const navigate = useNavigate();
+  const { user } = useAuthStore();
+  console.log("user", user);
   const location = useLocation();
   const { logout } = useAuthStore();
   const [drawerOpen, setDrawerOpen] = useState(false);
-
-  const [anchorEl, setAnchorEl] = useState(null); // For person menu
+  const [profilePicture, setProfilePicture] = useState(
+    user?.profilePicture || ""
+  );
+  console.log("profilepicture ", profilePicture);
+  const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);
-
+  const { t } = useTranslation();
   const navItems = [
-    { link: "/", label: "Dashboard" },
-    { link: "/journal", label: "Journal" },
-    { link: "/faq", label: "FAQ" },
-    { link: "/chart", label: "Chart" },
-    { link: "/calculator", label: "Calculator" },
-    { link: "/ai-tools", label: "AI Tools" },
-    { link: "/pro-analytics", label: "Pro Analytics" },
-    { link: "/market-outlook", label: "Market Outlook" },
-    { link: "/settings", label: "Settings" },
-  ];
+    { link: "/dashboard", label: t("dashboard.navitem.dashboard") },
+    { link: "/journal", label: t("dashboard.navitem.journal") },
+    { link: "/chart", label: t("dashboard.navitem.chart") },
+    { link: "/calculator", label: t("dashboard.navitem.calculator") },
+    { link: "/ai-tools", label: t("dashboard.navitem.aiTools") },
+    { link: "/pro-analytics", label: t("dashboard.navitem.proAnalytics") },
+    { link: "/market-outlook", label: t("dashboard.navitem.marketOutlook") },
+    { link: "/notification", label: t("dashboard.navitem.notification") }
 
+  ];
   const [activeNav, setActiveNav] = useState(() => {
     const currentPath = location.pathname;
     const activeItem = navItems.find((item) => item.link === currentPath);
@@ -67,8 +72,11 @@ const Header = () => {
   const handleLogout = () => {
     handleCloseMenu();
     logout();
-    // Add your logout logic here, e.g., clearing token
-    navigate("/login"); // Redirect to login page after logout
+    navigate("/");
+  };
+
+  const handleSetting = () => {
+    navigate("/settings/");
   };
 
   const renderNavItems = () => {
@@ -97,7 +105,7 @@ const Header = () => {
           gap={1.5}
           flexShrink={0}
           sx={{ minWidth: 0, cursor: "pointer" }}
-          onClick={() => navigate("/home")}
+          onClick={() => navigate("/dashboard")}
         >
           <Box
             component="img"
@@ -120,33 +128,42 @@ const Header = () => {
           <IconButton onClick={handleDrawerToggle} sx={headerStyles.menuButton}>
             <MenuIcon sx={{ fontSize: "24px" }} />
           </IconButton>
-
           {/* Person Icon */}
           <Box>
             <IconButton
               onClick={handlePersonClick}
               sx={headerStyles.profileIcon}
             >
-              <PersonIcon sx={{ color: "text.primary", fontSize: "24px" }} />
+              {profilePicture ? (
+                <Box
+                  component="img"
+                  src={profilePicture}
+                  alt="Profile"
+                  sx={{
+                    width: 32,
+                    height: 32,
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                  }}
+                />
+              ) : (
+                <PersonIcon />
+              )}
             </IconButton>
-
             <Menu
               anchorEl={anchorEl}
               open={openMenu}
               onClose={handleCloseMenu}
               anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
               transformOrigin={{ vertical: "top", horizontal: "right" }}
-              sx={{
-                width: "200px",
-              }}
             >
-              <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              <MenuItem onClick={handleSetting}>{t("dashboard.navitem.setting")}</MenuItem>
+              <MenuItem onClick={handleLogout}>{t("dashboard.navitem.logout")}</MenuItem>
             </Menu>
           </Box>
+
         </Box>
       </Box>
-
-      {/* 🔹 Mobile Drawer */}
       <NavigationDrawer
         open={drawerOpen}
         onClose={handleDrawerToggle}
@@ -157,5 +174,4 @@ const Header = () => {
     </>
   );
 };
-
 export default Header;

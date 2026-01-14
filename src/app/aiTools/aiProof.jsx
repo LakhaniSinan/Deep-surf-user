@@ -2,96 +2,89 @@ import { Box, Grid, Typography } from "@mui/material";
 import CustomInput from "../../components/customInput";
 import CustomButton from "../../components/customButton";
 import IconImage from "../../assets/icons/Vector.svg";
-import ButtonIcon from "../../assets/icons/Vector (3).svg";
+import ButtonIcon from "../../assets/icons/stairs.svg";
 import { useState } from "react";
 import DashboardStats from "./confluenceButton";
 import TechnicalIndicator from "./technicalIndicator";
+import StarIcon from "../../assets/icons/stairs.svg";
+import { useTranslation } from "react-i18next";
 
-const AiProof = () => {
-  const [search, setSearch] = useState({ search: "" });
-
-  const handleInputChange = (field) => (event) => {
-    setSearch({
-      ...search,
-      [field]: event.target.value,
-    });
-  };
-
+const AiProof = ({ coinData }) => {
+  const { t } = useTranslation();
   return (
     <>
-      {/* Input Box */}
       <Box
         sx={{
           backgroundColor: "#161616",
           borderRadius: "20px",
-          padding: "25px",
+          padding: {
+            xs: "5px",
+            md: "10px"
+          },
           width: "100%",
           maxWidth: "1449px",
-          marginTop: "40px",
+          // marginTop: "30px",
         }}
       >
-        <Typography variant="h3" sx={{ color: "#fff", marginBottom: "15px" }}>
-          AI Proof — Quick coin verification
+        <Typography
+          variant="h6"
+          sx={{ color: "text.grayish", marginBottom: "15px", fontSize: "25px" }}
+        >
+          {coinData?.coin?.pair}
         </Typography>
         <Typography
-          sx={{ color: "#fff", marginBottom: "15px", fontSize: "14px" }}
+          variant="h1"
+          sx={{ marginBottom: "10px", fontSize: "30px" }}
         >
-          In-depth AI analysis of any coin in seconds. Enter the ticker, receive
-          a complete breakdown and recommendation.
+          {/* {coinData?.coin?.priceFormatted}% */}
+          {` ${coinData?.coin?.priceFormatted}`}
+          <span
+            style={{
+              color: coinData?.coin?.change24hFormatted?.includes("-")
+                ? "rgba(255, 76, 76, 1)"
+                : "rgba(62, 221, 135, 1)",
+              fontSize: "18px",
+              marginLeft: "10px"
+            }}
+          >
+            {coinData?.coin?.change24hFormatted}
+          </span>
         </Typography>
-        <CustomInput
-          placeholder="ETH"
-          value={search.search}
-          onChange={handleInputChange("search")}
-          InputEndIcon={<img src={IconImage} alt="icon" />}
-        />
-      </Box>
-
-      {/* Coin Info Box */}
-      <Box
-        sx={{
-          backgroundColor: "#161616",
-          borderRadius: "20px",
-          padding: "25px",
-          width: "100%",
-          maxWidth: "1449px",
-          marginTop: "30px",
-        }}
-      >
-        <Typography variant="h6" sx={{ color: "#fff", marginBottom: "15px" }}>
-          ETH/USDT
-        </Typography>
-        <Typography variant="h1" sx={{ marginBottom: "10px" }}>
-          $3300,51
-          <span style={{ color: "#3EDD87", fontSize: "24px" }}> + 2.87%</span>
-        </Typography>
-
-        {/* Button + Extra Text */}
         <Box
           display="flex"
           alignItems="center"
-          gap="15px"
-          marginTop="20px"
+          gap="20px"
+          flexWrap={{ xs: "wrap", md: "nowrap" }}
           backgroundColor="#1C1C1C"
-          padding="10px"
-          borderRadius="25px"
+          padding={2}
+          borderRadius={"20px"}
+          mt={2}
+          p={2}
         >
           <CustomButton
-            variant="calculatorToggle"
-            icon={<img src={ButtonIcon} alt="icon" />}
-            title="AI Recommendation"
+            title={t("AiTools.Recommendation")}
+            icon={<img src={StarIcon} style={{ width: 20, height: 20 }} />}
+            sx={{
+              borderRadius: "20px",
+              padding: "4px 30px",
+              minWidth: "auto",
+              width: { xs: "100%", md: "auto" },
+              backgroundColor: "#FF6421",
+              color: "#fff",
+            }}
           />
-          <Typography sx={{ color: "#FFD700", fontSize: "18px" }}>
-            Hold back <br />
-            <span style={{ color: "#fff", fontSize: "12px" }}>
-              confidence: 84%
-            </span>
+          <Typography
+            variant="body2"
+            fontSize="14px"
+            flex={{ xs: "100%", md: "1" }}
+          >
+            <span style={{ color: "rgba(255, 230, 0, 1)", fontWeight: 600, fontSize: "15px" }}>
+              {coinData?.recommendation?.action}
+            </span >
+            <br />
+            {t("AiTools.Confidence")}: {coinData?.recommendation?.confidence}%
           </Typography>
         </Box>
-        {/* confluence button page */}
-        {/* <DashboardStats /> */}
-        {/* technicalIndicator  */}
-        {/* <TechnicalIndicator /> */}
       </Box>
     </>
   );

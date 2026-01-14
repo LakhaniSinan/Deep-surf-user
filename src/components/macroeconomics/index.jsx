@@ -1,37 +1,55 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import starIcon from "../../assets/icons/stars.svg";
-import warningIcon from "../../assets/icons/warning.svg";
+import warningTriangleIcon from "../../assets/icons/warning-triangle-icon.svg";
+import warningIcon from "../../assets/icons/warningIcon.svg";
 import MacroEconomicCardSkeleton from "../../components/skeleton/macroeconomicCardSkeleton";
+import { useTranslation } from "react-i18next";
+
 
 const Macroeconomics = ({ data, description, isLoading }) => {
-  // Convert object into array for mapping
-  const reports = data ? Object.values(data) : [];
-
+  const { t } = useTranslation();
+  const reports = data ? Object.values(data || {}) : [];
+  const getIcon = (report) => {
+    const title = (report?.title || "").toLowerCase();
+    const impact = (report?.impact || "").toLowerCase();
+    if (title.includes("unemployment ")) {
+      return starIcon;
+    } else if (impact.includes("cpi")) {
+      return warningIcon;
+    } else {
+      return warningTriangleIcon;
+    }
+  };
   return (
     <Box
       sx={{
         width: "100%",
-        backgroundColor: "background.paper",
+        backgroundColor: (theme) => theme.palette.background.paper, // ✅ Fix
         borderRadius: "12px",
-        padding: "16px",
+        padding: "20px",
+        maxHeight: "390px",
       }}
     >
       <Typography
         variant="h2"
-        fontSize="1rem"
+        fontSize="1.5rem"
         fontWeight={600}
         color="text.primary"
-        mb={3}
+        mb={1}
       >
-        Macroeconomics
+        {t("dashboard.macroEconomic.title")}
       </Typography>
 
       {isLoading ? (
         <MacroEconomicCardSkeleton />
+      ) : reports.length === 0 ? ( // 👈 Optional: Show no data
+        <Typography textAlign="center" color="#fff" fontWeight={600}>
+            {t("dashboard.macroEconomic.notFound")}
+        </Typography>
       ) : (
         <Box display="flex" flexDirection="column" gap={3}>
-          {reports.map((report, index) => (
+          {reports.slice(1, 3).map((report, index) => (
             <Box key={index}>
               {/* Report Title */}
               <Typography
@@ -42,19 +60,18 @@ const Macroeconomics = ({ data, description, isLoading }) => {
                   mb: 1.5,
                 }}
               >
-                {report?.title}
+                {report?.title || "N/A"} {report?.date || "N/A"}
               </Typography>
 
-              {/* Forecast & Impact */}
               <Box display="flex" flexDirection="column" gap={0.5} mb={2}>
                 <Typography
                   sx={{
                     color: "text.primary",
-                    fontSize: "10px",
+                    fontSize: "11px",
                     fontWeight: 400,
                   }}
                 >
-                  Forecast: {report?.forecast}
+                  Forecast: {`${report?.forecast} (previous ${report?.previous})`}
                 </Typography>
                 <Typography
                   sx={{
@@ -63,14 +80,13 @@ const Macroeconomics = ({ data, description, isLoading }) => {
                     fontWeight: 400,
                   }}
                 >
-                  Impact: {report?.impact}
+                  Impact: {report?.impact || "N/A"}
                 </Typography>
               </Box>
 
-              {/* Summary Box */}
               <Box
                 sx={{
-                  backgroundColor: "background.gray",
+                  backgroundColor: (theme) => theme.palette.background.gray,
                   borderRadius: "16px",
                   padding: "9px",
                   display: "flex",
@@ -78,12 +94,7 @@ const Macroeconomics = ({ data, description, isLoading }) => {
                   gap: 0.5,
                 }}
               >
-                {report?.impact?.toLowerCase().includes("high") ||
-                report?.title?.toLowerCase().includes("critical") ? (
-                  <img src={warningIcon} alt="warning" />
-                ) : (
-                  <img src={starIcon} alt="star" />
-                )}
+                <img src={getIcon(report)} alt="icon" />
                 <Typography
                   sx={{
                     color: "text.primary",
@@ -93,7 +104,7 @@ const Macroeconomics = ({ data, description, isLoading }) => {
                     flex: 1,
                   }}
                 >
-                  {report?.description}
+                  {report?.description || "N/A"}
                 </Typography>
               </Box>
             </Box>

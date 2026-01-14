@@ -1,0 +1,486 @@
+{
+  "header": {
+    "language": "Dil",
+    "waitlist": "Bekleme Listesi",
+    "login": "Giriş Yap",
+    "english": "İngilizce",
+    "turkish": "Türkçe",
+    "spanish": "İspanyolca",
+    "russian": "Rusça"
+  },
+  "hero": {
+    "limitedAccess": "Sınırlı erişim",
+    "title": "AI Destekli Ticaret <br /> Zeka Motoru",
+    "subtitle": "Özel makine öğrenimi modelleri, gerçek zamanlı <br /> piyasa verileri ve yıllarca süren nicel araştırmalarla desteklenmektedir.",
+    "getStarted": "Başlayın",
+    "trustedBy": "Dünya çapında yatırımcılar tarafından güvenilir.",
+    "builtFor": "Tahminler değil, olasılıklar düşünenler için inşa edilmiştir."
+  },
+  "aiDrivenCard": {
+    "title": "AI Destekli. <br /> İnsan ilhamlı.",
+    "description": "DeepSurf'un çok katmanlı AI motoru, ham verileri eyleme dönüştürülebilir içgörüler, tahminler ve önyargı sinyalleri haline getirir — böylece netlik, hassasiyet ve güvenle işlem yapabilirsiniz.",
+    "aiAnalysis": "AI analizi",
+    "analysisText": "İşsizlik oranı %4.2'den %4.1'e iyileşti. Bu olumlu bir Yükseliş sinyalidir. Güçlü ancak aşırı ısınmamış bir işgücü piyasası, Fed'in ekonominin potansiyel \"yumuşak iniş\" görüşünü desteklemektedir.",
+    "advancedToolsTitle": "Piyasa Algısı için <br /> Gelişmiş Araçlar.",
+    "advancedToolsDescription": "Piyasayı canlı bir sistem olarak görün - likidite akışları, volatilite rejimleri, mikro yapı desenleri ve duygu dinamikleri. DeepSurf'un analitik paketi, sadece hareketleri görmenize değil, gerçekleşmeden önce hissetmenize yardımcı olur.",
+    "onChainSignals": "Zincir Üzeri Sinyaller",
+    "whalesTracker": "Balina takipçisi"
+  },
+  "proprietaryTech": {
+    "title": "%100 Özel Teknoloji.",
+    "subtitle": "Dış Kaynak Kullanımı Yok. Gürültü Yok.",
+    "description": "DeepSurf'un çok katmanlı AI motoru, ham verileri eyleme dönüştürülebilir içgörüler, tahminler ve önyargı sinyalleri haline getirir - böylece netlik, hassasiyet ve güvenle işlem yapabilirsiniz."
+  },
+  "insideDeep": {
+    "title": "<span style=\"color: #FF6421; font-weight: 700; font-family: Inter Tight\">Deepsurf</span> İçinde",
+    "marketOutlook": {
+      "title": "Piyasa Görünümü",
+      "description": "Günlük makro, akışlar, balinalar, risk takvimi"
+    },
+    "proAnalytics": {
+      "title": "Pro Analitik",
+      "description": "Emir akışı, açık pozisyon, ısı haritası, likidite seviyeleri, mikro yapı, ETF ve zincir üzeri metrikler"
+    },
+    "journal": {
+      "title": "Günlük",
+      "description": "API tabanlı işlem içe aktarma, AI koçluğu, İzleme listesi, Uyarılar"
+    },
+    "calculator": {
+      "title": "Hesap Makinesi",
+      "description": "ATR tabanlı boyutlandırma, ne-olur simülasyonu, günlüğe otomatik dışa aktarma"
+    },
+    "aiTools": {
+      "title": "AI Araçları",
+      "description": "50'den fazla parametre ve metrik temelinde tokenların kapsamlı analizi, AI Pompa Tespiti"
+    }
+  },
+  "footer": {
+    "accessTag": "Erişim yalnızca davet ile",
+    "title": "Şimdi Önde Gelen <br /> Yatırımcı Olun",
+    "description": "DeepSurf özel ağına ilk girenler arasında olmak için bekleme listesine katılın.",
+    "emailPlaceholder": "E-posta adresinizi girin...",
+    "joinButton": "Katıl",
+    "emailRequired": "E-posta Gerekli",
+    "emailInvalid": "E-posta geçerli değil",
+    "requestFailed": "İstek başarısız",
+    "requestError": "İstek Başarısız",
+    "tagline": "DeepSurf — Piyasa zekasının geleceği. <br /> Hassasiyetle inşa edildi. AI ile desteklenir. Tasarım ile korunur."
+  },
+  "auth": {
+    "back": "Geri",
+    "login": {
+      "title": "Tekrar hoş geldiniz!",
+      "emailPlaceholder": "E-posta",
+      "passwordPlaceholder": "Şifre",
+      "forgotPassword": "Şifrenizi mi unuttunuz?",
+      "loginButton": "Giriş Yap",
+      "or": "VEYA",
+      "dontHaveAccount": "Hesabınız yok mu?",
+      "signUp": "Kayıt Ol"
+    },
+    "signUp": {
+      "title": "Başlayın",
+      "emailPlaceholder": "E-posta",
+      "passwordPlaceholder": "Şifre",
+      "enterJoinCode": "Katılım Kodunu Girin",
+      "agreeTerms": "Şartları ve Gizlilik Politikasını kabul ediyorum",
+      "signUpButton": "Kayıt Ol",
+      "or": "VEYA",
+      "alreadyHaveAccount": "Zaten hesabınız var mı?",
+      "login": "Giriş Yap"
+    },
+    "forgotPassword": {
+      "title": "Başlayın",
+      "heading": "ŞİFREYİ UNUTTUM",
+      "description": "Şifrenizi sıfırlamak için kayıtlı e-posta adresinizi girin.",
+      "emailPlaceholder": "E-posta",
+      "otpPlaceholder": "OTP Girin",
+      "sendOtp": "OTP Gönder",
+      "verifyOtp": "OTP Doğrula"
+    },
+    "otpVerification": {
+      "title": "Doğrulama Süreci",
+      "verifyOtp": "OTP Doğrula"
+    },
+    "forgotOtpVerification": {
+      "title": "Doğrulama Süreci",
+      "enterOtp": "E-postanıza gönderilen OTP'yi girin:",
+      "verifyOtp": "OTP Doğrula"
+    },
+    "setPassword": {
+      "title": "BAŞLAYIN",
+      "heading": "YENİ ŞİFRE BELİRLE",
+      "newPasswordPlaceholder": "Yeni Şifre",
+      "confirmPasswordPlaceholder": "Şifreyi Onayla",
+      "setPasswordButton": "Yeni Şifre Belirle"
+    },
+    "profile": {
+      "title": "Profilinizi oluşturun",
+      "addProfilePicture": "Profil resmi ekle",
+      "createUsernamePlaceholder": "Kullanıcı adı oluştur",
+      "maxCharacters": "Maks. 30 Karakter",
+      "continueButton": "Devam Et"
+    }
+  },
+  "dashboard": {
+    "navitem": {
+      "dashboard": "Gösterge Paneli",
+      "journal": "Günlük",
+      "chart": "Grafik",
+      "calculator": "Hesap Makinesi",
+      "aiTools": "AI Araçları",
+      "proAnalytics": "Pro Analitik",
+      "marketOutlook": "Piyasa Görünümü",
+      "setting": "Ayarlar",
+      "logout": "Çıkış Yap",
+      "notification": "Bildirim"
+    },
+    "wellcomeBack": "Tekrar hoş geldiniz!",
+    "addTools": "Araç Ekle",
+    "aiProof": "AI Analizi — Hızlı Coin Kontrolü",
+    "aiProofHeading": "Herhangi bir coinin derin AI analizini saniyeler içinde yapın. Ticker girin, tam bir analiz ve öneri alın.",
+    "placeHolderTittle": "Ticker sembolünü girin (ör. BTC, ETH)",
+    "ethereum": "Ethereum",
+    "bitcoin": "Bitcoin",
+    "overallSentiment": "Genel Duygu",
+    "neutral": "Nötr",
+    "analysis": "Analiz",
+    "macroEconomic": {
+      "notFound": "Bulunamadı",
+      "title": "Makro Ekonomi"
+    },
+    "topCoins": {
+      "title": "En İyi CPIN'ler"
+    },
+    "topCoinByVolume": {
+      "notFound": "Bulunamadı",
+      "title": "Hacme Göre En İyi Coinler"
+    }
+  },
+  "journal": {
+    "heading": "YENİ ŞİFRE BELİRLE",
+    "myCoinsAlerts": "Paralarım ve Uyarılar",
+    "myCoinsAlertHeading": "Uyarılar WebSocket üzerinden gerçek zamanlı çalışır! Koşullar sağlandığında anında bildirim alın.",
+    "addToJournal": "Günlüğe Ekle",
+    "saveAlert": "Uyarıyı Kaydet"
+  },
+  "AiTools": {
+    "aiToolsTitle": "Yapay Zeka Araçları",
+    "aiProofTitle": "Yapay Zeka Kanıtı — Hızlı Coin Doğrulama",
+    "aiProofHeading": "Herhangi bir coin için derinlemesine AI analizi saniyeler içinde. Ticker'ı girin, tam bir analiz ve öneri alın.",
+    "Recommendation": "Tavsiye",
+    "Confidence": "Güven",
+    "Confluence": {
+      "confluenceScore": "Uyum Skoru",
+      "Supertrend": "Supertrend",
+      "confluenceScoreHeading1": "Uyum Skoru",
+      "Bullish": "Yükseliş",
+      "ConfluenceScoreHeading2": "Uyum Skoru",
+      "Bearish": "Düşüş"
+    },
+    "Supertrend": {
+      "Trend": "Trend",
+      "SignalLevel": "Sinyal Seviyesi"
+    },
+    "IndicatorAnalysis": {
+      "technicalIndicators": "Teknik Göstergeler",
+      "RSI": "RSI"
+    },
+    "CommunitySentiment": {
+      "communitySentimentHeading": "Topluluk Duyarlılığı",
+      "support": "Destek",
+      "resistance": "Direnç"
+    },
+    "Indicator": {
+      "indicatorTitle": "Gösterge Analizi"
+    },
+    "MarketIntelligence": {
+      "enhancedMarketIntelligence": "Gelişmiş Pazar İstihbaratı",
+      "fundingRate": "Fonlama Oranı",
+      "lsRatio": "L/S Oranı",
+      "volume24h": "24 Saat Hacmi",
+      "liquidityRisk": "Likidite Riski"
+    },
+    "PatternRecognition": {
+      "patternRecognition": "Desen Tanıma",
+      "target": "Hedef",
+      "breakout": "Kırılma",
+      "howToUse": "Nasıl Kullanılır",
+      "confidence": "Güven"
+    }
+  },
+  "ProAnalytics": {
+    "proAnalyticsHeading": "Profesyonel Analitik",
+    "mtfScan": "MTF Tarama — Çok Zamanlı Analiz",
+    "aiRecommendation": "Yapay Zeka Önerisi",
+    "interpretation": "Yorum",
+    "allTimeframesAgree": "Tüm zaman dilimleri büyümede hemfikir — güçlü bir yükseliş sinyali!",
+    "HeatMapVolume": {
+      "heatmapVolumeVolatility": "Isı Haritası — Hacim ve Volatilite",
+      "topCoinsDescription": "İşlem hacmi ve volatiliteye göre en iyi coinler (AtR/Fiyat). Aktif işlem enstrümanlarını bulmaya yardımcı olur.",
+      "volume24h": "24 Saat Hacmi",
+      "volume7d": "7 Günlük Hacim",
+      "volatility": "Volatilite",
+      "top20Volume24h": "24 Saatlik Hacme Göre İlk 20 :",
+      "top20Volume7d": "7 Günlük Hacme Göre İlk 20 :",
+      "topCoinsByVolatility": "Volatiliteye Göre En İyi Coinler"
+    },
+    "LiquidationMap": {
+      "liquidationMapTitle": "Likidasyon Haritası",
+      "currentBTCPrice": "Güncel BTC Fiyatı",
+      "longLiquidations": "LONG Tasfiye",
+      "shortLiquidations": "SHORT Tasfiye",
+      "Current": "Güncel",
+      "price": "fiyat"
+    },
+    "FuturesMetrics": {
+      "futuresMetricesTitle": "Vadeli İşlem Metrikleri",
+      "currentETHPrice": "Güncel ETH Fiyatı",
+      "fundingRate": "Fonlama Oranı",
+      "openInterest": "Açık Pozisyon",
+      "lsPositions": "L/S Pozisyonları",
+      "LsAccounts": "Uzun / Kısa Hesaplar"
+    }
+  },
+  "MarketOutlook": {
+    "marketOutLookTitle": "Piyasa Görünümü",
+    "aiMarketAnalysisTitle": "Yapay Zeka Pazar Analizi",
+    "dailyAIAnalysisDescription": "Makroekonomi, kripto piyasası, önemli olaylar ve ticaret önerileri üzerine günlük Yapay Zeka analizi",
+    "generateAnalysisTitle": "Analiz Oluştur",
+    "topCoinsTitle": "En İyi Coinler",
+    "overallSentimentTitle": "Genel Duygu",
+    "Macroeconomics": {
+      "macroEconomicTitle": "Makroekonomi",
+      "aiAnalysisTitle": "Yapay Zeka Analizi",
+      "attentionTitle": "Dikkat",
+      "detailedActionPlanTitle": "Detaylı Eylem Planı",
+      "fedSpeechesTitle": "Fed Konuşmaları",
+      "powellTitle": "Powell"
+    },
+    "CryptocurrencyEvents": {
+      "cryptocurrencyTitle": "Kripto Para Etkinlikleri",
+      "etfFlowsTitle": "ETF Akışları",
+      "btcEtfTitle": "BTC ETF",
+      "ethEtfTitle": "ETH ETF",
+      "trendTitle": "Trend",
+      "conclusionTitle": "Sonuç",
+      "onChainSignalsTitle": "On-Chain Sinyalleri",
+      "exchangeNetflowTitle": "Borsa Net Akışı",
+      "longShortRatioTitle": "Long/Short Oranı",
+      "fundingRateTitle": "Fonlama Oranı",
+      "openInterestTitle": "Açık Pozisyon"
+    },
+    "TradingRecommendations": {
+      "tradingRecommendationsToday": "Bugünkü ticaret önerileri",
+      "longSetupsTitle": "LONG Kurulumlar",
+      "shortSetupsTitle": "SHORT Kurulumlar",
+      "riskManagementTitle": "Risk Yönetimi",
+      "keyLevelsTitle": "Önemli Seviyeler",
+      "resistanceAreasTitle": "Direnç Alanları",
+      "supportAreasTitle": "Destek Alanları",
+      "alsVerdictTitle": "Yapay Zeka Kararı"
+    },
+    "MarketDataMetrics": {
+      "marketDataMetricsTitle": "Piyasa Verileri ve Metrikleri",
+      "fearGreedIndexTitle": "Korku ve Açgözlülük Endeksi",
+      "btcDominanceTitle": "BTC Hakimiyeti",
+      "btc24hTitle": "BTC 24s",
+      "eth24hTitle": "ETH 24s",
+      "sol24hTitle": "SOL 24s",
+      "btcEtfFlowsTitle": "BTC ETF Akışları",
+      "ethEtfFlowsTitle": "ETH ETF Akışları",
+      "topMovers24hTitle": "24 Saat İçindeki En Hızlı Hareket Edenler (hacim > £50M)",
+      "gainersTitle": "Kazançlılar",
+      "losersTitle": "Kaybedenler",
+      "riskCalendar30DaysTitle": "Risk Takvimi (30 Gün)",
+      "attentionTitle": "Dikkat",
+      "whalesTrackerTitle": "Balina Takipçisi"
+    }
+  },
+  "Chart": {
+    "chartTitle": "Grafikler",
+    "askAi": "Yapay Zekâya Sor",
+    "Exchange": "Borsa",
+    "feeType": "Komisyon Türü",
+    "Fee%": "Komisyon, %",
+    "FundingRate": "Fonlama Oranı (8 saatte bir), %",
+    "positionDuration": "Pozisyon Süresi",
+    "searchbyTicker": "Ticker’a göre ara",
+    "Pairfutures": "Parite (vadeli işlemler)",
+    "sizingOptions": "Boyutlandırma Seçenekleri:",
+    "sizefromRisk": "Risk %’ine göre boyut",
+    "sizefromMargin": "Marja göre boyut $",
+    "Deposit": "Yatırım ($)",
+    "Risk": "Risk %",
+    "Direction": "Yön",
+    "entryStopTakeConfiguration": "Giriş/Stop/Hedef Yapılandırması:",
+    "aTRTemplate": "ATR Şablonu",
+    "Manual": "Manuel (Giriş/Stop/Hedef)",
+    "quickPresets": "Hızlı Ön Ayarlar:",
+    "calculate": "Hesapla",
+    "currentPrice": "Güncel Fiyat",
+    "binanceFutures": "Binance Vadeli İşlemler",
+    "copyResults": "Sonuçları Kopyala",
+    "openOrder": "Açık Emir",
+    "whatIfSimulator": "What-If Simülatörü",
+    "Margin": "Marj, yatırılan tutarın %279’u. Yüksek risk!",
+    "pair": "Parite",
+    "ATR": "ATR (1s,14)",
+    "target": "Hedef (R-çarpanı)",
+    "level": "Seviye",
+    "lotStep": "Lot: adım / minimum (birimler)",
+    "scalp": "Scalp",
+    "swing": "Swing",
+    "intraday": "Intraday",
+    "safe": "Kasa",
+    "Leverage": "Kaldıraç (x)",
+    "Margin$": "Marj $",
+    "exportCSV": "CSV Dışa Aktar",
+    "exportJSON": "JSON Dışa Aktar",
+    "newPrice": "Yeni Fiyat",
+    "Reset": "Sıfırla",
+    "pnL": "Kar/Zarar",
+    "roi": "Yatırım Getirisi",
+    "liquidation": "Tasfiye",
+    "distance": "Mesafe",
+    "trading": "Ticaret",
+    "positionSize": "Pozisyon Boyutu (birimler)",
+    "entryStopTake": "Giriş / Stop / Hedef",
+    "nominalPositions": "Nominal Pozisyonlar",
+    "margin": "Marj",
+    "expectedProfit": "Beklenen Kar",
+    "RiskIn": "Risk ( $ olarak )",
+    "takerMarketOrder": "Taker (Piyasa Emri)",
+    "makerLimitOrder": "Maker (Limit Emri)",
+    "hoursNofunding": "<8 saat (fon yok)",
+    "8-24Hours": "8-24 saat",
+    "24Hours": ">24 saat",
+    "askAIAboutChart": "Grafik hakkında Yapay Zekâya Sor",
+    "user": "kullanıcı",
+    "addSupportInTheChart": "Grafiğe destek ekle",
+    "completed": "Tamamlandı",
+    "updateDescription1": "Bitcoin grafiğine destek seviyeleri ekledim. Grafik artık önemli destek bölgelerini net bir şekilde vurguluyor ve fiyatın tarihsel olarak alım ilgisi bulduğu alanları gösteriyor. Her destek seviyesi hassas çizgilerle işaretlenmiş, potansiyel giriş noktalarını veya fiyat diplerini kolayca belirlemeyi sağlıyor.",
+    "updateDescription2": "Etkileşimli araç ipuçları ve etiketler güncellendi; bir destek seviyesinin üzerine geldiğinizde tam fiyatı ve ilgili tarihsel verileri görebiliyorsunuz. Grafik tamamen duyarlı kalıyor, farklı cihazlarda netliği koruyor ve gelecekte ek teknik göstergelerin entegrasyonuna hazır.",
+    "updateDescription3": "Bu güncelleme, kullanıcıların Bitcoin grafiğindeki kritik destek bölgelerini hızlı bir şekilde anlamasını ve daha bilinçli kararlar almasını sağlıyor.",
+    "volume": "Hacim",
+    "low": "Düşük",
+    "high": "Yüksek",
+    "close": "Kapat"
+  },
+  "Calculator": {
+    "calculatorTitle": "Calculadora"
+  },
+  "Setting": {
+    "settingTitle": "Tekrar hoş geldiniz"
+  },
+  "SettingsTab": {
+    "profileInformation": "Profil Bilgileri",
+    "setting": "Ayarlar",
+    "notifications": "Bildirimler",
+    "subscription": "Abonelik",
+    "referrals": "Referanslar",
+    "faq": "SSS"
+  },
+  "ProfileInformation": {
+    "profileInformationTitle": "Kişisel Bilgiler",
+    "uploadImage": "Resim Yükle",
+    "username": "Kullanıcı Adı",
+    "change": "Değiştir",
+    "saveProfile": "Profili Kaydet"
+  },
+  "setting": {
+    "settingTitle": "Ayarlar",
+    "language": "Dil",
+    "timeZone": "Saat Dilimi",
+    "currency": "Para Birimi",
+    "english": "İngilizce",
+    "french": "Fransızca",
+    "specificZone": "(GMT-8) Pasifik Zamanı",
+    "greenWichTime": "(GMT+0) Greenwich Ortalama Zamanı",
+    "indianStandard": "(GMT+5:30) Hindistan Standart Zamanı",
+    "usDollar": "ABD Doları",
+    "euro": "Euro",
+    "britishpound": "İngiliz Sterlini",
+    "aPIkeys": "API Anahtarları",
+    "backToList": "Listeye Geri Dön",
+    "addChange": "Döviz Ekle",
+    "Exchanges": "Borsalar",
+    "added": "Eklendi",
+    "status": "Durum",
+    "action": "İşlem",
+    "apiSecret": "API Sırrı",
+    "passPhrase": "Parola İfadesi",
+    "saveApiKeys": "API Anahtarını Kaydet",
+    "cancel": "İptal",
+    "bybit": "bybit",
+    "date": "12 Kasım 2025"
+  },
+  "Notification": {
+    "GetNotifiedVia": "Şu yollarla bildirim al",
+    "email": "E-posta",
+    "telegram": "Telegram",
+    "web": "Web"
+  },
+  "Subscription": {
+    "subscription": "Abonelik",
+    "billingHistory": "Fatura Geçmişi",
+    "details": "Detaylar",
+    "amount": "Tutar",
+    "status": "Durum",
+    "proPlanMonthly": "PRO planı, aylık",
+    "success": "Başarılı"
+  },
+  "Referrals": {
+    "refferralsTitle": "Referanslar",
+    "totalRefferal": "Toplam referans",
+    "totalEarning": "Toplam kazanç",
+    "commission": "Komisyon",
+    "walletBalance": "Cüzdan bakiyesi",
+    "yourRefferalLink": "Referans linkiniz",
+    "linkCopied": "Link kopyalandı!",
+    "promoCode": "Ayrıca promosyon kodu kullanabilirsiniz",
+    "promoCodeCopied!": "Promosyon kodu kopyalandı!",
+    "withdrawalTransaction": "Çekim ve İşlemler",
+    "referralsHistory": "Referans Geçmişi",
+    "transactionHistory": "İşlem Geçmişi",
+    "id": "ID",
+    "referraldate": "Referans Tarihi",
+    "source": "Kaynak",
+    "referralstatus": "Referans Durumu",
+    "requestwithdraw": "Çekim Talebi",
+    "requestdate": "Talep Tarihi",
+    "batchno": "Parti No",
+    "account": "Hesap"
+  },
+  "WithdrawalDetails": {
+    "withdrawalDetails": "Çekim Detayları",
+    "walletMethod": "Cüzdan Yöntemi",
+    "walletAddress": "Cüzdan Adresi",
+    "walletHolder": "Cüzdan Sahibi",
+    "Network": "Ağ",
+    "statusTimeline": "Durum Zaman Çizelgesi",
+    "cancel": "İptal"
+  },
+  "RequestWithdrawal": {
+    "requestWithdrawalBtn": "Çekim Talebi",
+    "choseNetwork": "Ağı Seçin",
+    "amountToWithdraw": "Çekilecek Tutar",
+    "SubmitWithdrawRequest": "Çekim Talebini Gönder",
+    "selectWalletMethod": "Cüzdan Yöntemini Seçin",
+    "enteryourAccountNumber": "Hesap Numaranızı Girin",
+    "enterAmount": "Tutarı Girin",
+    "selectCurrency": "Para Birimini Seçin"
+  },
+  "FrequentlyAskedQuestions(FAQ)": {
+    "FrequentlyAskedQuestions(FAQ)": "Sıkça Sorulan Sorular (SSS)",
+    "generalInformation": "Genel Bilgi",
+    "securityandPrivacy": "Güvenlik ve Gizlilik",
+    "accessandSupport": "Erişim ve Destek"
+  },
+  "UserNotification": {
+    "notificationTitle": "Bildirim",
+    "notificationHours": "Bildirim: 48 Saat Kaldı",
+    "userEmail": "sarah.j@example.com",
+    "userName": "Alice Johnson"
+  }
+}

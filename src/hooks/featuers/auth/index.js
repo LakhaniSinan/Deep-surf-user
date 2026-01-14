@@ -1,3 +1,3 @@
-const useAuthentication = () => {
-  const signup = () => {};
-};
+// const useAuthentication = () => {
+//   const signup = () => {};
+// };

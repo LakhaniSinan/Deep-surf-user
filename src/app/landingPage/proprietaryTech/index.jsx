@@ -1,0 +1,103 @@
+import { Box, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import MacBookImage from "../../../assets/images/macbookelement.png"
+
+// {spanish image}
+import SpanishMacBookImage from "../../../assets/images/spanish-macBook-image.png"
+// {turkish image}
+import TurkishMacBookImage from "../../../assets/images/turkish-macbook-image.png"
+// {russian image}
+import RussianMacBookImage from "../../../assets/images/russian-macbook-image.png"
+const ProprietaryTechSection = () => {
+  const { t, i18n } = useTranslation();
+  console.log("fffffffffffffffffff", i18n.language);
+  const currentLanguage = i18n.language;
+  console.log("ddddddddddddddddddddddddddd", currentLanguage);
+
+  const mackbookImages = {
+    en: MacBookImage,
+    es: SpanishMacBookImage,
+    tr: TurkishMacBookImage,
+    ru: RussianMacBookImage
+  }
+  const mackbookImage = mackbookImages[currentLanguage] || MacBookImage;
+  return (
+    <Box
+      width="100%"
+      bgcolor="neutral.surface"
+      display="flex"
+      justifyContent="center"
+      mt="25px"
+      borderRadius="30px"
+      sx={{
+        paddingLeft: { xs: "20px", md: "90px" },
+      }}
+    >
+
+      <Box
+        width={"100%"}
+        // maxWidth={"1400px"}
+        display={"flex"}
+        flexDirection={{ xs: "column", md: "row" }}
+        alignItems={{ xs: "left", md: "center" }}
+        gap={{ xs: 5, md: 0 }}
+        textAlign={{ xs: "left" }}
+        mt={{ xs: 2, md: 0 }}
+      >
+        <Box sx={{ flex: 1 }}>
+          <Typography
+            color="accent.contrastText"
+            fontSize={{ xs: "20px", md: "40px" }}
+            fontWeight={700}
+            textAlign={{ xs: "left" }}
+          >
+            {t("proprietaryTech.title")}
+          </Typography>
+          <Typography
+            color={"accent.contrastText"}
+            fontSize={{ xs: "13px", md: "20px" }}
+            fontWeight={"600"}
+            mb={3}
+            opacity={"0.85"}
+          >
+            {t("proprietaryTech.subtitle")}
+          </Typography>
+          <Typography
+            color={"accent.contrastText"}
+            fontSize={{ xs: "12px", md: "14px" }}
+            lineHeight={"1.3"}
+            maxWidth={"300px"}
+            mt={{ xs: 2, md: 6 }}
+          >
+            {t("proprietaryTech.description")}
+          </Typography>
+        </Box>
+        <Box
+          flex={"1"}
+          display={"flex"}
+          justifyContent={"flex-end"}
+          flexDirection={"flex-end"}
+        // marginLeft={"150px"}
+        >
+          <Box
+            component="img"
+            src={mackbookImage}
+            mt={{ xs: "5px", md: "96px" }}
+            alt="dashboard"
+            width={"100%"}
+            sx={{
+              borderBottomRightRadius: "30px",
+            }}
+
+          // maxWidth={"100%"}
+          // borderRadius: "22px",
+          // boxShadow: "0px 0px 40px rgba(0,0,0,0.5)",
+          // border: "1px solid #222",
+          />
+        </Box>
+      </Box>
+    </Box >
+  );
+};
+
+export default ProprietaryTechSection;

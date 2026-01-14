@@ -1,0 +1,488 @@
+{
+  "header": {
+    "language": "Language",
+    "waitlist": "Waitlist",
+    "login": "Login",
+    "english": "English",
+    "turkish": "Turkish",
+    "spanish": "Spanish",
+    "russian": "Russian"
+  },
+  "hero": {
+    "limitedAccess": "Limited access",
+    "title": "AI-driven Trading <br /> Intelligence Engine",
+    "subtitle": "Powered by proprietary machine learning models, real- <br /> time market data, and years of quantitative research.",
+    "getStarted": "Get started",
+    "trustedBy": "Trusted by traders worldwide.",
+    "builtFor": "Built for those who think in probabilities, not predictions."
+  },
+  "aiDrivenCard": {
+    "title": "AI Driven. <br /> Human inspired.",
+    "description": "DeepSurf's multi-layered AI engine transforms raw data into actionable insights, forecasts, and bias signals — so you can trade with clarity, precision, and confidence.",
+    "aiAnalysis": "AI analysis",
+    "analysisText": "The unemployment rate improved from 4.2% to 4.1%. This is a positive Bullish signal. A strong but not overheated labor market supports the Fed's view of a potential \"soft landing\" for the economy.",
+    "advancedToolsTitle": "Advanced Tools for <br /> Market Perception.",
+    "advancedToolsDescription": "See the market as a living system - liquidity flows, volatility regimes, microstructure patterns, and sentiment dynamics. DeepSurf's analytics suite helps you not only see the moves - but feel them before they happen.",
+    "onChainSignals": "On-Chain Signals",
+    "whalesTracker": "Whales tracker"
+  },
+  "proprietaryTech": {
+    "title": "100% Proprietary Tech.",
+    "subtitle": "No Outsourcing. No Noise.",
+    "description": "DeepSurf's multi-layered AI engine transforms raw data into actionable insights, forecasts, and bias signals - so you can trade with clarity, precision, and confidence."
+  },
+  "insideDeep": {
+    "title": "Inside <span style=\"color: #FF6421; font-weight: 700; font-family: Inter Tight\">Deepsurf</span>",
+    "marketOutlook": {
+      "title": "Market Outlook",
+      "description": "Daily macro, flows, whales, risk calendar"
+    },
+    "proAnalytics": {
+      "title": "Pro Analytics",
+      "description": "Order flow, open interest, heatmap, liquidity levels, microstructure, ETF & on-chain metrics"
+    },
+    "journal": {
+      "title": "Journal",
+      "description": "API-based trade import, AI coaching, Watchlist, Alerts"
+    },
+    "calculator": {
+      "title": "Calculator",
+      "description": "ATR-based sizing, what-if simulation, auto export to journal"
+    },
+    "aiTools": {
+      "title": "AI Tools",
+      "description": "Comprehensive analysis of tokens based on more than 50 parameters and metrics, AI Pump Detection"
+    }
+  },
+  "footer": {
+    "accessTag": "Access is by invitation only",
+    "title": "Become a Leading <br /> Trader now",
+    "description": "Join the waitlist to be among the first inside the DeepSurf private.",
+    "emailPlaceholder": "Enter your email...",
+    "joinButton": "Join",
+    "emailRequired": "Email is Required",
+    "emailInvalid": "Email is not valid",
+    "requestFailed": "Request failed",
+    "requestError": "Request Failed",
+    "tagline": "DeepSurf — The future of market intelligence. <br /> Built with precision. Powered by AI. Protected by design."
+  },
+  "auth": {
+    "back": "Back",
+    "login": {
+      "title": "Welcome back!",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Password",
+      "forgotPassword": "Forgot Password?",
+      "loginButton": "Login",
+      "or": "OR",
+      "dontHaveAccount": "Don't have an account?",
+      "signUp": "Sign Up"
+    },
+    "signUp": {
+      "title": "Get Started",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Password",
+      "enterJoinCode": "Enter Join Code",
+      "agreeTerms": "I agree to Terms & Privacy Policy",
+      "signUpButton": "Sign Up",
+      "or": "OR",
+      "alreadyHaveAccount": "Already have an account?",
+      "login": "Login"
+    },
+    "forgotPassword": {
+      "title": "Get Started",
+      "heading": "FORGOT PASSWORD",
+      "description": "Enter your registered email to reset your password.",
+      "emailPlaceholder": "Email",
+      "otpPlaceholder": "Enter OTP",
+      "sendOtp": "Send OTP",
+      "verifyOtp": "Verify OTP"
+    },
+    "otpVerification": {
+      "title": "Verification Process",
+      "verifyOtp": "Verify OTP"
+    },
+    "forgotOtpVerification": {
+      "title": "Verification Process",
+      "enterOtp": "Enter the OTP sent to your email:",
+      "verifyOtp": "Verify OTP"
+    },
+    "setPassword": {
+      "title": "GET STARTED",
+      "heading": "SET NEW PASSWORD",
+      "newPasswordPlaceholder": "New Password",
+      "confirmPasswordPlaceholder": "Confirm Password",
+      "setPasswordButton": "Set New Password"
+    },
+    "profile": {
+      "title": "Set up your profile",
+      "addProfilePicture": "Add profile picture",
+      "createUsernamePlaceholder": "Create username",
+      "maxCharacters": "Max. 30 Characters",
+      "continueButton": "Continue"
+    }
+  },
+  "dashboard": {
+    "navitem": {
+      "dashboard": "Dashboard",
+      "marketOutlook": "Market Outlook",
+      "proAnalytics": "Pro Analytics",
+      "journal": "Journal",
+      "chart": "Chart",
+      "calculator": "Calculator",
+      "aiTools": "AI Tools",
+      "setting": "Settings",
+      "logout": "Logout",
+      "notification": "Notification"
+    },
+    "wellcomeBack": "Welcome back!",
+    "addTools": "Add AI Tools",
+    "aiProof": "AI Proof — Quick coin check",
+    "aiProofHeading": "Deep AI analysis of any coin in seconds. Enter the ticker, get a full breakdown and recommendation.",
+    "placeHolderTittle": "Enter ticker symbol (e.g., BTC, ETH)",
+    "ethereum": "Ethereum",
+    "bitcoin": "Bitcoin",
+    "overallSentiment": "Overall Sentiment",
+    "neutral": "Neutral",
+    "analysis": "Analysis",
+    "macroEconomic": {
+      "notFound": "Not Found",
+      "title": "Macroeconomics"
+    },
+    "topCoins": {
+      "title": "Top Coins"
+    },
+    "topCoinByVolume": {
+      "notFound": "Not Found",
+      "title": "Top Coins by Volume"
+    }
+  },
+  "journal": {
+    "heading": "Journal",
+    "myCoinsAlerts": "My Coins & Alerts",
+    "myCoinsAlertHeading": "Alerts work in real-time via WebSocket! Get instant notifications when conditions are met.",
+    "addToJournal": "Add to Journal",
+    "saveAlert": "Save Alert"
+  },
+  "AiTools": {
+    "aiToolsTitle": "AI Tools",
+    "aiProofTitle": "AI Proof — Quick coin verification",
+    "aiProofHeading": "In-depth AI analysis of any coin in seconds. Enter the ticker, receive a complete breakdown and recommendation.",
+    "Recommendation": "Recommendation",
+    "Confidence": "Confidence",
+    "Confluence": {
+      "confluenceScore": "Confluence Score",
+      "Supertrend": "Supertrend",
+      "confluenceScoreHeading1": "Confluence Score",
+      "Bullish": "Bullish",
+      "ConfluenceScoreHeading2": "Confluence Score",
+      "Bearish": "Bearish"
+    },
+    "Supertrend": {
+      "Trend": "Trend",
+      "SignalLevel": "Signal Level"
+    },
+    "IndicatorAnalysis": {
+      "technicalIndicators": "Technical Indicators",
+      "RSI": "RSI"
+    },
+    "CommunitySentiment": {
+      "communitySentimentHeading": "Community Sentiment",
+      "support": "Support",
+      "resistance": "Resistance"
+    },
+    "Indicator": {
+      "indicatorTitle": "ICT Liquidity Levels ",
+      "indicatorsHeading": "Indicator Analysis"
+    },
+    "MarketIntelligence": {
+      "enhancedMarketIntelligence": "Enhanced Market Intelligence",
+      "fundingRate": "Funding Rate",
+      "lsRatio": "L/S Ratio",
+      "volume24h": "24h Volume",
+      "liquidityRisk": "Liquidity Risk"
+    },
+    "PatternRecognition": {
+      "patternRecognition": "Pattern Recognition",
+      "target": "Target",
+      "breakout": "Breakout",
+      "howToUse": "How to use",
+      "confidence": "Confidence"
+    }
+  },
+  "ProAnalytics": {
+    "proAnalyticsHeading": "Pro Analytics",
+    "mtfScan": "MTF Scan — Multi-Timeframe Analysis",
+    "aiRecommendation": "AI Recommendation",
+    "interpretation": "Interpretation",
+    "allTimeframesAgree": "All timeframes agree on growth - a strong bullish signal!",
+    "HeatMapVolume": {
+      "heatmapVolumeVolatility": "Heatmap — Volume & Volatility",
+      "topCoinsDescription": "Top coins by trading volume and volatility (AtR/Price). Helps to find active trading instruments.",
+      "volume24h": "24h Volume",
+      "volume7d": "7d Volume",
+      "volatility": "Volatility",
+      "top20Volume24h": "Top 20 by 24h volume :",
+      "top20Volume7d": "Top 20 by 7d volume :",
+      "topCoinsByVolatility": "Top coins by volatility :"
+    },
+    "LiquidationMap": {
+      "liquidationMapTitle": " Liquidation Map",
+      "currentBTCPrice": "Current BTC Price",
+      "longLiquidations": "LONG Liquidations",
+      "shortLiquidations": "SHORT Liquidations",
+      "Current": "Current",
+      "price": "price"
+    },
+    "FuturesMetrics": {
+      "futuresMetricesTitle": "Futures Metrics",
+      "currentETHPrice": "Current ETH Price",
+      "fundingRate": "Funding Rate",
+      "openInterest": "Open Interest",
+      "lsPositions": "L/S Positions",
+      "LsAccounts": "L/S Accounts"
+    }
+  },
+  "MarketOutlook": {
+    "marketOutLookTitle": "Market Outlook",
+    "aiMarketAnalysisTitle": "AI Market Analysis",
+    "dailyAIAnalysisDescription": "Daily AI analysis of macroeconomics, the crypto market, key events, and trading recommendations",
+    "generateAnalysisTitle": "Generate Analysis",
+    "topCoinsTitle": "Top Coins",
+    "overallSentimentTitle": "Overall Sentiment",
+    "Macroeconomics": {
+      "macroEconomicTitle": " Macroeconomics",
+      "aiAnalysisTitle": "AI Analysis",
+      "attentionTitle": "Attention",
+      "detailedActionPlanTitle": "Detailed Action Plan",
+      "fedSpeechesTitle": "Fed Speeches",
+      "powellTitle": "Powell"
+    },
+    "CryptocurrencyEvents": {
+      "cryptocurrencyTitle": "Cryptocurrency Events",
+      "etfFlowsTitle": "ETF Flows",
+      "btcEtfTitle": "BTC ETF",
+      "ethEtfTitle": "ETH ETF",
+      "trendTitle": "Trend",
+      "conclusionTitle": "Conclusion",
+      "onChainSignalsTitle": "On-Chain Signals",
+      "exchangeNetflowTitle": "Exchange Netflow",
+      "longShortRatioTitle": "Long/Short Ratio",
+      "fundingRateTitle": "Funding Rate",
+      "openInterestTitle": "Open Interest"
+    },
+    "TradingRecommendations": {
+      "tradingRecommendationsToday": "Trading recommendations for today",
+      "longSetupsTitle": "LONG Setups",
+      "shortSetupsTitle": "SHORT Setups",
+      "riskManagementTitle": "Risk Management",
+      "keyLevelsTitle": "Key Levels",
+      "resistanceAreasTitle": "Resistance Areas",
+      "supportAreasTitle": "Support Areas",
+      "alsVerdictTitle": "AI's Verdict"
+    },
+    "MarketDataMetrics": {
+      "marketDataMetricsTitle": "Market Data & Metrics",
+      "fearGreedIndexTitle": "Fear and Greed Index",
+      "btcDominanceTitle": "BTC Dominance",
+      "btc24hTitle": "BTC 24h",
+      "eth24hTitle": "ETH 24h",
+      "sol24hTitle": "SOL 24h",
+      "btcEtfFlowsTitle": "BTC ETF Flows",
+      "ethEtfFlowsTitle": "ETH ETF Flows",
+      "topMovers24hTitle": "Top Movers in 24h (volume > £50M)",
+      "gainersTitle": "Gainers",
+      "losersTitle": "Losers",
+      "riskCalendar30DaysTitle": "Risk Calendar (30 days)",
+      "attentionTitle": "Attention",
+      "whalesTrackerTitle": "Whales Tracker"
+    }
+  },
+  "Chart": {
+    "chartTitle": "Charts",
+    "askAi": "Ask Ai",
+    "Exchange": "Exchange",
+    "feeType": "Fee Type",
+    "Fee%": "Fee, %",
+    "FundingRate": "Funding Rate (per 8h), %",
+    "positionDuration": "Position Duration",
+    "searchbyTicker": "Search by Ticker",
+    "Pairfutures": "Pair (futures)",
+    "sizingOptions": "Sizing Options:",
+    "sizefromRisk": "Size from Risk %",
+    "sizefromMargin": "Size from Margin $",
+    "Deposit": "Deposit ($)",
+    "Risk": "Risk %",
+    "Direction": "Direction",
+    "entryStopTakeConfiguration": "Entry/Stop/Take Configuration:",
+    "aTRTemplate": "ATR Template",
+    "Manual": "Manual (Entry/Stop/Take)",
+    "quickPresets": "Quick Presets:",
+    "calculate": "Calculate",
+    "currentPrice": "Current Price",
+    "binanceFutures": "Binance Futures",
+    "copyResults": "Copy Results",
+    "openOrder": "Open Order",
+    "whatIfSimulator": "What-If Simulator",
+    "Margin": "Margin is 279% of the deposit. High risk!",
+    "pair": "Pair",
+    "ATR": "ATR (1h,14)",
+    "target": "Target (R-multiplier)",
+    "level": "Level",
+    "lotStep": "Lot: step / minimum (units)",
+    "scalp": "Scalp",
+    "swing": "Swing",
+    "intraday": "Intraday",
+    "safe": "Safe",
+    "Leverage": "Leverage (x)",
+    "Margin$": "Margin $",
+    "exportCSV": "Export CSV",
+    "exportJSON": "Export JSON",
+    "newPrice": "New Price",
+    "Reset": "Reset",
+    "pnL": "PnL",
+    "rol": "ROI",
+    "liquidation": "Liquidation",
+    "distance": "Distance",
+    "trading": "Trading",
+    "positionSize": "Position Size (units)",
+    "entryStopTake": "Entry / Stop / Take",
+    "mominalPositions": "Nominal Positions",
+    "margin": "Margin",
+    "expectedProfit": "Expected Profit",
+    "RiskIn": "Risk (in $)",
+    "binance": "Binance",
+    "takerMarketOrder": "Taker (Market Order)",
+    "makerLimitOrder": "Maker (Limit Order)",
+    "hoursNofunding": "<8 hours (no funding)",
+    "8-24Hours": "8-24 hours",
+    "24Hours": ">24 hours",
+    "askAIAboutChart": "Ask AI about chart",
+    "user": "user",
+    "addSupportInTheChart": "add support in the chart",
+    "completed": "Completed",
+    "updateDescription1": "I've added support levels to the Bitcoin chart. The chart now clearly highlights key support zones, showing areas where price historically finds buying interest. Each support level is marked with precise lines, making it easy to identify potential entry points or price floors.",
+    "updateDescription2": "Interactive tooltips and labels have been updated so that when you hover over a support level, you can see the exact price and relevant historical data. The chart remains fully responsive, maintaining clarity across different devices, and it's ready for integration of additional technical indicators in the future.",
+    "updateDescription3": "This update ensures that users can quickly understand critical support areas on the Bitcoin chart and make more informed decisions.",
+    "volume": "Volume",
+    "low": "Low",
+    "high": "High",
+    "close": "Close"
+  },
+  "Calculator": {
+    "calculatorTitle": "Calculator"
+  },
+  "Setting": {
+    "settingTitle": "Welcome back"
+  },
+  "SettingsTab": {
+    "profileInformation": "Profile information",
+    "setting": "Settings",
+    "notifications": "Notification",
+    "subscription": "Subcription",
+    "referrals": "Referrals",
+    "faq": "Faq"
+  },
+  "ProfileInformation": {
+    "profileInformationTitle": "Personal Information",
+    "uploadImage": "Upload Image",
+    "username": "Username",
+    "change": "change",
+    "saveProfile": "Save Profile"
+  },
+  "setting": {
+    "settingTitle": "Settings",
+    "language": "Language",
+    "timeZone": "Timezone",
+    "currency": "Currency",
+    "english": "English",
+    "french": "French",
+    "specificZone": "(GMT-8) Pacific Time",
+    "greenWichTime": "(GMT+0) Greenwich Mean Time",
+    "indianStandard": "(GMT+5:30) India Standard Time",
+    "usDollar": "US Dollar",
+    "euro": "Euro",
+    "britishpound": "British Pound",
+    "aPIkeys": "API Keys",
+    "backToList": "Back to list",
+    "addChange": "Add exchange",
+    "Exchanges": "Exchanges",
+    "added": "Added",
+    "status": "Status",
+    "action": "Action",
+    "apiSecret": "API Secret",
+    "passPhrase": "Passphrase",
+    "saveApiKeys": "Save API Key",
+    "cancel": "Cancel",
+    "bybit": "bybit",
+    "date": "Nov 12, 2025"
+  },
+  "Notification": {
+    "GetNotifiedVia": "Get notified via",
+    "email": "Email",
+    "telegram": "Telegram",
+    "web": "Web"
+  },
+  "Subscription": {
+    "subscription": "Subscription",
+    "billingHistory": "Billing History",
+    "details": "Details",
+    "amount": "Amount",
+    "status": "Status",
+    "proPlanMonthly": "PRO plan, monthly",
+    "success": "Successful"
+  },
+  "Referrals": {
+    "refferralsTitle": "Referrals",
+    "totalRefferal": "Total referrals",
+    "totalEarning": "Total Earning",
+    "commission": "Commission",
+    "walletBalance": "Wallet balance",
+    "yourRefferalLink": "Your referral link",
+    "linkCopied": "Link copied!",
+    "promoCode": "You can also use promo code",
+    "promoCodeCopied!": "Promo code copied!",
+    "withdrawalTransaction": "Withdrawal & Transaction",
+    "referralsHistory": "Referrals History",
+    "transactionHistory": "Transaction History",
+    "id": "ID",
+    "referraldate": "Referral Date",
+    "source": "Source",
+    "referralstatus": "Referral Status",
+    "requestwithdraw": "Request Withdraw",
+    "requestdate": "Request Date",
+    "batchno": "Batch No",
+    "account": "Account"
+  },
+  "WithdrawalDetails": {
+    "withdrawalDetails": "Withdrawal Details",
+    "walletMethod": " Wallet Method",
+    "walletAddress": "Wallet Address",
+    "walletHolder": "Wallet Holder",
+    "Network": "Network",
+    "statusTimeline": "Status Timeline",
+    "cancel": "Cancel"
+  },
+  "RequestWithdrawal": {
+    "requestWithdrawalBtn": "Request Withdrawal",
+    "choseNetwork": "Chose Network",
+    "amountToWithdraw": "Amount to Withdraw",
+    "SubmitWithdrawRequest": "Submit Withdraw Request",
+    "selectWalletMethod": "Select Wallet Method",
+    "enteryourAccountNumber": "Enter your Account Number",
+    "enterAmount": "Enter Amount",
+    "selectCurrency": "Select Currency"
+  },
+  "FrequentlyAskedQuestions(FAQ)": {
+    "FrequentlyAskedQuestions(FAQ)": "Frequently Asked Questions (FAQ)",
+    "generalInformation": "General Information",
+    "securityandPrivacy": "Security and Privacy",
+    "accessandSupport": "Access and Support"
+  },
+  "UserNotification": {
+    "notificationTitle": "Notification",
+    "notificationHours": "48 Hours Left Notification",
+    "userEmail": "sarah.j@example.com",
+    "userName": "Alice Johnson"
+  }
+}

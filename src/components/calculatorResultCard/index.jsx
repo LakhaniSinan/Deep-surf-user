@@ -21,7 +21,7 @@ const CalculatorResultCard = ({ label, items = [] }) => {
               sx={{
                 fontSize: "11px",
                 fontWeight: 400,
-                color: "#8F8F8F",   
+                color: "text.bluishGray",
                 mb: 0.5,
                 lineHeight: 1.4,
               }}
@@ -32,7 +32,7 @@ const CalculatorResultCard = ({ label, items = [] }) => {
               sx={{
                 fontSize: "16px",
                 fontWeight: 600,
-                color: "#FFFFFF",
+                color: "rgba(175, 176, 180, 1)",
                 lineHeight: 1.2,
               }}
             >

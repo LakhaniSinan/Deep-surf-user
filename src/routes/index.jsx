@@ -2,7 +2,7 @@ import Login from "../app/auth/login";
 import Profile from "../app/auth/profile";
 import SignUp from "../app/auth/signUp";
 import Charts from "../app/charts";
-import Fqa from "../app/faq";
+import Fqa from "../app/settings/faq";
 import Home from "../app/home";
 import Journal from "../app/journal";
 import Setting from "../app/settings";
@@ -13,10 +13,18 @@ import MarketOutLook from "../app/marketOutLook";
 import VerficationProcess from "../app/auth/otpVerfication";
 import ForGetPassword from "../app/auth/forgotPassword";
 import SetNewPassword from "../app/auth/setPassword";
-import LoginVerficationProcess from "../app/auth/loginOtpVerification";
 import ForgetVerfication from "../app/auth/loginOtpVerification";
+import SetUserProfile from "../app/auth/profile";
+import UserProfile from "../app/auth/profile";
+import TermAndCondition from "../app/termsAndConditions";
+import MyLoginPage from "../app/auth/login/myLoginPage";
+import Notification from "../app/notification";
+import EditJournal from "../app/journal/editjournal";
+import SaveAlert from "../app/journal/saveAlert";
+import CoinAlert from "../app/journal/journal";
 
 const AUTH_ROUTES = [
+
   {
     id: 1,
     name: "Signup",
@@ -32,28 +40,29 @@ const AUTH_ROUTES = [
   },
 
   {
-    id: 3,
-    name: "Profile",
-    component: <Profile />,
-    exact: "exact",
-    path: "/profile",
+    id: 1,
+    name: "myLoginPag",
+    path: "/my-login",
+    component: <MyLoginPage />,
   },
+
+
   {
-    id: 3,
+    id: 4,
     name: "VerficationProcess",
     component: <VerficationProcess />,
     exact: "exact",
     path: "/verification",
   },
   {
-    id: 3,
+    id: 5,
     name: "ForGetPassword",
     component: <ForGetPassword />,
     exact: "exact",
     path: "/forgot-password",
   },
   {
-    id: 3,
+    id: 6,
     name: "ForgetVerfication",
     component: <ForgetVerfication />,
     exact: "exact",
@@ -61,11 +70,18 @@ const AUTH_ROUTES = [
   },
 
   {
-    id: 3,
+    id: 7,
     name: "SetNewPassword",
     component: <SetNewPassword />,
     exact: "exact",
     path: "/new-password",
+  },
+  {
+    id: 7,
+    name: "TermAndCondition",
+    component: <TermAndCondition />,
+    exact: "exact",
+    path: "/term-and-condition",
   },
 ];
 
@@ -75,8 +91,9 @@ const APP_Route = [
     name: "Home",
     component: <Home />,
     exact: "exact",
-    path: "/",
+    path: "/dashboard",
   },
+
   {
     id: 2,
     name: "Charts",
@@ -85,53 +102,79 @@ const APP_Route = [
     path: "/chart",
   },
   {
-    id: 2,
+    id: 3,
     name: "Journal",
     component: <Journal />,
     exact: "exact",
     path: "/journal",
   },
   {
-    id: 3,
-    name: "FAQ",
+    id: 4,
+    name: "Fqa",
     component: <Fqa />,
     exact: "exact",
     path: "/faq",
   },
   {
-    id: 4,
+    id: 5,
     name: "Settings",
     component: <Setting />,
     exact: "exact",
     path: "/settings/*",
   },
   {
-    id: 5,
+    id: 6,
     name: "Calculator",
     component: <Calculator />,
     exact: "exact",
     path: "/calculator",
   },
   {
-    id: 6,
+    id: 7,
     name: "Pro Analysis",
     component: <ProAnalysis />,
     exact: "exact",
     path: "/pro-analytics",
   },
   {
-    id: 7,
+    id: 8,
     name: "Ai Tools",
     component: <AiTools />,
     exact: "exact",
     path: "/ai-tools",
   },
   {
-    id: 8,
+    id: 9,
     name: "MarketOutLook",
     component: <MarketOutLook />,
     exact: "exact",
     path: "/market-outlook",
+  },
+  {
+    id: 10,
+    name: "Notification",
+    component: <Notification />,
+    exact: "exact",
+    path: "/notification",
+  },
+  {
+    id: 11,
+    name: "EditJournal",
+    component: <EditJournal />,
+    path: "/edit/:id",
+  }
+  ,
+  {
+    id: 12,
+    name: "SaveAlert",
+    component: <SaveAlert />,
+    path: "/save-alert",
+  },
+  {
+    id: 13,
+    name: "CoinAlert",
+    component: <CoinAlert />,
+    path: "/coin-alert",
   },
 ];
 

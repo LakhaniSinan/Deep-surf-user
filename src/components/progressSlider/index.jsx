@@ -5,14 +5,14 @@ const ProgressSlider = ({ value, onChange, min = -50, max = 50 }) => {
   const percentage = value || 0;
   const range = max - min;
   const sliderPosition = ((percentage - min) / range) * 100;
-  
+
   // Fill from left (0%) to current handle position
   const fillWidth = sliderPosition;
   const fillColor = "#FF6421"; // Orange
 
   return (
     <Box>
-      <Box sx={{ position: "relative", py: 1.5 }}>
+      <Box sx={{ position: "relative", py: 1.5 , mt : "-20px" }}>
         {/* Background Track - Gray */}
         <Box
           sx={{
@@ -20,14 +20,14 @@ const ProgressSlider = ({ value, onChange, min = -50, max = 50 }) => {
             top: "50%",
             left: 0,
             right: 0,
-            height: 6,
-            backgroundColor: "#3A3A3A",
+            height: 16,
+            backgroundColor: "rgba(151, 151, 151, 1)",
             borderRadius: 3,
             transform: "translateY(-50%)",
             zIndex: 0,
           }}
         />
-        
+
         {/* Fill Track - Orange from left to handle */}
         {fillWidth > 0 && (
           <Box
@@ -36,7 +36,7 @@ const ProgressSlider = ({ value, onChange, min = -50, max = 50 }) => {
               top: "50%",
               left: 0,
               width: `${fillWidth}%`,
-              height: 6,
+              height: 16,
               backgroundColor: fillColor,
               borderRadius: 3,
               transform: "translateY(-50%)",
@@ -44,7 +44,7 @@ const ProgressSlider = ({ value, onChange, min = -50, max = 50 }) => {
             }}
           />
         )}
-        
+
         {/* Slider */}
         <Slider
           value={value}
@@ -64,10 +64,10 @@ const ProgressSlider = ({ value, onChange, min = -50, max = 50 }) => {
               display: "none",
             },
             "& .MuiSlider-thumb": {
-              width: 18,
-              height: 18,
-              backgroundColor: "#FFFFFF",
-              border: "2px solid #1C1C1C",
+              width: 22,
+              height: 22,
+              backgroundColor: "black",
+              border: "3px solid #fff",
               boxShadow: "0 2px 6px rgba(0,0,0,0.3)",
               "&:hover": {
                 boxShadow: "0 3px 8px rgba(0,0,0,0.4)",
@@ -76,7 +76,7 @@ const ProgressSlider = ({ value, onChange, min = -50, max = 50 }) => {
           }}
         />
       </Box>
-      
+
       <Stack
         direction="row"
         justifyContent="space-between"
@@ -87,7 +87,7 @@ const ProgressSlider = ({ value, onChange, min = -50, max = 50 }) => {
           sx={{
             fontSize: "11px",
             fontWeight: 500,
-            color: "#4CAF50",
+            color: "neutral.primaryGreen",
           }}
         >
           {min}%
@@ -96,7 +96,7 @@ const ProgressSlider = ({ value, onChange, min = -50, max = 50 }) => {
           sx={{
             fontSize: "11px",
             fontWeight: 500,
-            color: "#FF4444",
+            color: "neutral.dangerRed",
           }}
         >
           +{max}%

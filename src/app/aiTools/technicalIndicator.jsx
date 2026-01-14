@@ -1,114 +1,142 @@
-import { Box, Typography, Paper, Grid } from "@mui/material";
-
-import React from "react";
-import CustomButton from "../../components/customButton";
-
-const TechnicalIndicator = () => {
+import {
+  Box,
+  Typography,
+  Paper,
+  Grid,
+  Chip,
+  Stack,
+  LinearProgress,
+} from "@mui/material";
+import { useTranslation } from "react-i18next";
+const TechnicalIndicator = ({ coinData }) => {
+  const { t } = useTranslation();
   const levels = [
-    { label: "Support", value: "3829.17", color: "#3EDD87" },
-    { label: "Resistance", value: "4349.70", color: "#FF6C82" },
+    {
+      label: (t("AiTools.CommunitySentiment.support")),
+      value: coinData?.communitySentiment?.support,
+      color: "#3EDD87",
+    },
+    {
+      label: (t("AiTools.CommunitySentiment.resistance")),
+      value: coinData?.communitySentiment?.resistance,
+      color: "#FF6C82",
+    },
   ];
   const technicalIndicators = [
-    { label: "RSI", value: "74.3" },
-    { label: "MACD", value: "35.93" },
-    { label: "StochRSI", value: "100.0" },
-    { label: "BB Position", value: "116%" },
-    { label: "Trend", value: "SIDEWAYS" },
-    { label: "Volume", value: "1.39x" },
+    { label: "RSI", value: coinData?.technicalIndicators?.rsi },
+    { label: "MACD", value: coinData?.technicalIndicators?.macd },
+    { label: "StochRSI", value: coinData?.technicalIndicators?.stochRsi },
+    { label: "BB Position", value: coinData?.technicalIndicators?.bbPosition },
+    { label: "Trend", value: coinData?.technicalIndicators?.trend },
+    { label: "Volume", value: coinData?.technicalIndicators?.volume },
   ];
-
+  const longDataStr = coinData?.communitySentiment?.longPercent || "0%";
+  const longdataValue = Number(longDataStr.replace("%", ""));
+  const shortDataStr = coinData?.communitySentiment?.shortPercent || "0%";
+  const strDataValue = Number(shortDataStr.replace("%", ""));
   return (
     <>
-      {/* {  Technical Indicators  } */}
-      <Typography variant="h5" marginTop={"20px"}>
-        Technical Indicators
+      <Typography variant="h5" marginTop={"10px"} fontSize={"18px"}>
+        {t("AiTools.IndicatorAnalysis.technicalIndicators")}
       </Typography>
-      <Box sx={{ p: 1, borderRadius: 1 }}>
+      <Box sx={{ borderRadius: 1, }}>
         <Grid container spacing={1}>
           {technicalIndicators.map((item, index) => (
-            <Grid key={index} item xs="auto" size={{ xs: 12, sm: 1.7 }}>
+            <Grid key={index} item xs="auto" size={{ xs: 6, sm: 12, md: 1.4 }}>
               <Paper
                 elevation={0}
                 sx={{
-                  p: 2,
-                  minWidth: 80,
+                  py: 2,
+                  px: 1,
+                  // minWidth: 50,
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  backgroundColor: "#1a1a1a",
+                  backgroundColor: "#00000000",
                   color: "#94969A",
-                  borderRadius: 4,
-                  border: "1px solid #333",
+                  borderRadius: 2,
+                  border: "0.5px solid #94969A",
                   marginTop: "10px",
+                  fontSize: "15px"
                 }}
               >
                 <Typography variant="body2" sx={{ fontWeight: 500, mr: 0.5 }}>
                   {item.label}:
                 </Typography>
-                <Typography variant="body2">{item.value}</Typography>
+                <Typography variant="body2">
+                  {item.value || "No Data Found"}
+                </Typography>
               </Paper>
             </Grid>
           ))}
         </Grid>
       </Box>
-      {/* Community sentiment */}
-      <Typography variant="h4" marginTop={"10px"}>
-        Community sentiment
-      </Typography>
-      <Box>
-        <Grid container spacing={0} marginTop={2}>
-          {/* LEFT SIDE */}
-          <Grid item size={{ xs: 12, sm: 8 }}>
-            <Box
-              sx={{
-                backgroundColor: "#0B2015",
-                borderRadius: 34,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                p: 1,
-              }}
-            >
-              <CustomButton
-                title="70.5% LONG"
-                variant="h4"
-                fullWidth
-                sx={{
-                  color: "#3EDD87",
-                }}
-              />
-            </Box>
-          </Grid>
-
-          {/* RIGHT SIDE */}
-          <Grid item size={{ xs: 12, sm: 4 }}>
-            <Box
-              sx={{
-                backgroundColor: "#391417",
-                borderRadius: 25,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                p: 1,
-                mt: {
-                  xs: 2,
-                  sm: 0,
-                },
-              }}
-            >
-              <CustomButton
-                title="29.5% SHORT"
-                variant="h4"
-                fullWidth
-                sx={{
-                  color: "#FF6666",
-                }}
-              />
-            </Box>
-          </Grid>
-        </Grid>
+      <Box marginTop={"25px"}>
+        <Typography variant="h4" fontSize={"18px"} >
+          {t("AiTools.CommunitySentiment.communitySentimentHeading")}
+        </Typography >
       </Box>
-      <Box sx={{ p: 2, borderRadius: 2 }}>
+      <Box
+        position="relative"
+        width="100%"
+        height="50px"
+        borderRadius="30px"
+        // bgcolor="#f0f0f0"
+        display="flex"
+        overflow="hidden"
+        mt={2}
+      >
+        {/* First box: longdataValue */}
+        <Box
+          width={`${longdataValue}%`}
+          height="100%"
+          bgcolor="#0B2015"
+          borderRadius="30px 0px 0px 30px" // Left corners rounded
+          transition="width 0.3s ease"
+        />
+
+        {/* Second box: strDataValue */}
+        <Box
+          width={`${strDataValue}%`}
+          height="100%"
+          bgcolor="#8B0000"
+          borderRadius={`5px 50px 50px 5px`} 
+          transition="width 0.3s ease"
+        />
+
+        {/* First progress text */}
+        <Typography
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: `${longdataValue / 2}%`,
+            transform: "translate(-50%, -50%)",
+            fontSize: "11px",
+            fontWeight: "bold",
+            color: "green",
+          }}
+        >
+          {longdataValue}%
+        </Typography>
+
+        {/* Second progress text */}
+        <Typography
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: `${longdataValue + strDataValue / 2}%`,
+            transform: "translate(-50%, -50%)",
+            fontSize: "11px",
+            fontWeight: "bold",
+            color: "#FF6666",
+          }}
+        >
+          {strDataValue}%
+        </Typography>
+      </Box>
+
+
+      <Box sx={{ p: { xs: 0, md: 2 }, borderRadius: 2, marginTop: 2 }}>
         <Grid container spacing={2}>
           {levels.map((item, index) => (
             <Grid item size={{ xs: 12, sm: 6 }} key={index}>
@@ -119,13 +147,15 @@ const TechnicalIndicator = () => {
                   p: 2,
                 }}
               >
-                <Typography variant="h6">{item.label}</Typography>
+                <Typography variant="h6" fontSize={"15px"}>
+                  {item.label}
+                </Typography>
 
                 <Typography
                   variant="h6"
                   sx={{
                     color: item.color,
-                    fontSize: "25px",
+                    fontSize: "15px",
                   }}
                 >
                   {item.value}

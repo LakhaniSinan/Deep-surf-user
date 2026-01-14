@@ -1,0 +1,487 @@
+{
+  "header": {
+    "language": "Язык",
+    "waitlist": "Лист ожидания",
+    "login": "Войти",
+    "english": "Английский",
+    "turkish": "Турецкий",
+    "spanish": "Испанский",
+    "russian": "Русский"
+  },
+  "hero": {
+    "limitedAccess": "Ограниченный доступ",
+    "title": "Торговый интеллектуальный <br /> движок на базе ИИ",
+    "subtitle": "Работает на основе проприетарных моделей машинного обучения, данных <br /> рынка в реальном времени и многолетних количественных исследований.",
+    "getStarted": "Начать",
+    "trustedBy": "Доверяют трейдеры по всему миру.",
+    "builtFor": "Создано для тех, кто думает вероятностями, а не прогнозами."
+  },
+  "aiDrivenCard": {
+    "title": "На базе ИИ. <br /> Вдохновлено людьми.",
+    "description": "Многослойный ИИ-движок DeepSurf преобразует сырые данные в практические инсайты, прогнозы и сигналы предвзятости — чтобы вы могли торговать с ясностью, точностью и уверенностью.",
+    "aiAnalysis": "Анализ ИИ",
+    "analysisText": "Уровень безработицы улучшился с 4.2% до 4.1%. Это положительный бычий сигнал. Сильный, но не перегретый рынок труда поддерживает взгляд ФРС на потенциальную \"мягкую посадку\" экономики.",
+    "advancedToolsTitle": "Продвинутые инструменты для <br /> восприятия рынка.",
+    "advancedToolsDescription": "Смотрите на рынок как на живую систему — потоки ликвидности, режимы волатильности, паттерны микроструктуры и динамика настроений. Аналитический набор DeepSurf помогает вам не только видеть движения, но и чувствовать их до того, как они произойдут.",
+    "onChainSignals": "On-Chain сигналы",
+    "whalesTracker": "Трекер китов"
+  },
+  "proprietaryTech": {
+    "title": "100% Проприетарные технологии.",
+    "subtitle": "Без аутсорсинга. Без шума.",
+    "description": "Многослойный ИИ-движок DeepSurf преобразует сырые данные в практические инсайты, прогнозы и сигналы предвзятости — чтобы вы могли торговать с ясностью, точностью и уверенностью."
+  },
+  "insideDeep": {
+    "title": "Внутри <span style=\"color: #FF6421; font-weight: 700; font-family: Inter Tight\">Deepsurf</span>",
+    "marketOutlook": {
+      "title": "Обзор рынка",
+      "description": "Ежедневная макроэкономика, потоки, киты, календарь рисков"
+    },
+    "proAnalytics": {
+      "title": "Про аналитика",
+      "description": "Поток ордеров, открытый интерес, тепловая карта, уровни ликвидности, микроструктура, метрики ETF и on-chain"
+    },
+    "journal": {
+      "title": "Журнал",
+      "description": "Импорт сделок через API, коучинг ИИ, Список наблюдения, Оповещения"
+    },
+    "calculator": {
+      "title": "Калькулятор",
+      "description": "Размер позиции на основе ATR, симуляция what-if, автоматический экспорт в журнал"
+    },
+    "aiTools": {
+      "title": "ИИ инструменты",
+      "description": "Комплексный анализ токенов на основе более чем 50 параметров и метрик, Обнаружение накачки ИИ"
+    }
+  },
+  "footer": {
+    "accessTag": "Доступ только по приглашению",
+    "title": "Станьте ведущим <br /> трейдером сейчас",
+    "description": "Присоединитесь к листу ожидания, чтобы быть среди первых в частной сети DeepSurf.",
+    "emailPlaceholder": "Введите ваш email...",
+    "joinButton": "Присоединиться",
+    "emailRequired": "Email обязателен",
+    "emailInvalid": "Email недействителен",
+    "requestFailed": "Запрос не выполнен",
+    "requestError": "Запрос не выполнен",
+    "tagline": "DeepSurf — Будущее рыночной разведки. <br /> Построено с точностью. Работает на ИИ. Защищено дизайном."
+  },
+  "auth": {
+    "back": "Назад",
+    "login": {
+      "title": "С возвращением!",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Пароль",
+      "forgotPassword": "Забыли пароль?",
+      "loginButton": "Войти",
+      "or": "ИЛИ",
+      "dontHaveAccount": "Нет аккаунта?",
+      "signUp": "Регистрация"
+    },
+    "signUp": {
+      "title": "Начать",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Пароль",
+      "enterJoinCode": "Введите код присоединения",
+      "agreeTerms": "Я согласен с Условиями и Политикой конфиденциальности",
+      "signUpButton": "Регистрация",
+      "or": "ИЛИ",
+      "alreadyHaveAccount": "Уже есть аккаунт?",
+      "login": "Войти"
+    },
+    "forgotPassword": {
+      "title": "Начать",
+      "heading": "ЗАБЫЛИ ПАРОЛЬ",
+      "description": "Введите зарегистрированный email для сброса пароля.",
+      "emailPlaceholder": "Email",
+      "otpPlaceholder": "Введите OTP",
+      "sendOtp": "Отправить OTP",
+      "verifyOtp": "Проверить OTP"
+    },
+    "otpVerification": {
+      "title": "Процесс проверки",
+      "verifyOtp": "Проверить OTP"
+    },
+    "forgotOtpVerification": {
+      "title": "Процесс проверки",
+      "enterOtp": "Введите OTP, отправленный на ваш email:",
+      "verifyOtp": "Проверить OTP"
+    },
+    "setPassword": {
+      "title": "НАЧАТЬ",
+      "heading": "УСТАНОВИТЬ НОВЫЙ ПАРОЛЬ",
+      "newPasswordPlaceholder": "Новый пароль",
+      "confirmPasswordPlaceholder": "Подтвердите пароль",
+      "setPasswordButton": "Установить новый пароль"
+    },
+    "profile": {
+      "title": "Настройте свой профиль",
+      "addProfilePicture": "Добавить фото профиля",
+      "createUsernamePlaceholder": "Создать имя пользователя",
+      "maxCharacters": "Макс. 30 символов",
+      "continueButton": "Продолжить"
+    }
+  },
+  "dashboard": {
+    "navitem": {
+      "dashboard": "Панель управления",
+      "journal": "Журнал",
+      "chart": "График",
+      "calculator": "Калькулятор",
+      "aiTools": "ИИ инструменты",
+      "proAnalytics": "Про аналитика",
+      "marketOutlook": "Обзор рынка",
+      "setting": "Настройки",
+      "logout": "Выйти",
+      "notification": "Уведомление"
+    },
+    "wellcomeBack": "С возвращением!",
+    "addTools": "Добавить ИИ инструменты",
+    "aiProof": "Анализ ИИ — Быстрая проверка монеты",
+    "aiProofHeading": "Глубокий ИИ-анализ любой монеты за секунды. Введите тикер, получите полный разбор и рекомендацию.",
+    "placeHolderTittle": "Введите символ тикера (например, BTC, ETH)",
+    "ethereum": "Ethereum",
+    "bitcoin": "Bitcoin",
+    "overallSentiment": "Общий сентимент",
+    "neutral": "Нейтральный",
+    "macroEconomic": {
+      "notFound": "Не найдено",
+      "title": "Макроэкономика"
+    },
+    "topCoins": {
+      "title": "Топ CPINs"
+    },
+    "topCoinByVolume": {
+      "notFound": "Не найдено",
+      "title": "Топ монеты по объему"
+    }
+  },
+  "journal": {
+    "heading": "Журнал",
+    "myCoinsAlerts": "Мои монеты и оповещения",
+    "myCoinsAlertHeading": "Уведомления работают в реальном времени через WebSocket! Получайте мгновенные уведомления, когда условия выполнены.",
+    "addToJournal": "Добавить в журнал",
+    "saveAlert": "Сохранить уведомление"
+  },
+  "AiTools": {
+    "aiToolsTitle": "Инструменты ИИ",
+    "aiProofTitle": "Проверка ИИ — Быстрая проверка монеты",
+    "aiProofHeading": "Глубокий анализ ИИ любой монеты за считанные секунды. Введите тикер, получите полное разъяснение и рекомендации.",
+    "Recommendation": "Рекомендация",
+    "Confidence": "Уверенность",
+    "Confluence": {
+      "confluenceScore": "Баллы Конфлюенции",
+      "Supertrend": "Супертренд",
+      "confluenceScoreHeading1": "Баллы Конфлюенции",
+      "Bullish": "Бычий",
+      "ConfluenceScoreHeading2": "Баллы Конфлюенции",
+      "Bearish": "Медвежий"
+    },
+    "Supertrend": {
+      "Trend": "Тренд",
+      "SignalLevel": "Уровень сигнала"
+    },
+    "IndicatorAnalysis": {
+      "technicalIndicators": "Технические Индикаторы",
+      "RSI": "RSI"
+    },
+    "CommunitySentiment": {
+      "communitySentimentHeading": "Общественное мнение",
+      "support": "Поддержка",
+      "resistance": "Сопротивление"
+    },
+    "Indicator": {
+      "indicatorTitle": "Анализ показателей"
+    },
+    "MarketIntelligence": {
+      "enhancedMarketIntelligence": "Расширенная рыночная аналитика",
+      "fundingRate": "Ставка финансирования",
+      "lsRatio": "Соотношение L/S",
+      "volume24h": "Объем за 24ч",
+      "liquidityRisk": "Риск ликвидности"
+    },
+    "PatternRecognition": {
+      "patternRecognition": "Распознавание шаблонов",
+      "target": "Цель",
+      "breakout": "Прорыв",
+      "howToUse": "Как использовать",
+      "confidence": "Уверенность"
+    }
+  },
+  "ProAnalytics": {
+    "proAnalyticsHeading": "Профессиональная аналитика",
+    "mtfScan": "MTF Скан — Многофреймовый анализ",
+    "aiRecommendation": "Рекомендация ИИ",
+    "interpretation": "Интерпретация",
+    "allTimeframesAgree": "Все таймфреймы согласны в росте — сильный бычий сигнал!",
+    "HeatMapVolume": {
+      "heatmapVolumeVolatility": "Тепловая карта — Объем и Волатильность",
+      "topCoinsDescription": "Топ монет по объему торгов и волатильности (AtR/Цена). Помогает находить активные торговые инструменты.",
+      "volume24h": "Объем за 24ч",
+      "volume7d": "Объем за 7д",
+      "volatility": "Волатильность",
+      "top20Volume24h": "Топ 20 по объему за 24ч :",
+      "top20Volume7d": "Топ 20 по объему за 7д :",
+      "topCoinsByVolatility": "Топ монет по волатильности :"
+    },
+    "LiquidationMap": {
+      "liquidationMapTitle": "Карта ликвидаций",
+      "currentBTCPrice": "Текущая цена BTC",
+      "longLiquidations": "Лонг ликвидации",
+      "shortLiquidations": "Шорт ликвидации",
+      "Current": "Текущий",
+      "price": "цена"
+
+    },
+    "FuturesMetrics": {
+      "futuresMetricesTitle": "Метрики фьючерсов",
+      "currentETHPrice": "Текущая цена ETH",
+      "fundingRate": "Ставка финансирования",
+      "openInterest": "Открытый интерес",
+      "lsPositions": "Позиции L/S",
+      "LsAccounts": "Длинные / Короткие счета"
+    }
+  },
+  "MarketOutlook": {
+    "marketOutLookTitle": "Обзор рынка",
+    "aiMarketAnalysisTitle": "Анализ рынка ИИ",
+    "dailyAIAnalysisDescription": "Ежедневный анализ ИИ по макроэкономике, криптовалютному рынку, ключевым событиям и торговым рекомендациям",
+    "generateAnalysisTitle": "Сгенерировать анализ",
+    "topCoinsTitle": "Топ монет",
+    "overallSentimentTitle": "Общее настроение",
+    "Macroeconomics": {
+      "macroEconomicTitle": "Макроэкономика",
+      "aiAnalysisTitle": "Анализ ИИ",
+      "attentionTitle": "Внимание",
+      "detailedActionPlanTitle": "Детальный план действий",
+      "fedSpeechesTitle": "Речи ФРС",
+      "powellTitle": "Powell"
+    },
+    "CryptocurrencyEvents": {
+      "cryptocurrencyTitle": "События в мире криптовалют",
+      "etfFlowsTitle": "Потоки ETF",
+      "btcEtfTitle": "BTC ETF",
+      "ethEtfTitle": "ETH ETF",
+      "trendTitle": "Тренд",
+      "conclusionTitle": "Заключение",
+      "onChainSignalsTitle": "Сигналы On-Chain",
+      "exchangeNetflowTitle": "Чистый поток биржи",
+      "longShortRatioTitle": "Соотношение Long/Short",
+      "fundingRateTitle": "Ставка финансирования",
+      "openInterestTitle": "Открытый интерес"
+    },
+    "TradingRecommendations": {
+      "tradingRecommendationsToday": "Рекомендации по трейдингу на сегодня",
+      "longSetupsTitle": "LONG Настройки",
+      "shortSetupsTitle": "SHORT Настройки",
+      "riskManagementTitle": "Управление рисками",
+      "keyLevelsTitle": "Ключевые уровни",
+      "resistanceAreasTitle": "Зоны Сопротивления",
+      "supportAreasTitle": "Зоны Поддержки",
+      "alsVerdictTitle": "Вердикт ИИ"
+    },
+    "MarketDataMetrics": {
+      "marketDataMetricsTitle": "Данные и метрики рынка",
+      "fearGreedIndexTitle": "Индекс страха и жадности",
+      "btcDominanceTitle": "Доминирование BTC",
+      "btc24hTitle": "BTC 24ч",
+      "eth24hTitle": "ETH 24ч",
+      "sol24hTitle": "SOL 24ч",
+      "btcEtfFlowsTitle": "Потоки ETF BTC",
+      "ethEtfFlowsTitle": "Потоки ETF ETH",
+      "topMovers24hTitle": "Лидеры за 24ч (объем > £50M)",
+      "gainersTitle": "Лидеры роста",
+      "losersTitle": "Лидеры падения",
+      "riskCalendar30DaysTitle": "Календарь рисков (30 дней)",
+      "attentionTitle": "Внимание",
+      "whalesTrackerTitle": "Трекер китов"
+    }
+  },
+  "Chart": {
+    "chartTitle": "Графики",
+    "askAi": "Спросить у AI",
+    "Exchange": "Биржа",
+    "feeType": "Тип комиссии",
+    "Fee%": "Комиссия, %",
+    "FundingRate": "Процент финансирования (каждые 8ч), %",
+    "positionDuration": "Длительность позиции",
+    "searchbyTicker": "Поиск по тикеру",
+    "Pairfutures": "Пара (фьючерсы)",
+    "sizingOptions": "Параметры размера:",
+    "sizefromRisk": "Размер от % риска",
+    "sizefromMargin": "Размер от маржи $",
+    "Deposit": "Депозит ($)",
+    "Risk": "Риск %",
+    "Direction": "Направление",
+    "entryStopTakeConfiguration": "Настройка Вход/Стоп/Тейк:",
+    "aTRTemplate": "Шаблон ATR",
+    "Manual": "Ручной (Вход/Стоп/Тейк)",
+    "quickPresets": "Быстрые настройки:",
+    "calculate": "Рассчитать",
+    "currentPrice": "Текущая цена",
+    "binanceFutures": "Фьючерсы Binance",
+    "copyResults": "Скопировать результаты",
+    "openOrder": "Открытый ордер",
+    "whatIfSimulator": "Симулятор What-If",
+    "Margin": "Маржа составляет 279% от депозита. Высокий риск!",
+    "pair": "Пара",
+    "ATR": "ATR (1ч,14)",
+    "target": "Цель (R-мультипликатор)",
+    "level": "Уровень",
+    "lotStep": "Лот: шаг / минимальное количество (единиц)",
+    "scalp": "Scalp",
+    "swing": "Swing",
+    "intraday": "Интрадей",
+    "safe": "Сейф",
+    "Leverage": "Кредитное плечо (x)",
+    "Margin$": "Маржа $",
+    "exportCSV": "Экспорт CSV",
+    "exportJSON": "Экспорт JSON",
+    "newPrice": "Новая цена",
+    "Reset": "Сбросить",
+    "pnL": "Прибыль/Убыток",
+    "roi": "Возврат инвестиций",
+    "liquidation": "Ликвидация",
+    "distance": "Расстояние",
+    "trading": "Торговля",
+    "positionSize": "Размер позиции (единицы)",
+    "entryStopTake": "Вход / Стоп / Тейк",
+    "nominalPositions": "Номинальные позиции",
+    "margin": "Маржа",
+    "expectedProfit": "Ожидаемая прибыль",
+    "RiskIn": "Риск (в $)",
+    "takerMarketOrder": "Taker (рыночный ордер)",
+    "makerLimitOrder": "Maker (лимитный ордер)",
+    "hoursNofunding": "<8 часов (без финансирования)",
+    "8-24Hours": "8-24 часа",
+    "24Hours": ">24 часа",
+    "askAIAboutChart": "Спросить ИИ о графике",
+    "user": "пользователь",
+    "addSupportInTheChart": "Добавить поддержку на графике",
+    "completed": "Завершено",
+    "updateDescription1": "Я добавил уровни поддержки на график Биткоина. График теперь четко выделяет ключевые зоны поддержки, показывая области, где цена исторически привлекает интерес покупателей. Каждый уровень поддержки отмечен точными линиями, что облегчает определение потенциальных точек входа или минимальных уровней цены.",
+    "updateDescription2": "Интерактивные подсказки и метки были обновлены, так что при наведении курсора на уровень поддержки вы можете увидеть точную цену и соответствующие исторические данные. График остается полностью адаптивным, сохраняя ясность на разных устройствах, и готов для интеграции дополнительных технических индикаторов в будущем.",
+    "updateDescription3": "Это обновление гарантирует, что пользователи могут быстро понять критические зоны поддержки на графике Биткоина и принимать более обоснованные решения.",
+    "volume": "Объем",
+    "low": "Низкий",
+    "high": "Высокий",
+    "close": "Закрыть"
+  },
+
+  "Calculator": {
+    "calculatorTitle": "Calculadora"
+  },
+  "Setting": {
+    "settingTitle": "С возвращением"
+  },
+  "SettingsTab": {
+    "profileInformation": "Информация профиля",
+    "setting": "Настройки",
+    "notifications": "Уведомления",
+    "subscription": "Подписка",
+    "referrals": "Реферальные ссылки",
+    "faq": "Часто задаваемые вопросы"
+  },
+  "ProfileInformation": {
+    "profileInformationTitle": "Личная информация",
+    "uploadImage": "Загрузить изображение",
+    "username": "Имя пользователя",
+    "change": "Изменить",
+    "saveProfile": "Сохранить профиль"
+  },
+  "setting": {
+    "settingTitle": "Настройки",
+    "language": "Язык",
+    "timeZone": "Часовой пояс",
+    "currency": "Валюта",
+    "english": "Английский",
+    "french": "Французский",
+    "specificZone": "(GMT-8) Тихоокеанское время",
+    "greenWichTime": "(GMT+0) Среднее время по Гринвичу",
+    "indianStandard": "(GMT+5:30) Индийское стандартное время",
+    "usDollar": "Доллар США",
+    "euro": "Евро",
+    "britishpound": "Британский фунт",
+    "aPIkeys": "API ключи",
+    "backToList": "Вернуться к списку",
+    "addChange": "Добавить обмен",
+    "Exchanges": "Биржи",
+    "added": "Добавлено",
+    "status": "Статус",
+    "action": "Действие",
+    "apiSecret": "Секретный ключ API",
+    "passPhrase": "Парольная фраза",
+    "saveApiKeys": "Сохранить ключ API",
+    "cancel": "Отмена",
+    "bybit": "bybit",
+    "date": "12 ноября 2025 г."
+  },
+  "Notification": {
+    "GetNotifiedVia": "Получать уведомления через",
+    "email": "Электронная почта",
+    "telegram": "Телеграм",
+    "web": "Веб"
+  },
+  "Subscription": {
+    "subscription": "Подписка",
+    "billingHistory": "История выставления счетов",
+    "details": "Детали",
+    "amount": "Сумма",
+    "status": "Статус",
+    "proPlanMonthly": "План PRO, ежемесячно",
+    "success": "Успешно"
+  },
+  "Referrals": {
+    "refferralsTitle": "Рефералы",
+    "totalRefferal": "Всего рефералов",
+    "totalEarning": "Общий доход",
+    "commission": "Комиссия",
+    "walletBalance": "Баланс кошелька",
+    "yourRefferalLink": "Ваша реферальная ссылка",
+    "linkCopied": "Ссылка скопирована!",
+    "promoCode": "Вы также можете использовать промо-код",
+    "promoCodeCopied!": "Промо-код скопирован!",
+    "withdrawalTransaction": "Вывод средств и транзакции",
+    "referralsHistory": "История рефералов",
+    "transactionHistory": "История транзакций",
+    "id": "ID",
+    "referraldate": "Дата реферала",
+    "source": "Источник",
+    "referralstatus": "Статус реферала",
+    "requestwithdraw": "Запросить вывод",
+    "requestdate": "Дата запроса",
+    "batchno": "Номер партии",
+    "account": "Счет"
+  },
+  "WithdrawalDetails": {
+    "withdrawalDetails": "Детали вывода",
+    "walletMethod": "Метод кошелька",
+    "walletAddress": "Адрес кошелька",
+    "walletHolder": "Владелец кошелька",
+    "Network": "Сеть",
+    "statusTimeline": "Хронология статуса",
+    "cancel": "Отмена"
+  },
+  "RequestWithdrawal": {
+    "requestWithdrawalBtn": "Запросить вывод",
+    "choseNetwork": "Выберите сеть",
+    "amountToWithdraw": "Сумма для вывода",
+    "SubmitWithdrawRequest": "Отправить запрос на вывод",
+    "selectWalletMethod": "Выберите метод кошелька",
+    "enteryourAccountNumber": "Введите номер вашего счета",
+    "enterAmount": "Введите сумму",
+    "selectCurrency": "Выберите валюту"
+  },
+  "FrequentlyAskedQuestions(FAQ)": {
+    "FrequentlyAskedQuestions(FAQ)": "Часто задаваемые вопросы (FAQ)",
+    "generalInformation": "Общая информация",
+    "securityandPrivacy": "Безопасность и конфиденциальность",
+    "accessandSupport": "Доступ и поддержка"
+  },
+  "UserNotification": {
+    "notificationTitle": "Уведомление",
+    "notificationHours": "Уведомление: осталось 48 часов",
+    "userEmail": "sarah.j@example.com",
+    "userName": "Alice Johnson"
+  }
+}

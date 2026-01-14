@@ -1,25 +1,22 @@
-import React from "react";
-import { Box, Grid, Paper, Typography } from "@mui/material";
-import CrypoImage1 from "../../assets/icons/CrypotoLogo2.svg";
-import CrypoImage2 from "../../assets/icons/CrypotoLogo3.svg";
-import CrypoImage3 from "../../assets/icons/CrypotoLogo1.svg";
-import Graphy1 from "../../assets/icons/graph1.svg";
-import Graphy2 from "../../assets/icons/graph2.svg";
-import Graphy3 from "../../assets/icons/graph3.svg";
 
+import { Box, Grid, Paper, Typography } from "@mui/material";
+import Speedometer from "../../components/speedMeter";
+import Sparkline from "../../components/topCoinsTable/Sparkline";
+import { useTranslation } from "react-i18next";
 const cardStyle = {
   backgroundColor: "#111",
-  padding: "24px",
+  padding: "20px",
   borderRadius: "16px",
   color: "white",
 };
+const Coin = ({ data, overallSentimentData, dayOfWeek }) => {
+  console.log("huuuuuurgrgrgrgrgssssssssssssss", overallSentimentData?.score);
 
-function Coin() {
+  const { t } = useTranslation();
   return (
-    <Box sx={{ background: "#000", marginTop: "20px" }}>
+    <Box sx={{ background: "#000", marginTop: "25px" }}>
       <Grid container spacing={3}>
-        {/* LEFT CARD */}
-        <Grid item xs={12} size={{ xs: 12, sm: 6, md: 6 }}>
+        <Grid size={{ xs: 12, sm: 6, md: 5 }}>
           <Paper
             elevation={4}
             sx={{
@@ -31,21 +28,29 @@ function Coin() {
             }}
           >
             <Box>
-              <Typography variant="h3" fontSize="17px">12 October 2025</Typography>
-              <Typography sx={{ color: "#bbb" }}>Sunday</Typography>
+              <Typography variant="h4" fontSize="20px" fontFamily={"inter Tight"} fontWeight={600}>
+                {dayOfWeek?.date}
+              </Typography>
+              <Typography sx={{ color: "#fff", fontWeight: 550, fontSize: "15px" }} fontFamily={"inter Tight"}>
+                {dayOfWeek?.dayOfWeek}
+              </Typography>
             </Box>
-
-            <Typography variant="h6" fontSize="14px" marginTop="30px">
-              The market shows strength with increasing volumes. Key levels are
-              being tested, and volatility remains high.
+            <Typography
+              variant="h6"
+              fontWeight={400}
+              fontSize="13px"
+              marginTop="25px"
+              fontFamily={"inter Tight"}
+              color="rgba(255, 255, 255, 1)"
+            >
+              {dayOfWeek?.marketStrength}
             </Typography>
           </Paper>
         </Grid>
-
         {/* TOP COINS CARD */}
-        <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
+        <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
           <Paper
-            elevation={4}
+            elevation={2}
             sx={{
               ...cardStyle,
               height: "200px",
@@ -55,64 +60,72 @@ function Coin() {
             }}
           >
             <Typography variant="h6" sx={{ mb: 1 }}>
-              Top Coins
+              {t("MarketOutlook.topCoinsTitle")}
             </Typography>
 
-            {[
-              {
-                name: "DXY",
-                price: "$5.288",
-                percen: "0.89%",
-                logo: CrypoImage1,
-                graphyImage: Graphy1,
-              },
-              {
-                name: "USDT",
-                price: "$0.999",
-                percen: "0.09%",
-                logo: CrypoImage2,
-                graphyImage: Graphy2,
-              },
-              {
-                name: "DOGE",
-                price: "$0.21",
-                percen: "0.89%",
-                logo: CrypoImage3,
-                graphyImage: Graphy3,
-              },
-            ].map((coin, i) => (
+            {data.slice(0, 3).map((coin, i) => (
               <Box
                 key={i}
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
+                  px: 1,
+                  py: 0.5,
+                  // responsive layout
+                  // flexWrap: { xs: "wrap", sm: "nowrap" },
+                  gap: { xs: 1, sm: 0 },
                 }}
               >
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                  <img src={coin.logo} width={20} height={20} alt="logo" />
-                  <Typography>{coin.name}</Typography>
+                  <img src={coin.logo} width={30} height={30} alt="logo" />
+                  <Box>
+                    <Typography sx={{ color: "#FFFFFF", fontSize: "13px", fontFamily: "inter Tight", fontWeight: 600 }}>
+                      {coin.name}
+                    </Typography>
+                    <Typography color="#FFFFFF99" fontSize={"13px"} fontFamily={"inter Tight"}
+                    >
+                      {coin.symbol}
+                    </Typography>
+                  </Box>
                 </Box>
 
-                <img
-                  src={coin.graphyImage}
-                  width={70}
-                  height={20}
-                  alt="graph"
-                />
+                {/* CENTER (sparkline) */}
+                <Box
+                  sx={{
+                    flexGrow: 1,
+                    display: "flex",
+                    justifyContent: "center",
+                    fontFamily: "inter Tight"
+                  }}
+                >
+                  <Sparkline
+                    data={coin.sparkline || []}
+                    isPositive={!coin.change24hFormatted?.includes("-")}
+                  />
+                </Box>
 
+                {/* RIGHT SIDE (price + change) */}
                 <Box sx={{ textAlign: "right" }}>
-                  <Typography sx={{ color: "#79ffea", lineHeight: 1 }}>
-                    {coin.price}
+                  <Typography
+                    sx={{ color: "#FFFFFF", lineHeight: 1 }}
+                    fontSize={15}
+                    fontWeight={600}
+                    fontFamily={"inter Tight"}
+                  >
+                    {coin.priceFormatted}
                   </Typography>
                   <Typography
                     sx={{
-                      color: "0.89%" ? "#02C173" : "blue",
-                      color: "0.89%" ? "red" : "black",
-                      fontSize: "13px",
+                      color: coin.change24hFormatted.includes("-")
+                        ? "neutral.dangerRed"
+                        : "neutral.primaryGreen",
+                      fontSize: "15px",
+                      fontFamily: "inter Tight"
                     }}
                   >
-                    {coin.percen}
+                    {coin.change24hFormatted.includes("-") ? "" : "+"}
+                    {coin?.change24hFormatted}
                   </Typography>
                 </Box>
               </Box>
@@ -132,55 +145,23 @@ function Coin() {
             }}
           >
             <Box sx={{ textAlign: "center" }}>
-              <Typography variant="h6">Overall Sentiment</Typography>
-              <Typography sx={{ color: "#d8d800" }}>Neutral</Typography>
+              <Typography variant="h6" fontWeight={400}>{t("MarketOutlook.overallSentimentTitle")}</Typography>
+              <Typography color="neutral.amber" fontWeight={600} fontSize={"17px"}>
+                {overallSentimentData?.label}
+              </Typography>
             </Box>
-
-            {/* Gauge */}
-            <Box
-              sx={{
-                width: 150,
-                height: 75,
-                background: "#222",
-                borderRadius: "150px 150px 0 0",
-                overflow: "hidden",
-                margin: "auto",
-                position: "relative",
-              }}
-            >
-              <Box
-                sx={{
-                  width: "100%",
-                  height: "100%",
-                  background: "linear-gradient(90deg, red, yellow, green)",
-                  position: "absolute",
-                }}
+            <Box display={"flex"} justifyContent={"center"}>
+              <Speedometer
+                // percentage={30}
+                size={50}
+                score={overallSentimentData?.score}
               />
-
-              <Box
-                sx={{
-                  width: 100,
-                  height: 50,
-                  background: "#111",
-                  borderRadius: "100px 100px 0 0",
-                  position: "absolute",
-                  bottom: 0,
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  fontSize: 26,
-                }}
-              >
-                50
-              </Box>
             </Box>
           </Paper>
         </Grid>
-      </Grid>
-    </Box>
+      </Grid >
+    </Box >
   );
-}
+};
 
 export default Coin;

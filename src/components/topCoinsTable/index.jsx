@@ -10,9 +10,8 @@ import {
 } from "@mui/material";
 import theme from "../../theme";
 import Sparkline from "./Sparkline";
-import PositiveIcon from "../../assets/icons/positive-coins-icon.svg";
-import NegativeIcon from "../../assets/icons/negative-coin-icon.svg";
 import TopCardSkeleton from "../../components/skeleton/topCoinCardSkeleton";
+import { t } from "i18next";
 
 const TopCoinsTable = ({ data, isLoading }) => {
   console.log("TopCoinsTableData:", data);
@@ -22,8 +21,12 @@ const TopCoinsTable = ({ data, isLoading }) => {
       sx={{
         width: "100%",
         backgroundColor: theme.palette.background.paper,
-        borderRadius: "12px",
+        borderRadius: "10px",
         padding: "16px",
+        overflowX: "auto",
+        maxHeight: "390px",
+        borderTopRightRadius: "30px",
+        borderBottomRightRadius: "30px"
       }}
     >
       <Typography
@@ -32,8 +35,9 @@ const TopCoinsTable = ({ data, isLoading }) => {
         fontWeight={600}
         color="text.primary"
         mb={3}
+        fontFamily="Inter Tight"
       >
-        Top coins
+        {t("dashboard.topCoins.title")}
       </Typography>
 
       {isLoading ? (
@@ -44,9 +48,13 @@ const TopCoinsTable = ({ data, isLoading }) => {
         </Typography>
       ) : (
         <TableContainer>
-          <Table sx={{ width: "100%" }}>
+          <Table
+            sx={{
+              width: "100%",
+            }}
+          >
             <TableBody>
-              {data.map((coin, index) => (
+              {data?.map((coin, index) => (
                 <TableRow
                   key={coin.id || index}
                   sx={{
@@ -98,6 +106,7 @@ const TopCoinsTable = ({ data, isLoading }) => {
                               color: "text.primary",
                               fontSize: "12px",
                               fontWeight: 600,
+                              fontFamily: "inter Tight"
                             }}
                           >
                             {coin.ticker?.[0] || "?"}
@@ -119,7 +128,7 @@ const TopCoinsTable = ({ data, isLoading }) => {
                           sx={{
                             color: "#FFFFFF",
                             fontSize: "15px",
-                            fontWeight: 500,
+                            fontWeight: 550,
                             lineHeight: 1.2,
                             mt: 0.5,
                           }}
@@ -133,6 +142,7 @@ const TopCoinsTable = ({ data, isLoading }) => {
                             fontWeight: 400,
                             lineHeight: 1.2,
                             mt: 0.5,
+                            fontFamily: "inter Tight"
                           }}
                         >
                           {coin.name}
@@ -158,16 +168,16 @@ const TopCoinsTable = ({ data, isLoading }) => {
                         justifyContent: "center",
                       }}
                     >
-                      {/* <Sparkline
-                      data={coin.sparkline || []}
-                      isPositive={coin.percentChange >= 0}
-                    /> */}
+                      <Sparkline
+                        data={coin.sparkline || []}
+                        isPositive={!coin.change24hFormatted?.includes("-")}
+                      />
 
-                      {coin.change24hFormatted?.includes("-") ? (
+                      {/* {coin.change24hFormatted?.includes("-") ? (
                         <img src={NegativeIcon} />
                       ) : (
                         <img src={PositiveIcon} />
-                      )}
+                      )} */}
                     </Box>
                   </TableCell>
 
@@ -189,7 +199,9 @@ const TopCoinsTable = ({ data, isLoading }) => {
                         sx={{
                           color: "text.primary",
                           fontSize: "12px",
-                          fontWeight: 500,
+                          fontWeight: 600,
+                          fontFamily: "inter Tight"
+
                         }}
                       >
                         {coin.priceFormatted}
@@ -201,6 +213,8 @@ const TopCoinsTable = ({ data, isLoading }) => {
                             : "green",
                           fontSize: "12px",
                           fontWeight: 500,
+                          fontFamily: "inter Tight"
+
                         }}
                       >
                         {coin.change24hFormatted.includes("-") ? "" : "+"}

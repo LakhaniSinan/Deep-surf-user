@@ -2,117 +2,132 @@ import { Box, Grid, Paper, Typography } from "@mui/material";
 import CustomButton from "../../components/customButton";
 import BtcIcon from "../../assets/icons/bitcoin-logo.svg";
 import EthIcon from "../../assets/icons/eth-icon.svg";
-import AttentionIcon from "../../assets/icons/attention.svg";
 import SolanaIcon from "../../assets/icons/solana-sol-icon.svg";
-import StarIcon from "../../assets/icons/Vector (3).svg";
-
-const Trading = () => {
-  const longData = [
-    {
-      tittle: "LONG setups",
-      description:
-        "BTC: Pullback to $108,836-109,389 — a good entry for swing. Target $114,361, stop $107,732 ETH: If it holds at $3,891 — target $4,126. The ETH/BTC pair shows strength SOL: If it breaks $197 with volume — momentum trade up to $209",
-      color: "#3EDD87",
-    },
-    {
-      tittle: "SHORT setups",
-      description:
-        "BTC: Pullback to $108,836-109,389 — a good entry for swing. Target $114,361, stop $107,732 ETH: If it holds at $3,891 — target $4,126. The ETH/BTC pair shows strength SOL: If it breaks $197 with volume — momentum trade up to $209",
-      color: "#FF4C4C",
-    },
-  ];
-
+import AttentionIcon from "../../assets/icons/effects.svg";
+import WarningIcon from "../../assets/icons/warning-icon.svg"
+import { useTranslation } from "react-i18next";
+const Trading = ({ tradingData }) => {
+  const { t } = useTranslation();
   const data = [
     {
       icon: BtcIcon,
-      title: "BTC",
-      price: "$111,586",
-      resistance: ["$110,046", "$114,328"],
-      support: ["$109,302", "$107,457"],
+      title: tradingData?.keyLevels?.btc?.symbol,
+      price: tradingData?.keyLevels?.btc?.price,
+      resistance: [
+        tradingData?.keyLevels?.btc?.resistance[0],
+        tradingData?.keyLevels?.btc?.resistance[1],
+      ],
+      support: [
+        tradingData?.keyLevels?.btc?.support[0],
+        tradingData?.keyLevels?.btc?.support[1],
+      ],
     },
     {
       icon: EthIcon,
-      title: "ETH",
-      price: "$4,279",
-      resistance: ["$4,047", "$4,107"],
-      support: ["$3,845", "$3,787"],
+      title: tradingData?.keyLevels?.eth?.symbol,
+      price: tradingData?.keyLevels?.eth?.price,
+      resistance: [
+        tradingData?.keyLevels?.eth?.resistance[0],
+        tradingData?.keyLevels?.eth?.resistance[1],
+      ],
+      support: [
+        tradingData?.keyLevels?.eth?.support[0],
+        tradingData?.keyLevels?.eth?.support[1],
+      ],
     },
     {
       icon: SolanaIcon,
-      title: "SOL",
-      price: "$201",
-      resistance: ["$213", "$233"],
-      support: ["$194", "$200"],
+      title: tradingData?.keyLevels?.sol?.symbol,
+      price: tradingData?.keyLevels?.sol?.price,
+      resistance: [
+        tradingData?.keyLevels?.sol?.resistance[0],
+        tradingData?.keyLevels?.sol?.resistance[1],
+      ],
+      support: [
+        tradingData?.keyLevels?.sol?.support[0],
+        tradingData?.keyLevels?.sol?.support[1],
+      ],
     },
   ];
   return (
     <>
       <Box
-        backgroundColor="#161616"
+        backgroundColor="background.charcoal"
         borderRadius="20px"
-        padding="25px"
+        padding="25px"  
         mt="20px"
       >
-        <Typography variant="h4">Trading recommendations for today</Typography>
-        <Grid container spacing={1} mt={2}>
-          {longData.map((item, index) => (
-            <Grid item key={index} size={{ xs: 12, sm: 12, md: 6 }}>
-              <Box
-                sx={{
-                  color: "#fff",
-                  padding: "20px",
-                  borderRadius: 2,
-                  height: "100%",
-                  width: "100%",
-                  backgroundColor: "#1C1C1C",
-                }}
-              >
-                <Typography style={{ color: item.color }} variant="h5">
-                  {item.tittle}
-                </Typography>
-                <Typography mt="8px" fontSize="13px">
-                  {item.description}
-                </Typography>
+        <Typography variant="h4" fontSize={"25px"} fontWeight={600}>
+          {t("MarketOutlook.TradingRecommendations.tradingRecommendationsToday")}
+        </Typography>
+        <Grid container spacing={2} mt={2}>
+          <Grid item size={{ xs: 12, md: 6 }}>
+            <Box bgcolor={"neutral.darkGrey"} p={2} borderRadius={"20px"}>
+              <Typography color="neutral.brightGreen" fontWeight={550}>{t("MarketOutlook.TradingRecommendations.longSetupsTitle")}</Typography>
+              <Box display={"flex"} gap={"3px"} mt={1}>
+                <Box fontSize={"13px"} color="neutral.Snowwhite" fontWeight={500} fontFamily={"Inter Tight"}>{tradingData?.longSetups?.[0]?.asset}: {tradingData?.longSetups?.[0]?.description}
+                </Box>
               </Box>
-            </Grid>
-          ))}
+              <Box display={"flex"} gap={"3px"} mt={1}>
+                <Box fontSize={"13px"} color="neutral.Snowwhite" fontFamily={"Inter Tight"}>{tradingData?.longSetups?.[1]?.asset} : {tradingData?.longSetups?.[1]?.description}
+                </Box>
+              </Box>
+              <Box display={"flex"} gap={"3px"} mt={1}>
+                <Box fontSize={"13px"} color="neutral.Snowwhite" fontFamily={"Inter Tight"}>{tradingData?.longSetups?.[2]?.asset} : {tradingData?.longSetups?.[2]?.description}
+                </Box>
+              </Box>
+            </Box>
+          </Grid>
+          <Grid item size={{ xs: 12, md: 6 }}>
+            <Box bgcolor={"neutral.darkGrey"} p={2} borderRadius={"20px"}>
+              <Typography color="neutral.brightRed">{t("MarketOutlook.TradingRecommendations.shortSetupsTitle")}</Typography>
+              <Box display={"flex"} gap={"3px"} mt={1} flexWrap={"nowrap"}>
+                <Box fontSize={"13px"} fontFamily={"Inter Tight"} >{tradingData?.longSetups?.[0]?.asset} : {tradingData?.longSetups?.[0]?.description}</Box>
+              </Box>
+              <Box display={"flex"} gap={"3px"} mt={1}>
+                <Box fontSize={"13px"} fontFamily={"Inter Tight"}>{tradingData?.longSetups?.[1]?.asset} : {tradingData?.longSetups?.[1]?.description}</Box>
+              </Box>
+              <Box display={"flex"} gap={"3px"} mt={1}>
+                <Box fontSize={"13px"} fontFamily={"Inter Tight"}>{tradingData?.longSetups?.[2]?.asset} : {tradingData?.longSetups?.[2]?.description}</Box>
+              </Box>
+            </Box>
+          </Grid>
         </Grid>
-        <Box>
-          <Grid container spacing={1} mt="15px">
-              <Grid item size={{ xs: 12, sm: 12 , md : 3 }}>
-                <CustomButton
-                  variant={"body1"}
-                  title="Risk management"
-                  icon={<img src={AttentionIcon} />}
-                  sx={{
-                    borderRadius: "20px",
-                    width: { xs: "100%", md: "auto" },
-                    backgroundColor: "#FFE600",
-                    color: "#000000",
-                    marginTop: "10px",
-                  }}
-                />
-              </Grid>
-              <Grid size={{ xs: 12, sm: 12 , md : 5 }}>
-                <Typography fontSize="12px" mt="10px">
-                  Reduce position sizes by 30-50% before CPI (Wednesday) Use a
-                  take-profit ladder: 30% at TP1, 40% at TP2, 30% trailing.
-                  Leverage no more than 5-10x under current condition Watch the
-                  funding rate — if 0.03%, risk of correction.
-                </Typography>
-              </Grid>
+        <Box backgroundColor="neutral.darkGrey" p={2} borderRadius={"20px"} mt={"20px"}>
+          <Grid container spacing={1}>
+            <Grid item size={{ xs: 12, sm: 12, md: 2.6 }}>
+              <CustomButton
+                variant={"body1"}
+                title={t("MarketOutlook.TradingRecommendations.riskManagementTitle")}
+                icon={<img src={WarningIcon} />}
+                sx={{
+                  borderRadius: "20px",
+                  width: { xs: "100%", md: "auto" },
+                  backgroundColor: "neutral.brightYellow",
+                  color: "#000000",
+                  marginTop: "10px",
+                  px: "30px",
+                  fontFamily: "inter Tight"
+                }}
+              />
+            </Grid>
+            <Grid size={{ xs: 12, sm: 12, md: 5 }}>
+              <Typography fontSize="15px" mt="10px" fontFamily={"inter Tight"} fontWeight={600}>
+                {tradingData?.riskManagement?.actions}
+              </Typography>
+            </Grid>
           </Grid>
         </Box>
-        <Typography mt="20px" variant="h5" fontSize="20px">
-          Key levels
+        <Typography mt="20px" fontFamily={'inter Tight'} color="neutral.Snowwhite" variant="h5" fontSize="25px" fontWeight={600}>
+          {t("MarketOutlook.TradingRecommendations.keyLevelsTitle")}
         </Typography>
-        <Box sx={{ color: "#fff", marginTop: "20px" }}>
+        <Box sx={{ color: "neutral.Snowwhite", marginTop: "20px" }}>
           <Grid container spacing={2}>
             {data.map((item, index) => (
               <Grid item size={{ xs: 12, sm: 6, md: 4 }} key={index}>
                 <Paper
                   sx={{
-                    background: "#1C1C1C",
+                    bgcolor: "neutral.darkGrey",
                     p: 2,
                     borderRadius: "14px",
                     height: "100%",
@@ -130,12 +145,12 @@ const Trading = () => {
                     <Grid item size={{ xs: 6 }}>
                       <Typography
                         fontSize="13px"
-                        sx={{ color: "#aaa", mb: 1, fontWeight: 500 }}
+                        sx={{ color: "neutral.lightgray", mb: 1, fontWeight: 590, fontSize: "15px" }}
                       >
-                        Resistance areas
+                        {t("MarketOutlook.TradingRecommendations.resistanceAreasTitle")}
                       </Typography>
                       {item.resistance.map((lvl, i) => (
-                        <Typography key={i} fontSize="15px">
+                        <Typography key={i} fontSize="18px" fontFamily={"inter Tight"} fontWeight={600} color="neutral.Snowwhite">
                           {lvl}
                         </Typography>
                       ))}
@@ -144,12 +159,12 @@ const Trading = () => {
                     <Grid item size={{ xs: 6 }}>
                       <Typography
                         fontSize="13px"
-                        sx={{ color: "#aaa", mb: 1, fontWeight: 500 }}
+                        sx={{ color: "neutral.lightgray", mb: 1, fontWeight: 590, fontSize: "15px" }}
                       >
-                        Support areas
+                         {t("MarketOutlook.TradingRecommendations.supportAreasTitle")}
                       </Typography>
                       {item.support.map((lvl, i) => (
-                        <Typography key={i} fontSize="15px">
+                        <Typography key={i} fontSize="18px" fontFamily={"inter Tight"} fontWeight={600} color="neutral.Snowwhite">
                           {lvl}
                         </Typography>
                       ))}
@@ -160,31 +175,30 @@ const Trading = () => {
             ))}
           </Grid>
         </Box>
-        <Box>
-          <Grid container spacing={2} mt="15px">
-            <Grid item size={{ xs: 12, sm: 2 }}>
+        <Box backgroundColor="neutral.darkGrey" borderRadius="20px" p={2} mt={4}>
+          <Grid container spacing={1}>
+            <Grid item size={{ xs: 12, sm: 12, md: 2 }}>
               <CustomButton
-                variant={"gradient"}
-                title="Al's Verdict"
-                icon={<img src={StarIcon} />}
+                title={t("MarketOutlook.TradingRecommendations.alsVerdictTitle")}
+                icon={<img src={AttentionIcon} color="neutral.Snowwhite" />}
                 sx={{
                   borderRadius: "20px",
                   width: { xs: "100%", md: "auto" },
-                  backgroundColor: "#FFE600",
-                  color: "#fff",
-                  marginTop: "10px",
+                  backgroundColor: "#FF6421",
+                  color: "neutral.Snowwhite",
+                  px: "30px",
+                  fontSize: "15px",
+                  fontWeight: 400
+                  // marginTop: "5px",
                 }}
               />
             </Grid>
-            <Grid mt="5px" size={{ xs: 12, sm: 10 }}>
-              <Typography fontSize="12px">
-                The macroeconomic backdrop is favourable for risk assets. ETF
-                inflows and on-chain metrics confirm accumulation. A moderate
-                LONG position in BTC/ETH is recommended with readiness to close
-                50% before CPI (Wednesday). Main risk: CPI above forecast may
-                trigger a correction of -5-8%. Be prepared. Confidence Level:
-                7.5/10 — Moderately bullish outlook considering short-term
-                risks.
+            <Grid mt="5px" size={{ xs: 12, sm: 12, md: 9 }}>
+              <Typography fontSize="13px" color="#fff" fontWeight={600}>
+                {tradingData?.aiVerdict?.message}
+                <br />
+                {tradingData?.aiVerdict?.mainRisk}
+                {tradingData?.aiVerdict?.confidenceLevel}
               </Typography>
             </Grid>
           </Grid>

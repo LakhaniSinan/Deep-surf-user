@@ -1,0 +1,54 @@
+import {
+    Box,
+    CircularProgress,
+    DialogContent,
+    Stack,
+    Typography,
+} from "@mui/material";
+import React from "react";
+
+const DialogBody = ({
+    children,
+    isLoading = false,
+    error = null,
+    sx = {},
+    boxProps,
+}) => {
+    const renderContent = () => {
+        if (isLoading) {
+            return (
+                <Stack alignItems="center" justifyContent="center" height="100%">
+                    <CircularProgress />
+                </Stack>
+            );
+        }
+
+        if (error) {
+            return (
+                <Stack alignItems="center" justifyContent="center" height="100%">
+                    <Typography variant="body1" color="error">
+                        {error}
+                    </Typography>
+                </Stack>
+            );
+        }
+
+        return children;
+    };
+
+    return (
+        <DialogContent sx={{ p: 1, ...sx }}>
+            <Box
+                px={1}
+                py={1}
+                boxShadow={"0px 3px 5px 0px rgba(0, 0, 0, 0.08)"}
+                borderRadius={3}
+                {...boxProps}
+            >
+                {renderContent()}
+            </Box>
+        </DialogContent>
+    );
+};
+
+export default DialogBody;

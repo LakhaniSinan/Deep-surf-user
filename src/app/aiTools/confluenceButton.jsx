@@ -1,62 +1,45 @@
 import { Box, Grid, Paper, Typography } from "@mui/material";
-import StatCard from "../../components/statCard/index";
+import { useTranslation } from "react-i18next";
 
-function DashboardStats() {
-  const statsData = [
-    {
-      title: "Confluence Score",
-      subtitle: "Bullish ",
-    },
-    {
-      title: "Trend",
-      subtitle: "Bearish",
-      price: "4",
-    },
-  ];
-
-  const statsData2 = [
-    { title: "Trend", subtitle: "Bullish" },
-
-    { title: "Signal Level", subtitle: "$3 120,88" },
-  ];
-
+function DashboardStats({ coinData }) {
+  const { t } = useTranslation();
   return (
     <>
-      <Box mt={"10px"}>
-        <Typography variant="h4" color="#FFFFFF">
-          Confluence Score
-        </Typography>
-      </Box>
+      <Box mt={"10px"}
+      >
+        <Grid container spacing={6}>
+          <Grid item size={{ xs: 6, sm: 6 }}>
+            <Typography
+              variant="h5"
+              fontSize={{ xs: 16, md: 23 }}
+              fontWeight={600}
+              color="#FFFFFF"
+            >
+              {t("AiTools.Confluence.confluenceScore")}
+            </Typography>
+          </Grid>
+          <Grid item size={{ xs: 6, sm: 6 }}>
+            <Typography
+              variant="h5"
+              fontSize={{ xs: 16, md: 23 }}
+              fontWeight={600}
+              color="#FFFFFF"
+            >
+              {t("AiTools.Confluence.Supertrend")}
+            </Typography>
+          </Grid>
+        </Grid>
+      </Box >
       <Box
         sx={{
           width: "100%",
-          mt: 3,
+          mt: 2,
           color: "#fff",
-          p: 3,
+          // p: 3,
           borderRadius: "16px",
-          background: "#111",
+          backgroundColor: "#rgba(28, 28, 28, 1)"
         }}
       >
-        {/* TOP HEADINGS ROW */}
-        <Box sx={{ position: "relative", mb: 3 }}>
-          <Typography variant="h6" sx={{ fontWeight: 600 }}>
-            Confluence Score
-          </Typography>
-
-          <Typography
-            variant="h6"
-            sx={{
-              fontWeight: 600,
-              position: "absolute",
-              left: "50%",
-              transform: "translateX(-50%)", // exactly center
-            }}
-          >
-            Supertrend
-          </Typography>
-        </Box>
-
-        {/* ALL CARDS ROW IN ONE FLEX CONTAINER */}
         <Box
           sx={{
             display: "flex",
@@ -64,138 +47,108 @@ function DashboardStats() {
             gap: 3,
           }}
         >
-          {/* Bullish Card */}
           <Box
             sx={{
-              flex: "1 1 180px",
-              background: "#0F0F0F",
+              flex: "1 1 150px",
+              background: "#1C1C1C",
+
               p: 2,
               borderRadius: "12px",
+              textAlign: "center",
             }}
           >
-            <Typography variant="caption" sx={{ color: "#bbb" }}>
-              Confluence Score
+            <Typography variant="caption" color="neutral.coolGrey">
+              {t("AiTools.Confluence.confluenceScoreHeading1")}
             </Typography>
             <Typography
-              sx={{ color: "#4CAF50", fontSize: "18px", fontWeight: 600 }}
+              sx={{ color: "neutral.brightGreen", fontSize: "18px", fontWeight: 600 }}
             >
-              Bullish
+              {t("AiTools.Confluence.Bullish")}
             </Typography>
             <Typography
               sx={{
-                mt: 1,
-                color: "#4CAF50",
+                color: "neutral.brightGreen",
                 fontSize: "22px",
                 fontWeight: 700,
               }}
             >
-              6
+              {coinData?.confluenceScore?.bullish}
             </Typography>
           </Box>
 
           {/* Bearish Card */}
           <Box
             sx={{
-              flex: "1 1 180px",
-              background: "#0F0F0F",
+              flex: "1 1 150px",
+              background: "#1C1C1C",
               p: 2,
               borderRadius: "12px",
+              textAlign: "center",
             }}
           >
-            <Typography variant="caption" sx={{ color: "#bbb" }}>
-              Confluence Score
+            <Typography variant="caption" color="neutral.coolGrey">
+              {t("AiTools.Confluence.ConfluenceScoreHeading2")}
             </Typography>
             <Typography
-              sx={{ color: "#ff4d4d", fontSize: "18px", fontWeight: 600 }}
+              sx={{ color: "text.SalmonRed", fontSize: "18px", fontWeight: 600 }}
             >
-              Bearish
+              {t("AiTools.Confluence.Bearish")}
             </Typography>
             <Typography
               sx={{
-                mt: 1,
-                color: "#ff4d4d",
+                color: "text.SalmonRed",
                 fontSize: "22px",
                 fontWeight: 700,
               }}
             >
-              4
+              {coinData?.confluenceScore?.bearish}
             </Typography>
           </Box>
-
-          {/* Trend Card */}
           <Box
             sx={{
-              flex: "1 1 180px",
-              background: "#0F0F0F",
+              flex: "1 1 150px",
+              background: "#1C1C1C",
               p: 2,
               borderRadius: "12px",
+              textAlign: "center",
             }}
           >
-            <Typography variant="caption" sx={{ color: "#bbb" }}>
-              Trend
+            <Typography variant="h6" color="neutral.Snowwhite" fontWeight="500px">
+              {t("AiTools.Supertrend.Trend")}
             </Typography>
             <Typography
               sx={{
                 mt: 1,
-                color: "#4CAF50",
+                color: "text.greenColor",
                 fontSize: "22px",
-                fontWeight: 700,
+                fontWeight: 600,
               }}
             >
-              Bullish
+              {coinData?.supertrend?.trend}
             </Typography>
           </Box>
 
           {/* Signal Level Card */}
           <Box
             sx={{
-              flex: "1 1 180px",
-              background: "#0F0F0F",
+              flex: "1 1 150px",
+              background: "#1C1C1C",
               p: 2,
               borderRadius: "12px",
+              textAlign: "center",
             }}
           >
-            <Typography variant="caption" sx={{ color: "#bbb" }}>
-              Signal Level
+            <Typography variant="caption" color="neutral.Snowwhite" fontSize={"15px"}>
+              {t("AiTools.Supertrend.SignalLevel")}
             </Typography>
             <Typography
-              sx={{ mt: 1, color: "#fff", fontSize: "22px", fontWeight: 700 }}
+              sx={{ mt: 1, color: "accent.contrastText", fontSize: "22px", fontWeight: 600 }}
             >
-              $3 120.88
+              {coinData?.supertrend?.signalLevel}
             </Typography>
           </Box>
         </Box>
       </Box>
-
-      {/* <Grid container spacing={10} marginTop={2}>
-        <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
-          <Grid container spacing={5}>
-            {statsData.map((item, index) => (
-              <Grid key={index} size={{ xs: 12, sm: 6, md: 6 }}>
-                <StatCard
-                  title={item.title}
-                  subtitle={item.subtitle}
-
-                />
-              </Grid>
-            ))}
-          </Grid>
-        </Grid>
-
-        <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
-          <Grid container spacing={5}>
-            {statsData2.map((item, index) => (
-              <Grid key={index} size={{ xs: 12, sm: 6, md: 6 }}>
-                <StatCard
-                  title={item.title}
-                  subtitle={item.subtitle}
-                  price={item.price}
-                />
-              </Grid>
-            ))}
-          </Grid>
-        </Grid>
-      </Grid> */}
     </>
   );
 }

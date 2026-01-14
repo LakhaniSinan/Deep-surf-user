@@ -1,0 +1,456 @@
+{
+  "header": {
+    "language": "Idioma",
+    "waitlist": "Lista de espera",
+    "login": "Iniciar sesión",
+    "english": "Inglés",
+    "turkish": "Turco",
+    "spanish": "Español",
+    "russian": "Ruso"
+  },
+  "hero": {
+    "limitedAccess": "Acceso limitado",
+    "title": "Motor de Inteligencia de Trading <br /> Impulsado por IA",
+    "subtitle": "Impulsado por modelos de aprendizaje automático propietarios, datos de <br /> mercado en tiempo real y años de investigación cuantitativa.",
+    "getStarted": "Comenzar",
+    "trustedBy": "Confiado por traders en todo el mundo.",
+    "builtFor": "Construido para aquellos que piensan en probabilidades, no en predicciones."
+  },
+  "aiDrivenCard": {
+    "title": "Impulsado por IA. <br /> Inspirado en humanos.",
+    "description": "El motor de IA multicapa de DeepSurf transforma datos sin procesar en información procesable, pronósticos y señales de sesgo, para que puedas operar con claridad, precisión y confianza.",
+    "aiAnalysis": "Análisis de IA",
+    "analysisText": "La tasa de desempleo mejoró del 4.2% al 4.1%. Esta es una señal alcista positiva. Un mercado laboral fuerte pero no sobrecalentado respalda la visión de la Fed de un posible \"aterrizaje suave\" para la economía.",
+    "advancedToolsTitle": "Herramientas Avanzadas para <br /> la Percepción del Mercado.",
+    "advancedToolsDescription": "Ve el mercado como un sistema vivo: flujos de liquidez, regímenes de volatilidad, patrones de microestructura y dinámicas de sentimiento. El conjunto de análisis de DeepSurf te ayuda no solo a ver los movimientos, sino a sentirlos antes de que ocurran.",
+    "onChainSignals": "Señales On-Chain",
+    "whalesTracker": "Rastreador de ballenas"
+  },
+  "proprietaryTech": {
+    "title": "100% Tecnología Propietaria.",
+    "subtitle": "Sin Subcontratación. Sin Ruido.",
+    "description": "El motor de IA multicapa de DeepSurf transforma datos sin procesar en información procesable, pronósticos y señales de sesgo, para que puedas operar con claridad, precisión y confianza."
+  },
+  "insideDeep": {
+    "title": "Dentro de <span style=\"color: #FF6421; font-weight: 700; font-family: Inter Tight\">Deepsurf</span>",
+    "marketOutlook": {
+      "title": "Perspectiva del Mercado",
+      "description": "Macro diario, flujos, ballenas, calendario de riesgos"
+    },
+    "proAnalytics": {
+      "title": "Análisis Pro",
+      "description": "Flujo de órdenes, interés abierto, mapa de calor, niveles de liquidez, microestructura, métricas de ETF y on-chain"
+    },
+    "journal": {
+      "title": "Diario",
+      "description": "Importación de operaciones basada en API, coaching de IA, Lista de seguimiento, Alertas"
+    },
+    "calculator": {
+      "title": "Calculadora",
+      "description": "Dimensionamiento basado en ATR, simulación what-if, exportación automática al diario"
+    },
+    "aiTools": {
+      "title": "Herramientas de IA",
+      "description": "Análisis integral de tokens basado en más de 50 parámetros y métricas, Detección de Bombeo de IA"
+    }
+  },
+  "footer": {
+    "accessTag": "El acceso es solo por invitación",
+    "title": "Conviértete en un Trader <br /> Líder ahora",
+    "description": "Únete a la lista de espera para estar entre los primeros dentro de la red privada de DeepSurf.",
+    "emailPlaceholder": "Ingresa tu correo electrónico...",
+    "joinButton": "Unirse",
+    "emailRequired": "El correo electrónico es obligatorio",
+    "emailInvalid": "El correo electrónico no es válido",
+    "requestFailed": "Solicitud fallida",
+    "requestError": "Solicitud Fallida",
+    "tagline": "DeepSurf — El futuro de la inteligencia de mercado. <br /> Construido con precisión. Impulsado por IA. Protegido por diseño."
+  },
+  "auth": {
+    "back": "Atrás",
+    "login": {
+      "title": "¡Bienvenido de nuevo!",
+      "emailPlaceholder": "Correo electrónico",
+      "passwordPlaceholder": "Contraseña",
+      "forgotPassword": "¿Olvidaste tu contraseña?",
+      "loginButton": "Iniciar sesión",
+      "or": "O",
+      "dontHaveAccount": "¿No tienes una cuenta?",
+      "signUp": "Registrarse"
+    },
+    "signUp": {
+      "title": "Comenzar",
+      "emailPlaceholder": "Correo electrónico",
+      "passwordPlaceholder": "Contraseña",
+      "enterJoinCode": "Ingresar código de unión",
+      "agreeTerms": "Acepto los Términos y la Política de Privacidad",
+      "signUpButton": "Registrarse",
+      "or": "O",
+      "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+      "login": "Iniciar sesión"
+    }
+  },
+  "dashboard": {
+    "navitem": {
+      "dashboard": "Tablero",
+      "journal": "Diario",
+      "chart": "Gráfico",
+      "calculator": "Calculadora",
+      "aiTools": "Herramientas de IA",
+      "proAnalytics": "Análisis Pro",
+      "marketOutlook": "Perspectiva del Mercado",
+      "setting": "Configuración",
+      "logout": "Cerrar sesión",
+      "notification": "Notificación"
+    },
+    "wellcomeBack": "¡Bienvenido de nuevo!",
+    "addTools": "Agregar Herramientas",
+    "aiProof": "A prueba de IA — Verificación rápida de monedas",
+    "aiProofHeading": "Análisis profundo de IA de cualquier moneda en segundos. Ingresa el ticker, obtén un desglose completo y una recomendación.",
+    "placeHolderTittle": "Ingresa el símbolo del ticker (por ejemplo, BTC, ETH)",
+    "ethereum": "Ethereum",
+    "ethereumIcon": "Ícono de Ethereum",
+    "overallSentiment": "Sentimiento General",
+    "neutral": "Neutral",
+    "analysis": "Análisis",
+    "macroEconomic": {
+      "notFound": "No encontrado",
+      "title": "Macroeconomía"
+    },
+    "topCoins": {
+      "title": "Principales CPINs"
+    },
+    "topCoinByVolume": {
+      "notFound": "No encontrado",
+      "title": "Principales monedas por volumen"
+    }
+  },
+  "journal": {
+    "heading": "Diario",
+    "myCoinsAlerts": "Mis Monedas y Alertas",
+    "myCoinsAlertHeading": "¡Las alertas funcionan en tiempo real a través de WebSocket! Recibe notificaciones instantáneas cuando se cumplan las condiciones.",
+    "addToJournal": "Agregar al Diario",
+    "saveAlert": "Guardar alerta"
+  },
+  "AiTools": {
+    "aiToolsTitle": "Herramientas de IA",
+    "aiProofTitle": "A prueba de IA — Verificación rápida de monedas",
+    "aiProofHeading": "Análisis profundo de IA de cualquier moneda en segundos. Ingresa el símbolo del ticker, recibe un desglose completo y una recomendación.",
+    "Recommendation": "Recomendación",
+    "Confidence": "Confianza",
+    "Confluence": {
+      "confluenceScore": "Puntuación de Confluencia",
+      "Supertrend": "Supertrend",
+      "confluenceScoreHeading1": "Puntuación de Confluencia",
+      "Bullish": "Alcista",
+      "ConfluenceScoreHeading2": "Puntuación de Confluencia",
+      "Bearish": "Bajista"
+    },
+    "Supertrend": {
+      "Trend": "Tendencia",
+      "SignalLevel": "Nivel de Señal"
+    },
+    "IndicatorAnalysis": {
+      "technicalIndicators": "Indicadores Técnicos",
+      "RSI": "RSI"
+    },
+    "CommunitySentiment": {
+      "communitySentimentHeading": "Sentimiento de la Comunidad",
+      "support": "Soporte",
+      "resistance": "Resistencia"
+    },
+    "Indicator": {
+      "indicatorTitle": "Análisis de Indicadores"
+    },
+    "MarketIntelligence": {
+      "enhancedMarketIntelligence": "Inteligencia de Mercado Mejorada",
+      "fundingRate": "Tasa de Financiamiento",
+      "lsRatio": "Proporción L/S",
+      "volume24h": "Volumen 24h",
+      "liquidityRisk": "Riesgo de Liquidez"
+    },
+    "PatternRecognition": {
+      "patternRecognition": "Reconocimiento de Patrones",
+      "target": "Objetivo",
+      "breakout": "Ruptura",
+      "howToUse": "Cómo usar",
+      "confidence": "Confianza"
+    }
+  },
+  "ProAnalytics": {
+    "proAnalyticsHeading": "Análisis Profesional",
+    "mtfScan": "Escaneo MTF — Análisis Multitemporal",
+    "aiRecommendation": "Recomendación de IA",
+    "interpretation": "Interpretación",
+    "allTimeframesAgree": "Todos los marcos temporales coinciden en el crecimiento: ¡una fuerte señal alcista!",
+    "HeatMapVolume": {
+      "heatmapVolumeVolatility": "Mapa de calor — Volumen y Volatilidad",
+      "topCoinsDescription": "Principales monedas por volumen de comercio y volatilidad (AtR/Precio). Ayuda a encontrar instrumentos de trading activos.",
+      "volume24h": "Volumen 24h",
+      "volume7d": "Volumen 7d",
+      "volatility": "Volatilidad",
+      "top20Volume24h": "Top 20 por volumen 24h :",
+      "top20Volume7d": "Top 20 por volumen 7d :",
+      "topCoinsByVolatility": "Principales monedas por volatilidad :"
+    },
+    "LiquidationMap": {
+      "liquidationMapTitle": "Mapa de Liquidación",
+      "currentBTCPrice": "Precio actual de BTC",
+      "longLiquidations": "Liquidaciones LONG",
+      "shortLiquidations": "Liquidaciones SHORT",
+      "Current": "Actual",
+      "price": "precio"
+
+    },
+    "FuturesMetrics": {
+      "futuresMetricesTitle": "Métricas de Futuros",
+      "currentETHPrice": "Precio actual de ETH",
+      "fundingRate": "Tasa de Financiamiento",
+      "openInterest": "Interés Abierto",
+      "lsPositions": "Posiciones L/S",
+      "LsAccounts": "Cuentas Largas / Cortas"
+    }
+  },
+  "MarketOutlook": {
+    "marketOutLookTitle": "Perspectiva del Mercado",
+    "aiMarketAnalysisTitle": "Análisis del Mercado de IA",
+    "dailyAIAnalysisDescription": "Análisis diario de IA sobre macroeconomía, el mercado de criptomonedas, eventos clave y recomendaciones de trading",
+    "generateAnalysisTitle": "Generar Análisis",
+    "topCoinsTitle": "Principales Monedas",
+    "overallSentimentTitle": "Sentimiento General",
+    "Macroeconomics": {
+      "macroEconomicTitle": "Macroeconomía",
+      "aiAnalysisTitle": "Análisis de IA",
+      "attentionTitle": "Atención",
+      "detailedActionPlanTitle": "Plan de Acción Detallado",
+      "fedSpeechesTitle": "Discursos de la Fed",
+      "powellTitle": "Powell"
+    },
+    "CryptocurrencyEvents": {
+      "cryptocurrencyTitle": "Eventos de Criptomonedas",
+      "etfFlowsTitle": "Flujos de ETF",
+      "btcEtfTitle": "ETF de BTC",
+      "ethEtfTitle": "ETF de ETH",
+      "trendTitle": "Tendencia",
+      "conclusionTitle": "Conclusión",
+      "onChainSignalsTitle": "Señales On-Chain",
+      "exchangeNetflowTitle": "Flujo Neto de Intercambio",
+      "longShortRatioTitle": "Relación Long/Short",
+      "fundingRateTitle": "Tasa de Financiamiento",
+      "openInterestTitle": "Interés Abierto"
+    },
+    "TradingRecommendations": {
+      "tradingRecommendationsToday": "Recomendaciones de trading para hoy",
+      "longSetupsTitle": "Configuraciones LONG",
+      "shortSetupsTitle": "Configuraciones SHORT",
+      "riskManagementTitle": "Gestión de Riesgos",
+      "keyLevelsTitle": "Niveles Clave",
+      "resistanceAreasTitle": "Áreas de Resistencia",
+      "supportAreasTitle": "Áreas de Soporte",
+      "alsVerdictTitle": "Veredicto de IA"
+    },
+    "MarketDataMetrics": {
+      "marketDataMetricsTitle": "Datos y Métricas del Mercado",
+      "fearGreedIndexTitle": "Índice de Miedo y Codicia",
+      "btcDominanceTitle": "Dominancia de BTC",
+      "btc24hTitle": "BTC 24h",
+      "eth24hTitle": "ETH 24h",
+      "sol24hTitle": "SOL 24h",
+      "btcEtfFlowsTitle": "Flujos de ETF de BTC",
+      "ethEtfFlowsTitle": "Flujos de ETF de ETH",
+      "topMovers24hTitle": "Principales Movimientos en 24h (volumen > £50M)",
+      "gainersTitle": "Ganadores",
+      "losersTitle": "Perdedores",
+      "riskCalendar30DaysTitle": "Calendario de Riesgos (30 días)",
+      "attentionTitle": "Atención",
+      "whalesTrackerTitle": "Rastreador de Ballenas"
+    }
+  },
+  "Chart": {
+    "chartTitle": "Gráficos",
+    "askAi": "Preguntar a la IA",
+    "Exchange": "Exchange",
+    "feeType": "Tipo de comisión",
+    "Fee%": "Comisión, %",
+    "FundingRate": "Tasa de financiación (cada 8 h), %",
+    "positionDuration": "Duración de la posición",
+    "searchbyTicker": "Buscar por ticker",
+    "Pairfutures": "Par (futuros)",
+    "sizingOptions": "Opciones de tamaño:",
+    "sizefromRisk": "Tamaño según riesgo %",
+    "sizefromMargin": "Tamaño según margen $",
+    "Deposit": "Depósito ($)",
+    "Risk": "Riesgo %",
+    "Direction": "Dirección",
+    "entryStopTakeConfiguration": "Configuración de Entrada / Stop / Take:",
+    "aTRTemplate": "Plantilla ATR",
+    "Manual": "Manual (Entrada / Stop / Take)",
+    "quickPresets": "Preajustes rápidos:",
+    "calculate": "Calcular",
+    "currentPrice": "Precio actual",
+    "binanceFutures": "Binance Futuros",
+    "copyResults": "Copiar resultados",
+    "openOrder": "Abrir orden",
+    "whatIfSimulator": "Simulador What-If",
+    "Margin": "El margen es el 279% del depósito. ¡Alto riesgo!",
+    "pair": "Par",
+    "ATR": "ATR (1h,14)",
+    "target": "Objetivo (multiplicador R)",
+    "level": "Nivel",
+    "lotStep": "Lote: paso / mínimo (unidades)",
+    "scalp": "Scalp",
+    "swing": "Swing",
+    "intraday": "Intradía",
+    "safe": "Seguro",
+    "Leverage": "Apalancamiento (x)",
+    "Margin$": "Margen $",
+    "exportCSV": "Exportar CSV",
+    "exportJSON": "Exportar JSON",
+    "newPrice": "Nuevo precio",
+    "Reset": "Restablecer",
+    "pnL": "PnL",
+    "rol": "ROI",
+    "liquidation": "Liquidación",
+    "distance": "Distancia",
+    "trading": "Trading",
+    "positionSize": "Tamaño de la posición (unidades)",
+    "entryStopTake": "Entrada / Stop / Take",
+    "mominalPositions": "Posiciones nominales",
+    "margin": "Margen",
+    "expectedProfit": "Beneficio esperado",
+    "RiskIn": "Riesgo (en $)",
+    "binance": "Binance",
+    "takerMarketOrder": "Taker (Orden de mercado)",
+    "makerLimitOrder": "Maker (Orden límite)",
+    "hoursNofunding": "<8 horas (sin financiación)",
+    "8-24Hours": "8-24 horas",
+    "24Hours": ">24 horas",
+    "askAIAboutChart": "Preguntar a la IA sobre el gráfico",
+    "user": "usuario",
+    "addSupportInTheChart": "Agregar soporte en el gráfico",
+    "completed": "Completado",
+    "updateDescription1": "He añadido niveles de soporte al gráfico de Bitcoin. El gráfico ahora resalta claramente las zonas clave de soporte, mostrando áreas donde el precio históricamente encuentra interés de compra. Cada nivel de soporte está marcado con líneas precisas, facilitando la identificación de posibles puntos de entrada o pisos de precio.",
+    "updateDescription2": "Se han actualizado las etiquetas y las herramientas interactivas para que, al pasar el cursor sobre un nivel de soporte, puedas ver el precio exacto y los datos históricos relevantes. El gráfico sigue siendo totalmente responsive, manteniendo la claridad en diferentes dispositivos, y está listo para la integración de indicadores técnicos adicionales en el futuro.",
+    "updateDescription3": "Esta actualización garantiza que los usuarios puedan comprender rápidamente las áreas críticas de soporte en el gráfico de Bitcoin y tomar decisiones más informadas.",
+    "volume": "Volumen",
+    "low": "Bajo",
+    "high": "Alto",
+    "close": "Cerrar"
+  },
+  "Calculator": {
+    "calculatorTitle": "Calculadora"
+  },
+  "Setting": {
+    "settingTitle": "Bienvenido de nuevo"
+  },
+  "SettingsTab": {
+    "profileInformation": "Información del perfil",
+    "setting": "Configuración",
+    "notifications": "Notificación",
+    "subscription": "Suscripción",
+    "referrals": "Referidos",
+    "faq": "Preguntas frecuentes"
+  },
+  "ProfileInformation": {
+    "profileInformationTitle": "Información Personal",
+    "uploadImage": "Subir Imagen",
+    "username": "Nombre de usuario",
+    "change": "Cambiar",
+    "saveProfile": "Guardar Perfil"
+  },
+  "setting": {
+    "settingTitle": "Configuración",
+    "language": "Idioma",
+    "timeZone": "Zona horaria",
+    "currency": "Moneda",
+    "english": "Inglés",
+    "french": "Francés",
+    "specificZone": "(GMT-8) Hora del Pacífico",
+    "greenWichTime": "(GMT+0) Hora media de Greenwich",
+    "indianStandard": "(GMT+5:30) Hora estándar de India",
+    "usDollar": "Dólar estadounidense",
+    "euro": "Euro",
+    "britishpound": "Libra esterlina",
+    "aPIkeys": "Claves API",
+    "backToList": "Volver a la lista",
+    "addChange": "Agregar cambio",
+    "Exchanges": "Intercambios",
+    "added": "Agregado",
+    "status": "Estado",
+    "action": "Acción",
+    "apiSecret": "Secreto API",
+    "passPhrase": "Frase de contraseña",
+    "saveApiKeys": "Guardar clave API",
+    "cancel": "Cancelar",
+    "bybit": "bybit",
+    "date": "12 de noviembre de 2025"
+  },
+  "Notification": {
+    "GetNotifiedVia": "Recibir notificaciones vía",
+    "email": "Correo electrónico",
+    "telegram": "Telegram",
+    "web": "Web"
+  },
+  "Subscription": {
+    "subscription": "Suscripción",
+    "billingHistory": "Historial de facturación",
+    "details": "Detalles",
+    "amount": "Cantidad",
+    "status": "Estado",
+    "proPlanMonthly": "Plan PRO, mensual",
+    "success": "Exitoso"
+  },
+  "Referrals": {
+    "refferralsTitle": "Referencias",
+    "totalRefferal": "Total de referidos",
+    "totalEarning": "Ganancias totales",
+    "commission": "Comisión",
+    "walletBalance": "Saldo de la billetera",
+    "yourRefferalLink": "Tu enlace de referido",
+    "linkCopied": "¡Enlace copiado!",
+    "promoCode": "También puedes usar el código promocional",
+    "promoCodeCopied!": "¡Código promocional copiado!",
+    "withdrawalTransaction": "Retiros y transacciones",
+    "referralsHistory": "Historial de referidos",
+    "transactionHistory": "Historial de transacciones",
+    "id": "ID",
+    "referraldate": "Fecha de referido",
+    "source": "Fuente",
+    "referralstatus": "Estado del referido",
+    "requestwithdraw": "Solicitar retiro",
+    "requestdate": "Fecha de solicitud",
+    "batchno": "Número de lote",
+    "account": "Cuenta"
+  },
+  "WithdrawalDetails": {
+    "withdrawalDetails": "Detalles de retiro",
+    "walletMethod": "Método de billetera",
+    "walletAddress": "Dirección de billetera",
+    "walletHolder": "Titular de la billetera",
+    "Network": "Red",
+    "statusTimeline": "Cronología del estado",
+    "cancel": "Cancelar"
+  },
+  "RequestWithdrawal": {
+    "requestWithdrawalBtn": "Solicitar retiro",
+    "choseNetwork": "Elegir red",
+    "amountToWithdraw": "Cantidad a retirar",
+    "SubmitWithdrawRequest": "Enviar solicitud de retiro",
+    "selectWalletMethod": "Seleccionar método de billetera",
+    "enteryourAccountNumber": "Ingrese su número de cuenta",
+    "enterAmount": "Ingrese la cantidad",
+    "selectCurrency": "Seleccionar moneda"
+  },
+  "FrequentlyAskedQuestions(FAQ)": {
+    "FrequentlyAskedQuestions(FAQ)": "Preguntas frecuentes (FAQ)",
+    "generalInformation": "Información general",
+    "securityandPrivacy": "Seguridad y privacidad",
+    "accessandSupport": "Acceso y soporte"
+  },
+  "UserNotification": {
+    "notificationTitle": "Notificación",
+    "notificationHours": "Notificación: 48 horas restantes",
+    "userEmail": "sarah.j@example.com",
+    "userName": "Alice Johnson"
+  }
+}

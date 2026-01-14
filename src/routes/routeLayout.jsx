@@ -9,13 +9,11 @@ import { useAuthStore } from "../store"; // ya jahan actual store hai
   }
   return <Outlet />;
 };
-
-
 export const AuthProtectedLayout = () => {
   const { user } = useAuthStore();
   console.log("fghefgehfef", user);
   if (user) {
-    return <Navigate to="/" />;
+    return <Navigate to="/dashboard" />;
   }
   return <Outlet />;
 };

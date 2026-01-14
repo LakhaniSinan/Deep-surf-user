@@ -6,6 +6,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import AuthLayout from "../../../components/authLayout";
 import CustomInput from "../../../components/customInput";
 import theme from "../../../theme";
@@ -19,9 +20,15 @@ import { signUpValidation } from "../../../utils/validations";
 import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "../../../config/firebase";
+import { useAuthStore } from "../../../store";
 
 function SignUp() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+  const { loginUser } = useAuthStore();
+
   const [isLoading, setIsLoading] = useState(false);
   const [formError, setFormError] = useState({});
   const [formData, setFormData] = useState({
@@ -44,20 +51,22 @@ function SignUp() {
 
   const handleSignUp = async () => {
     const validate = signUpValidation(formData, setFormError);
-
-    if (!validate) {
-      toast.error("Please fix errors before submitting!");
-      return;
-    }
+    if (!validate) return;
 
     try {
       setIsLoading(true);
-      const payload = { email: formData.email, password: formData.password };
+
+      const payload = {
+        email: formData.email,
+        password: formData.password,
+        referralCode: formData.otp,
+      };
+
       const response = await signUp(payload);
+
       if (response?.data?.status === "success") {
         toast.success(response?.data?.message);
         navigate("/verification", { state: { email: formData.email } });
-        console.log("Signupsuccessful", response);
       } else {
         toast.error(response?.data?.message || "Signup failed");
       }
@@ -68,48 +77,49 @@ function SignUp() {
     }
   };
 
-  const handleGoogleLogin = async () => {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
 
-      // 🚀 Supposed response from backend (jo aap ne diya)
-      const response = {
-        data: {
-          user: {
-            id: 84,
-            username: result.user.displayName,
-            email: result.user.email,
-            profilePicture: result.user.photoURL,
-            referralCode: "A6040F",
-            provider: "google",
-          },
-          token: await result.user.getIdToken(),
-        },
-        status: "success",
-        message: `Login successful. Welcome back ${result.user.displayName}`,
-      };
+  // const handleGoogleLogin = async () => {
+  //   try {
+  //     const result = await signInWithPopup(auth, googleProvider);
 
-      // 🟢 Store in Zustand
-      loginUser(response.data.user, response.data.token);
+  //     // 🚀 Supposed response from backend (jo aap ne diya)
+  //     const response = {
+  //       data: {
+  //         user: {
+  //           id: 84,
+  //           username: result.user.displayName,
+  //           email: result.user.email,
+  //           profilePicture: result.user.photoURL,
+  //           referralCode: "A6040F",
+  //           provider: "google",
+  //         },
+  //         token: await result.user.getIdToken(),
+  //       },
+  //       status: "success",
+  //       message: `Login successful. Welcome back ${result.user.displayName}`,
+  //     };
 
-      toast.success(response.message);
-      navigate("/profile");
-    } catch (error) {
-      console.log(error);
-      toast.error(error.message || "Google login failed");
-    }
-  };
+  //     // 🟢 Store in Zustand
+  //     loginUser(response.data.user, response.data.token);
+
+  //     toast.success(response.message);
+  //     navigate("/profile");
+  //   } catch (error) {
+  //     console.log(error);
+  //     toast.error(error.message || "Google login failed");
+  //   }
+  // };
 
   const handleNavigate = () => {
     navigate("/login");
   };
 
   return (
-    <AuthLayout title={"Get Started"}>
+    <AuthLayout title={t("auth.signUp.title")}>
       <Container>
         <Box mt={2}>
           <CustomInput
-            placeholder="Email"
+            placeholder={t("auth.signUp.emailPlaceholder")}
             defaultStyle={theme.palette.text.secondary}
             value={formData.email}
             onChange={(e) => handleChange("email", e.target.value)}
@@ -120,7 +130,8 @@ function SignUp() {
 
         <Box mt={2}>
           <CustomInput
-            placeholder="Password"
+            placeholder={t("auth.signUp.passwordPlaceholder")}
+            defaultStyle={theme.palette.text.secondary}
             type="password"
             value={formData.password}
             onChange={(e) => handleChange("password", e.target.value)}
@@ -132,7 +143,7 @@ function SignUp() {
         </Box>
 
         {/* OTP */}
-        <Box mt={3}>
+        <Box mt={3} textAlign={"left"}>
           <Typography
             sx={{
               marginBottom: "12px",
@@ -140,35 +151,64 @@ function SignUp() {
             variant="body2"
             color={theme.palette.text.secondary}
           >
-            Enter Join Code
+            {t("auth.signUp.enterJoinCode")}
           </Typography>
           <CustomOtp
             value={formData.otp}
             onChange={(val) => handleChange("otp", val)}
           />
         </Box>
-        {/* Terms */}
         <Box display="flex" alignItems="center" gap={1} mt={2}>
           <Checkbox
             checked={formData.agree}
             onChange={(e) => handleChange("agree", e.target.checked)}
+            sx={{
+              color: "#fff",
+              "&.Mui-checked": {
+                color: "#fff",
+              },
+            }}
           />
-          <Typography variant="body2" color={theme.palette.text.secondary}>
-            I agree to Terms & Privacy Policy
+          <Typography
+            variant="body2"
+            color={theme.palette.text.secondary}
+            textAlign="left"
+            sx={{
+              cursor: "pointer",
+              fontWeight: formData.agree ? "norma" : "bold",
+              color: formData.agree ? "#fff" : theme.palette.text.secondary,
+              textDecoration: formData.agree ? "underline" : "none",
+              transition: "0.3s ease",
+              fontSize: "13px",
+              "& hover ": {
+                color: "neutral.brightRed"
+              }
+            }}
+            onClick={() => navigate("/term-and-condition")}
+
+          >
+            {t("auth.signUp.agreeTerms")}
           </Typography>
         </Box>
+
         {/* Button */}
         <Box mt={5} display="flex" width="100%">
           <CustomButton
             handleClickBtn={handleSignUp}
             // variant="h5"
-            title="Sign Up"
+            title={t("auth.signUp.signUpButton")}
             width="100%"
             loading={isLoading}
+
             sx={{
               backgroundColor: "#FF6421",
             }}
           />
+        </Box>
+        {/* <Box mt={2}>
+          <Typography fontFamily={"Inter Tight"} color="text.mediumGrey">
+            {t("auth.signUp.or")}
+          </Typography>
         </Box>
 
         <Box
@@ -180,7 +220,7 @@ function SignUp() {
           display="flex"
           justifyContent="center"
           alignItems="center"
-          marginTop={5}
+          marginTop={2}
           onClick={handleGoogleLogin} // 👈 add this
         >
           <img
@@ -190,15 +230,15 @@ function SignUp() {
             height={20}
             style={{ objectFit: "contain" }}
           />
-        </Box>
-        <Box mt={2} textAlign="center">
+        </Box> */}
+        <Box mt={1} textAlign="center">
           <Typography variant="body2" color={theme.palette.text.secondary}>
-            Already have an account?{" "}
+            {t("auth.signUp.alreadyHaveAccount")}{" "}
             <span
               style={{ color: "white", cursor: "pointer" }}
               onClick={handleNavigate}
             >
-              Login
+              {t("auth.signUp.login")}
             </span>
           </Typography>
         </Box>
