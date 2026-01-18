@@ -109,14 +109,20 @@ export const ENDPOINTS = {
   },
   PAYMENTHISTORY: {
     PAYMENT_HISTORY: "payments/history",
-    PAYMENT_SUBSCRIPTION : "payments/my-subscription"
+    PAYMENT_SUBSCRIPTION: "payments/my-subscription"
   },
-  USERNOTIFICATION : {
-    USER_NOTIFICATION : "user-notifications/"
+  USERNOTIFICATION: {
+    USER_NOTIFICATION: "user-notifications/"
   },
   CHARTAPI: {
     CHART_API: (symbol, interval) =>
       `chart/overview?symbol=${symbol}&interval=${interval}`,
   },
+
+  WIDGETS: {
+    FETCH_ALL: "widgets/catalog",
+    ADD_WIDGET: "widgets/add",
+    REMOVE_WIDGET: "widgets",
+  }
 
 };

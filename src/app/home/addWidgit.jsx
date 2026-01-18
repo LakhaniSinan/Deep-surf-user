@@ -2,6 +2,7 @@ import React, {
     forwardRef,
     useImperativeHandle,
     useState,
+    useEffect
 } from "react";
 import DialogContainer from "../../components/dialog/DialogContainer";
 import DialogHeader from "../../components/dialog/DialogHeader";
@@ -9,8 +10,28 @@ import DialogBody from "../../components/dialog/DialogBody";
 import DialogActionButtons from "../../components/dialog/dialogAction";
 import WidgetCatalog from "./widgetCatalog";
 import { Box } from "@mui/material";
+import { addWidget, fetchWidgets, removeWidget } from "../../services/modules/widgets";
 
 const AddWidgit = forwardRef((props, ref) => {
+
+    const [data, setData] = useState([])
+    const [addedWidgetIds, setAddedWidgetIds] = useState([]);
+
+    useEffect(() => {
+        fetchAllWidgets()
+    }, [])
+
+    const fetchAllWidgets = async () => {
+        fetchWidgets()
+            .then(response => {
+                setData(response.data.data)
+                console.log(response, "responseresponseresponse");
+            })
+            .catch(err => {
+                console.log(err, "errerrerrerr");
+            })
+    }
+
     const [open, setOpen] = useState(false);
 
     useImperativeHandle(ref, () => ({
@@ -26,6 +47,18 @@ const AddWidgit = forwardRef((props, ref) => {
         setOpen(false);
     };
 
+    console.log(data, "datadatadatadatadata");
+
+    const handleAddWidget = async (id) => {
+        await addWidget(id);
+        setAddedWidgetIds(prev => [...prev, id]);
+    };
+    const handleRemove = async (id) => {
+        await removeWidget(id);
+        setAddedWidgetIds(prev => prev.filter(wid => wid !== id));
+    };
+
+
     return (
         <DialogContainer open={open} onClose={handleClose}>
             <DialogHeader
@@ -36,7 +69,12 @@ const AddWidgit = forwardRef((props, ref) => {
 
             <DialogBody>
                 <Box>
-                    <WidgetCatalog />
+                    <WidgetCatalog
+                        addedWidgetIds={addedWidgetIds}
+                        handleAddWidget={handleAddWidget}
+                        data={data}
+                        handleRemove={handleRemove}
+                    />
                 </Box>
             </DialogBody>
 
