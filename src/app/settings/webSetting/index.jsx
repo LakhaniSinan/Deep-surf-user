@@ -6,10 +6,7 @@ import SettingsForm from "./SettingsForm";
 import ExchangeTable from "./ExchangeTable";
 import ExchangeForm from "./ExchangeForm";
 import { useTranslation } from "react-i18next";
-
-
-
-
+import i18n from "../../../i18n";
 
 
 const WebSettings = () => {
@@ -20,25 +17,25 @@ const WebSettings = () => {
     timezone: "pst",
     currency: "usd",
   });
-  
-const initialExchanges = [
-  {
-    id: (t("setting.bybit")),
-    exchange: (t("setting.bybit")),
-    apiKey: "fftt456765gjkkjhi83093895",
-    added:(t("setting.date")),
-    status: "Active",
-    action: "manage",
-  },
-  {
-    id: "binance",
-    exchange: "Binance",
-    apiKey: "xjdn40ciic0qnx10d9xn1n1214",
-    added: "Mar 9, 2025",
-    status: "Active",
-    action: "manage",
-  },
-];
+
+  const initialExchanges = [
+    {
+      id: (t("setting.bybit")),
+      exchange: (t("setting.bybit")),
+      apiKey: "fftt456765gjkkjhi83093895",
+      added: (t("setting.date")),
+      status: "Active",
+      action: "manage",
+    },
+    {
+      id: "binance",
+      exchange: "Binance",
+      apiKey: "xjdn40ciic0qnx10d9xn1n1214",
+      added: "Mar 9, 2025",
+      status: "Active",
+      action: "manage",
+    },
+  ];
   const [exchanges, setExchanges] = useState(initialExchanges);
   const [showExchangeForm, setShowExchangeForm] = useState(false);
   const [newExchange, setNewExchange] = useState({
@@ -48,6 +45,8 @@ const initialExchanges = [
   });
 
   const handleSettingChange = (field, value) => {
+    console.log(value, "valuevaluevaluevalue");
+    i18n.changeLanguage(value);
     setSettings((prev) => ({ ...prev, [field]: value }));
   };
 
@@ -65,10 +64,21 @@ const initialExchanges = [
       icon: "https://flagcdn.com/w20/gb.png",
     },
     {
-      value: "fr",
-      label: (t("setting.french")),
+      value: "tr",
+      label: "Turkish",
       icon: "https://flagcdn.com/w20/fr.png",
-    }]
+    },
+    {
+      value: "es",
+      icon: "https://flagcdn.com/w20/es.png",
+      label: "Spanish",
+    },
+    {
+      value: "ru",
+      icon: "https://flagcdn.com/w20/ru.png",
+      label: "Russian",
+    },
+  ]
 
   const timezoneOptions = [
     { value: "pst", label: (t("setting.specificZone")) },
@@ -137,7 +147,7 @@ const initialExchanges = [
         currencyOptions={currencyOptions}
       />
 
-      <Stack spacing={2}>
+      {/* <Stack spacing={2}>
         <Stack
           direction="row"
           justifyContent="space-between"
@@ -193,7 +203,7 @@ const initialExchanges = [
             />
           )}
         </Box>
-      </Stack>
+      </Stack> */}
     </Box>
   );
 };

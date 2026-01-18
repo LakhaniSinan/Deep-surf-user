@@ -7,7 +7,7 @@ import AccordionList from "../../../components/accordionList";
 import { getFaqData } from "../../../services/modules/home";
 import { useTranslation } from "react-i18next";
 const Fqa = () => {
-  const [faqData, setFaqData] = useState(null);
+  const [faqData, setFaqData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
   const getFaq = async () => {
@@ -15,9 +15,12 @@ const Fqa = () => {
       setIsLoading(true);
       const response = await getFaqData();
       if (response?.data.status === "success") {
-        const data = response?.data?.data;
+        const arr = response.data.data.map(item => ({
+          question: item.title,
+          answer: item.description,
+        }));
         console.log("fhbfvfdkbfcdcfdfc", faqData?.[0]);
-        setFaqData(data);
+        setFaqData(arr ? arr : []);
       }
     } catch (error) {
       console.error("Error fetching market data:", error);
@@ -29,6 +32,9 @@ const Fqa = () => {
   useEffect(() => {
     getFaq();
   }, []);
+
+  console.log(faqData, "faqDatafaqDatafaqData");
+
   return (
     <Box sx={styles.pageRoot}>
       {/* <Header /> */}
@@ -42,24 +48,11 @@ const Fqa = () => {
         <Box mt={3}>
           <AccordionList
             title={t("FrequentlyAskedQuestions(FAQ).generalInformation")}
-            items={[
-              {
-                question: faqData?.[0].title,
-                answer: faqData?.[0].description,
-              },
-              {
-                question: faqData?.[0].title,
-                answer: faqData?.[0].description,
-              },
-              {
-                question: faqData?.[0].title,
-                answer: faqData?.[0].description,
-              },
-            ]}
+            items={faqData}
           />
         </Box>
 
-        <Box mt={1}>
+        {/* <Box mt={1}>
           <AccordionList
             title={t("FrequentlyAskedQuestions(FAQ).securityandPrivacy")}
             items={[
@@ -93,7 +86,7 @@ const Fqa = () => {
               },
             ]}
           />
-        </Box>
+        </Box> */}
       </Container>
     </Box>
   );

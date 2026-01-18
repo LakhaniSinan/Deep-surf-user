@@ -28,6 +28,7 @@ export const ENDPOINTS = {
 
   MARKETOUTLOOK: {
     MARKET_OUT_LOOK: "home/market-outlook",
+    WHALES_TRACKER: "whales/",
   },
   LIQUIDATIONMAP: {
     LIQUIDATION_MAP: "home/liquidation-map",
@@ -102,8 +103,20 @@ export const ENDPOINTS = {
   JOURNALDELETEBYID: {
     JOURNAL_DELETE_BY_ID: "journal/alerts/:id",
   },
+  JOUTNALSEARCHAPI: {
+    JOURNAL_SEARCH_API: "coins/search",
+    LIVE_COINS: "coins/price/",
+  },
+  PAYMENTHISTORY: {
+    PAYMENT_HISTORY: "payments/history",
+    PAYMENT_SUBSCRIPTION : "payments/my-subscription"
+  },
+  USERNOTIFICATION : {
+    USER_NOTIFICATION : "user-notifications/"
+  },
   CHARTAPI: {
     CHART_API: (symbol, interval) =>
       `chart/overview?symbol=${symbol}&interval=${interval}`,
   },
+
 };

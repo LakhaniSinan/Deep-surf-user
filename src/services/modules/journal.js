@@ -29,6 +29,13 @@ const deleteJournalAlertById = (id) => {
     "Delete"
   );
 };
+const jounralSearchApi = (query) => {
+  return Api(`${ENDPOINTS.JOUTNALSEARCHAPI.JOURNAL_SEARCH_API}?query=${query}`);
+};
+// Accept coin as a parameter
+const journalLiveCoin = (coin) => {
+  return Api(`${ENDPOINTS.JOUTNALSEARCHAPI.LIVE_COINS}${coin}`, null, "get");
+};
 
 export {
   journalAlert,
@@ -36,4 +43,6 @@ export {
   getCreateAlertApi,
   updateJournalAlert,
   deleteJournalAlertById,
+  jounralSearchApi,
+  journalLiveCoin,
 };

@@ -3,10 +3,6 @@ import { useState } from "react";
 import CustomSwitch from "../../../components/switch";
 import { useTranslation } from "react-i18next";
 import Notification from "./notification";
-
-
-
-
 const Notifications = () => {
   const { t } = useTranslation();
   const [preferences, setPreferences] = useState({

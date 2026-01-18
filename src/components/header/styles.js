@@ -4,7 +4,9 @@ export const headerStyles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    px: { xs: 2, sm: 2, md: 23 },
+
+    // mx: { sm: 2, md: 22 },
+    gap: 3,
     // position: "fixed",
     // top: 0,
     // left: 0,
@@ -15,9 +17,8 @@ export const headerStyles = {
   },
 
   logo: {
-    width: { xs: 100, sm: 120, md: 120 },
-    height: "auto",
-    maxWidth: "100%",
+    width: "115px",
+    height: "38px",
   },
 
   navContainer: {
@@ -25,10 +26,10 @@ export const headerStyles = {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    mx: 2,
-    minWidth: 0,
+    // mx: 1,
+    width: "90%",
     overflow: "hidden",
-    // width: "50%",
+    // width: "100%",
   },
   navBar: {
     display: "flex",
@@ -37,8 +38,8 @@ export const headerStyles = {
     backgroundColor: "background.black",
     border: "1px solid rgba(255, 255, 255, 0.36)",
     borderRadius: "50px",
-    padding: "0.5rem",
-    width: "90%",
+    padding: "10px",
+    width: "100%",
     maxWidth: "100%",
     overflowX: "auto",
     "&::-webkit-scrollbar": {

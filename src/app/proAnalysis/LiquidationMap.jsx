@@ -86,7 +86,7 @@ const LiquidationMapData = ({ coinData }) => {
         borderRadius={"40px"}
 
       >
-        <Typography variant="h5" fontSize={"18px"}>
+        <Typography variant="h5" fontSize={"22px"}>
           {t("ProAnalytics.LiquidationMap.liquidationMapTitle")}
         </Typography>
         {/* <Box mt={"20px"}>
@@ -104,18 +104,18 @@ const LiquidationMapData = ({ coinData }) => {
           mt={"20px"}
           flexDirection={"column"} // ✅ correct
         >
-          <Typography variant="h4" fontSize={"20px"}>
+          <Typography variant="h4" fontSize={"25px"} fontWeight={600}>
             {/* {t("ProAnalytics.LiquidationMap.currentBTCPrice")} */}
             {t("ProAnalytics.LiquidationMap.Current")} {coinData?.basicInfo?.symbol} {t("ProAnalytics.LiquidationMap.price")}
           </Typography>
-          <Typography variant="h5" fontSize={"15px"}>
+          <Typography variant="h5" fontSize={"23px"} >
             {coinData?.liquidationMap?.priceFormatted}
           </Typography>
         </Box>
         <Box mt={3}>
           <Grid container spacing={7}>
             <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
-              <Typography color="text.greenColor" mb={2}>
+              <Typography color="text.greenColor" mb={2} fontSize={"20px"} fontWeight={600}>
                 {t("ProAnalytics.LiquidationMap.longLiquidations")}
               </Typography>
               {longLiquidations.map((item, index) => (
@@ -166,7 +166,7 @@ const LiquidationMapData = ({ coinData }) => {
                         />
                       </Box>
                       <Box>
-                        <Typography color="text.greenColor">{item.percent}</Typography>
+                        <Typography fontWeight={600} color="text.greenColor">{item.percent}</Typography>
                       </Box>
                     </Box>
                   </Box>
@@ -191,8 +191,8 @@ const LiquidationMapData = ({ coinData }) => {
               ))}
             </Grid>
             <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
-              <Typography color="#FF4E4E" mb={2}>
-                {t("ProAnalytics.LiquidationMap.shortLiquidations")}/
+              <Typography color="#FF4E4E" mb={2} fontSize={"20px"} fontWeight={600}>
+                {t("ProAnalytics.LiquidationMap.shortLiquidations")}
               </Typography>
               {shortLiquidations.map((item, index) => (
                 <Box
@@ -242,7 +242,7 @@ const LiquidationMapData = ({ coinData }) => {
                         />
                       </Box>
                       <Box>
-                        <Typography color="#FF4E4E">{item.percent}</Typography>
+                        <Typography fontWeight={600} color="neutral.brightRed">{item.percent}</Typography>
                       </Box>
                     </Box>
                   </Box>

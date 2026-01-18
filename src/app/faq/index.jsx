@@ -40,7 +40,7 @@ const Fqa = () => {
                     />
                 </Box>
 
-              
+{/*               
                 <Box mt={1}>
                     <AccordionList
                       title="Security and Privacy"
@@ -81,7 +81,7 @@ const Fqa = () => {
                        
                       ]}
                     />
-                </Box>
+                </Box> */}
 
 
 

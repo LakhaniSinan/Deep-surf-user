@@ -126,7 +126,23 @@ const CustomSelect = ({
               <MenuItem
                 key={opt.value}
                 value={opt.value}
-                sx={{ display: "flex", alignItems: "center", gap: 1 }}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                  color: "#fff",
+                  background: value === opt.value ? "linear-gradient(90deg, #FF1A00, #FF6C03, #FFA305)" : "transparent",
+                  "&.Mui-selected": {
+                    background: "linear-gradient(90deg, #FF1A00, #FF6C03, #FFA305)",
+                    color: "#fff",
+                    borderRadius: "10px"
+                  },
+                  "&:hover": {
+                    background: "linear-gradient(90deg, #FF1A00, #FF6C03, #FFA305)",
+                    color: "#fff",
+                    borderRadius: "10px"
+                  },
+                }}
               >
                 {opt.icon && (
                   <Box
@@ -138,6 +154,8 @@ const CustomSelect = ({
                 )}
                 <Typography variant="body2">{opt.label}</Typography>
               </MenuItem>
+
+
             ))}
         </Select>
       </FormControl>

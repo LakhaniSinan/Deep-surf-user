@@ -135,7 +135,7 @@
       "logout": "Logout",
       "notification": "Notification"
     },
-    "wellcomeBack": "Welcome back!",
+    "wellcomeBack": "Welcome back",
     "addTools": "Add AI Tools",
     "aiProof": "AI Proof — Quick coin check",
     "aiProofHeading": "Deep AI analysis of any coin in seconds. Enter the ticker, get a full breakdown and recommendation.",
@@ -154,7 +154,7 @@
     },
     "topCoinByVolume": {
       "notFound": "Not Found",
-      "title": "Top Coins by Volume"
+      "title": "Top 10 by volume"
     }
   },
   "journal": {
@@ -162,7 +162,12 @@
     "myCoinsAlerts": "My Coins & Alerts",
     "myCoinsAlertHeading": "Alerts work in real-time via WebSocket! Get instant notifications when conditions are met.",
     "addToJournal": "Add to Journal",
-    "saveAlert": "Save Alert"
+    "saveAlert": "Save Alert",
+    "alertsRealtime": "Alerts work in real time via WebSocket.",
+    "price": "Price",
+    "ticker": "Ticker (e.g., BTC)",
+    "selectPriceRelation": "Select Price Relation",
+    "value": "value"
   },
   "AiTools": {
     "aiToolsTitle": "AI Tools",
@@ -224,7 +229,8 @@
       "volatility": "Volatility",
       "top20Volume24h": "Top 20 by 24h volume :",
       "top20Volume7d": "Top 20 by 7d volume :",
-      "topCoinsByVolatility": "Top coins by volatility :"
+      "topCoinsByVolatility": "Top coins by volatility :",
+      "topCoinsInfo": "Top coins by trading volume and volatility (ATR/Price). Helps to find active trading instruments."
     },
     "LiquidationMap": {
       "liquidationMapTitle": " Liquidation Map",
@@ -480,7 +486,7 @@
     "accessandSupport": "Access and Support"
   },
   "UserNotification": {
-    "notificationTitle": "Notification",
+    "notificationTitle": "Notifications",
     "notificationHours": "48 Hours Left Notification",
     "userEmail": "sarah.j@example.com",
     "userName": "Alice Johnson"

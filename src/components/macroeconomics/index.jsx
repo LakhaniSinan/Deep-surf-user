@@ -25,15 +25,15 @@ const Macroeconomics = ({ data, description, isLoading }) => {
     <Box
       sx={{
         width: "100%",
-        backgroundColor: (theme) => theme.palette.background.paper, // ✅ Fix
+        backgroundColor: "rgba(28, 28, 28, 1)",
         borderRadius: "12px",
-        padding: "20px",
-        maxHeight: "390px",
+        padding: "18px",
+        maxHeight: "404px",
       }}
     >
       <Typography
         variant="h2"
-        fontSize="1.5rem"
+        fontSize="20px"
         fontWeight={600}
         color="text.primary"
         mb={1}
@@ -45,7 +45,7 @@ const Macroeconomics = ({ data, description, isLoading }) => {
         <MacroEconomicCardSkeleton />
       ) : reports.length === 0 ? ( // 👈 Optional: Show no data
         <Typography textAlign="center" color="#fff" fontWeight={600}>
-            {t("dashboard.macroEconomic.notFound")}
+          {t("dashboard.macroEconomic.notFound")}
         </Typography>
       ) : (
         <Box display="flex" flexDirection="column" gap={3}>
@@ -86,7 +86,7 @@ const Macroeconomics = ({ data, description, isLoading }) => {
 
               <Box
                 sx={{
-                  backgroundColor: (theme) => theme.palette.background.gray,
+                  backgroundColor: "rgba(36, 36, 36, 1)",
                   borderRadius: "16px",
                   padding: "9px",
                   display: "flex",
@@ -100,7 +100,7 @@ const Macroeconomics = ({ data, description, isLoading }) => {
                     color: "text.primary",
                     fontSize: "10px",
                     fontWeight: 400,
-                    lineHeight: 1.8,
+                    lineHeight: 1.5,
                     flex: 1,
                   }}
                 >

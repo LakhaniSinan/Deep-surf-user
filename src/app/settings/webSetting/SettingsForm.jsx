@@ -26,22 +26,22 @@ const SettingsForm = ({
         />
       </Grid>
       <Grid item size={{ xs: 12, md: 4 }}>
-        <CustomSelect
+        {/* <CustomSelect
           label={t("setting.timeZone")}
           value={timezone}
           onChange={(event) => onChange("timezone", event.target.value)}
           options={timezoneOptions}
           placeholder="Select timezone"
-        />
+        /> */}
       </Grid>
       <Grid item size={{ xs: 12, md: 4 }}>
-        <CustomSelect
+        {/* <CustomSelect
           label={t("setting.currency")}
           value={currency}
           onChange={(event) => onChange("currency", event.target.value)}
           options={currencyOptions}
           placeholder="Select currency"
-        />
+        /> */}
       </Grid>
     </Grid>
   );

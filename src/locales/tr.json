@@ -135,7 +135,7 @@
       "logout": "Çıkış Yap",
       "notification": "Bildirim"
     },
-    "wellcomeBack": "Tekrar hoş geldiniz!",
+    "wellcomeBack": "Tekrar hoş geldiniz",
     "addTools": "Araç Ekle",
     "aiProof": "AI Analizi — Hızlı Coin Kontrolü",
     "aiProofHeading": "Herhangi bir coinin derin AI analizini saniyeler içinde yapın. Ticker girin, tam bir analiz ve öneri alın.",
@@ -154,7 +154,7 @@
     },
     "topCoinByVolume": {
       "notFound": "Bulunamadı",
-      "title": "Hacme Göre En İyi Coinler"
+      "top10ByVolume": "Hacme Göre İlk 10"
     }
   },
   "journal": {
@@ -162,7 +162,12 @@
     "myCoinsAlerts": "Paralarım ve Uyarılar",
     "myCoinsAlertHeading": "Uyarılar WebSocket üzerinden gerçek zamanlı çalışır! Koşullar sağlandığında anında bildirim alın.",
     "addToJournal": "Günlüğe Ekle",
-    "saveAlert": "Uyarıyı Kaydet"
+    "saveAlert": "Uyarıyı Kaydet",
+    "alertsRealtime": "Uyarılar WebSocket aracılığıyla gerçek zamanlı olarak çalışır.",
+    "price": "Fiyat",
+    "ticker": "Sembol (örn., BTC)",
+    "selectPriceRelation": "Fiyat İlişkisini Seç",
+    "value": "değer"
   },
   "AiTools": {
     "aiToolsTitle": "Yapay Zeka Araçları",
@@ -223,7 +228,8 @@
       "volatility": "Volatilite",
       "top20Volume24h": "24 Saatlik Hacme Göre İlk 20 :",
       "top20Volume7d": "7 Günlük Hacme Göre İlk 20 :",
-      "topCoinsByVolatility": "Volatiliteye Göre En İyi Coinler"
+      "topCoinsByVolatility": "Volatiliteye Göre En İyi Coinler",
+      "topCoinsInfo": "İşlem hacmi ve volatiliteye (ATR/Fiyat) göre en iyi coinler. Aktif işlem araçlarını bulmaya yardımcı olur."
     },
     "LiquidationMap": {
       "liquidationMapTitle": "Likidasyon Haritası",

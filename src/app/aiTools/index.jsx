@@ -35,7 +35,6 @@ const AiTools = () => {
       setIsLoading(true);
       setCoinData(null);
       const res = await aiToolsData({ ticker, language });
-
       if (res?.data?.status === "success") {
         setCoinData(res?.data?.data);
       } else {
@@ -85,7 +84,6 @@ const AiTools = () => {
           >
             {t("AiTools.aiProofHeading")}
           </Typography>
-
           <CustomInput
             placeholder="ETH"
             value={ticker}
@@ -105,32 +103,37 @@ const AiTools = () => {
           />
         </Box>
 
-        <Box backgroundColor="#161616" p="25px" mt={2} borderRadius="30px">
-          {/* AiProof Section */}
-          {isLoading && <AiProofSkeleton />}
-          {!isLoading && coinData && <AiProof coinData={coinData} />}
-          {isLoading && (
-            <>
-              <DashboardStatsSkeleton />
-              <TechnicalIndicatorSkeleton />
-              <IctLiquidSkeleton />
-              <MarketIntelligenceSkeleton />
-              <PatternSkeleton />
-              <IndicatorAnalysisSkeleton />
-            </>
-          )}
+        {(isLoading || coinData) && (
+          <Box backgroundColor="#161616" p="25px" mt={2} borderRadius="30px">
+            {/* AiProof Section */}
+            {isLoading && <AiProofSkeleton />}
 
-          {!isLoading && coinData && (
-            <>
-              <DashboardStats coinData={coinData} />
-              <TechnicalIndicator coinData={coinData} />
-              <IctLiquid coinData={coinData} />
-              <MarketIntelligence coinData={coinData} />
-              <Pattern coinData={coinData} />
-              <IndicatorAnalysis coinData={coinData} />
-            </>
-          )}
-        </Box>
+            {!isLoading && coinData && <AiProof coinData={coinData} />}
+
+            {isLoading && (
+              <>
+                <DashboardStatsSkeleton />
+                <TechnicalIndicatorSkeleton />
+                <IctLiquidSkeleton />
+                <MarketIntelligenceSkeleton />
+                <PatternSkeleton />
+                <IndicatorAnalysisSkeleton />
+              </>
+            )}
+
+            {!isLoading && coinData && (
+              <>
+                <DashboardStats coinData={coinData} />
+                <TechnicalIndicator coinData={coinData} />
+                <IctLiquid coinData={coinData} />
+                <MarketIntelligence coinData={coinData} />
+                <Pattern coinData={coinData} />
+                <IndicatorAnalysis coinData={coinData} />
+              </>
+            )}
+          </Box>
+        )}
+
       </Container>
     </>
   );

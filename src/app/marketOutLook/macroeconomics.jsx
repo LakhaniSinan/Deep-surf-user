@@ -5,6 +5,8 @@ import AttentionIcon from "../../assets/icons/attention.svg";
 import CircleIcon from "../../assets/icons/ellipse.svg";
 import { useTranslation } from "react-i18next";
 const Macroeconomics = ({ data }) => {
+  console.log("frufrfuirfurfrf", data);
+
   const { t } = useTranslation();
   const economicReports = [
     {
@@ -187,7 +189,7 @@ const Macroeconomics = ({ data }) => {
               }}
             />
             <Typography variant="h4" fontSize="12px" fontWeight={550} fontFamily={"inter Tight"}>
-              {data?.summary}
+              {data?.cpiReport.description}
             </Typography>
           </Box>
         </Box>

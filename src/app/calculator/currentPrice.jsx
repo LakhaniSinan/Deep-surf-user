@@ -7,7 +7,7 @@ import WhatIfSimulator from "./whatIfSimulator";
 import { useTranslation } from "react-i18next"; // ✅ useTranslation import
 
 const CurrentPrice = ({ exchangeMarketData, calculatorResult }) => {
-  console.log("grgrgrgrgrgrgrgrdddddddddddddddd", exchangeMarketData);
+  console.log("grgrgrgrgrgrgrgrddddddddddddddddddddddddddddddd", calculatorResult?.pair);
 
   const { t } = useTranslation();
 
@@ -22,7 +22,7 @@ const CurrentPrice = ({ exchangeMarketData, calculatorResult }) => {
       items: [
         {
           label: t("Chart.pair"),
-          value: calculatorResult?.pair ?? "-",
+          value: calculatorResult?.pair,
         },
         {
           label: t("Chart.entryStopTake"),
@@ -129,7 +129,7 @@ const CurrentPrice = ({ exchangeMarketData, calculatorResult }) => {
               }}
             >
               {/* {t("Chart.binanceFutures")} */}
-              {exchangeMarketData?.exchange}
+              {calculatorResult?.pair}
             </Box>
           </Box>
         </Stack>

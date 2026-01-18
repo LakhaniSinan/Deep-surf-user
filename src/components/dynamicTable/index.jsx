@@ -16,7 +16,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";  // Add this import
 import DeleteIcon from "@mui/icons-material/Delete";
 import UserWithdraw from "../../app/settings/refferals/withdrawDetails";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-// import DeleteIconImg from "../../assets/delete-icons.svg";
+import DeleteIconImg from "../../assets/icons/delteIcon.svg";
 import { color } from "d3";
 
 export default function PaginatedTable({
@@ -299,7 +299,7 @@ export default function PaginatedTable({
             <Stack direction="row" spacing={1} justifyContent="center">
               {/* Custom delete icon */}
               <img
-                // src={DeleteIconImg}
+                src={DeleteIconImg}
                 alt="delete"
                 style={{ cursor: "pointer", width: "20px", height: "20px" }}
                 onClick={() => onDelete?.(row)}
@@ -307,7 +307,7 @@ export default function PaginatedTable({
             </Stack>
           </TableCell>
         );
-        
+
       case "status":
         return (
           <TableCell align="center" sx={{ border: "none", backgroundColor: "transparent" }}>
@@ -549,6 +549,7 @@ export default function PaginatedTable({
       {
         overflowX: "auto",
         WebkitOverflowScrolling: "touch",
+        // maxWidth: 900,
       },
     ]}>
       <Table sx={{ width: tableWidth || "100%" }}>

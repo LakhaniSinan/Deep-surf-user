@@ -1,5 +1,5 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import BitcoinIcon from "../../assets/icons/bitcoin-logo.svg";
 import EthereumIcon from "../../assets/icons/eth-icon.svg";
 import graphIcon from "../../assets/icons/graph-icon.svg";
@@ -21,6 +21,7 @@ import RelaodIcon from "../../assets/icons/relaod-Icon.svg";
 import Speedometer from "../../components/speedMeter";
 import { color } from "d3";
 import { useTranslation } from "react-i18next";
+import AddWidgit from "./addWidgit";
 
 
 const Home = () => {
@@ -91,6 +92,7 @@ const Home = () => {
       percent: BITCOIN?.change24h,
     },
   ];
+  const addWidgit = useRef();
 
   return (
     <Box
@@ -118,11 +120,7 @@ const Home = () => {
                 {username}
               </span>
             </Typography>
-
-
           </Box>
-
-
           <Box display={"flex"} gap={2} alignItems={"center"} mt={"20px"}>
             <Box>
               <img
@@ -135,23 +133,24 @@ const Home = () => {
             <Box display={"flex"} alignItems={"center"}>
               <CustomButton
                 variant="calculatorSmall"
+                onClick={() => addWidgit.current?.openDialog({ type: "add" })}
                 title={t("dashboard.addTools")}
                 icon={<img src={PlusIcon} />}
-              // sx={{
-              //   fontSize: "13px",
-              //   backgroundColor: "#1A1A1A",
-              //   border: "1px solid #1A1A1A",
-              //   borderRadius: "15px",
-              //   color: "#7B7B7B",
+                sx={{
+                  fontSize: "13px",
+                  backgroundColor: "#1A1A1A",
+                  border: "1px solid #1A1A1A",
+                  borderRadius: "15px",
+                  color: "#7B7B7B",
 
-              // }}
+                }}
               />
             </Box>
           </Box>
         </Box>
 
         <Grid container spacing={2} mb={2}>
-          <Grid item size={{ xs: 12, md: 5 }}>
+          <Grid item size={{ xs: 12, md: 5.5 }}>
             <Box display="flex" flexDirection="column" gap={2}>
               <CoinCheck />
               {isLoading ? (
@@ -187,7 +186,7 @@ const Home = () => {
                       textAlign={"center"}
                       backgroundColor="#1C1C1C"
                       borderRadius={"20px"}
-                      height={"203px"}
+                      height={"195px"}
                       padding={"8px"}
 
                     >
@@ -195,11 +194,11 @@ const Home = () => {
                         <Typography color="#fff" fontSize={"15px"} lineHeight={0.8} fontWeight={400}>
                           {t("dashboard.overallSentiment")}
                         </Typography>
-                        <Typography mt={0.5} color="text.yellowColor" fontSize={"14px"} fontWeight={500}>
+                        <Typography mt={0.3} color="text.yellowColor" fontSize={"17px"} fontWeight={600}>
                           {sentiment?.label || t("dashboard.neutral")}
                         </Typography>
 
-                        <Box mt={"8px"}>
+                        <Box mt={"2px"}>
                           <Speedometer
                             size={50}
                             score={homeResponse?.overallSentiment?.score}
@@ -221,7 +220,7 @@ const Home = () => {
             </Box>
           </Grid>
 
-          <Grid item size={{ xs: 12, md: 7 }} mt={2}>
+          <Grid item size={{ xs: 12, md: 6.5 }} mt={2}>
             <Grid container spacing={2}>
               <Grid item size={{ xs: 12, sm: 6 }}>
                 <TopCoinsTable data={topCoins} isLoading={isLoading} />
@@ -233,6 +232,7 @@ const Home = () => {
           </Grid>
         </Grid>
       </Container >
+      <AddWidgit ref={addWidgit}/>
     </Box >
   );
 };

@@ -8,16 +8,13 @@ import CustomInput from "../../components/customInput";
 import CustomSelect from '../../components/customSelect';
 import ArrowBtn from "../../assets/icons/arrow-back-btn.svg";
 import { useNavigate } from "react-router-dom";
-import { getCreateAlertApi, getDropdownApi } from '../../services/modules/journal';
+import { getCreateAlertApi, getDropdownApi, jounralSearchApi, journalLiveCoin } from '../../services/modules/journal';
 import { toast } from 'react-toastify';
 import CustomButton from '../../components/customButton';
 import { setJournalAPiValidation } from "../../utils/validations";
-import { exchangeMarketApi } from '../../services/modules/calculator';
-
+import { useLocation } from "react-router-dom";
 const SaveAlert = () => {
-    const [isLoading, setIsLoading] = useState(false);
     const [dropDownValue, setDropDownValue] = useState({ priceRelation: [] });
-    const [exchangeMarketData, setExchangeMarketData] = useState(null);
     const [formData, setFormData] = useState({
         ticker: "",
         price: "",
@@ -26,22 +23,30 @@ const SaveAlert = () => {
     });
     const [formErrors, setFormErrors] = useState({});
     const [saveLoading, setSaveLoading] = useState(false);
-
+    const [searchResults, setSearchResults] = useState([]);
+    const [showDropdown, setShowDropdown] = useState(false);
     const { t } = useTranslation();
     const navigate = useNavigate();
-    const defaultPair = "BTCUSDT";
+    const location = useLocation();
+    const { pair, currentPrice } = location.state || {};
+    useEffect(() => {
+        if (pair || currentPrice) {
+            setFormData(prev => ({
+                ...prev,
+                ticker: pair || "",
+                price: currentPrice || "",
+            }));
+        }
+    }, [pair, currentPrice]);
+
     // ================= DROPDOWN API =================
     const getDropDownValue = async () => {
         try {
-            setSaveLoading(true);   // ✅ yahan
             const response = await getDropdownApi();
             const data = response?.data?.data || response?.data;
             setDropDownValue(data || { priceRelation: [] });
         } catch (error) {
-            console.error("Error fetching dropdown:", error);
-            toast.error("Failed to load dropdown data");
-        } finally {
-            setSaveLoading(false); // ✅ yahan
+            // toast.error("Failed to load dropdown data");
         }
     };
 
@@ -56,26 +61,19 @@ const SaveAlert = () => {
             label: item || `Option ${index + 1}`,
         })) || [];
 
-    // ================= HANDLE CHANGE FUNCTION =================
+    // ================= HANDLE CHANGE =================
     const handleChange = (name, value) => {
-        // Update form value
         setFormData({ ...formData, [name]: value });
-
-        // Remove error on change
-        if (formErrors[name]) {
-            setFormErrors(prev => ({ ...prev, [name]: "" }));
-        }
+        if (formErrors[name]) setFormErrors(prev => ({ ...prev, [name]: "" }));
     };
 
     // ================= SAVE ALERT API =================
     const createJounalApi = async () => {
         const isValid = setJournalAPiValidation(formData, setFormErrors);
-        console.log("grgrgivfjvnfvbngtttttttttttttttttttttttttttt", isValid);
-
         if (!isValid) return;
 
         try {
-            setSaveLoading(true);   // ✅ yahan
+            setSaveLoading(true);
             const payload = {
                 ticker: formData.ticker,
                 price: formData.price,
@@ -83,24 +81,65 @@ const SaveAlert = () => {
                 targetPrice: Number(formData.value)
             };
             const response = await getCreateAlertApi(payload);
-            console.log("furjedededede", response);
-
-
             if (response?.data?.status === "success") {
                 toast.success(response?.data?.message);
-                setFormData(prev => ({
-                    ...prev,
-                    ticker: "",
-                    price: "",
-                    value: ""
-                }));
+                setFormData({ ticker: "", price: "", value: "", priceRelation: "" });
                 setFormErrors({});
             }
-            navigate("/coin-alert")
+            navigate("/coin-alert");
         } catch (error) {
-            toast.error(error?.response?.data?.error || "Something went wrong");
+            // toast.error(error?.response?.data?.error || "Something went wrong");
         } finally {
-            setSaveLoading(false); // ✅ yahan
+            setSaveLoading(false);
+        }
+    };
+
+    // ================= SEARCH API =================
+    const journalSearch = async (query) => {
+        if (!query) {
+            setSearchResults([]);
+            setShowDropdown(false);
+            return;
+        }
+        try {
+            const response = await jounralSearchApi(query);
+            if (response?.data?.status === "success") {
+                setSearchResults(response?.data?.data || []);
+                setShowDropdown(true);
+            }
+        } catch (error) {
+            toast.error(error?.response?.data?.message || "Search failed");
+        }
+    };
+
+    // ================= TRIGGER SEARCH ON TICKER CHANGE =================
+    useEffect(() => {
+        if (formData.ticker.length >= 1) {
+            journalSearch(formData.ticker);
+        } else {
+            setSearchResults([]);
+            setShowDropdown(false);
+        }
+    }, [formData.ticker]);
+
+    // ================= HANDLE TICKER SELECT =================
+    const handleTickerSelect = async (item) => {
+        const selectedTicker = item.ticker || item.symbol || item.name;
+        const coin = selectedTicker.toLowerCase();
+
+        setFormData(prev => ({ ...prev, ticker: selectedTicker }));
+        setShowDropdown(false);
+        setSearchResults([]);
+
+        // Fetch current price from live API
+        try {
+            const response = await journalLiveCoin(coin);
+            const price = response?.data?.data?.price || "";
+            setFormData(prev => ({ ...prev, price }));
+        } catch (error) {
+            console.error("Error fetching coin price", error);
+            setFormData(prev => ({ ...prev, price: "" }));
+            toast.error("Failed to fetch coin price");
         }
     };
 
@@ -116,28 +155,7 @@ const SaveAlert = () => {
         },
         "& input": { padding: "10px 14px", fontSize: "14px" },
     };
-    const whiteSelectText = {
-        "& .MuiSelect-select": { color: "#fff" },
-        "& .MuiSelect-icon": { color: "rgba(141, 143, 149, 1)" },
-    };
-    const exchangeMarket = async (pair) => {
-        try {
-            setIsLoading(true);
-            const response = await exchangeMarketApi({ pair });
-            const data = response?.data?.data;
-            setExchangeMarketData(data);
-            console.log("ffffffffffdddddddddddddddddddddddddddddddddfffffffffffffff", data?.current_price);
-
-        } catch (error) {
-            console.log("failed to exchange market APi");
-        } finally {
-            setIsLoading(false);
-        }
-    };
-    useEffect(() => {
-
-        exchangeMarket(defaultPair);
-    }, []);
+    const whiteSelectText = { "& .MuiSelect-select": { color: "#fff" }, "& .MuiSelect-icon": { color: "rgba(141, 143, 149, 1)" } };
 
     return (
         <Box sx={styles.pageRoot}>
@@ -178,43 +196,75 @@ const SaveAlert = () => {
                             </Box>
 
                             <Stack direction="row" spacing={2} mt={5}>
-                                <CustomInput
-                                    value={formData.ticker}
-                                    onChange={(e) => handleChange("ticker", e.target.value)}
-                                    sx={inputStyles}
-                                    placeholder={'Ticker (e.g., BTC)'}
-                                    inputBgColor={"rgba(41, 40, 40, 1)"}
-                                    error={!!formErrors.ticker}
-                                    helperText={formErrors.ticker}
-                                />
+                                {/* SEARCH INPUT + DROPDOWN */}
+                                <Box sx={{ position: "relative", width: "100%" }}>
+                                    <CustomInput
+                                        value={formData.ticker}
+                                        onChange={(e) => handleChange("ticker", e.target.value)}
+                                        sx={inputStyles}
+                                        placeholder={t("journal.ticker")}
+                                        inputBgColor={"rgba(41, 40, 40, 1)"}
+                                        error={!!formErrors.ticker}
+                                        helperText={formErrors.ticker}
+                                    />
 
+                                    {showDropdown && searchResults.length > 0 && (
+                                        <Box
+                                            sx={{
+                                                position: "absolute",
+                                                top: "100%",
+                                                left: 0,
+                                                width: "100%",
+                                                bgcolor: "#292828",
+                                                border: "1px solid #8f8f8f",
+                                                borderRadius: "10px",
+                                                maxHeight: "200px",
+                                                overflowY: "auto",
+                                                zIndex: 10,
+                                                mt: 0.5,
+                                            }}
+                                        >
+                                            {searchResults.map((item, index) => (
+                                                <Box
+                                                    key={index}
+                                                    onClick={() => handleTickerSelect(item)}
+                                                    sx={{
+                                                        px: 2,
+                                                        py: 1,
+                                                        cursor: "pointer",
+                                                        "&:hover": { backgroundColor: "#3a3a3a" },
+                                                        color: "#fff",
+                                                        borderBottom: index !== searchResults.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
+                                                    }}
+                                                >
+                                                    {item.ticker} - {item.name}
+                                                </Box>
+                                            ))}
+                                        </Box>
+                                    )}
+                                </Box>
+
+                                {/* PRICE INPUT */}
                                 <CustomInput
-                                    value={exchangeMarketData?.current_price || ""}
+                                    value={formData.price}
                                     onChange={(e) => handleChange("price", e.target.value)}
                                     sx={{
-                                        ...inputStyles, ...whiteSelectText, "& .MuiOutlinedInput-root": {
-                                            ...inputStyles["& .MuiOutlinedInput-root"],
-                                        },
-                                        "& .MuiOutlinedInput-input.Mui-disabled": {
-                                            color: "#fff",
-                                            WebkitTextFillColor: "#fff"
-                                        },
-                                        "& .MuiOutlinedInput-notchedOutline": {
-                                            borderColor: "rgba(143, 143, 143, 1)",
-                                        }
+                                        ...inputStyles,
+                                        "& .MuiOutlinedInput-input.Mui-disabled": { color: "#fff", WebkitTextFillColor: "#fff" },
+                                        "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(143, 143, 143, 1)" },
                                     }}
-                                    placeholder={'Price'}
-
+                                    placeholder={t("journal.price")}
                                     disabled
                                 />
                             </Stack>
 
+                            {/* PRICE RELATION + VALUE */}
                             <Stack direction="row" spacing={2} mt={2}>
                                 <Box flex={1}>
                                     <CustomSelect
                                         sx={whiteSelectText}
                                         options={pairOptions}
-                                        placeholder="Crossed"
+                                        placeholder={t("journal.selectPriceRelation")}
                                         value={formData.priceRelation}
                                         onChange={(e) => handleChange("priceRelation", e.target.value)}
                                         error={!!formErrors.priceRelation}
@@ -227,7 +277,7 @@ const SaveAlert = () => {
                                         value={formData.value}
                                         onChange={(e) => handleChange("value", e.target.value)}
                                         sx={inputStyles}
-                                        placeholder="Value"
+                                        placeholder={t("journal.value")}
                                         error={!!formErrors.value}
                                         helperText={formErrors.value}
                                     />
@@ -243,9 +293,9 @@ const SaveAlert = () => {
 
                         </Box>
                     </Box>
-                </Box>
-            </Container>
-        </Box>
+                </Box >
+            </Container >
+        </Box >
     );
 };
 

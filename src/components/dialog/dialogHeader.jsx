@@ -21,6 +21,7 @@ const DialogHeader = ({ title, secondaryHeading, onClose, icon }) => {
                             variant="body2"
                             color="customColor.coolGrey"
                             lineHeight={"normal"}
+                            mt={"10px"}
                         >
                             {secondaryHeading}
                         </Typography>

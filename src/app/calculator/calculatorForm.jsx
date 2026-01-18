@@ -1,3 +1,941 @@
+// // import React, { useEffect, useState } from "react";
+// // import {
+// //   Box,
+// //   Grid,
+// //   Stack,
+// //   Typography,
+// // } from "@mui/material";
+// // import CustomSelect from "../../components/customSelect";
+// // import CustomInput from "../../components/customInput";
+// // import CustomButton from "../../components/customButton";
+// // import { useTranslation } from "react-i18next";
+// // import { getCalculator, simulateApi } from "../../services/modules/calculator";
+// // import { toast } from "react-toastify";
+// // import { jounralSearchApi } from "../../services/modules/journal";
+
+// // const CalculatorForm = ({
+// //   exchange,
+// //   metaData,
+// //   exchangeMarketData,
+// //   exchangeAtr,
+// //   setTf,
+// //   setLen,
+// //   pair,
+// //   setPair,
+// //   onCalculate,
+// //   isLoading
+// // }) => {
+// //   const { t } = useTranslation();
+// //   const [localLoading, setLocalLoading] = useState(false)
+// //   const [hasCalculated, setHasCalculated] = useState(false);
+// //   const [search, setSearch] = useState("");
+// //   const [formData, setFormData] = useState({
+// //     exchange: "Binance Future",
+// //     feeType: "taker",
+// //     fee: "",
+// //     fundingRate: "",
+// //     positionDuration: "<8hours",
+// //     ticker: "",
+// //     pair: pair || "BTCUSDT",
+// //     sizingMethod: "risk",
+// //     deposit: "",
+// //     riskOrMargin: "",
+// //     direction: "",
+// //     leverage: "",
+// //     entryMethod: "atr",
+// //     atr: "",
+// //     target: "3",
+// //     level: "",
+// //     lotStep: "",
+// //     lotMinimum: "",
+// //     entry: "",
+// //     stopLoss: "",
+// //     takeProfit: "",
+
+// //   });
+
+// //   useEffect(() => {
+// //     setFormData(prev => ({ ...prev, pair }));
+// //   }, [pair]);
+// //   const journalSearch = async (query) => {
+// //     if (!query) {
+// //       setSearchResults([]);
+// //       setShowDropdown(false);
+// //       return;
+// //     }
+// //     try {
+// //       const response = await jounralSearchApi(query);
+// //       if (response?.data?.status === "success") {
+// //         setSearchResults(response?.data?.data || []);
+// //         setShowDropdown(true);
+// //       }
+// //     } catch (error) {
+// //       toast.error(error?.response?.data?.message || "Search failed");
+// //     }
+// //   };
+
+// //   useEffect(() => {
+// //     if (search.length >= 1) journalSearch(search);
+// //   }, [search]);
+
+// //   useEffect(() => {
+// //     if (!metaData) return;
+// //     setFormData(prev => ({
+// //       ...prev,
+// //       fee: prev.feeType === "taker" ? metaData.fee_taker_pct : metaData.fee_maker_pct,
+// //       fundingRate: metaData.funding_rate_pct,
+// //       lotStep: metaData.qty_step,
+// //       lotMinimum: metaData.min_qty,
+// //       level: exchangeMarketData?.current_price,
+// //       atr: exchangeAtr?.atr_value
+// //     }));
+// //   }, [metaData, formData.feeType, exchangeMarketData, exchangeAtr]);
+
+// //   const exchangeOptions = exchange?.exchanges?.map((ex) => ({
+// //     value: ex.name,
+// //     label: ex.name
+// //   })) || [];
+
+// //   const feeTypeOptions = [
+// //     { value: "taker", label: t("Chart.takerMarketOrder") },
+// //     { value: "maker", label: t("Chart.makerLimitOrder") },
+// //   ];
+
+// //   const positionDurationOptions = [
+// //     { value: "<8hours", label: t("Chart.hoursNofunding") },
+// //     { value: "8-16 hours", label: t("Chart.8-24Hours") },
+// //     { value: "16-24 hours ", label: "16-24 hours" },
+// //     { value: "1-3 days", label: "1-3 days" },
+// //     { value: "3-7 days", label: "3-7 days" },
+// //     { value: "1-2 weeks", label: "1-2 weeks" },
+// //     { value: "2-4 weeks", label: "2-4 weeks" },
+// //   ];
+
+// //   const pairOptions = [
+// //     { value: "BTCUSDT", label: "BTCUSDT" },
+// //     { value: "ETHUSDT", label: "ETHUSDT" },
+// //     { value: "BNBUSDT", label: "BNBUSDT" },
+// //     { value: "SOLUSDT", label: "SOLUSDT" },
+// //   ];
+
+// //   const directionOptions = [
+// //     { value: "long", label: "Long" },
+// //     { value: "short", label: "Short" },
+// //   ];
+
+// //   const handleChange = (field) => (event) => {
+// //     const value = event.target.value;
+// //     setFormData({ ...formData, [field]: value });
+
+// //     if (field === "pair" && setPair) {
+// //       setPair(value);
+// //     }
+// //   };
+
+// //   const handleInputChange = (field) => (event) => {
+// //     setFormData({ ...formData, [field]: event.target.value });
+// //   };
+
+// //   const handleSizingMethod = (method) => {
+// //     setFormData({ ...formData, sizingMethod: method });
+// //   };
+
+// //   const handleEntryMethod = (method) => {
+// //     setFormData({ ...formData, entryMethod: method });
+// //   };
+
+// //   const handlePreset = (preset) => {
+// //     const presets = {
+// //       Scalp: { leverage: 20, riskOrMargin: 0.5, positionDuration: "<8hours", atr_tf: "5m", atr_len: 14, target: 2 },
+// //       Intraday: { leverage: 10, riskOrMargin: 1, positionDuration: "8-16 hours", atr_tf: "15m", atr_len: 14, target: 3 },
+// //       Swing: { leverage: 5, riskOrMargin: 2, positionDuration: "1-3 days", atr_tf: "1h", atr_len: 14, target: 3 },
+// //       Safe: { leverage: 3, riskOrMargin: 0.5, positionDuration: "<8hours", atr_tf: "4h", atr_len: 14, target: 5 },
+// //     };
+// //     const presetData = presets[preset];
+// //     if (presetData) {
+// //       setFormData(prev => ({
+// //         ...prev,
+// //         leverage: presetData.leverage,
+// //         riskOrMargin: presetData.riskOrMargin,
+// //         positionDuration: presetData.positionDuration,
+// //         target: presetData.target
+// //       }));
+// //       setTf?.(presetData.atr_tf);
+// //       setLen?.(presetData.atr_len);
+// //       setHasCalculated(false);
+
+// //     }
+// //   };
+// //   const simulateWhatIfAPi = async () => {
+// //     try {
+// //       setLocalLoading(true);
+// //       const payload = {
+// //         currentPrice: formData.level,
+// //         direction: formData.direction,
+// //         leverage: formData.leverage,
+// //         deposit: formData.deposit,
+// //         riskOrMargin: formData.riskOrMargin,
+// //         positionSizeUnits: formData.positionSizeUnits || 0,
+// //         entryPrice: formData.entry || formData.level,
+// //         pair: formData.pair,
+// //         target: formData.target,
+// //         atr: formData.atr,
+// //         stopPrice: formData.stopLoss,
+// //         takePrice: formData.takeProfit
+// //       };
+
+// //       // Call API
+// //       const response = await simulateApi(payload);
+
+// //       if (response) {
+// //         console.log("API Response:", response);
+// //       }
+// //     } catch (error) {
+// //       console.error("Simulation API error:", error);
+// //       toast.error("Simulation failed. Please try again.");
+// //     } finally {
+// //       setLocalLoading(false);
+// //     }
+// //   };
+// //   const handleCalculateClick = () => {
+// //     setHasCalculated(true);
+// //     onCalculate(formData);
+// //   };
+// //   return (
+// //     <Box sx={{ background: "#161616", borderRadius: "16px", border: "1px solid rgba(255,255,255,0.08)", p: 2 }}>
+// //       <Stack spacing={2}>
+
+// //         {/* Exchange & Fees Section */}
+// //         <Grid container spacing={1}>
+// //           <Grid item size={{ xs: 12, md: 6 }}>
+// //             <CustomSelect
+// //               label={t("Chart.Exchange")}
+// //               value={formData.exchange}
+// //               onChange={handleChange("exchange")}
+// //               options={exchangeOptions}
+// //             />
+// //           </Grid>
+// //           <Grid item size={{ xs: 12, md: 6 }}>
+// //             <CustomSelect
+// //               label={t("Chart.feeType")}
+// //               value={formData.feeType}
+// //               onChange={handleChange("feeType")}
+// //               options={feeTypeOptions}
+// //             />
+// //           </Grid>
+// //           <Grid item size={{ xs: 12, md: 6 }}>
+// //             <Stack spacing={1}>
+// //               <Typography variant="labelMd" fontSize={12} sx={{ color: "#C7C7C7" }}>{t("Chart.Fee%")}</Typography>
+// //               <CustomInput placeholder="0.060" value={formData.fee} onChange={handleInputChange("fee")} />
+// //             </Stack>
+// //           </Grid>
+// //           <Grid item size={{ xs: 12, md: 6 }}>
+// //             <Stack spacing={1}>
+// //               <Typography variant="labelMd" fontSize={12} sx={{ color: "#C7C7C7" }}>{t("Chart.FundingRate")}</Typography>
+// //               <CustomInput placeholder="0.010" value={formData.fundingRate} onChange={handleInputChange("fundingRate")} />
+// //             </Stack>
+// //           </Grid>
+// //         </Grid>
+
+// //         {/* Position & Pair Section */}
+// //         <Grid container spacing={1}>
+// //           <Grid item size={{ xs: 12, md: 12 }}>
+// //             <CustomSelect
+// //               label={t("Chart.positionDuration")}
+// //               value={formData.positionDuration}
+// //               onChange={handleChange("positionDuration")}
+// //               options={positionDurationOptions}
+// //             />
+// //           </Grid>
+// //           <Grid item size={{ xs: 12, md: 6 }}>
+// //             <Stack spacing={1}>
+// //               <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>{t("Chart.searchbyTicker")}</Typography>
+// //               <CustomInput placeholder="btc, eth, zec ..." value={formData.ticker} onChange={handleInputChange("ticker")} />
+// //             </Stack>
+// //           </Grid>
+// //           <Grid item size={{ xs: 12, md: 6 }}>
+// //             <CustomSelect
+// //               label={t("Chart.Pairfutures")}
+// //               value={formData.pair}
+// //               onChange={handleChange("pair")}
+// //               options={pairOptions}
+// //             />
+// //           </Grid>
+// //         </Grid>
+
+// //         {/* Sizing Options */}
+// //         <Box>
+// //           <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray", mb: 2, display: "block" }}>{t("Chart.sizingOptions")}</Typography>
+// //           <Stack direction="row" spacing={2}>
+// //             <CustomButton
+// //               variant={formData.sizingMethod === "risk" ? "calculatorToggle" : "calculatorSmall"}
+// //               title={t("Chart.sizefromRisk")}
+// //               handleClickBtn={() => handleSizingMethod("risk")}
+// //             />
+// //             <CustomButton
+// //               variant={formData.sizingMethod === "margin" ? "calculatorToggle" : "calculatorSmall"}
+// //               title={t("Chart.sizefromMargin")}
+// //               handleClickBtn={() => handleSizingMethod("margin")}
+// //             />
+// //           </Stack>
+// //         </Box>
+// //         {/* Trade Parameters */}
+// //         <Grid container spacing={1}>
+// //           <Grid item size={{ xs: 12, md: 6 }}>
+// //             <Stack spacing={1}>
+// //               <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>{t("Chart.Deposit")}</Typography>
+// //               <CustomInput placeholder="2000" value={formData.deposit} onChange={handleInputChange("deposit")} type="number" />
+// //             </Stack>
+// //           </Grid>
+// //           <Grid item size={{ xs: 12, md: 6 }}>
+// //             <Stack spacing={1}>
+// //               <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>
+// //                 {formData.sizingMethod === "risk" ? t("Chart.Risk") : t("Chart.Margin$")}
+// //               </Typography>
+// //               <CustomInput placeholder="1" value={formData.riskOrMargin} onChange={handleInputChange("riskOrMargin")} type="number" />
+// //             </Stack>
+// //           </Grid>
+// //           <Grid item size={{ xs: 12, md: 6 }}>
+// //             <CustomSelect label={t("Chart.Direction")} value={formData.direction} onChange={handleChange("direction")} options={directionOptions} />
+// //           </Grid>
+// //           <Grid item size={{ xs: 12, md: 6 }}>
+// //             <Stack spacing={1}>
+// //               <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>{t("Chart.Leverage")}</Typography>
+// //               <CustomInput placeholder="20" value={formData.leverage} onChange={handleInputChange("leverage")} type="number" />
+// //             </Stack>
+// //           </Grid>
+// //         </Grid>
+// //         {/* Entry/Stop/Take Configuration */}
+// //         <Box>
+// //           {/* <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray", mb: 2 }}>{t("Chart.entryStopTakeConfiguration")}</Typography> */}
+// //           <Stack direction="row" spacing={2} mb={3}>
+// //             <CustomButton
+// //               variant={formData.entryMethod === "atr" ? "calculatorToggle" : "calculatorSmall"}
+// //               title={t("Chart.aTRTemplate")}
+// //               handleClickBtn={() => handleEntryMethod("atr")}
+// //             />
+
+// //             <CustomButton
+// //               variant={formData.entryMethod === "manual" ? "calculatorToggle" : "calculatorSmall"}
+// //               title={t("Chart.Manual")}
+// //               handleClickBtn={() => handleEntryMethod("manual")}
+// //             />
+
+// //           </Stack>
+
+// //           {formData.entryMethod === "atr" && (
+// //             <Grid container spacing={3}>
+// //               <Grid item size={{ xs: 12, md: 6 }}>
+// //                 <Stack spacing={1}>
+// //                   <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>{t("Chart.ATR")}</Typography>
+// //                   <CustomInput placeholder="837.9928" value={formData.atr} onChange={handleInputChange("atr")} type="number" />
+// //                 </Stack>
+// //               </Grid>
+// //               <Grid item size={{ xs: 12, md: 6 }}>
+// //                 <Stack spacing={1}>
+// //                   <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>{t("Chart.target")}</Typography>
+// //                   <CustomInput placeholder="3" value={formData.target} onChange={handleInputChange("target")} type="number" />
+// //                 </Stack>
+// //               </Grid>
+// //               <Grid item size={{ xs: 12, md: 6 }}>
+// //                 <Stack spacing={1}>
+// //                   <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>{t("Chart.level")}</Typography>
+// //                   <CustomInput placeholder="115,132.00" value={formData.level} onChange={handleInputChange("level")} type="number" />
+// //                 </Stack>
+// //               </Grid>
+// //               <Grid item size={{ xs: 12, md: 6 }}>
+// //                 <Stack spacing={1}>
+// //                   <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>{t("Chart.lotStep")}</Typography>
+// //                   <Stack direction="row" spacing={2}>
+// //                     <CustomInput placeholder="1" value={formData.lotStep} onChange={handleInputChange("lotStep")} type="number" />
+// //                     <CustomInput placeholder="1" value={formData.lotMinimum} onChange={handleInputChange("lotMinimum")} type="number" />
+// //                   </Stack>
+// //                 </Stack>
+// //               </Grid>
+// //             </Grid>
+// //           )}
+// //           {formData.entryMethod === "manual" && (
+// //             <Grid container spacing={3}>
+// //               <Grid item size={{ xs: 12, md: 6 }}>
+// //                 <Stack spacing={1}>
+// //                   <Typography fontSize={12} sx={{ color: "text.bluishGray" }}>
+// //                     Entry
+// //                   </Typography>
+// //                   <CustomInput
+// //                     placeholder="Entry Price"
+// //                     value={formData.entry}
+// //                     onChange={handleInputChange("entry")}
+// //                     type="number"
+// //                   />
+// //                 </Stack>
+// //               </Grid>
+
+// //               <Grid item size={{ xs: 12, md: 6 }}>
+// //                 <Stack spacing={1}>
+// //                   <Typography fontSize={12} sx={{ color: "text.bluishGray" }}>
+// //                     Stop Loss
+// //                   </Typography>
+// //                   <CustomInput
+// //                     placeholder="Stop Loss"
+// //                     value={formData.stopLoss}
+// //                     onChange={handleInputChange("stopLoss")}
+// //                     type="number"
+// //                   />
+// //                 </Stack>
+// //               </Grid>
+
+// //               <Grid item size={{ xs: 12, md: 6 }}>
+// //                 <Stack spacing={1}>
+// //                   <Typography fontSize={12} sx={{ color: "text.bluishGray" }}>
+// //                     Take Profit
+// //                   </Typography>
+// //                   <CustomInput
+// //                     placeholder="Take Profit"
+// //                     value={formData.takeProfit}
+// //                     onChange={handleInputChange("takeProfit")}
+// //                     type="number"
+// //                   />
+// //                 </Stack>
+// //               </Grid>
+// //             </Grid>
+// //           )}
+
+// //         </Box>
+// //         {/* Quick Presets */}
+// //         {formData.entryMethod === "atr" && (
+// //           <Box>
+// //             <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray", mb: 2 }}>{t("Chart.quickPresets")}</Typography>
+// //             <Stack direction="row" spacing={2} width="100%">
+// //               <CustomButton variant="calculatorSmall" title={t("Chart.scalp")} handleClickBtn={() => handlePreset("Scalp")} width="100%" />
+// //               <CustomButton variant="calculatorSmall" title="Swing" handleClickBtn={() => handlePreset("Swing")} width="100%" />
+// //               <CustomButton variant="calculatorSmall" title={t("Chart.intraday")} handleClickBtn={() => handlePreset("Intraday")} width="100%" />
+// //               <CustomButton variant="calculatorSmall" title={t("Chart.safe")} handleClickBtn={() => handlePreset("Safe")} width="100%" />
+// //             </Stack>
+// //           </Box>
+// //         )}
+
+// //         {/* Calculate Button */}
+// //         <CustomButton
+// //           title={isLoading ? "Calculating..." : "Calculate"}
+// //           width="100%"
+// //           handleClickBtn={handleCalculateClick} // ✅ CHANGED ONLY
+// //           disabled={isLoading}
+// //           sx={{
+// //             mt: 2,
+// //             py: 1.5,
+// //             fontSize: "18px",
+// //             fontWeight: 600,
+// //             backgroundColor: "rgba(255, 100, 33, 1)",
+// //             opacity: isLoading ? 0.7 : 1,
+// //             cursor: isLoading ? "not-allowed" : "pointer"
+// //           }}
+// //         />
+// //       </Stack>
+// //     </Box>
+// //   );
+// // };
+
+// // export default CalculatorForm;
+// import React, { useEffect, useState } from "react";
+// import {
+//   Box,
+//   Grid,
+//   Stack,
+//   Typography,
+// } from "@mui/material";
+// import CustomSelect from "../../components/customSelect";
+// import CustomInput from "../../components/customInput";
+// import CustomButton from "../../components/customButton";
+// import { useTranslation } from "react-i18next";
+// import { getCalculator, simulateApi } from "../../services/modules/calculator";
+// import { toast } from "react-toastify";
+// import { jounralSearchApi } from "../../services/modules/journal";
+
+// const CalculatorForm = ({
+//   exchange,
+//   metaData,
+//   exchangeMarketData,
+//   exchangeAtr,
+//   setTf,
+//   setLen,
+//   pair,
+//   setPair,
+//   onCalculate,
+//   isLoading
+// }) => {
+//   const { t } = useTranslation();
+//   const [localLoading, setLocalLoading] = useState(false);
+//   const [hasCalculated, setHasCalculated] = useState(false);
+//   const [searchResults, setSearchResults] = useState([]);
+//   const [showDropdown, setShowDropdown] = useState(false);
+//   const [formData, setFormData] = useState({
+//     exchange: "Binance Future",
+//     feeType: "taker",
+//     fee: "",
+//     fundingRate: "",
+//     positionDuration: "<8hours",
+//     ticker: "",
+//     pair: pair || "BTCUSDT",
+//     sizingMethod: "risk",
+//     deposit: "",
+//     riskOrMargin: "",
+//     direction: "",
+//     leverage: "",
+//     entryMethod: "atr",
+//     atr: "",
+//     target: "3",
+//     level: "",
+//     lotStep: "",
+//     lotMinimum: "",
+//     entry: "",
+//     stopLoss: "",
+//     takeProfit: "",
+//   });
+
+//   useEffect(() => {
+//     setFormData(prev => ({ ...prev, pair }));
+//   }, [pair]);
+
+//   const journalSearch = async (query) => {
+//     if (!query) {
+//       setSearchResults([]);
+//       setShowDropdown(false);
+//       return;
+//     }
+//     try {
+//       const response = await jounralSearchApi(query);
+//       if (response?.data?.status === "success") {
+//         setSearchResults(response?.data?.data || []);
+//         setShowDropdown(true);
+//       }
+//     } catch (error) {
+//       toast.error(error?.response?.data?.message || "Search failed");
+//     }
+//   };
+
+//   useEffect(() => {
+//     if (formData.ticker.length >= 1) {
+//       journalSearch(formData.ticker);
+//     } else {
+//       setSearchResults([]);
+//       setShowDropdown(false);
+//     }
+//   }, [formData.ticker]);
+
+//   useEffect(() => {
+//     if (!metaData) return;
+//     setFormData(prev => ({
+//       ...prev,
+//       fee: prev.feeType === "taker" ? metaData.fee_taker_pct : metaData.fee_maker_pct,
+//       fundingRate: metaData.funding_rate_pct,
+//       lotStep: metaData.qty_step,
+//       lotMinimum: metaData.min_qty,
+//       level: exchangeMarketData?.current_price,
+//       atr: exchangeAtr?.atr_value
+//     }));
+//   }, [metaData, formData.feeType, exchangeMarketData, exchangeAtr]);
+
+//   const exchangeOptions = exchange?.exchanges?.map((ex) => ({
+//     value: ex.name,
+//     label: ex.name
+//   })) || [];
+
+//   const feeTypeOptions = [
+//     { value: "taker", label: t("Chart.takerMarketOrder") },
+//     { value: "maker", label: t("Chart.makerLimitOrder") },
+//   ];
+
+//   const positionDurationOptions = [
+//     { value: "<8hours", label: t("Chart.hoursNofunding") },
+//     { value: "8-16 hours", label: t("Chart.8-24Hours") },
+//     { value: "16-24 hours ", label: "16-24 hours" },
+//     { value: "1-3 days", label: "1-3 days" },
+//     { value: "3-7 days", label: "3-7 days" },
+//     { value: "1-2 weeks", label: "1-2 weeks" },
+//     { value: "2-4 weeks", label: "2-4 weeks" },
+//   ];
+
+//   const pairOptions = [
+//     { value: "BTCUSDT", label: "BTCUSDT" },
+//     { value: "ETHUSDT", label: "ETHUSDT" },
+//     { value: "BNBUSDT", label: "BNBUSDT" },
+//     { value: "SOLUSDT", label: "SOLUSDT" },
+//   ];
+
+//   const directionOptions = [
+//     { value: "long", label: "Long" },
+//     { value: "short", label: "Short" },
+//   ];
+
+//   const handleChange = (field) => (event) => {
+//     const value = event.target.value;
+//     setFormData({ ...formData, [field]: value });
+
+//     if (field === "pair" && setPair) {
+//       setPair(value);
+//     }
+//   };
+
+//   const handleInputChange = (field) => (event) => {
+//     setFormData({ ...formData, [field]: event.target.value });
+//   };
+
+//   const handleTickerSelect = (selectedItem) => {
+//     // Selected item ko ticker aur pair dono mein set karo
+//     const selectedSymbol = selectedItem.symbol || selectedItem.name || selectedItem.ticker || selectedItem;
+
+//     setFormData(prev => ({
+//       ...prev,
+//       ticker: selectedSymbol,
+//       pair: selectedSymbol
+//     }));
+
+//     if (setPair) {
+//       setPair(selectedSymbol);
+//     }
+
+//     setShowDropdown(false);
+//     setSearchResults([]);
+//   };
+
+//   const handleSizingMethod = (method) => {
+//     setFormData({ ...formData, sizingMethod: method });
+//   };
+
+//   const handleEntryMethod = (method) => {
+//     setFormData({ ...formData, entryMethod: method });
+//   };
+
+//   const handlePreset = (preset) => {
+//     const presets = {
+//       Scalp: { leverage: 20, riskOrMargin: 0.5, positionDuration: "<8hours", atr_tf: "5m", atr_len: 14, target: 2 },
+//       Intraday: { leverage: 10, riskOrMargin: 1, positionDuration: "8-16 hours", atr_tf: "15m", atr_len: 14, target: 3 },
+//       Swing: { leverage: 5, riskOrMargin: 2, positionDuration: "1-3 days", atr_tf: "1h", atr_len: 14, target: 3 },
+//       Safe: { leverage: 3, riskOrMargin: 0.5, positionDuration: "<8hours", atr_tf: "4h", atr_len: 14, target: 5 },
+//     };
+//     const presetData = presets[preset];
+//     if (presetData) {
+//       setFormData(prev => ({
+//         ...prev,
+//         leverage: presetData.leverage,
+//         riskOrMargin: presetData.riskOrMargin,
+//         positionDuration: presetData.positionDuration,
+//         target: presetData.target
+//       }));
+//       setTf?.(presetData.atr_tf);
+//       setLen?.(presetData.atr_len);
+//       setHasCalculated(false);
+//     }
+//   };
+
+//   const simulateWhatIfAPi = async () => {
+//     try {
+//       setLocalLoading(true);
+//       const payload = {
+//         currentPrice: formData.level,
+//         direction: formData.direction,
+//         leverage: formData.leverage,
+//         deposit: formData.deposit,
+//         riskOrMargin: formData.riskOrMargin,
+//         positionSizeUnits: formData.positionSizeUnits || 0,
+//         entryPrice: formData.entry || formData.level,
+//         pair: formData.pair,
+//         target: formData.target,
+//         atr: formData.atr,
+//         stopPrice: formData.stopLoss,
+//         takePrice: formData.takeProfit
+//       };
+
+//       const response = await simulateApi(payload);
+//       console.log("frfyhurjfnfrnfurgfyrfgyrfugrfuyrf", response)
+
+//       if (response) {
+//         console.log("API Response:", response);
+//       }
+//     } catch (error) {
+//       console.error("Simulation API error:", error);
+//       toast.error("Simulation failed. Please try again.");
+//     } finally {
+//       setLocalLoading(false);
+//     }
+//   };
+
+//   const handleCalculateClick = () => {
+//     setHasCalculated(true);
+//     onCalculate(formData);
+//   };
+
+//   return (
+//     <Box sx={{ background: "#161616", borderRadius: "16px", border: "1px solid rgba(255,255,255,0.08)", p: 2 }}>
+//       <Stack spacing={2}>
+//         {/* Exchange & Fees Section */}
+//         <Grid container spacing={1}>
+//           <Grid item size={{ xs: 12, md: 6 }}>
+//             <CustomSelect
+//               label={t("Chart.Exchange")}
+//               value={formData.exchange}
+//               onChange={handleChange("exchange")}
+//               options={exchangeOptions}
+//             />
+//           </Grid>
+//           <Grid item size={{ xs: 12, md: 6 }}>
+//             <CustomSelect
+//               label={t("Chart.feeType")}
+//               value={formData.feeType}
+//               onChange={handleChange("feeType")}
+//               options={feeTypeOptions}
+//             />
+//           </Grid>
+//           <Grid item size={{ xs: 12, md: 6 }}>
+//             <Stack spacing={1}>
+//               <Typography variant="labelMd" fontSize={12} sx={{ color: "#C7C7C7" }}>{t("Chart.Fee%")}</Typography>
+//               <CustomInput placeholder="0.060" value={formData.fee} onChange={handleInputChange("fee")} />
+//             </Stack>
+//           </Grid>
+//           <Grid item size={{ xs: 12, md: 6 }}>
+//             <Stack spacing={1}>
+//               <Typography variant="labelMd" fontSize={12} sx={{ color: "#C7C7C7" }}>{t("Chart.FundingRate")}</Typography>
+//               <CustomInput placeholder="0.010" value={formData.fundingRate} onChange={handleInputChange("fundingRate")} />
+//             </Stack>
+//           </Grid>
+//         </Grid>
+
+//         {/* Position & Pair Section */}
+//         <Grid container spacing={1}>
+//           <Grid item size={{ xs: 12, md: 12 }}>
+//             <CustomSelect
+//               label={t("Chart.positionDuration")}
+//               value={formData.positionDuration}
+//               onChange={handleChange("positionDuration")}
+//               options={positionDurationOptions}
+//             />
+//           </Grid>
+//           <Grid item size={{ xs: 12, md: 6 }}>
+//             <Stack spacing={1} sx={{ position: 'relative' }}>
+//               <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>
+//                 {t("Chart.searchbyTicker")}
+//               </Typography>
+//               <CustomInput
+//                 placeholder="btc, eth, zec ..."
+//                 value={formData.ticker}
+//                 onChange={handleInputChange("ticker")}
+//               />
+
+//               {/* Search Results Dropdown */}
+//               {showDropdown && searchResults.length > 0 && (
+//                 <Box
+//                   sx={{
+//                     position: 'absolute',
+//                     top: '100%',
+//                     left: 0,
+//                     right: 0,
+//                     zIndex: 1000,
+//                     backgroundColor: '#1E1E1E',
+//                     border: '1px solid rgba(255,255,255,0.1)',
+//                     borderRadius: '8px',
+//                     maxHeight: '200px',
+//                     overflowY: 'auto',
+//                     mt: 0.5,
+//                   }}
+//                 >
+//                   {searchResults.map((item, index) => (
+//                     <Box
+//                       key={index}
+//                       onClick={() => handleTickerSelect(item)}
+//                       sx={{
+//                         p: 1.5,
+//                         cursor: 'pointer',
+//                         borderBottom: index !== searchResults.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none',
+//                         '&:hover': {
+//                           backgroundColor: 'rgba(255,255,255,0.05)',
+//                         },
+//                       }}
+//                     >
+//                       <Typography sx={{ color: '#fff', fontSize: 14 }}>
+//                         {item.symbol || item.name || item.ticker}
+//                       </Typography>
+//                     </Box>
+//                   ))}
+//                 </Box>
+//               )}
+//             </Stack>
+//           </Grid>
+//           <Grid item size={{ xs: 12, md: 6 }}>
+//             <CustomSelect
+//               label={t("Chart.Pairfutures")}
+//               value={formData.pair}
+//               onChange={handleChange("pair")}
+//               options={pairOptions}
+//             />
+//           </Grid>
+//         </Grid>
+
+//         {/* Sizing Options */}
+//         <Box>
+//           <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray", mb: 2, display: "block" }}>
+//             {t("Chart.sizingOptions")}
+//           </Typography>
+//           <Stack direction="row" spacing={2}>
+//             <CustomButton
+//               variant={formData.sizingMethod === "risk" ? "calculatorToggle" : "calculatorSmall"}
+//               title={t("Chart.sizefromRisk")}
+//               handleClickBtn={() => handleSizingMethod("risk")}
+//             />
+//             <CustomButton
+//               variant={formData.sizingMethod === "margin" ? "calculatorToggle" : "calculatorSmall"}
+//               title={t("Chart.sizefromMargin")}
+//               handleClickBtn={() => handleSizingMethod("margin")}
+//             />
+//           </Stack>
+//         </Box>
+
+//         {/* Trade Parameters */}
+//         <Grid container spacing={1}>
+//           <Grid item size={{ xs: 12, md: 6 }}>
+//             <Stack spacing={1}>
+//               <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>
+//                 {t("Chart.Deposit")}
+//               </Typography>
+//               <CustomInput placeholder="2000" value={formData.deposit} onChange={handleInputChange("deposit")} type="number" />
+//             </Stack>
+//           </Grid>
+//           <Grid item size={{ xs: 12, md: 6 }}>
+//             <Stack spacing={1}>
+//               <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>
+//                 {formData.sizingMethod === "risk" ? t("Chart.Risk") : t("Chart.Margin$")}
+//               </Typography>
+//               <CustomInput placeholder="1" value={formData.riskOrMargin} onChange={handleInputChange("riskOrMargin")} type="number" />
+//             </Stack>
+//           </Grid>
+//           <Grid item size={{ xs: 12, md: 6 }}>
+//             <CustomSelect label={t("Chart.Direction")} value={formData.direction} onChange={handleChange("direction")} options={directionOptions} />
+//           </Grid>
+//           <Grid item size={{ xs: 12, md: 6 }}>
+//             <Stack spacing={1}>
+//               <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>
+//                 {t("Chart.Leverage")}
+//               </Typography>
+//               <CustomInput placeholder="20" value={formData.leverage} onChange={handleInputChange("leverage")} type="number" />
+//             </Stack>
+//           </Grid>
+//         </Grid>
+
+//         {/* Entry/Stop/Take Configuration */}
+//         <Box>
+//           <Stack direction="row" spacing={2} mb={3}>
+//             <CustomButton
+//               variant={formData.entryMethod === "atr" ? "calculatorToggle" : "calculatorSmall"}
+//               title={t("Chart.aTRTemplate")}
+//               handleClickBtn={() => handleEntryMethod("atr")}
+//             />
+//             <CustomButton
+//               variant={formData.entryMethod === "manual" ? "calculatorToggle" : "calculatorSmall"}
+//               title={t("Chart.Manual")}
+//               handleClickBtn={() => handleEntryMethod("manual")}
+//             />
+//           </Stack>
+
+//           {formData.entryMethod === "atr" && (
+//             <Grid container spacing={3}>
+//               <Grid item size={{ xs: 12, md: 6 }}>
+//                 <Stack spacing={1}>
+//                   <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>
+//                     {t("Chart.ATR")}
+//                   </Typography>
+//                   <CustomInput placeholder="837.9928" value={formData.atr} onChange={handleInputChange("atr")} type="number" />
+//                 </Stack>
+//               </Grid>
+//               <Grid item size={{ xs: 12, md: 6 }}>
+//                 <Stack spacing={1}>
+//                   <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>
+//                     {t("Chart.target")}
+//                   </Typography>
+//                   <CustomInput placeholder="3" value={formData.target} onChange={handleInputChange("target")} type="number" />
+//                 </Stack>
+//               </Grid>
+//               <Grid item size={{ xs: 12, md: 6 }}>
+//                 <Stack spacing={1}>
+//                   <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>
+//                     {t("Chart.level")}
+//                   </Typography>
+//                   <CustomInput placeholder="115,132.00" value={formData.level} onChange={handleInputChange("level")} type="number" />
+//                 </Stack>
+//               </Grid>
+//               <Grid item size={{ xs: 12, md: 6 }}>
+//                 <Stack spacing={1}>
+//                   <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>
+//                     {t("Chart.lotStep")}
+//                   </Typography>
+//                   <Stack direction="row" spacing={2}>
+//                     <CustomInput placeholder="1" value={formData.lotStep} onChange={handleInputChange("lotStep")} type="number" />
+//                     <CustomInput placeholder="1" value={formData.lotMinimum} onChange={handleInputChange("lotMinimum")} type="number" />
+//                   </Stack>
+//                 </Stack>
+//               </Grid>
+//             </Grid>
+//           )}
+
+//           {formData.entryMethod === "manual" && (
+//             <Grid container spacing={3}>
+//               <Grid item size={{ xs: 12, md: 6 }}>
+//                 <Stack spacing={1}>
+//                   <Typography fontSize={12} sx={{ color: "text.bluishGray" }}>Entry</Typography>
+//                   <CustomInput placeholder="Entry Price" value={formData.entry} onChange={handleInputChange("entry")} type="number" />
+//                 </Stack>
+//               </Grid>
+//               <Grid item size={{ xs: 12, md: 6 }}>
+//                 <Stack spacing={1}>
+//                   <Typography fontSize={12} sx={{ color: "text.bluishGray" }}>Stop Loss</Typography>
+//                   <CustomInput placeholder="Stop Loss" value={formData.stopLoss} onChange={handleInputChange("stopLoss")} type="number" />
+//                 </Stack>
+//               </Grid>
+//               <Grid item size={{ xs: 12, md: 6 }}>
+//                 <Stack spacing={1}>
+//                   <Typography fontSize={12} sx={{ color: "text.bluishGray" }}>Take Profit</Typography>
+//                   <CustomInput placeholder="Take Profit" value={formData.takeProfit} onChange={handleInputChange("takeProfit")} type="number" />
+//                 </Stack>
+//               </Grid>
+//             </Grid>
+//           )}
+//         </Box>
+
+//         {/* Quick Presets */}
+//         {formData.entryMethod === "atr" && (
+//           <Box>
+//             <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray", mb: 2 }}>
+//               {t("Chart.quickPresets")}
+//             </Typography>
+//             <Stack direction="row" spacing={2} width="100%">
+//               <CustomButton variant="calculatorSmall" title={t("Chart.scalp")} handleClickBtn={() => handlePreset("Scalp")} width="100%" />
+//               <CustomButton variant="calculatorSmall" title="Swing" handleClickBtn={() => handlePreset("Swing")} width="100%" />
+//               <CustomButton variant="calculatorSmall" title={t("Chart.intraday")} handleClickBtn={() => handlePreset("Intraday")} width="100%" />
+//               <CustomButton variant="calculatorSmall" title={t("Chart.safe")} handleClickBtn={() => handlePreset("Safe")} width="100%" />
+//             </Stack>
+//           </Box>
+//         )}
+
+//         {/* Calculate Button */}
+//         <CustomButton
+//           title={isLoading ? "Calculating..." : "Calculate"}
+//           width="100%"
+//           handleClickBtn={handleCalculateClick}
+//           disabled={isLoading}
+//           sx={{
+//             mt: 2,
+//             py: 1.5,
+//             fontSize: "18px",
+//             fontWeight: 600,
+//             backgroundColor: "rgba(255, 100, 33, 1)",
+//             opacity: isLoading ? 0.7 : 1,
+//             cursor: isLoading ? "not-allowed" : "pointer"
+//           }}
+//         />
+//       </Stack>
+//     </Box>
+//   );
+// };
+
+// export default CalculatorForm;
 import React, { useEffect, useState } from "react";
 import {
   Box,
@@ -11,6 +949,7 @@ import CustomButton from "../../components/customButton";
 import { useTranslation } from "react-i18next";
 import { getCalculator, simulateApi } from "../../services/modules/calculator";
 import { toast } from "react-toastify";
+import { jounralSearchApi } from "../../services/modules/journal";
 
 const CalculatorForm = ({
   exchange,
@@ -25,8 +964,11 @@ const CalculatorForm = ({
   isLoading
 }) => {
   const { t } = useTranslation();
-  const [localLoading, setLocalLoading] = useState(false)
+  const [localLoading, setLocalLoading] = useState(false);
   const [hasCalculated, setHasCalculated] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [formError, setFormError] = useState({});
   const [formData, setFormData] = useState({
     exchange: "Binance Future",
     feeType: "taker",
@@ -49,12 +991,37 @@ const CalculatorForm = ({
     entry: "",
     stopLoss: "",
     takeProfit: "",
-
   });
 
   useEffect(() => {
     setFormData(prev => ({ ...prev, pair }));
   }, [pair]);
+
+  const journalSearch = async (query) => {
+    if (!query) {
+      setSearchResults([]);
+      setShowDropdown(false);
+      return;
+    }
+    try {
+      const response = await jounralSearchApi(query);
+      if (response?.data?.status === "success") {
+        setSearchResults(response?.data?.data || []);
+        setShowDropdown(true);
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "Search failed");
+    }
+  };
+
+  useEffect(() => {
+    if (formData.ticker.length >= 1) {
+      journalSearch(formData.ticker);
+    } else {
+      setSearchResults([]);
+      setShowDropdown(false);
+    }
+  }, [formData.ticker]);
 
   useEffect(() => {
     if (!metaData) return;
@@ -112,6 +1079,27 @@ const CalculatorForm = ({
 
   const handleInputChange = (field) => (event) => {
     setFormData({ ...formData, [field]: event.target.value });
+    setFormError((prev) => ({
+      ...prev,
+      [field]: "",
+    }));
+  };
+
+  const handleTickerSelect = (selectedItem) => {
+    const selectedSymbol = `${selectedItem.ticker}USDT`;
+
+    setFormData(prev => ({
+      ...prev,
+      ticker: selectedSymbol,
+      pair: selectedSymbol
+    }));
+
+    if (setPair) {
+      setPair(selectedSymbol);
+    }
+
+    setShowDropdown(false);
+    setSearchResults([]);
   };
 
   const handleSizingMethod = (method) => {
@@ -141,48 +1129,97 @@ const CalculatorForm = ({
       setTf?.(presetData.atr_tf);
       setLen?.(presetData.atr_len);
       setHasCalculated(false);
-
     }
   };
+
   const simulateWhatIfAPi = async () => {
     try {
       setLocalLoading(true);
+
+      // Base payload
       const payload = {
         currentPrice: formData.level,
         direction: formData.direction,
         leverage: formData.leverage,
         deposit: formData.deposit,
-        riskOrMargin: formData.riskOrMargin,
-        positionSizeUnits: formData.positionSizeUnits || 0,
         entryPrice: formData.entry || formData.level,
         pair: formData.pair,
         target: formData.target,
         atr: formData.atr,
-        stopPrice : formData.stopLoss,
-        takePrice : formData.takeProfit
+        stopPrice: formData.stopLoss,
+        takePrice: formData.takeProfit
       };
 
-      // Call API
+      // Sizing method ke basis pe correct parameter add karo
+      if (formData.sizingMethod === "risk") {
+        payload.riskPercent = formData.riskOrMargin;
+      } else {
+        payload.marginDollar = formData.riskOrMargin;
+      }
+
       const response = await simulateApi(payload);
 
       if (response) {
         console.log("API Response:", response);
+        toast.success("Simulation successful!");
       }
     } catch (error) {
       console.error("Simulation API error:", error);
-      toast.error("Simulation failed. Please try again.");
+      toast.error(error?.response?.data?.message || "Simulation failed. Please try again.");
     } finally {
       setLocalLoading(false);
     }
   };
+
+  const validateForm = () => {
+    let errors = {};
+
+    if (!formData.pair) errors.pair = "Pair is required";
+    if (!formData.direction) errors.direction = "Direction is required";
+
+    if (!formData.deposit || Number(formData.deposit) <= 0) {
+      errors.deposit = "Enter valid deposit";
+    }
+
+    if (!formData.riskOrMargin || Number(formData.riskOrMargin) <= 0) {
+      errors.riskOrMargin = "Enter valid risk / margin";
+    }
+
+    if (!formData.leverage || Number(formData.leverage) <= 0) {
+      errors.leverage = "Enter valid leverage";
+    }
+
+    if (formData.entryMethod === "atr") {
+      if (!formData.atr || Number(formData.atr) <= 0) {
+        errors.atr = "ATR is required";
+      }
+    }
+
+    if (formData.entryMethod === "manual") {
+      if (!formData.entry) errors.entry = "Entry required";
+      if (!formData.stopLoss) errors.stopLoss = "Stop Loss required";
+      if (!formData.takeProfit) errors.takeProfit = "Take Profit required";
+    }
+
+    setFormError(errors);
+
+    // if (Object.keys(errors).length > 0) {
+    //   toast.error("Please fix the errors");
+    //   return false;
+    // }
+
+    return true;
+  };
+
   const handleCalculateClick = () => {
+    if (!validateForm()) return;
     setHasCalculated(true);
     onCalculate(formData);
   };
+
   return (
     <Box sx={{ background: "#161616", borderRadius: "16px", border: "1px solid rgba(255,255,255,0.08)", p: 2 }}>
       <Stack spacing={2}>
-
         {/* Exchange & Fees Section */}
         <Grid container spacing={1}>
           <Grid item size={{ xs: 12, md: 6 }}>
@@ -191,6 +1228,7 @@ const CalculatorForm = ({
               value={formData.exchange}
               onChange={handleChange("exchange")}
               options={exchangeOptions}
+
             />
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
@@ -199,18 +1237,19 @@ const CalculatorForm = ({
               value={formData.feeType}
               onChange={handleChange("feeType")}
               options={feeTypeOptions}
+
             />
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
             <Stack spacing={1}>
               <Typography variant="labelMd" fontSize={12} sx={{ color: "#C7C7C7" }}>{t("Chart.Fee%")}</Typography>
-              <CustomInput placeholder="0.060" value={formData.fee} onChange={handleInputChange("fee")} />
+              <CustomInput readonly placeholder="0.060" value={formData.fee} onChange={handleInputChange("fee")} />
             </Stack>
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
             <Stack spacing={1}>
               <Typography variant="labelMd" fontSize={12} sx={{ color: "#C7C7C7" }}>{t("Chart.FundingRate")}</Typography>
-              <CustomInput placeholder="0.010" value={formData.fundingRate} onChange={handleInputChange("fundingRate")} />
+              <CustomInput readonly placeholder="0.010" value={formData.fundingRate} onChange={handleInputChange("fundingRate")} />
             </Stack>
           </Grid>
         </Grid>
@@ -226,9 +1265,53 @@ const CalculatorForm = ({
             />
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
-            <Stack spacing={1}>
-              <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>{t("Chart.searchbyTicker")}</Typography>
-              <CustomInput placeholder="btc, eth, zec ..." value={formData.ticker} onChange={handleInputChange("ticker")} />
+            <Stack spacing={1} sx={{ position: 'relative' }}>
+              <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>
+                {t("Chart.searchbyTicker")}
+              </Typography>
+              <CustomInput
+                placeholder="btc, eth, zec ..."
+                value={formData.ticker}
+                onChange={handleInputChange("ticker")}
+              />
+
+              {/* Search Results Dropdown */}
+              {showDropdown && searchResults.length > 0 && (
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: '100%',
+                    left: 0,
+                    right: 0,
+                    zIndex: 1000,
+                    backgroundColor: '#1E1E1E',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    borderRadius: '8px',
+                    maxHeight: '200px',
+                    overflowY: 'auto',
+                    mt: 0.5,
+                  }}
+                >
+                  {searchResults.map((item, index) => (
+                    <Box
+                      key={index}
+                      onClick={() => handleTickerSelect(item)}
+                      sx={{
+                        p: 1.5,
+                        cursor: 'pointer',
+                        borderBottom: index !== searchResults.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none',
+                        '&:hover': {
+                          backgroundColor: 'rgba(255,255,255,0.05)',
+                        },
+                      }}
+                    >
+                      <Typography sx={{ color: '#fff', fontSize: 14 }}>
+                        {item.ticker}USDT
+                      </Typography>
+                    </Box>
+                  ))}
+                </Box>
+              )}
             </Stack>
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
@@ -243,7 +1326,9 @@ const CalculatorForm = ({
 
         {/* Sizing Options */}
         <Box>
-          <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray", mb: 2, display: "block" }}>{t("Chart.sizingOptions")}</Typography>
+          <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray", mb: 2, display: "block" }}>
+            {t("Chart.sizingOptions")}
+          </Typography>
           <Stack direction="row" spacing={2}>
             <CustomButton
               variant={formData.sizingMethod === "risk" ? "calculatorToggle" : "calculatorSmall"}
@@ -257,12 +1342,16 @@ const CalculatorForm = ({
             />
           </Stack>
         </Box>
+
         {/* Trade Parameters */}
         <Grid container spacing={1}>
           <Grid item size={{ xs: 12, md: 6 }}>
             <Stack spacing={1}>
-              <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>{t("Chart.Deposit")}</Typography>
-              <CustomInput placeholder="2000" value={formData.deposit} onChange={handleInputChange("deposit")} type="number" />
+              <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>
+                {t("Chart.Deposit")}
+              </Typography>
+              <CustomInput placeholder="2000" value={formData.deposit} onChange={handleInputChange("deposit")} error={Boolean(formError.deposit)}
+                helperText={formError.deposit} type="number" />
             </Stack>
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
@@ -270,60 +1359,74 @@ const CalculatorForm = ({
               <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>
                 {formData.sizingMethod === "risk" ? t("Chart.Risk") : t("Chart.Margin$")}
               </Typography>
-              <CustomInput placeholder="1" value={formData.riskOrMargin} onChange={handleInputChange("riskOrMargin")} type="number" />
+              <CustomInput placeholder="1" value={formData.riskOrMargin} onChange={handleInputChange("riskOrMargin")} error={Boolean(formError.riskOrMargin)}
+                helperText={formError.riskOrMargin} type="number" />
             </Stack>
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
-            <CustomSelect label={t("Chart.Direction")} value={formData.direction} onChange={handleChange("direction")} options={directionOptions} />
+            <CustomSelect label={t("Chart.Direction")} value={formData.direction} onChange={handleChange("direction")} options={directionOptions} error={Boolean(formError.direction)}
+              helperText={formError.direction} />
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
             <Stack spacing={1}>
-              <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>{t("Chart.Leverage")}</Typography>
-              <CustomInput placeholder="20" value={formData.leverage} onChange={handleInputChange("leverage")} type="number" />
+              <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>
+                {t("Chart.Leverage")}
+              </Typography>
+              <CustomInput placeholder="20" value={formData.leverage} onChange={handleInputChange("leverage")} error={Boolean(formError.leverage)}
+                helperText={formError.leverage} type="number" />
             </Stack>
           </Grid>
         </Grid>
+
         {/* Entry/Stop/Take Configuration */}
         <Box>
-          {/* <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray", mb: 2 }}>{t("Chart.entryStopTakeConfiguration")}</Typography> */}
           <Stack direction="row" spacing={2} mb={3}>
             <CustomButton
               variant={formData.entryMethod === "atr" ? "calculatorToggle" : "calculatorSmall"}
               title={t("Chart.aTRTemplate")}
               handleClickBtn={() => handleEntryMethod("atr")}
+              error={Boolean(formError.atr)}
+              helperText={formError.atr}
             />
-
             <CustomButton
               variant={formData.entryMethod === "manual" ? "calculatorToggle" : "calculatorSmall"}
               title={t("Chart.Manual")}
               handleClickBtn={() => handleEntryMethod("manual")}
             />
-
           </Stack>
 
           {formData.entryMethod === "atr" && (
             <Grid container spacing={3}>
               <Grid item size={{ xs: 12, md: 6 }}>
                 <Stack spacing={1}>
-                  <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>{t("Chart.ATR")}</Typography>
-                  <CustomInput placeholder="837.9928" value={formData.atr} onChange={handleInputChange("atr")} type="number" />
+                  <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>
+                    {t("Chart.ATR")}
+                  </Typography>
+                  <CustomInput placeholder="837.9928" value={formData.atr} onChange={handleInputChange("atr")} error={Boolean(formError.atr)}
+                    helperText={formError.atr} type="number" />
                 </Stack>
               </Grid>
               <Grid item size={{ xs: 12, md: 6 }}>
                 <Stack spacing={1}>
-                  <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>{t("Chart.target")}</Typography>
+                  <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>
+                    {t("Chart.target")}
+                  </Typography>
                   <CustomInput placeholder="3" value={formData.target} onChange={handleInputChange("target")} type="number" />
                 </Stack>
               </Grid>
               <Grid item size={{ xs: 12, md: 6 }}>
                 <Stack spacing={1}>
-                  <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>{t("Chart.level")}</Typography>
+                  <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>
+                    {t("Chart.level")}
+                  </Typography>
                   <CustomInput placeholder="115,132.00" value={formData.level} onChange={handleInputChange("level")} type="number" />
                 </Stack>
               </Grid>
               <Grid item size={{ xs: 12, md: 6 }}>
                 <Stack spacing={1}>
-                  <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>{t("Chart.lotStep")}</Typography>
+                  <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray" }}>
+                    {t("Chart.lotStep")}
+                  </Typography>
                   <Stack direction="row" spacing={2}>
                     <CustomInput placeholder="1" value={formData.lotStep} onChange={handleInputChange("lotStep")} type="number" />
                     <CustomInput placeholder="1" value={formData.lotMinimum} onChange={handleInputChange("lotMinimum")} type="number" />
@@ -332,57 +1435,40 @@ const CalculatorForm = ({
               </Grid>
             </Grid>
           )}
+
           {formData.entryMethod === "manual" && (
             <Grid container spacing={3}>
               <Grid item size={{ xs: 12, md: 6 }}>
                 <Stack spacing={1}>
-                  <Typography fontSize={12} sx={{ color: "text.bluishGray" }}>
-                    Entry
-                  </Typography>
-                  <CustomInput
-                    placeholder="Entry Price"
-                    value={formData.entry}
-                    onChange={handleInputChange("entry")}
-                    type="number"
-                  />
+                  <Typography fontSize={12} sx={{ color: "text.bluishGray" }}>Entry</Typography>
+                  <CustomInput placeholder="Entry Price" value={formData.entry} onChange={handleInputChange("entry")} error={Boolean(formError.entry)}
+                    helperText={formError.entry} type="number" />
                 </Stack>
               </Grid>
-
               <Grid item size={{ xs: 12, md: 6 }}>
                 <Stack spacing={1}>
-                  <Typography fontSize={12} sx={{ color: "text.bluishGray" }}>
-                    Stop Loss
-                  </Typography>
-                  <CustomInput
-                    placeholder="Stop Loss"
-                    value={formData.stopLoss}
-                    onChange={handleInputChange("stopLoss")}
-                    type="number"
-                  />
+                  <Typography fontSize={12} sx={{ color: "text.bluishGray" }}>Stop Loss</Typography>
+                  <CustomInput placeholder="Stop Loss" value={formData.stopLoss} onChange={handleInputChange("stopLoss")} error={Boolean(formError.stopLoss)}
+                    helperText={formError.stopLoss} type="number" />
                 </Stack>
               </Grid>
-
               <Grid item size={{ xs: 12, md: 6 }}>
                 <Stack spacing={1}>
-                  <Typography fontSize={12} sx={{ color: "text.bluishGray" }}>
-                    Take Profit
-                  </Typography>
-                  <CustomInput
-                    placeholder="Take Profit"
-                    value={formData.takeProfit}
-                    onChange={handleInputChange("takeProfit")}
-                    type="number"
-                  />
+                  <Typography fontSize={12} sx={{ color: "text.bluishGray" }}>Take Profit</Typography>
+                  <CustomInput placeholder="Take Profit" value={formData.takeProfit} onChange={handleInputChange("takeProfit")} error={Boolean(formError.takeProfit)}
+                    helperText={formError.takeProfit} type="number" />
                 </Stack>
               </Grid>
             </Grid>
           )}
-
         </Box>
+
         {/* Quick Presets */}
         {formData.entryMethod === "atr" && (
           <Box>
-            <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray", mb: 2 }}>{t("Chart.quickPresets")}</Typography>
+            <Typography variant="labelMd" fontSize={12} sx={{ color: "text.bluishGray", mb: 2 }}>
+              {t("Chart.quickPresets")}
+            </Typography>
             <Stack direction="row" spacing={2} width="100%">
               <CustomButton variant="calculatorSmall" title={t("Chart.scalp")} handleClickBtn={() => handlePreset("Scalp")} width="100%" />
               <CustomButton variant="calculatorSmall" title="Swing" handleClickBtn={() => handlePreset("Swing")} width="100%" />
@@ -396,7 +1482,7 @@ const CalculatorForm = ({
         <CustomButton
           title={isLoading ? "Calculating..." : "Calculate"}
           width="100%"
-          handleClickBtn={handleCalculateClick} // ✅ CHANGED ONLY
+          handleClickBtn={handleCalculateClick}
           disabled={isLoading}
           sx={{
             mt: 2,

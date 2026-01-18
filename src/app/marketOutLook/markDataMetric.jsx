@@ -9,8 +9,16 @@ import ReLoadIcon from "../../assets/icons/relaod-Icon.svg";
 import Speedometer from "../../components/speedMeter";
 import { useTranslation } from "react-i18next";
 import RelaodIcon from "../../assets/icons/relaod-Icon.svg";
-const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker }) => {
-  console.log("fgfyryfhruykfhaaaaaaaaaaaaaaaaaaaaaarjfrfrf", marketMetricesData?.fearGreedIndex?.value);
+import { getWhalesTrackers } from "../../services/modules/home";
+import { useEffect, useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker, whaleTrackers }) => {
+  console.log("frugfyugfurgfyurgfuyrgfuirgfuigrf", riskCalendar?.riskCalendar?.events);
+
+  const [whale, setWhale] = useState([])
+  const [isLoading, setIsLoading] = useState(false);
+
+
 
   const { t } = useTranslation();
   const cardStyle = {
@@ -181,7 +189,21 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker })
     );
   }
 
-
+  const whalesTracker = async () => {
+    try {
+      setIsLoading(true)
+      const response = await getWhalesTrackers()
+      const data = response?.data?.data
+      setWhale(data)
+    } catch (error) {
+      console.log("frfrfffffffffffff", error);
+    } finally {
+      setIsLoading(false)
+    }
+  }
+  useEffect(() => {
+    whalesTracker()
+  }, [])
 
   return (
     <>
@@ -197,15 +219,15 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker })
               {t("MarketOutlook.MarketDataMetrics.marketDataMetricsTitle")}
             </Typography></Box>
           <Box>
-            <img
+            {/* <img
               src={RelaodIcon}
               // onClick={handleReload}
               style={{ cursor: "pointer", width: "25px", height: "25px" }}
               width="20px"
-            />
+            /> */}
           </Box>
         </Box>
-        
+
         <Box mt="10px">
           <Grid container spacing={1}>
             <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
@@ -551,7 +573,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker })
         <Box mt="20px">
           <Typography variant="h6" fontFamily={"Inter Tight"} fontSize={"25px"} color="neutral.Snowwhite"> {t("MarketOutlook.MarketDataMetrics.riskCalendar30DaysTitle")}</Typography>
         </Box>
-        <Box marginTop="20px" bgcolor="neutral.darkGrey"
+        <Box marginTop="20px" bgcolor="neutral.darkGrey" borderRadius={"20px"} padding={"15px"}
         >
           <Grid container spacing={1} padding="10px">
             <Grid item>
@@ -583,7 +605,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker })
         </Box>
 
         <Grid container spacing={2} mt={2}>
-          {events.map((item, index) => (
+          {/* {events.map((item, index) => (
             <Grid item size={{ xs: 12, md: 6 }} key={index}>
               <Box
                 sx={{
@@ -623,10 +645,10 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker })
                 />
               </Box>
             </Grid>
-          ))}
+          ))} */}
         </Grid>
         <Grid container spacing={2} mt={"20px"}>
-          {events.map((item, index) => (
+          {riskCalendar?.riskCalendar?.events.slice(0, 4).map((item, index) => (
             <Grid item size={{ xs: 12, md: 6 }} key={index}>
               <Box
                 sx={{
@@ -652,31 +674,159 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker })
                 </Box>
 
                 <CustomButton
-                  title={item.buttonText}
+                  title={
+                    item?.impact === "Medium"
+                      ? item?.impact?.slice(0, 3)
+                      : item?.impact
+                  }
                   sx={{
                     fontSize: "12px",
-                    color: item.color,
-                    backgroundColor: item.backgroundColor,
+                    color:
+                      item?.impact === "Medium"
+                        ? "neutral.black"
+                        : "neutral.Snowwhite",
+                    backgroundColor:
+                      item?.impact === "Medium"
+                        ? "neutral.brightYellow"
+                        : "neutral.brightRed",
                     borderRadius: "15px",
-                    px: "20px",
+                    px: "30px",
                     py: "0px",
                     minHeight: "40px",
                   }}
-                ></CustomButton>
+                />
+
               </Box>
             </Grid>
           ))}
         </Grid>
       </Box>
-      <Box backgroundColor="background.charcoal" borderRadius={"20px"} p={3} mt={3}>
-        <Box mt="10px" display="flex" justifyContent="space-between">
+      <Box position="relative"
+        backgroundColor="background.charcoal"
+        borderRadius={"20px"}
+        p={3}
+        mt={3}>
+        <Box mt="10px" display="flex" justifyContent="space-between" alignItems="center">
           <Typography variant="h3" fontSize={"25px"} color="neutral.Snowwhite">
             {t("MarketOutlook.MarketDataMetrics.whalesTrackerTitle")}
           </Typography>
-          <img src={ReLoadIcon} alt="" />
+
+          {/* Reload Button with Loader */}
+          <Box display="flex" alignItems="center" justifyContent="center" width="32px" height="32px">
+            {isLoading && (
+              <Box
+                position="absolute"
+                top={0}
+                left={0}
+                width="100%"
+                height="100%"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                bgcolor="rgba(0,0,0,0.45)"
+                zIndex={20}
+                borderRadius="20px"
+              >
+                <CircularProgress
+                  size={45}
+                  thickness={4}
+                  sx={{ color: "neutral.Snowwhite" }}
+                />
+              </Box>
+            )}
+            <img
+              src={ReLoadIcon}
+              alt="reload"
+              role="button"
+              tabIndex={0}
+              onClick={!isLoading ? whalesTracker : undefined}
+              style={{
+                cursor: isLoading ? "not-allowed" : "pointer",
+                opacity: isLoading ? 0.5 : 1,
+              }}
+            />
+
+          </Box>
         </Box>
-        <Grid container spacing={2} mt="12px">
-          {data.map((item, index) => (
+
+        <Grid container spacing={2} mt="50px">
+          {whale?.whales?.[0]?.transactions?.slice(0, 2).map((item, index) => (
+            <Grid item xs={12} size={{ xs: 12, sm: 6, md: 6 }} key={index}>
+              <Box
+                sx={{
+                  bgcolor: "neutral.darkGrey",
+                  padding: "25px",
+                  borderRadius: "20px",
+                  color: "neutral.Snowwhite",
+                  opacity: isLoading ? 0.5 : 1,
+                  pointerEvents: isLoading ? "none" : "auto",
+                }}
+              >
+                <Grid container alignItems="center" justifyContent="space-between">
+                  <Grid item>
+                    <Box display="flex" alignItems="center" gap={3}>
+                      <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+                        {whale?.whales?.[0].address}
+                      </Typography>
+
+                      <CustomButton
+                        variant="h6"
+                        title={item.actionType}
+                        sx={{
+                          backgroundColor:
+                            item.actionType === "Long" || item.actionType === "Buy"
+                              ? "neutral.brightGreen"
+                              : "neutral.brightRed",
+                          borderRadius: "10px",
+                          fontWeight: 600,
+                          fontSize: "10px",
+                          px: "30px",
+                          py: "0px",
+                          minHeight: "30px",
+                        }}
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item>
+                    <Typography sx={{ fontSize: "14px", color: "neutral.gray", fontWeight: 600 }}>
+                      {item.timeAgo}
+                    </Typography>
+                  </Grid>
+                </Grid>
+
+                <Box display="flex" gap={2} alignItems="center" mt={2}>
+                  <Box>
+                    <Typography sx={{ fontWeight: 600, fontSize: "15px" }}>
+                      {item.actionText}
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <Typography sx={{ fontSize: "12px", fontWeight: 600, color: "rgba(180, 180, 180, 1)" }}>
+                      {item.value}
+                    </Typography>
+                  </Box>
+                </Box>
+
+                <Box display="flex" justifyContent="space-between" mt={2}>
+                  <Typography sx={{ fontSize: "15px", marginTop: "30px", color: "#FFF" }}>
+                    {item.asset}
+                  </Typography>
+                  <Box display="flex" gap="20px" mt="10px">
+                    <Box>
+                      <Typography fontSize="12px" color="rgba(180, 180, 180, 1)" fontWeight={400}>
+                        Liquidation
+                      </Typography>
+                      <Typography fontSize="14px" color="rgba(255, 255, 255, 1)" fontWeight={600}>
+                        {item.liquidation}
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+            </Grid>
+          ))}
+
+          {whale?.whales?.[1]?.transactions?.slice(0, 2).map((item, index) => (
             <Grid item size={{ xs: 12, sm: 6, md: 6 }} key={index}>
               <Box
                 sx={{
@@ -684,78 +834,66 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker })
                   padding: "25px",
                   borderRadius: "20px",
                   color: "neutral.Snowwhite",
+                  opacity: isLoading ? 0.5 : 1,
+                  pointerEvents: isLoading ? "none" : "auto",
                 }}
               >
-                <Grid
-                  container
-                  alignItems="center"
-                  justifyContent="space-between"
-                >
-                  <Grid item >
+                <Grid container alignItems="center" justifyContent="space-between">
+                  <Grid item>
                     <Box display="flex" alignItems="center" gap={3}>
                       <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
-                        {item.shortCode}
+                        {whale?.whales?.[1].address}
                       </Typography>
 
                       <CustomButton
                         variant="h6"
-                        title={item.buttonTitle}
+                        title={item.actionType}
                         sx={{
-                          backgroundColor: item.buttonColor,
+                          backgroundColor:
+                            item.actionType === "Long" || item.actionType === "Buy"
+                              ? "neutral.brightGreen"
+                              : "neutral.brightRed",
                           borderRadius: "10px",
                           fontWeight: 600,
                           fontSize: "10px",
                           px: "30px",
                           py: "0px",
                           minHeight: "30px",
-
                         }}
                       />
                     </Box>
                   </Grid>
                   <Grid item>
                     <Typography sx={{ fontSize: "14px", color: "neutral.gray", fontWeight: 550 }}>
-                      {item.time}
+                      {item.timeAgo}
                     </Typography>
                   </Grid>
                 </Grid>
-                <Box display={"flex"} gap={2} alignItems={"center"} mt={2}>
+
+                <Box display="flex" gap={2} alignItems="center" mt={2}>
                   <Box>
                     <Typography sx={{ fontWeight: 600, fontSize: "15px" }}>
-                      {item.brought}
-
+                      {item.actionText}
                     </Typography>
                   </Box>
                   <Box>
                     <Typography sx={{ fontSize: "12px", fontWeight: 600, color: "rgba(180, 180, 180, 1)" }}>
-                      {item.amount}
+                      {item.value}
                     </Typography>
                   </Box>
                 </Box>
-                <Box display="flex" justifyContent="space-between">
-                  <Typography
-                    sx={{ fontSize: "15px", marginTop: "30px", color: "#FFF" }}
-                  >
-                    {item.source}
+
+                <Box display="flex" justifyContent="space-between" mt={2}>
+                  <Typography sx={{ fontSize: "15px", marginTop: "30px", color: "#FFF" }}>
+                    {item.asset}
                   </Typography>
-                  {/* <Box display="flex" gap="20px" mt="10px">
-                      <Box>
-                        <Typography fontSize="12px" color="#B4B4B4">
-                          {item.Liquidation}
-                        </Typography>
-                        <Typography variant="h6" color="#FFFFFF">
-                          {item.value1}
-                        </Typography>
-                      </Box>
-                      <Box>
-                        <Typography fontSize="12px" color="#B4B4B4">
-                          {item.position}
-                        </Typography>
-                        <Typography fontSize="15px" color="#3EDD87">
-                          {item.value2}
-                        </Typography>
-                      </Box>
-                    </Box> */}
+                  <Box display="flex" gap="20px" mt="10px">
+                    <Box>
+                      <Typography fontSize="12px" color="#B4B4B4">
+                        {item.liquidation}
+                      </Typography>
+                    </Box>
+                  </Box>
                 </Box>
               </Box>
             </Grid>

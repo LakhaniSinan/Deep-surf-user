@@ -3,11 +3,13 @@ import { Box, Grid, Stack, Typography } from "@mui/material";
 import CustomButton from "../../components/customButton";
 import { useTranslation } from "react-i18next";
 import { CSVLink } from "react-csv";
-
+import { useNavigate } from "react-router-dom";
 const RiskCheck = ({ calculateData }) => {
+  console.log("furfrgyfgrfgyrfgfeteifgeyiyegfiurfgirufr", calculateData?.currentPrice);
+  console.log("furfrgyfgrfgyrfgfeteifgeyiyegfiurfgirufr", calculateData?.pair);
   const { t } = useTranslation();
   const [copyMessage, setCopyMessage] = useState("");
-
+  const navigate = useNavigate();
   // Ref for CSVLink
   const csvLinkRef = useRef();
 
@@ -45,7 +47,7 @@ const RiskCheck = ({ calculateData }) => {
     for (let key in obj) {
       let value = obj[key];
       if (value && typeof value === "object" && !Array.isArray(value)) {
-        result[key] = JSON.stringify(value);
+        result[key] = JSON.stringify(value);  // <-- agar object hai to string kar diya
       } else if (value === null || value === undefined || (typeof value === "number" && isNaN(value))) {
         result[key] = "-";
       } else {
@@ -55,12 +57,50 @@ const RiskCheck = ({ calculateData }) => {
     return result;
   };
 
+
   const csvData = calculateData ? [flattenForCSV(calculateData)] : [];
 
   // Trigger CSV download
   const handleExportCSV = () => {
     csvLinkRef.current.link.click();
   };
+  // Trigger JSON download
+  const handleExportJSON = () => {
+    if (!calculateData) return;
+
+    const fileName = `${calculateData.pair || "trade"}_${Date.now()}.json`;
+    const jsonStr = JSON.stringify(calculateData, null, 2); // Pretty print JSON
+
+    // Create a temporary link to trigger download
+    const blob = new Blob([jsonStr], { type: "application/json" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+  const handleAddToJournal = () => {
+    if (!calculateData) return;
+
+    console.log(
+      "currentPrice:",
+      calculateData?.currentPrice
+    );
+    console.log(
+      "pair:",
+      calculateData?.pair
+    );
+
+    navigate("/save-alert", {
+      state: {
+        currentPrice: calculateData?.currentPrice,
+        pair: calculateData?.pair,
+        fullData: calculateData,
+      },
+    });
+  };
+
 
   return (
     <Box
@@ -100,12 +140,12 @@ const RiskCheck = ({ calculateData }) => {
             handleClickBtn={copyResults}
             sx={{ py: 0.75, px: 2, fontSize: "14px", minHeight: "36px", flex: 1, minWidth: "120px" }}
           />
-          <CustomButton
+          {/* <CustomButton
             variant="gradient"
             title={t("Chart.openOrder")}
             handleClickBtn={() => console.log("Open Order")}
             sx={{ py: 0.75, px: 2, fontSize: "14px", minHeight: "36px", flex: 1, minWidth: "120px" }}
-          />
+          /> */}
         </Stack>
 
         {/* Add to Journal + Export Buttons */}
@@ -113,7 +153,7 @@ const RiskCheck = ({ calculateData }) => {
           <CustomButton
             variant="calculatorSmall"
             title="Add to Journal"
-            handleClickBtn={() => console.log("Add to Journal")}
+            handleClickBtn={handleAddToJournal}
             width="100%"
           />
         </Grid>
@@ -126,6 +166,7 @@ const RiskCheck = ({ calculateData }) => {
               className="hidden"
               ref={csvLinkRef}
               target="_blank"
+              separator=","
             />
             <CustomButton
               variant="calculatorSmall"
@@ -146,7 +187,7 @@ const RiskCheck = ({ calculateData }) => {
             <CustomButton
               variant="calculatorSmall"
               title={t("Chart.exportJSON")}
-              handleClickBtn={() => console.log("Export JSON")}
+              handleClickBtn={handleExportJSON}  // <-- updated
               width="100%"
               sx={{
                 // backgroundColor: "rgba(28, 28, 28, 1)",

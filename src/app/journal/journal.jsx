@@ -21,9 +21,11 @@ import { useNavigate } from "react-router-dom";
 import { deleteJournalAlertById, journalAlert } from "../../services/modules/journal";
 import { toast } from "react-toastify";
 import CoinAlertSkeleton from "../../components/skeleton/journal/coinAlertSkeleton";
+import { useTranslation } from "react-i18next";
 
 const CoinAlert = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const [isLoading, setIsLoading] = useState(false);
     const [createAlert, setCreateAlert] = useState([]);
@@ -81,18 +83,19 @@ const CoinAlert = () => {
             <Container>
                 <Box sx={{ color: "#fff", p: 3 }}>
                     <Typography variant="h2" fontWeight={600} mb={3}>
-                        Journal
+                        {t("journal.heading")}
+
                     </Typography>
 
                     <Paper elevation={0} sx={{ bgcolor: "#141414", borderRadius: "14px", p: 3 }}>
                         <Box mb={3}>
                             <Typography fontWeight={600} color="neutral.Snowwhite">
-                                My Coins & Alerts
+                                {t("journal.myCoinsAlerts")}
                             </Typography>
 
                             <Box display="flex" alignItems="center" justifyContent="space-between" gap={1}>
                                 <Typography fontSize="13px" color="rgba(103, 107, 119, 1)">
-                                    Alerts operate in real-time via WebSocket.
+                                    {t("journal.alertsRealtime")}
                                 </Typography>
 
                                 <CustomButton
@@ -140,7 +143,7 @@ const CoinAlert = () => {
                                                 </Box>
                                             </Box>
                                             <Typography fontSize="13px" fontWeight={600} color="neutral.Snowwhite">
-                                                Price {item.priceRelation} {item.targetPrice}
+                                                {t("journal.price")} {item.priceRelation} {item.targetPrice}
                                             </Typography>
 
                                             <Typography
