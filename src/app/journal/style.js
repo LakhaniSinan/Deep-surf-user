@@ -13,7 +13,7 @@ export const styles = {
     overflow: "hidden",
     boxSizing: "border-box",
     bgcolor: "background.black",
-    maxHeight: "50vh",
+    // maxHeight: "50vh",
   },
 
   sectionContainer: {

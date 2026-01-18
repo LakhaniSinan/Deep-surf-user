@@ -9,8 +9,8 @@ export const coinCheckStyles = {
     
   },
   card: {
-    backgroundColor: '#1a1a1a',
-    border: '1px solid #2b2b2b',
+    backgroundColor: 'rgba(28, 28, 28, 1)',
+    // border: '1px solid #2b2b2b',
     borderRadius: '12px',
     padding: { xs: 2, sm: 3 },
     boxShadow: '0 4px 20px rgba(0,0,0,0.3)',

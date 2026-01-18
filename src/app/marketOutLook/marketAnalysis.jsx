@@ -45,9 +45,9 @@ import React, { useState } from "react";
 import CustomButton from "../../components/customButton";
 import { useTranslation } from "react-i18next";
 import StarIcon from "../../assets/icons/stairs.svg";
-import Macroeconomics from "./Macroeconomics"; // Macroeconomics component
 
-const AiMarketAnalysis = () => {
+const AiMarketAnalysis = ({ aiAnalysis }) => {
+  console.log("grgrrrrrrrrrrrrrrrrr", aiAnalysis?.aiAnalysis)
   const { t } = useTranslation();
 
   const [loading, setLoading] = useState(false);
@@ -55,50 +55,25 @@ const AiMarketAnalysis = () => {
 
   const handleGenerateAnalysis = () => {
     setLoading(true);
+
     setTimeout(() => {
       const dummyData = {
-        // AI Analysis
         aiAnalysis: [
-          { title: "Market Trend", content: "The market is bullish today with high activity in tech stocks." },
+          {
+            title: "Market Trend",
+            content:  aiAnalysis?.aiAnalysis ,
+          },
         ],
-        // Macroeconomics data
-        summary: "Today, the economy shows strong signs of growth with low unemployment.",
-        cpiReport: {
-          title: "CPI Report",
-          date: "Jan 12, 2026",
-          forecast: "2.1%",
-          previous: "1.9%",
-          impact: "High",
-        },
-        unemploymentRate: {
-          title: "Unemployment Rate",
-          date: "Jan 12, 2026",
-          forecast: "3.5%",
-          previous: "3.6%",
-          impact: "Medium",
-        },
-        scenarios: {
-          bullish: { label: "Bullish", color: "green", description: "Markets trending up." },
-          neutral: { label: "Neutral", color: "gray", description: "Markets stable." },
-          bearish: { label: "Bearish", color: "red", description: "Markets trending down." },
-        },
-        actionPlan: [
-          "Monitor tech sector stocks.",
-          "Review commodity indexes.",
-          "Check Federal announcements.",
-          "Analyze trade volumes.",
-          "Adjust portfolio accordingly.",
-        ],
-        historicalContext: "Historically, January shows growth in tech and finance sectors.",
-        fedSpeeches: { powell: "Powell speech: Stable economy expected.", otherMembers: "Other members remain cautious." },
       };
+
       setData(dummyData);
       setLoading(false);
     }, 1000);
   };
 
+
   return (
-    <Box mt={2} px={{ xs: 2, md: 4 }}>
+    <Box mt={2} px={{ xs: 2, md: 0 }}>
       {/* Header + Button */}
       <Box display="flex" justifyContent="space-between" alignItems="center" flexWrap={{ xs: "wrap", md: "nowrap" }}>
         <Box>
@@ -113,10 +88,10 @@ const AiMarketAnalysis = () => {
           {!data && (
             <CustomButton
               title={t("MarketOutlook.generateAnalysisTitle")}
-              icon={<img src={StarIcon} style={{ width: 20, height: 20 }} />}
+              // icon={<img src={StarIcon} style={{ width: 20, height: 20 }} />}
               onClick={handleGenerateAnalysis}
               sx={{
-                backgroundColor: "#FF6421",
+                backgroundColor: "neutral.vermilionOrange",
                 fontSize: "15px",
                 borderRadius: "20px",
                 marginTop: "10px",
@@ -140,7 +115,7 @@ const AiMarketAnalysis = () => {
         <Box mt={3}>
           {data.aiAnalysis.map((section, index) => (
             <Box key={index} p={2} mb={2} borderRadius="10px" bgcolor="#1C1C1C">
-              <Typography fontWeight={600} color="#fff">{section.title}</Typography>
+              {/* <Typography fontWeight={600} color="#fff">{section.title}</Typography> */}
               <Typography fontSize="14px" color="#fff" mt={1}>{section.content}</Typography>
             </Box>
           ))}
@@ -150,7 +125,7 @@ const AiMarketAnalysis = () => {
 
 
       {/* Macroeconomics Section */}
-      {data && <Macroeconomics data={data} />}
+      {/* {data && <Macroeconomics data={data} />} */}
     </Box>
   );
 };

@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 const MarketIntelligence = ({ coinData }) => {
-    const { t } = useTranslation();
+  const { t } = useTranslation();
   const marketStats = [
     {
       title: (t("AiTools.MarketIntelligence.fundingRate")),
@@ -14,14 +14,14 @@ const MarketIntelligence = ({ coinData }) => {
       description: "Heavily long",
     },
     {
-      title:  (t("AiTools.MarketIntelligence.volume24h")),
+      title: (t("AiTools.MarketIntelligence.volume24h")),
       value: coinData?.enhancedMarketIntelligence?.volume24h?.value,
       description: coinData?.enhancedMarketIntelligence?.volume24h?.description,
     },
     {
       title: (t("AiTools.MarketIntelligence.liquidityRisk")),
       value: coinData?.enhancedMarketIntelligence?.liquidationRisk?.long,
-      value1: coinData?.enhancedMarketIntelligence?.liquidationRisk?.long,
+      value1: coinData?.enhancedMarketIntelligence?.liquidationRisk?.short,
       description: coinData?.enhancedMarketIntelligence?.liquidationRisk?.zones,
     },
   ];
@@ -44,7 +44,11 @@ const MarketIntelligence = ({ coinData }) => {
                 <Typography
                   variant="h5"
                   mt="10px"
-                  color={coinData?.enhancedMarketIntelligence?.fundingRate?.value.includes("-") ? "text.errorColor" : "text.greenColor"}
+                  sx={{
+                    color: item?.value?.toString()?.includes("-")
+                      ? "text.errorColor"
+                      : "text.greenColor",
+                  }}
                 >
                   {item.value} {item.value1}
                 </Typography>
@@ -57,8 +61,8 @@ const MarketIntelligence = ({ coinData }) => {
                     item.description === "Neutral"
                       ? "neutral.brightYellow"
                       : item.description === "Heavily long"
-                        ? "#4CAF50"
-                        : "#FFFFFF"
+                        ? "neutral.brightGreen"
+                        : "neutral.Snowwhite"
                   }
                 >
                   {item.description}

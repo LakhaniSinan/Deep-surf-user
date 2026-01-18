@@ -103,7 +103,7 @@
       "logout": "Cerrar sesión",
       "notification": "Notificación"
     },
-    "wellcomeBack": "¡Bienvenido de nuevo!",
+    "wellcomeBack": "¡Bienvenido de nuevo",
     "addTools": "Agregar Herramientas",
     "aiProof": "A prueba de IA — Verificación rápida de monedas",
     "aiProofHeading": "Análisis profundo de IA de cualquier moneda en segundos. Ingresa el ticker, obtén un desglose completo y una recomendación.",
@@ -122,7 +122,8 @@
     },
     "topCoinByVolume": {
       "notFound": "No encontrado",
-      "title": "Principales monedas por volumen"
+      "top10ByVolume": "Top 10 por volumen"
+
     }
   },
   "journal": {
@@ -130,7 +131,12 @@
     "myCoinsAlerts": "Mis Monedas y Alertas",
     "myCoinsAlertHeading": "¡Las alertas funcionan en tiempo real a través de WebSocket! Recibe notificaciones instantáneas cuando se cumplan las condiciones.",
     "addToJournal": "Agregar al Diario",
-    "saveAlert": "Guardar alerta"
+    "saveAlert": "Guardar alerta",
+    "alertsRealtime": "Las alertas funcionan en tiempo real a través de WebSocket.",
+    "price": "Precio",
+    "ticker": "Símbolo (p. ej., BTC)",
+    "selectPriceRelation": "Seleccionar relación de precio",
+    "value": "valor"
   },
   "AiTools": {
     "aiToolsTitle": "Herramientas de IA",
@@ -191,7 +197,8 @@
       "volatility": "Volatilidad",
       "top20Volume24h": "Top 20 por volumen 24h :",
       "top20Volume7d": "Top 20 por volumen 7d :",
-      "topCoinsByVolatility": "Principales monedas por volatilidad :"
+      "topCoinsByVolatility": "Principales monedas por volatilidad :",
+      "topCoinsInfo": "Principales monedas por volumen de negociación y volatilidad (ATR/Precio). Ayuda a encontrar instrumentos de trading activos."
     },
     "LiquidationMap": {
       "liquidationMapTitle": "Mapa de Liquidación",
@@ -200,7 +207,6 @@
       "shortLiquidations": "Liquidaciones SHORT",
       "Current": "Actual",
       "price": "precio"
-
     },
     "FuturesMetrics": {
       "futuresMetricesTitle": "Métricas de Futuros",

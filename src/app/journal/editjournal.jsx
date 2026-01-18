@@ -6,7 +6,7 @@ import CustomInput from "../../components/customInput";
 import ArrowBtn from "../../assets/icons/arrow-back-btn.svg"
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getDropdownApi, updateJournalAlert } from "../../services/modules/journal";
+import { getDropdownApi, jounralSearchApi, journalLiveCoin, updateJournalAlert } from "../../services/modules/journal";
 import CustomSelect from "../../components/customSelect";
 import CustomButton from "../../components/customButton";
 import { useTranslation } from "react-i18next";
@@ -20,6 +20,9 @@ const EditJournal = () => {
   const [dropDownValue, setDropDownValue] = useState({ priceRelation: [] });
   const [exchangeMarketData, setExchangeMarketData] = useState(null);
   const [saveLoading, setSaveLoading] = useState(false);
+  const [search, setSearch] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
   console.log("dwdwdwdddddddddddddddddd", exchangeMarketData);
 
   const { t } = useTranslation();
@@ -31,7 +34,6 @@ const EditJournal = () => {
     value: "",
     priceRelation: ""
   })
-  const defaultPair = "BTCUSDT";
   const getJournalAlertById = async () => {
     try {
       setSaveLoading(true);   // 🔥 yahan
@@ -43,10 +45,11 @@ const EditJournal = () => {
       }
       // Fix: Pass id first, then payload
       const response = await updateJournalAlert(id, payload);
-
       if (response?.data?.status === "success") {
         console.log("fuhfhrufrfrfrf", response?.data?.data);
         toast.success(response?.data?.message);
+
+        // Form reset
         setFormData(prev => ({
           ...prev,
           ticker: "",
@@ -54,12 +57,15 @@ const EditJournal = () => {
           value: ""
         }));
         setFormErrors({});
-        navigate("/coin-alert");
       }
+      setTimeout(() => {
+        navigate("/coin-alert");
+      }, 100);
+
     } catch (error) {
-      toast.error(error?.response?.data?.error || "Something went wrong");
+      // toast.error(error?.response?.data?.error || "Something went wrong");
     } finally {
-      setSaveLoading(false);  // 🔥 yahan
+      setSaveLoading(false);
     }
   };
 
@@ -125,33 +131,36 @@ const EditJournal = () => {
     "& .MuiSelect-select": { color: "#fff" },
     "& .MuiSelect-icon": { color: "rgba(141, 143, 149, 1)" },
   };
-  const exchangeMarket = async (pair) => {
-    try {
-      setIsLoading(true);
-      const response = await exchangeMarketApi({ pair });
-      const data = response?.data?.data;
-      setExchangeMarketData(data);
-      console.log("ffffffffffdddddddddddddddddddddddddddddddddfffffffffffffff", data?.current_price);
 
+
+  const journalSearch = async (query) => {
+    if (!query) {
+      setSearchResults([]);
+      setShowDropdown(false);
+      return;
+    }
+
+    try {
+      const response = await jounralSearchApi(query);
+      if (response?.data?.status === "success") {
+        setSearchResults(response?.data?.data || []);
+        setShowDropdown(true);
+      }
     } catch (error) {
-      console.log("failed to exchange market APi");
-    } finally {
-      setIsLoading(false);
+      toast.error(error?.response?.data?.message || "Search failed");
     }
   };
+
   useEffect(() => {
-
-    exchangeMarket(defaultPair);
-  }, []);
-
-
+    if (search.length >= 1) journalSearch(search);
+  }, [search]);
   return (
     <Box sx={styles.pageRoot}>
       <Header />
       <Container maxWidth="lg">
         <Box my={5}>
           <Typography variant="h1" color={theme.palette.text.primary}>
-            Journal
+            {t("journal.heading")}
           </Typography>
         </Box>
 
@@ -159,10 +168,10 @@ const EditJournal = () => {
 
           <Box>
             <Typography variant="h5" color={theme.palette.text.primary}>
-              My Coins & Alerts
+              {t("journal.myCoinsAlerts")}
             </Typography>
             <Typography variant="body2" color={theme.palette.text.secondary}>
-              Alerts work in real-time via WebSocket! Get instant notifications when conditions are met.
+             {t("journal.myCoinsAlertHeading")}
             </Typography>
           </Box>
 
@@ -184,32 +193,81 @@ const EditJournal = () => {
               </Box>
 
               <Stack direction="row" spacing={2} mt={5}>
+                {/* SEARCH INPUT + DROPDOWN */}
+                <Box sx={{ position: "relative", width: "100%" }}>
+                  <CustomInput
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    sx={inputStyles}
+                    placeholder={t("journal.ticker")}
+                    inputBgColor={"rgba(41, 40, 40, 1)"}
+
+                  />
+
+                  {showDropdown && searchResults.length > 0 && (
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        top: "100%",
+                        left: 0,
+                        width: "100%",
+                        bgcolor: "#292828",
+                        border: "1px solid #8f8f8f",
+                        borderRadius: "10px",
+                        maxHeight: "200px",
+                        overflowY: "auto",
+                        zIndex: 10,
+                      }}
+                    >
+                      {searchResults.map((item, index) => (
+                        <Box
+                          key={index}
+                          onClick={async () => {
+                            const coin = item.ticker.toLowerCase();
+                            setFormData({ ...formData, ticker: item.ticker });
+                            setSearch(item.ticker);
+                            setShowDropdown(false);
+
+                            // Fetch current price from live API
+                            try {
+                              const response = await journalLiveCoin(coin);
+                              console.log("ffefefefeeeeeeeeeeeeeeeeeeeeee", response?.data?.data?.price);
+
+                              const price = response?.data?.data?.price || "";
+                              setFormData(prev => ({ ...prev, price }));
+                            } catch (error) {
+                              console.error("Error fetching coin price", error);
+                              setFormData(prev => ({ ...prev, price: "" }));
+                              toast.error("Failed to fetch coin price");
+                            }
+                          }}
+                          sx={{
+                            px: 2,
+                            py: 1,
+                            cursor: "pointer",
+                            "&:hover": { backgroundColor: "#3a3a3a" },
+                            color: "#fff",
+                          }}
+                        >
+                          {item.ticker} - {item.name}
+                        </Box>
+                      ))}
+                    </Box>
+                  )}
+                </Box>
+
+                {/* PRICE INPUT */}
                 <CustomInput
-                  sx={inputStyles}
-                  value={formData.ticker}
-                  border={theme.palette.background.default}
-                  onChange={(e) => handleChange("ticker", e.target.value)}
-                  placeholder={'Ticker (e.g., BTC)'}
-                />
-                <CustomInput
+                  value={formData.price}
+                  onChange={(e) => handleChange("price", e.target.value)}
                   sx={{
                     ...inputStyles,
-                    "& .MuiOutlinedInput-root": {
-                      ...inputStyles["& .MuiOutlinedInput-root"],
-                    },
-                    "& .MuiOutlinedInput-input.Mui-disabled": {
-                      color: "#fff",             // text color
-                      WebkitTextFillColor: "#fff" // for Chrome/Safari
-                    },
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "rgba(143, 143, 143, 1)", // keep border color
-                    }
+                    "& .MuiOutlinedInput-input.Mui-disabled": { color: "#fff", WebkitTextFillColor: "#fff" },
+                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(143, 143, 143, 1)" },
                   }}
-                  value={exchangeMarketData?.current_price || ""}
-                  placeholder="Price"
+                  placeholder={t("journal.price")}
                   disabled
                 />
-
               </Stack>
 
 
@@ -219,7 +277,7 @@ const EditJournal = () => {
                   <CustomSelect
                     sx={whiteSelectText}
                     options={pairOptions}
-                    placeholder="Crossed"
+                    placeholder={t("journal.selectPriceRelation")}
                     onChange={(e) => handleChange("priceRelation", e.target.value)}
 
                   />
@@ -229,7 +287,7 @@ const EditJournal = () => {
                   <CustomInput
                     sx={inputStyles}
                     value={formData.value}
-                    placeholder="Value"
+                    placeholder={t("journal.value")}
                     onChange={(e) => handleChange("value", e.target.value)}
                   />
                 </Box>

@@ -78,6 +78,7 @@ const Header = () => {
   };
 
   const handleLanguageChange = (e) => {
+    console.log(e.target.value,"VVVVVV");
     i18n.changeLanguage(e.target.value);
   };
 
@@ -121,7 +122,7 @@ const Header = () => {
               py: 1,
             }}
           >
-            {navItems.map((item) => {
+            {/* {navItems.map((item) => {
               if (item.dropdown) {
                 return (
                   <Box key="language-dropdown" sx={{ minWidth: "fit-content" }}>
@@ -191,8 +192,8 @@ const Header = () => {
                     py: 1.3,
                     borderRadius: "12px",
                     fontSize: "15px",
-                    color: "gray",       // disabled color
-                    cursor: "not-allowed",
+                    color: "gray",
+                    // cursor: "not-allowed",
                   }}
                 >
                   {item.label}
@@ -214,7 +215,86 @@ const Header = () => {
                 </Button>
               );
 
+            })} */}
+            {navItems.map((item) => {
+              if (item.dropdown) {
+                return (
+                  <Box key="language-dropdown" sx={{ minWidth: "fit-content" }}>
+                    <CustomSelect
+                      height="50px"
+                      value={selectedLang.code}
+                      onChange={handleLanguageChange}
+                      renderValue={(selected) => {
+                        const lang =
+                          languages.find((l) => l.code === selected) || languages[0];
+                        return (
+                          <Box display="flex" alignItems="center" gap={1}>
+                            <Box
+                              component="img"
+                              src={globeIcon}
+                              alt="Language"
+                              sx={{
+                                width: "20px",
+                                height: "20px",
+                              }}
+                            />
+                            <Typography
+                              sx={{ color: "#A3A3A3", fontSize: "15px" }}
+                            >
+                              {t(lang.labelKey)}
+                            </Typography>
+                          </Box>
+                        );
+                      }}
+                      backgroundColor="transparent"
+                      sx={{
+                        height: "60px",
+                      }}
+                    >
+                      {languages.map((lang) => (
+                        <MenuItem key={lang.code} value={lang.code}>
+                          <Box display="flex" alignItems="center" gap={1}>
+                            <Box
+                              component="img"
+                              src={lang.flag}
+                              alt={lang.code}
+                              sx={{
+                                width: "22px",
+                                height: "16px",
+                                borderRadius: "2px",
+                              }}
+                            />
+                            <Typography color="text.primary">
+                              {t(lang.labelKey)}
+                            </Typography>
+                          </Box>
+                        </MenuItem>
+                      ))}
+                    </CustomSelect>
+                  </Box>
+                );
+              }
+
+              // ✅ Login button ko Typography se Button me convert kar diya
+              return (
+                <Button
+                  key={item.label}
+                  onClick={() => handleNavClick(item)}
+                  sx={{
+                    px: 6,
+                    py: 1.3,
+                    borderRadius: "12px",
+                    fontSize: "15px",
+                    color: "#A3A3A3",  // normal color
+                    border: "1px solid rgba(255, 255, 255, 0.07)",
+                    cursor: "pointer",
+                  }}
+                >
+                  {item.label}
+                </Button>
+              );
             })}
+
           </Box>
 
           <IconButton onClick={handleDrawerToggle} sx={headerStyles.menuButton}>

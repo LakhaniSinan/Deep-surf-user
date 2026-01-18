@@ -9,6 +9,7 @@ import LandingPage from "./app/landingPage";
 import UserProfile from "./app/auth/profile";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import NotFound from './components/noRouteFound';
 
 
 
@@ -28,7 +29,6 @@ function App() {
           {/* Public Route (Landing Page) */}
           <Route path="/" element={<LandingPage />} />
 
-          {/* Auth Routes */}
           <Route element={<AuthProtectedLayout />}>
             {AUTH_ROUTES?.map((route) => (
               <Route
@@ -41,7 +41,6 @@ function App() {
 
           <Route path="/user-profile" element={<UserProfile />} />
 
-          {/* Protected Routes */}
           <Route element={<ProtectedLayout />}>
             {APP_Route?.map((route) => (
               <Route
@@ -52,6 +51,8 @@ function App() {
             ))}
 
           </Route>
+          {/* 404 Not Found Route - Must be last */}
+          {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </Router>
     </>

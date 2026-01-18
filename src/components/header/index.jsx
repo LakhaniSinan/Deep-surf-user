@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Box, Typography, IconButton, Menu, MenuItem } from "@mui/material";
+import { Box, Typography, IconButton, Menu, MenuItem, Container } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -27,9 +27,10 @@ const Header = () => {
   const navItems = [
     { link: "/dashboard", label: t("dashboard.navitem.dashboard") },
     { link: "/journal", label: t("dashboard.navitem.journal") },
-    { link: "/chart", label: t("dashboard.navitem.chart") },
+    { link: "/coming-soon", label: t("dashboard.navitem.chart") },
     { link: "/calculator", label: t("dashboard.navitem.calculator") },
-    { link: "/ai-tools", label: t("dashboard.navitem.aiTools") },
+    // { link: "/ai-tools", label: t("dashboard.navitem.aiTools") },
+    { link: "/new-ai", label: "Ai Tools"},
     { link: "/pro-analytics", label: t("dashboard.navitem.proAnalytics") },
     { link: "/market-outlook", label: t("dashboard.navitem.marketOutlook") },
     { link: "/notification", label: t("dashboard.navitem.notification") }
@@ -98,12 +99,13 @@ const Header = () => {
 
   return (
     <>
-      <Box sx={headerStyles.headerContainer}>
+      {/* <Box sx={headerStyles.headerContainer}> */}
+      <Container maxWidth="lg" sx={{ display: "flex", justifyContent: "space-between", gap: 2, mt: 3 }}>
         <Box
           display="flex"
           alignItems="center"
           gap={1.5}
-          flexShrink={0}
+          // flexShrink={0}
           sx={{ minWidth: 0, cursor: "pointer" }}
           onClick={() => navigate("/dashboard")}
         >
@@ -163,7 +165,8 @@ const Header = () => {
           </Box>
 
         </Box>
-      </Box>
+      </Container>
+      {/* </Box> */}
       <NavigationDrawer
         open={drawerOpen}
         onClose={handleDrawerToggle}

@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 
 
 const IctLiquid = ({ coinData }) => {
+  console.log("rufurgfiugrfiugrf8rfi8gufurufgurfgur" , coinData?.ictLiquidityLevels[0].priceFormatted);
+  
   const { t } = useTranslation();
   return (
     <>

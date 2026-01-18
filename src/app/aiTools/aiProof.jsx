@@ -15,7 +15,7 @@ const AiProof = ({ coinData }) => {
     <>
       <Box
         sx={{
-          backgroundColor: "#161616",
+          backgroundColor: "background.charcoal",
           borderRadius: "20px",
           padding: {
             xs: "5px",
@@ -23,7 +23,6 @@ const AiProof = ({ coinData }) => {
           },
           width: "100%",
           maxWidth: "1449px",
-          // marginTop: "30px",
         }}
       >
         <Typography
@@ -34,9 +33,9 @@ const AiProof = ({ coinData }) => {
         </Typography>
         <Typography
           variant="h1"
-          sx={{ marginBottom: "10px", fontSize: "30px" }}
+          sx={{ marginBottom: "15px", fontSize: "30px" }}
         >
-          {/* {coinData?.coin?.priceFormatted}% */}
+  
           {` ${coinData?.coin?.priceFormatted}`}
           <span
             style={{

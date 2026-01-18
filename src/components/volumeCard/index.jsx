@@ -4,30 +4,31 @@ import theme from "../../theme";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
-const VolumeCard = ({ name, volume, percentChange, isPositive  }) => {
+const VolumeCard = ({ name, volume, percentChange, isPositive }) => {
   return (
     <Box
       sx={{
-        backgroundColor: isPositive ? "#1EB363" : "#D43333",
+        backgroundColor: isPositive ? "rgba(30, 179, 99, 1)" : "rgba(212, 51, 51, 1)",
         borderRadius: "8px",
-        padding: "6px",
+        padding: "8px",
+        // width: "115px",
+        // height: "81px",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        border: `1px solid ${
-          isPositive ? "rgba(34, 197, 94, 0.15)" : "rgba(239, 68, 68, 0.15)"
-        }`,
+        border: `0.48px solid ${isPositive ? "rgba(62, 221, 135, 1)" : "rgba(255, 76, 76, 1)"
+          }`,
         transition: "all 0.3s ease",
         cursor: "pointer",
-        "&:hover": {
-          transform: "translateY(-2px)",
-          backgroundColor: isPositive
-            ? "rgba(34, 197, 94, 0.15)"
-            : "rgba(239, 68, 68, 0.15)",
-          boxShadow: `0 4px 12px ${
-            isPositive ? "rgba(34, 197, 94, 0.2)" : "rgba(239, 68, 68, 0.2)"
-          }`,
-        },
+        // "&:hover": {
+        //   transform: "translateY(-2px)",
+        //   backgroundColor: isPositive
+        //     ? "rgba(34, 197, 94, 0.15)"
+        //     : "rgba(239, 68, 68, 0.15)",
+        //   boxShadow: `0 4px 12px ${
+        //     isPositive ? "rgba(34, 197, 94, 0.2)" : "rgba(239, 68, 68, 0.2)"
+        //   }`,
+        // },
       }}
     >
       <Box

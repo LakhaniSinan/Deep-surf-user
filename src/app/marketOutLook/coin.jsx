@@ -3,6 +3,7 @@ import { Box, Grid, Paper, Typography } from "@mui/material";
 import Speedometer from "../../components/speedMeter";
 import Sparkline from "../../components/topCoinsTable/Sparkline";
 import { useTranslation } from "react-i18next";
+import moment from "moment";
 const cardStyle = {
   backgroundColor: "#111",
   padding: "20px",
@@ -29,7 +30,8 @@ const Coin = ({ data, overallSentimentData, dayOfWeek }) => {
           >
             <Box>
               <Typography variant="h4" fontSize="20px" fontFamily={"inter Tight"} fontWeight={600}>
-                {dayOfWeek?.date}
+                {moment(dayOfWeek?.date).format("dddd, DD MMM YYYY")}
+
               </Typography>
               <Typography sx={{ color: "#fff", fontWeight: 550, fontSize: "15px" }} fontFamily={"inter Tight"}>
                 {dayOfWeek?.dayOfWeek}

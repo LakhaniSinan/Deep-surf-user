@@ -6,7 +6,7 @@ import CryptocurrencyEvents from "./cryptocurrencyEvents";
 import Trading from "./trading";
 import MarkDataMetric from "./markDataMetric";
 import { useEffect, useState } from "react";
-import { getMarketOutLook } from "../../services/modules/home";
+import { getMarketOutLook, getWhalesTrackers } from "../../services/modules/home";
 import AiMarketAnalysis from "./marketAnalysis";
 import AiMarketAnalysisSkeleton from "../../components/skeleton/marketOutLookSkeleton/aiMarketAnalysis";
 import CoinSkeleton from "../../components/skeleton/marketOutLookSkeleton/coin";
@@ -28,7 +28,8 @@ const MarketOutLook = () => {
   const [marketMetrics, setMarketMetrices] = useState({});
   const [coins, setCoin] = useState([]);
   const [whaleTracker, setWhaleTracker] = useState([]);
-  console.log("fhyufrjfrssssssssssssfrfr", whaleTracker);
+  const [whale, setWhale] = useState([])
+  console.log("fhyufrjfrsssssssddddddddddddddddddddddsssssfrfr", whale);
 
   const [overallSentiment, setOverallSentiment] = useState([]);
   const [dayOfWeek, setDayOfWeek] = useState([]);
@@ -36,15 +37,18 @@ const MarketOutLook = () => {
   const { t, i18n } = useTranslation();
   const language = i18n.language || "en";
 
-
-  const getMarketOutData = async () => {
+  // ================= Fetch Market + Whale Data in Parallel =================
+  const fetchMarketData = async () => {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
-      const response = await getMarketOutLook({ language });
-      if (response?.data.status === "success") {
-        const data = response?.data?.data;
-        console.log("fyegfefe", data);
+      const [marketRes, whaleRes] = await Promise.all([
+        getMarketOutLook({ language }),
+        getWhalesTrackers(),
+      ]);
 
+      // Market Outlook
+      if (marketRes?.data?.status === "success") {
+        const data = marketRes.data.data;
         setMarketOutLook(data);
         setMacroData(data?.macroeconomics);
         setDayOfWeek(data?.dayOfWeek);
@@ -56,18 +60,25 @@ const MarketOutLook = () => {
         setMarketMetrices(data?.marketMetrics);
         setCoin(data?.topCoins);
         setOverallSentiment(data?.overallSentiment);
-        setWhaleTracker(data?.whalesTracker)
+        setWhaleTracker(data?.whalesTracker);
+      }
+
+      // Whale Tracker
+      if (whaleRes?.data?.status === "success") {
+        const whaleData = whaleRes.data.data;
+        setWhaleTracker(whaleData);
       }
     } catch (error) {
-      console.error("Error fetching market data:", error);
+      console.error("Error fetching market or whale data:", error);
     } finally {
       setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    getMarketOutData();
-  }, [language]);
+    fetchMarketData();
+  }, [language]); // refetch if language changes
+
 
   return (
     <>
@@ -88,24 +99,11 @@ const MarketOutLook = () => {
             <MarkDataMetricSkeleton />
           </>
         )}
-
         {/* No Data Found */}
-        {!isLoading && !marketOutLook && (
-          <Typography
-            fontSize="16px"
-            color="text.lightRedColor"
-            textAlign="center"
-            mt={5}
-            fontFamily={"inter Tight"}
-          >
-            No Data Found
-          </Typography>
-        )}
-
         {/* Show Data */}
         {!isLoading && marketOutLook && (
           <>
-            <AiMarketAnalysis data={marketOutLook} />
+            <AiMarketAnalysis aiAnalysis={marketOutLook} />
             <Coin
               data={coins}
               overallSentimentData={overallSentiment}
@@ -123,7 +121,8 @@ const MarketOutLook = () => {
               marketMetricesData={marketMetrics}
               riskCalendar={marketOutLook}
               // fetchMarketData={getMarketOutData} 
-              whaleTracker={whaleTracker}
+              whaleTrackers={whale}
+
 
             />
           </>

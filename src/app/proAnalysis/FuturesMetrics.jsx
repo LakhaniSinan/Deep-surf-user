@@ -57,7 +57,7 @@ const FuturesMetrics = ({ coinData }) => {
         padding={"25px"}
         borderRadius={"40px"}
       >
-        <Typography variant="h5" fontSize={"20px"}>
+        <Typography variant="h5" fontSize={"25px"}>
           {t("ProAnalytics.FuturesMetrics.futuresMetricesTitle")}
 
         </Typography>
@@ -68,10 +68,10 @@ const FuturesMetrics = ({ coinData }) => {
           mt={"20px"}
           flexDirection={"column"}
         >
-          <Typography variant="h4" fontSize={"18px"} fontWeight={600}>
+          <Typography variant="h4" fontSize={"25px"} fontWeight={600}>
             {t("ProAnalytics.LiquidationMap.Current")} {coinData?.basicInfo?.symbol} {t("ProAnalytics.LiquidationMap.price")}
           </Typography>
-          <Typography variant="h5" fontSize={"20px"}>
+          <Typography variant="h5" fontSize={"23px"}>
             {coinData?.basicInfo.priceFormatted}
           </Typography>
         </Box>
@@ -80,27 +80,26 @@ const FuturesMetrics = ({ coinData }) => {
             <Grid item size={{ xs: 12, sm: 6, md: 2.4 }} key={index}>
               <Box
                 sx={{
-                  backgroundColor: "#1C1C1C",
+                  backgroundColor: "neutral.darkGrey",
                   borderRadius: "15px",
                   padding: "15px",
                   textAlign: "left",
-                  border: "1px solid #2A2A2A",
                   height: "220px",
                   marginTop: "20px",
                 }}
               >
                 <Typography
                   variant="h6"
-                  fontSize={"20px"}
-                  fontWeight={400}
-                  color="#fff"
+                  fontSize={"23px"}
+                  fontWeight={500}
+                  color="neutral.Snowwhite"
                 >
                   {item.title}
                 </Typography>
 
                 <Typography
                   variant="h4"
-                  fontSize={"22px"}
+                  fontSize={"30px"}
                   mt={2}
                   sx={{
                     color: coinData?.futuresMetrics?.fundingRate?.includes('-') ? "text.errorColor" : "text.greenColor",
@@ -114,7 +113,7 @@ const FuturesMetrics = ({ coinData }) => {
                   variant="h6"
                   sx={{
                     color: coinData?.futuresMetrics?.fundingRateLabel?.includes("-") ? "text.errorColor" : "text.greenColor",
-                    fontSize: "15px",
+                    fontSize: "18px",
                     marginTop: "40px",
                     fontFamily: "inter Tight",
                   }}
@@ -136,8 +135,9 @@ const FuturesMetrics = ({ coinData }) => {
         >
           <Typography
             sx={{
-              color: "#8D8D8D",
-              fontSize: "12px",
+              color: "rgba(141, 141, 141, 1)",
+              fontSize: "13px",
+              fontWeight: 550
             }}
           >
             How to read: <br />

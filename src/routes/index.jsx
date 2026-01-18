@@ -17,11 +17,13 @@ import ForgetVerfication from "../app/auth/loginOtpVerification";
 import SetUserProfile from "../app/auth/profile";
 import UserProfile from "../app/auth/profile";
 import TermAndCondition from "../app/termsAndConditions";
-import MyLoginPage from "../app/auth/login/myLoginPage";
+import MyLoginPage from "../app/auth/login";
 import Notification from "../app/notification";
 import EditJournal from "../app/journal/editjournal";
 import SaveAlert from "../app/journal/saveAlert";
 import CoinAlert from "../app/journal/journal";
+import ComingSoon from "../app/charts/commingSoon";
+import NewAiTools from "../app/newAiTools";
 
 const AUTH_ROUTES = [
 
@@ -94,13 +96,21 @@ const APP_Route = [
     path: "/dashboard",
   },
 
+  // {
+  //   id: 2,
+  //   name: "Charts",
+  //   component: <Charts />,
+  //   exact: "exact",
+  //   path: "/chart",
+  // },
   {
     id: 2,
     name: "Charts",
-    component: <Charts />,
+    component: <ComingSoon />,
     exact: "exact",
-    path: "/chart",
+    path: "/coming-soon",
   },
+
   {
     id: 3,
     name: "Journal",
@@ -175,6 +185,12 @@ const APP_Route = [
     name: "CoinAlert",
     component: <CoinAlert />,
     path: "/coin-alert",
+  },
+   {
+    id: 13,
+    name: "NewAiTools",
+    component: <NewAiTools />,
+    path: "/new-ai",
   },
 ];
 

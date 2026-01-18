@@ -17,6 +17,10 @@ const getMarketOutLook = ({ language }) => {
   );
 };
 
+const getWhalesTrackers = () => {
+  return Api(ENDPOINTS.MARKETOUTLOOK.WHALES_TRACKER, null, "get");
+};
+
 // {    Dashboard secrhing Api   }
 
 const getCoinQuickCheck = ({ ticker, language }) => {
@@ -61,4 +65,5 @@ export {
   proAnylysisData,
   aiToolsData,
   updateUser,
+  getWhalesTrackers,
 };

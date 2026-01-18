@@ -51,7 +51,7 @@ const MTFSection = ({ getProAnanlsisData, coinData }) => {
     <>
       <Box
         sx={{
-          backgroundColor: "#161616",
+          backgroundColor: "background.charcoal",
           borderRadius: "20px",
           padding: "25px",
           width: "100%",
@@ -77,7 +77,7 @@ const MTFSection = ({ getProAnanlsisData, coinData }) => {
           }}
         >
           {coinData?.basicInfo?.priceFormatted}
-          <span style={{ color: coinData?.basicInfo?.change24hFormatted.includes("-") ? "red" : "green", fontSize: "18px", marginLeft: "10px", fontWeight: "400px" }}>
+          <span style={{ color: coinData?.basicInfo?.change24hFormatted.includes("-") ? "rgba(225, 26, 56, 1)" : "rgba(62, 221, 135, 1)", fontSize: "18px", marginLeft: "10px", fontWeight: "400px" }}>
             {coinData?.basicInfo?.change24hFormatted}
           </span>
         </Typography>
@@ -86,6 +86,9 @@ const MTFSection = ({ getProAnanlsisData, coinData }) => {
           alignItems="center"
           gap="20px"
           flexWrap={{ xs: "wrap", md: "nowrap" }}
+          bgcolor={"neutral.darkGrey"}
+          padding={"25px"}
+          borderRadius={"20px"}
         >
           <CustomButton
             title={t("ProAnalytics.aiRecommendation")}
@@ -104,11 +107,11 @@ const MTFSection = ({ getProAnanlsisData, coinData }) => {
             fontSize="14px"
             flex={{ xs: "100%", md: "1" }}
           >
-            <span style={{ color: "#FFE600" }}>
+            <span style={{ color: "rgba(255, 230, 0, 1)", fontWeight: "550", fontSize: "20px" }}>
               {coinData?.mtfScan?.aiRecommendation}
             </span>
             <br />
-            {t("AiTools.PatternRecognition.confidence")}:{coinData?.mtfScan?.confidence}
+            {t("AiTools.PatternRecognition.confidence")}:{coinData?.mtfScan?.confidence}%
           </Typography>
         </Box>
         <Box sx={{ marginTop: "50px" }}>
@@ -126,6 +129,9 @@ const MTFSection = ({ getProAnanlsisData, coinData }) => {
           gap="20px"
           flexWrap={{ xs: "wrap", md: "nowrap" }}
           marginTop={"20px"}
+          bgcolor={"neutral.darkGrey"}
+          padding={"25px"}
+          borderRadius={"20px"}
         >
           <CustomButton
             // variant="gradient"
@@ -142,12 +148,13 @@ const MTFSection = ({ getProAnanlsisData, coinData }) => {
           />
           <Typography
             variant="body2"
-            fontSize="13px"
+            fontSize="15px"
             flex={{ xs: "100%", md: "1" }}
-            color="#fff"
+            color="neutral.Snowwhite"
             fontWeight={600}
           >
-            {t("ProAnalytics.allTimeframesAgree")}{" "}
+            {/* {t("ProAnalytics.allTimeframesAgree")}{" "} */}
+            {coinData?.mtfScan?.interpretation}
           </Typography>
         </Box>
       </Box>

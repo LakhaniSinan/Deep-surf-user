@@ -18,7 +18,8 @@ const ExchangeForm = ({
   const { t } = useTranslation();
 
   return (
-    <Stack spacing={3}>
+    <>
+    {/* <Stack spacing={3}>
       <Stack direction="row" spacing={1} alignItems="center">
         <Typography variant="labelMd" sx={{ color: "#C7C7C7" }}>
           {t("setting.addChange")}
@@ -65,7 +66,8 @@ const ExchangeForm = ({
           sx={{ backgroundColor: "transparent", color: "#C7C7C7" }}
         />
       </Stack>
-    </Stack>
+    </Stack> */}
+    </>
   );
 };
 

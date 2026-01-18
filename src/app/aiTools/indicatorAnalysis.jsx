@@ -6,12 +6,14 @@ import Warning from "../../assets/icons/warningIcon.svg";
 import fire from "../../assets/icons/fireIcon.svg";
 import { useTranslation } from "react-i18next";
 const IndicatorAnalysis = ({ coinData }) => {
+  console.log("frufurifgvrfvrfvrvfyrufbrjfj", coinData?.indicatorAnalysis[0].description);
+
   const { t } = useTranslation();
   return (
     <>
       <Box mt={5}>
         <Typography variant="h3" fontSize={"25px"}>
-           {t("AiTools.Indicator.indicatorsHeading")}{" "}
+          {t("AiTools.Indicator.indicatorsHeading")}{" "}
         </Typography>
       </Box>
       <Box mt={2} sx={{ backgroundColor: "background.jetBlack", borderRadius: 4, p: 2 }}>
@@ -26,7 +28,8 @@ const IndicatorAnalysis = ({ coinData }) => {
 
               <Typography variant="h6" sx={{ fontSize: "13px", color: "#fff" }}>
                 {/* MACD Bullish */}
-                {` MACD ${coinData?.indicatorAnalysis[0].signal}`}
+                {/* {` MACD ${coinData?.indicatorAnalysis[0].signal}`} */}
+                {coinData?.indicatorAnalysis[0].description}
               </Typography>
             </Box>
           </Grid>
@@ -35,18 +38,20 @@ const IndicatorAnalysis = ({ coinData }) => {
               <img src={Check}></img>
               <Typography variant="h6" sx={{ fontSize: "13px", color: "#fff" }}>
                 {`${coinData?.indicatorAnalysis[1].description}`}
-                {`${coinData?.indicatorAnalysis[0].icon}`}
+                {/* {`${coinData?.indicatorAnalysis[0].icon}`} */}
               </Typography>
             </Box>
           </Grid>
           <Grid item size={{ xs: 12, sm: 6, lg: 5 }}>
             <Box display={"flex"} alignItems={"center"} gap={1}>
-              <img src={Warning}></img>
+              {/* <img src={Warning}></img> */}
+              <img src={Check}></img>
               <Typography
                 variant="body1"
                 sx={{ fontSize: "15px", color: "#fff" }}
               >
-                Close liquidation zone LONG (-2.0%) - price magnet
+                {`${coinData?.indicatorAnalysis[2].description}`}
+
               </Typography>
             </Box>
           </Grid>
@@ -56,15 +61,16 @@ const IndicatorAnalysis = ({ coinData }) => {
             <Box display={"flex"} alignItems={"center"} gap={1}>
               <img src={CancelIcon}></img>
               <Typography variant="h6" sx={{ fontSize: "13px", color: "#fff" }}>
-                RSI Overbought
+                {`${coinData?.indicatorAnalysis[3].description}`}
               </Typography>
             </Box>
           </Grid>
           <Grid item size={{ xs: 12, sm: 3, lg: 4 }}>
             <Box display={"flex"} gap={1}>
-              <img src={Check}></img>
+              {/* <img src={Check}></img> */}
+              <img src={fire} />
               <Typography variant="h6" sx={{ fontSize: "13px", color: "#fff" }}>
-                Supertrend: Bullish trend
+                {`${coinData?.indicatorAnalysis[4].description}`}
               </Typography>
             </Box>
           </Grid>
@@ -75,7 +81,7 @@ const IndicatorAnalysis = ({ coinData }) => {
                 variant="body1"
                 sx={{ fontSize: "13px", color: "#fff" }}
               >
-                Close liquidation zone SHORT (+2.0%) - price magnet{" "}
+                {`${coinData?.indicatorAnalysis[5].description}`}
               </Typography>
             </Box>
           </Grid>
@@ -83,22 +89,23 @@ const IndicatorAnalysis = ({ coinData }) => {
         <Grid container spacing={2} mt={3}>
           <Grid item size={{ xs: 12, sm: 6, lg: 3 }}>
             <Box display={"flex"} alignItems={"center"} gap={1}>
-              <img src={Check}></img>
+              {/* <img src={Check}></img> */}
+              <img src={Warning}></img>
               <Typography variant="h6" sx={{ fontSize: "13px", color: "#fff" }}>
-                MACD Bullish
+                {coinData?.indicatorAnalysis[6].description}
               </Typography>
             </Box>
           </Grid>
-          <Grid item size={{ xs: 12, sm: 6, lg: 4 }}>
+          {/* <Grid item size={{ xs: 12, sm: 6, lg: 4 }}>
             <Box display={"flex"} gap={1}>
               <img src={CancelIcon}></img>
               <Typography variant="h6" sx={{ fontSize: "15px", color: "#fff" }}>
                 Strong resistance nearby
               </Typography>
             </Box>
-          </Grid>
+          </Grid> */}
         </Grid>
-        <Grid container spacing={2} mt={3}>
+        {/* <Grid container spacing={2} mt={3}>
           <Grid item size={{ xs: 12, sm: 6, lg: 3 }}>
             <Box display={"flex"} alignItems={"center"} gap={1}>
               <img src={CancelIcon}></img>
@@ -115,7 +122,7 @@ const IndicatorAnalysis = ({ coinData }) => {
               </Typography>
             </Box>
           </Grid>
-        </Grid>
+        </Grid> */}
       </Box>
     </>
   );

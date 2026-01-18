@@ -167,7 +167,7 @@ const Calculator = () => {
           <Grid item size={{ xs: 12, md: 6 }}>
             <CurrentPrice
               exchangeMarketData={exchangeMarketData}
-              calculatorResult={calculatorResult} // 🔹 receive calculate result
+              calculatorResult={calculatorResult} 
             />
           </Grid>
         </Grid>

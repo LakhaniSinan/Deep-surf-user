@@ -1,6 +1,8 @@
 import axios from "axios";
 
 export let baseUrl = import.meta.env.VITE_BASE_URL;
+console.log("grgrgrfyghfjbrnfrbhfrhf" , baseUrl);
+
 
 console.log(baseUrl, "sdjhsajhasjhdasjhhjdsajhdasjhdjsha");
 

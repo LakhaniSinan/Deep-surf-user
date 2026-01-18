@@ -41,53 +41,63 @@ const TopVolumeSection = ({ data1, data2, isLoading }) => {
           gap: "16px",
         }}
       >
-        <Typography variant="h4" fontSize="1rem" color="text.primary" fontFamily="Inter Tight">
+        <Typography variant="h4" fontSize="23px" color="text.primary" fontFamily="Inter Tight">
           {t("dashboard.topCoinByVolume.title")}
         </Typography>
 
         {/* Buttons */}
         <Box display="flex" gap={1}>
-          <Button
-            onClick={() => setSelectedTimeframe("24h")}
+          <Box
             sx={{
-              minWidth: "50px",
-              padding: "6px 16px",
+              background: "linear-gradient(190deg, rgba(0, 0, 0, 1), rgba(102, 102, 102, 1))",
               borderRadius: "20px",
-              textTransform: "none",
-              fontSize: "0.875rem",
-              fontFamily: "Inter Tight",
-              fontWeight: 500,
-              backgroundColor:
-                selectedTimeframe === "24h" ? "#2a2a2a" : "transparent",
-              color: "text.primary",
-              "&:hover": {
-                backgroundColor:
-                  selectedTimeframe === "24h" ? "#2a2a2a" : "neutral.hover",
-              },
+              px: "3px",
+              py: "4px"
             }}
           >
-            24h
-          </Button>
-          <Button
-            onClick={() => setSelectedTimeframe("7d")}
-            sx={{
-              minWidth: "50px",
-              padding: "6px 16px",
-              borderRadius: "20px",
-              textTransform: "none",
-              fontSize: "0.875rem",
-              fontWeight: 500,
-              backgroundColor:
-                selectedTimeframe === "7d" ? "#2a2a2a" : "transparent",
-              color: "text.primary",
-              "&:hover": {
+
+            <Button
+              onClick={() => setSelectedTimeframe("24h")}
+              sx={{
+                minWidth: "50px",
+                padding: "6px 16px",
+                borderRadius: "20px",
+                textTransform: "none",
+                fontSize: "0.875rem",
+                fontFamily: "Inter Tight",
+                fontWeight: 500,
                 backgroundColor:
-                  selectedTimeframe === "7d" ? "#2a2a2a" : "neutral.hover",
-              },
-            }}
-          >
-            7d
-          </Button>
+                  selectedTimeframe === "24h" ? "rgba(255, 255, 255, 0.08)" : "transparent",
+                color: "text.primary",
+                "&:hover": {
+                  backgroundColor:
+                    selectedTimeframe === "24h" ? "#2a2a2a" : "neutral.hover",
+                },
+              }}
+            >
+              24h
+            </Button>
+            <Button
+              onClick={() => setSelectedTimeframe("7d")}
+              sx={{
+                minWidth: "50px",
+                padding: "6px 16px",
+                borderRadius: "20px",
+                textTransform: "none",
+                fontSize: "0.875rem",
+                fontWeight: 500,
+                backgroundColor:
+                  selectedTimeframe === "7d" ? "#2a2a2a" : "transparent",
+                color: "text.primary",
+                "&:hover": {
+                  backgroundColor:
+                    selectedTimeframe === "7d" ? "#2a2a2a" : "neutral.hover",
+                },
+              }}
+            >
+              7d
+            </Button>
+          </Box>
         </Box>
       </Box>
 
@@ -102,7 +112,7 @@ const TopVolumeSection = ({ data1, data2, isLoading }) => {
       ) : (
         <Grid container spacing={2}>
           {finalData?.map((item, index) => (
-            <Grid item size={{ xs: 4, sm: 3, md: 2.4 }} key={index}>
+            <Grid item size={{ xs: 6, sm: 3, md: 2.4 }} key={index}>
               <VolumeCard
                 name={item.symbol}
                 volume={item.volumeFormatted}

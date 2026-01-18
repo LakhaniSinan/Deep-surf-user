@@ -14,24 +14,23 @@ import TopCardSkeleton from "../../components/skeleton/topCoinCardSkeleton";
 import { t } from "i18next";
 
 const TopCoinsTable = ({ data, isLoading }) => {
-  console.log("TopCoinsTableData:", data);
-
   return (
     <Box
       sx={{
         width: "100%",
-        backgroundColor: theme.palette.background.paper,
+        // backgroundColor: theme.palette.background.paper,
+        background: "rgba(28, 28, 28, 1)",
         borderRadius: "10px",
         padding: "16px",
         overflowX: "auto",
-        maxHeight: "390px",
+        maxHeight: "380px",
         borderTopRightRadius: "30px",
         borderBottomRightRadius: "30px"
       }}
     >
       <Typography
         variant="h4"
-        fontSize="1rem"
+        fontSize="24px"
         fontWeight={600}
         color="text.primary"
         mb={3}
@@ -58,16 +57,12 @@ const TopCoinsTable = ({ data, isLoading }) => {
                 <TableRow
                   key={coin.id || index}
                   sx={{
-                    borderBottom:
-                      index < data.length - 1
-                        ? `1px solid ${theme.palette.neutral.line}`
-                        : "none",
-                    "&:hover": {
-                      backgroundColor: theme.palette.neutral.hover,
-                    },
-                    "&:last-child td": {
-                      borderBottom: "none",
-                    },
+                    // "&:hover": {
+                    //   backgroundColor: theme.palette.neutral.hover,
+                    // },
+                    // "&:last-child td": {
+                    //   borderBottom: "none",
+                    // },
                   }}
                 >
                   {/* Coin Icon & Info */}
@@ -95,8 +90,8 @@ const TopCoinsTable = ({ data, isLoading }) => {
                             src={coin.logo}
                             alt={coin.ticker}
                             style={{
-                              width: "20px",
-                              height: "20px",
+                              width: "18px",
+                              height: "18px",
                               objectFit: "contain",
                             }}
                           />

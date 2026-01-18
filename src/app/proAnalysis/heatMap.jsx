@@ -34,6 +34,9 @@ const HeatMap = ({ data }) => {
       <Typography variant="h1" fontSize="16px">
         {t("ProAnalytics.HeatMapVolume.heatmapVolumeVolatility")}
       </Typography>
+      <Typography mt={1} color="neutral.Snowwhite" fontSize={"14px"}>
+        {t("ProAnalytics.HeatMapVolume.topCoinsInfo")}
+      </Typography>
 
       <Typography
         variant="body1"
