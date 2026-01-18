@@ -10,7 +10,7 @@ import DialogBody from "../../components/dialog/DialogBody";
 import DialogActionButtons from "../../components/dialog/dialogAction";
 import WidgetCatalog from "./widgetCatalog";
 import { Box } from "@mui/material";
-import { addWidget, fetchWidgets, removeWidget } from "../../services/modules/widgets";
+import { addWidget, fetchuserWidgets, fetchWidgets, removeWidget } from "../../services/modules/widgets";
 
 const AddWidgit = forwardRef((props, ref) => {
 
@@ -22,14 +22,18 @@ const AddWidgit = forwardRef((props, ref) => {
     }, [])
 
     const fetchAllWidgets = async () => {
-        fetchWidgets()
-            .then(response => {
-                setData(response.data.data)
-                console.log(response, "responseresponseresponse");
-            })
-            .catch(err => {
-                console.log(err, "errerrerrerr");
-            })
+        const [allRes, userRes] = await Promise.all([
+            fetchWidgets(),
+            fetchuserWidgets(), // ← user-added widgets
+        ]);
+
+        console.log(allRes, userRes, "allResallResallRes");
+        setData(allRes.data.data)
+        let dd = userRes.data.data.map(item => {
+            return item.widget_id
+        })
+        console.log(dd, "dddddddddd");
+        setAddedWidgetIds(dd)
     }
 
     const [open, setOpen] = useState(false);
@@ -51,12 +55,16 @@ const AddWidgit = forwardRef((props, ref) => {
 
     const handleAddWidget = async (id) => {
         await addWidget(id);
+        alert("Widget Added successfully")
         setAddedWidgetIds(prev => [...prev, id]);
     };
     const handleRemove = async (id) => {
         await removeWidget(id);
+        alert("Widget removed successfully")
         setAddedWidgetIds(prev => prev.filter(wid => wid !== id));
     };
+
+    console.log(addedWidgetIds, "addedWidgetIdsaddedWidgetIdsaddedWidgetIds");
 
 
     return (
@@ -66,7 +74,6 @@ const AddWidgit = forwardRef((props, ref) => {
                 secondaryHeading="Select widgets to add on dashboard"
                 onClose={handleClose}
             />
-
             <DialogBody>
                 <Box>
                     <WidgetCatalog
@@ -77,15 +84,13 @@ const AddWidgit = forwardRef((props, ref) => {
                     />
                 </Box>
             </DialogBody>
-
             <DialogActionButtons
                 onCancel={handleClose}
                 onConfirm={() => {
                     console.log("Confirmed");
                     handleClose();
                 }}
-                showConfirmBtn={false}  // Confirm button ko hide karne ke liye
-
+                showConfirmBtn={false}
             />
         </DialogContainer>
     );

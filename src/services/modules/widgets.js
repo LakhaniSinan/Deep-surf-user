@@ -4,6 +4,10 @@ import Api from "../index";
 const fetchWidgets = (payload) => {
     return Api(ENDPOINTS.WIDGETS.FETCH_ALL, null, "get");
 };
+const fetchuserWidgets = (payload) => {
+    return Api(ENDPOINTS.WIDGETS.FETCH_BY_USER, null, "get");
+};
+
 const addWidget = (id) => {
     let payload = {
         widgetId: id
@@ -15,4 +19,4 @@ const removeWidget = (payload) => {
 };
 
 
-export { fetchWidgets, addWidget, removeWidget };
+export { fetchuserWidgets, fetchWidgets, addWidget, removeWidget };

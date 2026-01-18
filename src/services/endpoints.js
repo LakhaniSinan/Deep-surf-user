@@ -123,6 +123,7 @@ export const ENDPOINTS = {
     FETCH_ALL: "widgets/catalog",
     ADD_WIDGET: "widgets/add",
     REMOVE_WIDGET: "widgets",
+    FETCH_BY_USER: "widgets/user",
   }
 
 };
