@@ -4,6 +4,7 @@ import CustomButton from '../../components/customButton'
 import ScanIcon from "../../assets/icons/scan-icon.svg"
 import MlIcon from "../../assets/icons/ml-icon.svg"
 import CustomSelect from '../../components/customSelect'
+import CustomCheckbox from '../../components/cutomChecked'
 
 const AiPumpScanner = () => {
     const [scanType, setScanType] = useState("");
@@ -39,6 +40,26 @@ const AiPumpScanner = () => {
         {
             value: "0%",
             decription: "Max Potential"
+        },
+    ]
+    const checkBoxData = [
+        {
+            title: "Score 35+"
+        },
+        {
+            title: "Whale"
+        },
+        {
+            title: "OI+"
+        },
+        {
+            title: "Funding"
+        },
+        {
+            title: "BTC OK"
+        },
+        {
+            title: "Squeeze"
         },
     ]
     return (
@@ -248,6 +269,17 @@ const AiPumpScanner = () => {
                         </Box>
                     </Grid>
                 </Grid>
+                <Box>
+                    {
+                        checkBoxData.map((item) => (
+                            <CustomCheckbox
+                                label={item.title}
+                            />
+                        ))
+                    }
+
+                </Box>
+
             </Box>
         </Box>
     )

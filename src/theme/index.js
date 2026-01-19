@@ -47,8 +47,8 @@ const theme = createTheme({
       lightGreen: "rgba(30, 179, 99, 1)",
       neutralGrey: "rgba(127, 127, 127, 1)",
       steelGrey: "rgba(148, 150, 154, 1)",
-      obsidianAsh: "rgba(55, 55, 55, 1)"
-
+      obsidianAsh: "rgba(55, 55, 55, 1)",
+      neutralGray: "rgba(147, 148, 153, 1)",
     },
     background: {
       default: "#101010",

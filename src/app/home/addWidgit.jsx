@@ -10,7 +10,6 @@ import DialogBody from "../../components/dialog/DialogBody";
 import DialogActionButtons from "../../components/dialog/dialogAction";
 import WidgetCatalog from "./widgetCatalog";
 import { Box } from "@mui/material";
-import { addWidget, fetchuserWidgets, fetchWidgets, removeWidget } from "../../services/modules/widgets";
 
 const AddWidgit = forwardRef((props, ref) => {
 

@@ -22,6 +22,7 @@ import Speedometer from "../../components/speedMeter";
 import { color } from "d3";
 import { useTranslation } from "react-i18next";
 import AddWidgit from "./addWidgit";
+import AddCoins from "./addCoins";
 
 
 const Home = () => {
@@ -231,8 +232,10 @@ const Home = () => {
             </Grid>
           </Grid>
         </Grid>
+      <AddCoins />
       </Container >
-      <AddWidgit ref={addWidgit}/>
+
+      <AddWidgit ref={addWidgit} />
     </Box >
   );
 };
