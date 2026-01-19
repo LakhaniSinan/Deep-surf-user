@@ -41,22 +41,7 @@ const AiProof = () => {
             symbol: "$3 120,88",
         }
     ]
-    const fetchAllWidgit = async () => {
-        try {
-            setIsLoading(true)
-            const response = await fetchWidgit();
-            const data = response?.data?.data;
-            setAllWidgit(data)
-        } catch (error) {
-            console.log("error");
-        } finally {
-            setIsLoading(false)
 
-        }
-    }
-    useEffect(() => {
-        fetchAllWidgit()
-    }, [])
     return (
         <>
             <Box mt={2} width={"100%"} >
