@@ -15,6 +15,7 @@ import EtfFlow from "./etfFlow";
 import Metricsdata from "./metricData";
 import WhalesTrackers from "./whalesTrackers";
 import HeatMap from "./heatMap";
+import TopCoinsComponent from "./topCoins.jsx";
 
 
 const AddCoins = ({ data }) => {
@@ -139,15 +140,22 @@ const AddCoins = ({ data }) => {
         <>
             <Box>
                 <Grid container spacing={2}>
-                        {
-                            data.map((item) => (
+                    {
+                        data.map((item) => {
+                            console.log(item.widgetId, "itemitemitemitem");
+                            return (
                                 <Grid item size={{ xs: 12, md: 6 }} >
                                     <Box color={"white"}>
-                                        hello
+                                        {item.widgetId === "top-coins" &&
+                                            // <div style={{color:"pink"}}>Sasd</div>
+                                            <TopCoinsComponent />
+
+                                        }
                                     </Box>
                                 </Grid>
-                            ))
-                        }
+                            )
+                        })
+                    }
                 </Grid>
             </Box >
             {/* <Box width="100%" mt={2}>
