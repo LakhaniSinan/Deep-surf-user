@@ -7,6 +7,7 @@ import UsdtIcon from "../../assets/icons/top-coin2.svg";
 import CustomInput from "../../components/customInput";
 import AiProof from "./aiProof";
 import TechnicalIndicator from "./techinalIndicator";
+import TopVolumeByCoins from "./topVolumeByCoins";
 
 const AddCoins = () => {
     const widgetStyle = {
@@ -19,7 +20,6 @@ const AddCoins = () => {
         flexDirection: "column"
     };
 
-    // 📊 Macroeconomics data (2 entries)
     const macroData = [
         {
             title: "US Unemployment Rate Thursday, February 5 at 07:00 PM",
@@ -37,7 +37,6 @@ const AddCoins = () => {
         },
     ];
 
-    // 🪙 Left Column Coins (5 entries)
     const leftCoins = [
         {
             title: "BTC",
@@ -127,156 +126,170 @@ const AddCoins = () => {
     ];
 
     return (
-        <Box>
-            <Grid container spacing={2}>
-                {/* 🪙 TOP COINS WIDGET */}
-                <Grid item size={{ xs: 12, md: 6 }}>
-                    <Box sx={widgetStyle}>
-                        <Typography color="neutral.Snowwhite" mb={2} fontSize="25px" fontWeight={600}>
-                            Top Coins
-                        </Typography>
-                        <Grid container spacing={2}>
-                            {/* LEFT COLUMN - 5 coins */}
-                            <Grid item size={{ xs: 12, md: 6 }}>
-                                {leftCoins.map((item, index) => (
-                                    <Box
-                                        key={index}
-                                        display="flex"
-                                        alignItems="center"
-                                        justifyContent="space-between"
-                                        gap="10px"
-                                        mb={1.5}
-                                        p={1}
-                                        sx={{
-                                            background: "#1E1E1E",
-                                            borderRadius: "8px",
-                                        }}
-                                    >
-                                        {/* Left: Icon + Title */}
-                                        <Box display="flex" gap="10px" alignItems="center">
-                                            <img src={item.icon} alt={item.title} style={{ width: "40px", height: "40px" }} />
+        <>
+            <Box>
+                <Grid container spacing={2}>
+                    {/* 🪙 TOP COINS WIDGET */}
+                    <Grid item size={{ xs: 12, md: 6 }}>
+                        <Box sx={widgetStyle}>
+                            <Typography color="neutral.Snowwhite" mb={2} fontSize="25px" fontWeight={600}>
+                                Top Coins
+                            </Typography>
+                            <Grid container spacing={2}>
+                                {/* LEFT COLUMN - 5 coins */}
+                                <Grid item size={{ xs: 12, md: 6 }}>
+                                    {leftCoins.map((item, index) => (
+                                        <Box
+                                            key={index}
+                                            display="flex"
+                                            alignItems="center"
+                                            justifyContent="space-between"
+                                            gap="10px"
+                                            mb={1.5}
+                                            p={1}
+                                            sx={{
+                                                background: "#1E1E1E",
+                                                borderRadius: "8px",
+                                            }}
+                                        >
+                                            {/* Left: Icon + Title */}
+                                            <Box display="flex" gap="10px" alignItems="center">
+                                                <img src={item.icon} alt={item.title} style={{ width: "40px", height: "40px" }} />
+                                                <Box>
+                                                    <Typography color="white" fontSize="14px" fontWeight={600}>
+                                                        {item.title}
+                                                    </Typography>
+                                                    <Typography color="#999" fontSize="12px">
+                                                        {item.symbol}
+                                                    </Typography>
+                                                </Box>
+                                            </Box>
+
+                                            {/* Center: Graph */}
                                             <Box>
+                                                <img src={item.graphyIcon} style={{ width: "80px", height: "30px" }} alt="graph" />
+                                            </Box>
+
+                                            {/* Right: Price + Percentage */}
+                                            <Box textAlign="right">
                                                 <Typography color="white" fontSize="14px" fontWeight={600}>
-                                                    {item.title}
+                                                    {item.value1}
                                                 </Typography>
-                                                <Typography color="#999" fontSize="12px">
-                                                    {item.symbol}
+                                                <Typography
+                                                    color={item.value2.startsWith('+') ? '#00D9A3' : '#FF4444'}
+                                                    fontSize="12px"
+                                                >
+                                                    {item.value2}
                                                 </Typography>
                                             </Box>
                                         </Box>
-
-                                        {/* Center: Graph */}
-                                        <Box>
-                                            <img src={item.graphyIcon} style={{ width: "80px", height: "30px" }} alt="graph" />
+                                    ))}
+                                </Grid>
+                                <Grid item size={{ xs: 12, md: 6 }}>
+                                    {rightCoins.map((item, index) => (
+                                        <Box
+                                            key={index}
+                                            display="flex"
+                                            alignItems="center"
+                                            justifyContent="space-between"
+                                            gap="10px"
+                                            mb={1.5}
+                                            p={1.2}
+                                            sx={{
+                                                background: "#1E1E1E",
+                                                borderRadius: "8px",
+                                            }}
+                                        >
+                                            {/* Left: Icon + Title */}
+                                            <Box display="flex" gap="10px" alignItems="center">
+                                                <img src={item.icon} alt={item.title} style={{ width: "40px", height: "40px" }} />
+                                                <Box>
+                                                    <Typography color="white" fontSize="14px" fontWeight={600}>
+                                                        {item.title}
+                                                    </Typography>
+                                                    <Typography color="#999" fontSize="12px">
+                                                        {item.symbol}
+                                                    </Typography>
+                                                </Box>
+                                            </Box>
+                                            <Box>
+                                                <img src={item.graphyIcon} style={{ width: "80px", height: "30px" }} alt="graph" />
+                                            </Box>
+                                            <Box textAlign="right">
+                                                <Typography color="white" fontSize="14px" fontWeight={600}>
+                                                    {item.value1}
+                                                </Typography>
+                                                <Typography
+                                                    color={item.value2.startsWith('+') ? '#00D9A3' : '#FF4444'}
+                                                    fontSize="12px"
+                                                >
+                                                    {item.value2}
+                                                </Typography>
+                                            </Box>
                                         </Box>
-
-                                        {/* Right: Price + Percentage */}
-                                        <Box textAlign="right">
-                                            <Typography color="white" fontSize="14px" fontWeight={600}>
-                                                {item.value1}
-                                            </Typography>
-                                            <Typography
-                                                color={item.value2.startsWith('+') ? '#00D9A3' : '#FF4444'}
-                                                fontSize="12px"
-                                            >
-                                                {item.value2}
-                                            </Typography>
-                                        </Box>
-                                    </Box>
-                                ))}
+                                    ))}
+                                </Grid>
                             </Grid>
-                            <Grid item size={{ xs: 12, md: 6 }}>
-                                {rightCoins.map((item, index) => (
+                        </Box>
+                    </Grid>
+
+                    {/* 🌍 MACROECONOMICS WIDGET */}
+                    <Grid item size={{ xs: 12, md: 6 }}>
+                        <Box sx={widgetStyle}>
+                            <Typography variant="h6" mb={2} color="neutral.Snowwhite" fontSize="25px" fontWeight={600}>
+                                Macroeconomics
+                            </Typography>
+                            {macroData.map((item, index) => (
+                                <Box key={index} mb={3}>
+                                    <Typography fontSize="15px" fontWeight={700} color="neutral.Snowwhite">
+                                        {item.title}
+                                    </Typography>
+                                    <Typography mt={1} fontSize="12px" color="neutral.Snowwhite">
+                                        {item.value}
+                                    </Typography>
+                                    <Typography fontSize="12px" color="neutral.Snowwhite">
+                                        {item.description}
+                                    </Typography>
                                     <Box
-                                        key={index}
+                                        bgcolor="rgba(36, 36, 36, 1)"
                                         display="flex"
-                                        alignItems="center"
-                                        justifyContent="space-between"
-                                        gap="10px"
-                                        mb={1.5}
+                                        gap="8px"
+                                        mt={2}
                                         p={1.2}
-                                        sx={{
-                                            background: "#1E1E1E",
-                                            borderRadius: "8px",
-                                        }}
+                                        borderRadius="15px"
+                                        alignItems="center"
                                     >
-                                        {/* Left: Icon + Title */}
-                                        <Box display="flex" gap="10px" alignItems="center">
-                                            <img src={item.icon} alt={item.title} style={{ width: "40px", height: "40px" }} />
-                                            <Box>
-                                                <Typography color="white" fontSize="14px" fontWeight={600}>
-                                                    {item.title}
-                                                </Typography>
-                                                <Typography color="#999" fontSize="12px">
-                                                    {item.symbol}
-                                                </Typography>
-                                            </Box>
+                                        <Box>
+                                            <img src={item.icon} alt="icon" />
                                         </Box>
                                         <Box>
-                                            <img src={item.graphyIcon} style={{ width: "80px", height: "30px" }} alt="graph" />
-                                        </Box>
-                                        <Box textAlign="right">
-                                            <Typography color="white" fontSize="14px" fontWeight={600}>
-                                                {item.value1}
-                                            </Typography>
-                                            <Typography
-                                                color={item.value2.startsWith('+') ? '#00D9A3' : '#FF4444'}
-                                                fontSize="12px"
-                                            >
-                                                {item.value2}
+                                            <Typography color="neutral.Snowwhite" fontSize="14px">
+                                                {item.heading}
                                             </Typography>
                                         </Box>
-                                    </Box>
-                                ))}
-                            </Grid>
-                        </Grid>
-                    </Box>
-                </Grid>
-
-                {/* 🌍 MACROECONOMICS WIDGET */}
-                <Grid item size={{ xs: 12, md: 6 }}>
-                    <Box sx={widgetStyle}>
-                        <Typography variant="h6" mb={2} color="neutral.Snowwhite" fontSize="25px" fontWeight={600}>
-                            Macroeconomics
-                        </Typography>
-                        {macroData.map((item, index) => (
-                            <Box key={index} mb={3}>
-                                <Typography fontSize="15px" fontWeight={700} color="neutral.Snowwhite">
-                                    {item.title}
-                                </Typography>
-                                <Typography mt={1} fontSize="12px" color="neutral.Snowwhite">
-                                    {item.value}
-                                </Typography>
-                                <Typography fontSize="12px" color="neutral.Snowwhite">
-                                    {item.description}
-                                </Typography>
-                                <Box
-                                    bgcolor="rgba(36, 36, 36, 1)"
-                                    display="flex"
-                                    gap="8px"
-                                    mt={2}
-                                    p={1.2}
-                                    borderRadius="15px"
-                                    alignItems="center"
-                                >
-                                    <Box>
-                                        <img src={item.icon} alt="icon" />
-                                    </Box>
-                                    <Box>
-                                        <Typography color="neutral.Snowwhite" fontSize="14px">
-                                            {item.heading}
-                                        </Typography>
                                     </Box>
                                 </Box>
-                            </Box>
-                        ))}
-                    </Box>
+                            ))}
+                        </Box>
+                    </Grid>
                 </Grid>
-            </Grid>
-            <Box>
-                <AiProof />
+            </Box >
+            <Box width="100%" mt={2}>
+                <Grid container spacing={2}>
+                    <Grid item size={{ xs: 12, md: 6 }} >
+                        <Box sx={widgetStyle}>
+                            <AiProof />
+                        </Box>
+                    </Grid>
+                    <Grid item size={{ xs: 12, md: 6 }}>
+                        <Box sx={widgetStyle}>
+                            <TopVolumeByCoins />
+                        </Box>
+                    </Grid>
+                </Grid>
             </Box>
-        </Box >
+
+        </>
     );
 };
 

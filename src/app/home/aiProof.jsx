@@ -35,9 +35,9 @@ const AiProof = () => {
         }
     ]
     return (
-        <Box mt={2}>
+        <Box mt={2} width={"100%"} >
             <Grid container spacing={2}>
-                <Grid item size={{ xs: 12, md: 6 }}>
+                <Grid item size={{ xs: 12, md: 12 }}>
                     <Box color={"white"} bgcolor={"neutral.darkGrey"} borderRadius={"10px"} p={2}>
                         <Box>
                             <Box fontSize={"30px"} fontWeight={600}>
