@@ -135,16 +135,15 @@ const AddCoins = ({ data }) => {
         <>
             <Box>
                 <Grid container spacing={2}>
-                    {/* 🪙 TOP COINS WIDGET */}
-                    <Grid container spacing={2}>
-
-                        {data.map(item => {
-                            return <Grid sx={{color:"pink"}} item size={{ xs: 6 }}> asdadasd</Grid>
-                        })
+                        {
+                            data.map((item) => (
+                                <Grid item size={{ xs: 12, md: 6 }} >
+                                    <Box color={"white"}>
+                                        hello
+                                    </Box>
+                                </Grid>
+                            ))
                         }
-                    </Grid>
-                    {/* 🌍 MACROECONOMICS WIDGET */}
-
                 </Grid>
             </Box >
             {/* <Box width="100%" mt={2}>
