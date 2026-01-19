@@ -9,6 +9,7 @@ import Community from './community';
 import IctLiquidityLevel from './ictLiquidityLevel';
 import EnhanceMarketIntelligence from './enhanceMarketIntelligence';
 import Pattern from './pattern';
+import IndicatorAnalysis from './indicatorAnalysis';
 const AiProof = () => {
     const confluenceData1 = [
         {
@@ -39,11 +40,11 @@ const AiProof = () => {
                 <Grid item size={{ xs: 12, md: 6 }}>
                     <Box color={"white"} bgcolor={"neutral.darkGrey"} borderRadius={"10px"} p={2}>
                         <Box>
-                            <Box fontSize={"25px"} fontWeight={600}>
+                            <Box fontSize={"30px"} fontWeight={600}>
                                 Ai Proof
                             </Box>
                         </Box>
-                        <Box mt={1.5}>
+                        <Box mt={2}>
                             <CustomInput
                                 placeholder="ETH"
                                 InputEndIcon={<img src={IconImage} style={{ width: "25px" }} />}
@@ -180,6 +181,7 @@ const AiProof = () => {
                             <IctLiquidityLevel />
                             <EnhanceMarketIntelligence />
                             <Pattern />
+                            <IndicatorAnalysis />
                         </Box>
                     </Box>
                 </Grid>
