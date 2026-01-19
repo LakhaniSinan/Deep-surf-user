@@ -17,10 +17,7 @@ import DeepSurfLogo from "../../assets/icons/deepSurf-lgo.svg"
 const TermAndCondition = () => {
     const [activeSectionId, setActiveSectionId] = useState(1);
     const [drawerOpen, setDrawerOpen] = useState(false);
-
     const sections = [
-
-
         {
             id: 1,
             title: "DeepSurf – Risk Disclosure Statement",
