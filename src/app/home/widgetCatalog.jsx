@@ -28,7 +28,7 @@ const categories = [
     "Top Coins",
 ];
 
-const WidgetCatalog = () => {
+const WidgetCatalog = ({ handleRemove, data, handleAddWidget, addedWidgetIds }) => {
     return (
         <Box>
             <Box
@@ -79,47 +79,58 @@ const WidgetCatalog = () => {
                 ))}
             </Box>
             <Grid container spacing={1}>
-                {widgets.map((item, index) => (
-                    <Grid item size={{ xs: 12, sm: 6, md: 6 }} key={index}>
-                        <Box
-                            p={2.5}
-                            borderRadius="16px"
-                            bgcolor="neutral.darkGrey"
-                            height="100%"
-                            display="flex"
-                            flexDirection="column"
-                            gap={1.2}
-                        >
-                            <Box display="flex" alignItems="center" gap={1}>
+                {data?.map((item, index) => {
+                    const isAdded = addedWidgetIds.includes(item.id);
+                    console.log(isAdded, "isAddedisAddedisAddedisAdded");
+                    return (
+                        <Grid item size={{ xs: 12, sm: 6, md: 6 }} key={index}>
+                            <Box
+                                p={2.5}
+                                borderRadius="16px"
+                                bgcolor="neutral.darkGrey"
+                                height="100%"
+                                display="flex"
+                                flexDirection="column"
+                                gap={1.2}
+                            >
+                                <Box display="flex" alignItems="center" gap={1}>
+                                    <Typography
+                                        color="white"
+                                        fontWeight={600}
+                                        fontSize="16px"
+                                    >
+                                        {item.title}
+                                    </Typography>
+                                </Box>
+                                <Typography
+                                    fontSize="11px"
+                                    color="rgba(127,127,127,1)"
+                                >
+                                    {item.category}
+                                </Typography>
 
                                 <Typography
-                                    color="white"
-                                    fontWeight={600}
-                                    fontSize="16px"
+                                    fontSize="13px"
+                                    color="rgba(127,127,127,1)"
                                 >
-                                    {item.title}
+                                    {item.description}
                                 </Typography>
+                                <Box >
+                                    <CustomButton
+                                        onClick={() => isAdded ? handleRemove(item.id) : handleAddWidget(item.id)}
+                                        title={isAdded ? "Remove" : "Add"}
+                                        variant="calculatorSmall"
+                                        sx={{
+                                            width: "100%",
+                                            borderRadius: "10px",
+                                            backgroundColor: "neutral.obsidianAsh"
+                                        }}
+                                    />
+                                </Box>
                             </Box>
-                            <Typography
-                                fontSize="13px"
-                                color="rgba(127,127,127,1)"
-                            >
-                                {item.description}
-                            </Typography>
-                            <Box>
-                                <CustomButton
-                                    title="Add"
-                                    variant="calculatorSmall"
-                                    sx={{
-                                        width: "100%",
-                                        borderRadius: "10px",
-                                        backgroundColor: "neutral.obsidianAsh"
-                                    }}
-                                />
-                            </Box>
-                        </Box>
-                    </Grid>
-                ))}
+                        </Grid>
+                    )
+                })}
             </Grid>
         </Box>
     );
