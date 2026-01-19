@@ -15,6 +15,7 @@ import EtfFlow from "./etfFlow";
 import Metricsdata from "./metricData";
 import WhalesTrackers from "./whalesTrackers";
 import HeatMap from "./heatMap";
+import EtfFlow from "./ethFlow";
 
 
 const AddCoins = ({ data }) => {
@@ -137,7 +138,7 @@ const AddCoins = ({ data }) => {
 
     return (
         <>
-            <Box>
+            {/* <Box>
                 <Grid container spacing={2}>
                         {
                             data.map((item) => (
@@ -149,8 +150,8 @@ const AddCoins = ({ data }) => {
                             ))
                         }
                 </Grid>
-            </Box >
-            {/* <Box width="100%" mt={2}>
+            </Box > */}
+            <Box width="100%" mt={2}>
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 6 }} >
                         <Box sx={widgetStyle}>
@@ -165,6 +166,20 @@ const AddCoins = ({ data }) => {
                 </Grid>
             </Box>
             <Box width={"100%"} mt={2}>
+                <Grid container spacing={2}>
+                    <Grid item size={{ xs: 12, md: 6 }}>
+                        <Box sx={widgetStyle}>
+                            <CryptoEvents />
+                        </Box>
+                    </Grid>
+                    <Grid item size={{ xs: 12, md: 6 }}>
+                        <Box sx={widgetStyle}>
+                        <EtfFlow />
+                        </Box>
+                    </Grid>
+                </Grid>
+            </Box>
+            <Box width={"100%"}>
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 6 }}>
                         <Box sx={widgetStyle}>
@@ -207,7 +222,7 @@ const AddCoins = ({ data }) => {
                         </Box>
                     </Grid>
                 </Grid>
-            </Box> */}
+            </Box>
         </>
     );
 };

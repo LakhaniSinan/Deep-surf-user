@@ -4,9 +4,9 @@ import React, {
     useState,
     useEffect
 } from "react";
-import DialogContainer from "../../components/dialog/DialogContainer";
-import DialogHeader from "../../components/dialog/DialogHeader";
-import DialogBody from "../../components/dialog/DialogBody";
+import DialogContainer from "../../components/dialog/dialogContainer";
+import DialogHeader from "../../components/dialog/dialogHeader";
+import DialogBody from "../../components/dialog/dialogBody";
 import DialogActionButtons from "../../components/dialog/dialogAction";
 import WidgetCatalog from "./widgetCatalog";
 import { Box } from "@mui/material";
