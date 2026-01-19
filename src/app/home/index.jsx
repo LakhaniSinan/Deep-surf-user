@@ -23,6 +23,7 @@ import { color } from "d3";
 import { useTranslation } from "react-i18next";
 import AddWidgit from "./addWidgit";
 import AddCoins from "./addCoins";
+import { fetchWidgit } from "../../services/modules/widget";
 
 
 const Home = () => {
@@ -38,31 +39,51 @@ const Home = () => {
   const username = user?.username || user?.name;
 
   const fetchHomeData = async () => {
-    try {
-      setIsLoading(true);
-      const language = i18n.language || "en";
-      console.log("fhfurhfurhfrfrf", language);
+    // try {
+    //   setIsLoading(true);
+    //   const language = i18n.language || "en";
+    //   console.log("fhfurhfurhfrfrf", language);
 
-      const response = await getHomeData({ language });
-      if (response.data.status === "success") {
-        const data = response.data.data;
-        setHomeResponse(data);
-        setTopCoins(data.topCoins);
-        setSentiment(data.overallSentiment);
-        setMacroData(data.macroeconomics);
-      } else {
-        console.log("Home API returned an error:", response.message);
-      }
-    } catch (error) {
-      console.error("Home API Error:", error);
-    } finally {
-      setIsLoading(false);
-    }
+    //   const response = await getHomeData({ language });
+    //   if (response.data.status === "success") {
+    //     const data = response.data.data;
+    //     setHomeResponse(data);
+    //     setTopCoins(data.topCoins);
+    //     setSentiment(data.overallSentiment);
+    //     setMacroData(data.macroeconomics);
+    //   } else {
+    //     console.log("Home API returned an error:", response.message);
+    //   }
+    // } catch (error) {
+    //   console.error("Home API Error:", error);
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
+  const [widgets, setAllWidgit] = useState([])
+
+  const fetchAllWidgit = async () => {
+    try {
+      setIsLoading(true)
+      const response = await fetchWidgit();
+      const data = response?.data?.data;
+      console.log(data, 'XXXXXXXXXXXXXXXXXXXx');
+      setAllWidgit(data)
+    } catch (error) {
+      console.log("error");
+    } finally {
+      setIsLoading(false)
+
+    }
+  }
   useEffect(() => {
-    fetchHomeData();
-  }, []);
+    fetchAllWidgit()
+  }, [])
+
+  // useEffect(() => {
+  //   fetchHomeData();
+  // }, []);
 
   const iconMap = {
     ETH: EthereumIcon,
@@ -94,6 +115,9 @@ const Home = () => {
     },
   ];
   const addWidgit = useRef();
+
+  console.log(widgets, "widgetswidgetswidgetswidgets");
+
 
   return (
     <Box
@@ -152,7 +176,7 @@ const Home = () => {
 
         <Grid container spacing={2} mb={2}>
           <Grid item size={{ xs: 12, md: 5.5 }}>
-            <Box display="flex" flexDirection="column" gap={2}>
+            {/* <Box display="flex" flexDirection="column" gap={2}>
               <CoinCheck />
               {isLoading ? (
                 <StatCardSkeleton />
@@ -218,10 +242,10 @@ const Home = () => {
                   isLoading={isLoading}
                 />
               </Box>
-            </Box>
+            </Box> */}
           </Grid>
 
-          <Grid item size={{ xs: 12, md: 6.5 }} mt={2}>
+          {/* <Grid item size={{ xs: 12, md: 6.5 }} mt={2}>
             <Grid container spacing={2}>
               <Grid item size={{ xs: 12, sm: 6 }}>
                 <TopCoinsTable data={topCoins} isLoading={isLoading} />
@@ -230,9 +254,9 @@ const Home = () => {
                 <Macroeconomics data={macroData} isLoading={isLoading} />
               </Grid>
             </Grid>
-          </Grid>
+          </Grid> */}
         </Grid>
-      <AddCoins />
+        <AddCoins data={widgets?.data?.length > 0 ? widgets.data : []} />
       </Container >
 
       <AddWidgit ref={addWidgit} />
