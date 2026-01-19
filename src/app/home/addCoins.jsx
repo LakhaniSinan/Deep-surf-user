@@ -11,6 +11,10 @@ import TopVolumeByCoins from "./topVolumeByCoins";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import CryptoEvents from "./cryptoEvents";
+import EtfFlow from "./etfFlow";
+import Metricsdata from "./metricData";
+import WhalesTrackers from "./whalesTrackers";
+import HeatMap from "./heatMap";
 
 
 const AddCoins = () => {
@@ -351,13 +355,47 @@ const AddCoins = () => {
                     </Grid>
                 </Grid>
             </Box>
-            <Box width={"100%"}>
+            <Box width={"100%"} mt={2}>
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 6 }}>
-                        <CryptoEvents />
+                        <Box sx={widgetStyle}>
+                            <CryptoEvents />
+                        </Box>
                     </Grid>
                     <Grid item size={{ xs: 12, md: 6 }}>
-                        {/* <CryptoEvents /> */}
+                        <Box sx={widgetStyle}>
+                            <EtfFlow />
+                        </Box>
+                    </Grid>
+                </Grid>
+
+            </Box>
+            <Box width={"100%"} mt={2}>
+                <Grid container spacing={2}>
+                    <Grid item size={{ xs: 12, md: 6 }}>
+                        <Box sx={widgetStyle}>
+                            <Metricsdata />
+                        </Box>
+                    </Grid>
+                    <Grid item size={{ xs: 12, md: 6 }}>
+                        <Box sx={widgetStyle}>
+                            <WhalesTrackers />
+                        </Box>
+                    </Grid>
+                </Grid>
+
+            </Box>
+            <Box width={"100%"} mt={2}>
+                <Grid container spacing={2}>
+                    <Grid item size={{ xs: 12, md: 6 }}>
+                        <Box sx={widgetStyle}>
+                            <HeatMap />
+                        </Box>
+                    </Grid>
+                    <Grid item size={{ xs: 12, md: 6 }}>
+                        <Box sx={widgetStyle}>
+                            <WhalesTrackers />
+                        </Box>
                     </Grid>
                 </Grid>
 
