@@ -11,6 +11,7 @@ import TopVolumeByCoins from "./topVolumeByCoins";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import CryptoEvents from "./cryptoEvents";
+import EtfFlow from "./ethFlow";
 
 
 const AddCoins = ({ data }) => {
@@ -133,7 +134,7 @@ const AddCoins = ({ data }) => {
 
     return (
         <>
-            <Box>
+            {/* <Box>
                 <Grid container spacing={2}>
                         {
                             data.map((item) => (
@@ -145,8 +146,8 @@ const AddCoins = ({ data }) => {
                             ))
                         }
                 </Grid>
-            </Box >
-            {/* <Box width="100%" mt={2}>
+            </Box > */}
+            <Box width="100%" mt={2}>
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 6 }} >
                         <Box sx={widgetStyle}>
@@ -159,8 +160,22 @@ const AddCoins = ({ data }) => {
                         </Box>
                     </Grid>
                 </Grid>
-            </Box> */}
-            {/* <Box width={"100%"}>
+            </Box>
+            <Box width={"100%"} mt={2}>
+                <Grid container spacing={2}>
+                    <Grid item size={{ xs: 12, md: 6 }}>
+                        <Box sx={widgetStyle}>
+                            <CryptoEvents />
+                        </Box>
+                    </Grid>
+                    <Grid item size={{ xs: 12, md: 6 }}>
+                        <Box sx={widgetStyle}>
+                        <EtfFlow />
+                        </Box>
+                    </Grid>
+                </Grid>
+            </Box>
+            <Box width={"100%"}>
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 6 }}>
                         <CryptoEvents />
@@ -168,7 +183,7 @@ const AddCoins = ({ data }) => {
                     <Grid item size={{ xs: 12, md: 6 }}>
                     </Grid>
                 </Grid>
-            </Box> */}
+            </Box>
         </>
     );
 };
