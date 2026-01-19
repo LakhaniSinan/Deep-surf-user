@@ -124,5 +124,6 @@ export const ENDPOINTS = {
     ADD_WIDGET: "widgets/add",
     REMOVE_WIDGET: "widgets",
     FETCH_BY_USER: "widgets/user",
+    FETCH_ALL_WIDGET: "home/fetch-data-optimized?ticker=ETH",
   },
 };

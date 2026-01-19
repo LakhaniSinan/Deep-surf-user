@@ -49,6 +49,9 @@ const IndicatorAnalysis = () => {
     ]
     return (
         <Box mt={1} bgcolor={"neutral.darkGrey"}>
+            <Typography color='neutral.Snowwhite' fontSize={"25px"} fontWeight={600}>
+                Indicator Analysis
+            </Typography>
             {
                 indicatorData.map((item, index) => (
                     <Box>
