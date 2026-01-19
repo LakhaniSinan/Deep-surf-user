@@ -17,7 +17,9 @@ import WhalesTrackers from "./whalesTrackers";
 import HeatMap from "./heatMap";
 
 
-const AddCoins = () => {
+const AddCoins = ({ data }) => {
+    console.log(data, "asdasdasdadasd");
+
     const widgetStyle = {
         background: "#151515",
         borderRadius: "16px",
@@ -138,210 +140,18 @@ const AddCoins = () => {
             <Box>
                 <Grid container spacing={2}>
                     {/* 🪙 TOP COINS WIDGET */}
-                    <Grid item size={{ xs: 12, md: 6 }}>
-                        <Box sx={widgetStyle}>
-                            <Box
-                                display="flex"
-                                justifyContent="space-between"
-                                alignItems="center"
-                                mb={2}
-                            >
-                                <Typography
-                                    variant="h6"
-                                    color="neutral.Snowwhite"
-                                    fontSize="25px"
-                                    fontWeight={600}
-                                >
-                                    Top coins
-                                </Typography>
+                    <Grid container spacing={2}>
 
-                                <IconButton
-                                    size="small"
-                                    sx={{
-                                        color: "neutral.Snowwhite",
-                                        bgcolor: "neutral.vermilionOrange",
-                                        "&:hover": {
-                                            bgcolor: "neutral.vermilionOrange",
-                                        },
-                                    }}
-                                    onClick={() => {
-                                        console.log("Macroeconomics closed");
-                                        // yahan hide / close logic add kar sakte ho
-                                    }}
-                                >
-                                    <CloseIcon fontSize="small" />
-                                </IconButton>
-                            </Box>
-                            <Grid container spacing={2}>
-                                {/* LEFT COLUMN - 5 coins */}
-                                <Grid item size={{ xs: 12, md: 6 }}>
-                                    {leftCoins.map((item, index) => (
-                                        <Box
-                                            key={index}
-                                            display="flex"
-                                            alignItems="center"
-                                            justifyContent="space-between"
-                                            gap="10px"
-                                            mb={1.5}
-                                            p={1}
-                                            sx={{
-                                                background: "#1E1E1E",
-                                                borderRadius: "8px",
-                                            }}
-                                        >
-                                            {/* Left: Icon + Title */}
-                                            <Box display="flex" gap="10px" alignItems="center">
-                                                <img src={item.icon} alt={item.title} style={{ width: "40px", height: "40px" }} />
-                                                <Box>
-                                                    <Typography color="white" fontSize="14px" fontWeight={600}>
-                                                        {item.title}
-                                                    </Typography>
-                                                    <Typography color="#999" fontSize="12px">
-                                                        {item.symbol}
-                                                    </Typography>
-                                                </Box>
-                                            </Box>
-
-                                            {/* Center: Graph */}
-                                            <Box>
-                                                <img src={item.graphyIcon} style={{ width: "80px", height: "30px" }} alt="graph" />
-                                            </Box>
-
-                                            {/* Right: Price + Percentage */}
-                                            <Box textAlign="right">
-                                                <Typography color="white" fontSize="14px" fontWeight={600}>
-                                                    {item.value1}
-                                                </Typography>
-                                                <Typography
-                                                    color={item.value2.startsWith('+') ? '#00D9A3' : '#FF4444'}
-                                                    fontSize="12px"
-                                                >
-                                                    {item.value2}
-                                                </Typography>
-                                            </Box>
-                                        </Box>
-                                    ))}
-                                </Grid>
-                                <Grid item size={{ xs: 12, md: 6 }}>
-                                    {rightCoins.map((item, index) => (
-                                        <Box
-                                            key={index}
-                                            display="flex"
-                                            alignItems="center"
-                                            justifyContent="space-between"
-                                            gap="10px"
-                                            mb={1.5}
-                                            p={1.2}
-                                            sx={{
-                                                background: "#1E1E1E",
-                                                borderRadius: "8px",
-                                            }}
-                                        >
-                                            {/* Left: Icon + Title */}
-                                            <Box display="flex" gap="10px" alignItems="center">
-                                                <img src={item.icon} alt={item.title} style={{ width: "40px", height: "40px" }} />
-                                                <Box>
-                                                    <Typography color="white" fontSize="14px" fontWeight={600}>
-                                                        {item.title}
-                                                    </Typography>
-                                                    <Typography color="#999" fontSize="12px">
-                                                        {item.symbol}
-                                                    </Typography>
-                                                </Box>
-                                            </Box>
-                                            <Box>
-                                                <img src={item.graphyIcon} style={{ width: "80px", height: "30px" }} alt="graph" />
-                                            </Box>
-                                            <Box textAlign="right">
-                                                <Typography color="white" fontSize="14px" fontWeight={600}>
-                                                    {item.value1}
-                                                </Typography>
-                                                <Typography
-                                                    color={item.value2.startsWith('+') ? '#00D9A3' : '#FF4444'}
-                                                    fontSize="12px"
-                                                >
-                                                    {item.value2}
-                                                </Typography>
-                                            </Box>
-                                        </Box>
-                                    ))}
-                                </Grid>
-                            </Grid>
-                        </Box>
+                        {data.map(item => {
+                            return <Grid sx={{color:"pink"}} item size={{ xs: 6 }}> asdadasd</Grid>
+                        })
+                        }
                     </Grid>
-
                     {/* 🌍 MACROECONOMICS WIDGET */}
-                    <Grid item size={{ xs: 12, md: 6 }}>
-                        <Box sx={widgetStyle}>
-                            <Box
-                                display="flex"
-                                justifyContent="space-between"
-                                alignItems="center"
-                                mb={2}
-                            >
-                                <Typography
-                                    variant="h6"
-                                    color="neutral.Snowwhite"
-                                    fontSize="25px"
-                                    fontWeight={600}
-                                >
-                                    Macroeconomics
-                                </Typography>
 
-                                <IconButton
-                                    size="small"
-                                    sx={{
-                                        color: "neutral.Snowwhite",
-                                        bgcolor: "neutral.vermilionOrange",
-                                        "&:hover": {
-                                            bgcolor: "neutral.vermilionOrange",
-                                        },
-                                    }}
-                                    onClick={() => {
-                                        console.log("Macroeconomics closed");
-                                        // yahan hide / close logic add kar sakte ho
-                                    }}
-                                >
-                                    <CloseIcon fontSize="small" />
-                                </IconButton>
-                            </Box>
-
-                            {macroData.map((item, index) => (
-                                <Box key={index} mb={3}>
-                                    <Typography fontSize="15px" fontWeight={700} color="neutral.Snowwhite">
-                                        {item.title}
-                                    </Typography>
-                                    <Typography mt={1} fontSize="12px" color="neutral.Snowwhite">
-                                        {item.value}
-                                    </Typography>
-                                    <Typography fontSize="12px" color="neutral.Snowwhite">
-                                        {item.description}
-                                    </Typography>
-                                    <Box
-                                        bgcolor="rgba(36, 36, 36, 1)"
-                                        display="flex"
-                                        gap="8px"
-                                        mt={2}
-                                        p={1.2}
-                                        borderRadius="15px"
-                                        alignItems="center"
-                                    >
-                                        <Box>
-                                            <img src={item.icon} alt="icon" />
-                                        </Box>
-                                        <Box>
-                                            <Typography color="neutral.Snowwhite" fontSize="14px">
-                                                {item.heading}
-                                            </Typography>
-                                        </Box>
-                                    </Box>
-                                </Box>
-                            ))}
-                        </Box>
-                    </Grid>
                 </Grid>
             </Box >
-            <Box width="100%" mt={2}>
+            {/* <Box width="100%" mt={2}>
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 6 }} >
                         <Box sx={widgetStyle}>
@@ -398,8 +208,7 @@ const AddCoins = () => {
                         </Box>
                     </Grid>
                 </Grid>
-
-            </Box>
+            </Box> */}
         </>
     );
 };
