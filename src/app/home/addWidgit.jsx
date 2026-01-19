@@ -13,8 +13,9 @@ import { Box } from "@mui/material";
 import { addWidget, fetchuserWidgets, fetchWidgets, removeWidget } from "../../services/modules/widget";
 
 const AddWidgit = forwardRef((props, ref) => {
-
     const [data, setData] = useState([])
+   
+
     const [addedWidgetIds, setAddedWidgetIds] = useState([]);
 
     useEffect(() => {
@@ -24,8 +25,15 @@ const AddWidgit = forwardRef((props, ref) => {
     const fetchAllWidgets = async () => {
         const [allRes, userRes] = await Promise.all([
             fetchWidgets(),
-            fetchuserWidgets(), // ← user-added widgets
+            // console.log("efbfguygfyugffrfurf", category),
+
+            fetchuserWidgets(),
+            // setData(allRes?.data?.data)
         ]);
+        // console.log("befhefgfgyfgyefgyefyeyef", fetchWidgets());
+
+        // console.log("cccccccccccccccccccccc", allRes?.data?.data);
+
 
         console.log(allRes, userRes, "allResallResallRes");
         setData(allRes.data.data)

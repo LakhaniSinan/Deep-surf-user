@@ -8,6 +8,10 @@ import CustomInput from "../../components/customInput";
 import AiProof from "./aiProof";
 import TechnicalIndicator from "./techinalIndicator";
 import TopVolumeByCoins from "./topVolumeByCoins";
+import CloseIcon from "@mui/icons-material/Close";
+import IconButton from "@mui/material/IconButton";
+import CryptoEvents from "./cryptoEvents";
+
 
 const AddCoins = () => {
     const widgetStyle = {
@@ -60,7 +64,7 @@ const AddCoins = () => {
             icon: TopCoins,
             graphyIcon: TopCoinsGraphy,
             value1: "$425",
-            value2: "+0.67%",
+            value2: "-0.67%",
         },
         {
             title: "SOL",
@@ -89,7 +93,7 @@ const AddCoins = () => {
             icon: UsdtIcon,
             graphyIcon: TopCoinsGraphy,
             value1: "$1.00",
-            value2: "+0.01%",
+            value2: "0.01%",
         },
         {
             title: "ADA",
@@ -113,7 +117,7 @@ const AddCoins = () => {
             icon: TopCoins,
             graphyIcon: TopCoinsGraphy,
             value1: "$38.50",
-            value2: "+0.95%",
+            value2: "-0.95%",
         },
         {
             title: "DOT",
@@ -121,7 +125,7 @@ const AddCoins = () => {
             icon: TopCoins,
             graphyIcon: TopCoinsGraphy,
             value1: "$5.28",
-            value2: "+0.89%",
+            value2: "-0.89%",
         },
     ];
 
@@ -132,9 +136,38 @@ const AddCoins = () => {
                     {/* 🪙 TOP COINS WIDGET */}
                     <Grid item size={{ xs: 12, md: 6 }}>
                         <Box sx={widgetStyle}>
-                            <Typography color="neutral.Snowwhite" mb={2} fontSize="25px" fontWeight={600}>
-                                Top Coins
-                            </Typography>
+                            <Box
+                                display="flex"
+                                justifyContent="space-between"
+                                alignItems="center"
+                                mb={2}
+                            >
+                                <Typography
+                                    variant="h6"
+                                    color="neutral.Snowwhite"
+                                    fontSize="25px"
+                                    fontWeight={600}
+                                >
+                                    Top coins
+                                </Typography>
+
+                                <IconButton
+                                    size="small"
+                                    sx={{
+                                        color: "neutral.Snowwhite",
+                                        bgcolor: "neutral.vermilionOrange",
+                                        "&:hover": {
+                                            bgcolor: "neutral.vermilionOrange",
+                                        },
+                                    }}
+                                    onClick={() => {
+                                        console.log("Macroeconomics closed");
+                                        // yahan hide / close logic add kar sakte ho
+                                    }}
+                                >
+                                    <CloseIcon fontSize="small" />
+                                </IconButton>
+                            </Box>
                             <Grid container spacing={2}>
                                 {/* LEFT COLUMN - 5 coins */}
                                 <Grid item size={{ xs: 12, md: 6 }}>
@@ -236,9 +269,39 @@ const AddCoins = () => {
                     {/* 🌍 MACROECONOMICS WIDGET */}
                     <Grid item size={{ xs: 12, md: 6 }}>
                         <Box sx={widgetStyle}>
-                            <Typography variant="h6" mb={2} color="neutral.Snowwhite" fontSize="25px" fontWeight={600}>
-                                Macroeconomics
-                            </Typography>
+                            <Box
+                                display="flex"
+                                justifyContent="space-between"
+                                alignItems="center"
+                                mb={2}
+                            >
+                                <Typography
+                                    variant="h6"
+                                    color="neutral.Snowwhite"
+                                    fontSize="25px"
+                                    fontWeight={600}
+                                >
+                                    Macroeconomics
+                                </Typography>
+
+                                <IconButton
+                                    size="small"
+                                    sx={{
+                                        color: "neutral.Snowwhite",
+                                        bgcolor: "neutral.vermilionOrange",
+                                        "&:hover": {
+                                            bgcolor: "neutral.vermilionOrange",
+                                        },
+                                    }}
+                                    onClick={() => {
+                                        console.log("Macroeconomics closed");
+                                        // yahan hide / close logic add kar sakte ho
+                                    }}
+                                >
+                                    <CloseIcon fontSize="small" />
+                                </IconButton>
+                            </Box>
+
                             {macroData.map((item, index) => (
                                 <Box key={index} mb={3}>
                                     <Typography fontSize="15px" fontWeight={700} color="neutral.Snowwhite">
@@ -288,7 +351,17 @@ const AddCoins = () => {
                     </Grid>
                 </Grid>
             </Box>
+            <Box width={"100%"}>
+                <Grid container spacing={2}>
+                    <Grid item size={{ xs: 12, md: 6 }}>
+                        <CryptoEvents />
+                    </Grid>
+                    <Grid item size={{ xs: 12, md: 6 }}>
+                        {/* <CryptoEvents /> */}
+                    </Grid>
+                </Grid>
 
+            </Box>
         </>
     );
 };
