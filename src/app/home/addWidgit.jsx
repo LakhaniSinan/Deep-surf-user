@@ -14,10 +14,7 @@ import { addWidget, fetchuserWidgets, fetchWidgets, removeWidget } from "../../s
 
 const AddWidgit = forwardRef((props, ref) => {
     const [data, setData] = useState([])
-   
-
     const [addedWidgetIds, setAddedWidgetIds] = useState([]);
-
     useEffect(() => {
         fetchAllWidgets()
     }, [])
@@ -25,14 +22,8 @@ const AddWidgit = forwardRef((props, ref) => {
     const fetchAllWidgets = async () => {
         const [allRes, userRes] = await Promise.all([
             fetchWidgets(),
-            // console.log("efbfguygfyugffrfurf", category),
-
             fetchuserWidgets(),
-            // setData(allRes?.data?.data)
         ]);
-        // console.log("befhefgfgyfgyefgyefyeyef", fetchWidgets());
-
-        // console.log("cccccccccccccccccccccc", allRes?.data?.data);
         console.log(allRes, userRes, "allResallResallRes");
         setData(allRes.data.data)
         let dd = userRes.data.data.map(item => {

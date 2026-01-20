@@ -124,7 +124,7 @@ const AddCoins = ({ data }) => {
 
     return (
         <>
-            {/* <Box>
+            <Box>
                 <Grid container spacing={2}>
                     {
                         data.map((item) => {
@@ -143,8 +143,8 @@ const AddCoins = ({ data }) => {
                         })
                     }
                 </Grid>
-            </Box > */}
-            <Box width={"100%"}>
+            </Box > 
+            {/* <Box width={"100%"}>
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 6 }} >
                         <Box sx={widgetStyle}>
@@ -152,9 +152,11 @@ const AddCoins = ({ data }) => {
                         </Box>
                     </Grid>
                 </Grid>
-            </Box>
+            </Box> */}
 
             <Box width="100%" mt={2}>
+            </Box >
+            {/* <Box width="100%" mt={2}>
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 6 }} >
                         <Box sx={widgetStyle}>
@@ -181,13 +183,13 @@ const AddCoins = ({ data }) => {
                         </Box>
                     </Grid>
                 </Grid>
-            </Box>
+            </Box> */}
 
             <Box width={"100%"} mt={2}>
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 6 }}>
                         <Box sx={widgetStyle}>
-                            <Metricsdata />
+                            <TopCoinsComponent />
                         </Box>
                     </Grid>
                     <Grid item size={{ xs: 12, md: 6 }}>
@@ -196,9 +198,8 @@ const AddCoins = ({ data }) => {
                         </Box>
                     </Grid>
                 </Grid>
-
             </Box>
-            <Box width={"100%"} mt={2}>
+            {/* <Box width={"100%"} mt={2}>
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 6 }}>
                         <Box sx={widgetStyle}>
@@ -207,11 +208,10 @@ const AddCoins = ({ data }) => {
                     </Grid>
                     <Grid item size={{ xs: 12, md: 6 }}>
                         <Box sx={widgetStyle}>
-                            {/* <WhalesTrackers /> */}
                         </Box>
                     </Grid>
                 </Grid>
-            </Box>
+            </Box> */}
         </>
     );
 };

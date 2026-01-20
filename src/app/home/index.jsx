@@ -258,7 +258,6 @@ const Home = () => {
         </Grid>
         <AddCoins data={widgets?.data?.length > 0 ? widgets.data : []} />
       </Container >
-
       <AddWidgit ref={addWidgit} />
     </Box >
   );

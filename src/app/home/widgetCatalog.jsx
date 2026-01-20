@@ -40,7 +40,7 @@ const WidgetCatalog = ({ handleRemove, data, handleAddWidget, addedWidgetIds }) 
             </Box>
 
             {/* Categories Chips */}
-            <Box display="flex" gap={1} flexWrap="wrap" mb={3} alignItems={"center"}>
+            {/* <Box display="flex" gap={1} flexWrap="wrap" mb={3} alignItems={"center"}>
                 <Typography color="neutral.Snowwhite" fontSize={"20px"} fontWeight={600}>
                     Category :
                 </Typography>
@@ -64,7 +64,7 @@ const WidgetCatalog = ({ handleRemove, data, handleAddWidget, addedWidgetIds }) 
                         </Typography>
                     </Box>
                 ))}
-            </Box>
+            </Box> */}
             {/* Widgets Grid */}
             <Grid container spacing={1}>
                 {data?.map((item) => {
