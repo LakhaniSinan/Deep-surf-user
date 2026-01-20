@@ -85,8 +85,6 @@ const AddCoins = ({ data, isLoading, ticker, setTicker, onSearch }) => {
                                         <WhalesTrackers data={item?.data} />
                                     )
                                 )}
-
-
                                 {item?.widgetId === "top-coins" && (isLoading || !item?.data ? <TopCoinsComponentSkeleton /> : <TopCoinsComponent data={item?.data} />)}
                                 {item?.widgetId === "crypto-events" && (
                                     isLoading ? (
@@ -98,8 +96,8 @@ const AddCoins = ({ data, isLoading, ticker, setTicker, onSearch }) => {
 
                                 {item?.widgetId === "etf-flow" && <EtfFlow data={item?.data} />}
                                 {item?.widgetId === "market-overview" && <Metricsdata data={item?.data} />}
-                                {item?.widgetId === "heat-map" && <HeatMap data={item?.data} />}
-                                {item?.widgetId === "future-metrics" && <MacroEconomics data={item?.data} />}
+                                {/* {item?.widgetId === "heat-map" && <HeatMap data={item?.data} />} */}
+                                {item?.widgetId === "macroeconomics" && <MacroEconomics data={item?.data} />}
                                 {item?.widgetId === "top-by-volume" && <TopVolumeByCoins data={item?.data} />}
                                 {item?.widgetId === "ai-proof" && (
                                     <AiProof
