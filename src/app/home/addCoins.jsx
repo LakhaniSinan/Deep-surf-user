@@ -91,8 +91,6 @@ const AddCoins = ({ data, isLoading, ticker, setTicker, onSearch }) => {
                                 {item?.widgetId === "crypto-events" && (
                                     isLoading ? (
                                         <CryptoEventsSkeleton />
-                                    ) : !item?.data ? (
-                                        <NoDataFound />
                                     ) : (
                                         <CryptoEvents data={item?.data} />
                                     )

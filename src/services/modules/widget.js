@@ -1,8 +1,8 @@
 import { ENDPOINTS } from "../endpoints";
 import Api from "../index";
 
-const fetchWidgets = () => {
-  return Api(`${ENDPOINTS.WIDGETS.FETCH_ALL}`, null, "get");
+const fetchWidgets = (search) => {
+  return Api(`${ENDPOINTS.WIDGETS.FETCH_ALL}?search=${search}`, null, "get");
 };
 const fetchuserWidgets = (payload) => {
   return Api(ENDPOINTS.WIDGETS.FETCH_BY_USER, null, "get");
@@ -17,7 +17,7 @@ const addWidget = (id) => {
 const removeWidget = (payload) => {
   return Api(`${ENDPOINTS.WIDGETS.REMOVE_WIDGET}/${payload}`, null, "delete");
 };
-const fetchWidgit = ({ticker}) => {
+const fetchWidgit = ({ ticker }) => {
   return Api(
     `${ENDPOINTS.WIDGETS.FETCH_ALL_WIDGET}?ticker=${ticker}`,
     null,

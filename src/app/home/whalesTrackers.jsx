@@ -3,9 +3,8 @@ import React, { useState } from 'react'
 import CustomButton from '../../components/customButton';
 import CloseIcon from "@mui/icons-material/Close";
 
-
 const WhalesTrackers = ({ data }) => {
-    console.log("fuefgeufgyefewwwwwwwwwwwwwwwwwwfyef", data?.transactions);
+    console.log("fuefgeufgyefewwwwwwwwwwwwwwwwwwfyef", data?.whales);
     const [isLoading, setIsLoading] = useState(false)
     return (
         <>
@@ -23,7 +22,6 @@ const WhalesTrackers = ({ data }) => {
                 >
                     Whales tracker
                 </Typography>
-
                 <IconButton
                     size="small"
                     sx={{
@@ -42,7 +40,7 @@ const WhalesTrackers = ({ data }) => {
                 </IconButton>
             </Box>
             <Grid container spacing={2} mt="20px">
-                {data?.[0]?.transactions?.slice(0, 4).map((item, index) => (
+                {data?.whales?.[0]?.transactions?.slice(0, 4).map((item, index) => (
                     <Grid item size={{ xs: 12, sm: 6, md: 12 }} key={index}>
                         <Box
                             sx={{
