@@ -2,7 +2,7 @@ import { Box, Chip, Grid, Typography } from '@mui/material'
 import React from 'react'
 import CustomButton from '../../components/customButton'
 import EffectIcon from "../../assets/icons/effects.svg"
-// import AnalysisIcon from "../../assets/icons/analysisIcon.svg"
+import AnalysisIcon from "../../assets/icons/search-analysis-iocn.svg"
 
 const AiProof = () => {
     const buttonData = [
@@ -69,7 +69,7 @@ const AiProof = () => {
 
                 <Box display={"flex"} gap={"10px"} mt={2}>
                     <Box>
-                        <Typography color='neutral.neutralGrey' fontSize={"20px"} fontWeight={600}>
+                        <Typography color='rgba(127, 127, 127, 1)' fontSize={"20px"} fontWeight={600}>
                             Timeframe:
                         </Typography>
                     </Box>
@@ -91,10 +91,10 @@ const AiProof = () => {
 
                 </Box>
                 <Box display={"flex"} justifyContent={"center"} alignItems={"center"} mt={10}>
-                    {/* <img src={AnalysisIcon} style={{ width: "82px", height: "79px" }} /> */}
+                    <img src={AnalysisIcon} style={{ width: "82px", height: "79px" }} />
                 </Box>
                 <Box mt={0.5}>
-                    <Typography textAlign={"center"} color='neutral.neutralGrey' fontWeight={600} letterSpacing={1}>
+                    <Typography textAlign={"center"} color='rgba(127, 127, 127, 1)' fontWeight={600} letterSpacing={1}>
                         Enter a coin ticker for analysis
                     </Typography>
                 </Box>

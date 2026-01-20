@@ -1,9 +1,10 @@
 import { Box, Chip, Container, Grid, MenuItem, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import CustomButton from '../../components/customButton'
-// import ScanIcon from "../../assets/icons/scan-icon.svg"
-// import MlIcon from "../../assets/icons/ml-icon.svg"
+import ScanIcon from "../../assets/icons/scan-icon.svg"
+import MlIcon from "../../assets/icons/mt-icon.svg"
 import CustomSelect from '../../components/customSelect'
+import CustomCheckbox from '../../components/cutomChecked'
 // import CustomCheckbox from '../../components/cutomChecked'
 
 const AiPumpScanner = () => {
@@ -90,7 +91,7 @@ const AiPumpScanner = () => {
                     width={{ xs: "100%", sm: "auto" }}
                     justifyContent={{ xs: "flex-start", sm: "flex-end" }}
                 >
-                    {/* <CustomButton
+                    <CustomButton
                         icon={<img src={ScanIcon} />}
                         title="Scan"
                         width={{ xs: "100%", sm: "auto" }}
@@ -99,9 +100,9 @@ const AiPumpScanner = () => {
                             fontSize: { xs: "14px", sm: "20px" },
                             borderRadius: "15px",
                         }}
-                    /> */}
+                    />
 
-                    {/* <CustomButton
+                    <CustomButton
                         icon={<img src={MlIcon} />}
                         title="ML"
                         width={{ xs: "100%", sm: "auto" }}
@@ -111,7 +112,7 @@ const AiPumpScanner = () => {
                             fontSize: { xs: "14px", sm: "20px" },
                             borderRadius: "15px",
                         }}
-                    /> */}
+                    />
                 </Box>
             </Box>
             <Box>
@@ -269,7 +270,7 @@ const AiPumpScanner = () => {
                         </Box>
                     </Grid>
                 </Grid>
-                {/* <Box>
+                <Box>
                     {
                         checkBoxData.map((item) => (
                             <CustomCheckbox
@@ -278,7 +279,7 @@ const AiPumpScanner = () => {
                         ))
                     }
 
-                </Box> */}
+                </Box>
 
             </Box>
         </Box>
