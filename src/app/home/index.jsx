@@ -61,8 +61,6 @@ const Home = () => {
   };
 
   const [widgets, setAllWidgit] = useState([]);
- 
-
   const fetchAllWidgit = async () => {
     try {
       setIsLoading(true);
@@ -168,7 +166,10 @@ const Home = () => {
               <Box display={"flex"} alignItems={"center"}>
                 <CustomButton
                   variant="calculatorSmall"
-                  onClick={() => addWidgit.current?.openDialog({ type: "add" })}
+                  onClick={() => addWidgit.current?.openDialog({
+                    type: "add",
+                    fun: fetchAllWidgit
+                  })}
                   title={t("dashboard.addTools")}
                   icon={<img src={PlusIcon} />}
                   sx={{
@@ -267,7 +268,7 @@ const Home = () => {
           <AddCoins
             data={widgets?.data?.length > 0 ? widgets.data : []}
             isLoading={isLoading}
-           
+
           />
         </Container>
       )}
