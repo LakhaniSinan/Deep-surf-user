@@ -286,6 +286,19 @@ const theme = createTheme({
             },
           },
         },
+        {
+          // 🟠 Calculator toggle button (small, orange when selected)
+          props: { variant: "predictorBtn" },
+          style: {
+            background: "rgba(255, 162, 6, 1)",
+            border: "none",
+            color: "rgba(255, 255, 255, 1)",
+            padding: "13px 54px",
+            fontSize: "18px",
+            minHeight: "36px",
+            borderRadius: "30px",
+          },
+        },
       ],
     },
 

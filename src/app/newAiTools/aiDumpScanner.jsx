@@ -6,9 +6,9 @@ import MlIcon from "../../assets/icons/mt-icon.svg"
 import CustomSelect from '../../components/customSelect'
 import CustomCheckbox from '../../components/cutomChecked'
 // import CustomCheckbox from '../../components/cutomChecked'
-import PredictorImage from "../../assets/icons/predictor-icon.svg"
+import PredictorImage from "../../assets/icons/ai-dump-icon.svg"
 
-const AiPumpScanner = () => {
+const AiDumpScanner = () => {
     const [scanType, setScanType] = useState("");
     const buttonData = [
         {
@@ -80,7 +80,7 @@ const AiPumpScanner = () => {
                         fontSize={{ xs: "16px", sm: "20px" }}
                         fontWeight={650}
                     >
-                        AI Pump Scanner
+                        AI Dump Scanner
                     </Typography>
                 </Box>
 
@@ -118,7 +118,7 @@ const AiPumpScanner = () => {
             </Box>
             <Box>
                 <Typography color='neutral.Snowwhite' fontSize={"15px"} letterSpacing={1.2} fontWeight={400}>
-                    1000+ coins • Memes • Lowcaps • New Listings • 20+ patterns
+                    3000+ coins • Finding dump signals • Short signals • 20+ patterns
                 </Typography>
             </Box>
             <Box display={"flex"} gap={"10px"} mt={0.5}>
@@ -288,41 +288,41 @@ const AiPumpScanner = () => {
                 </Box>
                 <Box textAlign={"center"}>
                     <Typography color="neutral.Snowwhite" fontSize={"23px"} fontWeight={600} letterSpacing={1}>
-                        AI Pump Predictor
+                        AI Dump Predictor
                     </Typography>
                 </Box>
                 <Box textAlign={"center"} >
                     <Typography color="rgba(255, 255, 255, 0.5)" fontWeight={400} >
-                        Analysis of  <span style={{ color: "rgba(255, 100, 33, 1)" }}>1000% coins </span> (Futures + Spot)
+                        Analysis of  <span style={{ color: "rgba(255, 100, 33, 1)" }}>3000% coins </span> (Futures + Spot)
                     </Typography>
                 </Box>
                 <Box textAlign={"center"} >
                     <Typography color="rgba(255, 255, 255, 0.5)" fontWeight={400} >
-                        Order Book • CVD • Liquidation Zones • OI • Funding • 20+ patterns
+                        Order Book • CVD(sell) • Liquidation Zones • OI • Funding • 20+ patterns
                     </Typography>
                 </Box>
                 <Box display={"flex"} justifyContent={"center"} gap={"10px"} mt={3}>
                     <CustomButton
-                        title={"50+ memecoins"}
+                        title={"High Risk"}
                         variant='predictorBtn'
                     />
                     <CustomButton
-                        title={"100+ lowcaps"}
+                        title={"Long Squeeze"}
                         variant='predictorBtn'
 
                     />
                     <CustomButton
-                        title={"New listings"}
+                        title={"OI Unwinding"}
                         variant='predictorBtn'
                     />
                 </Box>
                 <Box>
                     <Typography color="neutral.Snowwhite" fontSize={"15px"} fontWeight={400} textAlign={"center"} mt={2}>
-                        Low-cap potential: 100-500%+ even when BTC is sideways
+                        Finding coins with dump signals for short positions
                     </Typography>
                 </Box>
             </Box>
         </Box >
     )
 }
-export default AiPumpScanner
+export default AiDumpScanner
