@@ -101,7 +101,7 @@ const AiProof = () => {
                                     Ai Proof
                                 </Typography>
 
-                                <IconButton
+                                {/* <IconButton
                                     size="small"
                                     sx={{
                                         color: "neutral.Snowwhite",
@@ -115,7 +115,7 @@ const AiProof = () => {
                                     }}
                                 >
                                     <CloseIcon fontSize="small" />
-                                </IconButton>
+                                </IconButton> */}
                             </Box>
 
                             <Box mt={2}>

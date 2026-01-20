@@ -41,7 +41,7 @@ const CryptoEvents = ({ data }) => {
                     Cryptocurrency Events
                 </Typography>
 
-                <IconButton
+                {/* <IconButton
                     size="small"
                     sx={{
                         color: "neutral.Snowwhite",
@@ -56,7 +56,7 @@ const CryptoEvents = ({ data }) => {
                     }}
                 >
                     <CloseIcon fontSize="small" />
-                </IconButton>
+                </IconButton> */}
             </Box>
             <Box mt={1.2}>
                 <Typography color='neutral.Snowwhite' fontSize={"15px"} fontWeight={600}>
