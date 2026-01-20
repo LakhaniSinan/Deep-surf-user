@@ -44,6 +44,11 @@ const theme = createTheme({
       dangerRed: "rgba(225, 26, 56, 1)",
       amber: "rgba(255, 230, 0, 1)",
       mutedGrey: "rgba(102, 102, 102, 1)",
+      lightGreen: "rgba(30, 179, 99, 1)",
+      neutralGrey: "rgba(127, 127, 127, 1)",
+      steelGrey: "rgba(148, 150, 154, 1)",
+      obsidianAsh: "rgba(55, 55, 55, 1)",
+      neutralGray: "rgba(147, 148, 153, 1)",
     },
     background: {
       default: "#101010",
@@ -262,6 +267,22 @@ const theme = createTheme({
             "&:hover": {
               backgroundColor: "rgba(255,255,255,0.08)",
               border: "none",
+            },
+          },
+        },
+        {
+          // 🟠 Calculator toggle button (small, orange when selected)
+          props: { variant: "analyzeButton" },
+          style: {
+            fontSize: "50px",
+            fontWeight: 400,
+            color: "#fff",
+            fontFamily: "Inter Tight",
+            backgroundColor: "rgba(255, 100, 33, 1)",
+            borderRadius: "20px", // ✅ yahan
+            padding: "15px 20px",
+            "&:hover": {
+              backgroundColor: "rgba(235, 90, 25, 1)",
             },
           },
         },
