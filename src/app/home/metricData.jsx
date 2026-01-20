@@ -43,7 +43,7 @@ const Metricsdata = ({ data }) => {
                             <Box textAlign={"center"} mt={"-15px"}>
                                 <Speedometer
                                     size={50}
-                                // score={marketMetricesData?.fearGreedIndex?.value}
+                                    score={data?.fearGreedIndex?.value}
                                 />
                             </Box>
                         </Card>
@@ -61,7 +61,7 @@ const Metricsdata = ({ data }) => {
                             </Typography>
                             <Box display="flex" gap="15px" alignItems={"center"}>
                                 <Typography fontSize="30px" fontWeight={600} variant="h6" mt={2}>
-                                    57.98%
+                                    {data?.btcDominance?.value}
                                 </Typography>
                                 <Typography fontSize="30px " mt={2}>
                                     <img src={DropDownIcon} alt="" />
@@ -96,10 +96,10 @@ const Metricsdata = ({ data }) => {
                                 fontFamily={"inter Tight"}
 
                             >
-                                $111,540.7
+                                {data?.prices24h?.btc?.price}
                             </Typography>
-                            <Typography sx={{ color: "green", fontSize: "14px" }}>
-                                +0.32%
+                            <Typography sx={{ color: data?.prices24h?.btc?.change?.includes("-") ? "red" : "green", fontSize: "14px" }}>
+                                {data?.prices24h?.btc?.change}
                             </Typography>
                         </Card>
                     </Grid>
@@ -126,10 +126,10 @@ const Metricsdata = ({ data }) => {
                                 mt={4}
                                 fontFamily={"inter Tight"}
                             >
-                                $3,938.89
+                                {data?.prices24h?.eth?.price}
                             </Typography>
-                            <Typography sx={{ color: "red", fontSize: "14px" }}>
-                                -0.55%
+                            <Typography sx={{ color: data?.prices24h?.btc?.change?.includes("-") ? "red" : "green", fontSize: "14px" }}>
+                                {data?.prices24h?.eth?.change}
                             </Typography>
                         </Card>
                     </Grid>
@@ -156,10 +156,10 @@ const Metricsdata = ({ data }) => {
                                 mt={5}
                                 fontFamily={"inter Tight"}
                             >
-                                $214.15
+                                {data?.prices24h?.sol?.price}
                             </Typography>
-                            <Typography sx={{ color: "green", fontSize: "14px" }}>
-                                +3.49%
+                            <Typography sx={{ color: data?.prices24h?.btc?.change?.includes("-") ? "red" : "green", fontSize: "14px" }}>
+                                {data?.prices24h?.sol?.change}
                             </Typography>
                         </Card>
                     </Grid>
@@ -192,25 +192,25 @@ const Metricsdata = ({ data }) => {
                         <Box display="flex" justifyContent="space-around" mt={2}>
                             <Box>
                                 <Typography variant="h4" fontWeight={500} fontSize="15px" marginTop="10px">
-                                    Today (3rd Oct)
+                                    {data?.etfFlowsSummary?.btc?.today?.label}
                                 </Typography>
                                 <Typography variant="h4" marginTop="10px" fontWeight={600} fontSize="20px">
-                                    +5,256 BTC
+                                    {data?.etfFlowsSummary?.btc?.today?.amount}
                                 </Typography>
                                 <Typography variant="h4" fontSize="15px" fontWeight={550} marginTop="10px">
-                                    $632.13M
+                                    {data?.etfFlowsSummary?.btc?.today?.usdValue}
                                 </Typography>
                             </Box>
                             <Box height="100px" width="1px" backgroundColor="#8D8D8D"></Box>
                             <Box>
-                                <Typography marginTop="10px" variant="h4" fontWeight={550} fontSize="15px">
-                                    In 2 days
+                                <Typography variant="h4" fontWeight={500} fontSize="15px" marginTop="10px">
+                                    {data?.etfFlowsSummary?.btc?.in2Days?.label}
                                 </Typography>
                                 <Typography variant="h4" marginTop="10px" fontWeight={600} fontSize="20px">
-                                    +10,899 BTC
+                                    {data?.etfFlowsSummary?.btc?.in2Days?.amount}
                                 </Typography>
                                 <Typography variant="h4" fontSize="15px" fontWeight={550} marginTop="10px">
-                                    $1,307.34M
+                                    {data?.etfFlowsSummary?.btc?.in2Days?.usdValue}
                                 </Typography>
                             </Box>
                         </Box>
@@ -239,32 +239,31 @@ const Metricsdata = ({ data }) => {
                         <Box display="flex" justifyContent="space-around" mt={2}>
                             <Box>
                                 <Typography variant="h4" fontWeight={500} fontSize="15px" marginTop="10px">
-                                    Today (3rd Oct)
+                                    {data?.etfFlowsSummary?.eth?.today?.label}
                                 </Typography>
                                 <Typography variant="h4" marginTop="10px" fontWeight={600} fontSize="20px">
-                                    +5,256 ETH
+                                    {data?.etfFlowsSummary?.eth?.today?.amount}
                                 </Typography>
                                 <Typography variant="h4" fontSize="15px" fontWeight={550} marginTop="10px">
-                                    $913,921
+                                    {data?.etfFlowsSummary?.eth?.today?.usdValue}
                                 </Typography>
                             </Box>
                             <Box height="100px" width="1px" backgroundColor="#8D8D8D"></Box>
                             <Box>
-                                <Typography marginTop="10px" variant="h4" fontWeight={550} fontSize="15px">
-                                    In 2 days
+                                <Typography variant="h4" fontWeight={500} fontSize="15px" marginTop="10px">
+                                    {data?.etfFlowsSummary?.eth?.in2Days?.label}
                                 </Typography>
                                 <Typography variant="h4" marginTop="10px" fontWeight={600} fontSize="20px">
-                                    +10,899 ETH
+                                    {data?.etfFlowsSummary?.eth?.in2Days?.amount}
                                 </Typography>
                                 <Typography variant="h4" fontSize="15px" fontWeight={550} marginTop="10px">
-                                    $1.8M
+                                    {data?.etfFlowsSummary?.eth?.in2Days?.usdValue}
                                 </Typography>
                             </Box>
                         </Box>
                     </Grid>
                 </Grid>
             </Box>
-
         </Box>
     )
 }
