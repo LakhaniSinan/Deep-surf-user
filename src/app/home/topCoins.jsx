@@ -39,7 +39,7 @@ const TopCoinsComponent = ({ data }) => {
                         Top coins
                     </Typography>
 
-                    <IconButton
+                    {/* <IconButton
                         size="small"
                         sx={{
                             color: "neutral.Snowwhite",
@@ -54,7 +54,7 @@ const TopCoinsComponent = ({ data }) => {
                         }}
                     >
                         <CloseIcon fontSize="small" />
-                    </IconButton>
+                    </IconButton> */}
                 </Box>
                 <Grid container spacing={2}>
                     {/* LEFT COLUMN - 5 coins */}

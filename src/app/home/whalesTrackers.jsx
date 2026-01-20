@@ -21,7 +21,7 @@ const WhalesTrackers = ({ data }) => {
                 >
                     Whales tracker
                 </Typography>
-                <IconButton
+                {/* <IconButton
                     size="small"
                     sx={{
                         color: "neutral.Snowwhite",
@@ -36,7 +36,7 @@ const WhalesTrackers = ({ data }) => {
                     }}
                 >
                     <CloseIcon fontSize="small" />
-                </IconButton>
+                </IconButton> */}
             </Box>
             <Grid container spacing={2} mt="22px">
                 {data?.whales?.[0]?.transactions?.slice(0, 4).map((item, index) => (

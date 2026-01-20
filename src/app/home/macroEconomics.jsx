@@ -5,7 +5,7 @@ const MacroEconomics = () => {
     const widgetStyle = {
         background: "#151515",
         borderRadius: "16px",
-        padding: "16px",
+        // padding: "16px",
         height: "auto",
         height: "100%",
         display: "flex",
@@ -44,7 +44,7 @@ const MacroEconomics = () => {
                         Macroeconomics
                     </Typography>
 
-                    <IconButton
+                    {/* <IconButton
                         size="small"
                         sx={{
                             color: "neutral.Snowwhite",
@@ -59,7 +59,7 @@ const MacroEconomics = () => {
                         }}
                     >
                         <CloseIcon fontSize="small" />
-                    </IconButton>
+                    </IconButton> */}
                 </Box>
 
                 {macroData.map((item, index) => (
