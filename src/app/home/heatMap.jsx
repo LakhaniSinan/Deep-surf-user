@@ -89,12 +89,12 @@ const HeatMap = ({ data }) => {
                                 volume={item?.priceFormatted}
                                 percentChange={
                                     selectedTimeframe === "7d"
-                                        ? item?.change24hFormatted
+                                        ? item?.change7dFormatted
                                         : item?.change24hFormatted
                                 }
                                 isPositive={
                                     selectedTimeframe === "7d"
-                                        ? item?.change24h >= 0
+                                        ? item?.change7d >= 0
                                         : item?.change24h >= 0
                                 }
                             />
