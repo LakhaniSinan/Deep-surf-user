@@ -21,9 +21,16 @@ import FutureMatric from "./futureMatric.jsx";
 // import EtfFlow from "./ethFlow";
 
 
-const AddCoins = ({ data , isLoading }) => {
+const AddCoins = ({ data, isLoading }) => {
+    console.log("fihrifhrufrufrfgurgfurfg", data);
+
     const isTopCoins = data.find((item) => item.widgetId === "top-coins");
     const TopCoinsData = isTopCoins?.data;
+
+    const isWhalesTrackers = data.find((item) => item.widgetId === "whales-tracker");
+    const WhalesTrackersData = isWhalesTrackers?.data?.whales;
+    console.log("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww", WhalesTrackersData);
+    
     const widgetStyle = {
         background: "#151515",
         borderRadius: "16px",
@@ -111,7 +118,7 @@ const AddCoins = ({ data , isLoading }) => {
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 6 }}>
                         <Box sx={widgetStyle}>
-                            <WhalesTrackers />
+                            <WhalesTrackers data={WhalesTrackersData} />
                         </Box>
                     </Grid>
                     <Grid item size={{ xs: 12, md: 6 }}>

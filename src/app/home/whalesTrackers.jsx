@@ -2,7 +2,9 @@ import { Box, Grid, Typography } from '@mui/material';
 import React, { useState } from 'react'
 import CustomButton from '../../components/customButton';
 
-const WhalesTrackers = () => {
+const WhalesTrackers = ({ data }) => {
+    console.log("fuefgeufgyefewwwwwwwwwwwwwwwwwwfyef", data?.[0]?.address);
+
     const [isLoading, setIsLoading] = useState(false)
     const whaleData = [
         {
@@ -36,7 +38,7 @@ const WhalesTrackers = () => {
                 Whales tracker
             </Box>
             <Grid container spacing={2} mt="20px">
-                {whaleData?.map((item, index) => (
+                {data?.[0]?.transactions?.slice(0, 3).map((item, index) => (
                     <Grid item size={{ xs: 12, sm: 6, md: 12 }} key={index}>
                         <Box
                             sx={{
@@ -52,12 +54,12 @@ const WhalesTrackers = () => {
                                 <Grid item>
                                     <Box display="flex" alignItems="center" gap={3}>
                                         <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
-                                            {item.address}
+                                            {data?.[0]?.address}
                                         </Typography>
 
                                         <CustomButton
                                             variant="h6"
-                                            title={item.btnText}
+                                            title={item.actionType}
                                             sx={{
                                                 // backgroundColor:
                                                 //     item.actionType === "Long" || item.actionType === "Buy"
@@ -84,7 +86,7 @@ const WhalesTrackers = () => {
                             <Box display="flex" gap={2} alignItems="center" mt={2}>
                                 <Box>
                                     <Typography sx={{ fontWeight: 600, fontSize: "15px" }}>
-                                        {item.brought}
+                                        {item.actionText}
                                     </Typography>
                                 </Box>
                                 <Box>
@@ -102,9 +104,9 @@ const WhalesTrackers = () => {
                                         <Typography fontSize="12px" color="rgba(180, 180, 180, 1)" fontWeight={400}>
                                             Liquidation
                                         </Typography>
-                                        {/* <Typography fontSize="14px" color="rgba(255, 255, 255, 1)" fontWeight={600}>
+                                        <Typography fontSize="14px" color="rgba(255, 255, 255, 1)" fontWeight={600}>
                                             {item.liquidation}
-                                        </Typography> */}
+                                        </Typography>
                                     </Box>
                                 </Box>
                             </Box>
