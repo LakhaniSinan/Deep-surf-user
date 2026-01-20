@@ -29,6 +29,7 @@ const Header = () => {
     { link: "/journal", label: t("dashboard.navitem.journal") },
     { link: "/chart", label: t("dashboard.navitem.chart") },
     { link: "/calculator", label: t("dashboard.navitem.calculator") },
+    // { link: "/ai-tools", label: t("dashboard.navitem.aiTools") },
     { link: "/ai-tools", label: t("dashboard.navitem.aiTools") },
     { link: "/pro-analytics", label: t("dashboard.navitem.proAnalytics") },
     { link: "/market-outlook", label: t("dashboard.navitem.marketOutlook") },
