@@ -17,9 +17,9 @@ const addWidget = (id) => {
 const removeWidget = (payload) => {
   return Api(`${ENDPOINTS.WIDGETS.REMOVE_WIDGET}/${payload}`, null, "delete");
 };
-const fetchWidgit = ({ ticker }) => {
+const fetchWidgit = () => {
   return Api(
-    `${ENDPOINTS.WIDGETS.FETCH_ALL_WIDGET}?ticker=${ticker}`,
+    `${ENDPOINTS.WIDGETS.FETCH_ALL_WIDGET}`,
     null,
     "get",
   );

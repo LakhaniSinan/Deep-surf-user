@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from '@mui/material'
+import { Box, CircularProgress, Grid, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import CustomInput from '../../components/customInput'
 import IconImage from "../../assets/icons/Vector.svg";
@@ -14,37 +14,71 @@ import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import CryptoEvents from './cryptoEvents';
 import { fetchWidgit } from '../../services/modules/widget';
-const AiProof = ({ data,
-    ticker,
-    setTicker,
-    onSearch,
-    isLoading }) => {
+import { aiToolsData } from '../../services/modules/home';
+import { toast } from 'react-toastify';
+
+const AiProof = () => {
+    const [ticker, setTicker] = useState("");
+    const [coinData, setCoinData] = useState(null);
+    const [technicalIndicator, setTechniclIndicator] = useState(null);
+    const [communityData, setCommunityData] = useState(null);
+    const [liquidityLevel, setLiquidityLevel] = useState(null);
+    const [enchnagedMarketIntelligence, setEnchnagedMarketIntelligence] = useState(null);
+    const [patternData, setPatternData] = useState(null);
+    const [indicatorAnalysis, setIndicatorAnalysis] = useState(null);
+
+    const [isLoading, setIsLoading] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
-    const [AllWidgit, setAllWidgit] = useState(null);
-    // const [isLoading, setIsLoading] = useState(false)
+
+    // Default values
     const confluenceData1 = [
         {
             title: "Confluence Score",
             symbol: "Bullish",
-            value: 6
+            value: coinData?.confluenceScore?.bullish || "65"
         },
         {
             title: "Confluence Score",
             symbol: "Bearish",
-            value: 6
+            value: coinData?.confluenceScore?.bearish || "35"
         }
-
     ]
+
     const confluenceData2 = [
         {
             title: "Trend",
-            symbol: "Bullish",
+            symbol: coinData?.supertrend?.trend || "Bullish",
         },
         {
             title: "Signal Level",
-            symbol: "$3 120,88",
+            symbol: coinData?.supertrend?.signalLevel || "Strong",
         }
     ]
+
+    const getAiToolsData = async () => {
+        if (!ticker) return toast.error("Please enter coin symbol");
+
+        try {
+            setIsLoading(true);
+            setCoinData(null);
+            const res = await aiToolsData({ ticker });
+            if (res?.data?.status === "success") {
+                setCoinData(res?.data?.data);
+                setTechniclIndicator(res?.data?.data?.technicalIndicators);
+                setCommunityData(res?.data?.data?.communitySentiment);
+                setLiquidityLevel(res?.data?.data?.ictLiquidityLevels);
+                setEnchnagedMarketIntelligence(res?.data?.data?.enhancedMarketIntelligence);
+                setPatternData(res?.data?.data?.patternRecognition);
+                setIndicatorAnalysis(res?.data?.data?.indicatorAnalysis);
+            } else {
+                toast.error(res?.data?.message);
+            }
+        } catch (error) {
+            toast.error(error?.message);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     return (
         <>
@@ -78,7 +112,6 @@ const AiProof = ({ data,
                                     }}
                                     onClick={() => {
                                         console.log("Macroeconomics closed");
-                                        // yahan hide / close logic add kar sakte ho
                                     }}
                                 >
                                     <CloseIcon fontSize="small" />
@@ -90,32 +123,38 @@ const AiProof = ({ data,
                                     placeholder="ETH"
                                     value={ticker}
                                     onChange={(e) => setTicker(e.target.value)}
-                                    onKeyDown={(e) => {
-                                        if (e.key === "Enter") {
-                                            onSearch();
-                                        }
-                                    }}
+                                    onKeyPress={(e) => e.key === "Enter" && getAiToolsData()}
                                     InputEndIcon={
-                                        <img
-                                            src={IconImage}
-                                            style={{ width: "25px", cursor: "pointer" }}
-                                            onClick={onSearch}
-                                        />
+                                        isLoading ? (
+                                            <CircularProgress size={30} sx={{ color: "#fff" }} />
+                                        ) : (
+                                            <img
+                                                src={IconImage}
+                                                onClick={getAiToolsData}
+                                                style={{ cursor: "pointer" }}
+                                            />
+                                        )
                                     }
                                 />
                             </Box>
+
+                            {/* Yeh section HAMESHA visible rahega - default values ke saath */}
                             <Box mt={"20px"}>
                                 <Box display={"flex"} justifyContent={"space-between"}>
                                     <Box color={"rgba(174, 176, 179, 1)"}>
                                         <Typography fontSize={"20px"} fontWeight={600} color='rgba(174, 176, 179, 1)'>
-                                            ETH/USDT
+                                            {coinData?.coin?.pair || "BTC/USDT"}
                                         </Typography>
                                         <Box display={"flex"} gap={"10px"} alignItems={"center"}>
                                             <Typography color='neutral.Snowwhite' fontSize={"30px"} fontWeight={600}>
-                                                $3300,51
+                                                {coinData?.coin?.priceFormatted || "$45,230.50"}
                                             </Typography>
-                                            <Typography color='neutral.brightRed' fontSize={"20px"} fontWeight={600} >
-                                                + 2.87%
+                                            <Typography
+                                                color={coinData?.coin?.change24hFormatted?.includes('+') ? 'neutral.brightGreen' : 'neutral.brightRed'}
+                                                fontSize={"20px"}
+                                                fontWeight={600}
+                                            >
+                                                {coinData?.coin?.change24hFormatted || "+2.45%"}
                                             </Typography>
                                         </Box>
                                     </Box>
@@ -129,7 +168,6 @@ const AiProof = ({ data,
                                     borderRadius={"20px"}
                                     mt={2}
                                     p={2}
-
                                 >
                                     <CustomButton
                                         title="Recommendation"
@@ -149,10 +187,10 @@ const AiProof = ({ data,
                                         flex={{ xs: "100%", md: "1" }}
                                     >
                                         <span style={{ color: "rgba(255, 230, 0, 1)", fontWeight: 600, fontSize: "15px" }}>
-                                            Hold
-                                        </span >
+                                            {coinData?.recommendation?.action || "Hold"}
+                                        </span>
                                         <br />
-                                        Confidence: 84%
+                                        Confidence: {coinData?.recommendation?.confidence || "75"}%
                                     </Typography>
                                 </Box>
                                 <Box mt={2}>
@@ -162,8 +200,8 @@ const AiProof = ({ data,
                                 </Box>
                                 <Grid container spacing={"20px"}>
                                     {
-                                        confluenceData1.map((item) => (
-                                            <Grid item size={{ xs: 12, sm: 6 }}>
+                                        confluenceData1.map((item, index) => (
+                                            <Grid item size={{ xs: 12, sm: 6 }} key={index}>
                                                 <Box
                                                     sx={{
                                                         bgcolor: "neutral.darkGrey",
@@ -194,7 +232,6 @@ const AiProof = ({ data,
                                             </Grid>
                                         ))
                                     }
-
                                 </Grid>
                                 <Box mt={2}>
                                     <Typography color='neutral.Snowwhite' fontSize={"20px"} fontWeight={600}>
@@ -203,8 +240,8 @@ const AiProof = ({ data,
                                 </Box>
                                 <Grid container spacing={"20px"}>
                                     {
-                                        confluenceData2.map((item) => (
-                                            <Grid item size={{ xs: 12, sm: 6 }}>
+                                        confluenceData2.map((item, index) => (
+                                            <Grid item size={{ xs: 12, sm: 6 }} key={index}>
                                                 <Box
                                                     sx={{
                                                         bgcolor: "neutral.darkGrey",
@@ -227,22 +264,27 @@ const AiProof = ({ data,
                                         ))
                                     }
                                 </Grid>
+
+                                {/* Detailed data - sirf search ke baad show hoga */}
+                                {coinData && showDetails && (
+                                    <Box mt={2}>
+                                        <TechnicalIndicator data={technicalIndicator} />
+                                        <Community data={communityData} />
+                                        <IctLiquidityLevel data={liquidityLevel} />
+                                        <EnhanceMarketIntelligence data={enchnagedMarketIntelligence} />
+                                        <Pattern data={patternData} />
+                                        <IndicatorAnalysis data={indicatorAnalysis} />
+                                    </Box>
+                                )}
                             </Box>
-                            {showDetails && (
-                                <Box mt={2}>
-                                    <TechnicalIndicator />
-                                    <Community />
-                                    <IctLiquidityLevel />
-                                    <EnhanceMarketIntelligence />
-                                    <Pattern />
-                                    <IndicatorAnalysis />
-                                </Box>
-                            )}
+
+                            {/* Button hamesha available rahega */}
                             <Box display={"flex"} justifyContent={"flex-end"} mt={2}>
                                 <CustomButton
                                     title={showDetails ? "Hide Content" : "Show Content"}
                                     variant="gradient"
                                     onClick={() => setShowDetails(!showDetails)}
+                                    disabled={!coinData}
                                 />
                             </Box>
                         </Box>
@@ -252,4 +294,5 @@ const AiProof = ({ data,
         </>
     )
 }
+
 export default AiProof

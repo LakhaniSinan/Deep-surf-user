@@ -4,47 +4,51 @@ import CancelIcon from "../../assets/icons/cancelBtn.svg";
 import Warning from "../../assets/icons/warningIcon.svg";
 import fire from "../../assets/icons/fireIcon.svg";
 
-const IndicatorAnalysis = () => {
+const IndicatorAnalysis = ({ data }) => {
+    console.log("feufgugfugfugfoufrwgr", data[0].description
+
+    );
+
     const indicatorData = [
         {
             icon: Check,
-            title: "MACD Bullish"
+            title: data[0].description
         },
         {
             icon: Check,
-            title: "Strong upward structure (HH+HL)"
+            title: data[1].description
         },
         {
             icon: Warning,
-            title: "Close liquidation zone LONG (-2.0%) - price magnet"
+            title: data[5].description
         },
         {
             icon: CancelIcon,
-            title: "RSI Overbought"
+            title: data[3].description
         },
         {
             icon: Check,
-            title: "Supertrend: Bullish trend"
+            title: data[2].description
         },
         {
             icon: Warning,
-            title: "Close liquidation zone SHORT (+2.0%) - price magnet"
+            title: data[6].description
         },
-        {
-            icon: Check,
-            title: "MACD Bullish"
-        },
-        {
-            icon: CancelIcon,
-            title: "Strong resistance nearby"
-        },
-        {
-            icon: CancelIcon,
-            title: "Price at upper BB"
-        },
+        // {
+        //     icon: Check,
+        //     title: "MACD Bullish"
+        // },
+        // {
+        //     icon: CancelIcon,
+        //     title: data[4].description
+        // },
+        // {
+        //     icon: CancelIcon,
+        //     title: "Price at upper BB"
+        // },
         {
             icon: fire,
-            title: "Strong resistance nearby"
+            title:  data[4].description
         }
     ]
     return (
@@ -57,9 +61,9 @@ const IndicatorAnalysis = () => {
                     indicatorData.map((item, index) => (
                         <Grid container spacing={1}>
                             <Grid item size={{ xs: 12, md: 12 }}>
-                                <Box key={index} display={"flex"} gap={"15px"}  mt={2} >
+                                <Box key={index} display={"flex"} gap={"15px"} mt={2} >
                                     <Box>
-                                        <img src={item.icon} style={{ width: "30px" ,  height: "30px" }} />
+                                        <img src={item.icon} style={{ width: "30px", height: "30px" }} />
                                     </Box>
                                     <Box>
                                         <Typography color='neutral.snowWhite' fontSize={"15px"} fontWeight={600}>

@@ -44,26 +44,29 @@ const HeatMap = ({ data }) => {
             <Box
                 display="flex"
                 flexWrap={{ xs: "wrap", md: "nowrap" }}
-                gap="15px"
+                gap="5px"
                 mt="40px"
+                width="100%"
             >
                 {buttonData.map((btn) => (
-                    <CustomButton
-                        key={btn.id}
-                        title={btn.title}
-                        fullWidth
-                        onClick={() => setSelectedTimeframe(btn.value)}
-                        sx={{
-                            backgroundColor:
-                                selectedTimeframe === btn.value ? "#FFFFFF" : "#161514",
-                            color:
-                                selectedTimeframe === btn.value ? "#000" : "#9C9EA3",
-                            borderRadius: "12px",
-                            border: "1px solid #9C9EA3",
-                        }}
-                    />
+                    <Box key={btn.id} flex={1}>
+                        <CustomButton
+                            title={btn.title}
+                            onClick={() => setSelectedTimeframe(btn.value)}
+                            sx={{
+                                width: "100%", // 🔴 important
+                                backgroundColor:
+                                    selectedTimeframe === btn.value ? "#FFFFFF" : "#161514",
+                                color:
+                                    selectedTimeframe === btn.value ? "#000" : "#9C9EA3",
+                                borderRadius: "12px",
+                                border: "1px solid #9C9EA3",
+                            }}
+                        />
+                    </Box>
                 ))}
             </Box>
+
 
             {/* Title */}
             <Box mt="10px">
@@ -80,7 +83,7 @@ const HeatMap = ({ data }) => {
             <Grid container spacing={2} mt="10px">
                 {filteredData.length > 0 ? (
                     filteredData.map((item, index) => (
-                        <Grid item size={{ xs: 12, sm: 6, md: 2 }} key={index}>
+                        <Grid item size={{ xs: 12, sm: 6, md: 3 }} key={index}>
                             <VolumeCard
                                 name={item?.symbol}
                                 volume={item?.priceFormatted}
