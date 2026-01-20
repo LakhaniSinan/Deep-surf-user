@@ -1,6 +1,5 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
-import StarIcon from "../../assets/icons/macroeconomic-icon.svg";
 import TopCoins from "../../assets/icons/top-coin1.svg";
 import TopCoinsGraphy from "../../assets/icons/top-coin-graph.svg";
 import UsdtIcon from "../../assets/icons/top-coin2.svg";
@@ -16,6 +15,7 @@ import Metricsdata from "./metricData";
 import WhalesTrackers from "./whalesTrackers";
 import HeatMap from "./heatMap";
 import TopCoinsComponent from "./topCoins.jsx";
+import MacroEconomics from "./macroEconomics.jsx";
 // import EtfFlow from "./ethFlow";
 
 
@@ -32,22 +32,7 @@ const AddCoins = ({ data }) => {
         flexDirection: "column"
     };
 
-    const macroData = [
-        {
-            title: "US Unemployment Rate Thursday, February 5 at 07:00 PM",
-            value: "Forecast: 4.4% (previous 4.5%)",
-            description: "Impact: Positive for risk assets",
-            icon: StarIcon,
-            heading: "Unemployment decreased from 4.5% to 4.4%, indicating labor market strength.",
-        },
-        {
-            title: "US CPI Data Friday, February 13 at 06:30 PM",
-            value: "Forecast: 2.8% (previous 2.9%)",
-            description: "Impact: Moderately positive for risk assets",
-            icon: StarIcon,
-            heading: "Inflation cooling down, supporting potential Fed rate cuts.",
-        },
-    ];
+    
 
     const leftCoins = [
         {
@@ -159,6 +144,16 @@ const AddCoins = ({ data }) => {
                     }
                 </Grid>
             </Box > */}
+            <Box width={"100%"}>
+                <Grid container spacing={2}>
+                    <Grid item size={{ xs: 12, md: 6 }} >
+                        <Box sx={widgetStyle}>
+                            <MacroEconomics />
+                        </Box>
+                    </Grid>
+                </Grid>
+            </Box>
+
             <Box width="100%" mt={2}>
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 6 }} >
@@ -182,7 +177,7 @@ const AddCoins = ({ data }) => {
                     </Grid>
                     <Grid item size={{ xs: 12, md: 6 }}>
                         <Box sx={widgetStyle}>
-                        <EtfFlow />
+                            <EtfFlow />
                         </Box>
                     </Grid>
                 </Grid>

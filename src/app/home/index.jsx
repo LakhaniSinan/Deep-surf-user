@@ -150,7 +150,7 @@ const Home = () => {
             <Box>
               <img
                 src={RelaodIcon}
-                onClick={fetchHomeData}
+                onClick={fetchAllWidgit}
                 style={{ cursor: "pointer" }}
                 width="20px"
               />

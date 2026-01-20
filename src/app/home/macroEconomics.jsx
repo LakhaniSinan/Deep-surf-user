@@ -1,8 +1,33 @@
-import { Box, Grid } from "@mui/material";
-
+import { Box, Grid, IconButton, Typography } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import StarIcon from "../../assets/icons/macroeconomic-icon.svg";
 const MacroEconomics = () => {
+    const widgetStyle = {
+        background: "#151515",
+        borderRadius: "16px",
+        padding: "16px",
+        height: "auto",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column"
+    };
+    const macroData = [
+        {
+            title: "US Unemployment Rate Thursday, February 5 at 07:00 PM",
+            value: "Forecast: 4.4% (previous 4.5%)",
+            description: "Impact: Positive for risk assets",
+            icon: StarIcon,
+            heading: "Unemployment decreased from 4.5% to 4.4%, indicating labor market strength.",
+        },
+        {
+            title: "US CPI Data Friday, February 13 at 06:30 PM",
+            value: "Forecast: 2.8% (previous 2.9%)",
+            description: "Impact: Moderately positive for risk assets",
+            icon: StarIcon,
+            heading: "Inflation cooling down, supporting potential Fed rate cuts.",
+        },
+    ];
     return (
-        <Grid item size={{ xs: 12, md: 6 }}>
             <Box sx={widgetStyle}>
                 <Box
                     display="flex"
@@ -69,7 +94,6 @@ const MacroEconomics = () => {
                     </Box>
                 ))}
             </Box>
-        </Grid>
     )
 }
 
