@@ -5,109 +5,26 @@ import StarIcon from "../../assets/icons/macroeconomic-icon.svg";
 import TopCoins from "../../assets/icons/top-coin1.svg";
 import TopCoinsGraphy from "../../assets/icons/top-coin-graph.svg";
 import UsdtIcon from "../../assets/icons/top-coin2.svg";
+import Sparkline from "../../components/topCoinsTable/Sparkline";
 
-const leftCoins = [
-    {
-        title: "BTC",
-        symbol: "Bitcoin",
-        icon: TopCoins,
-        graphyIcon: TopCoinsGraphy,
-        value1: "$59,333",
-        value2: "+2.45%",
-    },
-    {
-        title: "ETH",
-        symbol: "Ethereum",
-        icon: UsdtIcon,
-        graphyIcon: TopCoinsGraphy,
-        value1: "$3,245",
-        value2: "+1.89%",
-    },
-    {
-        title: "BNB",
-        symbol: "Binance Coin",
-        icon: TopCoins,
-        graphyIcon: TopCoinsGraphy,
-        value1: "$425",
-        value2: "-0.67%",
-    },
-    {
-        title: "SOL",
-        symbol: "Solana",
-        icon: TopCoins,
-        graphyIcon: TopCoinsGraphy,
-        value1: "$145",
-        value2: "+3.21%",
-    },
-    {
-        title: "XRP",
-        symbol: "Ripple",
-        icon: TopCoins,
-        graphyIcon: TopCoinsGraphy,
-        value1: "$0.89",
-        value2: "-0.45%",
-    },
 
-];
 
-// 🪙 Right Column Coins (5 entries)
-const rightCoins = [
-    {
-        title: "USDT",
-        symbol: "Tether",
-        icon: UsdtIcon,
-        graphyIcon: TopCoinsGraphy,
-        value1: "$1.00",
-        value2: "0.01%",
-    },
-    {
-        title: "ADA",
-        symbol: "Cardano",
-        icon: TopCoins,
-        graphyIcon: TopCoinsGraphy,
-        value1: "$0.52",
-        value2: "+1.25%",
-    },
-    {
-        title: "DOGE",
-        symbol: "Dogecoin",
-        icon: TopCoins,
-        graphyIcon: TopCoinsGraphy,
-        value1: "$0.08",
-        value2: "+2.15%",
-    },
-    {
-        title: "AVAX",
-        symbol: "Avalanche",
-        icon: TopCoins,
-        graphyIcon: TopCoinsGraphy,
-        value1: "$38.50",
-        value2: "-0.95%",
-    },
-    {
-        title: "DOT",
-        symbol: "Polkadot",
-        icon: TopCoins,
-        graphyIcon: TopCoinsGraphy,
-        value1: "$5.28",
-        value2: "-0.89%",
-    },
-];
+const widgetStyle = {
+    background: "#151515",
+    borderRadius: "16px",
+    padding: "16px",
+    height: "auto",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column"
+};
 
-    const widgetStyle = {
-        background: "#151515",
-        borderRadius: "16px",
-        padding: "16px",
-        height: "auto",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column"
-    };
-    
 
-const TopCoinsComponent = () => {
+const TopCoinsComponent = ({ data }) => {
+    console.log("fuhgfugyffgurfrf", data);
+
     return (
-        <Grid item size={{ xs: 12, md: 6 }}>
+        <Grid item size={{ xs: 12, md: 12 }}>
             <Box sx={widgetStyle}>
                 <Box
                     display="flex"
@@ -144,7 +61,74 @@ const TopCoinsComponent = () => {
                 <Grid container spacing={2}>
                     {/* LEFT COLUMN - 5 coins */}
                     <Grid item size={{ xs: 12, md: 6 }}>
-                        {leftCoins.map((item, index) => (
+                        {data[0]?.data?.slice(0, 5)?.map((item, index) => (
+                            <Box
+                                key={index}
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="space-between"
+                                gap="10px"
+                                mb={1.5}
+                                // p={1}
+                                sx={{
+                                    // background: "#1E1E1E",
+                                    borderRadius: "8px",
+                                }}
+                            >
+                                {/* Left: Icon + Title */}
+                                <Box display="flex" gap="10px" alignItems="center" p={1}>
+                                    <img src={item?.logo} alt={item.logo} style={{ width: "20px", height: "20px" }} />
+                                    <Box>
+                                        <Typography color="white" fontSize="13px" fontWeight={600}>
+                                            {item?.name}
+                                        </Typography>
+                                        <Typography color="#999" fontSize="12px">
+                                            {item?.symbol}
+                                        </Typography>
+                                    </Box>
+                                </Box>
+
+                                {/* Center: Graph */}
+                                <Box>
+                                    <Box
+                                        sx={{
+                                            width: "20px",
+                                            height: "30px",
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                        }}
+                                    >
+                                        <Sparkline
+                                            data={item.sparkline || []}
+                                            isPositive={!item.change24hFormatted?.includes("-")}
+                                        />
+
+                                        {/* {item.change24hFormatted?.includes("-") ? (
+                                            <img src={NegativeIcon} />
+                                        ) : (
+                                            <img src={PositiveIcon} />
+                                        )} */}
+                                    </Box>
+                                </Box>
+
+                                {/* Right: Price + Percentage */}
+                                <Box textAlign="right">
+                                    <Typography color="white" fontSize="12px" fontWeight={600}>
+                                        {item.marketCapFormatted}
+                                    </Typography>
+                                    <Typography
+                                        color={item?.change24hFormatted?.includes('-') ? 'neutral.dangerRed' : 'neutral.primaryGreen'}
+                                        fontSize="12px"
+                                    >
+                                        {item.change24hFormatted}
+                                    </Typography>
+                                </Box>
+                            </Box>
+                        ))}
+                    </Grid>
+                    <Grid item size={{ xs: 12, md: 6 }}>
+                        {data[0]?.data?.slice(0, 5)?.map((item, index) => (
                             <Box
                                 key={index}
                                 display="flex"
@@ -154,64 +138,16 @@ const TopCoinsComponent = () => {
                                 mb={1.5}
                                 p={1}
                                 sx={{
-                                    background: "#1E1E1E",
+                                    // background: "#1E1E1E",
                                     borderRadius: "8px",
                                 }}
                             >
                                 {/* Left: Icon + Title */}
                                 <Box display="flex" gap="10px" alignItems="center">
-                                    <img src={item.icon} alt={item.title} style={{ width: "40px", height: "40px" }} />
+                                    <img src={item.logo} alt={item.title} style={{ width: "20px", height: "20px" }} />
                                     <Box>
                                         <Typography color="white" fontSize="14px" fontWeight={600}>
-                                            {item.title}
-                                        </Typography>
-                                        <Typography color="#999" fontSize="12px">
-                                            {item.symbol}
-                                        </Typography>
-                                    </Box>
-                                </Box>
-
-                                {/* Center: Graph */}
-                                <Box>
-                                    <img src={item.graphyIcon} style={{ width: "80px", height: "30px" }} alt="graph" />
-                                </Box>
-
-                                {/* Right: Price + Percentage */}
-                                <Box textAlign="right">
-                                    <Typography color="white" fontSize="14px" fontWeight={600}>
-                                        {item.value1}
-                                    </Typography>
-                                    <Typography
-                                        color={item.value2.startsWith('+') ? '#00D9A3' : '#FF4444'}
-                                        fontSize="12px"
-                                    >
-                                        {item.value2}
-                                    </Typography>
-                                </Box>
-                            </Box>
-                        ))}
-                    </Grid>
-                    <Grid item size={{ xs: 12, md: 6 }}>
-                        {rightCoins.map((item, index) => (
-                            <Box
-                                key={index}
-                                display="flex"
-                                alignItems="center"
-                                justifyContent="space-between"
-                                gap="10px"
-                                mb={1.5}
-                                p={1.2}
-                                sx={{
-                                    background: "#1E1E1E",
-                                    borderRadius: "8px",
-                                }}
-                            >
-                                {/* Left: Icon + Title */}
-                                <Box display="flex" gap="10px" alignItems="center">
-                                    <img src={item.icon} alt={item.title} style={{ width: "40px", height: "40px" }} />
-                                    <Box>
-                                        <Typography color="white" fontSize="14px" fontWeight={600}>
-                                            {item.title}
+                                            {item.name}
                                         </Typography>
                                         <Typography color="#999" fontSize="12px">
                                             {item.symbol}
@@ -219,17 +155,36 @@ const TopCoinsComponent = () => {
                                     </Box>
                                 </Box>
                                 <Box>
-                                    <img src={item.graphyIcon} style={{ width: "80px", height: "30px" }} alt="graph" />
+                                    <Box
+                                        sx={{
+                                            width: "20px",
+                                            height: "20px",
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                        }}
+                                    >
+                                        <Sparkline
+                                            data={item.sparkline || []}
+                                            isPositive={!item.change24hFormatted?.includes("-")}
+                                        />
+
+                                        {/* {item.change24hFormatted?.includes("-") ? (
+                                            <img src={NegativeIcon} />
+                                        ) : (
+                                            <img src={PositiveIcon} />
+                                        )} */}
+                                    </Box>
                                 </Box>
                                 <Box textAlign="right">
-                                    <Typography color="white" fontSize="14px" fontWeight={600}>
-                                        {item.value1}
+                                    <Typography color="white" fontSize="12px" fontWeight={600}>
+                                        {item.marketCapFormatted}
                                     </Typography>
                                     <Typography
-                                        color={item.value2.startsWith('+') ? '#00D9A3' : '#FF4444'}
+                                        color={item?.change24hFormatted?.includes('-') ? 'neutral.dangerRed' : 'neutral.primaryGreen'}
                                         fontSize="12px"
                                     >
-                                        {item.value2}
+                                        {item.change24hFormatted}
                                     </Typography>
                                 </Box>
                             </Box>

@@ -32,7 +32,7 @@ const AddCoins = ({ data }) => {
         flexDirection: "column"
     };
 
-    
+
 
     const leftCoins = [
         {
@@ -126,36 +126,25 @@ const AddCoins = ({ data }) => {
         <>
             <Box>
                 <Grid container spacing={2}>
-                    {
-                        data.map((item) => {
-                            console.log(item.widgetId, "itemitemitemitem");
-                            return (
-                                <Grid item size={{ xs: 12, md: 6 }} >
-                                    <Box color={"white"}>
-                                        {item.widgetId === "top-coins" &&
-                                            // <div style={{color:"pink"}}>Sasd</div>
-                                            <TopCoinsComponent />
-
-                                        }
-                                    </Box>
-                                </Grid>
-                            )
-                        })
-                    }
-                </Grid>
-            </Box > 
-            {/* <Box width={"100%"}>
-                <Grid container spacing={2}>
-                    <Grid item size={{ xs: 12, md: 6 }} >
-                        <Box sx={widgetStyle}>
+                    {data.map((item) => (
+                        <Grid item size={{ xs: 12, md: 6 }} key={item.widgetId}>
+                            <Box color="neutral.Snowwhite" sx={widgetStyle}>
+                                {item?.widgetId === "top-coins" && (
+                                    <TopCoinsComponent data={data} />
+                                )}
+                            </Box>
+                        </Grid>
+                    ))}
+                    <Grid size={{ xs: 12, md: 6 }}>
+                        <Box color={"neutral.Snowwhite"} sx={widgetStyle}>
                             <MacroEconomics />
                         </Box>
+
                     </Grid>
                 </Grid>
-            </Box> */}
+            </Box>
 
-            <Box width="100%" mt={2}>
-            </Box >
+
             {/* <Box width="100%" mt={2}>
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 6 }} >
@@ -169,8 +158,8 @@ const AddCoins = ({ data }) => {
                         </Box>
                     </Grid>
                 </Grid>
-            </Box>
-            <Box width={"100%"} mt={2}>
+            </Box> */}
+            {/* <Box width={"100%"} mt={2}>
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 6 }}>
                         <Box sx={widgetStyle}>
@@ -185,20 +174,20 @@ const AddCoins = ({ data }) => {
                 </Grid>
             </Box> */}
 
-            <Box width={"100%"} mt={2}>
+            {/* <Box width={"100%"} mt={2}>
                 <Grid container spacing={2}>
-                    <Grid item size={{ xs: 12, md: 6 }}>
-                        <Box sx={widgetStyle}>
-                            <TopCoinsComponent />
-                        </Box>
-                    </Grid>
                     <Grid item size={{ xs: 12, md: 6 }}>
                         <Box sx={widgetStyle}>
                             <WhalesTrackers />
                         </Box>
                     </Grid>
+                    <Grid item size={{ xs: 12, md: 6 }}>
+                        <Box sx={widgetStyle}>
+                            <HeatMap />
+                        </Box>
+                    </Grid>
                 </Grid>
-            </Box>
+            </Box> */}
             {/* <Box width={"100%"} mt={2}>
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 6 }}>
