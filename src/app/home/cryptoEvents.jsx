@@ -25,7 +25,7 @@ const CryptoEvents = ({ data }) => {
         }
     ]
     return (
-        <Box color={"neutral.Snowwhite"} backgroundColor={"rgba(22, 22, 22, 1)"} borderRadius={"20px"} padding={"2px"}>
+        <Box color={"neutral.Snowwhite"}  borderRadius={"20px"} padding={"2px"}>
             <Box
                 display="flex"
                 justifyContent="space-between"

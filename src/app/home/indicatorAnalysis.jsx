@@ -48,30 +48,30 @@ const IndicatorAnalysis = () => {
         }
     ]
     return (
-        <Box mt={1} bgcolor={"neutral.darkGrey"}>
+        <Box mt={1} >
             <Typography color='neutral.Snowwhite' fontSize={"25px"} fontWeight={600}>
                 Indicator Analysis
             </Typography>
-            {
-                indicatorData.map((item, index) => (
-                    <Box>
+            <Box bgcolor={"neutral.darkGrey"} borderRadius={"20px"} p={2} mt={2}>
+                {
+                    indicatorData.map((item, index) => (
                         <Grid container spacing={1}>
                             <Grid item size={{ xs: 12, md: 12 }}>
-                                <Box key={index} display={"flex"} gap={"10px"} alignItems={"center"} mt={2}>
+                                <Box key={index} display={"flex"} gap={"15px"}  mt={2} >
                                     <Box>
-                                        <img src={item.icon} style={{ width: "22px" }} />
+                                        <img src={item.icon} style={{ width: "30px" ,  height: "30px" }} />
                                     </Box>
                                     <Box>
-                                        <Typography >
+                                        <Typography color='neutral.snowWhite' fontSize={"15px"} fontWeight={600}>
                                             {item.title}
                                         </Typography>
                                     </Box>
                                 </Box>
                             </Grid>
                         </Grid>
-                    </Box>
-                ))
-            }
+                    ))
+                }
+            </Box>
 
         </Box>
 

@@ -10,7 +10,9 @@ const Pattern = () => {
             name: "Double Top",
             type: "Bearish pattern",
             decription: "Double Top at 3762.80, Support 3692.96, Target 3623.12",
-            btnText1: "$3623.12"
+            btnText1: "$3623.12",
+            btnText2: null
+
 
         },
         {
@@ -27,7 +29,7 @@ const Pattern = () => {
         <Box mt={1}>
             <Box display={"flex"} gap={"25px"} alignItems={"center"}>
                 <Box>
-                    <Typography fontSize={"25px"}>
+                    <Typography fontSize={"25px"} fontWeight={600}>
                         Pattern Recognition
                     </Typography>
                 </Box>
@@ -46,15 +48,9 @@ const Pattern = () => {
 
             </Box>
             <Box
-                display="flex"
-                flexDirection={{ xs: "column", md: "row" }}
-                justifyContent="space-between"
-                alignItems={{ xs: "flex-start", md: "center" }}
                 sx={{
-                    bgcolor: "neutral.charcoalGrey",
-                    p: 1.5,
-                    borderRadius: 2,
-                    mt: 2,
+                    p: 0.4,
+                    borderRadius: "20px",
                     gap: { xs: 2, md: 0 },
                 }}
             >
@@ -63,10 +59,6 @@ const Pattern = () => {
                     {patternData.map((item, index) => (
                         <Grid item size={{ xs: 12, md: 12 }} >
                             <Box
-                                // display="flex"
-                                // flexDirection={{ xs: "column", md: "row" }}
-                                // justifyContent="space-between"
-                                // alignItems={{ xs: "flex-start", md: "center" }}
                                 backgroundColor="neutral.darkGrey"
                                 padding="15px"
                                 borderRadius="10px"
@@ -77,7 +69,7 @@ const Pattern = () => {
                                     <Typography variant="h4" color="text.lightRedColor" fontSize={"20px"}>
                                         {item.name}
                                     </Typography>
-                                    <Typography variant="body1" >
+                                    <Typography color='rgba(92, 97, 111, 1)' fontSize={"20px"} fontWeight={600} >
                                         {item.type}
                                     </Typography>
 
@@ -138,13 +130,13 @@ const Pattern = () => {
                                 <Box width={{ xs: "100%", md: "auto" }} mt={{ xs: 2, md: 2 }}>
                                     <Box>
                                         <Box>
-                                            Confidence
+                                            Confidence : 60%
                                         </Box>
 
                                         <Box sx={{ width: "100%", mt: 2 }}>
                                             <LinearProgress
                                                 variant="determinate"
-                                                value={20}
+                                                value={60}
                                                 sx={{
                                                     height: 10,
                                                     borderRadius: "30px",
@@ -164,7 +156,7 @@ const Pattern = () => {
                 </Grid>
             </Box>
             <Box>
-                <Grid container spacing={2} marginTop={3} backgroundColor="background.lightGray" p={2} borderRadius={"10px"}>
+                <Grid container spacing={2} marginTop={2} backgroundColor="background.lightGray" p={2} borderRadius={"15px"}>
                     <Grid item size={{ xs: 12, sm: 12 }}>
                         <Box display={"flex"} alignItems={"center"} gap={1} >
                             <CustomButton

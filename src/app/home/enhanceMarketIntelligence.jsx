@@ -29,14 +29,14 @@ const EnhanceMarketIntelligence = ({ data }) => {
     ];
     return (
         <Box mt={1.5}>
-            <Typography color='neutral.Snowwhite' fontSize={"22px"}>
+            <Typography color='neutral.Snowwhite' fontSize={"25px"} fontWeight={600}>
                 Enhanced Market Intelligence
             </Typography>
             <Grid container spacing={2} marginTop={2}>
                 {marketStats.map((item, index) => (
                     <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
-                        <Box key={index} mb={2} p={2} bgcolor="neutral.myGrey" borderRadius={2}>
-                            <Typography variant="body2" color="neutral.Snowwhite">
+                        <Box key={index} mb={1} p={1.8} bgcolor="neutral.darkGrey" borderRadius={"20px"}>
+                            <Typography fontWeight={550} color="neutral.Snowwhite">
                                 {item.title}
                             </Typography>
                             <Typography

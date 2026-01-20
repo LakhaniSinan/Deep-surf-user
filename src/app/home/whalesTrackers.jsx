@@ -4,7 +4,7 @@ import CustomButton from '../../components/customButton';
 import CloseIcon from "@mui/icons-material/Close";
 
 const WhalesTrackers = ({ data }) => {
-    console.log("fuefgeufgyefewwwwwwwwwwwwwwwwwwfyef", data?.whales);
+    console.log("fuefgeufgyefewwwwwwwwwwwwwwwwwwfyef", data?.whales?.[0]?.address);
     const [isLoading, setIsLoading] = useState(false)
     return (
         <>
@@ -12,7 +12,6 @@ const WhalesTrackers = ({ data }) => {
                 display="flex"
                 justifyContent="space-between"
                 alignItems="center"
-                mb={2}
             >
                 <Typography
                     variant="h6"
@@ -39,7 +38,7 @@ const WhalesTrackers = ({ data }) => {
                     <CloseIcon fontSize="small" />
                 </IconButton>
             </Box>
-            <Grid container spacing={2} mt="20px">
+            <Grid container spacing={2} mt="22px">
                 {data?.whales?.[0]?.transactions?.slice(0, 4).map((item, index) => (
                     <Grid item size={{ xs: 12, sm: 6, md: 12 }} key={index}>
                         <Box
@@ -56,7 +55,7 @@ const WhalesTrackers = ({ data }) => {
                                 <Grid item>
                                     <Box display="flex" alignItems="center" gap={3}>
                                         <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
-                                            {data?.[0]?.address}
+                                            {data?.whales?.[0]?.address}
                                         </Typography>
 
                                         <CustomButton

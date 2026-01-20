@@ -17,7 +17,7 @@ const Community = () => {
     return (
         <Box mt={3} >
             <Box>
-                <Typography color={"white"} mt={3} fontSize={"22px"} fontWeight={400}>
+                <Typography color={"white"} mt={3} fontSize={"22px"} fontWeight={600}>
                     Community sentiment
                 </Typography>
             </Box>
@@ -78,16 +78,16 @@ const Community = () => {
                     80%
                 </Typography>
             </Box>
-            <Box sx={{ p: { xs: 0, md: 2 }, borderRadius: 2, marginTop: 2, }}>
+            <Box sx={{ p: { xs: 0, md: 0 }, borderRadius: 2, marginTop: 2, }}>
                 <Grid container spacing={2}>
                     {levels.map((item, index) => (
                         <Grid item size={{ xs: 12, sm: 6 }} key={index}>
                             <Box
-                                backgroundColor="rgba(28, 28, 28, 1)"
+                                backgroundColor="neutral.darkGrey"
                                 borderRadius="10px"
                                 p={2}
                             >
-                                <Typography variant="h6" fontSize={"15px"}>
+                                <Typography fontSize={"20px"} color='neutral.Snowwhite' fontWeight={600}>
                                     {item.label}
                                 </Typography>
 

@@ -8,7 +8,7 @@ const TopVolumeByCoins = ({ data }) => {
     const [selectedTimeframe, setSelectedTimeframe] = useState("24h");
    
     return (
-        <Box bgcolor={"rgba(28, 28, 28, 1)"} p={2} mt={2} borderRadius={"10px"}>
+        <Box  borderRadius={"10px"}>
             <Box display={"flex"} justifyContent={"space-between"}>
                 <Typography color='neutral.Snowwhite' fontSize={"22px"} fontWeight={600}>
                     Top 10 by volume

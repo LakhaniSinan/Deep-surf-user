@@ -21,70 +21,9 @@ const HeatMap = ({ data }) => {
             // return data?.heatMap?.byVolatility;
         }
     };
-    const topVolumeByCoins = [
-        {
-            name: "ALPACA",
-            volumeFormatted: "$2.9B",
-            changeFormatted: "391.2%"
-
-        },
-        {
-            name: "ALPACA",
-            volumeFormatted: "$2.9B",
-            changeFormatted: "391.2%"
-
-        },
-        {
-            name: "ALPACA",
-            volumeFormatted: "$2.9B",
-            changeFormatted: "391.2%"
-
-        },
-        {
-            name: "ALPACA",
-            volumeFormatted: "$2.9B",
-            changeFormatted: "391.2%"
-
-        },
-        {
-            name: "ALPACA",
-            volumeFormatted: "$2.9B",
-            changeFormatted: "391.2%"
-
-        },
-        {
-            name: "ALPACA",
-            volumeFormatted: "$2.9B",
-            changeFormatted: "391.2%"
-
-        },
-        {
-            name: "ALPACA",
-            volumeFormatted: "$2.9B",
-            changeFormatted: "391.2%"
-
-        },
-        {
-            name: "ALPACA",
-            volumeFormatted: "$2.9B",
-            changeFormatted: "391.2%"
-
-        },
-        {
-            name: "ALPACA",
-            volumeFormatted: "$2.9B",
-            changeFormatted: "391.2%"
-
-        },
-        {
-            name: "ALPACA",
-            volumeFormatted: "$2.9B",
-            changeFormatted: "391.2%"
-
-        }
-    ]
+    
     return (
-        <Box mt={2} color={"neutral.Snowwhite"} backgroundColor={"rgba(22, 22, 22, 1)"} borderRadius={"20px"} padding={"2px"}  >
+        <Box  color={"neutral.Snowwhite"}  borderRadius={"20px"} padding={"2px"}  >
             <Box>
                 <Typography color="neutral.Snowwhite" fontSize={"25px"} fontWeight={700}>
                     Heatmap—Volume & Volatility

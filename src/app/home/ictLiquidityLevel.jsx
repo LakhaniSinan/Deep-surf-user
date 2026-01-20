@@ -22,11 +22,11 @@ const IctLiquidityLevel = () => {
         }
     ]
     return (
-        <Box mt={1}>
-            <Typography color='neutral.Snowwhite' fontSize={"22px"} fontWeight={500}>
+        <Box mt={3}>
+            <Typography color='neutral.Snowwhite' fontSize={"22px"} fontWeight={600}>
                 ICT Liquidity Levels
             </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, mt: "10px", bgcolor: "rgba(28, 28, 28, 1)" }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, mt: "10px", bgcolor: "neutral.darkGrey" , borderRadius: "20px", p: 2}}>
                 {liquidityLevelData.map((item, index) => (
                     <Box
                         key={index}
@@ -37,7 +37,6 @@ const IctLiquidityLevel = () => {
                             borderRadius: 1,
                             padding: 0.5,
                             cursor: 'pointer',
-                            transition: 'all 0.3s ease',
 
                         }}
                     >
@@ -50,7 +49,7 @@ const IctLiquidityLevel = () => {
                         <Typography
                             sx={{
                                 color: 'neutral.brightGreen',
-                                fontSize: { xs: '14px', md: '15px' },
+                                fontSize: { xs: '14px', md: '16px' },
                                 fontWeight: 500
                             }}
                         >

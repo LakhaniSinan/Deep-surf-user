@@ -30,7 +30,7 @@ const TechnicalIndicator = () => {
     ]
     return (
         <Box mt={2}>
-            <Box color={"neutral.Snowwhite"} fontSize={"22px"} fontWeight={400}>
+            <Box color={"neutral.Snowwhite"} fontSize={"22px"} fontWeight={600}>
                 Technical Indicators
             </Box>
             <Box mt={2} >

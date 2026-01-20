@@ -19,9 +19,6 @@ const AiProof = ({ data,
     setTicker,
     onSearch,
     isLoading }) => {
-        console.log("fufgrifgurifgurfurgf" , onSearch);
-        
-
     const [showDetails, setShowDetails] = useState(false);
     const [AllWidgit, setAllWidgit] = useState(null);
     // const [isLoading, setIsLoading] = useState(false)
@@ -51,10 +48,10 @@ const AiProof = ({ data,
 
     return (
         <>
-            <Box mt={2} width={"100%"} >
+            <Box width={"100%"} >
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 12 }}>
-                        <Box color={"white"} bgcolor={"neutral.darkGrey"} borderRadius={"10px"} p={2}>
+                        <Box color={"white"} borderRadius={"10px"} p={1}>
                             <Box
                                 display="flex"
                                 justifyContent="space-between"
@@ -110,7 +107,7 @@ const AiProof = ({ data,
                             <Box mt={"20px"}>
                                 <Box display={"flex"} justifyContent={"space-between"}>
                                     <Box color={"rgba(174, 176, 179, 1)"}>
-                                        <Typography fontSize={"20px"} fontWeight={600}>
+                                        <Typography fontSize={"20px"} fontWeight={600} color='rgba(174, 176, 179, 1)'>
                                             ETH/USDT
                                         </Typography>
                                         <Box display={"flex"} gap={"10px"} alignItems={"center"}>
@@ -169,7 +166,7 @@ const AiProof = ({ data,
                                             <Grid item size={{ xs: 12, sm: 6 }}>
                                                 <Box
                                                     sx={{
-                                                        bgcolor: "neutral.surface",
+                                                        bgcolor: "neutral.darkGrey",
                                                         p: 2,
                                                         borderRadius: "12px",
                                                         textAlign: "center",
@@ -210,7 +207,7 @@ const AiProof = ({ data,
                                             <Grid item size={{ xs: 12, sm: 6 }}>
                                                 <Box
                                                     sx={{
-                                                        bgcolor: "neutral.surface",
+                                                        bgcolor: "neutral.darkGrey",
                                                         p: 2,
                                                         borderRadius: "12px",
                                                         textAlign: "center",
@@ -221,7 +218,7 @@ const AiProof = ({ data,
                                                         {item.title}
                                                     </Typography>
                                                     <Typography
-                                                        sx={{ color: item.symbol === "Bullish" ? "rgba(62, 221, 135, 1)" : "rgba(255, 255, 255, 1)", fontSize: "18px", fontWeight: 600 }}
+                                                        sx={{ color: item.symbol === "Bullish" ? "rgba(62, 221, 135, 1)" : "rgba(255, 255, 255, 1)", fontSize: "20px", fontWeight: 600 }}
                                                     >
                                                         {item.symbol}
                                                     </Typography>
