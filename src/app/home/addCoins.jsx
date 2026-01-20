@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import TopCoins from "../../assets/icons/top-coin1.svg";
 import TopCoinsGraphy from "../../assets/icons/top-coin-graph.svg";
 import UsdtIcon from "../../assets/icons/top-coin2.svg";
@@ -16,12 +16,14 @@ import WhalesTrackers from "./whalesTrackers";
 import HeatMap from "./heatMap";
 import TopCoinsComponent from "./topCoins.jsx";
 import MacroEconomics from "./macroEconomics.jsx";
+import TopCoinsComponentSkeleton from "../../components/skeleton/home/topCoinsSkeleton.jsx";
+import FutureMatric from "./futureMatric.jsx";
 // import EtfFlow from "./ethFlow";
 
 
-const AddCoins = ({ data }) => {
-    console.log(data, "asdasdasdadasd");
-
+const AddCoins = ({ data , isLoading }) => {
+    const isTopCoins = data.find((item) => item.widgetId === "top-coins");
+    const TopCoinsData = isTopCoins?.data;
     const widgetStyle = {
         background: "#151515",
         borderRadius: "16px",
@@ -34,97 +36,10 @@ const AddCoins = ({ data }) => {
 
 
 
-    const leftCoins = [
-        {
-            title: "BTC",
-            symbol: "Bitcoin",
-            icon: TopCoins,
-            graphyIcon: TopCoinsGraphy,
-            value1: "$59,333",
-            value2: "+2.45%",
-        },
-        {
-            title: "ETH",
-            symbol: "Ethereum",
-            icon: UsdtIcon,
-            graphyIcon: TopCoinsGraphy,
-            value1: "$3,245",
-            value2: "+1.89%",
-        },
-        {
-            title: "BNB",
-            symbol: "Binance Coin",
-            icon: TopCoins,
-            graphyIcon: TopCoinsGraphy,
-            value1: "$425",
-            value2: "-0.67%",
-        },
-        {
-            title: "SOL",
-            symbol: "Solana",
-            icon: TopCoins,
-            graphyIcon: TopCoinsGraphy,
-            value1: "$145",
-            value2: "+3.21%",
-        },
-        {
-            title: "XRP",
-            symbol: "Ripple",
-            icon: TopCoins,
-            graphyIcon: TopCoinsGraphy,
-            value1: "$0.89",
-            value2: "-0.45%",
-        },
-
-    ];
-
-    // 🪙 Right Column Coins (5 entries)
-    const rightCoins = [
-        {
-            title: "USDT",
-            symbol: "Tether",
-            icon: UsdtIcon,
-            graphyIcon: TopCoinsGraphy,
-            value1: "$1.00",
-            value2: "0.01%",
-        },
-        {
-            title: "ADA",
-            symbol: "Cardano",
-            icon: TopCoins,
-            graphyIcon: TopCoinsGraphy,
-            value1: "$0.52",
-            value2: "+1.25%",
-        },
-        {
-            title: "DOGE",
-            symbol: "Dogecoin",
-            icon: TopCoins,
-            graphyIcon: TopCoinsGraphy,
-            value1: "$0.08",
-            value2: "+2.15%",
-        },
-        {
-            title: "AVAX",
-            symbol: "Avalanche",
-            icon: TopCoins,
-            graphyIcon: TopCoinsGraphy,
-            value1: "$38.50",
-            value2: "-0.95%",
-        },
-        {
-            title: "DOT",
-            symbol: "Polkadot",
-            icon: TopCoins,
-            graphyIcon: TopCoinsGraphy,
-            value1: "$5.28",
-            value2: "-0.89%",
-        },
-    ];
 
     return (
         <>
-            <Box>
+            {/* <Box width="100%">
                 <Grid container spacing={2}>
                     {data.map((item) => (
                         <Grid item size={{ xs: 12, md: 6 }} key={item.widgetId}>
@@ -135,17 +50,35 @@ const AddCoins = ({ data }) => {
                             </Box>
                         </Grid>
                     ))}
-                    <Grid size={{ xs: 12, md: 6 }}>
-                        <Box color={"neutral.Snowwhite"} sx={widgetStyle}>
+
+                    <Grid item size={{ xs: 12, md: 6 }} >
+                        <Box color="neutral.Snowwhite" sx={widgetStyle}>
                             <MacroEconomics />
                         </Box>
-
+                    </Grid>
+                </Grid>
+            </Box> */}
+            <Box width="100%" mt={2}>
+                <Grid container spacing={2}>
+                    <Grid item size={{ xs: 12, md: 6 }}>
+                        <Box sx={widgetStyle}>
+                            {isLoading ? (
+                                <TopCoinsComponentSkeleton />
+                            ) : (
+                                <TopCoinsComponent data={TopCoinsData} />
+                            )}
+                        </Box>
+                    </Grid>
+                    <Grid item size={{ xs: 12, md: 6 }}>
+                        <Box sx={widgetStyle}>
+                            <MacroEconomics />
+                        </Box>
                     </Grid>
                 </Grid>
             </Box>
 
 
-            {/* <Box width="100%" mt={2}>
+            <Box width="100%" mt={2}>
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 6 }} >
                         <Box sx={widgetStyle}>
@@ -158,8 +91,8 @@ const AddCoins = ({ data }) => {
                         </Box>
                     </Grid>
                 </Grid>
-            </Box> */}
-            {/* <Box width={"100%"} mt={2}>
+            </Box>
+            <Box width={"100%"} mt={2}>
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 6 }}>
                         <Box sx={widgetStyle}>
@@ -172,9 +105,9 @@ const AddCoins = ({ data }) => {
                         </Box>
                     </Grid>
                 </Grid>
-            </Box> */}
+            </Box>
 
-            {/* <Box width={"100%"} mt={2}>
+            <Box width={"100%"} mt={2}>
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 6 }}>
                         <Box sx={widgetStyle}>
@@ -187,7 +120,21 @@ const AddCoins = ({ data }) => {
                         </Box>
                     </Grid>
                 </Grid>
-            </Box> */}
+            </Box>
+            <Box width={"100%"} mt={2}>
+                <Grid container spacing={2}>
+                    <Grid item size={{ xs: 12, md: 6 }}>
+                        <Box sx={widgetStyle}>
+                            <FutureMatric />
+                        </Box>
+                    </Grid>
+                    <Grid item size={{ xs: 12, md: 6 }}>
+                        <Box sx={widgetStyle}>
+                            <Metricsdata />
+                        </Box>
+                    </Grid>
+                </Grid>
+            </Box>
             {/* <Box width={"100%"} mt={2}>
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 6 }}>

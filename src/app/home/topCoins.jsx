@@ -12,7 +12,6 @@ import Sparkline from "../../components/topCoinsTable/Sparkline";
 const widgetStyle = {
     background: "#151515",
     borderRadius: "16px",
-    padding: "16px",
     height: "auto",
     height: "100%",
     display: "flex",
@@ -22,7 +21,6 @@ const widgetStyle = {
 
 const TopCoinsComponent = ({ data }) => {
     console.log("fuhgfugyffgurfrf", data);
-
     return (
         <Grid item size={{ xs: 12, md: 12 }}>
             <Box sx={widgetStyle}>
@@ -61,7 +59,7 @@ const TopCoinsComponent = ({ data }) => {
                 <Grid container spacing={2}>
                     {/* LEFT COLUMN - 5 coins */}
                     <Grid item size={{ xs: 12, md: 6 }}>
-                        {data[0]?.data?.slice(0, 5)?.map((item, index) => (
+                        {data?.slice(0, 5)?.map((item, index) => (
                             <Box
                                 key={index}
                                 display="flex"
@@ -101,7 +99,7 @@ const TopCoinsComponent = ({ data }) => {
                                     >
                                         <Sparkline
                                             data={item.sparkline || []}
-                                            isPositive={!item.change24hFormatted?.includes("-")}
+                                            isPositive={!item.change24hFormatted?.includes("-") ? true : false}
                                         />
 
                                         {/* {item.change24hFormatted?.includes("-") ? (
@@ -128,7 +126,7 @@ const TopCoinsComponent = ({ data }) => {
                         ))}
                     </Grid>
                     <Grid item size={{ xs: 12, md: 6 }}>
-                        {data[0]?.data?.slice(0, 5)?.map((item, index) => (
+                        {data?.slice(5, 10)?.map((item, index) => (
                             <Box
                                 key={index}
                                 display="flex"
@@ -144,7 +142,7 @@ const TopCoinsComponent = ({ data }) => {
                             >
                                 {/* Left: Icon + Title */}
                                 <Box display="flex" gap="10px" alignItems="center">
-                                    <img src={item.logo} alt={item.title} style={{ width: "20px", height: "20px" }} />
+                                    <img src={item.logo} alt={item.title} style={{ width: "22px", height: "22px" }} />
                                     <Box>
                                         <Typography color="white" fontSize="14px" fontWeight={600}>
                                             {item.name}

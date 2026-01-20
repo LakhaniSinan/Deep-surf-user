@@ -62,13 +62,15 @@ const Home = () => {
   };
 
   const [widgets, setAllWidgit] = useState([])
+  console.log("feufugfygfyegfegfeufe" , widgets);
+  
 
   const fetchAllWidgit = async () => {
     try {
       setIsLoading(true)
       const response = await fetchWidgit();
       const data = response?.data?.data;
-      console.log(data, 'XXXXXXXXXXXXXXXXXXXx');
+      console.log(data?.data[2].data, 'XXXXXXXXXXXXXXXXXXXx');
       setAllWidgit(data)
     } catch (error) {
       console.log("error");
@@ -256,7 +258,7 @@ const Home = () => {
             </Grid>
           </Grid> */}
         </Grid>
-        <AddCoins data={widgets?.data?.length > 0 ? widgets.data : []} />
+        <AddCoins data={widgets?.data?.length > 0 ? widgets.data : []} isLoading={isLoading} />
       </Container >
       <AddWidgit ref={addWidgit} />
     </Box >

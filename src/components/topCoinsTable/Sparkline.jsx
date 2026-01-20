@@ -53,7 +53,7 @@ const Sparkline = ({
       <path
         d={pathData}
         fill="none"
-        stroke={isPositive ? "#22c55e" : "#ef4444"}
+        stroke={isPositive ? "rgba(2, 193, 115, 1)" : "rgba(225, 26, 56, 1)"}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
