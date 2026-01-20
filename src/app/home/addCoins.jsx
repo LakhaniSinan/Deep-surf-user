@@ -187,21 +187,7 @@ const AddCoins = ({ data }) => {
                     </Grid>
                 </Grid>
             </Box>
-            <Box width={"100%"}>
-                <Grid container spacing={2}>
-                    <Grid item size={{ xs: 12, md: 6 }}>
-                        <Box sx={widgetStyle}>
-                            <CryptoEvents />
-                        </Box>
-                    </Grid>
-                    <Grid item size={{ xs: 12, md: 6 }}>
-                        <Box sx={widgetStyle}>
-                            <EtfFlow />
-                        </Box>
-                    </Grid>
-                </Grid>
 
-            </Box>
             <Box width={"100%"} mt={2}>
                 <Grid container spacing={2}>
                     <Grid item size={{ xs: 12, md: 6 }}>
@@ -226,7 +212,7 @@ const AddCoins = ({ data }) => {
                     </Grid>
                     <Grid item size={{ xs: 12, md: 6 }}>
                         <Box sx={widgetStyle}>
-                            <WhalesTrackers />
+                            {/* <WhalesTrackers /> */}
                         </Box>
                     </Grid>
                 </Grid>

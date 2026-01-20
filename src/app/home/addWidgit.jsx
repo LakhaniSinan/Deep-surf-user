@@ -10,7 +10,7 @@ import DialogBody from "../../components/dialog/dialogBody";
 import DialogActionButtons from "../../components/dialog/dialogAction";
 import WidgetCatalog from "./widgetCatalog";
 import { Box } from "@mui/material";
-import { fetchuserWidgets, fetchWidgets } from "../../services/modules/widget";
+import { addWidget, fetchuserWidgets, fetchWidgets, removeWidget } from "../../services/modules/widget";
 
 const AddWidgit = forwardRef((props, ref) => {
     const [data, setData] = useState([])
@@ -24,11 +24,6 @@ const AddWidgit = forwardRef((props, ref) => {
             fetchWidgets(),
             fetchuserWidgets(),
         ]);
-        // console.log("befhefgfgyfgyefgyefyeyef", fetchWidgets());
-
-        // console.log("cccccccccccccccccccccc", allRes?.data?.data);
-
-
         console.log(allRes, userRes, "allResallResallRes");
         setData(allRes.data.data)
         let dd = userRes.data.data.map(item => {
@@ -37,7 +32,6 @@ const AddWidgit = forwardRef((props, ref) => {
         console.log(dd, "dddddddddd");
         setAddedWidgetIds(dd)
     }
-
     const [open, setOpen] = useState(false);
 
     useImperativeHandle(ref, () => ({
