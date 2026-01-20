@@ -5,7 +5,9 @@ import DropDownIcon from "../../assets/icons/Arrow.svg";
 import EthIcon from "../../assets/icons/eth-icon.svg";
 import BtcIcon from "../../assets/icons/bitcoin-logo.svg";
 import SolanaIcon from "../../assets/icons/solana-sol-icon.svg";
-const Metricsdata = () => {
+const Metricsdata = ({ data }) => {
+    console.log("fuuegfuefefgfuhfeugfegfeuf", data);
+
     const cardStyle = {
         backgroundColor: "#1a1a1a",
         padding: "20px",

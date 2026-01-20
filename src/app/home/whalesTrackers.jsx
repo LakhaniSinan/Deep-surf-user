@@ -1,49 +1,53 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid, IconButton, Typography } from '@mui/material';
 import React, { useState } from 'react'
 import CustomButton from '../../components/customButton';
+import CloseIcon from "@mui/icons-material/Close";
+
 
 const WhalesTrackers = ({ data }) => {
-    console.log("fuefgeufgyefewwwwwwwwwwwwwwwwwwfyef", data?.[0]?.address);
-
+    console.log("fuefgeufgyefewwwwwwwwwwwwwwwwwwfyef", data?.transactions);
     const [isLoading, setIsLoading] = useState(false)
-    const whaleData = [
-        {
-            address: "21ism...29e",
-            btnText: "Buy",
-            time: "1 hour ago",
-            brought: "BOUGHT 213 BTC",
-            value: "$12,000,009.21",
-            symbol: "Binance",
-        },
-        {
-            address: "21ism...29e",
-            btnText: "Sell",
-            time: "2 hours ago",
-            brought: "BOUGHT 213 BTC",
-            value: "$12,000,009.21",
-            symbol: "Binance",
-        },
-        {
-            address: "21ism...29e",
-            btnText: "Long",
-            time: "3 hours ago",
-            brought: "OPENED 25 x LONG 100 ETH",
-            value: "$12,000,009.21",
-            symbol: "Bybit",
-        }
-    ]
     return (
         <>
-            <Box mt={1} fontSize={"25px"} color={"neutral.Snowwhite"} fontWeight={600}>
-                Whales tracker
+            <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                mb={2}
+            >
+                <Typography
+                    variant="h6"
+                    color="neutral.Snowwhite"
+                    fontSize="25px"
+                    fontWeight={600}
+                >
+                    Whales tracker
+                </Typography>
+
+                <IconButton
+                    size="small"
+                    sx={{
+                        color: "neutral.Snowwhite",
+                        bgcolor: "neutral.vermilionOrange",
+                        "&:hover": {
+                            bgcolor: "neutral.vermilionOrange",
+                        },
+                    }}
+                    onClick={() => {
+                        console.log("Macroeconomics closed");
+                        // yahan hide / close logic add kar sakte ho
+                    }}
+                >
+                    <CloseIcon fontSize="small" />
+                </IconButton>
             </Box>
             <Grid container spacing={2} mt="20px">
-                {data?.[0]?.transactions?.slice(0, 3).map((item, index) => (
+                {data?.[0]?.transactions?.slice(0, 4).map((item, index) => (
                     <Grid item size={{ xs: 12, sm: 6, md: 12 }} key={index}>
                         <Box
                             sx={{
                                 bgcolor: "neutral.darkGrey",
-                                padding: "25px",
+                                padding: "18px",
                                 borderRadius: "20px",
                                 color: "neutral.Snowwhite",
                                 opacity: isLoading ? 0.5 : 1,

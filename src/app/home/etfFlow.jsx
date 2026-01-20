@@ -3,27 +3,30 @@ import React from 'react'
 import EtfFlowIcon from "../../assets/icons/bitcoin-logo.svg"
 import EthIcon from "../../assets/icons/eth-icon.svg"
 import CustomButton from '../../components/customButton'
-const EtfFlow = () => {
+const EtfFlow = ({ data }) => {
+    console.log("efuefgegfuegfegfegufe", data);
+
+
     const etfFlow = [
         {
             iocn: EtfFlowIcon,
             title: "BTC ETF",
-            description1: "+ $632M (yesterday)",
-            description2: "7 consecutive days of inflows!",
+            description1: data?.btcETF?.priceChange24h,
+            description2: data?.btcETF?.flowDescription,
             color: "rgba(62, 221, 135, 1)"
         },
         {
             iocn: EthIcon,
             title: "BTC ETF",
-            description1: "+ $632M (yesterday)",
-            description2: "7 consecutive days of inflows!",
+            description1: data?.btcETF?.priceChange24h,
+            description2: data?.btcETF?.flowDescription,
             color: "rgba(62, 221, 135, 1)"
 
         },
         {
             iocn: null,
             title: "Trend",
-            description1: "Strong institutional demand",
+            description1: data?.trendAnalysis,
             description2: null,
             color: "rgba(62, 221, 135, 1)"
         }
@@ -49,8 +52,8 @@ const EtfFlow = () => {
                                     </Box>
                                     <Box display={"flex"} gap={"30px"}>
                                         <Box>
-                                            <Typography mt={1} color={item.color}>
-                                                {item.description1}
+                                            <Typography mt={1} color={item?.description1?.includes("-") ? "neutral.dangerRed" : "neutral.primaryGreen"} fontWeight={600}>
+                                                {item?.description1}
                                             </Typography>
                                         </Box>
                                         <Box>
@@ -85,7 +88,7 @@ const EtfFlow = () => {
                     borderRadius="20px"
                 >
                     <CustomButton
-                        title="Conclusion"
+                        title={data?.conclusion?.label}
                         sx={{
                             borderRadius: "20px",
                             width: { xs: "100%", md: "100%" },
@@ -95,7 +98,7 @@ const EtfFlow = () => {
                         }}
                     />
                     <Typography variant="h6" fontSize="13px" fontWeight={600}>
-                        Sustained inflows into BTC/ETH ETFs — a strong bullish indicator. Institutions are accumulating positions. Supports further growth.
+                        {data?.conclusion?.message}
                     </Typography>
                 </Box>
             </Box>

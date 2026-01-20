@@ -1,7 +1,9 @@
 import { Box, Grid, Typography } from '@mui/material'
 import React from 'react'
 
-const EnhanceMarketIntelligence = () => {
+const EnhanceMarketIntelligence = ({ data }) => {
+    console.log("fufgfgrfgurfgurfurfgurfgurf", data);
+
     const marketStats = [
         {
             title: "Funding Rate",

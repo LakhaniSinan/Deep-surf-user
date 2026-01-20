@@ -14,10 +14,17 @@ import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import CryptoEvents from './cryptoEvents';
 import { fetchWidgit } from '../../services/modules/widget';
-const AiProof = () => {
+const AiProof = ({ data,
+    ticker,
+    setTicker,
+    onSearch,
+    isLoading }) => {
+        console.log("fufgrifgurifgurfurgf" , onSearch);
+        
+
     const [showDetails, setShowDetails] = useState(false);
     const [AllWidgit, setAllWidgit] = useState(null);
-    const [isLoading, setIsLoading] = useState(false)
+    // const [isLoading, setIsLoading] = useState(false)
     const confluenceData1 = [
         {
             title: "Confluence Score",
@@ -84,7 +91,20 @@ const AiProof = () => {
                             <Box mt={2}>
                                 <CustomInput
                                     placeholder="ETH"
-                                    InputEndIcon={<img src={IconImage} style={{ width: "25px" }} />}
+                                    value={ticker}
+                                    onChange={(e) => setTicker(e.target.value)}
+                                    onKeyDown={(e) => {
+                                        if (e.key === "Enter") {
+                                            onSearch();
+                                        }
+                                    }}
+                                    InputEndIcon={
+                                        <img
+                                            src={IconImage}
+                                            style={{ width: "25px", cursor: "pointer" }}
+                                            onClick={onSearch}
+                                        />
+                                    }
                                 />
                             </Box>
                             <Box mt={"20px"}>

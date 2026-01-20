@@ -3,7 +3,9 @@ import React, { useState } from 'react'
 import CustomButton from '../../components/customButton';
 import VolumeCard from '../../components/volumeCard';
 
-const HeatMap = () => {
+const HeatMap = ({ data }) => {
+    console.log("efheufeufguefgegfefyefyuge", data);
+
     const [selectedTimeframe, setSelectedTimeframe] = useState("24h");
     const buttonData = [
         { id: 1, title: "24h Volume", value: "24h" },
@@ -84,7 +86,7 @@ const HeatMap = () => {
     return (
         <Box mt={2} color={"neutral.Snowwhite"} backgroundColor={"rgba(22, 22, 22, 1)"} borderRadius={"20px"} padding={"2px"}  >
             <Box>
-                <Typography color="neutral.Snowwhite" fontSize={"20px"}>
+                <Typography color="neutral.Snowwhite" fontSize={"25px"} fontWeight={700}>
                     Heatmap—Volume & Volatility
                 </Typography>
                 <Typography color="neutral.Snowwhite" fontSize={"14px"} mt={1}>
@@ -125,7 +127,7 @@ const HeatMap = () => {
                 </Typography>
             </Box>
             <Grid container spacing={2} marginTop={"20px"}>
-                {topVolumeByCoins?.map((item, index) => (
+                {data?.map((item, index) => (
                     <Grid
                         item
                         size={{ xs: 6, sm: 4, md: 6 }}
@@ -133,14 +135,14 @@ const HeatMap = () => {
                     // sx={{ flexBasis: "20%" }}
                     >
                         <VolumeCard
-                            name={item?.name}
-                            volume={item?.volumeFormatted}
+                            name={item?.symbol}
+                            volume={"$" + item?.price}
                             // percentChange={
                             //     selectedTimeframe === "24h"
                             //         ? item?.change24hFormatted
                             //         : item?.change24hFormatted                          
                             // }
-                            percentChange={item.changeFormatted}
+                            percentChange={item.volume24h.toFixed(2) + "%"}
                             isPositive={
                                 selectedTimeframe === "24h"
                                     ? item?.change24h >= 0

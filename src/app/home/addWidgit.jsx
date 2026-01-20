@@ -18,6 +18,12 @@ const AddWidgit = forwardRef((props, ref) => {
     useEffect(() => {
         fetchAllWidgets()
     }, [])
+    const [popup, setPopup] = useState({
+        open: false,
+        message: "",
+        type: "success", // success, error
+    });
+
 
     const fetchAllWidgets = async () => {
         const [allRes, userRes] = await Promise.all([
@@ -51,16 +57,23 @@ const AddWidgit = forwardRef((props, ref) => {
 
     const handleAddWidget = async (id) => {
         await addWidget(id);
-        alert("Widget Added successfully")
+        showPopup("Widget added successfully", "success");
         setAddedWidgetIds(prev => [...prev, id]);
     };
     const handleRemove = async (id) => {
         await removeWidget(id);
-        alert("Widget removed successfully")
+        showPopup("Widget removed successfully", "error");
         setAddedWidgetIds(prev => prev.filter(wid => wid !== id));
     };
 
     console.log(addedWidgetIds, "addedWidgetIdsaddedWidgetIdsaddedWidgetIds");
+    const showPopup = (message, type = "success") => {
+        setPopup({ open: true, message, type });
+
+        setTimeout(() => {
+            setPopup(prev => ({ ...prev, open: false }));
+        }, 3000); // 3 seconds ke baad hide ho jaye
+    };
 
 
     return (
@@ -80,6 +93,26 @@ const AddWidgit = forwardRef((props, ref) => {
                     />
                 </Box>
             </DialogBody>
+            {popup.open && (
+                <Box
+                    sx={{
+                        position: "fixed",
+                        top: 20,
+                        right: 20,
+                        bgcolor: popup.type === "success" ? "neutral.primaryGreen" : "neutral.primaryGreen",
+                        color: "white",
+                        px: 3,
+                        py: 1.5,
+                        borderRadius: 2,
+                        boxShadow: 3,
+                        zIndex: 9999,
+                        transition: "all 0.3s ease",
+                    }}
+                >
+                    {popup.message}
+                </Box>
+            )}
+
             <DialogActionButtons
                 onCancel={handleClose}
                 onConfirm={() => {
@@ -89,6 +122,7 @@ const AddWidgit = forwardRef((props, ref) => {
                 showConfirmBtn={false}
             />
         </DialogContainer>
+
     );
 });
 

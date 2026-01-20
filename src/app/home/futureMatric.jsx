@@ -4,7 +4,6 @@ import CustomInput from '../../components/customInput'
 import IconImage from "../../assets/icons/Vector.svg";
 import { useTranslation } from 'react-i18next';
 
-
 const FutureMatric = () => {
     const { t } = useTranslation();
     const fundingData = [
@@ -13,7 +12,6 @@ const FutureMatric = () => {
             value: "0.000%",
             status: "Neutral",
         },
-
         {
             title: (t("ProAnalytics.FuturesMetrics.openInterest")),
             value: "1.5M",

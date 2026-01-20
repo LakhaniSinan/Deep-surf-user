@@ -2,70 +2,11 @@ import { Box, Button, Grid, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import VolumeCard from '../../components/volumeCard';
 
-const TopVolumeByCoins = () => {
+const TopVolumeByCoins = ({ data }) => {
+    console.log("efjeuifgeufgefguefgef", data);
+
     const [selectedTimeframe, setSelectedTimeframe] = useState("24h");
-    const topVolumeByCoins = [
-        {
-            name: "ALPACA",
-            volumeFormatted: "$2.9B",
-            changeFormatted: "391.2%"
-
-        },
-        {
-            name: "ALPACA",
-            volumeFormatted: "$2.9B",
-            changeFormatted: "391.2%"
-
-        },
-        {
-            name: "ALPACA",
-            volumeFormatted: "$2.9B",
-            changeFormatted: "391.2%"
-
-        },
-        {
-            name: "ALPACA",
-            volumeFormatted: "$2.9B",
-            changeFormatted: "391.2%"
-
-        },
-        {
-            name: "ALPACA",
-            volumeFormatted: "$2.9B",
-            changeFormatted: "391.2%"
-
-        },
-        {
-            name: "ALPACA",
-            volumeFormatted: "$2.9B",
-            changeFormatted: "391.2%"
-
-        },
-        {
-            name: "ALPACA",
-            volumeFormatted: "$2.9B",
-            changeFormatted: "391.2%"
-
-        },
-        {
-            name: "ALPACA",
-            volumeFormatted: "$2.9B",
-            changeFormatted: "391.2%"
-
-        },
-        {
-            name: "ALPACA",
-            volumeFormatted: "$2.9B",
-            changeFormatted: "391.2%"
-
-        },
-        {
-            name: "ALPACA",
-            volumeFormatted: "$2.9B",
-            changeFormatted: "391.2%"
-
-        }
-    ]
+   
     return (
         <Box bgcolor={"rgba(28, 28, 28, 1)"} p={2} mt={2} borderRadius={"10px"}>
             <Box display={"flex"} justifyContent={"space-between"}>
@@ -128,13 +69,13 @@ const TopVolumeByCoins = () => {
             </Box>
             <Box mt={2}>
                 <Grid container spacing={2}>
-                    {topVolumeByCoins?.map((item, index) => (
+                    {data?.map((item, index) => (
                         <Grid item size={{ xs: 6, sm: 3, md: 2.4 }} key={index}>
                             <VolumeCard
-                                name={item.name}
+                                name={item.symbol}
                                 volume={item.volumeFormatted}
-                                percentChange={item.changeFormatted}
-                                isPositive={item?.changeFormatted?.includes("-") ? false : true}
+                                percentChange={item.change24hFormatted}
+                                isPositive={!item?.changeFormatted?.includes("-") ? false : true}
                             />
                         </Grid>
                     ))}

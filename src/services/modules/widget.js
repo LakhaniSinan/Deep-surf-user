@@ -17,8 +17,12 @@ const addWidget = (id) => {
 const removeWidget = (payload) => {
   return Api(`${ENDPOINTS.WIDGETS.REMOVE_WIDGET}/${payload}`, null, "delete");
 };
-const fetchWidgit = () => {
-  return Api(ENDPOINTS.WIDGETS.FETCH_ALL_WIDGET, null, "get");
+const fetchWidgit = ({ticker}) => {
+  return Api(
+    `${ENDPOINTS.WIDGETS.FETCH_ALL_WIDGET}?ticker=${ticker}`,
+    null,
+    "get",
+  );
 };
 
-export { fetchuserWidgets, fetchWidgets, addWidget, removeWidget , fetchWidgit };
+export { fetchuserWidgets, fetchWidgets, addWidget, removeWidget, fetchWidgit };

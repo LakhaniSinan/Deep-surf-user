@@ -1,37 +1,72 @@
-import { Box, Grid, Typography } from '@mui/material';
-const CryptoEvents = () => {
+import { Box, Grid, IconButton, Typography } from '@mui/material';
+import CloseIcon from "@mui/icons-material/Close";
+const CryptoEvents = ({ data }) => {
+    console.log("efeufgygfyfgygfurgfurgfuirfurfg", data?.event_0?.recipients);
+    const scenarios = data?.event_0.scenarios;
+    console.log("hffrufuirfhirhfrif", scenarios);
+
+
     const cryptoEventsData = [
         {
-            title: "Bearish (60%)",
-            description: "Drop of 15-25% over 2-3 days. Shorting opportunities.",
+            title: data?.event_0?.scenarios?.bearish?.label,
+            description: data?.event_0?.scenarios?.bearish?.description,
             color: "rgba(255, 76, 76, 1)",
 
         },
         {
-            title: "Neutral (25%)",
-            description: "The team does not sell immediately, drop of 5-10%.",
+            title: data?.event_0?.scenarios?.neutral?.label,
+            description: data?.event_0?.scenarios?.neutral?.description,
             color: "rgba(255, 230, 0, 1)",
         },
         {
-            title: "Bearish (60%)",
-            description: "Drop of 15-25% over 2-3 days. Shorting opportunities.",
+            title: data?.event_0?.scenarios?.bullish?.label,
+            description: data?.event_0?.scenarios?.bullish?.description,
             color: "rgba(62, 221, 135, 1)"
         }
     ]
     return (
-        <Box mt={2} color={"neutral.Snowwhite"} backgroundColor={"rgba(22, 22, 22, 1)"} borderRadius={"20px"} padding={"2px"}>
-            <Typography color='neutral.Snowwhite' fontSize={"25px"} fontWeight={600}>
-                Cryptocurrency Events
-            </Typography>
+        <Box color={"neutral.Snowwhite"} backgroundColor={"rgba(22, 22, 22, 1)"} borderRadius={"20px"} padding={"2px"}>
+            <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                mb={2}
+            >
+                <Typography
+                    variant="h6"
+                    color="neutral.Snowwhite"
+                    fontSize="25px"
+                    fontWeight={600}
+                >
+                    Cryptocurrency Events
+                </Typography>
+
+                <IconButton
+                    size="small"
+                    sx={{
+                        color: "neutral.Snowwhite",
+                        bgcolor: "neutral.vermilionOrange",
+                        "&:hover": {
+                            bgcolor: "neutral.vermilionOrange",
+                        },
+                    }}
+                    onClick={() => {
+                        console.log("Macroeconomics closed");
+                        // yahan hide / close logic add kar sakte ho
+                    }}
+                >
+                    <CloseIcon fontSize="small" />
+                </IconButton>
+            </Box>
             <Box mt={1.2}>
                 <Typography color='neutral.Snowwhite' fontSize={"15px"} fontWeight={600}>
-                    APEX Token Unlock (Friday, 00:00 UTC)
+                    {data?.event_0?.title}
                 </Typography>
                 <Typography mt={1} fontSize={"13px"}>
-                    Supply: 50M APEX ($10.5M)|% of supply: 3.2%
+                    {data?.event_0?.description}
                 </Typography>
                 <Typography mt={0.5} fontSize={"12px"}>
-                    Recipients: Team (60%), Early Investors (40%)
+                     {data?.event_0?.recipients}
                 </Typography>
             </Box>
             <Box mt={1.5}>
@@ -54,7 +89,7 @@ const CryptoEvents = () => {
             </Box>
             <Box mt={1}>
                 <Typography color='neutral.Snowwhite' fontSize={"14px"}>
-                    Best entry: 1-2 days after unlock, when selling subsides. Monitor on-chain wallet movements of the team.
+                    {data?.event_0?.bestEntry}
                 </Typography>
             </Box>
         </Box>
