@@ -10,13 +10,11 @@ import DialogBody from "../../components/dialog/dialogBody";
 import DialogActionButtons from "../../components/dialog/dialogAction";
 import WidgetCatalog from "./widgetCatalog";
 import { Box } from "@mui/material";
+import { fetchuserWidgets, fetchWidgets } from "../../services/modules/widget";
 
 const AddWidgit = forwardRef((props, ref) => {
     const [data, setData] = useState([])
-   
-
     const [addedWidgetIds, setAddedWidgetIds] = useState([]);
-
     useEffect(() => {
         fetchAllWidgets()
     }, [])
@@ -24,10 +22,7 @@ const AddWidgit = forwardRef((props, ref) => {
     const fetchAllWidgets = async () => {
         const [allRes, userRes] = await Promise.all([
             fetchWidgets(),
-            // console.log("efbfguygfyugffrfurf", category),
-
             fetchuserWidgets(),
-            // setData(allRes?.data?.data)
         ]);
         // console.log("befhefgfgyfgyefgyefyeyef", fetchWidgets());
 

@@ -16,7 +16,7 @@ import Metricsdata from "./metricData";
 import WhalesTrackers from "./whalesTrackers";
 import HeatMap from "./heatMap";
 import TopCoinsComponent from "./topCoins.jsx";
-import EtfFlow from "./ethFlow";
+// import EtfFlow from "./ethFlow";
 
 
 const AddCoins = ({ data }) => {
