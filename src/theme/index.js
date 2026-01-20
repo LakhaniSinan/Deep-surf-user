@@ -293,7 +293,7 @@ const theme = createTheme({
             background: "rgba(255, 162, 6, 1)",
             border: "none",
             color: "rgba(255, 255, 255, 1)",
-            padding: "13px 54px",
+            padding: "13px 100px",
             fontSize: "18px",
             minHeight: "36px",
             borderRadius: "30px",

@@ -305,15 +305,24 @@ const AiPumpScanner = () => {
                     <CustomButton
                         title={"50+ memecoins"}
                         variant='predictorBtn'
+                        sx={{
+                            borderRadius: "20px"
+                        }}
                     />
                     <CustomButton
                         title={"100+ lowcaps"}
                         variant='predictorBtn'
+                        sx={{
+                            borderRadius: "20px"
+                        }}
 
                     />
                     <CustomButton
                         title={"New listings"}
                         variant='predictorBtn'
+                        sx={{
+                            borderRadius: "20px"
+                        }}
                     />
                 </Box>
                 <Box>

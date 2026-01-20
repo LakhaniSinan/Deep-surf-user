@@ -305,15 +305,24 @@ const AiDumpScanner = () => {
                     <CustomButton
                         title={"High Risk"}
                         variant='predictorBtn'
+                        sx={{
+                            borderRadius: "20px"
+                        }}
                     />
                     <CustomButton
                         title={"Long Squeeze"}
                         variant='predictorBtn'
+                        sx={{
+                            borderRadius: "20px"
+                        }}
 
                     />
                     <CustomButton
                         title={"OI Unwinding"}
                         variant='predictorBtn'
+                        sx={{
+                            borderRadius: "20px"
+                        }}
                     />
                 </Box>
                 <Box>
