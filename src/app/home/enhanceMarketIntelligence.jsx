@@ -2,29 +2,29 @@ import { Box, Grid, Typography } from '@mui/material'
 import React from 'react'
 
 const EnhanceMarketIntelligence = ({ data }) => {
-    console.log("fufgfgrfgurfgurfurfgurfgurf", data);
+    console.log("fufgfgrfgurfgurfurfgurfgurf", data?.fundingRate?.value);
 
     const marketStats = [
         {
             title: "Funding Rate",
-            value: "-0.005%",
-            description: "Neutral",
+            value: data?.fundingRate?.value,
+            description: data?.fundingRate?.sentiment,
         },
         {
             title: "L/S Ratio",
-            value: "2.26",
-            description: "Heavily long",
+            value:` ${data?.longShortRatio?.value}%`,
+            description: data?.longShortRatio?.sentiment,
         },
         {
             title: "24h Volume",
-            value: "$31.1B",
-            description: "Top 0% | Vol: 11.44%",
+            value: data?.volume24h?.value,
+            description: data?.volume24h?.description,
         },
         {
             title: "Liq. Risk",
-            value: "2.0%",
-            value1: "2.0%",
-            description: "Nearest zones",
+            value: data?.liquidationRisk?.long,
+            value1: data?.liquidationRisk?.short,
+            description: data?.liquidationRisk?.zones,
         },
     ];
     return (

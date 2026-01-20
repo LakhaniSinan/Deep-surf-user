@@ -1,30 +1,32 @@
 import { Box, Grid, Typography } from '@mui/material'
 import React from 'react'
 
-const TechnicalIndicator = () => {
+const TechnicalIndicator = ({ data }) => {
+    console.log("fuubvubvurbvrbvoruvrv", data);
+
     const indicatorData = [
         {
-            title: "RSI: 74.3"
+            title: ` RSI ${data?.rsi}`
 
         },
         {
-            title: "RSI: 74.3"
+            title: ` MACD ${data?.macd}`
 
         },
         {
-            title: "RSI: 74.3"
+            title: ` Stochastic ${data?.stochRsi}`
 
         },
         {
-            title: "RSI: 74.3"
+            title: `BB Position :  ${data?.bbPosition}`
 
         },
         {
-            title: "RSI: 74.3"
+            title: `Trend :  ${data?.trend}`
 
         },
         {
-            title: "RSI: 74.3"
+            title: `volume ${data?.volume}`
 
         },
     ]
@@ -54,7 +56,7 @@ const TechnicalIndicator = () => {
                     </Grid>
                 </Box>
             </Box>
-          
+
         </Box >
     )
 }

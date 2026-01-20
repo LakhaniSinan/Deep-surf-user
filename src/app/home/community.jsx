@@ -1,19 +1,29 @@
 import { Box, Grid, Typography } from '@mui/material'
 import React from 'react'
 
-const Community = () => {
+const Community = ({ data }) => {
+    console.log("fbufbuhfbrfbrhbvrbvrv", data);
+
     const levels = [
         {
             label: "Support",
-            value: "3829,17",
+            value: data?.support,
             color: "#3EDD87",
         },
         {
             label: "Resistance",
-            value: "4349,70",
+            value: data?.resistance,
             color: "#FF6C82",
         },
     ];
+    const longPercentValue = Number(
+        String(data?.longPercent || "0").replace("%", "")
+    );
+
+    const shortPercentValue = Number(
+        String(data?.shortPercent || "0").replace("%", "")
+    );
+
     return (
         <Box mt={3} >
             <Box>
@@ -30,54 +40,59 @@ const Community = () => {
                 overflow="hidden"
                 mt={2}
             >
-                {/* First box: longdataValue */}
+                {/* Long Bar */}
                 <Box
-                    width={`56%`} // static value
+                    width={`${longPercentValue}%`}
                     height="100%"
                     bgcolor="#0B2015"
-                    borderRadius="30px 0px 0px 30px"
+                    borderRadius="30px 0 0 30px"
                     transition="width 0.3s ease"
                 />
 
-                {/* Second box: strDataValue */}
+                {/* Short Bar */}
                 <Box
-                    width={`80%`} // static value
+                    width={`${shortPercentValue}%`}
                     height="100%"
                     bgcolor="#8B0000"
-                    borderRadius="0px 30px 30px 0px"
+                    borderRadius="0 30px 30px 0"
                     transition="width 0.3s ease"
                 />
 
-                {/* First progress text */}
+                {/* Long Text (CENTER OF LONG BAR) */}
                 <Typography
                     sx={{
                         position: "absolute",
                         top: "50%",
-                        left: `15%`, // 56 / 2
+                        left: `${longPercentValue / 2}%`,
                         transform: "translate(-50%, -50%)",
                         fontSize: "11px",
                         fontWeight: "bold",
-                        color: "green",
+                        color: "#4CAF50",
+                        whiteSpace: "nowrap",
                     }}
                 >
-                    56%
+                    {longPercentValue}%
                 </Typography>
 
-                {/* Second progress text */}
+                {/* Short Text (CENTER OF SHORT BAR) */}
                 <Typography
                     sx={{
                         position: "absolute",
                         top: "50%",
-                        left: `70%`, // 56 + 80/2 = 56 + 40 = 96
+                        left: `${longPercentValue + shortPercentValue / 2}%`,
                         transform: "translate(-50%, -50%)",
                         fontSize: "11px",
                         fontWeight: "bold",
                         color: "#FF6666",
+                        whiteSpace: "nowrap",
                     }}
                 >
-                    80%
+                    {shortPercentValue}%
                 </Typography>
             </Box>
+
+
+
             <Box sx={{ p: { xs: 0, md: 0 }, borderRadius: 2, marginTop: 2, }}>
                 <Grid container spacing={2}>
                     {levels.map((item, index) => (

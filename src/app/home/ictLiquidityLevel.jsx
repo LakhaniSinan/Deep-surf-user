@@ -2,23 +2,25 @@ import { Box, Grid, Typography } from '@mui/material'
 import React from 'react'
 import ArroWBtn from "../../assets/icons/arrow-down-icon.svg"
 
-const IctLiquidityLevel = () => {
+const IctLiquidityLevel = ({ data }) => {
+    console.log("feohfuegfuegfugfufuoefhif", data?.[0]?.priceFormatted);
+
     const liquidityLevelData = [
         {
             icon: ArroWBtn,
-            title: "Sell-Side Liquidity: $3 818,81"
+            title: data?.[0]?.priceFormatted
         },
         {
             icon: ArroWBtn,
-            title: "Sell-Side Liquidity: $3 818,81"
+            title: data?.[1]?.priceFormatted
         },
         {
             icon: ArroWBtn,
-            title: "Sell-Side Liquidity: $3 818,81"
+            title :data?.[2]?.priceFormatted
         },
         {
             icon: ArroWBtn,
-            title: "Sell-Side Liquidity: $3 818,81"
+            title: data?.[3]?.priceFormatted
         }
     ]
     return (
@@ -26,7 +28,7 @@ const IctLiquidityLevel = () => {
             <Typography color='neutral.Snowwhite' fontSize={"22px"} fontWeight={600}>
                 ICT Liquidity Levels
             </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, mt: "10px", bgcolor: "neutral.darkGrey" , borderRadius: "20px", p: 2}}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, mt: "10px", bgcolor: "neutral.darkGrey", borderRadius: "20px", p: 2 }}>
                 {liquidityLevelData.map((item, index) => (
                     <Box
                         key={index}

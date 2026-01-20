@@ -61,13 +61,12 @@ const Home = () => {
   };
 
   const [widgets, setAllWidgit] = useState([]);
-  const [ticker, setTicker] = useState("");
-  console.log("feufugfygfyegfegfeufe", widgets);
+ 
 
   const fetchAllWidgit = async () => {
     try {
       setIsLoading(true);
-      const response = await fetchWidgit({ ticker });
+      const response = await fetchWidgit();
       console.log(response, "responseresponseresponse");
 
       const data = response?.data?.data;
@@ -268,9 +267,7 @@ const Home = () => {
           <AddCoins
             data={widgets?.data?.length > 0 ? widgets.data : []}
             isLoading={isLoading}
-            ticker={ticker}
-            setTicker={setTicker}
-            onSearch={fetchAllWidgit}
+           
           />
         </Container>
       )}

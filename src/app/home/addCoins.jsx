@@ -22,7 +22,7 @@ import CryptoEventsSkeleton from "../../components/skeleton/home/cryptoEvents.js
 import WhalesTrackersSkeleton from "../../components/skeleton/home/whalesTrackers.jsx";
 // import EtfFlow from "./ethFlow";
 
-const AddCoins = ({ data, isLoading, ticker, setTicker, onSearch }) => {
+const AddCoins = ({ data, isLoading,  }) => {
     console.log("fhugfuegfuiegfuegfuiegfueigf", data);
 
     const widgetStyle = {
@@ -104,10 +104,7 @@ const AddCoins = ({ data, isLoading, ticker, setTicker, onSearch }) => {
                                 {item?.widgetId === "ai-proof" && (
                                     <AiProof
                                         data={item?.data}
-                                        ticker={ticker}
-                                        setTicker={setTicker}
-                                        onSearch={onSearch}
-                                        isLoading={isLoading}
+                                       
                                     />
                                 )}
                                 {item?.widgetId === "future-matric" && <FutureMatric data={item?.data} />}
