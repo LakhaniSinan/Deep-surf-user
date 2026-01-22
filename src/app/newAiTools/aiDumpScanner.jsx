@@ -6,7 +6,7 @@ import MlIcon from "../../assets/icons/mt-icon.svg"
 import CustomSelect from '../../components/customSelect'
 import CustomCheckbox from '../../components/cutomChecked'
 // import CustomCheckbox from '../../components/cutomChecked'
-import PredictorImage from "../../assets/icons/ai-dump-icon.svg"
+import AiDumpScannerIcon from "../../assets/icons/ai-dump-predicator.svg"
 
 const AiDumpScanner = () => {
     const [scanType, setScanType] = useState("");
@@ -283,7 +283,7 @@ const AiDumpScanner = () => {
                 </Box>
                 <Box display={"flex"} justifyContent={"center"} mt={7}>
                     <Box mt={1}>
-                        <img src={PredictorImage} style={{ width: "50px", height: "50px" }} />
+                        <img src={AiDumpScannerIcon} style={{ width: "50px", height: "50px" }} />
                     </Box>
                 </Box>
                 <Box textAlign={"center"}>
@@ -291,16 +291,16 @@ const AiDumpScanner = () => {
                         AI Dump Predictor
                     </Typography>
                 </Box>
-                <Box textAlign={"center"} >
+                {/* <Box textAlign={"center"} >
                     <Typography color="rgba(255, 255, 255, 0.5)" fontWeight={400} >
                         Analysis of  <span style={{ color: "rgba(255, 100, 33, 1)" }}>3000% coins </span> (Futures + Spot)
                     </Typography>
-                </Box>
-                <Box textAlign={"center"} >
+                </Box> */}
+                {/* <Box textAlign={"center"} >
                     <Typography color="rgba(255, 255, 255, 0.5)" fontWeight={400} >
                         Order Book • CVD(sell) • Liquidation Zones • OI • Funding • 20+ patterns
                     </Typography>
-                </Box>
+                </Box> */}
                 <Box display={"flex"} justifyContent={"center"} gap={"10px"} mt={3}>
                     <CustomButton
                         title={"High Risk"}

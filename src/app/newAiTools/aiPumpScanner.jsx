@@ -285,7 +285,7 @@ const AiPumpScanner = () => {
                 </Box>
                 <Box display={"flex"} justifyContent={"center"} mt={7}>
                     <Box mt={1}>
-                        <img src={AiPumpScannerIcon} style={{ width: "50px", height: "50px" }} />
+                        <img src={AiPumpScannerIcon} style={{ width: "90px", height: "90px" }} />
                     </Box>
                 </Box>
                 <Box textAlign={"center"}>

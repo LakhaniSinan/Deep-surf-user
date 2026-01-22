@@ -290,9 +290,9 @@ const theme = createTheme({
           // 🟠 Calculator toggle button (small, orange when selected)
           props: { variant: "predictorBtn" },
           style: {
-            background: "rgba(255, 162, 6, 1)",
-            border: "none",
-            color: "rgba(255, 255, 255, 1)",
+            // background: "rgba(255, 162, 6, 1)",
+            border: "1px solid rgba(158, 158, 158, 1)",
+            color: "rgba(255, 255, 255, 0.5)",
             padding: "13px 100px",
             fontSize: "18px",
             minHeight: "36px",

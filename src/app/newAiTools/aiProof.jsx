@@ -3,7 +3,8 @@ import React from 'react'
 import CustomButton from '../../components/customButton'
 import EffectIcon from "../../assets/icons/effects.svg"
 import AnalysisIcon from "../../assets/icons/search-analysis-iocn.svg"
-import CoinAnanlysis from "../../assets/icons/coinAnalysis.svg"
+import CoinAnanlysis from "../../assets/icons/coin-analysis.svg"
+import CustomInput from '../../components/customInput'
 
 const AiProof = () => {
     const buttonData = [
@@ -34,9 +35,9 @@ const AiProof = () => {
                 <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"22px"}>
                     AI Proof — Quick coin verification
                 </Typography>
-                <Box borderBottom={"0.5px solid rgba(127, 127, 127, 1)"} mt={2}>
-                </Box>
-                <Box border={"1px solid rgba(127, 127, 127, 1)"} borderRadius={"12px"} mt={2} p={1.5}>
+                {/* <Box borderBottom={"0.5px solid rgba(127, 127, 127, 1)"} mt={2}>
+                </Box> */}
+                <Box  borderRadius={"12px"}>
                     <Typography color='rgba(127, 127, 127, 1)' fontWeight={400}>
                         Deep AI analysis of any coin in seconds. Enter ticker, get full breakdown and recommendation.
                     </Typography>
@@ -44,11 +45,14 @@ const AiProof = () => {
                 <Box>
                     <Grid container spacing={1}>
                         <Grid item size={{ xs: 12, md: 10 }}>
-                            <Box border={"1px solid rgba(127, 127, 127, 1)"} borderRadius={"12px"} mt={2} p={1.5}>
-                                <Typography color='rgba(127, 127, 127, 1)' fontWeight={400}>
+                            {/* <Box border={"1px solid rgba(127, 127, 127, 1)"} borderRadius={"12px"} mt={2} p={1.5}> */}
+                            {/* <Typography color='rgba(127, 127, 127, 1)' fontWeight={400}>
                                     BTC,ETH,SOL...
-                                </Typography>
+                                </Typography> */}
+                            <Box mt={1.2} p={1}>
+                                <CustomInput placeholder="BTC,ETH,SOL..." />
                             </Box>
+                            {/* </Box> */}
                         </Grid>
                         <Grid item size={{ xs: 12, md: 2 }}>
                             <Box mt={2}>
