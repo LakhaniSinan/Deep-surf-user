@@ -16,6 +16,8 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker, w
   console.log("frugfyugfurgfyurgfuyrgfuirgfuigrf", riskCalendar?.riskCalendar?.events);
 
   const [whale, setWhale] = useState([])
+  console.log("fnurfrfgurgfurgfuirgfr", whale);
+
   const [isLoading, setIsLoading] = useState(false);
 
 

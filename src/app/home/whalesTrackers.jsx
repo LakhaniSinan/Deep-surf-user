@@ -1,10 +1,10 @@
 import { Box, Grid, IconButton, Typography } from '@mui/material';
 import React, { useState } from 'react'
 import CustomButton from '../../components/customButton';
-import CloseIcon from "@mui/icons-material/Close";
+import moment from "moment";
 
 const WhalesTrackers = ({ data }) => {
-    console.log("fuefgeufgyefewwwwwwwwwwwwwwwwwwfyef", data?.whales?.[0]?.address);
+    console.log("fuefgeufgyefewwwwwwwwwwwwdddwwwwwwfyef", data?.whales[0]?.transactions);
     const [isLoading, setIsLoading] = useState(false)
     return (
         <>
@@ -39,7 +39,7 @@ const WhalesTrackers = ({ data }) => {
                 </IconButton> */}
             </Box>
             <Grid container spacing={2} mt="22px">
-                {data?.whales?.[0]?.transactions?.slice(0, 4).map((item, index) => (
+                {data?.whales[0]?.transactions?.map((item, index) => (
                     <Grid item size={{ xs: 12, sm: 6, md: 12 }} key={index}>
                         <Box
                             sx={{
@@ -52,7 +52,7 @@ const WhalesTrackers = ({ data }) => {
                             }}
                         >
                             <Grid container alignItems="center" justifyContent="space-between">
-                                <Grid item>
+                                <Grid >
                                     <Box display="flex" alignItems="center" gap={3}>
                                         <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
                                             {data?.whales?.[0]?.address}
@@ -77,9 +77,9 @@ const WhalesTrackers = ({ data }) => {
                                         />
                                     </Box>
                                 </Grid>
-                                <Grid item>
+                                <Grid mt={2} alignItems={"center"}>
                                     <Typography sx={{ fontSize: "14px", color: "neutral.gray", fontWeight: 600 }}>
-                                        {item.time}
+                                        {moment.utc(item.time).local().format("DD MMM YYYY, hh:mm A")}
                                     </Typography>
                                 </Grid>
                             </Grid>
