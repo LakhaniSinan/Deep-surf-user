@@ -7,6 +7,8 @@ import CustomSelect from '../../components/customSelect'
 import CustomCheckbox from '../../components/cutomChecked'
 // import CustomCheckbox from '../../components/cutomChecked'
 import PredictorImage from "../../assets/icons/predictor-icon.svg"
+import AiPumpScannerIcon from "../../assets/icons/ai-pump-scanner.svg"
+
 
 const AiPumpScanner = () => {
     const [scanType, setScanType] = useState("");
@@ -283,7 +285,7 @@ const AiPumpScanner = () => {
                 </Box>
                 <Box display={"flex"} justifyContent={"center"} mt={7}>
                     <Box mt={1}>
-                        <img src={PredictorImage} style={{ width: "50px", height: "50px" }} />
+                        <img src={AiPumpScannerIcon} style={{ width: "50px", height: "50px" }} />
                     </Box>
                 </Box>
                 <Box textAlign={"center"}>

@@ -3,6 +3,7 @@ import React from 'react'
 import CustomButton from '../../components/customButton'
 import EffectIcon from "../../assets/icons/effects.svg"
 import AnalysisIcon from "../../assets/icons/search-analysis-iocn.svg"
+import CoinAnanlysis from "../../assets/icons/coinAnalysis.svg"
 
 const AiProof = () => {
     const buttonData = [
@@ -91,7 +92,7 @@ const AiProof = () => {
 
                 </Box>
                 <Box display={"flex"} justifyContent={"center"} alignItems={"center"} mt={10}>
-                    <img src={AnalysisIcon} style={{ width: "82px", height: "79px" }} />
+                    <img src={CoinAnanlysis} style={{ width: "82px", height: "79px" }} />
                 </Box>
                 <Box mt={0.5}>
                     <Typography textAlign={"center"} color='rgba(127, 127, 127, 1)' fontWeight={600} letterSpacing={1}>
