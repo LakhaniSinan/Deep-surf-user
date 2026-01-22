@@ -13,29 +13,27 @@ import { useTranslation } from "react-i18next";
 const Header = () => {
   const navigate = useNavigate();
   const { user } = useAuthStore();
-  console.log("user", user);
   const location = useLocation();
   const { logout } = useAuthStore();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [profilePicture, setProfilePicture] = useState(
     user?.profilePicture || ""
   );
-  console.log("profilepicture ", profilePicture);
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);
   const { t } = useTranslation();
+
   const navItems = [
     { link: "/dashboard", label: "Dashboard" },
     { link: "/journal", label: "Journal" },
     { link: "/coming-soon", label: "Chart" },
     { link: "/calculator", label: "Calculator" },
     { link: "/ai-tools", label: "AI Tools" },
-    // { link: "/new-ai", label: "Ai Tools"},
     { link: "/pro-analytics", label: "Pro Analytics" },
     { link: "/market-outlook", label: "Market Outlook" },
     { link: "/notification", label: "Notification" }
-
   ];
+
   const [activeNav, setActiveNav] = useState(() => {
     const currentPath = location.pathname;
     const activeItem = navItems.find((item) => item.link === currentPath);
@@ -99,14 +97,13 @@ const Header = () => {
 
   return (
     <>
-      {/* <Box sx={headerStyles.headerContainer}> */}
-      <Container maxWidth="lg" sx={{ display: "flex", justifyContent: "space-between", gap: 2, mt: 3 }}>
+
+      <Box sx={headerStyles.headerContainer}>
+        {/* Logo */}
         <Box
           display="flex"
           alignItems="center"
-          gap={1.5}
-          // flexShrink={0}
-          sx={{ minWidth: 0, cursor: "pointer" }}
+          sx={{ cursor: "pointer" }}
           onClick={() => navigate("/dashboard")}
         >
           <Box
@@ -117,20 +114,26 @@ const Header = () => {
           />
         </Box>
 
-        <Box sx={headerStyles.navContainer}>
-          <Box sx={headerStyles.navBar}>{renderNavItems()}</Box>
-        </Box>
+        {/* Navigation Bar */}
+        <Container maxWidth="md">
+          <Box sx={headerStyles.navContainer}>
+            <Box sx={headerStyles.navBar}>{renderNavItems()}</Box>
+          </Box>
+        </Container>
 
+        {/* Right Side Icons */}
         <Box
           display="flex"
           alignItems="center"
-          gap={{ xs: 1, sm: 1.5 }}
+          gap={1.5}
           flexShrink={0}
         >
+          {/* Mobile Menu Button */}
           <IconButton onClick={handleDrawerToggle} sx={headerStyles.menuButton}>
             <MenuIcon sx={{ fontSize: "24px" }} />
           </IconButton>
-          {/* Person Icon */}
+
+          {/* Profile Icon */}
           <Box>
             <IconButton
               onClick={handlePersonClick}
@@ -152,21 +155,49 @@ const Header = () => {
                 <PersonIcon />
               )}
             </IconButton>
+
+            {/* Profile Menu */}
             <Menu
               anchorEl={anchorEl}
               open={openMenu}
               onClose={handleCloseMenu}
               anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
               transformOrigin={{ vertical: "top", horizontal: "right" }}
+              PaperProps={{
+                sx: {
+                  backgroundColor: "#1A1A1A",
+                  color: "#FFFFFF",
+                  border: "1px solid rgba(255, 255, 255, 0.1)",
+                  mt: 1,
+                }
+              }}
             >
-              <MenuItem onClick={handleSetting}>{t("dashboard.navitem.setting")}</MenuItem>
-              <MenuItem onClick={handleLogout}>{t("dashboard.navitem.logout")}</MenuItem>
+              <MenuItem
+                onClick={handleSetting}
+                sx={{
+                  "&:hover": {
+                    backgroundColor: "rgba(255, 255, 255, 0.1)",
+                  }
+                }}
+              >
+                {t("dashboard.navitem.setting")}
+              </MenuItem>
+              <MenuItem
+                onClick={handleLogout}
+                sx={{
+                  "&:hover": {
+                    backgroundColor: "rgba(255, 255, 255, 0.1)",
+                  }
+                }}
+              >
+                {t("dashboard.navitem.logout")}
+              </MenuItem>
             </Menu>
           </Box>
-
         </Box>
-      </Container>
-      {/* </Box> */}
+      </Box>
+
+      {/* Mobile Drawer */}
       <NavigationDrawer
         open={drawerOpen}
         onClose={handleDrawerToggle}
@@ -177,4 +208,5 @@ const Header = () => {
     </>
   );
 };
+
 export default Header;

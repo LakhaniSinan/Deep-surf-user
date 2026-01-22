@@ -126,7 +126,6 @@ const Coin = ({ data, overallSentimentData, dayOfWeek }) => {
                       fontFamily: "inter Tight"
                     }}
                   >
-                    {coin.change24hFormatted.includes("-") ? "" : "+"}
                     {coin?.change24hFormatted}
                   </Typography>
                 </Box>

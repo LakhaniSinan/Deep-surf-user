@@ -158,7 +158,7 @@ const Metricsdata = ({ data }) => {
                             >
                                 {data?.prices24h?.sol?.price}
                             </Typography>
-                            <Typography sx={{ color: data?.prices24h?.btc?.change?.includes("-") ? "red" : "green", fontSize: "14px" }}>
+                            <Typography sx={{ color: data?.prices24h?.sol?.change?.includes("-") ? "neutral.dangerRed" : "neutral.primaryGreen", fontSize: "14px" }}>
                                 {data?.prices24h?.sol?.change}
                             </Typography>
                         </Card>

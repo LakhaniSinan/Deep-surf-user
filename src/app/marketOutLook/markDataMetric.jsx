@@ -165,7 +165,6 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker, w
       value2: riskCalendar?.whalesTracker?.transactions[5]?.lastPositions,
     },
   ];
-
   // Show loading state if no data
   if (!top) {
     return (

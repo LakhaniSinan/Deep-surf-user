@@ -82,13 +82,13 @@ const Trading = ({ tradingData }) => {
             <Box bgcolor={"neutral.darkGrey"} p={2} borderRadius={"20px"}>
               <Typography color="neutral.brightRed">{t("MarketOutlook.TradingRecommendations.shortSetupsTitle")}</Typography>
               <Box display={"flex"} gap={"3px"} mt={1} flexWrap={"nowrap"}>
-                <Box fontSize={"13px"} fontFamily={"Inter Tight"} >{tradingData?.longSetups?.[0]?.asset} : {tradingData?.longSetups?.[0]?.description}</Box>
+                <Box fontSize={"13px"} fontFamily={"Inter Tight"} >{tradingData?.shortSetups?.[0]?.asset} : {tradingData?.shortSetups?.[0]?.description}</Box>
               </Box>
               <Box display={"flex"} gap={"3px"} mt={1}>
-                <Box fontSize={"13px"} fontFamily={"Inter Tight"}>{tradingData?.longSetups?.[1]?.asset} : {tradingData?.longSetups?.[1]?.description}</Box>
+                <Box fontSize={"13px"} fontFamily={"Inter Tight"}>{tradingData?.shortSetups?.[1]?.asset} : {tradingData?.shortSetups?.[1]?.description}</Box>
               </Box>
               <Box display={"flex"} gap={"3px"} mt={1}>
-                <Box fontSize={"13px"} fontFamily={"Inter Tight"}>{tradingData?.longSetups?.[2]?.asset} : {tradingData?.longSetups?.[2]?.description}</Box>
+                <Box fontSize={"13px"} fontFamily={"Inter Tight"}>{tradingData?.shortSetups?.[2]?.asset} : {tradingData?.shortSetups?.[2]?.description}</Box>
               </Box>
             </Box>
           </Grid>

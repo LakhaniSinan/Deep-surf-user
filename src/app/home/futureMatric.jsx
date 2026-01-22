@@ -218,7 +218,7 @@ const FutureMatric = () => {
                                             fontSize={"20px"}
                                             mt={1}
                                             sx={{
-                                                color: "text.greenColor",
+                                                color: item.value.includes("-") ? "neutral.dangerRed" : "neutral.primaryGreen",
                                             }}
                                         >
                                             {item.value}

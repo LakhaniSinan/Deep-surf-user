@@ -114,7 +114,7 @@ const AddWidgit = forwardRef((props, ref) => {
             bgcolor:
               popup.type === "success"
                 ? "neutral.primaryGreen"
-                : "neutral.dangerRed",
+                : "neutral.primaryGreen",
             color: "white",
             px: 3,
             py: 1.5,

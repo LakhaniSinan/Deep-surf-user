@@ -1,55 +1,48 @@
 export const headerStyles = {
   headerContainer: {
-    height: "84px",
+    height: "80px",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-
-    // mx: { sm: 2, md: 22 },
-    gap: 3,
-    // position: "fixed",
+    backgroundColor: "#000000",
+    paddingX: { xs: 2, sm: 3, md: 4, lg: 6, xl: 22 },
+    gap: { xs: 2, md: 3, lg: 4 },
+    mt: 2,
+    // position: "sticky",
     // top: 0,
-    // left: 0,
-    // right: 0,
-    // zIndex: 1200,
-    // overflow: "hidden",
-    marginTop: "20px",
+    // zIndex: 1000,
   },
 
   logo: {
-    width: "115px",
-    height: "38px",
+    width: "140px",
+    height: "auto",
+    cursor: "pointer",
+    flexShrink: 0,
   },
 
   navContainer: {
     display: { xs: "none", lg: "flex" },
     flex: 1,
-    justifyContent: "center",
+    // justifyContent: "center",
     alignItems: "center",
-    // mx: 1,
-    width: "90%",
-    overflow: "hidden",
-    // width: "100%",
+    maxWidth: "1100px",
+    marginX: "auto",
   },
+
   navBar: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "background.black",
+    backgroundColor: "#rgba(0, 0, 0, 0.25)",
     border: "1px solid rgba(255, 255, 255, 0.36)",
     borderRadius: "50px",
-    padding: "10px",
-    width: "100%",
-    maxWidth: "100%",
-    overflowX: "auto",
-    "&::-webkit-scrollbar": {
-      display: "none",
-    },
-    scrollbarWidth: "none",
+    padding: "5px 5px",
+    gap: "6px",
+    // width: "90%",
   },
-
   navItem: (isActive) => ({
     padding: "clamp(10px, 1.2vw, 14px) clamp(13px, 2vw, 23px)",
+    // padding: 2.7,
     borderRadius: "50px",
     cursor: "pointer",
     transition: "all 0.2s ease",
@@ -68,39 +61,39 @@ export const headerStyles = {
   }),
 
   navItemText: (isActive) => ({
-    fontSize: "12px",
+    fontSize: "11px",
     fontWeight: isActive ? 700 : 400,
     color: "text.primary",
     textAlign: "center",
     whiteSpace: "nowrap",
   }),
+
   menuButton: {
     display: { xs: "flex", lg: "none" },
-    width: "40px",
+    // width: "44px",
     height: "40px",
     borderRadius: "50%",
-    backgroundColor: "background.gray",
-    color: "text.primary",
-    border: "1px solid rgba(255, 255, 255, 0.1)",
+    backgroundColor: "#1A1A1A",
+    color: "#FFFFFF",
+    border: "1px solid rgba(255, 255, 255, 0.12)",
     "&:hover": {
-      backgroundColor: "background.lightGray",
-      transform: "scale(1.05)",
+      backgroundColor: "#2D2D2D",
     },
     transition: "all 0.2s ease",
   },
 
   profileIcon: {
-    width: "40px",
-    height: "40px",
+    width: "44px",
+    height: "44px",
     borderRadius: "50%",
-    backgroundColor: "background.gray",
+    backgroundColor: "#1A1A1A",
     cursor: "pointer",
-    border: "1px solid rgba(255, 255, 255, 0.1)",
+    border: "1px solid rgba(255, 255, 255, 0.12)",
     "&:hover": {
-      backgroundColor: "background.lightGray",
-      transform: "scale(1.05)",
+      backgroundColor: "#2D2D2D",
     },
     transition: "all 0.2s ease",
+    flexShrink: 0,
   },
 };
 
@@ -112,8 +105,7 @@ export const drawerStyles = {
   drawerPaper: {
     width: { xs: "85%", sm: 320 },
     maxWidth: "400px",
-    backgroundColor: "background.paper",
-    backgroundImage: "gradients.drawer",
+    backgroundColor: "#0A0A0A",
     backdropFilter: "blur(20px)",
     WebkitBackdropFilter: "blur(20px)",
     borderLeft: "1px solid rgba(255, 255, 255, 0.1)",
@@ -126,7 +118,6 @@ export const drawerStyles = {
     alignItems: "center",
     padding: 3,
     borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
-    background: "gradients.drawerHeader",
   },
 
   drawerLogo: {
@@ -138,10 +129,10 @@ export const drawerStyles = {
     width: "36px",
     height: "36px",
     borderRadius: "50%",
-    backgroundColor: "background.lightGray",
-    color: "text.primary",
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    color: "#FFFFFF",
     "&:hover": {
-      backgroundColor: "background.mediumGray",
+      backgroundColor: "rgba(255, 255, 255, 0.15)",
       transform: "rotate(90deg)",
     },
     transition: "all 0.3s ease",
@@ -159,26 +150,23 @@ export const drawerStyles = {
     borderRadius: "12px",
     cursor: "pointer",
     transition: "all 0.2s ease",
-    backgroundColor: isActive ? "background.veryLightGray" : "transparent",
+    backgroundColor: isActive ? "rgba(255, 255, 255, 0.1)" : "transparent",
     border: isActive
-      ? "0.3px solid rgba(255, 255, 255, 0.36)"
+      ? "1px solid rgba(255, 255, 255, 0.2)"
       : "1px solid transparent",
-    boxShadow: isActive
-      ? "inset 0px 4px 5px 0px rgba(255, 255, 255, 0.19)"
-      : "none",
     marginBottom: 1,
     "&:hover": {
       backgroundColor: isActive
-        ? "background.veryLightGray"
-        : "background.extraLightGray",
+        ? "rgba(255, 255, 255, 0.1)"
+        : "rgba(255, 255, 255, 0.05)",
       transform: "translateX(8px)",
     },
   }),
 
   drawerNavItemText: (isActive) => ({
     fontSize: "14px",
-    fontWeight: isActive ? 700 : 400,
-    color: "text.primary",
+    fontWeight: isActive ? 600 : 400,
+    color: "#FFFFFF",
     textAlign: "left",
     whiteSpace: "nowrap",
   }),
@@ -190,7 +178,6 @@ export const drawerStyles = {
     right: 0,
     padding: 2,
     borderTop: "1px solid rgba(255, 255, 255, 0.1)",
-    background: "gradients.drawerFooter",
   },
 
   drawerFooterProfile: {
@@ -200,23 +187,23 @@ export const drawerStyles = {
     gap: 1.5,
     padding: "12px",
     borderRadius: "12px",
-    backgroundColor: "background.extraLightGray",
+    backgroundColor: "rgba(255, 255, 255, 0.05)",
     cursor: "pointer",
     transition: "all 0.2s ease",
     "&:hover": {
-      backgroundColor: "background.lightGray",
+      backgroundColor: "rgba(255, 255, 255, 0.1)",
     },
   },
 
   drawerFooterProfileIcon: {
-    color: "text.primary",
+    color: "#FFFFFF",
     fontSize: "20px",
   },
 
   drawerFooterProfileText: {
     fontSize: "14px",
     fontWeight: 500,
-    color: "text.primary",
+    color: "#FFFFFF",
   },
 
   closeIcon: {
