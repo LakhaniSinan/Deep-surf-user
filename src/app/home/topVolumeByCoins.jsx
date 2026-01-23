@@ -263,8 +263,7 @@ const TopVolumeByCoins = ({ data }) => {
                     {(selectedTimeframe === "24h" ? data.by24hVolume : data.by7dVolume)?.map((item, index) => {
                         const volume = selectedTimeframe === "24h" ? item.volumeFormatted : item.volume7dFormatted;
                         const percentChange = selectedTimeframe === "24h" ? item.change24hFormatted : item.change7dFormatted;
-                        const isPositive = !percentChange.includes("-"); // true agar +ve, false agar -ve
-
+                        const isPositive = !percentChange.includes("-");
                         return (
                             <Grid item size={{xs  :12 , sm : 3 , md : 4}}  key={index}>
                                 <VolumeCard

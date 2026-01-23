@@ -81,16 +81,15 @@ const MacroEconomics = ({ data }) => {
                         bgcolor="rgba(36, 36, 36, 1)"
                         display="flex"
                         gap="8px"
-                        mt={2}
-                        p={1.2}
+                        mt={1.8}
+                        p={1.3}
                         borderRadius="15px"
-                        alignItems="center"
                     >
                         <Box>
                             <img src={item.icon} alt="icon" />
                         </Box>
                         <Box>
-                            <Typography color="neutral.Snowwhite" fontSize="14px">
+                            <Typography color="neutral.Snowwhite" fontSize="15px">
                                 {item.heading}
                             </Typography>
                         </Box>

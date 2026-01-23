@@ -72,7 +72,6 @@ const Metricsdata = ({ data }) => {
                             </Typography>
                         </Card>
                     </Grid>
-
                     <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
                         <Card sx={cardStyle}>
                             <Box display="flex" gap="10px" alignItems={"center"}>
@@ -98,7 +97,7 @@ const Metricsdata = ({ data }) => {
                             >
                                 {data?.prices24h?.btc?.price}
                             </Typography>
-                            <Typography sx={{ color: data?.prices24h?.btc?.change?.includes("-") ? "red" : "green", fontSize: "14px" }}>
+                            <Typography sx={{ color: data?.prices24h?.btc?.change?.includes("-") ? "neutral.dangerRed" : "neutral.primaryGreen", fontSize: "16px" }}>
                                 {data?.prices24h?.btc?.change}
                             </Typography>
                         </Card>
@@ -128,7 +127,7 @@ const Metricsdata = ({ data }) => {
                             >
                                 {data?.prices24h?.eth?.price}
                             </Typography>
-                            <Typography sx={{ color: data?.prices24h?.btc?.change?.includes("-") ? "red" : "green", fontSize: "14px" }}>
+                            <Typography sx={{ color: data?.prices24h?.btc?.change?.includes("-") ? "neutral.dangerRed" : "neutral.primaryGreen", fontSize: "16px" }}>
                                 {data?.prices24h?.eth?.change}
                             </Typography>
                         </Card>
@@ -158,7 +157,7 @@ const Metricsdata = ({ data }) => {
                             >
                                 {data?.prices24h?.sol?.price}
                             </Typography>
-                            <Typography sx={{ color: data?.prices24h?.sol?.change?.includes("-") ? "neutral.dangerRed" : "neutral.primaryGreen", fontSize: "14px" }}>
+                            <Typography sx={{ color: data?.prices24h?.sol?.change?.includes("-") ? "neutral.dangerRed" : "neutral.primaryGreen", fontSize: "16px" }}>
                                 {data?.prices24h?.sol?.change}
                             </Typography>
                         </Card>
@@ -166,11 +165,11 @@ const Metricsdata = ({ data }) => {
                 </Grid>
             </Box>
             <Box padding="1px" borderRadius="25px" mt="20px">
-                <Grid container spacing={3}>
+                <Grid container spacing={2}>
                     <Grid
                         item
                         backgroundColor="neutral.darkGrey"
-                        padding="20px"
+                        padding="10px"
                         borderRadius="10px"
                         size={{ xs: 12, sm: 12 }}
                     >
@@ -218,7 +217,7 @@ const Metricsdata = ({ data }) => {
                     <Grid
                         item
                         backgroundColor="#1C1C1C"
-                        padding="20px"
+                        padding="10px"
                         borderRadius="10px"
                         size={{ xs: 12, sm: 12 }}
                     >
