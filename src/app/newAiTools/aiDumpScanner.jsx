@@ -7,6 +7,8 @@ import CustomSelect from '../../components/customSelect'
 import CustomCheckbox from '../../components/cutomChecked'
 // import CustomCheckbox from '../../components/cutomChecked'
 import AiDumpScannerIcon from "../../assets/icons/ai-dump-predicator.svg"
+import PromContent from './aiPumpContent/prom'
+import DumpPornContent from './aiDumpContent/porm'
 
 const AiDumpScanner = () => {
     const [scanType, setScanType] = useState("");
@@ -28,19 +30,19 @@ const AiDumpScanner = () => {
     ]
     const data = [
         {
-            value: "0",
+            value: "928",
             decription: "Analyzed"
         },
         {
-            value: "0",
+            value: "21",
             decription: "Found"
         },
         {
-            value: "0",
+            value: "59",
             decription: "Avg Score"
         },
         {
-            value: "0%",
+            value: "429%",
             decription: "Max Potential"
         },
     ]
@@ -103,7 +105,7 @@ const AiDumpScanner = () => {
                         }}
                     />
 
-                    <CustomButton
+                    {/* <CustomButton
                         icon={<img src={MlIcon} />}
                         title="ML"
                         width={{ xs: "100%", sm: "auto" }}
@@ -113,7 +115,7 @@ const AiDumpScanner = () => {
                             fontSize: { xs: "14px", sm: "20px" },
                             borderRadius: "15px",
                         }}
-                    />
+                    /> */}
                 </Box>
             </Box>
             <Box>
@@ -121,7 +123,7 @@ const AiDumpScanner = () => {
                     3000+ coins • Finding dump signals • Short signals • 20+ patterns
                 </Typography>
             </Box>
-            <Box display={"flex"} gap={"10px"} mt={0.5}>
+            <Box display={"flex"} gap={"10px"} mt={1}>
                 <Box>
                     <Typography color='neutral.neutralGrey' fontSize={"15px"} fontWeight={600}>
                         Categories:
@@ -137,7 +139,7 @@ const AiDumpScanner = () => {
                             sx={{
                                 color: "neutral.Snowwhite",
                                 borderRadius: "50px",
-                                bgcolor: "neutral.vermilionOrange",
+                                bgcolor: item.title === "VERY HIGH" ? "text.brightRed" : item.title === "HIGH" ? "text.orangeRed" : item.title === "MEDIUM" ? "text.yellowGreen" : item.title === "LOW" ? "text.emeraldGreen" : "red",
                                 letterSpacing: "1px"
                             }}
                         />
@@ -146,16 +148,15 @@ const AiDumpScanner = () => {
 
             </Box>
             <Box mt={4}>
-                <Container maxWidth="md">
+                <Container maxWidth="xl">
                     <Grid container spacing={2}>
                         {data.map((item, index) => {
                             const valueColors = [
-                                "rgba(255, 129, 129, 1)",
-                                "rgba(255, 229, 0, 1)",
-                                "rgba(255, 128, 0, 1)",
-                                "rgba(255, 129, 129, 1)",
+                                "neutral.Snowwhite",
+                                "neutral.Snowwhite",
+                                "text.yellowGreen",
+                                "neutral.Snowwhite",
                             ];
-
                             return (
                                 <Grid item size={{ xs: 12, sm: 3, md: 3 }} key={index}>
                                     <Box
@@ -163,12 +164,13 @@ const AiDumpScanner = () => {
                                         flexDirection="column"
                                         alignItems="center"
                                         justifyContent="center"
-                                        py={2}
-                                        bgcolor="rgba(22,22,22,0.85)"
+                                        p={4}
+                                        bgcolor="neutral.darkGrey"
+                                        borderRadius={"26px"}
                                     >
                                         <Typography
                                             fontWeight={600}
-                                            fontSize="18px"
+                                            fontSize="30px"
                                             color={valueColors[index]}
                                         >
                                             {item.value}
@@ -176,8 +178,8 @@ const AiDumpScanner = () => {
 
                                         <Typography
                                             fontSize="18px"
-                                            fontWeight={500}
-                                            color="rgba(127, 127, 127, 1)"
+                                            fontWeight={600}
+                                            color="text.White"
                                         >
                                             {item.decription}
                                         </Typography>
@@ -189,24 +191,7 @@ const AiDumpScanner = () => {
                     </Grid>
                 </Container>
             </Box>
-            <Box bgcolor={"neutral.obsidianAsh"} padding={"15px"} borderRadius={"15px"}>
-                <Box display={"flex"} gap={"2px"} alignItems={"center"}>
-                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
-                        Sources :
-                    </Typography>
-                    <Typography color='rgba(255, 255, 255, 0.5)' fontSize={"15px"}>
-                        Binance Futures + Binance Spot + Bybit + OKX + MEXC + KuCoin + BingX = <span style={{ color: "rgba(255, 100, 33, 1)" }}>3000+ coins</span>
-                    </Typography>
-                </Box>
-                <Box display={"flex"} gap={"2px"} alignItems={"center"}>
-                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
-                        Patterns :
-                    </Typography>
-                    <Typography color='rgba(255, 255, 255, 0.5)' fontSize={"15px"}>
-                        Order Book • CVD • Liquidation Zones • OI • Funding • Price Compression • Higher Lows • Volume • BTC Correlation
-                    </Typography>
-                </Box>
-            </Box>
+
             <Box mt={3}>
                 <Grid container spacing={5}>
                     <Grid item size={{ xs: 12, md: 4 }}>
@@ -330,6 +315,9 @@ const AiDumpScanner = () => {
                         Finding coins with dump signals for short positions
                     </Typography>
                 </Box>
+            </Box>
+            <Box>
+                <DumpPornContent />
             </Box>
         </Box >
     )

@@ -8,6 +8,7 @@ import CustomCheckbox from '../../components/cutomChecked'
 // import CustomCheckbox from '../../components/cutomChecked'
 import PredictorImage from "../../assets/icons/predictor-icon.svg"
 import AiPumpScannerIcon from "../../assets/icons/ai-pump-scanner.svg"
+import PromContent from './aiPumpContent/prom'
 
 
 const AiPumpScanner = () => {
@@ -30,19 +31,19 @@ const AiPumpScanner = () => {
     ]
     const data = [
         {
-            value: "0",
+            value: "774",
             decription: "Analyzed"
         },
         {
-            value: "0",
+            value: "16",
             decription: "Found"
         },
         {
-            value: "0",
+            value: "45",
             decription: "Avg Score"
         },
         {
-            value: "0%",
+            value: "305%",
             decription: "Max Potential"
         },
     ]
@@ -104,18 +105,6 @@ const AiPumpScanner = () => {
                             borderRadius: "15px",
                         }}
                     />
-
-                    <CustomButton
-                        icon={<img src={MlIcon} />}
-                        title="ML"
-                        width={{ xs: "100%", sm: "auto" }}
-                        sx={{
-                            backgroundColor: "neutral.darkGrey",
-                            border: "1px solid rgba(127, 127, 127, 1)",
-                            fontSize: { xs: "14px", sm: "20px" },
-                            borderRadius: "15px",
-                        }}
-                    />
                 </Box>
             </Box>
             <Box>
@@ -123,7 +112,7 @@ const AiPumpScanner = () => {
                     1000+ coins • Memes • Lowcaps • New Listings • 20+ patterns
                 </Typography>
             </Box>
-            <Box display={"flex"} gap={"10px"} mt={0.5}>
+            <Box display={"flex"} gap={"10px"} mt={2}>
                 <Box>
                     <Typography color='neutral.neutralGrey' fontSize={"15px"} fontWeight={600}>
                         Categories:
@@ -139,7 +128,7 @@ const AiPumpScanner = () => {
                             sx={{
                                 color: "neutral.Snowwhite",
                                 borderRadius: "50px",
-                                bgcolor: "neutral.vermilionOrange",
+                                bgcolor: item.title === "VERY HIGH" ? "text.brightRed" : item.title === "HIGH" ? "text.orangeRed" : item.title === "MEDIUM" ? "text.yellowGreen" : item.title === "LOW" ? "text.emeraldGreen" : "red",
                                 letterSpacing: "1px"
                             }}
                         />
@@ -148,14 +137,14 @@ const AiPumpScanner = () => {
 
             </Box>
             <Box mt={4}>
-                <Container maxWidth="md">
+                <Container maxWidth="lg">
                     <Grid container spacing={2}>
                         {data.map((item, index) => {
                             const valueColors = [
-                                "rgba(255, 129, 129, 1)",
-                                "rgba(255, 229, 0, 1)",
-                                "rgba(255, 128, 0, 1)",
-                                "rgba(255, 129, 129, 1)",
+                                "neutral.Snowwhite",
+                                "neutral.Snowwhite",
+                                "text.yellowGreen",
+                                "neutral.Snowwhite",
                             ];
 
                             return (
@@ -165,12 +154,13 @@ const AiPumpScanner = () => {
                                         flexDirection="column"
                                         alignItems="center"
                                         justifyContent="center"
-                                        py={2}
-                                        bgcolor="rgba(22,22,22,0.85)"
+                                        p={4}
+                                        bgcolor="neutral.darkGrey"
+                                        borderRadius={"26px"}
                                     >
                                         <Typography
                                             fontWeight={600}
-                                            fontSize="18px"
+                                            fontSize="30px"
                                             color={valueColors[index]}
                                         >
                                             {item.value}
@@ -178,8 +168,8 @@ const AiPumpScanner = () => {
 
                                         <Typography
                                             fontSize="18px"
-                                            fontWeight={500}
-                                            color="rgba(127, 127, 127, 1)"
+                                            fontWeight={600}
+                                            color="text.White"
                                         >
                                             {item.decription}
                                         </Typography>
@@ -190,24 +180,6 @@ const AiPumpScanner = () => {
 
                     </Grid>
                 </Container>
-            </Box>
-            <Box bgcolor={"neutral.obsidianAsh"} padding={"15px"} borderRadius={"15px"}>
-                <Box display={"flex"} gap={"2px"} alignItems={"center"}>
-                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
-                        Sources :
-                    </Typography>
-                    <Typography color='rgba(255, 255, 255, 0.5)' fontSize={"15px"}>
-                        Binance Futures + Binance Spot + Bybit + OKX + MEXC + KuCoin + BingX = <span style={{ color: "rgba(255, 100, 33, 1)" }}>3000+ coins</span>
-                    </Typography>
-                </Box>
-                <Box display={"flex"} gap={"2px"} alignItems={"center"}>
-                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
-                        Patterns :
-                    </Typography>
-                    <Typography color='rgba(255, 255, 255, 0.5)' fontSize={"15px"}>
-                        Order Book • CVD • Liquidation Zones • OI • Funding • Price Compression • Higher Lows • Volume • BTC Correlation
-                    </Typography>
-                </Box>
             </Box>
             <Box mt={3}>
                 <Grid container spacing={5}>
@@ -332,6 +304,9 @@ const AiPumpScanner = () => {
                         Low-cap potential: 100-500%+ even when BTC is sideways
                     </Typography>
                 </Box>
+            </Box>
+            <Box>
+                <PromContent />
             </Box>
         </Box >
     )
