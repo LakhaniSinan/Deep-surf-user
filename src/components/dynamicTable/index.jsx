@@ -501,7 +501,7 @@ export default function PaginatedTable({
       case "MACD":
         return (
           <TableCell>
-            <Box color={row[val].includes("-") ? "neutral.redOrange" : "neutral.brightGreen"} fontWeight={600} fontSize={"15px"}>
+            <Box color={row[val]?.includes("-") ? "neutral.redOrange" : "neutral.brightGreen"} fontWeight={600} fontSize={"15px"}>
               {row[val]}
             </Box>
           </TableCell>
