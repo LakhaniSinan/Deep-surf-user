@@ -4,6 +4,7 @@ import Header from '../../components/header'
 import AiProof from './aiProof'
 import AiPumpScanner from './aiPumpScanner'
 import AiDumpScanner from './aiDumpScanner'
+import AiMarketRegion from './aiMarketRegion'
 
 const NewAiTools = () => {
     return (
@@ -23,6 +24,7 @@ const NewAiTools = () => {
                 <AiProof />
                 <AiPumpScanner />
                 <AiDumpScanner />
+                <AiMarketRegion />
             </Container>
         </>
     )

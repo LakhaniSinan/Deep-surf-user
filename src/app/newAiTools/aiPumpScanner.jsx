@@ -265,16 +265,6 @@ const AiPumpScanner = () => {
                         AI Pump Predictor
                     </Typography>
                 </Box>
-                <Box textAlign={"center"} >
-                    <Typography color="rgba(255, 255, 255, 0.5)" fontWeight={400} >
-                        Analysis of  <span style={{ color: "rgba(255, 100, 33, 1)" }}>1000% coins </span> (Futures + Spot)
-                    </Typography>
-                </Box>
-                <Box textAlign={"center"} >
-                    <Typography color="rgba(255, 255, 255, 0.5)" fontWeight={400} >
-                        Order Book • CVD • Liquidation Zones • OI • Funding • 20+ patterns
-                    </Typography>
-                </Box>
                 <Box display={"flex"} justifyContent={"center"} gap={"10px"} mt={3}>
                     <CustomButton
                         title={"50+ memecoins"}
