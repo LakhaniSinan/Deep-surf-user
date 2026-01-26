@@ -10,14 +10,15 @@ const Market = () => {
             percentage: "-2.14%",
             titleColor: "neutral.cadetGrey",
             valueColor: "text.almostWhite",
-            perColor : "text.carmineRed"
+            perColor: "text.carmineRed"
         },
         {
             name: "Funding Rate",
             value: "+0.0025%",
             percentage: "Longs Pay",
             titleColor: "neutral.cadetGrey",
-            valueColor: "neutral.cadetGrey"
+            valueColor: "neutral.cadetGrey",
+            perColor: "neutral.cadetGrey"
 
         },
         {
@@ -25,8 +26,8 @@ const Market = () => {
             value: "64",
             percentage: "Neutral",
             titleColor: "neutral.cadetGrey",
-            valueColor: "text.almostWhite"
-
+            valueColor: "text.almostWhite",
+            perColor: "neutral.cadetGrey"
 
         },
         {
@@ -34,8 +35,8 @@ const Market = () => {
             value: "$0.00B",
             percentage: "Total OI",
             titleColor: "neutral.cadetGrey",
-            valueColor: "text.almostWhite"
-
+            valueColor: "text.almostWhite",
+            perColor: "neutral.cadetGrey"
         },
     ]
     return (
@@ -48,6 +49,9 @@ const Market = () => {
                                 title={item.name}
                                 value={item.value}
                                 time={item.percentage}
+                                titleColor={item.titleColor}
+                                valueColor={item.valueColor}
+                                timeColor={item.perColor}
                             />
                         </Box>
                     </Grid>
