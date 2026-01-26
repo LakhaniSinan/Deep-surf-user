@@ -57,7 +57,7 @@ const WhalesTrackers = ({ data }) => {
                                         WinRate
                                     </Typography>
                                     <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
-                                        {data?.whales?.[0]?.winRate}
+                                        {data?.transactions[0]?.whaleWinRate}
                                     </Typography>
                                     <Box display="flex" alignItems="center" gap={3}>
                                         <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
@@ -157,6 +157,7 @@ const WhalesTrackers = ({ data }) => {
                         </Box>
                     </Grid>
                 ))}
+                
                 {/* {data?.whales[1]?.transactions?.map((item, index) => (
                     <Grid item size={{ xs: 12, sm: 6, md: 12 }} key={index}>
                         <Box

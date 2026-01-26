@@ -148,7 +148,7 @@ const theme = createTheme({
     },
     body2: {
       fontFamily: "Inter Tight",
-      fontSize: "0.875rem", // 14px
+      fontSize: "13px", // 14px
       fontWeight: 400,
       lineHeight: 1.5,
     },
