@@ -23,7 +23,7 @@ import WhalesTrackersSkeleton from "../../components/skeleton/home/whalesTracker
 // import EtfFlow from "./ethFlow";
 
 const AddCoins = ({ data, isLoading,  }) => {
-    console.log("fhugfuegfuiegfuegfuiegfueigf", data);
+    console.log("fhugfuegfuiegfuefffffffffffffffffffgfuiegfueigf", data);
 
     const widgetStyle = {
         background: "#151515",

@@ -4,7 +4,7 @@ import CustomButton from '../../components/customButton';
 import moment from "moment";
 
 const WhalesTrackers = ({ data }) => {
-    console.log("fuefgeufgyefewwwwwwwwwwwwdddwwwwwwfyef", data);
+    console.log("fuefgeufgyefewwwwwwwwwwwwdddwwwwwwfyef", data?.transactions);
     const [isLoading, setIsLoading] = useState(false)
     return (
         <>
@@ -39,7 +39,7 @@ const WhalesTrackers = ({ data }) => {
                 </IconButton> */}
             </Box>
             <Grid container spacing={2} mt="22px">
-                {data?.whales[0]?.transactions?.map((item, index) => (
+                {data?.transactions?.map((item, index) => (
                     <Grid item size={{ xs: 12, sm: 6, md: 12 }} key={index}>
                         <Box
                             sx={{
@@ -61,10 +61,8 @@ const WhalesTrackers = ({ data }) => {
                                     </Typography>
                                     <Box display="flex" alignItems="center" gap={3}>
                                         <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
-                                            {data?.whales?.[0]?.address}
+                                            {data?.transactions[0]?.whaleAddress}
                                         </Typography>
-
-
                                         <CustomButton
                                             variant="h6"
                                             title={item.actionType}
@@ -159,7 +157,7 @@ const WhalesTrackers = ({ data }) => {
                         </Box>
                     </Grid>
                 ))}
-                {data?.whales[1]?.transactions?.map((item, index) => (
+                {/* {data?.whales[1]?.transactions?.map((item, index) => (
                     <Grid item size={{ xs: 12, sm: 6, md: 12 }} key={index}>
                         <Box
                             sx={{
@@ -998,7 +996,7 @@ const WhalesTrackers = ({ data }) => {
                             </Box>
                         </Box>
                     </Grid>
-                ))}
+                ))} */}
 
             </Grid>
         </>
