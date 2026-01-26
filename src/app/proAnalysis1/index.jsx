@@ -5,6 +5,8 @@ import MftScan from './mftScan'
 import HeatMap from './heatMap'
 import PlayBookTester from './playBookTester'
 import AiDecisionEngine from './aiDecision'
+import TradeRaderSmartScanner from './tradeRader'
+import LiquidationMap from './liquidationMap'
 
 const ProAnalysis1 = () => {
     return (
@@ -21,6 +23,8 @@ const ProAnalysis1 = () => {
                     <HeatMap />
                     <PlayBookTester />
                     <AiDecisionEngine />
+                    <TradeRaderSmartScanner />
+                    <LiquidationMap />
                 </Box>
             </Container>
         </Box>
