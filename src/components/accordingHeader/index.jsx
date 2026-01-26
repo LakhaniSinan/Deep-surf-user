@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
 
-const AccordingHeader = ({ tittle }) => {
+const AccordingHeader = ({ tittle, fontSize }) => {
     return (
         <Box mt={2}>
 
@@ -19,7 +19,7 @@ const AccordingHeader = ({ tittle }) => {
                 />
 
                 {/* Text */}
-                <Typography fontSize="12px" color="neutral.Snowwhite">
+                <Typography fontSize={fontSize || "12px"} color="neutral.Snowwhite">
                     {tittle}
                 </Typography>
             </Box>

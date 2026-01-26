@@ -121,9 +121,7 @@ const MftScan = () => {
 
                 </Box>
             </Box>
-            <Box>
-                <HeatMap />
-            </Box>
+            
         </>
     )
 }

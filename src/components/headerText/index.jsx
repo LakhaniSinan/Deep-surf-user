@@ -4,6 +4,7 @@ const HeaderText = ({
     title,
     subtile,
     icon,
+    btnText,
     color,
     backgroundColor,
     width,
@@ -40,10 +41,15 @@ const HeaderText = ({
                 )}
 
             </Box>
-
-
-            <Box>
-                {icon}
+            <Box display={"flex"} gap={"20px"}>
+                <Box>
+                    {icon}
+                </Box>
+                {btnText &&
+                    <Box bgcolor={"neutral.vermilionOrange"} borderRadius={"10px"} p={1} width={"80px"} textAlign={"center"} color={"neutral.Snowwhite"} fontSize={"12px"}>
+                        {btnText}
+                    </Box>
+                }
             </Box>
         </Box>
     )

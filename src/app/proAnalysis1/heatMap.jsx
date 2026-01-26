@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Grid, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import HeaderText from '../../components/headerText'
 import RealodIcon from "../../assets/icons/relaod-Icon.svg"
@@ -6,6 +6,8 @@ import AccordingHeader from '../../components/accordingHeader'
 import ArrowBtn from "../../assets/icons/arrow-white-btn.svg"
 import CustomButton from '../../components/customButton'
 import CustomCheckbox from '../../components/cutomChecked'
+import TradingCard from '../../components/tradeCard'
+import VolumeCard from '../../components/volumeCard'
 
 
 const HeatMap = () => {
@@ -22,8 +24,142 @@ const HeatMap = () => {
     ];
     const handleCheckBox = (e) => {
         console.log("kfnvkfnkfnvkjfnvjgbnvkgjlvgb", e.target.value);
-
     }
+    const data = [
+        {
+            symbolName: "Total coins",
+            value: "50",
+            symbolColor: "neutral.Snowwhite",
+            valueColor: "neutral.Snowwhite",
+        }
+        ,
+        {
+            symbolName: "Average %",
+            value: "-1.90%",
+            symbolColor: "neutral.Snowwhite",
+            valueColor: "text.dangerRed"
+
+        },
+        {
+            symbolName: "Bullish",
+            value: "15",
+            symbolColor: "neutral.Snowwhite",
+            valueColor: "neutral.lightGreen"
+        },
+        {
+            symbolName: "Bearish",
+            value: "35",
+            symbolColor: "neutral.Snowwhite",
+            valueColor: "text.dangerRed"
+        },
+
+    ]
+
+    const heatMapCoinData = [
+        {
+            symbolName: "ALPACA",
+            value: "$2.9B",
+            percentage: "391.2%"
+        },
+        {
+            symbolName: "APEX",
+            value: "$2.9B",
+            percentage: "391.2%"
+        },
+        {
+            symbolName: "BNB",
+            value: "$2.9B",
+            percentage: "391.2%"
+        }
+        ,
+        {
+            symbolName: "BNB",
+            value: "$2.9B",
+            percentage: "391.2%"
+        },
+        {
+            symbolName: "BNB",
+            value: "$2.9B",
+            percentage: "391.2%"
+        },
+        {
+            symbolName: "BNB",
+            value: "$2.9B",
+            percentage: "391.2%"
+        },
+        {
+            symbolName: "BNB",
+            value: "$2.9B",
+            percentage: "391.2%"
+        },
+        {
+            symbolName: "BNB",
+            value: "$2.9B",
+            percentage: "391.2%"
+        },
+        {
+            symbolName: "BNB",
+            value: "$2.9B",
+            percentage: "391.2%"
+        },
+        {
+            symbolName: "ATOM",
+            value: "$2.9B",
+            percentage: "-391.2%"
+        },
+        {
+            symbolName: "ALPACA",
+            value: "$2.9B",
+            percentage: "391.2%"
+        },
+        {
+            symbolName: "APEX",
+            value: "$2.9B",
+            percentage: "391.2%"
+        },
+        {
+            symbolName: "BNB",
+            value: "$2.9B",
+            percentage: "391.2%"
+        }
+        ,
+        {
+            symbolName: "BNB",
+            value: "$2.9B",
+            percentage: "391.2%"
+        },
+        {
+            symbolName: "BNB",
+            value: "$2.9B",
+            percentage: "391.2%"
+        },
+        {
+            symbolName: "BNB",
+            value: "$2.9B",
+            percentage: "391.2%"
+        },
+        {
+            symbolName: "BNB",
+            value: "$2.9B",
+            percentage: "391.2%"
+        },
+        {
+            symbolName: "BNB",
+            value: "$2.9B",
+            percentage: "391.2%"
+        },
+        {
+            symbolName: "BNB",
+            value: "$2.9B",
+            percentage: "391.2%"
+        },
+        {
+            symbolName: "ATOM",
+            value: "$2.9B",
+            percentage: "-391.2%"
+        }
+
+    ]
     return (
         <Box bgcolor={"background.charcoal"} p={4} borderRadius={"10px"} mt={2}>
             <Box mt={2}>
@@ -96,8 +232,49 @@ const HeatMap = () => {
                     />
                 </Box>
             </Box>
+            <Box>
+                <Grid container spacing={1}>
+                    {data.map((item) => (
+                        <Grid item size={{ xs: 12, md: 3 }}>
+                            <Box bgcolor={"neutral.darkGrey"} borderRadius={"20px"} p={1.5} mt={3}>
+                                <TradingCard
+                                    title={item.symbolName}
+                                    value={item.value}
+                                    titleColor={item.symbolColor}
+                                    valueColor={item.valueColor}
+                                    titleFontSize={"20px"}
+                                    titleFontWeight={400}
+                                    valueFontSize={"18px"}
+                                    valueFontWeight={600}
+                                />
+                            </Box>
+                        </Grid>
+                    ))}
+                </Grid>
 
-        </Box>
+            </Box>
+            <Box mt={3}>
+                <Typography color='neutral.Snowwhite' fontSize={"20px"} fontWeight={500}>
+                    Top 20 by 24h volume:
+                </Typography>
+            </Box>
+            <Box mt={2}>
+                <Grid container spacing={1}>
+                    {heatMapCoinData.map((item) => (
+                        <Grid item size={{ xs: 12, md: 1.2 }}>
+                            <VolumeCard
+                                name={item.symbolName}
+                                volume={item.value}
+                                percentChange={item.percentage}
+                                isPositive={false}
+                            />
+                        </Grid>
+                    ))}
+
+                </Grid>
+            </Box>
+
+        </Box >
     )
 }
 

@@ -2,6 +2,9 @@ import { Box, Container, Typography } from '@mui/material'
 import React from 'react'
 import Header from '../../components/header'
 import MftScan from './mftScan'
+import HeatMap from './heatMap'
+import PlayBookTester from './playBookTester'
+import AiDecisionEngine from './aiDecision'
 
 const ProAnalysis1 = () => {
     return (
@@ -15,6 +18,9 @@ const ProAnalysis1 = () => {
                 </Box>
                 <Box>
                     <MftScan />
+                    <HeatMap />
+                    <PlayBookTester />
+                    <AiDecisionEngine />
                 </Box>
             </Container>
         </Box>
