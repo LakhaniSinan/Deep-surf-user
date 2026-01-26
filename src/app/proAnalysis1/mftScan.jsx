@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
+import HeaderText from '../../components/headerText'
 
 const MftScan = () => {
     return (
@@ -10,8 +11,10 @@ const MftScan = () => {
                 </Typography>
             </Box>
             <Box bgcolor={"neutral.darkGrey"} mt={2} borderRadius={"10px"} p={3}>
-                
 
+                <HeaderText
+                title={"vnjivbijbvijdl"}
+                />
             </Box>
         </Box>
     )
