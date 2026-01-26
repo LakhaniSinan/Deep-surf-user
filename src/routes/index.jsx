@@ -24,6 +24,7 @@ import SaveAlert from "../app/journal/saveAlert";
 import CoinAlert from "../app/journal/journal";
 import ComingSoon from "../app/charts/commingSoon";
 import NewAiTools from "../app/newAiTools";
+import ProAnalysis1 from "../app/proAnalysis1";
 
 const AUTH_ROUTES = [
 
@@ -139,13 +140,13 @@ const APP_Route = [
     exact: "exact",
     path: "/calculator",
   },
-  {
-    id: 7,
-    name: "Pro Analysis",
-    component: <ProAnalysis />,
-    exact: "exact",
-    path: "/pro-analytics",
-  },
+  // {
+  //   id: 7,
+  //   name: "Pro Analysis",
+  //   component: <ProAnalysis />,
+  //   exact: "exact",
+  //   path: "/pro-analytics",
+  // },
   {
     id: 8,
     name: "Ai Tools",
@@ -191,6 +192,13 @@ const APP_Route = [
     name: "NewAiTools",
     component: <NewAiTools />,
     path: "/new-ai",
+  },
+    {
+    id: 14,
+    name: "Pro Analysis",
+    component: <ProAnalysis1 />,
+    exact: "exact",
+    path: "/pro-analytics",
   },
 ];
 
