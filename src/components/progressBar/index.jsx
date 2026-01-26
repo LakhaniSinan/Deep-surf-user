@@ -3,6 +3,7 @@ import { Box, LinearProgress } from "@mui/material";
 const ProgressBar = ({
     value,
     height = 8,
+    sx,
 }) => {
     return (
         <Box mb={2}>
@@ -13,11 +14,13 @@ const ProgressBar = ({
                     height: height,
                     borderRadius: 3,
                     width: "100%",
-                    backgroundColor: "background.almostBlack", 
+                    backgroundColor: "background.almostBlack",
                     "& .MuiLinearProgress-bar": {
-                        backgroundColor: "#FFFFFF",  
+                        backgroundColor: "#FFFFFF",
                         borderRadius: 2,
                     },
+                    ...sx, // allow override via props
+
                 }}
             />
         </Box>
