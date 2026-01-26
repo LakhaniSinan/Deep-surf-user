@@ -1,5 +1,4 @@
 import { Box, Typography } from '@mui/material'
-import DrowpDownIcon from "../../assets/icons/drowpIcon.svg"
 
 const HeaderText = ({
     title,
@@ -9,14 +8,18 @@ const HeaderText = ({
     backgroundColor,
     width,
     fontSize,
-    fontWeight
+    fontWeight,
+    tittleFontSize,
+    titleFontWeight
 }) => {
     return (
-        <Box display="flex" justifyContent="space-between">
+        <Box display="flex" justifyContent="space-between" alignItems={"center"}>
+
             <Box display="flex" gap="20px" alignItems="center">
-                <Typography color={color || 'text.almostWhite'} fontSize="21px" fontWeight={600}>
+                <Typography color={color || 'text.almostWhite'} fontSize={tittleFontSize || "21px"} fontWeight={titleFontWeight || 600}>
                     {title}
                 </Typography>
+
 
                 {subtile && (
                     <Box
@@ -35,7 +38,9 @@ const HeaderText = ({
                         </Typography>
                     </Box>
                 )}
+
             </Box>
+
 
             <Box>
                 {icon}
