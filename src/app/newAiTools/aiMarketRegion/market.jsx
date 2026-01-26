@@ -1,6 +1,7 @@
 import { Box, Grid } from '@mui/material'
 import React from 'react'
 import TradingCard from '../../../components/tradeCard'
+import TradingRegimeCard from '../../../components/tradingRegimeCard'
 
 const Market = () => {
     const tardingCardData = [
@@ -52,12 +53,20 @@ const Market = () => {
                                 titleColor={item.titleColor}
                                 valueColor={item.valueColor}
                                 timeColor={item.perColor}
+                                padding={"20px"}
+                                titleFontSize={"12px"}
+                                valueFontSize={"26px"}
+                                valueFontWeight={600}
                             />
                         </Box>
                     </Grid>
                 ))}
             </Grid>
+            <Box>
+                <TradingRegimeCard />
+            </Box>
         </Box>
+
 
     )
 }
