@@ -40,7 +40,7 @@ const WhalesTrackers = ({ data }) => {
             </Box>
             <Grid container spacing={2} mt="22px">
                 {data?.whales[0]?.transactions?.map((item, index) => (
-                    <Grid item size={{ xs: 12, sm: 6, md: 6 }} key={index}>
+                    <Grid item size={{ xs: 12, sm: 6, md: 12 }} key={index}>
                         <Box
                             sx={{
                                 bgcolor: "neutral.darkGrey",
@@ -53,10 +53,17 @@ const WhalesTrackers = ({ data }) => {
                         >
                             <Grid container alignItems="center" justifyContent="space-between">
                                 <Grid >
+                                    <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+                                        WinRate
+                                    </Typography>
+                                    <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+                                        {data?.whales?.[0]?.winRate}
+                                    </Typography>
                                     <Box display="flex" alignItems="center" gap={3}>
                                         <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
                                             {data?.whales?.[0]?.address}
                                         </Typography>
+
 
                                         <CustomButton
                                             variant="h6"
@@ -94,19 +101,57 @@ const WhalesTrackers = ({ data }) => {
                                     <Typography sx={{ fontSize: "12px", fontWeight: 600, color: "rgba(180, 180, 180, 1)", alignItems: "center" }}>
                                         {item.value}
                                     </Typography>
+
                                 </Box>
                             </Box>
-                            <Box display="flex" justifyContent="space-between" mt={2}>
+                            <Box display={"flex"} gap={"20px"} mt={3}>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        PositionSize
+                                    </Typography>
+                                    <Typography fontSize={"13px"}>
+                                        {item.positionSize}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Price
+                                    </Typography>
+                                    <Typography fontSize={"13px"}>
+                                        {item.price}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Pnl
+                                    </Typography>
+                                    <Typography fontSize={"13px"} color={item.pnl.includes("+") ? "neutral.brightGreen" : "neutral.brightRed"}>
+                                        {item.pnl}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Leverage
+                                    </Typography>
+                                    <Typography fontSize={"13px"} color="neutral.Snowwhite">
+                                        {item.leverage}
+                                    </Typography>
+                                </Box>
+                            </Box>
+                            <Box display="flex" justifyContent="space-between" mt={1}>
                                 <Typography sx={{ fontSize: "15px", marginTop: "30px", color: "#FFF" }}>
                                     {item.symbol}
                                 </Typography>
+
                                 <Box display="flex" gap="20px" mt="10px">
                                     <Box>
                                         <Typography fontSize="12px" color="rgba(180, 180, 180, 1)" fontWeight={400}>
                                             Liquidation
                                         </Typography>
                                         <Typography fontSize="14px" color="rgba(255, 255, 255, 1)" fontWeight={600}>
-                                            {item.liquidation}
+                                            {Number.isNaN(Number(item.liquidation?.replace("$", "")))
+                                                ? "-"
+                                                : item.liquidation}
                                         </Typography>
                                     </Box>
                                 </Box>
@@ -115,7 +160,7 @@ const WhalesTrackers = ({ data }) => {
                     </Grid>
                 ))}
                 {data?.whales[1]?.transactions?.map((item, index) => (
-                    <Grid item size={{ xs: 12, sm: 6, md: 6}} key={index}>
+                    <Grid item size={{ xs: 12, sm: 6, md: 12 }} key={index}>
                         <Box
                             sx={{
                                 bgcolor: "neutral.darkGrey",
@@ -128,10 +173,17 @@ const WhalesTrackers = ({ data }) => {
                         >
                             <Grid container alignItems="center" justifyContent="space-between">
                                 <Grid >
+                                    <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+                                        WinRate
+                                    </Typography>
+                                    <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+                                        {data?.whales?.[1]?.winRate}
+                                    </Typography>
                                     <Box display="flex" alignItems="center" gap={3}>
                                         <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
                                             {data?.whales?.[1]?.address}
                                         </Typography>
+
 
                                         <CustomButton
                                             variant="h6"
@@ -169,19 +221,57 @@ const WhalesTrackers = ({ data }) => {
                                     <Typography sx={{ fontSize: "12px", fontWeight: 600, color: "rgba(180, 180, 180, 1)", alignItems: "center" }}>
                                         {item.value}
                                     </Typography>
+
                                 </Box>
                             </Box>
-                            <Box display="flex" justifyContent="space-between" mt={2}>
+                             <Box display={"flex"} gap={"20px"} mt={3}>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        PositionSize
+                                    </Typography>
+                                    <Typography fontSize={"13px"}>
+                                        {item.positionSize}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Price
+                                    </Typography>
+                                    <Typography fontSize={"13px"}>
+                                        {item.price}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Pnl
+                                    </Typography>
+                                    <Typography fontSize={"13px"} color={item.pnl.includes("+") ? "neutral.brightGreen" : "neutral.brightRed"}>
+                                        {item.pnl}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Leverage
+                                    </Typography>
+                                    <Typography fontSize={"13px"} color="neutral.Snowwhite">
+                                        {item.leverage}
+                                    </Typography>
+                                </Box>
+                            </Box>
+                            <Box display="flex" justifyContent="space-between" mt={1}>
                                 <Typography sx={{ fontSize: "15px", marginTop: "30px", color: "#FFF" }}>
                                     {item.symbol}
                                 </Typography>
+
                                 <Box display="flex" gap="20px" mt="10px">
                                     <Box>
                                         <Typography fontSize="12px" color="rgba(180, 180, 180, 1)" fontWeight={400}>
                                             Liquidation
                                         </Typography>
                                         <Typography fontSize="14px" color="rgba(255, 255, 255, 1)" fontWeight={600}>
-                                            {item.liquidation}
+                                            {Number.isNaN(Number(item.liquidation?.replace("$", "")))
+                                                ? "-"
+                                                : item.liquidation}
                                         </Typography>
                                     </Box>
                                 </Box>
@@ -203,10 +293,17 @@ const WhalesTrackers = ({ data }) => {
                         >
                             <Grid container alignItems="center" justifyContent="space-between">
                                 <Grid >
+                                    <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+                                        WinRate
+                                    </Typography>
+                                    <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+                                        {data?.whales?.[2]?.winRate}
+                                    </Typography>
                                     <Box display="flex" alignItems="center" gap={3}>
                                         <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
                                             {data?.whales?.[2]?.address}
                                         </Typography>
+
 
                                         <CustomButton
                                             variant="h6"
@@ -244,19 +341,57 @@ const WhalesTrackers = ({ data }) => {
                                     <Typography sx={{ fontSize: "12px", fontWeight: 600, color: "rgba(180, 180, 180, 1)", alignItems: "center" }}>
                                         {item.value}
                                     </Typography>
+
                                 </Box>
                             </Box>
-                            <Box display="flex" justifyContent="space-between" mt={2}>
+                          <Box display={"flex"} gap={"20px"} mt={3}>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        PositionSize
+                                    </Typography>
+                                    <Typography fontSize={"13px"}>
+                                        {item.positionSize}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Price
+                                    </Typography>
+                                    <Typography fontSize={"13px"}>
+                                        {item.price}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Pnl
+                                    </Typography>
+                                    <Typography fontSize={"13px"} color={item.pnl.includes("+") ? "neutral.brightGreen" : "neutral.brightRed"}>
+                                        {item.pnl}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Leverage
+                                    </Typography>
+                                    <Typography fontSize={"13px"} color="neutral.Snowwhite">
+                                        {item.leverage}
+                                    </Typography>
+                                </Box>
+                            </Box>
+                            <Box display="flex" justifyContent="space-between" mt={1}>
                                 <Typography sx={{ fontSize: "15px", marginTop: "30px", color: "#FFF" }}>
                                     {item.symbol}
                                 </Typography>
+
                                 <Box display="flex" gap="20px" mt="10px">
                                     <Box>
                                         <Typography fontSize="12px" color="rgba(180, 180, 180, 1)" fontWeight={400}>
                                             Liquidation
                                         </Typography>
                                         <Typography fontSize="14px" color="rgba(255, 255, 255, 1)" fontWeight={600}>
-                                            {item.liquidation}
+                                            {Number.isNaN(Number(item.liquidation?.replace("$", "")))
+                                                ? "-"
+                                                : item.liquidation}
                                         </Typography>
                                     </Box>
                                 </Box>
@@ -278,10 +413,17 @@ const WhalesTrackers = ({ data }) => {
                         >
                             <Grid container alignItems="center" justifyContent="space-between">
                                 <Grid >
+                                    <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+                                        WinRate
+                                    </Typography>
+                                    <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+                                        {data?.whales?.[3]?.winRate}
+                                    </Typography>
                                     <Box display="flex" alignItems="center" gap={3}>
                                         <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
                                             {data?.whales?.[3]?.address}
                                         </Typography>
+
 
                                         <CustomButton
                                             variant="h6"
@@ -319,19 +461,57 @@ const WhalesTrackers = ({ data }) => {
                                     <Typography sx={{ fontSize: "12px", fontWeight: 600, color: "rgba(180, 180, 180, 1)", alignItems: "center" }}>
                                         {item.value}
                                     </Typography>
+
                                 </Box>
                             </Box>
-                            <Box display="flex" justifyContent="space-between" mt={2}>
+                            <Box display={"flex"} gap={"20px"} mt={3}>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        PositionSize
+                                    </Typography>
+                                    <Typography fontSize={"13px"}>
+                                        {item.positionSize}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Price
+                                    </Typography>
+                                    <Typography fontSize={"13px"}>
+                                        {item.price}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Pnl
+                                    </Typography>
+                                    <Typography fontSize={"13px"} color={item.pnl.includes("+") ? "neutral.brightGreen" : "neutral.brightRed"}>
+                                        {item.pnl}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Leverage
+                                    </Typography>
+                                    <Typography fontSize={"13px"} color="neutral.Snowwhite">
+                                        {item.leverage}
+                                    </Typography>
+                                </Box>
+                            </Box>
+                            <Box display="flex" justifyContent="space-between" mt={1}>
                                 <Typography sx={{ fontSize: "15px", marginTop: "30px", color: "#FFF" }}>
                                     {item.symbol}
                                 </Typography>
+
                                 <Box display="flex" gap="20px" mt="10px">
                                     <Box>
                                         <Typography fontSize="12px" color="rgba(180, 180, 180, 1)" fontWeight={400}>
                                             Liquidation
                                         </Typography>
                                         <Typography fontSize="14px" color="rgba(255, 255, 255, 1)" fontWeight={600}>
-                                            {item.liquidation}
+                                            {Number.isNaN(Number(item.liquidation?.replace("$", "")))
+                                                ? "-"
+                                                : item.liquidation}
                                         </Typography>
                                     </Box>
                                 </Box>
@@ -353,10 +533,17 @@ const WhalesTrackers = ({ data }) => {
                         >
                             <Grid container alignItems="center" justifyContent="space-between">
                                 <Grid >
+                                    <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+                                        WinRate
+                                    </Typography>
+                                    <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+                                        {data?.whales?.[4]?.winRate}
+                                    </Typography>
                                     <Box display="flex" alignItems="center" gap={3}>
                                         <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
                                             {data?.whales?.[4]?.address}
                                         </Typography>
+
 
                                         <CustomButton
                                             variant="h6"
@@ -394,19 +581,57 @@ const WhalesTrackers = ({ data }) => {
                                     <Typography sx={{ fontSize: "12px", fontWeight: 600, color: "rgba(180, 180, 180, 1)", alignItems: "center" }}>
                                         {item.value}
                                     </Typography>
+
                                 </Box>
                             </Box>
-                            <Box display="flex" justifyContent="space-between" mt={2}>
+                          <Box display={"flex"} gap={"20px"} mt={3}>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        PositionSize
+                                    </Typography>
+                                    <Typography fontSize={"13px"}>
+                                        {item.positionSize}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Price
+                                    </Typography>
+                                    <Typography fontSize={"13px"}>
+                                        {item.price}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Pnl
+                                    </Typography>
+                                    <Typography fontSize={"13px"} color={item.pnl.includes("+") ? "neutral.brightGreen" : "neutral.brightRed"}>
+                                        {item.pnl}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Leverage
+                                    </Typography>
+                                    <Typography fontSize={"13px"} color="neutral.Snowwhite">
+                                        {item.leverage}
+                                    </Typography>
+                                </Box>
+                            </Box>
+                            <Box display="flex" justifyContent="space-between" mt={1}>
                                 <Typography sx={{ fontSize: "15px", marginTop: "30px", color: "#FFF" }}>
                                     {item.symbol}
                                 </Typography>
+
                                 <Box display="flex" gap="20px" mt="10px">
                                     <Box>
                                         <Typography fontSize="12px" color="rgba(180, 180, 180, 1)" fontWeight={400}>
                                             Liquidation
                                         </Typography>
                                         <Typography fontSize="14px" color="rgba(255, 255, 255, 1)" fontWeight={600}>
-                                            {item.liquidation}
+                                            {Number.isNaN(Number(item.liquidation?.replace("$", "")))
+                                                ? "-"
+                                                : item.liquidation}
                                         </Typography>
                                     </Box>
                                 </Box>
@@ -428,10 +653,17 @@ const WhalesTrackers = ({ data }) => {
                         >
                             <Grid container alignItems="center" justifyContent="space-between">
                                 <Grid >
+                                    <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+                                        WinRate
+                                    </Typography>
+                                    <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+                                        {data?.whales?.[5]?.winRate}
+                                    </Typography>
                                     <Box display="flex" alignItems="center" gap={3}>
                                         <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
                                             {data?.whales?.[5]?.address}
                                         </Typography>
+
 
                                         <CustomButton
                                             variant="h6"
@@ -469,19 +701,57 @@ const WhalesTrackers = ({ data }) => {
                                     <Typography sx={{ fontSize: "12px", fontWeight: 600, color: "rgba(180, 180, 180, 1)", alignItems: "center" }}>
                                         {item.value}
                                     </Typography>
+
                                 </Box>
                             </Box>
-                            <Box display="flex" justifyContent="space-between" mt={2}>
+                           <Box display={"flex"} gap={"20px"} mt={3}>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        PositionSize
+                                    </Typography>
+                                    <Typography fontSize={"13px"}>
+                                        {item.positionSize}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Price
+                                    </Typography>
+                                    <Typography fontSize={"13px"}>
+                                        {item.price}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Pnl
+                                    </Typography>
+                                    <Typography fontSize={"13px"} color={item.pnl.includes("+") ? "neutral.brightGreen" : "neutral.brightRed"}>
+                                        {item.pnl}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Leverage
+                                    </Typography>
+                                    <Typography fontSize={"13px"} color="neutral.Snowwhite">
+                                        {item.leverage}
+                                    </Typography>
+                                </Box>
+                            </Box>
+                            <Box display="flex" justifyContent="space-between" mt={1}>
                                 <Typography sx={{ fontSize: "15px", marginTop: "30px", color: "#FFF" }}>
                                     {item.symbol}
                                 </Typography>
+
                                 <Box display="flex" gap="20px" mt="10px">
                                     <Box>
                                         <Typography fontSize="12px" color="rgba(180, 180, 180, 1)" fontWeight={400}>
                                             Liquidation
                                         </Typography>
                                         <Typography fontSize="14px" color="rgba(255, 255, 255, 1)" fontWeight={600}>
-                                            {item.liquidation}
+                                            {Number.isNaN(Number(item.liquidation?.replace("$", "")))
+                                                ? "-"
+                                                : item.liquidation}
                                         </Typography>
                                     </Box>
                                 </Box>
@@ -503,10 +773,17 @@ const WhalesTrackers = ({ data }) => {
                         >
                             <Grid container alignItems="center" justifyContent="space-between">
                                 <Grid >
+                                    <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+                                        WinRate
+                                    </Typography>
+                                    <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+                                        {data?.whales?.[6]?.winRate}
+                                    </Typography>
                                     <Box display="flex" alignItems="center" gap={3}>
                                         <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
                                             {data?.whales?.[6]?.address}
                                         </Typography>
+
 
                                         <CustomButton
                                             variant="h6"
@@ -544,19 +821,57 @@ const WhalesTrackers = ({ data }) => {
                                     <Typography sx={{ fontSize: "12px", fontWeight: 600, color: "rgba(180, 180, 180, 1)", alignItems: "center" }}>
                                         {item.value}
                                     </Typography>
+
                                 </Box>
                             </Box>
-                            <Box display="flex" justifyContent="space-between" mt={2}>
+                           <Box display={"flex"} gap={"20px"} mt={3}>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        PositionSize
+                                    </Typography>
+                                    <Typography fontSize={"13px"}>
+                                        {item.positionSize}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Price
+                                    </Typography>
+                                    <Typography fontSize={"13px"}>
+                                        {item.price}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Pnl
+                                    </Typography>
+                                    <Typography fontSize={"13px"} color={item.pnl.includes("+") ? "neutral.brightGreen" : "neutral.brightRed"}>
+                                        {item.pnl}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Leverage
+                                    </Typography>
+                                    <Typography fontSize={"13px"} color="neutral.Snowwhite">
+                                        {item.leverage}
+                                    </Typography>
+                                </Box>
+                            </Box>
+                            <Box display="flex" justifyContent="space-between" mt={1}>
                                 <Typography sx={{ fontSize: "15px", marginTop: "30px", color: "#FFF" }}>
                                     {item.symbol}
                                 </Typography>
+
                                 <Box display="flex" gap="20px" mt="10px">
                                     <Box>
                                         <Typography fontSize="12px" color="rgba(180, 180, 180, 1)" fontWeight={400}>
                                             Liquidation
                                         </Typography>
                                         <Typography fontSize="14px" color="rgba(255, 255, 255, 1)" fontWeight={600}>
-                                            {item.liquidation}
+                                            {Number.isNaN(Number(item.liquidation?.replace("$", "")))
+                                                ? "-"
+                                                : item.liquidation}
                                         </Typography>
                                     </Box>
                                 </Box>
@@ -578,10 +893,17 @@ const WhalesTrackers = ({ data }) => {
                         >
                             <Grid container alignItems="center" justifyContent="space-between">
                                 <Grid >
+                                    <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+                                        WinRate
+                                    </Typography>
+                                    <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+                                        {data?.whales?.[7]?.winRate}
+                                    </Typography>
                                     <Box display="flex" alignItems="center" gap={3}>
                                         <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
                                             {data?.whales?.[7]?.address}
                                         </Typography>
+
 
                                         <CustomButton
                                             variant="h6"
@@ -619,19 +941,57 @@ const WhalesTrackers = ({ data }) => {
                                     <Typography sx={{ fontSize: "12px", fontWeight: 600, color: "rgba(180, 180, 180, 1)", alignItems: "center" }}>
                                         {item.value}
                                     </Typography>
+
                                 </Box>
                             </Box>
-                            <Box display="flex" justifyContent="space-between" mt={2}>
+                            <Box display={"flex"} gap={"20px"} mt={3}>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        PositionSize
+                                    </Typography>
+                                    <Typography fontSize={"13px"}>
+                                        {item.positionSize}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Price
+                                    </Typography>
+                                    <Typography fontSize={"13px"}>
+                                        {item.price}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Pnl
+                                    </Typography>
+                                    <Typography fontSize={"13px"} color={item.pnl.includes("+") ? "neutral.brightGreen" : "neutral.brightRed"}>
+                                        {item.pnl}
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                                        Leverage
+                                    </Typography>
+                                    <Typography fontSize={"13px"} color="neutral.Snowwhite">
+                                        {item.leverage}
+                                    </Typography>
+                                </Box>
+                            </Box>
+                            <Box display="flex" justifyContent="space-between" mt={1}>
                                 <Typography sx={{ fontSize: "15px", marginTop: "30px", color: "#FFF" }}>
                                     {item.symbol}
                                 </Typography>
+
                                 <Box display="flex" gap="20px" mt="10px">
                                     <Box>
                                         <Typography fontSize="12px" color="rgba(180, 180, 180, 1)" fontWeight={400}>
                                             Liquidation
                                         </Typography>
                                         <Typography fontSize="14px" color="rgba(255, 255, 255, 1)" fontWeight={600}>
-                                            {item.liquidation}
+                                            {Number.isNaN(Number(item.liquidation?.replace("$", "")))
+                                                ? "-"
+                                                : item.liquidation}
                                         </Typography>
                                     </Box>
                                 </Box>
