@@ -95,9 +95,9 @@ const AiMarketRegion = () => {
                             </Typography>
                         </Box>
                         <Box>
-                            <img src={RecycleIcon} style={{ width: "30px" }} />
+                            <img src={RecycleIcon} style={{ width: "25px" }} />
                         </Box>
-                        <Typography color='neutral.Snowwhite' fontSize={"18px"} fontWeight={600}>
+                        <Typography color='neutral.Snowwhite' fontSize={"18px"} fontWeight={550}>
                             Cycle repeats
                         </Typography>
                     </Box>

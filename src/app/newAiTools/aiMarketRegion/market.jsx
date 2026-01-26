@@ -5,7 +5,7 @@ import TradingCard from '../../../components/tradeCard'
 const Market = () => {
     return (
         <Box>
-            hello
+            <TradingCard/>
         </Box>
     )
 }
