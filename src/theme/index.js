@@ -66,6 +66,7 @@ const theme = createTheme({
       backgroundColor: "linear-gradient(90deg, #FF1A00, #FF6C03, #FFA305)",
       charcoal: "rgba(22, 22, 22, 1)",
       deepGreen: "rgba(41, 65, 52, 1)",
+      darkBrown: "rgba(50, 36, 30, 1)",
     },
     text: {
       primary: "#ffff",

@@ -11,7 +11,9 @@ const HeaderText = ({
     fontSize,
     fontWeight,
     tittleFontSize,
-    titleFontWeight
+    titleFontWeight,
+    borderRadius,
+    border
 }) => {
     return (
         <Box display="flex" justifyContent="space-between" alignItems={"center"}>
@@ -27,8 +29,9 @@ const HeaderText = ({
                         bgcolor={backgroundColor || "background.carmineRed"}
                         textAlign="center"
                         width={width || "70px"}
-                        borderRadius="5px"
+                        borderRadius={borderRadius || "5px"}
                         padding={0.3}
+                        border={border}
                     >
                         <Typography
                             color="neutral.Snowwhite"
@@ -51,7 +54,7 @@ const HeaderText = ({
                     </Box>
                 }
             </Box>
-        </Box>
+        </Box >
     )
 }
 

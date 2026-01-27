@@ -10,6 +10,12 @@ import LiquidationMap from './liquidationMap'
 import SmartScenoria from './smartScenorios'
 import FutureMetric from './futureMetric'
 import Correlation from './correlation'
+import WarningTips from './warningTips'
+import HeatMapVolumeData from './heatMapVolumeData'
+import OpenInterest from './openInterest'
+import LargeTradeScanner from './largeTradeScanner'
+import VolalityAnalysis from './volalityAnalysis'
+import FairLastPriceScanner from './fairLastPriceScanner'
 
 const ProAnalysis1 = () => {
     return (
@@ -31,6 +37,11 @@ const ProAnalysis1 = () => {
                     <SmartScenoria />
                     <FutureMetric />
                     <Correlation />
+                    <HeatMapVolumeData />
+                    <OpenInterest />
+                    <LargeTradeScanner />
+                    <VolalityAnalysis />
+                    <FairLastPriceScanner />
                 </Box>
             </Container>
         </Box>

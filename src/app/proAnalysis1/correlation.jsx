@@ -6,6 +6,7 @@ import CustomInput from '../../components/customInput'
 import SearchIcon from "../../assets/icons/Vector.svg"
 import PaginatedTable from '../../components/dynamicTable'
 import { useState } from 'react'
+import WarningTips from './warningTips'
 
 
 const Correlation = () => {
@@ -28,9 +29,9 @@ const Correlation = () => {
             ethValue: "0.81",
             solValue: "0.78",
             bnbValue: "0.76",
-            avaxValue : "0.78",
-            linkValue : "69",
-            maticValue : "166.9"
+            avaxValue: "0.78",
+            linkValue: "69",
+            maticValue: "166.9"
 
         },
         {
@@ -38,19 +39,19 @@ const Correlation = () => {
             ethValue: "0.81",
             solValue: "0.78",
             bnbValue: "0.76",
-            avaxValue : "0.78",
-            linkValue : "69",
-            maticValue : "166.9"
+            avaxValue: "0.78",
+            linkValue: "69",
+            maticValue: "166.9"
 
         },
-          {
+        {
             btcvale: "1.00",
             ethValue: "0.81",
             solValue: "0.78",
             bnbValue: "0.76",
-            avaxValue : "0.78",
-            linkValue : "69",
-            maticValue : "166.9"
+            avaxValue: "0.78",
+            linkValue: "69",
+            maticValue: "166.9"
 
         }
     ]
@@ -110,13 +111,16 @@ const Correlation = () => {
             </Box>
             <Box mt={2}>
                 <PaginatedTable
-                    displayRows={["btcvale", "ethValue", "solValue", "bnbValue", "avaxValue", "linkValue" , "maticValue"]}
+                    displayRows={["btcvale", "ethValue", "solValue", "bnbValue", "avaxValue", "linkValue", "maticValue"]}
                     tableHeader={billingHistoryHeaders}
                     tableData={billingHistoryTable}
                     isLoading={loading}
                     showPagination={false}
 
                 />
+            </Box>
+            <Box>
+                <WarningTips />
             </Box>
         </Box>
     )

@@ -4,14 +4,15 @@ import theme from "../../theme";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
-const VolumeCard = ({ name, volume, percentChange, isPositive }) => {
+const VolumeCard = ({ name, volume, percentChange, isPositive, showIcon = true, // 👈 control yahin se
+}) => {
   return (
     <Box
       sx={{
         backgroundColor: isPositive ? "rgba(30, 179, 99, 1)" : "rgba(212, 51, 51, 1)",
         borderRadius: "8px",
         padding: "8px",
-        // width: "115px",
+        // width: "110px",
         // height: "81px",
         display: "flex",
         flexDirection: "column",
@@ -51,7 +52,7 @@ const VolumeCard = ({ name, volume, percentChange, isPositive }) => {
         <Typography
           sx={{
             color: theme.palette.text.primary,
-            fontSize: "10px",
+            fontSize: "9px",
             fontWeight: 400,
             opacity: 0.9,
           }}
@@ -72,13 +73,16 @@ const VolumeCard = ({ name, volume, percentChange, isPositive }) => {
             },
           }}
         >
-          {isPositive ? (
-            <KeyboardArrowUpIcon fontSize="small" htmlColor="white" />
-          ) : (
-            <KeyboardArrowDownIcon fontSize="small" htmlColor="white" />
-          )}{" "}
+          {showIcon && (
+            isPositive ? (
+              <KeyboardArrowUpIcon fontSize="small" htmlColor="white" />
+            ) : (
+              <KeyboardArrowDownIcon fontSize="small" htmlColor="white" />
+            )
+          )}
           {percentChange}
         </Typography>
+
       </Box>
     </Box>
   );

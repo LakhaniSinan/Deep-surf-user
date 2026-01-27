@@ -53,7 +53,9 @@ const FutureMetric = () => {
                             backgroundColor: "neutral.brightGreen",
                             borderRadius: 2,
                         },
-                    }} />,
+                    }}
+                     />
+                     
 
         },
         {

@@ -12,7 +12,7 @@ const TradingCard = ({ title, value, time, titleColor, valueColor, timeColor, pa
                     {value}
                 </Typography>
             </Box>
-            <Box>
+            <Box mt={2}>
                 <Typography color={timeColor || 'text.almostWhite'} fontSize={timeFontSize || "12px"}>
                     {time}
                 </Typography>
