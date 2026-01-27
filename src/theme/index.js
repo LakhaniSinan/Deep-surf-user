@@ -65,6 +65,7 @@ const theme = createTheme({
         "linear-gradient(90deg, rgba(255,103,22,0.18) 0%, rgba(255,160,84,0.10) 100%)",
       backgroundColor: "linear-gradient(90deg, #FF1A00, #FF6C03, #FFA305)",
       charcoal: "rgba(22, 22, 22, 1)",
+      deepGreen: "rgba(41, 65, 52, 1)",
     },
     text: {
       primary: "#ffff",
@@ -87,7 +88,8 @@ const theme = createTheme({
       LightRed: "#FF6C82",
       mediumGrey: "#747474",
       bluishGray: "rgba(102, 106, 122, 1)",
-      dangerRed : "rgba(212, 51, 51, 1)"
+      dangerRed: "rgba(212, 51, 51, 1)",
+      primeRed: "rgba(255, 0, 0, 1)",
     },
     gradients: {
       drawer:

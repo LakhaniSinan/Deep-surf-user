@@ -7,6 +7,8 @@ import PlayBookTester from './playBookTester'
 import AiDecisionEngine from './aiDecision'
 import TradeRaderSmartScanner from './tradeRader'
 import LiquidationMap from './liquidationMap'
+import SmartScenoria from './smartScenorios'
+import FutureMetric from './futureMetric'
 
 const ProAnalysis1 = () => {
     return (
@@ -25,6 +27,8 @@ const ProAnalysis1 = () => {
                     <AiDecisionEngine />
                     <TradeRaderSmartScanner />
                     <LiquidationMap />
+                    <SmartScenoria />
+                    <FutureMetric />
                 </Box>
             </Container>
         </Box>

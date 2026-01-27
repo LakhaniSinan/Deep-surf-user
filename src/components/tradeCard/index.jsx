@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
-const TradingCard = ({ title, value, time, titleColor, valueColor, timeColor, padding, titleFontSize, timeFontSize, titleFontWeight, valueFontWeight, valueFontSize }) => {
+const TradingCard = ({ title, value, time, titleColor, valueColor, timeColor, padding, titleFontSize, timeFontSize, titleFontWeight, valueFontWeight, valueFontSize, textAlign , mt }) => {
     return (
-        <Box bgcolor={"background.almostBlack"} p={padding || 1} textAlign={"center"} borderRadius={"5px"} mt={1.2}>
+        <Box bgcolor={"background.almostBlack"} p={padding || 1} textAlign={textAlign || "center"} borderRadius={"5px"} mt={mt || 1.2}>
             <Box>
                 <Typography color={titleColor || 'neutral.brightGreen'} fontWeight={titleFontWeight || 700} fontSize={titleFontSize || "16px"}>
                     {title}
