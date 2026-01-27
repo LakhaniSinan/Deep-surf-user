@@ -6,6 +6,7 @@ import CustomInput from '../../components/customInput'
 import CustomSelect from '../../components/customSelect'
 import { useState } from 'react'
 import TradingCard from '../../components/tradeCard'
+import TradingTrategy from './tradingTrategy'
 
 const FairLastPriceScanner = () => {
     const [loading, setIsLoading] = useState(false)
@@ -263,13 +264,13 @@ const FairLastPriceScanner = () => {
 
                 </Grid>
             </Box>
-            <Box bgcolor={"background.darkBrown"} p={3} mt={2.5} borderRadius={"20px"}>
+            <Box bgcolor={"background.darkBrown"} p={3} mt={2.5} borderRadius={"30px"}>
                 <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
                     <Box>
-                        <Typography color='neutral.Snowwhite' fontSize={"16px"}>
+                        <Typography color='neutral.Snowwhite' fontSize={"16px"} fontWeight={400}>
                             BEST OPPORTUNITY
                         </Typography>
-                        <Typography color='neutral.Snowwhite' fontSize={"30px"} fontWeight={550}>
+                        <Typography color='neutral.Snowwhite' fontSize={"30px"} fontWeight={500}>
                             STRAX
                         </Typography>
                         <Typography color='neutral.vermilionOrange' fontSize={"15px"}>
@@ -289,6 +290,126 @@ const FairLastPriceScanner = () => {
                     </Box>
                 </Box>
 
+            </Box>
+            <Box mt={2}>
+                <Typography color='neutral.Snowwhite' fontWeight={550}>
+                    Все спреды (Топ-39) : <span style={{ color: "rgba(62, 221, 135, 1)" }}>6 Long</span>  / <span style={{ color: "rgba(212, 51, 51, 1)" }}>33 Short</span>
+                </Typography>
+            </Box>
+            <Box bgcolor={"neutral.darkGrey"} p={3} mt={2.5} borderRadius={"30px"} border={"1px solid rgba(49, 35, 29, 1)"}>
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                    <Box>
+                        <Typography color='neutral.Snowwhite' fontSize={"30px"} fontWeight={500}>
+                            STRAX
+                        </Typography>
+                        <Box bgcolor={"neutral.brightGreen"} textAlign={"center"} borderRadius={"15px"} mt={1} p={1}>
+                            <Typography color='text.darkGreen' fontSize={"13px"}>
+                                LONG
+                            </Typography>
+                        </Box>
+                    </Box>
+                    <Box textAlign={"right"}>
+                        <Typography color='neutral.brightGreen' fontSize={"20px"}>
+                            +6293.267%
+                        </Typography>
+                        <Typography color='neutral.Snowwhite'>
+                            ~$62931.47 на $1000
+                        </Typography>
+                        <Typography color='neutral.Snowwhite'>
+                            Net Profit: 6293.15%
+                        </Typography>
+                    </Box>
+                </Box>
+                <Box width={"100%"} border={"1px solid rgba(255, 255, 255, 1)"} mt={3}>
+
+                </Box>
+                <Box display={"flex"} justifyContent={"space-between"} mt={1.5}>
+                    <Box>
+                        <Typography color='neutral.Snowwhite' fontWeight={500}>
+                            24h Change: -9.66%
+                        </Typography>
+                    </Box>
+                    <Box>
+                        <Typography color='neutral.Snowwhite'>
+                            Funding: +0.000%
+                        </Typography>
+                    </Box>
+                    <Box>
+                        <Typography color='neutral.Snowwhite'>
+                            Volume 24h: $57.4M
+                        </Typography>
+                    </Box>
+                    <Box>
+                        <Typography color='neutral.Snowwhite'>
+                            Mark Price: $0.022170
+                        </Typography>
+                    </Box>
+                    <Box>
+                        <Typography color='neutral.Snowwhite'>
+                            Last Price: $1.42
+                        </Typography>
+                    </Box>
+                </Box>
+
+            </Box>
+            <Box bgcolor={"neutral.darkGrey"} p={3} mt={2.5} borderRadius={"30px"} border={"1px solid rgba(49, 35, 29, 1)"}>
+                <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                    <Box>
+                        <Typography color='neutral.Snowwhite' fontSize={"30px"} fontWeight={500}>
+                            LOOM
+                        </Typography>
+                        <Box bgcolor={"text.dangerRed"} textAlign={"center"} borderRadius={"15px"} mt={1} p={1}>
+                            <Typography color='neutral.Snowwhite' fontSize={"13px"}>
+                                Short
+                            </Typography>
+                        </Box>
+                    </Box>
+                    <Box textAlign={"right"}>
+                        <Typography color='text.dangerRed' fontSize={"20px"}>
+                            +6293.267%
+                        </Typography>
+                        <Typography color='neutral.Snowwhite'>
+                            ~$62931.47 на $1000
+                        </Typography>
+                        <Typography color='neutral.Snowwhite'>
+                            Net Profit: 6293.15%
+                        </Typography>
+                    </Box>
+                </Box>
+                <Box width={"100%"} border={"1px solid rgba(255, 255, 255, 1)"} mt={3}>
+
+                </Box>
+                <Box display={"flex"} justifyContent={"space-between"} mt={1.5}>
+                    <Box>
+                        <Typography color='neutral.Snowwhite' fontWeight={500}>
+                            24h Change: -9.66%
+                        </Typography>
+                    </Box>
+                    <Box>
+                        <Typography color='neutral.Snowwhite'>
+                            Funding: +0.000%
+                        </Typography>
+                    </Box>
+                    <Box>
+                        <Typography color='neutral.Snowwhite'>
+                            Volume 24h: $57.4M
+                        </Typography>
+                    </Box>
+                    <Box>
+                        <Typography color='neutral.Snowwhite'>
+                            Mark Price: $0.022170
+                        </Typography>
+                    </Box>
+                    <Box>
+                        <Typography color='neutral.Snowwhite'>
+                            Last Price: $1.42
+                        </Typography>
+                    </Box>
+                </Box>
+
+            </Box>
+            <Box>
+                <TradingTrategy />
             </Box>
         </Box>
     )

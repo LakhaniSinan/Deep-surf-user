@@ -16,6 +16,8 @@ import OpenInterest from './openInterest'
 import LargeTradeScanner from './largeTradeScanner'
 import VolalityAnalysis from './volalityAnalysis'
 import FairLastPriceScanner from './fairLastPriceScanner'
+import TradingTrategy from './tradingTrategy'
+import TopTraders from './topTraders'
 
 const ProAnalysis1 = () => {
     return (
@@ -42,6 +44,7 @@ const ProAnalysis1 = () => {
                     <LargeTradeScanner />
                     <VolalityAnalysis />
                     <FairLastPriceScanner />
+                    <TopTraders />
                 </Box>
             </Container>
         </Box>

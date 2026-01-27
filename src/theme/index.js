@@ -91,6 +91,7 @@ const theme = createTheme({
       bluishGray: "rgba(102, 106, 122, 1)",
       dangerRed: "rgba(212, 51, 51, 1)",
       primeRed: "rgba(255, 0, 0, 1)",
+      darkGreen: "rgba(0, 119, 55, 1)",
     },
     gradients: {
       drawer:
