@@ -101,7 +101,7 @@ const FutureMetric = () => {
                     $4,321.7
                 </Typography>
             </Box>
-            <Box mt={2}>
+            <Box mt={2} >
                 <Grid container spacing={1}>
                     {futureMetricData.map((item) => (
                         <Grid size={{ xs: 12, md: 2.3 }}>

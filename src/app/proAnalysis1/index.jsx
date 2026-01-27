@@ -9,6 +9,7 @@ import TradeRaderSmartScanner from './tradeRader'
 import LiquidationMap from './liquidationMap'
 import SmartScenoria from './smartScenorios'
 import FutureMetric from './futureMetric'
+import Correlation from './correlation'
 
 const ProAnalysis1 = () => {
     return (
@@ -29,6 +30,7 @@ const ProAnalysis1 = () => {
                     <LiquidationMap />
                     <SmartScenoria />
                     <FutureMetric />
+                    <Correlation />
                 </Box>
             </Container>
         </Box>
