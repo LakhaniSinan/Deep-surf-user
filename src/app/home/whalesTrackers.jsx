@@ -4,7 +4,7 @@ import CustomButton from '../../components/customButton';
 import moment from "moment";
 
 const WhalesTrackers = ({ data }) => {
-    console.log("fuefgeufgyefewwwwwwwwwwwwdddwwwwwwfyef", data?.transactions);
+    console.log("fuefgeufgyefewwwwwwwwwwwwdddwwwwwwfyef", data?.transactions?.whaleAddress);
     const [isLoading, setIsLoading] = useState(false)
     return (
         <>
@@ -40,6 +40,8 @@ const WhalesTrackers = ({ data }) => {
             </Box>
             <Grid container spacing={2} mt="22px">
                 {data?.transactions?.map((item, index) => (
+                    console.log("fihriufhriuhfirofgourif" , item?.whaleWinRate),
+                    
                     <Grid item size={{ xs: 12, sm: 6, md: 12 }} key={index}>
                         <Box
                             sx={{
@@ -57,11 +59,12 @@ const WhalesTrackers = ({ data }) => {
                                         WinRate
                                     </Typography>
                                     <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
-                                        {data?.transactions[0]?.whaleWinRate}
+                                        {item?.whaleWinRate}
                                     </Typography>
                                     <Box display="flex" alignItems="center" gap={3}>
+                                        
                                         <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
-                                            {data?.transactions[0]?.whaleAddress}
+                                            {item?.whaleAddress}
                                         </Typography>
                                         <CustomButton
                                             variant="h6"
@@ -157,7 +160,7 @@ const WhalesTrackers = ({ data }) => {
                         </Box>
                     </Grid>
                 ))}
-                
+
                 {/* {data?.whales[1]?.transactions?.map((item, index) => (
                     <Grid item size={{ xs: 12, sm: 6, md: 12 }} key={index}>
                         <Box

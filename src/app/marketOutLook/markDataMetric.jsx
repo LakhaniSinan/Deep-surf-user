@@ -16,7 +16,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker, w
   console.log("frugfyugfurgfyurgfuyrgfuirgfuigrf", riskCalendar?.riskCalendar?.events);
 
   const [whale, setWhale] = useState([])
-  console.log("fnurfrfgurgfurgfuirgfr", whale);
+  console.log("fnurfrfgurgfdddddddddurgfuirgfr", whale);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -827,7 +827,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker, w
             </Grid>
           ))}
 
-          {whale?.whales?.[1]?.transactions?.slice(0, 2).map((item, index) => (
+          {whale?.transactions?.map((item, index) => (
             <Grid item size={{ xs: 12, sm: 6, md: 6 }} key={index}>
               <Box
                 sx={{
@@ -841,9 +841,15 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker, w
               >
                 <Grid container alignItems="center" justifyContent="space-between">
                   <Grid item>
+                    <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+                      WinRate
+                    </Typography>
+                    <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+                      {item?.whaleWinRate}
+                    </Typography>
                     <Box display="flex" alignItems="center" gap={3}>
                       <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
-                        {whale?.whales?.[1].address}
+                        {item?.whaleAddress}
                       </Typography>
 
                       <CustomButton
@@ -880,6 +886,40 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker, w
                   <Box>
                     <Typography sx={{ fontSize: "12px", fontWeight: 600, color: "rgba(180, 180, 180, 1)" }}>
                       {item.value}
+                    </Typography>
+                  </Box>
+                </Box>
+                <Box display={"flex"} gap={"20px"} mt={3}>
+                  <Box>
+                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                      PositionSize
+                    </Typography>
+                    <Typography fontSize={"13px"}>
+                      {item?.positionSize}
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                      Price
+                    </Typography>
+                    <Typography fontSize={"13px"}>
+                      {item?.price}
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                      Pnl
+                    </Typography>
+                    <Typography fontSize={"13px"} color={item.pnl.includes("+") ? "neutral.brightGreen" : "neutral.brightRed"}>
+                      {item?.pnl}
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
+                      Leverage
+                    </Typography>
+                    <Typography fontSize={"13px"} color="neutral.Snowwhite">
+                      {item.leverage}
                     </Typography>
                   </Box>
                 </Box>
