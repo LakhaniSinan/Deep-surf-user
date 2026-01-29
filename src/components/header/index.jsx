@@ -26,7 +26,7 @@ const Header = () => {
   const navItems = [
     { link: "/dashboard", label: "Dashboard" },
     { link: "/journal", label: "Journal" },
-    { link: "/coming-soon", label: "Chart" },
+    { link: "/chart", label: "Chart" },
     { link: "/calculator", label: "Calculator" },
     { link: "/ai-tools", label: "AI Tools" },
     { link: "/pro-analytics", label: "Pro Analytics" },

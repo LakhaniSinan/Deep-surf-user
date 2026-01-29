@@ -910,7 +910,7 @@ const MarkDataMetric = ({ top, marketMetricesData, riskCalendar, whaleTracker, w
                     <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
                       Pnl
                     </Typography>
-                    <Typography fontSize={"13px"} color={item.pnl.includes("+") ? "neutral.brightGreen" : "neutral.brightRed"}>
+                    <Typography fontSize={"13px"} color={item?.pnl?.includes("+") ? "neutral.brightGreen" : "neutral.brightRed"}>
                       {item?.pnl}
                     </Typography>
                   </Box>

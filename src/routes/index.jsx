@@ -22,7 +22,7 @@ import Notification from "../app/notification";
 import EditJournal from "../app/journal/editjournal";
 import SaveAlert from "../app/journal/saveAlert";
 import CoinAlert from "../app/journal/journal";
-import ComingSoon from "../app/charts/commingSoon";
+// import ComingSoon from "../app/charts/commingSoon";
 import NewAiTools from "../app/newAiTools";
 
 const AUTH_ROUTES = [
@@ -96,20 +96,20 @@ const APP_Route = [
     path: "/dashboard",
   },
 
-  // {
-  //   id: 2,
-  //   name: "Charts",
-  //   component: <Charts />,
-  //   exact: "exact",
-  //   path: "/chart",
-  // },
   {
     id: 2,
     name: "Charts",
-    component: <ComingSoon />,
+    component: <Charts />,
     exact: "exact",
-    path: "/coming-soon",
+    path: "/chart",
   },
+  // {
+  //   id: 2,
+  //   name: "Charts",
+  //   component: <ComingSoon />,
+  //   exact: "exact",
+  //   path: "/coming-soon",
+  // },
 
   {
     id: 3,

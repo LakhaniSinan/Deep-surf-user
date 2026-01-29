@@ -122,9 +122,8 @@ const MarketOutLook = () => {
               riskCalendar={marketOutLook}
               // fetchMarketData={getMarketOutData} 
               whaleTrackers={whale}
-
-
             />
+            <MarketDataMetric />
           </>
         )}
       </Container>

@@ -16,6 +16,8 @@ export const Charts = () => {
   const [symbol, setSymbol] = useState("BTC"); 
   const [interval, setInterval] = useState("1h");
   const [chartData, setChartData] = useState(null);
+  console.log("rfirgfuirgfuirgk" ,  chartData);
+  
   const [isLoading, setIsLoading] = useState(false);
 
   const getChartAPi = async () => {
@@ -58,7 +60,7 @@ export const Charts = () => {
             </Grid>
             <Grid size={{ xs: 12, md: 8 }}>
               <Box sx={{ flex: 1, minHeight: 0 }}>
-                <LightweightChart data={chartData} />
+                {/* <LightweightChart data={chartData} /> */}
               </Box>
               <Box>
                 {/* <ChartsTrendings/> */}
