@@ -67,6 +67,8 @@ const theme = createTheme({
       charcoal: "rgba(22, 22, 22, 1)",
       deepGreen: "rgba(41, 65, 52, 1)",
       darkBrown: "rgba(50, 36, 30, 1)",
+      mintGreen : "rgba(62, 221, 135, 0.08)",
+      transparentRed : "rgba(212, 51, 51, 0.08)"
     },
     text: {
       primary: "#ffff",

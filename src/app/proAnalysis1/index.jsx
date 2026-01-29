@@ -18,6 +18,7 @@ import VolalityAnalysis from './volalityAnalysis'
 import FairLastPriceScanner from './fairLastPriceScanner'
 import TradingTrategy from './tradingTrategy'
 import TopTraders from './topTraders'
+import TakerRatio from './takerRatio'
 
 const ProAnalysis1 = () => {
     return (
@@ -45,6 +46,7 @@ const ProAnalysis1 = () => {
                     <VolalityAnalysis />
                     <FairLastPriceScanner />
                     <TopTraders />
+                    <TakerRatio />
                 </Box>
             </Container>
         </Box>

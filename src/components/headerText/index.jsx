@@ -16,45 +16,69 @@ const HeaderText = ({
     border
 }) => {
     return (
-        <Box display="flex" justifyContent="space-between" alignItems={"center"}>
+        <Box
+            display="flex"
+            flexDirection={{ xs: "column", md: "row" }}
+            justifyContent="space-between"
+            alignItems={{ xs: "flex-start", md: "center" }}
+            gap={{ xs: "12px", md: 0 }}
+        >
 
-            <Box display="flex" gap="20px" alignItems="center">
-                <Typography color={color || 'text.almostWhite'} fontSize={tittleFontSize || "21px"} fontWeight={titleFontWeight || 600}>
+            {/* Left side */}
+            <Box display="flex" gap="12px" alignItems="center" flexWrap="wrap">
+                <Typography
+                    color={color || 'text.almostWhite'}
+                    fontSize={{ xs: "12px", md: tittleFontSize || "21px" }}
+                    fontWeight={titleFontWeight || 600}
+                >
                     {title}
                 </Typography>
-
 
                 {subtile && (
                     <Box
                         bgcolor={backgroundColor || "background.carmineRed"}
                         textAlign="center"
-                        width={width || "70px"}
+                        width={{ xs: "60px", md: width || "70px" }}
                         borderRadius={borderRadius || "5px"}
                         padding={0.3}
                         border={border}
                     >
                         <Typography
                             color="neutral.Snowwhite"
-                            fontSize={fontSize}
+                            fontSize={{ xs: "10px", md: fontSize }}
                             fontWeight={fontWeight}
                         >
                             {subtile}
                         </Typography>
                     </Box>
                 )}
-
             </Box>
-            <Box display={"flex"} gap={"20px"}>
-                <Box>
-                    {icon}
-                </Box>
-                {btnText &&
-                    <Box bgcolor={"neutral.vermilionOrange"} borderRadius={"10px"} p={1} width={"80px"} textAlign={"center"} color={"neutral.Snowwhite"} fontSize={"12px"}>
+
+            {/* Right side */}
+            <Box
+                display="flex"
+                gap="12px"
+                alignItems="center"
+                width={{ xs: "100%", md: "auto" }}
+                justifyContent={{ xs: "space-between", md: "flex-end" }}
+            >
+                {icon && <Box>{icon}</Box>}
+
+                {btnText && (
+                    <Box
+                        bgcolor="neutral.vermilionOrange"
+                        borderRadius="10px"
+                        p={1}
+                        width={{ xs: "100%", md: "80px" }}
+                        textAlign="center"
+                        color="neutral.Snowwhite"
+                        fontSize="12px"
+                    >
                         {btnText}
                     </Box>
-                }
+                )}
             </Box>
-        </Box >
+        </Box>
     )
 }
 
