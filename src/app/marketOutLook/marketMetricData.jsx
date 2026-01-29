@@ -3,7 +3,6 @@ import React from 'react'
 import CustomButton from '../../components/customButton'
 import RelaodIcon from "../../assets/icons/relaod-Icon.svg"
 import ExportIcon from "../../assets/icons/export-icon.svg"
-import { color } from 'd3'
 import FearAndGreedIndex from './fearAndGreedIndex'
 
 const MarketMetricData = () => {
