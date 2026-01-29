@@ -90,7 +90,7 @@ const MarketOutLook = () => {
         </Typography>
 
         {/* Loading Skeleton */}
-        {isLoading && (
+        {/* {isLoading && (
           <>
             <AiMarketAnalysisSkeleton />
             <CoinSkeleton />
@@ -99,26 +99,26 @@ const MarketOutLook = () => {
             <TradingSkeleton />
             <MarkDataMetricSkeleton />
           </>
-        )}
+        )} */}
         {/* No Data Found */}
         {/* Show Data */}
         {!isLoading && marketOutLook && (
           <>
-            <AiMarketAnalysis aiAnalysis={marketOutLook} />
+            {/* <AiMarketAnalysis aiAnalysis={marketOutLook} />
             <Coin
               data={coins}
               overallSentimentData={overallSentiment}
               dayOfWeek={marketOutLook}
-            />
-            <Macroeconomics data={macroData} />
-            <CryptocurrencyEvents
+            /> */}
+            {/* <Macroeconomics data={macroData} /> */}
+            {/* <CryptocurrencyEvents
               data={cryptoEvent}
               data2={eftFlow}
               data3={onChainSignals}
-            />
-            <Trading tradingData={tradingRecomendation} />
+            /> */}
+            {/* <Trading tradingData={tradingRecomendation} /> */}
             <MarketMetricData />
-            <MarkDataMetric
+            {/* <MarkDataMetric
               top={topMover}
               marketMetricesData={marketMetrics}
               riskCalendar={marketOutLook}
@@ -126,7 +126,7 @@ const MarketOutLook = () => {
               whaleTrackers={whale}
 
 
-            />
+            /> */}
           </>
         )}
       </Container>
