@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { exchangeSupportApi, exchangeMarketApi, exchangeData, exchangeAtrValue, getCalculator } from "../../services/modules/calculator";
 import { toast } from "react-toastify";
 import AiOutCome from "./aiOutCome";
+import PlayBookBuilder from "./playBookBuilder";
 
 const Calculator = () => {
   const { t } = useTranslation();
@@ -150,6 +151,9 @@ const Calculator = () => {
         </Box>
         <Box>
           <AiOutCome />
+        </Box>
+        <Box>
+          <PlayBookBuilder />
         </Box>
 
         <Grid container spacing={2}>
