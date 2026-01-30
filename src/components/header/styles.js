@@ -41,7 +41,7 @@ export const headerStyles = {
     // width: "90%",
   },
   navItem: (isActive) => ({
-    padding: "clamp(10px, 1.2vw, 14px) clamp(13px, 2vw, 23px)",
+    padding: "clamp(10px, 1.2vw, 15px) clamp(13px, 2vw, 20px)",
     // padding: 2.7,
     borderRadius: "50px",
     cursor: "pointer",

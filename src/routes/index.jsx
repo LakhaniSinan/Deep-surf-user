@@ -24,6 +24,7 @@ import SaveAlert from "../app/journal/saveAlert";
 import CoinAlert from "../app/journal/journal";
 // import ComingSoon from "../app/charts/commingSoon";
 import NewAiTools from "../app/newAiTools";
+import WatchList from "../app/watchList";
 
 const AUTH_ROUTES = [
 
@@ -186,11 +187,18 @@ const APP_Route = [
     component: <CoinAlert />,
     path: "/coin-alert",
   },
-   {
+  {
     id: 13,
     name: "NewAiTools",
     component: <NewAiTools />,
     path: "/new-ai",
+  },
+
+  {
+    id: 13,
+    name: "WatchList",
+    component: <WatchList />,
+    path: "/watch-list",
   },
 ];
 

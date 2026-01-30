@@ -31,6 +31,7 @@ const Header = () => {
     { link: "/ai-tools", label: "AI Tools" },
     { link: "/pro-analytics", label: "Pro Analytics" },
     { link: "/market-outlook", label: "Market Outlook" },
+    { link: "/watch-list", label: "Watchlist" },
     { link: "/notification", label: "Notification" }
   ];
 
