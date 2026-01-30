@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { exchangeSupportApi, exchangeMarketApi, exchangeData, exchangeAtrValue, getCalculator } from "../../services/modules/calculator";
 import { toast } from "react-toastify";
+import AiOutCome from "./aiOutCome";
 
 const Calculator = () => {
   const { t } = useTranslation();
@@ -147,10 +148,13 @@ const Calculator = () => {
             {t("Calculator.calculatorTitle")}
           </Typography>
         </Box>
+        <Box>
+          <AiOutCome />
+        </Box>
 
         <Grid container spacing={2}>
           <Grid item size={{ xs: 12, md: 6 }}>
-            <CalculatorForm
+            {/* <CalculatorForm
               exchange={exchange}
               metaData={exchangePair}
               exchangeMarketData={exchangeMarketData}
@@ -162,13 +166,13 @@ const Calculator = () => {
               setCalculatorResult={setCalculatorResult}
               onCalculate={handleCalculate}
               isLoading={isLoading}
-            />
+            /> */}
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
-            <CurrentPrice
+            {/* <CurrentPrice
               exchangeMarketData={exchangeMarketData}
-              calculatorResult={calculatorResult} 
-            />
+              calculatorResult={calculatorResult}
+            /> */}
           </Grid>
         </Grid>
       </Container>
