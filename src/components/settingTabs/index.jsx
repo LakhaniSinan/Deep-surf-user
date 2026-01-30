@@ -23,7 +23,15 @@ import SettingsInactiveIcon from "../../assets/icons/setting-inactive.svg";
 import NotificationInactiveIcon from "../../assets/icons/notification-inactive.svg";
 import SubscriptionInactiveIcon from "../../assets/icons/subcription-inactive.svg";
 import ReferralInactiveIcon from "../../assets/icons/referral-inactive.svg";
+import InterigationActiveIcon from "../../assets/icons/interigation-icon.svg"
+import InterigationInActiveIcon from "../../assets/icons/interigation-inactive.svg"
+import SecurityActiveIcon from "../../assets/icons/security-active-icon.svg"
+import SecurityInActiveIcon from "../../assets/icons/security-inactive-icon.svg"
+import AchievementActiveIcon from "../../assets/icons/achievement-active-icon.svg"
+import AchievementInActiveIcon from "../../assets/icons/achievement-inactive-icon.svg"
 import { useTranslation } from "react-i18next";
+
+
 
 const SettingTabs = ({ children }) => {
   const theme = useTheme();
@@ -68,11 +76,24 @@ const SettingTabs = ({ children }) => {
       inactiveIcon: ReferralInactiveIcon,
     },
     {
-      name: (t("SettingsTab.faq")),
-      path: "/settings/faq",
-      activeIcon: ReferralActiveIcon,
-      inactiveIcon: ReferralInactiveIcon,
+      name: "Integration",
+      path: "/settings/integration",
+      activeIcon: InterigationActiveIcon,
+      inactiveIcon: InterigationInActiveIcon,
     },
+    {
+      name: "Security",
+      path: "/settings/security",
+      activeIcon: SecurityActiveIcon,
+      inactiveIcon: SecurityInActiveIcon,
+    },
+     {
+      name: "Achievements",
+      path: "/settings/achievements",
+      activeIcon: AchievementActiveIcon,
+      inactiveIcon: AchievementInActiveIcon,
+    },
+
   ];
   const renderList = () => (
     <Box

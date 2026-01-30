@@ -22,6 +22,9 @@ const Referrals = () => {
   const [pagination, setPagination] = useState(0);
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState(0)
+  console.log("ffgrufgrufgrf", activeTab);
+
   const handleCopy = async (value, field) => {
     try {
       await navigator.clipboard.writeText(value);
@@ -64,6 +67,28 @@ const Referrals = () => {
   useEffect(() => {
     refferalHistory();
   }, [page, limit]);
+  const levelSystemData = [
+    {
+      packageName: "Basic (5%)",
+      refferalQunatity: "Up to 20 referrals",
+      commision: "$5.75 per subscription"
+    },
+    {
+      packageName: "Standard (10%)",
+      refferalQunatity: "More than 50 referrals",
+      commision: "$11.50 per subscription"
+    },
+    {
+      packageName: "Professional (15%)",
+      refferalQunatity: "More than 350 referrals",
+      commision: "$17.25 per subscription"
+    },
+    {
+      packageName: "Master's degree (20%)",
+      refferalQunatity: "More than 350 referrals",
+      commision: "$23.00 per subscription"
+    }
+  ]
 
   return (
     <>
@@ -159,7 +184,7 @@ const Referrals = () => {
                 {copiedField === "link" && (
                   <Typography variant="helperSm" sx={{ color: "#5CB85C" }}>{t("Referrals.linkCopied")}</Typography>
                 )}
-                <Typography color="rgba(163, 163, 165, 1)" fontSize={"14px"} fontWeight={500}> 
+                <Typography color="rgba(163, 163, 165, 1)" fontSize={"14px"} fontWeight={500}>
                   Share the link below with your friends
                 </Typography>
               </Stack>
@@ -185,6 +210,41 @@ const Referrals = () => {
               </Stack>
             </Grid>
           </Grid>
+        </Box>
+        <Box bgcolor={"neutral.darkGrey"} borderRadius={"10px"} p={2}>
+          <Box>
+            <Typography color="neutral.Snowwhite" fontSize={"20px"} fontWeight={600}>
+              Level System
+            </Typography>
+          </Box>
+          <Box mt={2}>
+            <Grid container spacing={2}>
+              {levelSystemData.map((item, index) => (
+                <Grid item size={{ xs: 12, md: 6 }}>
+                  <Box bgcolor={activeTab === index
+                    ? "neutral.vermilionOrange"
+                    : "rgba(44, 44, 44, 1)"} p={1.2} borderRadius={"12px"} key={index} sx={{ cursor: "pointer" }} onClick={() => setActiveTab(index)}>
+                    <Box >
+                      <Typography fontSize={"20px"} fontWeight={600} color={activeTab === index ? "rgba(255, 255, 255, 1)" : "rgba(171, 175, 180, 1)"}>
+                        {item.packageName}
+                      </Typography>
+                      <Typography fontSize={"12px"} color={activeTab === index ? "rgba(255, 255, 255, 1)" : "rgba(171, 175, 180, 1)"}>
+                        {item.refferalQunatity}
+                      </Typography>
+                    </Box>
+                    <Box mt={2}>
+                      <Typography fontSize={"12px"} color={activeTab === index ? "rgba(255, 255, 255, 1)" : "rgba(171, 175, 180, 1)"}>
+                        {item.commision}
+                      </Typography>
+                    </Box>
+                  </Box>
+
+                </Grid>
+              ))}
+
+            </Grid>
+          </Box>
+
         </Box>
       </Box>
 
