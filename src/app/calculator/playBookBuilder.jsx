@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material'
 import React from 'react'
 import HeaderText from '../../components/headerText'
 import CustomButton from '../../components/customButton'
+import AccordingHeader from '../../components/accordingHeader.jsx'
 
 const PlayBookBuilder = () => {
     const playBook = [
@@ -54,6 +55,11 @@ const PlayBookBuilder = () => {
                     <Typography color='neutral.coolGray' fontSize={"12px"}>
                         A playbook is a set of rules and conditions for entering a trade. The system automatically finds matches with your criteria.
                     </Typography>
+                </Box>
+                <Box mt={2}>
+                    {playBook.map((item, index) => (
+                        <AccordingHeader tittle={item} key={index} fontSize={"14px"} fontWeight={550} />
+                    ))}
                 </Box>
 
             </Box>

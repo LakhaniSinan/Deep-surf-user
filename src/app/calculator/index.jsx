@@ -9,6 +9,9 @@ import { exchangeSupportApi, exchangeMarketApi, exchangeData, exchangeAtrValue, 
 import { toast } from "react-toastify";
 import AiOutCome from "./aiOutCome";
 import PlayBookBuilder from "./playBookBuilder";
+import OrderFlowEngine from "./orderFlowEngine";
+import TradeBuilder from "./tradeBuilder";
+import PlannedTrade from "./plannedTrade";
 
 const Calculator = () => {
   const { t } = useTranslation();
@@ -154,6 +157,15 @@ const Calculator = () => {
         </Box>
         <Box>
           <PlayBookBuilder />
+        </Box>
+        <Box>
+          <OrderFlowEngine />
+        </Box>
+        <Box>
+          <TradeBuilder />
+        </Box>
+        <Box>
+          <PlannedTrade />
         </Box>
 
         <Grid container spacing={2}>

@@ -1,4 +1,5 @@
 import React from "react";
+import ArrowIcon from "../../assets/icons/arrow-btn.svg"
 import {
   Box,
   FormControl,
@@ -18,6 +19,10 @@ const CustomSelect = ({
   renderValue,
   height,
   backgroundColor,
+  width,
+  border,
+  borderRadius,
+  placeholderColor,
   sx = {},          // ✅ ADD THIS
 
 }) => {
@@ -26,9 +31,9 @@ const CustomSelect = ({
   const defaultRenderValue = (selected) => {
     if (!selected) {
       return (
-        <Typography variant="body2" color="#8F8F8F">
+        <Typography variant="body2" color={placeholderColor || "#8F8F8F"} >
           {placeholder}
-        </Typography>
+        </Typography >
       );
     }
 
@@ -71,6 +76,19 @@ const CustomSelect = ({
           value={value}
           onChange={onChange}
           displayEmpty
+          IconComponent={() => (
+            <Box
+              component="img"
+              src={ArrowIcon}   // 👈 apni image
+              sx={{
+                width: 16,
+                height: 16,
+                mr: 1,
+                cursor: "pointer",
+                filter: "rgba(255, 255, 255, 1)",
+              }}
+            />
+          )}
 
           /* 👇👇👇 MOST IMPORTANT FIX */
           MenuProps={{
@@ -90,10 +108,11 @@ const CustomSelect = ({
 
           sx={{
             backgroundColor: backgroundColor ? backgroundColor : "rgba(255,255,255,0.04)",
-            borderRadius: "14px",
-            border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: borderRadius || "14px",
+            border: border | "1px solid rgba(255,255,255,0.08)",
             color: "#F1F1F1",
             height: height ? height : "45px",
+            width: width,
             "& .MuiSelect-icon": {
               color: "#C7C7C7",
             },
