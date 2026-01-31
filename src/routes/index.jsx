@@ -23,8 +23,7 @@ import EditJournal from "../app/journal/editjournal";
 import SaveAlert from "../app/journal/saveAlert";
 import CoinAlert from "../app/journal/journal";
 import NewAiTools from "../app/newAiTools";
-import { path } from "d3";
-import ProAnalysis1 from "../app/proAnalysis1";
+import WatchList from "../app/watchList";
 
 const AUTH_ROUTES = [
 
@@ -206,12 +205,12 @@ const APP_Route = [
     component: <NewAiTools />,
     path: "/new-ai",
   },
+
   {
-    id: 14,
-    name: "Pro Analysis",
-    component: <ProAnalysis1 />,
-    exact: "exact",
-    path: "/pro-analytics",
+    id: 13,
+    name: "WatchList",
+    component: <WatchList />,
+    path: "/watch-list",
   },
 ];
 

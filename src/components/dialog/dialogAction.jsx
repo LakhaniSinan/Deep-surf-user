@@ -15,6 +15,7 @@ const DialogActionButtons = ({
     cancelBtnProps,
     confirmBtnProps,
     confirmLoading = false,
+    width
 }) => {
     const { t } = useTranslation();
     return (
@@ -24,7 +25,7 @@ const DialogActionButtons = ({
                 padding: "16px",
                 gap: 2,
                 display: "flex",
-                justifyContent: "space-between"
+                // justifyContent: "space-between"
             }}
         >
             {showCancelBtn && (
@@ -55,7 +56,7 @@ const DialogActionButtons = ({
                     disabled={isConfirmBtnDisable}
                     loading={confirmLoading}
                     style={{
-                        width: "auto",
+                        width: width || "auto",
                         height: "45px",
                         padding: "20px 10px",
                         borderRadius: "15px",

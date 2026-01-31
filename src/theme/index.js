@@ -83,7 +83,8 @@ const theme = createTheme({
       deepGreen: "rgba(41, 65, 52, 1)",
       darkBrown: "rgba(50, 36, 30, 1)",
       mintGreen : "rgba(62, 221, 135, 0.08)",
-      transparentRed : "rgba(212, 51, 51, 0.08)"
+      transparentRed : "rgba(212, 51, 51, 0.08)",
+      charcoalBlack : "rgba(41, 41, 41, 1)"
     },
     text: {
       primary: "#ffff",
@@ -131,6 +132,7 @@ const theme = createTheme({
       dangerRed: "rgba(212, 51, 51, 1)",
       primeRed: "rgba(255, 0, 0, 1)",
       darkGreen: "rgba(0, 119, 55, 1)",
+      mutedGray : "rgba(123, 123, 123, 1)"
     },
     gradients: {
       drawer:

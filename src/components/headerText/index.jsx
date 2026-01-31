@@ -13,7 +13,10 @@ const HeaderText = ({
     tittleFontSize,
     titleFontWeight,
     borderRadius,
-    border
+    border,
+    btnFontSize,
+    btnWidth,
+    onClick
 }) => {
     return (
         <Box
@@ -69,16 +72,17 @@ const HeaderText = ({
                         bgcolor="neutral.vermilionOrange"
                         borderRadius="10px"
                         p={1}
-                        width={{ xs: "100%", md: "80px" }}
+                        width={{ xs: "100%", md: btnWidth || "90px" }}
                         textAlign="center"
                         color="neutral.Snowwhite"
-                        fontSize="12px"
+                        fontSize={btnFontSize || "15px"}
+                        onClick={onClick}
                     >
                         {btnText}
                     </Box>
                 )}
             </Box>
-        </Box>
+        </Box >
     )
 }
 
