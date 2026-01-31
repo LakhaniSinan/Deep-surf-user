@@ -3,6 +3,8 @@ import React from 'react'
 import Header from '../../components/header'
 import AiProof from './aiProof'
 import AiPumpScanner from './aiPumpScanner'
+import AiDumpScanner from './aiDumpScanner'
+import AiMarketRegion from './aiMarketRegion'
 
 const NewAiTools = () => {
     return (
@@ -12,7 +14,7 @@ const NewAiTools = () => {
             </Box>
             <Container maxWidth="lg">
                 <Box mt={6}>
-                    <Typography color='neutral.Snowwhite' fontSize={"45px"} fontWeight={600}>
+                    <Typography color='neutral.Snowwhite' fontSize={"30px"} fontWeight={600}>
                         AI Tools- Advanced Analysis
                     </Typography>
                     <Typography color='neutral.Snowwhite' fontSize={"15px"}>
@@ -21,6 +23,8 @@ const NewAiTools = () => {
                 </Box>
                 <AiProof />
                 <AiPumpScanner />
+                <AiDumpScanner />
+                <AiMarketRegion />
             </Container>
         </>
     )

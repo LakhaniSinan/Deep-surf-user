@@ -22,8 +22,8 @@ import Notification from "../app/notification";
 import EditJournal from "../app/journal/editjournal";
 import SaveAlert from "../app/journal/saveAlert";
 import CoinAlert from "../app/journal/journal";
-// import ComingSoon from "../app/charts/commingSoon";
 import NewAiTools from "../app/newAiTools";
+import { path } from "d3";
 
 const AUTH_ROUTES = [
 
@@ -146,10 +146,17 @@ const APP_Route = [
     exact: "exact",
     path: "/pro-analytics",
   },
+  // {
+  //   id: 8,
+  //   name: "Ai Tools",
+  //   component: <AiTools />,
+  //   exact: "exact",
+  //   path: "/ai-tools",
+  // },
   {
     id: 8,
     name: "Ai Tools",
-    component: <AiTools />,
+    component: <NewAiTools />,
     exact: "exact",
     path: "/ai-tools",
   },

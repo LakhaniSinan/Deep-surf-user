@@ -49,6 +49,7 @@ const theme = createTheme({
       steelGrey: "rgba(148, 150, 154, 1)",
       obsidianAsh: "rgba(55, 55, 55, 1)",
       neutralGray: "rgba(147, 148, 153, 1)",
+      cadetGrey: "rgba(155, 163, 175, 1)",
     },
     background: {
       default: "#101010",
@@ -65,6 +66,13 @@ const theme = createTheme({
         "linear-gradient(90deg, rgba(255,103,22,0.18) 0%, rgba(255,160,84,0.10) 100%)",
       backgroundColor: "linear-gradient(90deg, #FF1A00, #FF6C03, #FFA305)",
       charcoal: "rgba(22, 22, 22, 1)",
+      almostBlack: "rgba(37, 37, 37, 1)",
+      Emerald: "rgba(16, 185, 129, 0.1)",
+      carmineRed: "rgba(239, 68, 68, 1)",
+      tarsparentColor: "rgba(239, 68, 68, 0.1)",
+      Emerald: "rgba(16, 185, 129, 1)",
+      carmineRed: "rgba(239, 68, 68, 1)",
+      yellowGreen: "rgba(199, 217, 0, 1)",
     },
     text: {
       primary: "#ffff",
@@ -94,7 +102,17 @@ const theme = createTheme({
       silverGrey: "rgba(171, 175, 180, 1)",
       ghostGrey: "rgba(250, 251, 252, 1)",
       slateGrey: "rgba(155, 163, 175, 1)",
-      limeGreen : "rgba(0, 255, 30, 1)"
+      limeGreen : "rgba(0, 255, 30, 1)",
+      almostWhite: "rgba(250, 251, 252, 1)",
+      Emerald: "rgba(16, 185, 129, 1)",
+      carmineRed: "rgba(239, 68, 68, 1)",
+      orange: "rgba(247, 147, 26, 1)",
+      brightOrange: "rgba(245, 158, 11, 1)",
+      yellowGreen: "rgba(199, 217, 0, 1)",
+      White: "rgba(255, 255, 255, 0.5)",
+      brightRed: "rgba(255, 3, 3, 1)",
+      orangeRed: "rgba(255, 88, 3, 1)",
+      emeraldGreen: "rgba(0, 204, 94, 1)",
     },
     gradients: {
       drawer:
@@ -292,6 +310,19 @@ const theme = createTheme({
             "&:hover": {
               backgroundColor: "rgba(235, 90, 25, 1)",
             },
+          },
+        },
+        {
+          // 🟠 Calculator toggle button (small, orange when selected)
+          props: { variant: "predictorBtn" },
+          style: {
+            // background: "rgba(255, 162, 6, 1)",
+            border: "1px solid rgba(158, 158, 158, 1)",
+            color: "rgba(255, 255, 255, 0.5)",
+            padding: "13px 100px",
+            fontSize: "18px",
+            minHeight: "36px",
+            borderRadius: "30px",
           },
         },
       ],

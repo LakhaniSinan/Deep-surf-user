@@ -6,12 +6,11 @@ import MlIcon from "../../assets/icons/mt-icon.svg"
 import CustomSelect from '../../components/customSelect'
 import CustomCheckbox from '../../components/cutomChecked'
 // import CustomCheckbox from '../../components/cutomChecked'
-import PredictorImage from "../../assets/icons/predictor-icon.svg"
-import AiPumpScannerIcon from "../../assets/icons/ai-pump-scanner.svg"
+import AiDumpScannerIcon from "../../assets/icons/ai-dump-predicator.svg"
 import PromContent from './aiPumpContent/prom'
+import DumpPornContent from './aiDumpContent/porm'
 
-
-const AiPumpScanner = () => {
+const AiDumpScanner = () => {
     const [scanType, setScanType] = useState("");
     const buttonData = [
         {
@@ -31,19 +30,19 @@ const AiPumpScanner = () => {
     ]
     const data = [
         {
-            value: "774",
+            value: "928",
             decription: "Analyzed"
         },
         {
-            value: "16",
+            value: "21",
             decription: "Found"
         },
         {
-            value: "45",
+            value: "59",
             decription: "Avg Score"
         },
         {
-            value: "305%",
+            value: "429%",
             decription: "Max Potential"
         },
     ]
@@ -83,7 +82,7 @@ const AiPumpScanner = () => {
                         fontSize={{ xs: "16px", sm: "20px" }}
                         fontWeight={650}
                     >
-                        AI Pump Scanner
+                        AI Dump Scanner
                     </Typography>
                 </Box>
 
@@ -105,14 +104,26 @@ const AiPumpScanner = () => {
                             borderRadius: "15px",
                         }}
                     />
+
+                    {/* <CustomButton
+                        icon={<img src={MlIcon} />}
+                        title="ML"
+                        width={{ xs: "100%", sm: "auto" }}
+                        sx={{
+                            backgroundColor: "neutral.darkGrey",
+                            border: "1px solid rgba(127, 127, 127, 1)",
+                            fontSize: { xs: "14px", sm: "20px" },
+                            borderRadius: "15px",
+                        }}
+                    /> */}
                 </Box>
             </Box>
             <Box>
                 <Typography color='neutral.Snowwhite' fontSize={"15px"} letterSpacing={1.2} fontWeight={400}>
-                    1000+ coins • Memes • Lowcaps • New Listings • 20+ patterns
+                    3000+ coins • Finding dump signals • Short signals • 20+ patterns
                 </Typography>
             </Box>
-            <Box display={"flex"} gap={"10px"} mt={2}>
+            <Box display={"flex"} gap={"10px"} mt={1}>
                 <Box>
                     <Typography color='neutral.neutralGrey' fontSize={"15px"} fontWeight={600}>
                         Categories:
@@ -137,7 +148,7 @@ const AiPumpScanner = () => {
 
             </Box>
             <Box mt={4}>
-                <Container maxWidth="lg">
+                <Container maxWidth="xl">
                     <Grid container spacing={2}>
                         {data.map((item, index) => {
                             const valueColors = [
@@ -146,7 +157,6 @@ const AiPumpScanner = () => {
                                 "text.yellowGreen",
                                 "neutral.Snowwhite",
                             ];
-
                             return (
                                 <Grid item size={{ xs: 12, sm: 3, md: 3 }} key={index}>
                                     <Box
@@ -181,6 +191,7 @@ const AiPumpScanner = () => {
                     </Grid>
                 </Container>
             </Box>
+
             <Box mt={3}>
                 <Grid container spacing={5}>
                     <Grid item size={{ xs: 12, md: 4 }}>
@@ -257,24 +268,34 @@ const AiPumpScanner = () => {
                 </Box>
                 <Box display={"flex"} justifyContent={"center"} mt={7}>
                     <Box mt={1}>
-                        <img src={AiPumpScannerIcon} style={{ width: "90px", height: "90px" }} />
+                        <img src={AiDumpScannerIcon} style={{ width: "50px", height: "50px" }} />
                     </Box>
                 </Box>
                 <Box textAlign={"center"}>
                     <Typography color="neutral.Snowwhite" fontSize={"23px"} fontWeight={600} letterSpacing={1}>
-                        AI Pump Predictor
+                        AI Dump Predictor
                     </Typography>
                 </Box>
+                {/* <Box textAlign={"center"} >
+                    <Typography color="rgba(255, 255, 255, 0.5)" fontWeight={400} >
+                        Analysis of  <span style={{ color: "rgba(255, 100, 33, 1)" }}>3000% coins </span> (Futures + Spot)
+                    </Typography>
+                </Box> */}
+                {/* <Box textAlign={"center"} >
+                    <Typography color="rgba(255, 255, 255, 0.5)" fontWeight={400} >
+                        Order Book • CVD(sell) • Liquidation Zones • OI • Funding • 20+ patterns
+                    </Typography>
+                </Box> */}
                 <Box display={"flex"} justifyContent={"center"} gap={"10px"} mt={3}>
                     <CustomButton
-                        title={"50+ memecoins"}
+                        title={"High Risk"}
                         variant='predictorBtn'
                         sx={{
                             borderRadius: "20px"
                         }}
                     />
                     <CustomButton
-                        title={"100+ lowcaps"}
+                        title={"Long Squeeze"}
                         variant='predictorBtn'
                         sx={{
                             borderRadius: "20px"
@@ -282,7 +303,7 @@ const AiPumpScanner = () => {
 
                     />
                     <CustomButton
-                        title={"New listings"}
+                        title={"OI Unwinding"}
                         variant='predictorBtn'
                         sx={{
                             borderRadius: "20px"
@@ -291,14 +312,14 @@ const AiPumpScanner = () => {
                 </Box>
                 <Box>
                     <Typography color="neutral.Snowwhite" fontSize={"15px"} fontWeight={400} textAlign={"center"} mt={2}>
-                        Low-cap potential: 100-500%+ even when BTC is sideways
+                        Finding coins with dump signals for short positions
                     </Typography>
                 </Box>
             </Box>
             <Box>
-                <PromContent />
+                <DumpPornContent />
             </Box>
         </Box >
     )
 }
-export default AiPumpScanner
+export default AiDumpScanner

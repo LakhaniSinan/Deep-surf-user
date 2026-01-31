@@ -1,36 +1,20 @@
 import { Box, Typography } from '@mui/material'
+import DrowpDownIcon from "../../assets/icons/drowpIcon.svg"
 
 const HeaderText = ({
     title,
     subtile,
     icon,
-    btnText,
     color,
     backgroundColor,
     width,
     fontSize,
-    fontWeight,
-    tittleFontSize,
-    titleFontWeight,
-    borderRadius,
-    border
+    fontWeight
 }) => {
     return (
-        <Box
-            display="flex"
-            flexDirection={{ xs: "column", md: "row" }}
-            justifyContent="space-between"
-            alignItems={{ xs: "flex-start", md: "center" }}
-            gap={{ xs: "12px", md: 0 }}
-        >
-
-            {/* Left side */}
-            <Box display="flex" gap="12px" alignItems="center" flexWrap="wrap">
-                <Typography
-                    color={color || 'text.almostWhite'}
-                    fontSize={{ xs: "12px", md: tittleFontSize || "21px" }}
-                    fontWeight={titleFontWeight || 600}
-                >
+        <Box display="flex" justifyContent="space-between">
+            <Box display="flex" gap="20px" alignItems="center">
+                <Typography color={color || 'text.almostWhite'} fontSize="21px" fontWeight={600}>
                     {title}
                 </Typography>
 
@@ -38,14 +22,13 @@ const HeaderText = ({
                     <Box
                         bgcolor={backgroundColor || "background.carmineRed"}
                         textAlign="center"
-                        width={{ xs: "60px", md: width || "70px" }}
-                        borderRadius={borderRadius || "5px"}
+                        width={width || "70px"}
+                        borderRadius="5px"
                         padding={0.3}
-                        border={border}
                     >
                         <Typography
                             color="neutral.Snowwhite"
-                            fontSize={{ xs: "10px", md: fontSize }}
+                            fontSize={fontSize}
                             fontWeight={fontWeight}
                         >
                             {subtile}

@@ -55,18 +55,20 @@ function CustomInput({
       }}
       sx={(theme) => ({
         "& .MuiOutlinedInput-root": {
-          borderRadius: "16px",
+          borderRadius: "10px",
           background: inputBgColor || "#242424",
-          border: "0.1px solid #FFFFFF", "& fieldset": {
-            border: "none"
-          },
-          "&:hover": {
-            background: inputBgColor || "#2F2F2F",
-          },
-          "&.Mui-focused": {
-            background: inputBgColor || "#1f1f1f",
-            borderColor: "transparentF",
-          },
+          border: "1px solid rgba(127, 127, 127, 1)",
+          padding : 0.2
+          // border: "0.1px solid #FFFFFF", "& fieldset": {
+          //   border: "none"
+          // },
+          // "&:hover": {
+          //   background: inputBgColor || "#2F2F2F",
+          // },
+          // "&.Mui-focused": {
+          //   background: inputBgColor || "#1f1f1f",
+          //   borderColor: "transparentF",
+          // },
         },
         "& .MuiInputBase-input": {
           padding: "10px 12px",
