@@ -140,13 +140,13 @@ const APP_Route = [
     exact: "exact",
     path: "/calculator",
   },
-  {
-    id: 7,
-    name: "Pro Analysis",
-    component: <ProAnalysis />,
-    exact: "exact",
-    path: "/pro-analytics",
-  },
+  // {
+  //   id: 7,
+  //   name: "Pro Analysis",
+  //   component: <ProAnalysis />,
+  //   exact: "exact",
+  //   path: "/pro-analytics",
+  // },
   // {
   //   id: 8,
   //   name: "Ai Tools",
