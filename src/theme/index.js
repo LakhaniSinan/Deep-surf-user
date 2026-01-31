@@ -73,6 +73,9 @@ const theme = createTheme({
       Emerald: "rgba(16, 185, 129, 1)",
       carmineRed: "rgba(239, 68, 68, 1)",
       yellowGreen: "rgba(199, 217, 0, 1)",
+      yellow: "rgba(237, 255, 33, 1)",
+      brightRed: "rgba(255, 76, 5, 1)",
+      purpleColor: "rgba(156, 57, 255, 1)",
     },
     text: {
       primary: "#ffff",
@@ -102,7 +105,7 @@ const theme = createTheme({
       silverGrey: "rgba(171, 175, 180, 1)",
       ghostGrey: "rgba(250, 251, 252, 1)",
       slateGrey: "rgba(155, 163, 175, 1)",
-      limeGreen : "rgba(0, 255, 30, 1)",
+      limeGreen: "rgba(0, 255, 30, 1)",
       almostWhite: "rgba(250, 251, 252, 1)",
       Emerald: "rgba(16, 185, 129, 1)",
       carmineRed: "rgba(239, 68, 68, 1)",

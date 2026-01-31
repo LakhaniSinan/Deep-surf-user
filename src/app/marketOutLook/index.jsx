@@ -123,7 +123,6 @@ const MarketOutLook = () => {
               // fetchMarketData={getMarketOutData} 
               whaleTrackers={whale}
             />
-            <MarketDataMetric />
           </>
         )}
       </Container>
