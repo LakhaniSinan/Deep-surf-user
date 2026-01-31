@@ -111,7 +111,7 @@ const WhalesTrackers = ({ data }) => {
                                         PositionSize
                                     </Typography>
                                     <Typography fontSize={"13px"}>
-                                        {item.positionSize}
+                                        {item?.positionSize}
                                     </Typography>
                                 </Box>
                                 <Box>
@@ -119,7 +119,7 @@ const WhalesTrackers = ({ data }) => {
                                         Price
                                     </Typography>
                                     <Typography fontSize={"13px"}>
-                                        {item.price}
+                                        {item?.price}
                                     </Typography>
                                 </Box>
                                 <Box>
@@ -127,7 +127,7 @@ const WhalesTrackers = ({ data }) => {
                                         Pnl
                                     </Typography>
                                     <Typography fontSize={"13px"} color={item?.pnl?.includes("+") ? "neutral.brightGreen" : "neutral.brightRed"}>
-                                        {item.pnl}
+                                        {item?.pnl}
                                     </Typography>
                                 </Box>
                                 <Box>
@@ -135,13 +135,13 @@ const WhalesTrackers = ({ data }) => {
                                         Leverage
                                     </Typography>
                                     <Typography fontSize={"13px"} color="neutral.Snowwhite">
-                                        {item.leverage}
+                                        {item?.leverage}
                                     </Typography>
                                 </Box>
                             </Box>
                             <Box display="flex" justifyContent="space-between" mt={1}>
                                 <Typography sx={{ fontSize: "15px", marginTop: "30px", color: "#FFF" }}>
-                                    {item.symbol}
+                                    {item?.symbol}
                                 </Typography>
 
                                 <Box display="flex" gap="20px" mt="10px">
@@ -150,9 +150,9 @@ const WhalesTrackers = ({ data }) => {
                                             Liquidation
                                         </Typography>
                                         <Typography fontSize="14px" color="rgba(255, 255, 255, 1)" fontWeight={600}>
-                                            {Number.isNaN(Number(item.liquidation?.replace("$", "")))
+                                            {Number.isNaN(Number(item?.liquidation?.replace("$", "")))
                                                 ? "-"
-                                                : item.liquidation}
+                                                : item?.liquidation}
                                         </Typography>
                                     </Box>
                                 </Box>

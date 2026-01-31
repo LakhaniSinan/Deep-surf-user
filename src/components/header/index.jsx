@@ -23,26 +23,16 @@ const Header = () => {
   const openMenu = Boolean(anchorEl);
   const { t } = useTranslation();
   const navItems = [
-    { link: "/dashboard", label: t("dashboard.navitem.dashboard") },
-    { link: "/journal", label: t("dashboard.navitem.journal") },
-    { link: "/chart", label: t("dashboard.navitem.chart") },
-    { link: "/calculator", label: t("dashboard.navitem.calculator") },
-    // { link: "/ai-tools", label: t("dashboard.navitem.aiTools") },
-    { link: "/ai-tools", label: t("dashboard.navitem.aiTools") },
-    { link: "/pro-analytics", label: t("dashboard.navitem.proAnalytics") },
-    { link: "/market-outlook", label: t("dashboard.navitem.marketOutlook") },
-    { link: "/notification", label: t("dashboard.navitem.notification") }
-  ]
-  // const navItems = [
-  //   { link: "/dashboard", label: "Dashboard" },
-  //   { link: "/journal", label: "Journal" },
-  //   { link: "/chart", label: "Chart" },
-  //   { link: "/calculator", label: "Calculator" },
-  //   { link: "/ai-tools", label: "AI Tools" },
-  //   { link: "/pro-analytics", label: "Pro Analytics" },
-  //   { link: "/market-outlook", label: "Market Outlook" },
-  //   { link: "/notification", label: "Notification" }
-  // ];
+    { link: "/dashboard", label: "Dashboard" },
+    { link: "/journal", label: "Journal" },
+    { link: "/coming-soon", label: "Chart" },
+    { link: "/calculator", label: "Calculator" },
+    { link: "/ai-tools", label: "AI Tools" },
+    // { link: "/pro-analytics", label: "Pro Analytics" },
+    { link: "/pro-analytics", label: "Pro Analytics" },
+    { link: "/market-outlook", label: "Market Outlook" },
+    { link: "/notification", label: "Notification" }
+  ];
 
   const [activeNav, setActiveNav] = useState(() => {
     const currentPath = location.pathname;

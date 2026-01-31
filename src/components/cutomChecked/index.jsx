@@ -9,6 +9,7 @@ const CustomCheckbox = ({
     label = "Default Text",
     icon,
     checkedIcon,
+    color
 
 }) => {
     return (
@@ -23,12 +24,13 @@ const CustomCheckbox = ({
                         color: "#555",
                         "&.Mui-checked": {
                             color: "#fff",
+                         
                         },
                     }}
                 />
             }
             label={
-                <Typography fontSize="14px" color="neutral.Snowwhite">
+                <Typography fontSize="14px" color={color || "neutral.Snowwhite"}>
                     {label}
                 </Typography>
             }
