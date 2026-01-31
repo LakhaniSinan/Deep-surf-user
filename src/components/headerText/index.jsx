@@ -9,7 +9,8 @@ const HeaderText = ({
     backgroundColor,
     width,
     fontSize,
-    fontWeight
+    fontWeight,
+    btnText
 }) => {
     return (
         <Box display="flex" justifyContent="space-between">

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Box, Chip, Grid, Typography } from "@mui/material";
-
 import CustomButton from "../../components/customButton";
 import CustomInput from "../../components/customInput";
-
 import EffectIcon from "../../assets/icons/effects.svg";
 import AnalysisIcon from "../../assets/icons/search-analysis-iocn.svg";
 import CoinAnalysis from "../../assets/icons/coin-analysis.svg";
@@ -49,14 +47,14 @@ const AiProof = () => {
                 </Typography>
 
                 <Grid container spacing={2} mt={1}>
-                    <Grid item size={{xs : 12 , md : 10}} >
+                    <Grid item size={{ xs: 12, md: 10 }} >
                         <CustomInput placeholder="BTC, ETH, SOL..." />
                     </Grid>
 
-                    <Grid item xs={12} md={2}>
+                    <Grid item size={{ xs: 12, md: 2 }}>
                         <CustomButton
                             variant="analyzeButton"
-                            icon={<img src={EffectIcon} width={30} height={30} />}
+                            icon={<img src={EffectIcon} width={20} height={20} />}
                             title="Analyze"
                             onClick={handleAnalyze}
                             radius={18}
