@@ -15,6 +15,9 @@ import CryptocurrencyEventsSkeleton from "../../components/skeleton/marketOutLoo
 import TradingSkeleton from "../../components/skeleton/marketOutLookSkeleton/trading";
 import MarkDataMetricSkeleton from "../../components/skeleton/marketOutLookSkeleton/marketAnanlysis";
 import { useTranslation } from "react-i18next";
+import MarketMetricData from "./marketMetricData";
+import EventsHubSection from "./eventsHubSection";
+import SelectorRotation from "./selectorRotation";
 const MarketOutLook = () => {
   const [marketOutLook, setMarketOutLook] = useState(null);
   console.log("deedgvebhdededed", marketOutLook);
@@ -116,11 +119,14 @@ const MarketOutLook = () => {
               data3={onChainSignals}
             />
             <Trading tradingData={tradingRecomendation} />
+            <MarketMetricData />
+            <EventsHubSection />
+            <SelectorRotation />
             <MarkDataMetric
               top={topMover}
               marketMetricesData={marketMetrics}
               riskCalendar={marketOutLook}
-              // fetchMarketData={getMarketOutData} 
+              // fetchMarketData={getMarketOutData}
               whaleTrackers={whale}
             />
           </>
