@@ -490,5 +490,15 @@
     "notificationHours": "48 Hours Left Notification",
     "userEmail": "sarah.j@example.com",
     "userName": "Alice Johnson"
+  },
+  "proAnalytices": {
+    "proAnalyticsTittle": "Pro Analytics",
+    "mtfScan": "MTF Scan — Multi-Timeframe Analysis",
+    "whatIsMtfAnalysis": "What is MTF Analysis?",
+    "enterCoinTicker": "Enter coin ticker",
+    "quickSelect": "Quick select",
+    "heatMap": {
+      "heatMapTittle": "Heatmap — Volume & Volatility"
+    }
   }
 }

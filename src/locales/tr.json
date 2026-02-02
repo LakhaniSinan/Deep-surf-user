@@ -488,5 +488,15 @@
     "notificationHours": "Bildirim: 48 Saat Kaldı",
     "userEmail": "sarah.j@example.com",
     "userName": "Alice Johnson"
+  },
+  "proAnalytices": {
+    "proAnalyticsTittle": "Pro Analitik",
+    "mtfScan": "MTF Tarama — Çok Zamanlı Analiz",
+    "whatIsMtfAnalysis": "MTF Analizi Nedir?",
+    "enterCoinTicker": "Coin sembolünü girin",
+    "quickSelect": "Hızlı seçim",
+    "heatMap": {
+      "heatMapTittle": "Heatmap — Volume & Volatility"
+    }
   }
 }

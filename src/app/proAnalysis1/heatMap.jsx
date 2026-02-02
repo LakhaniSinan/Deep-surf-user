@@ -8,9 +8,11 @@ import CustomButton from '../../components/customButton'
 import CustomCheckbox from '../../components/cutomChecked'
 import TradingCard from '../../components/tradeCard'
 import VolumeCard from '../../components/volumeCard'
+import { useTranslation } from "react-i18next";
 
 
 const HeatMap = () => {
+    const { t } = useTranslation();
     const [selectedTimeframe, setSelectedTimeframe] = useState("24h");
     const heatMapData = [
         " 24h Volume - top coins by 24h trading volume (liquidity)",

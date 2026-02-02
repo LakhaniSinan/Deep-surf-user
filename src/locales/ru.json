@@ -488,5 +488,15 @@
     "notificationHours": "Уведомление: осталось 48 часов",
     "userEmail": "sarah.j@example.com",
     "userName": "Alice Johnson"
+  },
+  "proAnalytices": {
+    "proAnalyticsTittle": "Профессиональная аналитика",
+    "mtfScan": "MTF Скан — Многофреймовый анализ",
+    "whatIsMtfAnalysis": "Что такое MTF анализ?",
+    "enterCoinTicker": "Введите тикер монеты",
+    "quickSelect": "Быстрый выбор",
+    "heatMap": {
+      "heatMapTittle": "Heatmap — Volume & Volatility"
+    }
   }
 }

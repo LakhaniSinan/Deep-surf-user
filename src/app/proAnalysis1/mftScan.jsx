@@ -4,7 +4,10 @@ import ArrowBtn from "../../assets/icons/arrow-white-btn.svg"
 import CustomInput from '../../components/customInput'
 import SearchIcon from "../../assets/icons/Vector.svg"
 import HeatMap from './heatMap'
+import { useTranslation } from "react-i18next";
+
 const MftScan = () => {
+    const { t } = useTranslation();
     const mftscanData = [
         "15m - short-term trend and entry points",
         "1h - main working timeframe",
@@ -37,14 +40,14 @@ const MftScan = () => {
             <Box bgcolor={"background.charcoal"} fontSize={"20px"} p={3} borderRadius={"10px"} mt={2}>
                 <Box mt={2}>
                     <Typography color='neutral.Snowwhite' fontSize={"20px"} fontWeight={600}>
-                        MTF Scan — Multi-Timeframe Analysis
+                        {t("proAnalytices.mtfScan")}
                     </Typography>
                 </Box>
                 <Box bgcolor={"neutral.darkGrey"} mt={2} borderRadius={"35px"} p={3}>
                     <Box display={"flex"} justifyContent={"space-between"}>
                         <Box>
                             <Typography color='neutral.Snowwhite' fontSize={"15px"} fontWeight={600}>
-                                What is MTF Analysis?
+                                {t("proAnalytices.whatIsMtfAnalysis")}
                             </Typography>
                             <Typography color='neutral.coolGray' fontSize={"12px"}>
                                 24 hours BEFORE: Close 50% of positions with high leverage (10x). Set alerts at $59k and $63k.
@@ -85,7 +88,7 @@ const MftScan = () => {
                 <Box bgcolor={"neutral.darkGrey"} p={3} borderRadius={"35px"} mt={2}>
                     <Box>
                         <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"25px"}>
-                            Enter coin ticker
+                            {t("proAnalytices.enterCoinTicker")}
                         </Typography>
                     </Box>
                     <Box mt={3}>
@@ -104,7 +107,7 @@ const MftScan = () => {
                     <Box display={"flex"} gap={"10px"} mt={2} alignItems={"center"}>
                         <Box>
                             <Typography color='neutral.Snowwhite' fontSize={"15px"}>
-                                Quick select:
+                                {t("proAnalytices.quickSelect")}
                             </Typography>
                         </Box>
                         {coinName.map((item, index) => (
@@ -121,7 +124,7 @@ const MftScan = () => {
 
                 </Box>
             </Box>
-            
+
         </>
     )
 }

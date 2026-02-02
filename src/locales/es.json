@@ -123,7 +123,6 @@
     "topCoinByVolume": {
       "notFound": "No encontrado",
       "top10ByVolume": "Top 10 por volumen"
-
     }
   },
   "journal": {
@@ -458,5 +457,15 @@
     "notificationHours": "Notificación: 48 horas restantes",
     "userEmail": "sarah.j@example.com",
     "userName": "Alice Johnson"
+  },
+  "proAnalytices": {
+    "proAnalyticsTittle": "Analítica Pro",
+    "mtfScan": "Escaneo MTF — Análisis Multitemporal",
+    "whatIsMtfAnalysis": "¿Qué es el Análisis MTF?",
+    "enterCoinTicker": "Ingrese el símbolo de la moneda",
+    "quickSelect": "Selección rápida",
+    "heatMap": {
+      "heatMapTittle": "Heatmap — Volume & Volatility"
+    }
   }
 }
