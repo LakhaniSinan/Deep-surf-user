@@ -127,6 +127,15 @@ const PlayBookTester = () => {
                                             "& .MuiOutlinedInput-root": {
                                                 border: "0.1px solid rgba(127, 127, 127, 1)",
                                                 borderRadius: "10px",
+                                                "& fieldset": {
+                                                    border: "none",
+                                                },
+                                                "&.Mui-focused fieldset": {
+                                                    border: "none",
+                                                },
+                                                "&:hover fieldset": {
+                                                    border: "none",
+                                                },
                                             }
                                         }}
                                     />
@@ -148,6 +157,15 @@ const PlayBookTester = () => {
                                         sx={{
                                             "& .MuiInputBase-root": {
                                                 borderRadius: "10px",
+                                                "& fieldset": {
+                                                    border: "none",
+                                                },
+                                                "&.Mui-focused fieldset": {
+                                                    border: "none",
+                                                },
+                                                "&:hover fieldset": {
+                                                    border: "none",
+                                                },
                                             }
                                         }}
 
@@ -204,6 +222,16 @@ const PlayBookTester = () => {
                                             "& .MuiOutlinedInput-root": {
                                                 border: "0.1px solid rgba(127, 127, 127, 1)",
                                                 borderRadius: "10px",
+                                                "& fieldset": {
+                                                    border: "none",
+                                                },
+                                                "&.Mui-focused fieldset": {
+                                                    border: "none",
+                                                },
+                                                "&:hover fieldset": {
+                                                    border: "none",
+                                                },
+
                                             }
                                         }}
                                     />
@@ -224,6 +252,15 @@ const PlayBookTester = () => {
                                             "& .MuiOutlinedInput-root": {
                                                 border: "0.1px solid rgba(127, 127, 127, 1)",
                                                 borderRadius: "10px",
+                                                "& fieldset": {
+                                                    border: "none",
+                                                },
+                                                "&.Mui-focused fieldset": {
+                                                    border: "none",
+                                                },
+                                                "&:hover fieldset": {
+                                                    border: "none",
+                                                },
                                             }
                                         }}
 

@@ -171,7 +171,7 @@ const EditJournal = () => {
               {t("journal.myCoinsAlerts")}
             </Typography>
             <Typography variant="body2" color={theme.palette.text.secondary}>
-             {t("journal.myCoinsAlertHeading")}
+              {t("journal.myCoinsAlertHeading")}
             </Typography>
           </Box>
 
@@ -269,9 +269,6 @@ const EditJournal = () => {
                   disabled
                 />
               </Stack>
-
-
-
               <Stack direction="row" spacing={2} mt={2} alignItems="center">
                 <Box sx={{ flex: 1 }}>
                   <CustomSelect
@@ -279,10 +276,8 @@ const EditJournal = () => {
                     options={pairOptions}
                     placeholder={t("journal.selectPriceRelation")}
                     onChange={(e) => handleChange("priceRelation", e.target.value)}
-
                   />
                 </Box>
-
                 <Box sx={{ width: "505px" }}>
                   <CustomInput
                     sx={inputStyles}
@@ -292,8 +287,6 @@ const EditJournal = () => {
                   />
                 </Box>
               </Stack>
-
-
               <CustomButton
                 title={t("journal.saveAlert")}
                 handleClickBtn={getJournalAlertById}

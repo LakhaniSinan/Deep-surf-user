@@ -4,7 +4,7 @@ export const styles = {
   pageRoot: {
     position: "relative",
     minHeight: "100vh",
-    backgroundColor: theme.palette.background.default,
+    // backgroundColor: theme.palette.background.default,
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",

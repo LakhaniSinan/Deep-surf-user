@@ -79,10 +79,10 @@ const CurrentPrice = ({ exchangeMarketData, calculatorResult }) => {
     <Stack
       spacing={3}
       sx={{
-        backgroundColor: "#161616",
+        backgroundColor: "rgba(28, 28, 28, 1)",
         borderRadius: "12px",
-        border: "1px solid rgba(255,255,255,0.08)",
         p: 2.5,
+        height: { xs: "auto", md: "1218px" }
       }}
     >
       {/* Current Price Section */}
@@ -128,17 +128,18 @@ const CurrentPrice = ({ exchangeMarketData, calculatorResult }) => {
                 mt: 1,
               }}
             >
-              {/* {t("Chart.binanceFutures")} */}
               {calculatorResult?.pair}
             </Box>
           </Box>
         </Stack>
       </Box>
       {/* Calculator Results Grid */}
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         {data.map((card) => (
           <Grid item size={{ xs: 12, sm: 6 }} key={card.id}>
-            <CalculatorResultCard items={card.items} />
+            <Box >
+              <CalculatorResultCard items={card.items} />
+            </Box>
           </Grid>
         ))}
       </Grid>

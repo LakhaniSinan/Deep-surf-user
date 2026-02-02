@@ -12,6 +12,8 @@ const SettingsForm = ({
   timezoneOptions,
   currencyOptions,
 }) => {
+  console.log("language" , language );
+  
   const { t } = useTranslation();
 
   return (

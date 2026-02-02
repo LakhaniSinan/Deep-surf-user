@@ -45,7 +45,7 @@ const MftScan = () => {
                     <Box display={"flex"} justifyContent={"space-between"}>
                         <Box>
                             <Typography color='neutral.Snowwhite' fontSize={"15px"} fontWeight={600}>
-                                 {t("proAnalytices.whatIsMtfAnalysis")}
+                                {t("proAnalytices.whatIsMtfAnalysis")}
                             </Typography>
                             <Typography color='neutral.coolGray' fontSize={"12px"}>
                                 24 hours BEFORE: Close 50% of positions with high leverage (10x). Set alerts at $59k and $63k.
@@ -98,6 +98,15 @@ const MftScan = () => {
                                 "& .MuiOutlinedInput-root": {
                                     border: "0.1px solid rgba(127, 127, 127, 1)",
                                     borderRadius: "20px",
+                                    "& fieldset": {
+                                        border: "none",
+                                    },
+                                    "&.Mui-focused fieldset": {
+                                        border: "none",
+                                    },
+                                    "&:hover fieldset": {
+                                        border: "none",
+                                    },
                                 }
                             }}
                         />

@@ -155,29 +155,33 @@ const Calculator = () => {
         <Box>
           <AiOutCome />
         </Box>
-        <Grid container spacing={2} mt={3}>
-          <Grid item size={{ xs: 12, md: 6 }}>
-            <CalculatorForm
-              exchange={exchange}
-              metaData={exchangePair}
-              exchangeMarketData={exchangeMarketData}
-              exchangeAtr={exchangeAtr}
-              setTf={setTf}
-              setLen={setLen}
-              pair={selectedPair}
-              setPair={setSelectedPair}
-              setCalculatorResult={setCalculatorResult}
-              onCalculate={handleCalculate}
-              isLoading={isLoading}
-            />
+        <Box bgcolor={"background.charcoal"} p={1.5} borderRadius={"20px"} mt={2}>
+          <Grid container spacing={1} mt={2} >
+            <Grid item size={{ xs: 12, md: 6 }}>
+              <CalculatorForm
+                exchange={exchange}
+                metaData={exchangePair}
+                exchangeMarketData={exchangeMarketData}
+                exchangeAtr={exchangeAtr}
+                setTf={setTf}
+                setLen={setLen}
+                pair={selectedPair}
+                setPair={setSelectedPair}
+                setCalculatorResult={setCalculatorResult}
+                onCalculate={handleCalculate}
+                isLoading={isLoading}
+              />
+            </Grid>
+            <Grid item size={{ xs: 12, md: 6 }} >
+              <Box>
+                <CurrentPrice
+                  exchangeMarketData={exchangeMarketData}
+                  calculatorResult={calculatorResult}
+                />
+              </Box>
+            </Grid>
           </Grid>
-          <Grid item size={{ xs: 12, md: 6 }}>
-            <CurrentPrice
-              exchangeMarketData={exchangeMarketData}
-              calculatorResult={calculatorResult}
-            />
-          </Grid>
-        </Grid>
+        </Box>
         <Box>
           <PlayBookBuilder />
         </Box>

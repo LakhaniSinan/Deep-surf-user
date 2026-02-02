@@ -950,6 +950,7 @@ import { useTranslation } from "react-i18next";
 import { getCalculator, simulateApi } from "../../services/modules/calculator";
 import { toast } from "react-toastify";
 import { jounralSearchApi } from "../../services/modules/journal";
+import AccordingHeader from "../../components/accordingHeader";
 
 const CalculatorForm = ({
   exchange,
@@ -1217,8 +1218,15 @@ const CalculatorForm = ({
     onCalculate(formData);
   };
 
+  const data = [
+    "Select an exchange and a coin",
+    "Set the deposit and risk (%)",
+    "Select a direction (Long/Short) and leverage",
+    "Click Calculate — the system will automatically calculate Entry/Stop/Take and position size"
+  ]
+
   return (
-    <Box sx={{ background: "#161616", borderRadius: "16px", border: "1px solid rgba(255,255,255,0.08)", p: 2 }}>
+    <Box sx={{ background: "rgba(28, 28, 28, 1)", borderRadius: "16px", p: 2.5 }}>
       <Stack spacing={2}>
         {/* Exchange & Fees Section */}
         <Grid container spacing={1}>
@@ -1495,6 +1503,18 @@ const CalculatorForm = ({
           }}
         />
       </Stack>
+      <Box bgcolor={"rgba(38, 38, 38, 1)"} borderRadius={"10px"} mt={2} p={2.5}>
+        <Box>
+          <Typography color="neutral.Snowwhite">
+            How to use the calculator:
+          </Typography>
+        </Box>
+        <Box>
+          {data.map((item, index) => (
+            <AccordingHeader tittle={item} key={index} />
+          ))}
+        </Box>
+      </Box>
     </Box>
   );
 };

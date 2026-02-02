@@ -49,21 +49,43 @@ function PersonalInformation() {
     }));
   };
   const handleImageUpload = async (event) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-    console.log("file", file);
-    try {
-      setIsLoading(true);
-      const uploadRes = await uploadMediaService(file);
+  const file = event.target.files?.[0];
+  if (!file) return;
+
+  try {
+    setIsLoading(true);
+
+    const uploadRes = await uploadMediaService(file);
+
+    // ✅ backend update
+    const payload = {
+      profilePicture: uploadRes,
+    };
+
+    const response = await updateUser(payload);
+
+    if (response?.data?.status === "success") {
       setProfilePicture(uploadRes);
-      toast.success("Profile picture uploaded!");
-      event.target.value = "";
-    } catch (error) {
-      toast.error(error?.message || "Image upload failed");
-    } finally {
-      setIsLoading(false);
+
+      // ✅ auth store update
+      setUser({
+        ...user,
+        profilePicture: uploadRes,
+      });
+
+      toast.success("Profile picture updated!");
+    } else {
+      toast.error("Failed to update profile picture");
     }
-  };
+
+    event.target.value = "";
+  } catch (error) {
+    toast.error(error?.message || "Image upload failed");
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
   const handlePasswordChange = async () => {
     const isValid = setPasswordValidation(

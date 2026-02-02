@@ -64,19 +64,18 @@ const WhatIfSimulator = ({ formData }) => {
       sx={{
         backgroundColor: "#1C1C1C",
         borderRadius: "12px",
-        border: "1px solid rgba(255,255,255,0.08)",
-        p: 2.5,
+        p: 1,
       }}
     >
       <Stack spacing={2}>
         <Stack direction="row" justifyContent="space-between" alignItems="center">
-          <Typography sx={{ fontSize: "16px", fontWeight: 600, color: "#FFFFFF" }}>
+          <Typography sx={{ fontSize: "20px", fontWeight: 600, color: "#FFFFFF" }}>
             {t("Chart.whatIfSimulator")}
           </Typography>
           <Typography
             onClick={handleReset}
             sx={{
-              fontSize: "12px",
+              fontSize: "15px",
               fontWeight: 400,
               color: "#8F8F8F",
               cursor: "pointer",

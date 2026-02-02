@@ -86,6 +86,7 @@ const theme = createTheme({
       mintGreen: "rgba(62, 221, 135, 0.08)",
       transparentRed: "rgba(212, 51, 51, 0.08)",
       charcoalBlack: "rgba(41, 41, 41, 1)",
+      midGrey: "rgba(38, 38, 38, 1)",
     },
     text: {
       primary: "#ffff",
@@ -272,15 +273,10 @@ const theme = createTheme({
           // ⚪ Subtle outlined dark button
           props: { variant: "softOutlined" },
           style: {
-            backgroundColor: "rgba(255,255,255,0.03)",
-            border: "0.5px solid #8F8F8F",
-            color: "#FFFFFF",
+            backgroundColor: "rgba(22, 21, 20, 1)",
+            border: "1.9px solid rgba(255, 255, 255, 1)",
+            color: "rgba(255, 255, 255, 1)",
             padding: "10px 20px",
-            "&:hover": {
-              backgroundColor: "rgba(255,255,255,0.08)",
-              border: "1px solid #8F8F8F",
-              transform: "translateY(-1px)",
-            },
           },
         },
         {
@@ -304,9 +300,9 @@ const theme = createTheme({
           // 📦 Calculator small button (for presets and unselected toggles)
           props: { variant: "calculatorSmall" },
           style: {
-            backgroundColor: "#1A1A1A",
+            backgroundColor: "rgba(38, 38, 38, 1)",
             border: "none",
-            color: "#7B7B7B",
+            color: "rgba(142, 143, 148, 1)",
             padding: "8px 30px",
             fontSize: "14px",
             minHeight: "36px",

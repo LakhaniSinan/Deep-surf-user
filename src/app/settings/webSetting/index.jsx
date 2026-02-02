@@ -10,10 +10,10 @@ import i18n from "../../../i18n";
 
 
 const WebSettings = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const theme = useTheme();
   const [settings, setSettings] = useState({
-    language: "en",
+    language: i18n.language || "en",
     timezone: "pst",
     currency: "usd",
   });
@@ -45,8 +45,9 @@ const WebSettings = () => {
   });
 
   const handleSettingChange = (field, value) => {
-    console.log(value, "valuevaluevaluevalue");
-    i18n.changeLanguage(value);
+    if (field === "language") {
+      i18n.changeLanguage(value);
+    }
     setSettings((prev) => ({ ...prev, [field]: value }));
   };
 
@@ -60,23 +61,23 @@ const WebSettings = () => {
   const languageOptions = [
     {
       value: "en",
-      label: (t("setting.english")),
+      label: (t("header.english")),
       icon: "https://flagcdn.com/w20/gb.png",
     },
     {
       value: "tr",
-      label: "Turkish",
+      label: (t("header.turkish")),
       icon: "https://flagcdn.com/w20/fr.png",
     },
     {
       value: "es",
       icon: "https://flagcdn.com/w20/es.png",
-      label: "Spanish",
+      label: (t("header.spanish")),
     },
     {
       value: "ru",
       icon: "https://flagcdn.com/w20/ru.png",
-      label: "Russian",
+      label: (t("header.russian")),
     },
   ]
 

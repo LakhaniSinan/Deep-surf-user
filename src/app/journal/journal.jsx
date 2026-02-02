@@ -54,18 +54,12 @@ const CoinAlert = () => {
     useEffect(() => {
         getCreateAlert();
     }, []);
-
-    /* =============================
-       DELETE CONFIRM
-    ============================== */
+    
     const confirmDelete = async () => {
         try {
             setDeleteLoading(true);
             const response = await deleteJournalAlertById(selectedId);
-
             toast.success(response?.data?.message || "Deleted successfully");
-
-            // 🔥 DELETE ke baad alerts API dobara call
             await getCreateAlert();
         } catch (error) {
             toast.error(error?.response?.data?.message || "Delete failed");
@@ -75,7 +69,6 @@ const CoinAlert = () => {
             setSelectedId(null);
         }
     };
-
     return (
         <>
             <Header />
@@ -162,10 +155,6 @@ const CoinAlert = () => {
                     </Paper>
                 </Box>
             </Container>
-
-            {/* =============================
-               DELETE CONFIRMATION DIALOG
-            ============================== */}
             <Dialog
                 sx={{
                     "& .MuiDialog-paper": {
@@ -177,7 +166,6 @@ const CoinAlert = () => {
                 onClose={() => !deleteLoading && setOpenDelete(false)}
             >
                 <DialogTitle>Delete Alert</DialogTitle>
-
                 <DialogContent>
                     <DialogContentText>
                         Are you sure you want to delete this alert?
@@ -188,7 +176,7 @@ const CoinAlert = () => {
                     <CustomButton
                         title="Cancel"
                         onClick={() => setOpenDelete(false)}
-                        disabled={deleteLoading}
+                        // disabled={deleteLoading}
                         sx={{
                             backgroundColor: "neutral.charcoalGrey",
                             minWidth: "100px"
@@ -198,7 +186,7 @@ const CoinAlert = () => {
                     <CustomButton
                         title={deleteLoading ? "Deleting..." : "Delete"}
                         onClick={confirmDelete}
-                        disabled={deleteLoading}
+                        // disabled={deleteLoading}
                         loader={isLoading}
                         sx={{
                             backgroundColor: "accent.main",

@@ -107,30 +107,51 @@ const RiskCheck = ({ calculateData }) => {
       sx={{
         backgroundColor: "#1C1C1C",
         borderRadius: "12px",
-        border: "1px solid rgba(255,255,255,0.08)",
-        p: 2.5,
+        p: 1,
         position: "relative",
       }}
     >
       <Stack spacing={2}>
-        {/* Risk Info */}
-        <Box>
-          <Typography
-            sx={{
-              fontSize: "14px",
-              fontWeight: 600,
-              color: calculateData?.riskCheckColor,
-              mb: 0.5,
-            }}
-          >
-            {calculateData?.riskCheck}
-          </Typography>
-          <Typography
-            sx={{ fontSize: "14px", fontWeight: 400, color: "text.bluishGray" }}
-          >
-            {t("Chart.trading")}: ${calculateData?.targetMultiplier}
-          </Typography>
+        <Box display={"flex"} justifyContent={"space-between"}>
+          <Box>
+            <Typography color="rgba(103, 106, 123, 1)" fontWeight={500} fontSize={"12px"}>
+              Risk Check
+            </Typography>
+          </Box>
+          <Box>
+            <Typography
+              sx={{
+                fontSize: "14px",
+                fontWeight: 600,
+                color: "rgba(21, 136, 103, 1)",
+                // mb: 0.5,
+              }}
+            >
+              {calculateData?.riskCheck}
+            </Typography>
+          </Box>
         </Box>
+        {/* Risk Info */}
+        <Box display={"flex"} justifyContent={"space-between"}>
+          <Box>
+            <Typography color="rgba(103, 106, 123, 1)" fontWeight={600} fontSize={"14px"}>
+              Fees Breakdown
+            </Typography>
+          </Box>
+          <Box>
+            <Typography
+              sx={{
+                fontSize: "14px",
+                fontWeight: 600,
+                color: "rgba(109, 113, 129, 1)",
+                mb: 0.5,
+              }}
+            >
+              Trading: $0.04
+            </Typography>
+          </Box>
+        </Box>
+
 
         {/* Action Buttons */}
         <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
@@ -138,7 +159,7 @@ const RiskCheck = ({ calculateData }) => {
             variant="softOutlined"
             title={t("Chart.copyResults")}
             handleClickBtn={copyResults}
-            sx={{ py: 0.75, px: 2, fontSize: "14px", minHeight: "36px", flex: 1, minWidth: "120px" }}
+            sx={{ py: 1, px: 2, fontSize: "14px", minHeight: "36px", flex: 1, minWidth: "120px" }}
           />
           {/* <CustomButton
             variant="gradient"
@@ -157,7 +178,7 @@ const RiskCheck = ({ calculateData }) => {
             width="100%"
           />
         </Grid>
-        <Grid container spacing={2}>
+        <Grid container spacing={0.8}>
 
           <Grid item size={{ xs: 12, md: 6 }}>
             <CSVLink

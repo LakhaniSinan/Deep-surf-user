@@ -166,20 +166,17 @@ const SaveAlert = () => {
                         {t("journal.heading")}
                     </Typography>
                 </Box>
-
                 <Box sx={styles.sectionContainer}>
                     <Box display={"flex"} alignItems={"center"} gap={"10px"}>
                         <Typography variant="h5" color={"neutral.Snowwhite"}>
                             {t("journal.myCoinsAlerts")}
                         </Typography>
                     </Box>
-
                     <Box mt={1}>
                         <Typography variant="body2" color={theme.palette.text.secondary}>
                             {t("journal.myCoinsAlertHeading")}
                         </Typography>
                     </Box>
-
                     <Box sx={styles.formCard}>
                         <Box sx={styles.formInner}>
                             <Box sx={styles.formHeader}>
@@ -194,7 +191,6 @@ const SaveAlert = () => {
                                     </Box>
                                 </Box>
                             </Box>
-
                             <Stack direction="row" spacing={2} mt={5}>
                                 {/* SEARCH INPUT + DROPDOWN */}
                                 <Box sx={{ position: "relative", width: "100%" }}>
@@ -206,8 +202,7 @@ const SaveAlert = () => {
                                         inputBgColor={"rgba(41, 40, 40, 1)"}
                                         error={!!formErrors.ticker}
                                         helperText={formErrors.ticker}
-                                    />
-
+                                    />                                 
                                     {showDropdown && searchResults.length > 0 && (
                                         <Box
                                             sx={{
@@ -271,7 +266,7 @@ const SaveAlert = () => {
                                         helperText={formErrors.priceRelation}
                                     />
                                 </Box>
-
+                                
                                 <Box flex={1}>
                                     <CustomInput
                                         value={formData.value}

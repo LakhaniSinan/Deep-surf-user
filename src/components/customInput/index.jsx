@@ -57,19 +57,20 @@ function CustomInput({
         "& .MuiOutlinedInput-root": {
           borderRadius: "10px",
           background: inputBgColor || "#242424",
-          border: "1px solid rgba(127, 127, 127, 1)",
-          // padding : 0.2
-          // border: "0.1px solid #FFFFFF", "& fieldset": {
-          //   border: "none"
-          // },
-          // "&:hover": {
-          //   background: inputBgColor || "#2F2F2F",
-          // },
-          // "&.Mui-focused": {
-          //   background: inputBgColor || "#1f1f1f",
-          //   borderColor: "transparentF",
-          // },
+
+          "& fieldset": {
+            border: "1px solid rgba(127, 127, 127, 1)",
+          },
+
+          "&:hover fieldset": {
+            border: "1px solid rgba(127, 127, 127, 1)",
+          },
+
+          "&.Mui-focused fieldset": {
+            border: "1px solid rgba(127, 127, 127, 1)",
+          },
         },
+
         "& .MuiInputBase-input": {
           padding: "10px 10px",
           fontSize: "15px",

@@ -1,10 +1,18 @@
 import { ENDPOINTS } from "../endpoints";
 import Api from "../index";
 
-const getPaymentHistory = () => {
-  return Api(ENDPOINTS.PAYMENTHISTORY.PAYMENT_HISTORY, null, "get");
+const getPaymentHistory = ({ language }) => {
+  return Api(
+    `${ENDPOINTS.PAYMENTHISTORY.PAYMENT_HISTORY}?language=${language}`,
+    null,
+    "get",
+  );
 };
 const getPaymentSubscription = () => {
-  return Api(ENDPOINTS.PAYMENTHISTORY.PAYMENT_SUBSCRIPTION, null, "get");
+  return Api(
+    `${ENDPOINTS.PAYMENTHISTORY.PAYMENT_SUBSCRIPTION}?language=${language}`,
+    null,
+    "get",
+  );
 };
-export { getPaymentHistory , getPaymentSubscription};
+export { getPaymentHistory, getPaymentSubscription };

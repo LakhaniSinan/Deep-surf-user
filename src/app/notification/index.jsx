@@ -9,24 +9,27 @@ import NotificationSkeleton from "../../components/skeleton/notification/notific
 import FullPageLoader from "../../app/notification/notificationLoader";
 
 const Notification = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const language = i18n.language
+    console.log("hruifgrifoirfburf", language);
+
     const [isLoading, setIsLoading] = useState(false);
-    const [isFullPageLoading, setIsFullPageLoading] = useState(false); 
+    const [isFullPageLoading, setIsFullPageLoading] = useState(false);
     const [notification, setNotification] = useState([]);
     const [pagination, setPagination] = useState(null);
-
-    const [page, setPage] = useState(1); 
+    const [page, setPage] = useState(1);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const fetchNotifications = async (isReload = false) => {
         try {
             if (isReload) {
                 setIsFullPageLoading(true);
             } else {
-                setIsLoading(true); 
+                setIsLoading(true);
             }
             const response = await getUserNotification({
                 page,
-                limit: rowsPerPage
+                limit: rowsPerPage,
+                language
             });
             const data = response?.data?.data;
 
@@ -42,7 +45,7 @@ const Notification = () => {
 
     useEffect(() => {
         fetchNotifications();
-    }, [page, rowsPerPage]);
+    }, [page, rowsPerPage, language]);
 
     return (
         <Box>

@@ -288,7 +288,6 @@
 // export default Subscription;
 import { Box, Stack, Typography } from "@mui/material";
 import PaginatedTable from "../../../components/dynamicTable";
-import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { getPaymentHistory, getPaymentSubscription } from "../../../services/modules/payment";
 import { toast } from "react-toastify";
@@ -298,8 +297,10 @@ import subscription2 from "../../../assets/icons/subscription2.svg"
 import subscription3 from "../../../assets/icons/subscription3.svg"
 import deepSurfLogo from "../../../assets/icons/deepSurf.svg"
 import SubscriptionSkeleton from "../../../components/skeleton/subscription";
-
+import { useTranslation } from "react-i18next";
 const Subscription = () => {
+  const { t, i18n } = useTranslation();
+  const language = i18n.language
   const [isLoading, setIsLoading] = useState(false);
   const [paymentHistory, setPaymentHistory] = useState(null);
   const [paymentSubscription, setPaymentSubscription] = useState(null);
@@ -307,7 +308,7 @@ const Subscription = () => {
   const handlePaymentHistory = async () => {
     try {
       setIsLoading(true);
-      const response = await getPaymentHistory();
+      const response = await getPaymentHistory({ language });
       const data = response?.data?.data;
       setPaymentHistory(data);
     } catch (error) {
@@ -320,7 +321,7 @@ const Subscription = () => {
   const handlePaymentSubscription = async () => {
     try {
       setIsLoading(true);
-      const response = await getPaymentSubscription();
+      const response = await getPaymentSubscription(language);
       const data = response?.data?.data;
       setPaymentSubscription(data);
     } catch (error) {
@@ -331,8 +332,8 @@ const Subscription = () => {
   };
 
   useEffect(() => {
-    handlePaymentHistory();
-    handlePaymentSubscription();
+    handlePaymentHistory(language);
+    handlePaymentSubscription(language);
   }, []);
 
   const mappedPaymentHistory = paymentHistory?.map(item => ({
@@ -349,7 +350,7 @@ const Subscription = () => {
     else return "month";
   };
 
-  const { t } = useTranslation();
+
   const billingHistoryHeaders = [
     { id: "date", label: "Date", align: "left" },
     { id: "details", label: t("Subscription.details"), align: "left" },
