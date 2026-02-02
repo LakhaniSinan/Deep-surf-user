@@ -5,9 +5,9 @@ import DropDownIcon from "../../assets/icons/Arrow.svg";
 import EthIcon from "../../assets/icons/eth-icon.svg";
 import BtcIcon from "../../assets/icons/bitcoin-logo.svg";
 import SolanaIcon from "../../assets/icons/solana-sol-icon.svg";
+import { useTranslation } from "react-i18next";
 const Metricsdata = ({ data }) => {
-    console.log("fuuegfuefefgfuhfeugfegfeuf", data);
-
+    const { t } = useTranslation();
     const cardStyle = {
         backgroundColor: "#1a1a1a",
         padding: "20px",
@@ -18,7 +18,7 @@ const Metricsdata = ({ data }) => {
     return (
         <Box mt={0.5} color={"neutral.Snowwhite"} backgroundColor={"rgba(22, 22, 22, 1)"} borderRadius={"20px"} padding={"2px"}>
             <Typography color='neutral.Snowwhite' fontSize={"25px"} fontWeight={600}>
-                Market Data & Metrics
+                {t("MarketOutlook.MarketDataMetrics.marketDataMetricsTitle")}
             </Typography>
             <Box mt="10px">
                 <Grid container spacing={1}>
@@ -35,10 +35,10 @@ const Metricsdata = ({ data }) => {
                                     fontFamily: "inter Tight"
                                 }}
                             >
-                                Fear and Greed Index
+                                {t("MarketOutlook.MarketDataMetrics.fearGreedIndexTitle")}
                             </Typography>
                             <Typography variant="h6" textAlign="center" color="neutral.brightYellow" fontFamily="inter Tight" fontSize={"25px"}>
-                                Neutral
+                                {data?.fearGreedIndex?.sentiment}
                             </Typography>
                             <Box textAlign={"center"} mt={"-15px"}>
                                 <Speedometer
@@ -57,7 +57,7 @@ const Metricsdata = ({ data }) => {
                                 fontFamily={"inter Tight"}
                                 color="neutral.Snowwhite"
                             >
-                                BTC Dominance
+                                {t("MarketOutlook.MarketDataMetrics.btcDominanceTitle")}
                             </Typography>
                             <Box display="flex" gap="15px" alignItems={"center"}>
                                 <Typography fontSize="30px" fontWeight={600} variant="h6" mt={2}>
@@ -68,7 +68,7 @@ const Metricsdata = ({ data }) => {
                                 </Typography>
                             </Box>
                             <Typography color="neutral.Snowwhite" fontWeight={500}>
-                                Stable
+                                {data?.btcDominance?.trend}
                             </Typography>
                         </Card>
                     </Grid>
@@ -84,7 +84,7 @@ const Metricsdata = ({ data }) => {
                                     color="neutral.Snowwhite"
                                     fontSize={"15px"}
                                 >
-                                    BTC 24h
+                                    {t("MarketOutlook.MarketDataMetrics.btc24hTitle")}
                                 </Typography>
                             </Box>
                             <Typography
@@ -115,7 +115,7 @@ const Metricsdata = ({ data }) => {
                                     color="neutral.Snowwhite"
                                     fontSize={"15px"}
                                 >
-                                    ETH 24h
+                                    {t("MarketOutlook.MarketDataMetrics.eth24hTitle")}
                                 </Typography>
                             </Box>
                             <Typography
@@ -145,7 +145,7 @@ const Metricsdata = ({ data }) => {
                                     color="neutral.Snowwhite"
                                     fontSize={"15px"}
                                 >
-                                    SOL 24h
+                                    {t("MarketOutlook.MarketDataMetrics.sol24hTitle")}
                                 </Typography>
                             </Box>
                             <Typography
@@ -185,7 +185,7 @@ const Metricsdata = ({ data }) => {
                             <Typography variant="h2" fontFamily={"inter Tight"}
                                 fontSize="23px" fontWeight={550} color="neutral.Snowwhite"
                             >
-                                BTC ETF Flows
+                                {t("MarketOutlook.MarketDataMetrics.btcEtfFlowsTitle")}
                             </Typography>
                         </Box>
                         <Box display="flex" justifyContent="space-around" mt={2}>
@@ -232,7 +232,7 @@ const Metricsdata = ({ data }) => {
                             <Typography variant="h2" fontFamily={"inter Tight"}
                                 fontSize="23px" fontWeight={550} color="neutral.Snowwhite"
                             >
-                                ETH ETF Flows
+                                {t("MarketOutlook.MarketDataMetrics.ethEtfFlowsTitle")}
                             </Typography>
                         </Box>
                         <Box display="flex" justifyContent="space-around" mt={2}>

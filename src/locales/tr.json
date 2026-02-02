@@ -245,7 +245,8 @@
       "fundingRate": "Fonlama Oranı",
       "openInterest": "Açık Pozisyon",
       "lsPositions": "L/S Pozisyonları",
-      "LsAccounts": "Uzun / Kısa Hesaplar"
+      "LsAccounts": "Uzun / Kısa Hesaplar",
+      "cumulativeDelta": "Kümülatif Delta"
     }
   },
   "MarketOutlook": {
@@ -261,7 +262,9 @@
       "attentionTitle": "Dikkat",
       "detailedActionPlanTitle": "Detaylı Eylem Planı",
       "fedSpeechesTitle": "Fed Konuşmaları",
-      "powellTitle": "Powell"
+      "powellTitle": "Powell",
+      "forecast": "Tahmin",
+      "impact": "Etkisi"
     },
     "CryptocurrencyEvents": {
       "cryptocurrencyTitle": "Kripto Para Etkinlikleri",
@@ -488,5 +491,44 @@
     "notificationHours": "Bildirim: 48 Saat Kaldı",
     "userEmail": "sarah.j@example.com",
     "userName": "Alice Johnson"
+  },
+  "widgets": {
+    "whaleTittle": "Balina Takipçisi",
+    "winRate": "Kazanma Oranı",
+    "positionSize": "Pozisyon Büyüklüğü",
+    "price": "Fiyat",
+    "pnl": "Kâr/Zarar",
+    "leverage": "Kaldıraç",
+    "liquidation": "Tasfiye",
+    "topCoins": {
+      "topCoins": "En İyi Coinler"
+    },
+    "heatMap": {
+      "heatMapTittle": "Isı Haritası—Hacim ve Volatilite",
+      "topCoinsDescription": "En iyi coinler, işlem hacmi ve volatiliteye göre (AtR/Fiyat).",
+      "volume24h": "24s Hacim",
+      "volume7d": "7g Hacim",
+      "volatility": "Volatilite"
+    },
+    "top10ByVolume": {
+      "top10ByVolumeTittle": "Hacme Göre İlk 10",
+      "24h": "24s",
+      "7d": "7g"
+    },
+    "cryptoEvents": {
+      "cryptoEventsTittle": "Kripto Para Etkinlikleri"
+    },
+    "etfFlow": {
+      "btcFlowTittle": "BTC ETF",
+      "btcEtf": "BTC ETF",
+      "trend": "Trend",
+      "etfFlows": "ETF Akışları"
+    }
+  },
+  "proAnalytices": {
+    "proAnalyticsTittle": "Pro Analitik",
+    "mtfScan": "MTF Tarama — Çok Zamanlı Analiz",
+    "whatIsMtfAnalysis": "MTF Analizi Nedir?",
+    "enterCoinTicker": "Coin sembolünü girin"
   }
 }

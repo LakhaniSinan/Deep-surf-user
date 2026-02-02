@@ -246,7 +246,8 @@
       "fundingRate": "Funding Rate",
       "openInterest": "Open Interest",
       "lsPositions": "L/S Positions",
-      "LsAccounts": "L/S Accounts"
+      "LsAccounts": "L/S Accounts",
+      "cumulativeDelta": "Cumulative Delta"
     }
   },
   "MarketOutlook": {
@@ -262,7 +263,9 @@
       "attentionTitle": "Attention",
       "detailedActionPlanTitle": "Detailed Action Plan",
       "fedSpeechesTitle": "Fed Speeches",
-      "powellTitle": "Powell"
+      "powellTitle": "Powell",
+      "forecast": "Forecast",
+      "impact": "Impact"
     },
     "CryptocurrencyEvents": {
       "cryptocurrencyTitle": "Cryptocurrency Events",
@@ -490,5 +493,44 @@
     "notificationHours": "48 Hours Left Notification",
     "userEmail": "sarah.j@example.com",
     "userName": "Alice Johnson"
+  },
+  "widgets": {
+    "whaleTittle": "Whales tracker",
+    "winRate": "WinRate",
+    "positionSize": "Position Size",
+    "price": "Price",
+    "pnl": "PnL",
+    "leverage": "Leverage",
+    "liquidation": "Liquidation",
+    "topCoins": {
+      "topCoins": "Top coins"
+    },
+    "heatMap": {
+      "heatMapTittle": "Heatmap—Volume & Volatility",
+      "topCoinsDescription": "Top coins by trading volume and volatility (AtR/Price).",
+      "volume24h": "24h Volume",
+      "volume7d": "7d Volume",
+      "volatility": "Volatility"
+    },
+    "top10ByVolume": {
+      "top10ByVolumeTittle": "Top 10 by volume",
+      "24h": "24h",
+      "7d": "7d"
+    },
+    "cryptoEvents": {
+      "cryptoEventsTittle": "Cryptocurrency Events"
+    },
+    "etfFlow": {
+      "btcFlowTittle": "BTC ETF",
+      "btcEtf": "BTC ETF",
+      "trend": "Trend",
+      "etfFlows": "ETF Flows"
+    }
+  },
+  "proAnalytices": {
+    "proAnalyticsTittle": "Pro Analytics",
+    "mtfScan": "MTF Scan — Multi-Timeframe Analysis",
+    "whatIsMtfAnalysis": "What is MTF Analysis?",
+    "enterCoinTicker": "Enter coin ticker"
   }
 }

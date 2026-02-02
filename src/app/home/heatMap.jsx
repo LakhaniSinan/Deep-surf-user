@@ -2,14 +2,14 @@ import { Box, Grid, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import CustomButton from '../../components/customButton';
 import VolumeCard from '../../components/volumeCard';
-
+import { useTranslation } from "react-i18next";
 const HeatMap = ({ data }) => {
+    const { t } = useTranslation();
     const [selectedTimeframe, setSelectedTimeframe] = useState("24h");
-
     const buttonData = [
-        { id: 1, title: "24h Volume", value: "24h" },
-        { id: 2, title: "7d Volume", value: "7d" },
-        { id: 3, title: "Volatility", value: "volatility" },
+        { id: 1, title: t("widgets.heatMap.volume24h"), value: "24h" },
+        { id: 2, title: t("widgets.heatMap.volume7d"), value: "7d" },
+        { id: 3, title: t("widgets.heatMap.volatility"), value: "volatility" },
     ];
 
     // 🔥 YAHI MAIN LOGIC HAI
@@ -33,10 +33,10 @@ const HeatMap = ({ data }) => {
             {/* Heading */}
             <Box>
                 <Typography fontSize="25px" fontWeight={700}>
-                    Heatmap—Volume & Volatility
+                    {t("widgets.heatMap.heatMapTittle")}
                 </Typography>
                 <Typography fontSize="14px" mt={1}>
-                    Top coins by trading volume and volatility (AtR/Price).
+                    {t("widgets.heatMap.topCoinsDescription")}
                 </Typography>
             </Box>
 
@@ -72,10 +72,10 @@ const HeatMap = ({ data }) => {
             <Box mt="10px">
                 <Typography variant="h6" color="#FFFFFF" width={"100%"}>
                     {selectedTimeframe === "24h"
-                        ? "24h Volume"
+                        ? t("widgets.heatMap.volume24h")
                         : selectedTimeframe === "7d"
-                            ? "7d Volume"
-                            : "Volatility"}
+                            ? t("widgets.heatMap.volume7d")
+                            : t("widgets.heatMap.volatility")}
                 </Typography>
             </Box>
 

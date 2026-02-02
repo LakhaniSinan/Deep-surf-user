@@ -244,7 +244,8 @@
       "fundingRate": "Ставка финансирования",
       "openInterest": "Открытый интерес",
       "lsPositions": "Позиции L/S",
-      "LsAccounts": "Длинные / Короткие счета"
+      "LsAccounts": "Длинные / Короткие счета",
+      "cumulativeDelta": "Накопительная дельта"
     }
   },
   "MarketOutlook": {
@@ -260,7 +261,9 @@
       "attentionTitle": "Внимание",
       "detailedActionPlanTitle": "Детальный план действий",
       "fedSpeechesTitle": "Речи ФРС",
-      "powellTitle": "Powell"
+      "powellTitle": "Powell",
+      "forecast": "Прогноз",
+      "impact": "Влияние"
     },
     "CryptocurrencyEvents": {
       "cryptocurrencyTitle": "События в мире криптовалют",
@@ -488,5 +491,44 @@
     "notificationHours": "Уведомление: осталось 48 часов",
     "userEmail": "sarah.j@example.com",
     "userName": "Alice Johnson"
+  },
+  "widgets": {
+    "whaleTittle": "Трекер китов",
+    "winRate": "Процент побед",
+    "positionSize": "Размер позиции",
+    "price": "Цена",
+    "pnl": "Прибыль/Убыток",
+    "leverage": "Кредитное плечо",
+    "liquidation": "Ликвидация",
+    "topCoins": {
+      "topCoins": "Топ монет"
+    },
+    "heatMap": {
+      "heatMapTittle": "Тепловая карта — Объем и Волатильность",
+      "topCoinsDescription": "Топ монет по объему торгов и волатильности (AtR/Цена).",
+      "volume24h": "Объем за 24ч",
+      "volume7d": "Объем за 7д",
+      "volatility": "Волатильность"
+    },
+    "top10ByVolume": {
+      "top10ByVolumeTittle": "Топ 10 по объему",
+      "24h": "24ч",
+      "7d": "7д"
+    },
+    "cryptoEvents": {
+      "cryptoEventsTittle": "События криптовалют"
+    },
+    "etfFlow": {
+      "btcFlowTittle": "BTC ETF",
+      "btcEtf": "BTC ETF",
+      "trend": "Тренд",
+      "etfFlows": "Потоки ETF"
+    }
+  },
+  "proAnalytices": {
+    "proAnalyticsTittle": "Профессиональная аналитика",
+    "mtfScan": "MTF Скан — Многофреймовый анализ",
+    "whatIsMtfAnalysis": "Что такое MTF анализ?",
+    "enterCoinTicker": "Введите тикер монеты"
   }
 }

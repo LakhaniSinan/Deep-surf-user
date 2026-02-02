@@ -6,6 +6,8 @@ import TopCoins from "../../assets/icons/top-coin1.svg";
 import TopCoinsGraphy from "../../assets/icons/top-coin-graph.svg";
 import UsdtIcon from "../../assets/icons/top-coin2.svg";
 import Sparkline from "../../components/topCoinsTable/Sparkline";
+import { useTranslation } from "react-i18next";
+
 
 
 
@@ -20,6 +22,8 @@ const widgetStyle = {
 
 
 const TopCoinsComponent = ({ data }) => {
+    const { t } = useTranslation();
+
     console.log("fuhgfugyffgurfrf", data);
     return (
         <Grid item size={{ xs: 12, md: 12 }}>
@@ -36,7 +40,7 @@ const TopCoinsComponent = ({ data }) => {
                         fontSize="25px"
                         fontWeight={600}
                     >
-                        Top coins
+                        {t("widgets.topCoins.topCoins")}
                     </Typography>
 
                     {/* <IconButton

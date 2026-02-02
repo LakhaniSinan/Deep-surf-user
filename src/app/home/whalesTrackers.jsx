@@ -2,8 +2,13 @@ import { Box, Grid, IconButton, Typography } from '@mui/material';
 import React, { useState } from 'react'
 import CustomButton from '../../components/customButton';
 import moment from "moment";
+import { t } from 'i18next';
+import { useTranslation } from "react-i18next";
 
 const WhalesTrackers = ({ data }) => {
+    const { t } = useTranslation();
+    console.log("fviufgvugviudgvudv", t);
+
     console.log("fuefgeufgyefewwwwwwwwwwwwdddwwwwwwfyef", data?.transactions?.whaleAddress);
     const [isLoading, setIsLoading] = useState(false)
     return (
@@ -19,7 +24,7 @@ const WhalesTrackers = ({ data }) => {
                     fontSize="25px"
                     fontWeight={600}
                 >
-                    Whales tracker
+                    {t("widgets.whaleTittle")}
                 </Typography>
                 {/* <IconButton
                     size="small"
@@ -40,8 +45,8 @@ const WhalesTrackers = ({ data }) => {
             </Box>
             <Grid container spacing={2} mt="22px">
                 {data?.transactions?.map((item, index) => (
-                    console.log("fihriufhriuhfirofgourif" , item?.whaleWinRate),
-                    
+                    console.log("fihriufhriuhfirofgourif", item?.whaleWinRate),
+
                     <Grid item size={{ xs: 12, sm: 6, md: 12 }} key={index}>
                         <Box
                             sx={{
@@ -56,13 +61,13 @@ const WhalesTrackers = ({ data }) => {
                             <Grid container alignItems="center" justifyContent="space-between">
                                 <Grid >
                                     <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
-                                        WinRate
+                                        {t("widgets.winRate")}
                                     </Typography>
                                     <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
                                         {item?.whaleWinRate}
                                     </Typography>
                                     <Box display="flex" alignItems="center" gap={3}>
-                                        
+
                                         <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
                                             {item?.whaleAddress}
                                         </Typography>
@@ -108,7 +113,7 @@ const WhalesTrackers = ({ data }) => {
                             <Box display={"flex"} gap={"20px"} mt={3}>
                                 <Box>
                                     <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
-                                        PositionSize
+                                        {t("widgets.positionSize")}
                                     </Typography>
                                     <Typography fontSize={"13px"}>
                                         {item?.positionSize}
@@ -116,7 +121,7 @@ const WhalesTrackers = ({ data }) => {
                                 </Box>
                                 <Box>
                                     <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
-                                        Price
+                                        {t("widgets.price")}
                                     </Typography>
                                     <Typography fontSize={"13px"}>
                                         {item?.price}
@@ -124,7 +129,7 @@ const WhalesTrackers = ({ data }) => {
                                 </Box>
                                 <Box>
                                     <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
-                                        Pnl
+                                        {t("widgets.pnl")}
                                     </Typography>
                                     <Typography fontSize={"13px"} color={item?.pnl?.includes("+") ? "neutral.brightGreen" : "neutral.brightRed"}>
                                         {item?.pnl}
@@ -132,7 +137,7 @@ const WhalesTrackers = ({ data }) => {
                                 </Box>
                                 <Box>
                                     <Typography color='neutral.Snowwhite' fontWeight={600} fontSize={"15px"}>
-                                        Leverage
+                                        {t("widgets.leverage")}
                                     </Typography>
                                     <Typography fontSize={"13px"} color="neutral.Snowwhite">
                                         {item?.leverage}
@@ -147,7 +152,7 @@ const WhalesTrackers = ({ data }) => {
                                 <Box display="flex" gap="20px" mt="10px">
                                     <Box>
                                         <Typography fontSize="12px" color="rgba(180, 180, 180, 1)" fontWeight={400}>
-                                            Liquidation
+                                            {t("widgets.leverage")}
                                         </Typography>
                                         <Typography fontSize="14px" color="rgba(255, 255, 255, 1)" fontWeight={600}>
                                             {Number.isNaN(Number(item?.liquidation?.replace("$", "")))

@@ -17,9 +17,9 @@ const addWidget = (id) => {
 const removeWidget = (payload) => {
   return Api(`${ENDPOINTS.WIDGETS.REMOVE_WIDGET}/${payload}`, null, "delete");
 };
-const fetchWidgit = () => {
+const fetchWidgit = ({ language }) => {
   return Api(
-    `${ENDPOINTS.WIDGETS.FETCH_ALL_WIDGET}`,
+    `${ENDPOINTS.WIDGETS.FETCH_ALL_WIDGET}?language=${language}`,
     null,
     "get",
   );

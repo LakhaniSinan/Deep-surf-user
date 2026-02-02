@@ -1,10 +1,9 @@
-import { Box, Grid, IconButton, Typography } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import { Box, Typography } from "@mui/material";
 import StarIcon from "../../assets/icons/macroeconomic-icon.svg";
 import Macroecomic from "../../assets/icons/warning-image.svg"
+import { useTranslation } from "react-i18next";
 const MacroEconomics = ({ data }) => {
-    console.log("fuurgirgurigfuirgurgr", data?.cpiReport?.title);
-
+    const { t } = useTranslation();
     const widgetStyle = {
         background: "#151515",
         borderRadius: "16px",
@@ -17,8 +16,8 @@ const MacroEconomics = ({ data }) => {
     const macroData = [
         {
             title: data?.unemploymentRate?.title,
-            value: `Forecast: ${data?.unemploymentRate?.forecast} ${data?.unemploymentRate?.previous}`,
-            description: ` impact : ${data?.unemploymentRate?.impact}`,
+            value: `${t("MarketOutlook.Macroeconomics.forecast")}: ${data?.unemploymentRate?.forecast} ${data?.unemploymentRate?.previous}`,
+            description: ` ${t("MarketOutlook.Macroeconomics.impact")} : ${data?.unemploymentRate?.impact}`,
             icon: StarIcon,
             heading: data?.unemploymentRate?.description,
         },
@@ -30,7 +29,6 @@ const MacroEconomics = ({ data }) => {
             heading: data?.cpiReport?.description,
         },
     ];
-
     return (
         <Box sx={widgetStyle}>
             <Box
@@ -45,27 +43,9 @@ const MacroEconomics = ({ data }) => {
                     fontSize="25px"
                     fontWeight={600}
                 >
-                    Macroeconomics
+                    {t("MarketOutlook.Macroeconomics.macroEconomicTitle")}
                 </Typography>
-
-                {/* <IconButton
-                        size="small"
-                        sx={{
-                            color: "neutral.Snowwhite",
-                            bgcolor: "neutral.vermilionOrange",
-                            "&:hover": {
-                                bgcolor: "neutral.vermilionOrange",
-                            },
-                        }}
-                        onClick={() => {
-                            console.log("Macroeconomics closed");
-                            // yahan hide / close logic add kar sakte ho
-                        }}
-                    >
-                        <CloseIcon fontSize="small" />
-                    </IconButton> */}
             </Box>
-
             {macroData.map((item, index) => (
                 <Box key={index} mb={3}>
                     <Typography fontSize="15px" fontWeight={700} color="neutral.Snowwhite">
@@ -99,5 +79,4 @@ const MacroEconomics = ({ data }) => {
         </Box>
     )
 }
-
 export default MacroEconomics

@@ -1,27 +1,25 @@
 import { Box, Grid, Typography } from '@mui/material'
-import React from 'react'
-
+import { useTranslation } from "react-i18next";
 const EnhanceMarketIntelligence = ({ data }) => {
-    console.log("fufgfgrfgurfgurfurfgurfgurf", data?.fundingRate?.value);
-
+    const { t } = useTranslation();
     const marketStats = [
         {
-            title: "Funding Rate",
+            title: (t("AiTools.MarketIntelligence.fundingRate")),
             value: data?.fundingRate?.value,
             description: data?.fundingRate?.sentiment,
         },
         {
-            title: "L/S Ratio",
-            value:` ${data?.longShortRatio?.value}%`,
+            title: (t("AiTools.MarketIntelligence.lsRatio")),
+            value: ` ${data?.longShortRatio?.value}%`,
             description: data?.longShortRatio?.sentiment,
         },
         {
-            title: "24h Volume",
+            title: (t("AiTools.MarketIntelligence.volume24h")),
             value: data?.volume24h?.value,
             description: data?.volume24h?.description,
         },
         {
-            title: "Liq. Risk",
+            title: (t("AiTools.MarketIntelligence.liquidityRisk")),
             value: data?.liquidationRisk?.long,
             value1: data?.liquidationRisk?.short,
             description: data?.liquidationRisk?.zones,
@@ -30,7 +28,7 @@ const EnhanceMarketIntelligence = ({ data }) => {
     return (
         <Box mt={1.5}>
             <Typography color='neutral.Snowwhite' fontSize={"25px"} fontWeight={600}>
-                Enhanced Market Intelligence
+                {t("AiTools.MarketIntelligence.enhancedMarketIntelligence")}{" "}
             </Typography>
             <Grid container spacing={2} marginTop={2}>
                 {marketStats.map((item, index) => (
@@ -69,7 +67,6 @@ const EnhanceMarketIntelligence = ({ data }) => {
                     </Grid>
                 ))}
             </Grid>
-
         </Box>
     )
 }

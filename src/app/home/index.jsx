@@ -18,13 +18,10 @@ import { useAuthStore } from "../../store";
 import CustomButton from "../../components/customButton";
 import PlusIcon from "../../assets/icons/plus.svg";
 import RelaodIcon from "../../assets/icons/relaod-Icon.svg";
-import Speedometer from "../../components/speedMeter";
-import { color } from "d3";
-import { useTranslation } from "react-i18next";
 import AddWidgit from "./addWidgit";
 import AddCoins from "./addCoins";
 import { fetchWidgit } from "../../services/modules/widget";
-
+import { useTranslation } from "react-i18next";
 const Home = () => {
   const [homeResponse, setHomeResponse] = useState(null);
   console.log("fufhufrfrfrfrf", homeResponse?.overallSentiment?.score);
@@ -32,11 +29,12 @@ const Home = () => {
   const [sentiment, setSentiment] = useState(null);
   const [macroData, setMacroData] = useState(null);
   const [isLoading, setIsLoading] = useState(true); // Initially true
+  // console.log("ffrfrfrfrfrf", i18n.language);
   const { t, i18n } = useTranslation();
-  console.log("ffrfrfrfrfrf", i18n.language);
   const { user } = useAuthStore();
   const username = user?.username || user?.name;
-
+  const language = i18n.language || "en";
+  console.log("languagddddddddddddddddddddddddddde", language);
   const fetchHomeData = async () => {
     // try {
     //   setIsLoading(true);
@@ -61,12 +59,12 @@ const Home = () => {
   };
 
   const [widgets, setAllWidgit] = useState([]);
+  console.log("widgets", widgets);
   const fetchAllWidgit = async () => {
     try {
       setIsLoading(true);
-      const response = await fetchWidgit();
+      const response = await fetchWidgit({ language });
       console.log(response, "responseresponseresponse");
-
       const data = response?.data?.data;
       console.log(data, 'XXXXXXXXXXXXXXXXXXXx');
       setAllWidgit(data);
@@ -76,10 +74,9 @@ const Home = () => {
       setIsLoading(false);
     }
   };
-
   useEffect(() => {
     fetchAllWidgit();
-  }, []);
+  }, [language]);
 
   // useEffect(() => {
   //   fetchHomeData();

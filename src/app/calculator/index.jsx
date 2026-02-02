@@ -155,6 +155,29 @@ const Calculator = () => {
         <Box>
           <AiOutCome />
         </Box>
+        <Grid container spacing={2} mt={3}>
+          <Grid item size={{ xs: 12, md: 6 }}>
+            <CalculatorForm
+              exchange={exchange}
+              metaData={exchangePair}
+              exchangeMarketData={exchangeMarketData}
+              exchangeAtr={exchangeAtr}
+              setTf={setTf}
+              setLen={setLen}
+              pair={selectedPair}
+              setPair={setSelectedPair}
+              setCalculatorResult={setCalculatorResult}
+              onCalculate={handleCalculate}
+              isLoading={isLoading}
+            />
+          </Grid>
+          <Grid item size={{ xs: 12, md: 6 }}>
+            <CurrentPrice
+              exchangeMarketData={exchangeMarketData}
+              calculatorResult={calculatorResult}
+            />
+          </Grid>
+        </Grid>
         <Box>
           <PlayBookBuilder />
         </Box>
@@ -168,29 +191,6 @@ const Calculator = () => {
           <PlannedTrade />
         </Box>
 
-        <Grid container spacing={2}>
-          <Grid item size={{ xs: 12, md: 6 }}>
-            {/* <CalculatorForm
-              exchange={exchange}
-              metaData={exchangePair}
-              exchangeMarketData={exchangeMarketData}
-              exchangeAtr={exchangeAtr}
-              setTf={setTf}
-              setLen={setLen}
-              pair={selectedPair}
-              setPair={setSelectedPair}
-              setCalculatorResult={setCalculatorResult}
-              onCalculate={handleCalculate}
-              isLoading={isLoading}
-            /> */}
-          </Grid>
-          <Grid item size={{ xs: 12, md: 6 }}>
-            {/* <CurrentPrice
-              exchangeMarketData={exchangeMarketData}
-              calculatorResult={calculatorResult}
-            /> */}
-          </Grid>
-        </Grid>
       </Container>
     </Box>
   );

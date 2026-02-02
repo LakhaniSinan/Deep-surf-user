@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { baseUrl } from '../../services';
 import { toast } from 'react-toastify';
-
 const FutureMatric = () => {
     const { t } = useTranslation();
     const [data, setData] = useState(null);
@@ -22,24 +21,17 @@ const FutureMatric = () => {
 
         setLoading(true);
         setHasSearched(true);
-        console.log("End icon clicked with value:", metricValue);
-
         axios.get(`${baseUrl}home/futures-metrics?symbol=${metricValue}`)
             .then((response) => {
                 setLoading(false);
                 setData(response.data.data);
-                console.log("Fetched future metrics data:", response.data);
             })
             .catch((error) => {
                 setLoading(false);
-                setHasSearched(false); // Reset search state on error
+                setHasSearched(false);
                 setData(null);
-
-                // Error message with fallback
                 const errorMessage = error?.response?.data?.message || "Coin not found";
                 toast.error(errorMessage);
-
-                console.error("Error fetching future metrics data:", error.response);
             });
     }
 
@@ -85,7 +77,7 @@ const FutureMatric = () => {
             },
         },
         {
-            title: "Cumulative Delta",
+            title:(t("ProAnalytics.FuturesMetrics.cumulativeDelta")),
             value: data?.futuresMetrics.cumulativeDelta || "$1.2M",
             status: "Buying is predominant",
         },

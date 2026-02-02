@@ -123,7 +123,6 @@
     "topCoinByVolume": {
       "notFound": "No encontrado",
       "top10ByVolume": "Top 10 por volumen"
-
     }
   },
   "journal": {
@@ -214,7 +213,8 @@
       "fundingRate": "Tasa de Financiamiento",
       "openInterest": "Interés Abierto",
       "lsPositions": "Posiciones L/S",
-      "LsAccounts": "Cuentas Largas / Cortas"
+      "LsAccounts": "Cuentas Largas / Cortas",
+      "cumulativeDelta": "Delta Acumulado"
     }
   },
   "MarketOutlook": {
@@ -230,7 +230,9 @@
       "attentionTitle": "Atención",
       "detailedActionPlanTitle": "Plan de Acción Detallado",
       "fedSpeechesTitle": "Discursos de la Fed",
-      "powellTitle": "Powell"
+      "powellTitle": "Powell",
+      "forecast": "Pronóstico",
+      "impact": "Impacto"
     },
     "CryptocurrencyEvents": {
       "cryptocurrencyTitle": "Eventos de Criptomonedas",
@@ -458,5 +460,44 @@
     "notificationHours": "Notificación: 48 horas restantes",
     "userEmail": "sarah.j@example.com",
     "userName": "Alice Johnson"
+  },
+  "widgets": {
+    "whaleTittle": "Rastreador de ballenas",
+    "winRate": "Tasa de victorias",
+    "positionSize": "Tamaño de la posición",
+    "price": "Precio",
+    "pnl": "Ganancia/Pérdida",
+    "leverage": "Apalancamiento",
+    "liquidation": "Liquidación",
+    "topCoins": {
+      "topCoins": "Principales monedas"
+    },
+    "heatMap": {
+      "heatMapTittle": "Mapa de calor—Volumen y Volatilidad",
+      "topCoinsDescription": "Principales monedas por volumen de negociación y volatilidad (AtR/Precio).",
+      "volume24h": "Volumen 24h",
+      "volume7d": "Volumen 7d",
+      "volatility": "Volatilidad"
+    },
+    "top10ByVolume": {
+      "top10ByVolumeTittle": "Top 10 por volumen",
+      "24h": "24h",
+      "7d": "7d"
+    },
+    "cryptoEvents": {
+      "cryptoEventsTittle": "Eventos de criptomonedas"
+    },
+    "etfFlow": {
+      "btcFlowTittle": "ETF de BTC",
+      "btcEtf": "ETF de BTC",
+      "trend": "Tendencia",
+      "etfFlows": "Flujos de ETF"
+    }
+  },
+  "proAnalytices": {
+    "proAnalyticsTittle": "Analítica Pro",
+    "mtfScan": "Escaneo MTF — Análisis Multitemporal",
+    "whatIsMtfAnalysis": "¿Qué es el Análisis MTF?",
+    "enterCoinTicker": "Ingrese el símbolo de la moneda"
   }
 }

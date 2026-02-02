@@ -44,7 +44,7 @@ const FuturesMetrics = ({ coinData }) => {
     },
 
     {
-      title: "Cumulative Delta",
+      title: (t("ProAnalytics.FuturesMetrics.cumulativeDelta")),
       value: coinData?.futuresMetrics?.cumulativeDelta,
       status: coinData?.futuresMetrics?.cumulativeDeltaLabel,
     },

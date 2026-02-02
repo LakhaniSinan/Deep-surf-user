@@ -3,36 +3,33 @@ import Check from "../../assets/icons/checkBtn.svg";
 import CancelIcon from "../../assets/icons/cancelBtn.svg";
 import Warning from "../../assets/icons/warningIcon.svg";
 import fire from "../../assets/icons/fireIcon.svg";
-
+import { useTranslation } from "react-i18next";
 const IndicatorAnalysis = ({ data }) => {
-    console.log("feufgugfugfugfoufrwgr", data[0].description
-
-    );
-
+    const { t } = useTranslation();
     const indicatorData = [
         {
             icon: Check,
-            title: data[0].description
+            title: data[0]?.description
         },
         {
             icon: Check,
-            title: data[1].description
+            title: data[1]?.description
         },
         {
             icon: Warning,
-            title: data[5].description
+            title: data[5]?.description
         },
         {
             icon: CancelIcon,
-            title: data[3].description
+            title: data[3]?.description
         },
         {
             icon: Check,
-            title: data[2].description
+            title: data[2]?.description
         },
         {
             icon: Warning,
-            title: data[6].description
+            title: data[6]?.description
         },
         // {
         //     icon: Check,
@@ -48,13 +45,13 @@ const IndicatorAnalysis = ({ data }) => {
         // },
         {
             icon: fire,
-            title:  data[4].description
+            title: data[4].description
         }
     ]
     return (
         <Box mt={1} >
             <Typography color='neutral.Snowwhite' fontSize={"25px"} fontWeight={600}>
-                Indicator Analysis
+                 {t("AiTools.Indicator.indicatorsHeading")}{" "}
             </Typography>
             <Box bgcolor={"neutral.darkGrey"} borderRadius={"20px"} p={2} mt={2}>
                 {
@@ -76,9 +73,7 @@ const IndicatorAnalysis = ({ data }) => {
                     ))
                 }
             </Box>
-
         </Box>
-
     )
 }
 

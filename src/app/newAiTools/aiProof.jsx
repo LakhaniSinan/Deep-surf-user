@@ -29,22 +29,20 @@ const AiProof = () => {
                 AI Proof — Quick coin verification
             </Typography>
 
-            <Box borderBottom="0.5px solid rgba(127,127,127,1)" mt={2} />
-
-            <Box
-                border="1px solid rgba(127,127,127,1)"
-                borderRadius="12px"
-                mt={2}
-                p={2}
-            >
-                <Typography color="neutral.Snowwhite" fontWeight={600} fontSize="20px">
-                    AI Proof — Quick coin verification
-                </Typography>
-
                 <Typography color="rgba(127,127,127,1)" fontSize="13px" mt={0.5}>
                     Deep AI analysis of any coin in seconds. Enter ticker, get full
                     breakdown and recommendation.
                 </Typography>
+
+            {/* <Box borderBottom="0.5px solid rgba(127,127,127,1)" mt={2} /> */}
+
+            <Box
+                // border="1px solid rgba(127,127,127,1)"
+                borderRadius="12px"
+                mt={2}
+                // p={2}
+            >
+            
 
                 <Grid container spacing={2} mt={1}>
                     <Grid item size={{ xs: 12, md: 10 }} >

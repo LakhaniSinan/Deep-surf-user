@@ -11,14 +11,14 @@ const Macroeconomics = ({ data }) => {
   const economicReports = [
     {
       title: `${data?.cpiReport?.title} ${data?.cpiReport?.date}`,
-      forecast: ` Forecast ${data?.cpiReport?.forecast} (previous: ${data?.cpiReport?.previous}) `,
-      impact: "Impact:",
+      forecast: ` ${t("MarketOutlook.Macroeconomics.forecast")} ${data?.cpiReport?.forecast} (previous: ${data?.cpiReport?.previous}) `,
+      impact: t("MarketOutlook.Macroeconomics.impact"),
       status: data?.cpiReport?.impact,
     },
     {
       title: `${data?.unemploymentRate?.title} ${data?.unemploymentRate?.date}`,
-      forecast: ` Forecast ${data?.unemploymentRate?.forecast} (previous: ${data?.unemploymentRate?.previous}) `,
-      impact: "Impact:",
+      forecast: ` ${t("MarketOutlook.Macroeconomics.forecast")} ${data?.unemploymentRate?.forecast} (previous: ${data?.unemploymentRate?.previous}) `,
+      impact: t("MarketOutlook.Macroeconomics.impact"),
       status: data?.unemploymentRate?.impact,
     },
   ];

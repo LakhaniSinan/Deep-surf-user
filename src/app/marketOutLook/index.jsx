@@ -39,6 +39,8 @@ const MarketOutLook = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { t, i18n } = useTranslation();
   const language = i18n.language || "en";
+  console.log("ufrufgrufgurfguyourfgirv", language);
+
 
   // ================= Fetch Market + Whale Data in Parallel =================
   const fetchMarketData = async () => {

@@ -1,19 +1,19 @@
 import { Box, Grid, Typography } from '@mui/material'
-import React from 'react'
+import { useTranslation } from "react-i18next";
+
 
 const Community = ({ data }) => {
-    console.log("fbufbuhfbrfbrhbvrbvrv", data);
-
+    const { t } = useTranslation();
     const levels = [
         {
-            label: "Support",
+            label: (t("AiTools.CommunitySentiment.support")),
             value: data?.support,
-            color: "#3EDD87",
+            color: "neutral.brightGreen",
         },
         {
-            label: "Resistance",
+            label: (t("AiTools.CommunitySentiment.resistance")),
             value: data?.resistance,
-            color: "#FF6C82",
+            color: "neutral.pink",
         },
     ];
     const longPercentValue = Number(
@@ -28,7 +28,7 @@ const Community = ({ data }) => {
         <Box mt={3} >
             <Box>
                 <Typography color={"white"} mt={3} fontSize={"22px"} fontWeight={600}>
-                    Community sentiment
+                    {t("AiTools.CommunitySentiment.communitySentimentHeading")}
                 </Typography>
             </Box>
             <Box

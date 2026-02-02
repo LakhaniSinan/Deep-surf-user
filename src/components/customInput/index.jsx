@@ -58,7 +58,7 @@ function CustomInput({
           borderRadius: "10px",
           background: inputBgColor || "#242424",
           border: "1px solid rgba(127, 127, 127, 1)",
-          padding : 0.2
+          // padding : 0.2
           // border: "0.1px solid #FFFFFF", "& fieldset": {
           //   border: "none"
           // },
@@ -71,7 +71,7 @@ function CustomInput({
           // },
         },
         "& .MuiInputBase-input": {
-          padding: "10px 12px",
+          padding: "10px 10px",
           fontSize: "15px",
           color: theme.palette.text.primary,
           fontFamily: "'Inter Tight'",

@@ -3,9 +3,6 @@ import {
   Typography,
   Paper,
   Grid,
-  Chip,
-  Stack,
-  LinearProgress,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 const TechnicalIndicator = ({ coinData }) => {
@@ -14,12 +11,12 @@ const TechnicalIndicator = ({ coinData }) => {
     {
       label: (t("AiTools.CommunitySentiment.support")),
       value: coinData?.communitySentiment?.support,
-      color: "#3EDD87",
+      color: "neutral.brightGreen",
     },
     {
       label: (t("AiTools.CommunitySentiment.resistance")),
       value: coinData?.communitySentiment?.resistance,
-      color: "#FF6C82",
+      color: "neutral.pink",
     },
   ];
   const technicalIndicators = [

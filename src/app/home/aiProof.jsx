@@ -1,5 +1,5 @@
 import { Box, CircularProgress, Grid, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import CustomInput from '../../components/customInput'
 import IconImage from "../../assets/icons/Vector.svg";
 import StarIcon from "../../assets/icons/stairs.svg";
@@ -10,13 +10,9 @@ import IctLiquidityLevel from './ictLiquidityLevel';
 import EnhanceMarketIntelligence from './enhanceMarketIntelligence';
 import Pattern from './pattern';
 import IndicatorAnalysis from './indicatorAnalysis';
-import CloseIcon from "@mui/icons-material/Close";
-import IconButton from "@mui/material/IconButton";
-import CryptoEvents from './cryptoEvents';
-import { fetchWidgit } from '../../services/modules/widget';
 import { aiToolsData } from '../../services/modules/home';
 import { toast } from 'react-toastify';
-
+import { useTranslation } from "react-i18next";
 const AiProof = () => {
     const [ticker, setTicker] = useState("");
     const [coinData, setCoinData] = useState(null);
@@ -26,11 +22,9 @@ const AiProof = () => {
     const [enchnagedMarketIntelligence, setEnchnagedMarketIntelligence] = useState(null);
     const [patternData, setPatternData] = useState(null);
     const [indicatorAnalysis, setIndicatorAnalysis] = useState(null);
-
+    const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
-
-    // Default values
     const confluenceData1 = [
         {
             title: "Confluence Score",
@@ -90,7 +84,6 @@ const AiProof = () => {
                                 display="flex"
                                 justifyContent="space-between"
                                 alignItems="center"
-                                mb={2}
                             >
                                 <Typography
                                     variant="h6"
@@ -98,25 +91,16 @@ const AiProof = () => {
                                     fontSize="30px"
                                     fontWeight={600}
                                 >
-                                    Ai Proof
+                                    {t("AiTools.aiToolsTitle")}
                                 </Typography>
-
-                                {/* <IconButton
-                                    size="small"
-                                    sx={{
-                                        color: "neutral.Snowwhite",
-                                        bgcolor: "neutral.vermilionOrange",
-                                        "&:hover": {
-                                            bgcolor: "neutral.vermilionOrange",
-                                        },
-                                    }}
-                                    onClick={() => {
-                                        console.log("Macroeconomics closed");
-                                    }}
-                                >
-                                    <CloseIcon fontSize="small" />
-                                </IconButton> */}
                             </Box>
+                            <Typography
+                                color="neutral.Snowwhite"
+                                marginBottom="10px"
+                                fontSize="15px"
+                            >
+                                {t("AiTools.aiProofTitle")}
+                            </Typography>
 
                             <Box mt={2}>
                                 <CustomInput
@@ -124,9 +108,19 @@ const AiProof = () => {
                                     value={ticker}
                                     onChange={(e) => setTicker(e.target.value)}
                                     onKeyPress={(e) => e.key === "Enter" && getAiToolsData()}
+                                    sx={{
+                                        "& .MuiOutlinedInput-root": {
+                                            borderRadius: "20px",
+                                            background: "rgba(28, 28, 28, 1)",
+                                            border: "1px solid rgba(127, 127, 127, 1)",
+                                        },
+                                        "& .MuiInputBase-input": {
+                                            padding: "12px 12px",
+                                        }
+                                    }}
                                     InputEndIcon={
                                         isLoading ? (
-                                            <CircularProgress size={30} sx={{ color: "#fff" }} />
+                                            <CircularProgress size={30} sx={{ color: "neutral.Snowwhite" }} />
                                         ) : (
                                             <img
                                                 src={IconImage}
@@ -177,7 +171,7 @@ const AiProof = () => {
                                             padding: "4px 30px",
                                             minWidth: "auto",
                                             width: { xs: "100%", md: "auto" },
-                                            backgroundColor: "#FF6421",
+                                            backgroundColor: "neutral.vermilionOrange",
                                             color: "#fff",
                                         }}
                                     />
@@ -186,16 +180,16 @@ const AiProof = () => {
                                         fontSize="14px"
                                         flex={{ xs: "100%", md: "1" }}
                                     >
-                                        <span style={{ color: "rgba(255, 230, 0, 1)", fontWeight: 600, fontSize: "15px" }}>
+                                        <span style={{ color: "neutral.brightYellow", fontWeight: 600, fontSize: "15px" }}>
                                             {coinData?.recommendation?.action || "Hold"}
                                         </span>
                                         <br />
-                                        Confidence: {coinData?.recommendation?.confidence || "75"}%
+                                        <span style={{ color: "neutral.Snowwhite" }}>Confidence:</span>  {coinData?.recommendation?.confidence || "75"}%
                                     </Typography>
                                 </Box>
                                 <Box mt={2}>
                                     <Typography color='neutral.Snowwhite' fontSize={"20px"} fontWeight={600}>
-                                        Confluence Score
+                                        {t("AiTools.Confluence.confluenceScore")}
                                     </Typography>
                                 </Box>
                                 <Grid container spacing={"20px"}>
@@ -235,7 +229,7 @@ const AiProof = () => {
                                 </Grid>
                                 <Box mt={2}>
                                     <Typography color='neutral.Snowwhite' fontSize={"20px"} fontWeight={600}>
-                                        Supertrend
+                                        {t("AiTools.Confluence.Supertrend")}
                                     </Typography>
                                 </Box>
                                 <Grid container spacing={"20px"}>
@@ -285,12 +279,16 @@ const AiProof = () => {
                                     variant="gradient"
                                     onClick={() => setShowDetails(!showDetails)}
                                     disabled={!coinData}
+                                    sx={{
+                                        backgroundColor: showDetails ? "neutral.vermilionOrange" : "white",
+                                        color: showDetails ? "#fff" : "#fff" // agar text ka color black chahiye jab hidden ho
+                                    }}
                                 />
                             </Box>
                         </Box>
                     </Grid>
                 </Grid>
-            </Box>
+            </Box >
         </>
     )
 }

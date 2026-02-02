@@ -19,15 +19,16 @@ import FairLastPriceScanner from './fairLastPriceScanner'
 import TradingTrategy from './tradingTrategy'
 import TopTraders from './topTraders'
 import TakerRatio from './takerRatio'
-
+import { useTranslation } from "react-i18next";
 const ProAnalysis1 = () => {
+    const { t } = useTranslation();
     return (
         <Box>
             <Header />
             <Container maxWidth="lg">
                 <Box mt={2}>
                     <Typography color='neutral.Snowwhite' fontSize={"30px"} fontWeight={600}>
-                        Pro Analytics
+                        {t("proAnalytices.proAnalyticsTittle")}
                     </Typography>
                 </Box>
                 <Box>

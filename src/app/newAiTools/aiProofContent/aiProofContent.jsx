@@ -64,7 +64,7 @@ const AiProofContent = () => {
                                     ? "text.Emerald"
                                     : "neutral.cadetGrey",
                                 bgcolor: item.btnText === "BTC BULLISH" || item.btnText === "london ny_overlap"
-                                    ? "background.Emerald"
+                                    ? "rgba(16, 185, 129, 0.1)"
                                     : "background.almostBlack"
                             }}
                         >

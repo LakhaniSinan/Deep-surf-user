@@ -1,10 +1,9 @@
 import { Box, Grid, Typography } from '@mui/material'
-import React from 'react'
+import { useTranslation } from "react-i18next";
 import ArroWBtn from "../../assets/icons/arrow-down-icon.svg"
 
 const IctLiquidityLevel = ({ data }) => {
-    console.log("feohfuegfuegfugfufuoefhif", data?.[0]?.priceFormatted);
-
+    const { t } = useTranslation();
     const liquidityLevelData = [
         {
             icon: ArroWBtn,
@@ -16,7 +15,7 @@ const IctLiquidityLevel = ({ data }) => {
         },
         {
             icon: ArroWBtn,
-            title :data?.[2]?.priceFormatted
+            title: data?.[2]?.priceFormatted
         },
         {
             icon: ArroWBtn,
@@ -26,7 +25,7 @@ const IctLiquidityLevel = ({ data }) => {
     return (
         <Box mt={3}>
             <Typography color='neutral.Snowwhite' fontSize={"22px"} fontWeight={600}>
-                ICT Liquidity Levels
+                {t("AiTools.Indicator.indicatorTitle")}
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, mt: "10px", bgcolor: "neutral.darkGrey", borderRadius: "20px", p: 2 }}>
                 {liquidityLevelData.map((item, index) => (
@@ -42,12 +41,9 @@ const IctLiquidityLevel = ({ data }) => {
 
                         }}
                     >
-                        {/* Icon */}
                         <Box sx={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
                             <img src={item.icon} />
                         </Box>
-
-                        {/* Text */}
                         <Typography
                             sx={{
                                 color: 'neutral.brightGreen',

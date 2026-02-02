@@ -1,11 +1,8 @@
 import { Box, Grid, IconButton, Typography } from '@mui/material';
-import CloseIcon from "@mui/icons-material/Close";
+import { useTranslation } from "react-i18next";
 const CryptoEvents = ({ data }) => {
-    console.log("efeufgygfyfgygfurgfurgfuirfurfg", data?.event_0?.recipients);
+    const { t } = useTranslation();
     const scenarios = data?.event_0.scenarios;
-    console.log("hffrufuirfhirhfrif", scenarios);
-
-
     const cryptoEventsData = [
         {
             title: data?.event_0?.scenarios?.bearish?.label,
@@ -25,7 +22,7 @@ const CryptoEvents = ({ data }) => {
         }
     ]
     return (
-        <Box color={"neutral.Snowwhite"}  borderRadius={"20px"} padding={"2px"}>
+        <Box color={"neutral.Snowwhite"} borderRadius={"20px"} padding={"2px"}>
             <Box
                 display="flex"
                 justifyContent="space-between"
@@ -38,7 +35,7 @@ const CryptoEvents = ({ data }) => {
                     fontSize="25px"
                     fontWeight={600}
                 >
-                    Cryptocurrency Events
+                    {t("widgets.cryptoEvents.cryptoEventsTittle")}
                 </Typography>
 
                 {/* <IconButton
@@ -66,7 +63,7 @@ const CryptoEvents = ({ data }) => {
                     {data?.event_0?.description}
                 </Typography>
                 <Typography mt={0.5} fontSize={"12px"}>
-                     {data?.event_0?.recipients}
+                    {data?.event_0?.recipients}
                 </Typography>
             </Box>
             <Box mt={1.5}>

@@ -24,6 +24,8 @@ import SaveAlert from "../app/journal/saveAlert";
 import CoinAlert from "../app/journal/journal";
 import NewAiTools from "../app/newAiTools";
 import WatchList from "../app/watchList";
+import ProAnalysis1 from "../app/proAnalysis1"
+import ComingSoon from "../app/charts/commingSoon";
 
 const AUTH_ROUTES = [
 
@@ -96,20 +98,20 @@ const APP_Route = [
     path: "/dashboard",
   },
 
-  {
-    id: 2,
-    name: "Charts",
-    component: <Charts />,
-    exact: "exact",
-    path: "/chart",
-  },
   // {
   //   id: 2,
   //   name: "Charts",
-  //   component: <ComingSoon />,
+  //   component: <Charts />,
   //   exact: "exact",
-  //   path: "/coming-soon",
+  //   path: "/chart",
   // },
+  {
+    id: 2,
+    name: "Charts",
+    component: <ComingSoon />,
+    exact: "exact",
+    path: "/coming-soon",
+  },
 
   {
     id: 3,
@@ -166,6 +168,7 @@ const APP_Route = [
     exact: "exact",
     path: "/ai-tools",
   },
+
   {
     id: 9,
     name: "MarketOutLook",
@@ -211,6 +214,12 @@ const APP_Route = [
     name: "WatchList",
     component: <WatchList />,
     path: "/watch-list",
+  },
+  {
+    id: 13,
+    name: "ProAnalysis1",
+    component: <ProAnalysis1 />,
+    path: "/pro-Analytics",
   },
 ];
 

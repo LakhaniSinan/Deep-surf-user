@@ -1,21 +1,20 @@
 import { Box, Grid, LinearProgress, Typography } from '@mui/material'
-import React from 'react'
+import { useTranslation } from "react-i18next";
 import CustomButton from '../../components/customButton'
 
 const Pattern = ({ data }) => {
-    console.log("rfnhruihfruigruogrignrohig", data?.totalPatternsFound);
-
+    const { t } = useTranslation();
     const patternData = [
         {
             name: data[1]?.name,
-            type: "Bearish pattern",
+            type: data[1]?.type,
             decription: data[1]?.description,
             btnText1: data[1]?.target,
             btnText2: null
         },
         {
             name: data[0]?.name,
-            type: "Bearish pattern",
+            type: data[0]?.type,
             decription: data[0]?.description,
             btnText1: data[1]?.target,
             btnText2: data[1]?.breakout,
@@ -25,10 +24,9 @@ const Pattern = ({ data }) => {
     const confidenceValue = Number(confidenceStr.replace("%", ""));
     return (
         <Box mt={1}>
-            {/* Header */}
             <Box display={"flex"} gap={"25px"} alignItems={"center"}>
                 <Typography fontSize={"25px"} fontWeight={600}>
-                    Pattern Recognition
+                    {t("AiTools.PatternRecognition.patternRecognition")}
                 </Typography>
                 <CustomButton
                     title={`${data[0]?.totalPatternsFound} found`}
@@ -67,17 +65,14 @@ const Pattern = ({ data }) => {
                                 >
                                     {item.decription}
                                 </Typography>
-
-                                {/* Target Buttons */}
                                 <Box mt="10px" display="flex" gap={2} flexWrap={{ xs: "wrap", md: "nowrap" }}>
-                                    {/* btnText1 always show */}
                                     <CustomButton
                                         variant="h1"
-                                        backgroundColor="#1A1A1A"
+                                        backgroundColor="neutral.charcoalGrey"
                                         title={
                                             <span style={{ color: "#FFFFFF", fontSize: "15px", fontWeight: 500 }}>
-                                                {"Target"} :{" "}
-                                                <span style={{ color: "rgba(255, 68, 80, 1)" }}>
+                                                {t("AiTools.PatternRecognition.target")} :{" "}
+                                                <span style={{ color: "neutral.redOrange" }}>
                                                     {" "}
                                                     {item.btnText1}
                                                 </span>
@@ -93,11 +88,11 @@ const Pattern = ({ data }) => {
                                     {item.btnText2 && (
                                         <CustomButton
                                             variant="h1"
-                                            backgroundColor="#1A1A1A"
+                                            backgroundColor="neutral.charcoalGrey"
                                             title={
                                                 <span style={{ color: "#FFFFFF", fontSize: "15px", fontWeight: 500 }}>
-                                                    {"Breakout:"} :{" "}
-                                                    <span style={{ color: "rgba(255, 68, 80, 1)" }}>
+                                                    {t("AiTools.PatternRecognition.breakout")}  :{" "}
+                                                    <span style={{ color: "neutral.redOrange" }}>
                                                         {" "}
                                                         {item.btnText2}
                                                     </span>
@@ -113,7 +108,7 @@ const Pattern = ({ data }) => {
 
                                 {/* Confidence */}
                                 <Box mt={3}>
-                                    <Typography>Confidence: {data[1]?.confidence}</Typography>
+                                    <Typography>{t("AiTools.PatternRecognition.confidence")}: {data[1]?.confidence}</Typography>
                                     <Box mt={1}>
                                         <LinearProgress
                                             variant="determinate"
@@ -137,11 +132,11 @@ const Pattern = ({ data }) => {
             </Box>
 
             {/* How to Use Section */}
-            <Box mt={2}>
+            {/* <Box mt={2}>
                 <Grid container spacing={2} backgroundColor="background.lightGray" p={2} borderRadius={"15px"}>
                     <Grid item xs={12}>
                         <CustomButton
-                            title="How to Use"
+                            title={t("AiTools.PatternRecognition.howToUse")}
                             width="100%"
                             sx={{ borderRadius: "20px", backgroundColor: "accent.main" }}
                         />
@@ -152,7 +147,7 @@ const Pattern = ({ data }) => {
                         </Typography>
                     </Grid>
                 </Grid>
-            </Box>
+            </Box> */}
         </Box>
     )
 }

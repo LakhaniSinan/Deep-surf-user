@@ -1,9 +1,7 @@
 import { Box, Grid, Typography } from '@mui/material'
-import React from 'react'
-
+import { useTranslation } from "react-i18next";
 const TechnicalIndicator = ({ data }) => {
-    console.log("fuubvubvurbvrbvoruvrv", data);
-
+    const { t } = useTranslation();
     const indicatorData = [
         {
             title: ` RSI ${data?.rsi}`
@@ -33,7 +31,7 @@ const TechnicalIndicator = ({ data }) => {
     return (
         <Box mt={2}>
             <Box color={"neutral.Snowwhite"} fontSize={"22px"} fontWeight={600}>
-                Technical Indicators
+                {t("AiTools.IndicatorAnalysis.technicalIndicators")}
             </Box>
             <Box mt={2} >
                 <Box>
@@ -50,13 +48,11 @@ const TechnicalIndicator = ({ data }) => {
                                     </Box>
 
                                 </Grid>
-
                             ))
                         }
                     </Grid>
                 </Box>
             </Box>
-
         </Box >
     )
 }

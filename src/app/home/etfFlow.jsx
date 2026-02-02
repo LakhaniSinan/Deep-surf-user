@@ -3,21 +3,21 @@ import React from 'react'
 import EtfFlowIcon from "../../assets/icons/bitcoin-logo.svg"
 import EthIcon from "../../assets/icons/eth-icon.svg"
 import CustomButton from '../../components/customButton'
+import { useTranslation } from "react-i18next";
+
 const EtfFlow = ({ data }) => {
-    console.log("efuefgegfuegfegfegufe", data);
-
-
+    const { t } = useTranslation();
     const etfFlow = [
         {
             iocn: EtfFlowIcon,
-            title: "BTC ETF",
+            title: t("widgets.etfFlow.btcFlowTittle"),
             description1: data?.btcETF?.priceChange24h,
             description2: data?.btcETF?.flowDescription,
             color: "rgba(62, 221, 135, 1)"
         },
         {
             iocn: EthIcon,
-            title: "BTC ETF",
+            title: t("widgets.etfFlow.btcEtf"),
             description1: data?.btcETF?.priceChange24h,
             description2: data?.btcETF?.flowDescription,
             color: "rgba(62, 221, 135, 1)"
@@ -25,16 +25,16 @@ const EtfFlow = ({ data }) => {
         },
         {
             iocn: null,
-            title: "Trend",
+            title: t("widgets.etfFlow.trend"),
             description1: data?.trendAnalysis,
             description2: null,
             color: "rgba(62, 221, 135, 1)"
         }
     ]
     return (
-        <Box  color={"neutral.Snowwhite"}  borderRadius={"20px"} padding={"2px"}>
+        <Box color={"neutral.Snowwhite"} borderRadius={"20px"} padding={"2px"}>
             <Typography color='neutral.Snowwhite' fontSize={"25px"} fontWeight={600}>
-                ETF Flows
+                {t("widgets.etfFlow.etfFlows")}
             </Typography>
             <Box>
                 {
@@ -88,7 +88,7 @@ const EtfFlow = ({ data }) => {
                     borderRadius="20px"
                 >
                     <CustomButton
-                        title={data?.conclusion?.label}
+                        title={"Conclusion"}
                         sx={{
                             borderRadius: "20px",
                             width: { xs: "100%", md: "100%" },
@@ -98,7 +98,7 @@ const EtfFlow = ({ data }) => {
                         }}
                     />
                     <Typography variant="h6" fontSize="13px" fontWeight={600}>
-                        {data?.conclusion?.message}
+                        {data?.conclusion}
                     </Typography>
                 </Box>
             </Box>
